@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Paletă preluată din mockup-ul de referință: indigo profund + galben accent.
-     Mai „tech/creativ” decât movul SaaS implicit, dar tot cu contrast bun. */
-  --background: #ffffff;
-  --surface: #f6f5fb;
-  --foreground: #1b1533;
-  --brand: #6d4cf0;
-  --brand-dark: #2d1b4e;
-  --brand-light: #efeaff;
-  --accent: #ffc53d;
-  --success: #22b573;
-  --warning: #ff8a3d;
-  --locked: #b9b6c9;
+  /* Paletă preluată exact din specificația de UI (indigo Tailwind). */
+  --background: #f8fafc;
+  --surface: #f1f5f9;
+  --foreground: #1e1b4b;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --brand: #4f46e5;
+  --brand-dark: #4338ca;
+  --brand-light: #eef2ff;
+  --brand-light-2: #e0e7ff;
+  --brand-border: #c7d2fe;
+  --accent: #6366f1;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --locked: #94a3b8;
   --python-green: #4caf50;
   --python-yellow: #ffd43b;
 }
@@ -21,9 +24,13 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   --color-brand: var(--brand);
   --color-brand-dark: var(--brand-dark);
   --color-brand-light: var(--brand-light);
+  --color-brand-light-2: var(--brand-light-2);
+  --color-brand-border: var(--brand-border);
   --color-accent: var(--accent);
   --color-success: var(--success);
   --color-warning: var(--warning);
