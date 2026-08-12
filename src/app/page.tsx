@@ -1,26 +1,34 @@
 import Link from "next/link";
 import CodeBlock from "@/components/CodeBlock";
+import Mascota from "@/components/Mascota";
+import Dashboard from "@/components/Dashboard";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { getProgresUtilizator } from "@/lib/progres";
 
 const CLASE = [
   {
     clasa: "IX",
     titlu: "Bazele programării",
-    descriere: "Gândire computațională, variabile, tipuri de date, operatori, structuri de control, liste.",
+    descriere:
+      "Gândire computațională, variabile, tipuri de date, operatori, structuri de control, liste.",
   },
   {
     clasa: "X",
     titlu: "Funcții și structuri de date",
-    descriere: "Funcții, parametri, tupluri, seturi, dicționare, prelucrarea șirurilor de caractere.",
+    descriere:
+      "Funcții, parametri, tupluri, seturi, dicționare, prelucrarea șirurilor de caractere.",
   },
   {
     clasa: "XI",
     titlu: "Programare orientată pe obiecte",
-    descriere: "Clase, obiecte, moștenire, structuri de date avansate, algoritmi de sortare și căutare.",
+    descriere:
+      "Clase, obiecte, moștenire, structuri de date avansate, algoritmi de sortare și căutare.",
   },
   {
     clasa: "XII",
     titlu: "Proiecte și pregătire examen",
-    descriere: "Recapitulare integrată, proiecte practice, pregătire pentru evaluarea la Informatică.",
+    descriere:
+      "Recapitulare integrată, proiecte practice, pregătire pentru evaluarea la Informatică.",
   },
 ];
 
@@ -42,11 +50,42 @@ const FAQ = [
   },
   {
     intrebare: "Pot anula abonamentul oricând?",
-    raspuns: "Da, abonamentul se poate anula oricând din pagina de cont, fără costuri suplimentare.",
+    raspuns:
+      "Da, abonamentul se poate anula oricând din pagina de cont, fără costuri suplimentare.",
   },
 ];
 
-export default function HomePage() {
+function prenumeDinEmail(email: string): string {
+  const local = email.split("@")[0] ?? "";
+  const prima = local.split(/[._-]/)[0] ?? local;
+  return prima ? prima.charAt(0).toUpperCase() + prima.slice(1) : "prietene";
+}
+
+export default async function HomePage({ searchParams }: PageProps<"/">) {
+  const { user } = await getUtilizatorCurent();
+
+  // Utilizator autentificat: "Acasă" e dashboard-ul personal, nu marketingul.
+  if (user) {
+    const progres = await getProgresUtilizator(user.id);
+    const params = await searchParams;
+    const cerut = Array.isArray(params?.clasa) ? params.clasa[0] : params?.clasa;
+    const valide = ["IX", "X", "XI", "XII"];
+    const clasaSelectata =
+      (cerut && valide.includes(cerut) ? cerut : null) ??
+      (progres?.clasa && valide.includes(progres.clasa) ? progres.clasa : null) ??
+      "IX";
+
+    if (progres) {
+      return (
+        <Dashboard
+          prenume={prenumeDinEmail(user.email)}
+          progres={progres}
+          clasaSelectata={clasaSelectata}
+        />
+      );
+    }
+  }
+
   return (
     <div>
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
@@ -77,16 +116,27 @@ export default function HomePage() {
           </div>
         </div>
 
-        <CodeBlock
-          label="lectie_1.py"
-          code={`def saluta(nume):\n    print("Salut,", nume, "!")\n\nsaluta("Python Liceu")\n# Salut, Python Liceu !`}
-        />
+        <div className="relative">
+          <Mascota
+            size={110}
+            className="absolute -top-14 right-2 hidden lg:block"
+            eticheta="Py, mascota Academiei Python"
+          />
+          <CodeBlock
+            label="lectie_1.py"
+            code={`def saluta(nume):\n    print("Salut,", nume, "!")\n\nsaluta("Academia Python")\n# Salut, Academia Python !`}
+          />
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Ce înveți pe clase</h2>
+        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+          Un drum de învățare, nu o listă de lecții
+        </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          Conținutul este organizat progresiv, pe clase și unități de învățare, ca la clasă.
+          După ce îți faci cont, vezi un traseu vizual pentru clasa ta: ce ai terminat, care e
+          pasul următor și ce urmează. Plus XP, niveluri și serii de zile — ca să-ți fie ușor să
+          revii.
         </p>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
