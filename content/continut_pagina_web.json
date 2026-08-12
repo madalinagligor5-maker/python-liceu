@@ -1,0 +1,247 @@
+[
+  {
+    "clasa": "IX",
+    "unitate": "IX-U1 Principii de elaborare a programelor",
+    "unitate_slug": "principii-de-elaborare-a-programelor",
+    "lectie": "Gândirea computațională și etapele elaborării unui program",
+    "lectie_slug": "gandirea-computationala-si-etapele-elaborarii-unui-program",
+    "gratuit": true,
+    "obiective": [
+      "Înțelegerea etapelor de rezolvare a unei probleme cu ajutorul calculatorului",
+      "Recunoașterea pașilor: analiza problemei, proiectarea algoritmului, implementarea, testarea"
+    ],
+    "concepte_cheie": ["gândire computațională", "algoritm", "program", "etapele elaborării unui program"],
+    "explicatie_scurta": "Gândirea computațională este modul în care descompunem o problemă complexă în pași simpli, executabili de un calculator. Orice program trece prin patru etape: înțelegerea problemei, proiectarea unui algoritm (o rețetă de pași), scrierea codului într-un limbaj precum Python și, în final, testarea rezultatului. Python este un limbaj de programare popular tocmai pentru că permite să transformi rapid un algoritm în cod funcțional, cu o sintaxă apropiată de limbajul natural.",
+    "exemplu_cod": "# Etapa 1: înțelegem problema -> vrem să calculăm media a două note\n# Etapa 2: algoritm -> citim nota1, citim nota2, calculăm media, afișăm\n\nnota1 = 8\nnota2 = 10\n\nmedia = (nota1 + nota2) / 2\n\nprint(\"Media este:\", media)",
+    "exercitiu_interactiv": {
+      "enunt": "Scrie un program care calculează și afișează media a trei note: 7, 9 și 10.",
+      "cod_schelet": "nota1 = 7\nnota2 = 9\nnota3 = 10\n\n# scrie aici calculul mediei\nmedia = None\n\nprint(\"Media este:\", media)",
+      "solutie": "nota1 = 7\nnota2 = 9\nnota3 = 10\n\nmedia = (nota1 + nota2 + nota3) / 3\n\nprint(\"Media este:\", media)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Care este prima etapă în elaborarea unui program?",
+        "variante": ["Scrierea codului", "Înțelegerea problemei", "Testarea programului"],
+        "corect": 1
+      },
+      {
+        "intrebare": "Ce este un algoritm?",
+        "variante": ["Un limbaj de programare", "O succesiune de pași care rezolvă o problemă", "Un mesaj de eroare"],
+        "corect": 1
+      }
+    ]
+  },
+  {
+    "clasa": "IX",
+    "unitate": "IX-U1 Principii de elaborare a programelor",
+    "unitate_slug": "principii-de-elaborare-a-programelor",
+    "lectie": "Date, variabile și tipuri de date în Python",
+    "lectie_slug": "date-variabile-si-tipuri-de-date-in-python",
+    "gratuit": true,
+    "obiective": [
+      "Recunoașterea tipurilor de date de bază: int, float, str, bool",
+      "Declararea și utilizarea variabilelor în Python"
+    ],
+    "concepte_cheie": ["variabilă", "tip de date", "int", "float", "str", "bool"],
+    "explicatie_scurta": "O variabilă este un nume asociat unei valori păstrate în memorie. În Python nu trebuie să declari explicit tipul unei variabile — acesta este dedus automat din valoarea atribuită. Cele mai folosite tipuri de date sunt: int (numere întregi), float (numere reale), str (text) și bool (adevărat/fals). Poți afla oricând tipul unei variabile cu funcția type().",
+    "exemplu_cod": "varsta = 16          # int\ninaltime = 1.72      # float\nnume = \"Maria\"        # str\neste_eleva = True    # bool\n\nprint(nume, \"are\", varsta, \"ani\")\nprint(type(varsta))\nprint(type(inaltime))",
+    "exercitiu_interactiv": {
+      "enunt": "Declară trei variabile: numele tău (str), clasa în care ești (int) și media generală (float). Afișează-le folosind print().",
+      "cod_schelet": "nume = \"\"\nclasa = 0\nmedia = 0.0\n\nprint(nume, clasa, media)",
+      "solutie": "nume = \"Andrei\"\nclasa = 9\nmedia = 9.5\n\nprint(nume, clasa, media)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce tip de date are valoarea 3.14 în Python?",
+        "variante": ["int", "float", "str"],
+        "corect": 1
+      },
+      {
+        "intrebare": "Ce funcție folosim ca să aflăm tipul unei variabile?",
+        "variante": ["type()", "print()", "input()"],
+        "corect": 0
+      }
+    ]
+  },
+  {
+    "clasa": "IX",
+    "unitate": "IX-U1 Principii de elaborare a programelor",
+    "unitate_slug": "principii-de-elaborare-a-programelor",
+    "lectie": "Operatori și expresii în Python",
+    "lectie_slug": "operatori-si-expresii-in-python",
+    "gratuit": true,
+    "obiective": [
+      "Utilizarea operatorilor aritmetici, de comparație și logici",
+      "Construirea de expresii corecte în Python"
+    ],
+    "concepte_cheie": ["operatori aritmetici", "operatori de comparație", "operatori logici", "expresie"],
+    "explicatie_scurta": "Operatorii sunt simboluri care efectuează operații asupra valorilor. Operatorii aritmetici (+, -, *, /, //, %, **) fac calcule; operatorii de comparație (==, !=, <, >, <=, >=) compară valori și întorc True sau False; operatorii logici (and, or, not) combină condiții. O expresie este orice combinație de valori și operatori care produce un rezultat.",
+    "exemplu_cod": "a = 17\nb = 5\n\nprint(a + b)   # adunare -> 22\nprint(a // b)  # câtul împărțirii întregi -> 3\nprint(a % b)   # restul împărțirii -> 2\nprint(a > b)   # comparație -> True\nprint(a > 10 and b < 10)  # operator logic -> True",
+    "exercitiu_interactiv": {
+      "enunt": "Scrie un program care verifică dacă numărul 23 este impar și mai mare decât 10, afișând True sau False.",
+      "cod_schelet": "numar = 23\n\n# scrie aici condiția folosind operatori\nrezultat = None\n\nprint(rezultat)",
+      "solutie": "numar = 23\n\nrezultat = (numar % 2 != 0) and (numar > 10)\n\nprint(rezultat)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce returnează operatorul % (modulo) pentru 17 % 5?",
+        "variante": ["3", "2", "12"],
+        "corect": 1
+      },
+      {
+        "intrebare": "Ce tip de rezultat produce un operator de comparație precum >?",
+        "variante": ["int", "bool", "str"],
+        "corect": 1
+      }
+    ]
+  },
+  {
+    "clasa": "IX",
+    "unitate": "IX-U2 Structuri de date - Liste",
+    "unitate_slug": "structuri-de-date-liste",
+    "lectie": "Introducere în liste",
+    "lectie_slug": "introducere-in-liste",
+    "gratuit": true,
+    "obiective": [
+      "Înțelegerea listei ca structură de date ordonată",
+      "Crearea și accesarea elementelor unei liste prin index"
+    ],
+    "concepte_cheie": ["listă", "index", "element"],
+    "explicatie_scurta": "O listă este o colecție ordonată de valori, care pot fi de orice tip, reținute sub un singur nume de variabilă. Elementele unei liste se accesează prin index, pornind de la 0 pentru primul element. Listele sunt mutabile — pot fi modificate după creare, spre deosebire de alte structuri pe care le vei întâlni mai târziu.",
+    "exemplu_cod": "note = [8, 9, 10, 7, 9]\n\nprint(note)\nprint(note[0])   # primul element -> 8\nprint(note[-1])  # ultimul element -> 9\nprint(len(note)) # numărul de elemente -> 5",
+    "exercitiu_interactiv": {
+      "enunt": "Creează o listă cu numele a 4 colegi de-ai tăi și afișează-l pe al doilea din listă.",
+      "cod_schelet": "colegi = []\n\n# afișează al doilea coleg din listă\nprint(colegi[1])",
+      "solutie": "colegi = [\"Ana\", \"Mihai\", \"Ioana\", \"David\"]\n\nprint(colegi[1])"
+    },
+    "quiz": [
+      {
+        "intrebare": "De la ce index pornește numerotarea elementelor unei liste în Python?",
+        "variante": ["0", "1", "-1"],
+        "corect": 0
+      },
+      {
+        "intrebare": "Ce funcție folosim pentru a afla numărul de elemente dintr-o listă?",
+        "variante": ["size()", "len()", "count()"],
+        "corect": 1
+      }
+    ]
+  },
+  {
+    "clasa": "IX",
+    "unitate": "IX-U2 Structuri de date - Liste",
+    "unitate_slug": "structuri-de-date-liste",
+    "lectie": "Operații de bază cu liste",
+    "lectie_slug": "operatii-de-baza-cu-liste",
+    "gratuit": true,
+    "obiective": [
+      "Adăugarea și eliminarea elementelor dintr-o listă",
+      "Utilizarea metodelor append(), remove() și insert()"
+    ],
+    "concepte_cheie": ["append", "remove", "insert", "mutabilitate"],
+    "explicatie_scurta": "Listele în Python sunt mutabile, adică pot fi modificate direct: putem adăuga elemente la final cu append(), le putem insera pe o poziție anume cu insert() sau le putem elimina cu remove(). Aceste operații modifică lista originală, fără să creeze una nouă.",
+    "exemplu_cod": "fructe = [\"măr\", \"pară\"]\n\nfructe.append(\"banană\")     # adaugă la final\nfructe.insert(1, \"kiwi\")     # inserează pe poziția 1\nfructe.remove(\"pară\")        # elimină un element\n\nprint(fructe)",
+    "exercitiu_interactiv": {
+      "enunt": "Pornind de la lista [\"Python\", \"Java\"], adaugă \"C++\" la final, apoi elimină \"Java\".",
+      "cod_schelet": "limbaje = [\"Python\", \"Java\"]\n\n# adaugă C++ și elimină Java\n\nprint(limbaje)",
+      "solutie": "limbaje = [\"Python\", \"Java\"]\n\nlimbaje.append(\"C++\")\nlimbaje.remove(\"Java\")\n\nprint(limbaje)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce metodă adaugă un element la finalul unei liste?",
+        "variante": ["append()", "add()", "push()"],
+        "corect": 0
+      },
+      {
+        "intrebare": "Listele din Python sunt...",
+        "variante": ["imutabile", "mutabile", "constante"],
+        "corect": 1
+      }
+    ]
+  },
+  {
+    "clasa": "IX",
+    "unitate": "IX-U2 Structuri de date - Liste",
+    "unitate_slug": "structuri-de-date-liste",
+    "lectie": "Parcurgerea listelor cu bucla for",
+    "lectie_slug": "parcurgerea-listelor-cu-bucla-for",
+    "gratuit": false,
+    "obiective": [
+      "Parcurgerea elementelor unei liste folosind bucla for",
+      "Combinarea buclei for cu structuri condiționale"
+    ],
+    "concepte_cheie": ["buclă for", "iterare", "listă"],
+    "explicatie_scurta": "Bucla for permite parcurgerea, pe rând, a fiecărui element dintr-o listă, fără să fie nevoie să folosim indecși manual. Este una dintre cele mai folosite structuri atunci când lucrăm cu colecții de date.",
+    "exemplu_cod": "note = [8, 9, 10, 6, 7]\n\nfor nota in note:\n    if nota >= 9:\n        print(nota, \"- notă foarte bună\")\n    else:\n        print(nota)",
+    "exercitiu_interactiv": {
+      "enunt": "Parcurge lista de note și afișează doar notele mai mici decât 7.",
+      "cod_schelet": "note = [8, 6, 10, 5, 7]\n\n# parcurge lista și afișează notele < 7",
+      "solutie": "note = [8, 6, 10, 5, 7]\n\nfor nota in note:\n    if nota < 7:\n        print(nota)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce structură folosim ca să parcurgem fiecare element dintr-o listă?",
+        "variante": ["bucla for", "instrucțiunea if", "funcția print()"],
+        "corect": 0
+      }
+    ]
+  },
+  {
+    "clasa": "X",
+    "unitate": "X-U1 Funcții",
+    "unitate_slug": "functii",
+    "lectie": "Definirea și apelarea funcțiilor",
+    "lectie_slug": "definirea-si-apelarea-functiilor",
+    "gratuit": false,
+    "obiective": [
+      "Definirea unei funcții cu def",
+      "Apelarea unei funcții și transmiterea de parametri"
+    ],
+    "concepte_cheie": ["funcție", "parametru", "apel de funcție"],
+    "explicatie_scurta": "O funcție este un bloc de cod reutilizabil, care primește (opțional) parametri și poate returna un rezultat. Funcțiile ne ajută să evităm duplicarea codului și să organizăm programul în bucăți logice, ușor de testat.",
+    "exemplu_cod": "def saluta(nume):\n    print(\"Salut,\", nume, \"!\")\n\nsaluta(\"Elena\")\nsaluta(\"Radu\")",
+    "exercitiu_interactiv": {
+      "enunt": "Definește o funcție patrat(numar) care afișează pătratul numărului primit.",
+      "cod_schelet": "def patrat(numar):\n    pass\n\npatrat(5)",
+      "solutie": "def patrat(numar):\n    print(numar ** 2)\n\npatrat(5)"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce cuvânt cheie folosim pentru a defini o funcție în Python?",
+        "variante": ["func", "def", "function"],
+        "corect": 1
+      }
+    ]
+  },
+  {
+    "clasa": "X",
+    "unitate": "X-U1 Funcții",
+    "unitate_slug": "functii",
+    "lectie": "Parametri și valori returnate",
+    "lectie_slug": "parametri-si-valori-returnate",
+    "gratuit": false,
+    "obiective": [
+      "Utilizarea instrucțiunii return",
+      "Diferența dintre a afișa un rezultat și a-l returna"
+    ],
+    "concepte_cheie": ["return", "valoare de retur", "parametru implicit"],
+    "explicatie_scurta": "Instrucțiunea return trimite o valoare înapoi din funcție către locul din care a fost apelată, astfel încât rezultatul poate fi reținut într-o variabilă și folosit ulterior, spre deosebire de print() care doar afișează valoarea pe ecran.",
+    "exemplu_cod": "def suma(a, b):\n    return a + b\n\nrezultat = suma(4, 7)\nprint(\"Suma este:\", rezultat)",
+    "exercitiu_interactiv": {
+      "enunt": "Scrie o funcție este_par(numar) care returnează True dacă numărul este par.",
+      "cod_schelet": "def este_par(numar):\n    pass\n\nprint(este_par(6))",
+      "solutie": "def este_par(numar):\n    return numar % 2 == 0\n\nprint(este_par(6))"
+    },
+    "quiz": [
+      {
+        "intrebare": "Ce diferență există între print() și return într-o funcție?",
+        "variante": [
+          "Nu există nicio diferență",
+          "print() afișează pe ecran, return trimite valoarea înapoi pentru a fi folosită",
+          "return afișează pe ecran, print() trimite valoarea înapoi"
+        ],
+        "corect": 1
+      }
+    ]
+  }
+]

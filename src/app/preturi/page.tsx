@@ -1,0 +1,103 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import AbonaButton from "@/components/AbonaButton";
+
+export const metadata: Metadata = {
+  title: "Prețuri — PythonLiceu",
+  description: "Planuri de abonament PythonLiceu — acces complet la toate lecțiile, clasele IX-XII.",
+};
+
+const PLANURI = [
+  {
+    plan: "lunar" as const,
+    nume: "Lunar",
+    pret: "29 lei",
+    perioada: "/ lună",
+    descriere: "Ideal dacă vrei să încerci platforma pe termen scurt.",
+    beneficii: [
+      "Acces la toate lecțiile, clasele IX-XII",
+      "Exerciții interactive și quiz-uri",
+      "Anulare oricând, fără costuri",
+    ],
+    evidentiat: false,
+  },
+  {
+    plan: "anual" as const,
+    nume: "Anual",
+    pret: "199 lei",
+    perioada: "/ an",
+    descriere: "Cel mai bun preț pe lună — echivalentul a ~17 lei/lună.",
+    beneficii: [
+      "Tot ce include planul lunar",
+      "Economisești peste 40% față de plata lunară",
+      "Acces pe tot parcursul anului școlar",
+    ],
+    evidentiat: true,
+  },
+];
+
+export default function PreturiPage() {
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
+      <div className="text-center">
+        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
+          Alege planul potrivit pentru tine
+        </h1>
+        <p className="mt-3 text-foreground/70">
+          Primele 5 lecții rămân gratuite, oricând, fără cont. Abonamentul deblochează tot restul
+          conținutului.
+        </p>
+      </div>
+
+      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        {PLANURI.map((plan) => (
+          <div
+            key={plan.nume}
+            className={[
+              "rounded-2xl border p-6 shadow-sm",
+              plan.evidentiat
+                ? "border-brand bg-brand-light/40 ring-1 ring-brand"
+                : "border-black/10 bg-white",
+            ].join(" ")}
+          >
+            {plan.evidentiat && (
+              <span className="inline-flex rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
+                Recomandat
+              </span>
+            )}
+            <h2 className="mt-3 text-xl font-bold text-foreground">{plan.nume}</h2>
+            <p className="mt-1 text-sm text-foreground/60">{plan.descriere}</p>
+            <p className="mt-4">
+              <span className="text-3xl font-extrabold text-foreground">{plan.pret}</span>
+              <span className="text-sm text-foreground/50"> {plan.perioada}</span>
+            </p>
+
+            <ul className="mt-5 space-y-2 text-sm text-foreground/70">
+              {plan.beneficii.map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-success">✓</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+
+            <AbonaButton
+              plan={plan.plan}
+              className="mt-6 w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+            />
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-6 text-center text-xs text-foreground/40">
+        Plățile se vor procesa integral prin Stripe. Nu stocăm date de card.
+      </p>
+
+      <div className="mt-10 text-center">
+        <Link href="/lectii" className="text-sm font-medium text-brand hover:text-brand-dark">
+          ← Vezi lecțiile gratuite disponibile acum
+        </Link>
+      </div>
+    </div>
+  );
+}
