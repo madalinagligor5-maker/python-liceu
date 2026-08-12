@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!lectie) return {};
 
   return {
-    title: `${lectie.lectie} — PythonLiceu`,
+    title: `${lectie.lectie} — Academia Python`,
     description: lectie.explicatie_scurta.slice(0, 155),
   };
 }
@@ -44,9 +44,11 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
   // Regula de acces (verificată aici, server-side, nu doar în UI):
   // gratuit -> acces liber; fără cont -> redirect la login; cu cont dar fără
   // abonament activ -> paywall; cu abonament activ -> acces integral.
+  // Sesiunea se citește și pentru lecțiile gratuite, ca quiz-ul să poată
+  // acorda XP unui elev logat (nu schimbă regula de acces).
+  const { user, meta } = await getUtilizatorCurent();
   let areAcces = lectie.gratuit;
   if (!lectie.gratuit) {
-    const { user, meta } = await getUtilizatorCurent();
     if (!user) {
       redirect(`/login?redirect=${encodeURIComponent(`/lectii/${clasa}/${unitateSlug}/${lectieSlug}`)}`);
     }
@@ -107,7 +109,13 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
           </div>
 
           <div className="mt-8">
-            <QuizWidget intrebari={lectie.quiz} />
+            <QuizWidget
+              intrebari={lectie.quiz}
+              clasa={clasa}
+              unitateSlug={unitateSlug}
+              lectieSlug={lectieSlug}
+              autentificat={Boolean(user)}
+            />
           </div>
 
           {urmatoarea && (
