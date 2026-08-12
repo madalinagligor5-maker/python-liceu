@@ -4,6 +4,7 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
 
 const linkuri = [
+  { href: "/curriculum", label: "Curriculum" },
   { href: "/lectii", label: "Lecții" },
   { href: "/preturi", label: "Prețuri" },
 ];

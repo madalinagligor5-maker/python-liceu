@@ -1,0 +1,4644 @@
+{
+  "sursa": "Ordinul 4.370/2026, Anexele 8-11",
+  "sablon_sublectii": [
+    {
+      "titlu": "Recapitulare",
+      "descriere": "Leaga lectia de ce s-a invatat deja."
+    },
+    {
+      "titlu": "Concept nou si exemplu",
+      "descriere": "Explicatie pas cu pas si un exemplu de cod comentat."
+    },
+    {
+      "titlu": "Citeste si prezice",
+      "descriere": "Citesti un fragment de cod si anticipezi rezultatul."
+    },
+    {
+      "titlu": "Exercitii ghidate",
+      "descriere": "Probleme rezolvate partial, cu indicii."
+    },
+    {
+      "titlu": "Exercitii independente",
+      "descriere": "Probleme de rezolvat singur, fara sprijin."
+    },
+    {
+      "titlu": "Verifica-ti intelegerea",
+      "descriere": "3-5 intrebari scurte inainte de modulul urmator."
+    }
+  ],
+  "capitole": [
+    {
+      "numar": 1,
+      "clasa": "IX",
+      "titlu": "Fundamentele programarii in Python",
+      "slug": "fundamentele-programarii-in-python",
+      "module": [
+        {
+          "cod": "1.1",
+          "numar": 1,
+          "titlu": "Ce este un algoritm? Etapele elaborarii unui program",
+          "slug": "ce-este-un-algoritm-etapele-elaborarii-unui-program",
+          "clasa": "IX",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "1.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.2",
+          "numar": 2,
+          "titlu": "Reprezentarea algoritmilor: scheme logice, pseudocod, cod",
+          "slug": "reprezentarea-algoritmilor-scheme-logice-pseudocod-cod",
+          "clasa": "IX",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "1.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.3",
+          "numar": 3,
+          "titlu": "Eficienta unui algoritm - notiuni de baza",
+          "slug": "eficienta-unui-algoritm-notiuni-de-baza",
+          "clasa": "IX",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "1.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.4",
+          "numar": 4,
+          "titlu": "Subprograme (functii): definire si apel",
+          "slug": "subprograme-functii-definire-si-apel",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.4.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.4.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.4.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.4.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.4.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.4.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.5",
+          "numar": 5,
+          "titlu": "Variabile locale si globale, transmiterea prin parametri",
+          "slug": "variabile-locale-si-globale-transmiterea-prin-parametri",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.5.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.5.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.5.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.5.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.5.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.5.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.6",
+          "numar": 6,
+          "titlu": "Functii predefinite pentru calcule si pentru colectii",
+          "slug": "functii-predefinite-pentru-calcule-si-pentru-colectii",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.6.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.6.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.6.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.6.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.6.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.6.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.7",
+          "numar": 7,
+          "titlu": "Prelucrarea cifrelor unui numar",
+          "slug": "prelucrarea-cifrelor-unui-numar",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.7.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.7.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.7.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.7.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.7.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.7.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.8",
+          "numar": 8,
+          "titlu": "Divizori, multipli, algoritmul lui Euclid",
+          "slug": "divizori-multipli-algoritmul-lui-euclid",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.8.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.8.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.8.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.8.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.8.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.8.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.9",
+          "numar": 9,
+          "titlu": "Conversia numerelor intre baze de numeratie",
+          "slug": "conversia-numerelor-intre-baze-de-numeratie",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.9.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.9.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.9.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.9.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.9.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.9.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.10",
+          "numar": 10,
+          "titlu": "Ciurul lui Eratostene si exponentiere rapida",
+          "slug": "ciurul-lui-eratostene-si-exponentiere-rapida",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.10.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.10.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.10.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.10.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.10.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.10.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.11",
+          "numar": 11,
+          "titlu": "Introducere in programarea orientata pe obiecte",
+          "slug": "introducere-in-programarea-orientata-pe-obiecte",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.11.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.11.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.11.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.11.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.11.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.11.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.12",
+          "numar": 12,
+          "titlu": "tkinter: fereastra principala si widget-uri de baza",
+          "slug": "tkinter-fereastra-principala-si-widget-uri-de-baza",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.12.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.12.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.12.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.12.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.12.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.12.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.13",
+          "numar": 13,
+          "titlu": "tkinter: gestionarea plasarii si a evenimentelor",
+          "slug": "tkinter-gestionarea-plasarii-si-a-evenimentelor",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.13.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.13.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.13.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.13.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.13.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.13.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.14",
+          "numar": 14,
+          "titlu": "Fisiere text: deschidere, citire, scriere, inchidere",
+          "slug": "fisiere-text-deschidere-citire-scriere-inchidere",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.14.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.14.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.14.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.14.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.14.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.14.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.15",
+          "numar": 15,
+          "titlu": "Modelul conceptual lista: stiva, coada, acces direct/secvential",
+          "slug": "modelul-conceptual-lista-stiva-coada-acces-direct-secvential",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.15.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.15.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.15.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.15.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.15.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.15.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.16",
+          "numar": 16,
+          "titlu": "Clasa list: operatori de baza",
+          "slug": "clasa-list-operatori-de-baza",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.16.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.16.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.16.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.16.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.16.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.16.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.17",
+          "numar": 17,
+          "titlu": "Clasa list: metode (căutare, inserare, stergere, sortare)",
+          "slug": "clasa-list-metode-cautare-inserare-stergere-sortare",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.17.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.17.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.17.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.17.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.17.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.17.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.18",
+          "numar": 18,
+          "titlu": "Generarea sistematica a secventelor de valori",
+          "slug": "generarea-sistematica-a-secventelor-de-valori",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.18.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.18.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.18.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.18.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.18.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.18.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.19",
+          "numar": 19,
+          "titlu": "Sortare: selectia minimului",
+          "slug": "sortare-selectia-minimului",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.19.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.19.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.19.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.19.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.19.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.19.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "1.20",
+          "numar": 20,
+          "titlu": "Sortare: metoda bulelor si lista de frecvente",
+          "slug": "sortare-metoda-bulelor-si-lista-de-frecvente",
+          "clasa": "IX",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "1.20.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "1.20.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "1.20.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "1.20.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "1.20.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "1.20.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numar": 2,
+      "clasa": "X",
+      "titlu": "Structuri de date fundamentale",
+      "slug": "structuri-de-date-fundamentale",
+      "module": [
+        {
+          "cod": "2.1",
+          "numar": 1,
+          "titlu": "Cautarea binara",
+          "slug": "cautarea-binara",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.2",
+          "numar": 2,
+          "titlu": "Interclasarea a doua liste ordonate",
+          "slug": "interclasarea-a-doua-liste-ordonate",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.3",
+          "numar": 3,
+          "titlu": "Modelul conceptual multime",
+          "slug": "modelul-conceptual-multime",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.4",
+          "numar": 4,
+          "titlu": "Clasa set: operatori si metode",
+          "slug": "clasa-set-operatori-si-metode",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.4.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.4.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.4.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.4.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.4.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.4.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.5",
+          "numar": 5,
+          "titlu": "Modelul conceptual sir de caractere",
+          "slug": "modelul-conceptual-sir-de-caractere",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.5.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.5.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.5.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.5.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.5.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.5.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.6",
+          "numar": 6,
+          "titlu": "Clasa str: indexare, slicing, concatenare, comparare",
+          "slug": "clasa-str-indexare-slicing-concatenare-comparare",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.6.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.6.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.6.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.6.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.6.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.6.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.7",
+          "numar": 7,
+          "titlu": "Clasa str: metode de căutare, inlocuire, separare",
+          "slug": "clasa-str-metode-de-cautare-inlocuire-separare",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.7.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.7.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.7.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.7.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.7.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.7.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.8",
+          "numar": 8,
+          "titlu": "Criptare simpla: substitutie si cifrul lui Cezar",
+          "slug": "criptare-simpla-substitutie-si-cifrul-lui-cezar",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.8.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.8.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.8.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.8.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.8.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.8.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.9",
+          "numar": 9,
+          "titlu": "Cifrul Vigenere",
+          "slug": "cifrul-vigenere",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.9.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.9.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.9.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.9.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.9.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.9.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.10",
+          "numar": 10,
+          "titlu": "Suma de control (algoritmul lui Fletcher)",
+          "slug": "suma-de-control-algoritmul-lui-fletcher",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.10.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.10.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.10.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.10.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.10.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.10.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.11",
+          "numar": 11,
+          "titlu": "Modelul conceptual dictionar",
+          "slug": "modelul-conceptual-dictionar",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.11.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.11.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.11.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.11.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.11.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.11.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.12",
+          "numar": 12,
+          "titlu": "Clasa dict: acces si metode uzuale",
+          "slug": "clasa-dict-acces-si-metode-uzuale",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.12.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.12.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.12.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.12.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.12.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.12.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.13",
+          "numar": 13,
+          "titlu": "Modelul conceptual tuplu",
+          "slug": "modelul-conceptual-tuplu",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.13.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.13.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.13.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.13.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.13.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.13.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.14",
+          "numar": 14,
+          "titlu": "Clasa tuple: operatori si metode",
+          "slug": "clasa-tuple-operatori-si-metode",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.14.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.14.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.14.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.14.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.14.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.14.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.15",
+          "numar": 15,
+          "titlu": "Modelul conceptual mixt (liste de liste, liste de dictionare)",
+          "slug": "modelul-conceptual-mixt-liste-de-liste-liste-de-dictionare",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.15.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.15.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.15.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.15.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.15.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.15.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.16",
+          "numar": 16,
+          "titlu": "Elemente de limbaj pentru modele mixte",
+          "slug": "elemente-de-limbaj-pentru-modele-mixte",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.16.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.16.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.16.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.16.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.16.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.16.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.17",
+          "numar": 17,
+          "titlu": "Subprograme recursive",
+          "slug": "subprograme-recursive",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.17.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.17.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.17.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.17.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.17.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.17.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.18",
+          "numar": 18,
+          "titlu": "Metoda Divide et impera",
+          "slug": "metoda-divide-et-impera",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.18.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.18.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.18.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.18.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.18.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.18.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.19",
+          "numar": 19,
+          "titlu": "Sortare prin interclasare si sortare rapida (quicksort)",
+          "slug": "sortare-prin-interclasare-si-sortare-rapida-quicksort",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.19.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.19.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.19.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.19.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.19.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.19.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.20",
+          "numar": 20,
+          "titlu": "Algoritmi de umplere (Flood Fill)",
+          "slug": "algoritmi-de-umplere-flood-fill",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.20.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.20.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.20.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.20.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.20.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.20.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "2.21",
+          "numar": 21,
+          "titlu": "Metoda Greedy",
+          "slug": "metoda-greedy",
+          "clasa": "X",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "2.21.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "2.21.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "2.21.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "2.21.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "2.21.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "2.21.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numar": 3,
+      "clasa": "XI",
+      "titlu": "Structuri de date complexe si POO",
+      "slug": "structuri-de-date-complexe-si-poo",
+      "module": [
+        {
+          "cod": "3.1",
+          "numar": 1,
+          "titlu": "Liste inlantuite: concept si tipuri",
+          "slug": "liste-inlantuite-concept-si-tipuri",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.2",
+          "numar": 2,
+          "titlu": "Liste inlantuite: operatii de baza (adaugare, eliminare)",
+          "slug": "liste-inlantuite-operatii-de-baza-adaugare-eliminare",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.3",
+          "numar": 3,
+          "titlu": "Backtracking: principiu si conditii",
+          "slug": "backtracking-principiu-si-conditii",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.4",
+          "numar": 4,
+          "titlu": "Backtracking: probleme clasice (permutari, regine)",
+          "slug": "backtracking-probleme-clasice-permutari-regine",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.4.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.4.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.4.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.4.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.4.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.4.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.5",
+          "numar": 5,
+          "titlu": "Backtracking generalizat",
+          "slug": "backtracking-generalizat",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.5.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.5.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.5.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.5.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.5.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.5.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.6",
+          "numar": 6,
+          "titlu": "Programare dinamica",
+          "slug": "programare-dinamica",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.6.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.6.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.6.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.6.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.6.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.6.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.7",
+          "numar": 7,
+          "titlu": "Modelul conceptual graf: concepte de baza",
+          "slug": "modelul-conceptual-graf-concepte-de-baza",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.7.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.7.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.7.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.7.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.7.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.7.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.8",
+          "numar": 8,
+          "titlu": "Reprezentarea grafurilor (matrice, liste de adiacenta)",
+          "slug": "reprezentarea-grafurilor-matrice-liste-de-adiacenta",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.8.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.8.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.8.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.8.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.8.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.8.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.9",
+          "numar": 9,
+          "titlu": "Tipuri de grafuri (complet, conex, ponderat, hamiltonian, eulerian)",
+          "slug": "tipuri-de-grafuri-complet-conex-ponderat-hamiltonian-eulerian",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.9.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.9.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.9.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.9.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.9.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.9.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.10",
+          "numar": 10,
+          "titlu": "Parcurgerea grafurilor: BFS",
+          "slug": "parcurgerea-grafurilor-bfs",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.10.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.10.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.10.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.10.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.10.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.10.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.11",
+          "numar": 11,
+          "titlu": "Parcurgerea grafurilor: DFS",
+          "slug": "parcurgerea-grafurilor-dfs",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.11.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.11.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.11.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.11.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.11.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.11.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.12",
+          "numar": 12,
+          "titlu": "Matricea drumurilor - algoritmul Roy-Warshall",
+          "slug": "matricea-drumurilor-algoritmul-roy-warshall",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.12.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.12.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.12.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.12.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.12.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.12.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.13",
+          "numar": 13,
+          "titlu": "Drumuri de cost minim - algoritmul lui Dijkstra",
+          "slug": "drumuri-de-cost-minim-algoritmul-lui-dijkstra",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.13.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.13.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.13.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.13.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.13.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.13.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.14",
+          "numar": 14,
+          "titlu": "Drumuri de cost minim - algoritmul Roy-Floyd",
+          "slug": "drumuri-de-cost-minim-algoritmul-roy-floyd",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.14.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.14.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.14.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.14.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.14.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.14.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.15",
+          "numar": 15,
+          "titlu": "Arbore de acoperire minim - algoritmul lui Prim",
+          "slug": "arbore-de-acoperire-minim-algoritmul-lui-prim",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.15.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.15.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.15.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.15.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.15.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.15.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.16",
+          "numar": 16,
+          "titlu": "Arbore de acoperire minim - algoritmul lui Kruskal",
+          "slug": "arbore-de-acoperire-minim-algoritmul-lui-kruskal",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.16.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.16.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.16.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.16.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.16.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.16.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.17",
+          "numar": 17,
+          "titlu": "Modelul conceptual arbore: concepte de baza",
+          "slug": "modelul-conceptual-arbore-concepte-de-baza",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.17.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.17.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.17.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.17.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.17.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.17.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.18",
+          "numar": 18,
+          "titlu": "Arbori binari si arbori binari de căutare",
+          "slug": "arbori-binari-si-arbori-binari-de-cautare",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.18.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.18.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.18.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.18.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.18.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.18.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.19",
+          "numar": 19,
+          "titlu": "Heap (ansamblu)",
+          "slug": "heap-ansamblu",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.19.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.19.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.19.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.19.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.19.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.19.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.20",
+          "numar": 20,
+          "titlu": "Parcurgerea arborilor: preordine, inordine, postordine",
+          "slug": "parcurgerea-arborilor-preordine-inordine-postordine",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.20.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.20.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.20.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.20.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.20.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.20.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.21",
+          "numar": 21,
+          "titlu": "Cautare si inserare intr-un arbore binar de căutare",
+          "slug": "cautare-si-inserare-intr-un-arbore-binar-de-cautare",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.21.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.21.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.21.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.21.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.21.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.21.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.22",
+          "numar": 22,
+          "titlu": "Modelul conceptual obiectual: clase, obiecte, mostenire",
+          "slug": "modelul-conceptual-obiectual-clase-obiecte-mostenire",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.22.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.22.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.22.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.22.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.22.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.22.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.23",
+          "numar": 23,
+          "titlu": "POO in Python: sintaxa class si constructorul",
+          "slug": "poo-in-python-sintaxa-class-si-constructorul",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.23.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.23.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.23.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.23.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.23.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.23.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.24",
+          "numar": 24,
+          "titlu": "POO in Python: niveluri de acces si clase derivate",
+          "slug": "poo-in-python-niveluri-de-acces-si-clase-derivate",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.24.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.24.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.24.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.24.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.24.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.24.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "3.25",
+          "numar": 25,
+          "titlu": "Paradigme de programare",
+          "slug": "paradigme-de-programare",
+          "clasa": "XI",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "3.25.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "3.25.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "3.25.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "3.25.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "3.25.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "3.25.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numar": 4,
+      "clasa": "XII",
+      "titlu": "Baze de date si invatare automata",
+      "slug": "baze-de-date-si-invatare-automata",
+      "module": [
+        {
+          "cod": "4.1",
+          "numar": 1,
+          "titlu": "Modelul entitate-relatie: entitati si atribute",
+          "slug": "modelul-entitate-relatie-entitati-si-atribute",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.2",
+          "numar": 2,
+          "titlu": "Modelul entitate-relatie: relatii si cardinalitate",
+          "slug": "modelul-entitate-relatie-relatii-si-cardinalitate",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.3",
+          "numar": 3,
+          "titlu": "Diagrama ERD si maparea la modelul fizic",
+          "slug": "diagrama-erd-si-maparea-la-modelul-fizic",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.4",
+          "numar": 4,
+          "titlu": "Chei primare, chei externe, constrangeri de integritate",
+          "slug": "chei-primare-chei-externe-constrangeri-de-integritate",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.4.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.4.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.4.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.4.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.4.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.4.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.5",
+          "numar": 5,
+          "titlu": "Forme normale: FN1, FN2, FN3",
+          "slug": "forme-normale-fn1-fn2-fn3",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.5.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.5.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.5.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.5.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.5.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.5.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.6",
+          "numar": 6,
+          "titlu": "Clasele Connection si Cursor din Python",
+          "slug": "clasele-connection-si-cursor-din-python",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.6.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.6.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.6.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.6.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.6.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.6.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.7",
+          "numar": 7,
+          "titlu": "SQL: interogari SELECT, proiectie, ordonare",
+          "slug": "sql-interogari-select-proiectie-ordonare",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.7.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.7.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.7.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.7.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.7.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.7.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.8",
+          "numar": 8,
+          "titlu": "SQL: functii agregate si grupare",
+          "slug": "sql-functii-agregate-si-grupare",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.8.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.8.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.8.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.8.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.8.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.8.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.9",
+          "numar": 9,
+          "titlu": "SQL: JOIN si subinterogari",
+          "slug": "sql-join-si-subinterogari",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.9.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.9.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.9.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.9.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.9.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.9.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.10",
+          "numar": 10,
+          "titlu": "SQL: DML - inserare, actualizare, stergere",
+          "slug": "sql-dml-inserare-actualizare-stergere",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.10.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.10.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.10.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.10.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.10.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.10.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.11",
+          "numar": 11,
+          "titlu": "SQL: DDL - creare si modificare a structurii",
+          "slug": "sql-ddl-creare-si-modificare-a-structurii",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.11.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.11.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.11.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.11.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.11.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.11.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.12",
+          "numar": 12,
+          "titlu": "SQL: DCL si TCL - drepturi si tranzactii",
+          "slug": "sql-dcl-si-tcl-drepturi-si-tranzactii",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.12.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.12.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.12.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.12.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.12.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.12.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.13",
+          "numar": 13,
+          "titlu": "Modele de date pentru invatarea automata",
+          "slug": "modele-de-date-pentru-invatarea-automata",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.13.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.13.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.13.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.13.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.13.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.13.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.14",
+          "numar": 14,
+          "titlu": "Pregatirea datelor (normalizare, valori lipsa)",
+          "slug": "pregatirea-datelor-normalizare-valori-lipsa",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.14.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.14.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.14.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.14.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.14.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.14.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.15",
+          "numar": 15,
+          "titlu": "Invatare nesupervizata: K-means",
+          "slug": "invatare-nesupervizata-k-means",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.15.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.15.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.15.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.15.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.15.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.15.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.16",
+          "numar": 16,
+          "titlu": "Invatare supervizata: regresie liniara",
+          "slug": "invatare-supervizata-regresie-liniara",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.16.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.16.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.16.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.16.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.16.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.16.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.17",
+          "numar": 17,
+          "titlu": "Invatare supervizata: KNN si arbore de decizie",
+          "slug": "invatare-supervizata-knn-si-arbore-de-decizie",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.17.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.17.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.17.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.17.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.17.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.17.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.18",
+          "numar": 18,
+          "titlu": "Introducere in retele neuronale",
+          "slug": "introducere-in-retele-neuronale",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.18.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.18.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.18.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.18.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.18.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.18.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.19",
+          "numar": 19,
+          "titlu": "Biblioteca Matplotlib: vizualizarea datelor",
+          "slug": "biblioteca-matplotlib-vizualizarea-datelor",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.19.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.19.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.19.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.19.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.19.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.19.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.20",
+          "numar": 20,
+          "titlu": "Biblioteca Pandas: DataFrame si statistici descriptive",
+          "slug": "biblioteca-pandas-dataframe-si-statistici-descriptive",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.20.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.20.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.20.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.20.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.20.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.20.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.21",
+          "numar": 21,
+          "titlu": "Biblioteca Scikit-learn: antrenare, predictie, evaluare",
+          "slug": "biblioteca-scikit-learn-antrenare-predictie-evaluare",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.21.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.21.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.21.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.21.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.21.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.21.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "4.22",
+          "numar": 22,
+          "titlu": "Biblioteca NumPy: operatii cu matrici",
+          "slug": "biblioteca-numpy-operatii-cu-matrici",
+          "clasa": "XII",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "4.22.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "4.22.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "4.22.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "4.22.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "4.22.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "4.22.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "statistici": {
+    "capitole": 4,
+    "module": 88,
+    "sublectii": 528
+  }
+}

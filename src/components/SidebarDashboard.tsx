@@ -5,7 +5,7 @@ import { progresNivel } from "@/lib/progres";
 /** Meniul din specificația de UI. Rutele care nu există încă sunt marcate. */
 const MENIU = [
   { icon: "🏠", label: "Acasă", href: "/", activ: true },
-  { icon: "📚", label: "Cursuri", href: "/lectii" },
+  { icon: "📚", label: "Curriculum", href: "/curriculum" },
   { icon: "📝", label: "Lecții", href: "/lectii" },
   { icon: "✏️", label: "Exerciții", href: null },
   { icon: "🚀", label: "Proiecte", href: null },
