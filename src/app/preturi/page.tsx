@@ -3,8 +3,8 @@ import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
 
 export const metadata: Metadata = {
-  title: "Prețuri — PythonLiceu",
-  description: "Planuri de abonament PythonLiceu — acces complet la toate lecțiile, clasele IX-XII.",
+  title: "Prețuri — Academia Python",
+  description: "Planuri de abonament Academia Python — acces complet la toate lecțiile, clasele IX-XII.",
 };
 
 const PLANURI = [

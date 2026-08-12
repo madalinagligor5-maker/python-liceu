@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import AuthForm from "@/components/auth/AuthForm";
 
 export const metadata: Metadata = {
-  title: "Autentificare — PythonLiceu",
+  title: "Autentificare — Academia Python",
 };
 
 export default function LoginPage() {

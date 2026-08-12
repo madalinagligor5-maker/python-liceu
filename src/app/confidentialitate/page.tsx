@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Politică de confidențialitate — PythonLiceu",
+  title: "Politică de confidențialitate — Academia Python",
 };
 
 export default function ConfidentialitatePage() {

@@ -4,7 +4,7 @@ import { getLectiiGrupate } from "@/lib/content";
 import LectieBadge from "@/components/LectieBadge";
 
 export const metadata: Metadata = {
-  title: "Catalog de lecții — PythonLiceu",
+  title: "Catalog de lecții — Academia Python",
   description: "Toate lecțiile de Python pentru liceu, organizate pe clase și unități de învățare.",
 };
 

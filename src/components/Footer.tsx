@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Mascota from "@/components/Mascota";
 
 export default function Footer() {
   return (
@@ -6,11 +7,9 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-lg font-bold text-foreground">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white">
-              🐍
-            </span>
+            <Mascota size={32} />
             <span>
-              Python<span className="text-brand">Liceu</span>
+              academia<span className="text-brand">python</span>
             </span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">
@@ -58,7 +57,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-black/5 px-4 py-4 text-center text-xs text-foreground/50 sm:px-6">
-        © {new Date().getFullYear()} PythonLiceu. Toate drepturile rezervate.
+        © {new Date().getFullYear()} Academia Python. Toate drepturile rezervate.
       </div>
     </footer>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Termeni și condiții — PythonLiceu",
+  title: "Termeni și condiții — Academia Python",
 };
 
 export default function TermeniPage() {

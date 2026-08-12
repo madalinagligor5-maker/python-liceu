@@ -6,7 +6,7 @@ import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
 
 export const metadata: Metadata = {
-  title: "Contul meu — PythonLiceu",
+  title: "Contul meu — Academia Python",
 };
 
 const STATUS_LABEL: Record<string, { text: string; className: string }> = {

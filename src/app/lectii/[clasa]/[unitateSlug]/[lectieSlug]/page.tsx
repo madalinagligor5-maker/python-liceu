@@ -147,7 +147,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
               Această lecție necesită cont și abonament activ.
             </p>
             <p className="mt-1 text-sm text-foreground/60">
-              Deblochează toate lecțiile, exercițiile și proiectele cu un abonament PythonLiceu.
+              Deblochează toate lecțiile, exercițiile și proiectele cu un abonament Academia Python.
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-3">
               <Link

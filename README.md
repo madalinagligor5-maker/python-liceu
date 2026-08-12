@@ -1,4 +1,4 @@
-# PythonLiceu
+# Academia Python
 
 Platformă educațională pentru disciplina Informatică (Python), clasele IX-XII, conform programei
 oficiale de liceu. Model de acces freemium: primele 5 lecții sunt gratuite, fără cont; restul
