@@ -13,6 +13,9 @@ import {
   sublectieUrmatoare,
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
+import QuizSublectie from "@/components/QuizSublectie";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { getQuizSublectie } from "@/lib/quizSublectii";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -42,6 +45,8 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const modul = getModul(clasa, modulSlug);
   const capitol = getCapitol(clasa);
   const continut = await getSublectieContinut(sublectieCod);
+  const { user } = await getUtilizatorCurent();
+  const intrebari = await getQuizSublectie(sublectieCod);
 
   if (!modul || !capitol || !continut) notFound();
 
@@ -87,6 +92,17 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       <article className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
         <BlocuriSublectie blocuri={continut.blocuri} />
       </article>
+
+      {intrebari.length > 0 && (
+        <div className="mt-6">
+          <QuizSublectie
+            intrebari={intrebari}
+            clasa={clasa}
+            sublectieCod={sublectieCod}
+            autentificat={Boolean(user)}
+          />
+        </div>
+      )}
 
       <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
         {anterior ? (
