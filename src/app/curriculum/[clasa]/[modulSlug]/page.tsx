@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getModulContinut } from "@/lib/sublectii";
 import {
   capitole,
   getCapitol,
@@ -44,6 +45,9 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
   const anterior = modulAnterior(clasa, modulSlug);
   const urmator = modulUrmator(clasa, modulSlug);
 
+  const modulC = await getModulContinut(modul.cod);
+  const areContinut = Boolean(modulC && modulC.sublectii.length > 0);
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <nav className="text-sm text-muted">
@@ -80,32 +84,47 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
         {capitol.titlu} · 6 sublecții
       </p>
 
-      <p className="mt-6 rounded-2xl border border-brand-border bg-brand-light/50 p-4 text-sm text-brand-dark">
-        Structura modulului este pregătită. Conținutul sublecțiilor (explicații,
-        exemple de cod, exerciții) va fi adăugat pas cu pas.
-      </p>
+      {!areContinut && (
+        <p className="mt-6 rounded-2xl border border-brand-border bg-brand-light/50 p-4 text-sm text-brand-dark">
+          Structura modulului este pregătită. Conținutul sublecțiilor (explicații,
+          exemple de cod, exerciții) va fi adăugat pas cu pas.
+        </p>
+      )}
 
       <ol className="mt-6 space-y-3">
-        {modul.sublectii.map((s, i) => (
-          <li
-            key={s.cod}
-            className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm"
-          >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface text-lg">
-              <span aria-hidden="true">{ICOANE_SUBLECTIE[s.tip]}</span>
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold text-muted">
-                {s.cod} · Pasul {i + 1} din 6
-              </p>
-              <p className="mt-0.5 font-semibold text-foreground">{s.titlu}</p>
-              <p className="mt-1 text-sm text-muted">{s.descriere}</p>
-            </div>
-            <span className="self-center rounded-full bg-surface px-2 py-1 text-[11px] font-semibold text-locked">
-              în pregătire
-            </span>
-          </li>
-        ))}
+        {modul.sublectii.map((s, i) => {
+          const href = `/curriculum/${clasa}/${modul.slug}/${s.cod}`;
+          const conteaza = areContinut;
+          return (
+            <li
+              key={s.cod}
+              className="flex items-start gap-4 rounded-2xl border border-border bg-white p-4 shadow-sm"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface text-lg">
+                <span aria-hidden="true">{ICOANE_SUBLECTIE[s.tip]}</span>
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-semibold text-muted">
+                  {s.cod} · Pasul {i + 1} din 6
+                </p>
+                <p className="mt-0.5 font-semibold text-foreground">{s.titlu}</p>
+                <p className="mt-1 text-sm text-muted">{s.descriere}</p>
+              </div>
+              {conteaza ? (
+                <Link
+                  href={href}
+                  className="self-center rounded-full bg-brand px-3 py-1 text-[11px] font-semibold text-white hover:bg-brand-dark"
+                >
+                  Deschide →
+                </Link>
+              ) : (
+                <span className="self-center rounded-full bg-surface px-2 py-1 text-[11px] font-semibold text-locked">
+                  în pregătire
+                </span>
+              )}
+            </li>
+          );
+        })}
       </ol>
 
       <nav className="mt-10 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
