@@ -75,7 +75,12 @@ function parseazaBlocuri(lines: string[]): Bloc[] {
     // Paragraf (linii non-goale consecutive)
     if (linie.trim() !== "") {
       const para: string[] = [];
-      while (i < lines.length && lines[i].trim() !== "" && !lines[i].trimStart().startsWith("```") && !/^\s*([-*]|\d+\.)\s+/.test(lines[i])) {
+      while (
+        i < lines.length &&
+        lines[i].trim() !== "" &&
+        !lines[i].trimStart().startsWith("```") &&
+        !/^\s*([-*]|\d+\.)\s+/.test(lines[i])
+      ) {
         para.push(lines[i]);
         i++;
       }
@@ -106,11 +111,11 @@ export function parseazaContinut(md: string): ModulContinut[] {
   };
 
   for (const linie of lines) {
-    const modulMatch = linie.match(/^#\s+(Modulul\s+(\d+\.\d+)\s+—\s+(.+)$)/);
+    const modulMatch = linie.match(/^#\s+Modulul\s+(\d+\.\d+)\s+—\s+(.+)$/);
     if (modulMatch) {
       flushSub();
       subCurent = null;
-      modulCurent = { cod: modulMatch[2], titlu: modulMatch[3].trim(), sublectii: [] };
+      modulCurent = { cod: modulMatch[1], titlu: modulMatch[2].trim(), sublectii: [] };
       moduleList.push(modulCurent);
       continue;
     }

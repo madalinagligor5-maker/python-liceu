@@ -5,6 +5,7 @@ import {
   getCapitol,
   getModul,
   hrefModul,
+  ICOANE_SUBLECTIE,
 } from "@/lib/curriculum";
 import {
   getModulContinut,
@@ -13,14 +14,13 @@ import {
   sublectieUrmatoare,
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
-import { ICOANE_SUBLECTIE } from "@/lib/curriculum";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
-export async function generateStaticParams() {
-  // Nu putem预genera dinamic fără cheile Supabase; lasăm generate la request.
-  return [];
-}
+// Fără generateStaticParams: rută pur dinamică, generată la fiecare request.
+// (generateStaticParams cu listă parțială dădea 404 în Next 16 pentru
+// rutele care nu erau în listă, chiar cu dynamicParams=true.)
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
