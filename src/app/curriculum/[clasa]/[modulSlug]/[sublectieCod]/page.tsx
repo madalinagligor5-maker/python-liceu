@@ -8,7 +8,6 @@ import {
   ICOANE_SUBLECTIE,
 } from "@/lib/curriculum";
 import {
-  getModulContinut,
   getSublectieContinut,
   sublectieAnterioara,
   sublectieUrmatoare,

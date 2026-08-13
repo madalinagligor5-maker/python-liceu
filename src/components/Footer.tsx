@@ -1,15 +1,15 @@
 import Link from "next/link";
-import Mascota from "@/components/Mascota";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-black/5 bg-brand-light/40">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2 text-lg font-bold text-foreground">
-            <Mascota size={32} />
-            <span>
-              academia<span className="text-brand">python</span>
+          <div className="flex items-center gap-2">
+            <Logo className="h-9 w-9 rounded-lg" />
+            <span className="text-lg font-bold text-foreground">
+              Academia<span className="text-brand">Python</span>
             </span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">

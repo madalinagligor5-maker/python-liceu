@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Mascota from "@/components/Mascota";
+import Logo from "@/components/Logo";
 import { progresNivel } from "@/lib/progres";
 
 /** Meniul din referința vizuală. Rutele care nu există încă sunt marcate. */
@@ -57,10 +57,10 @@ export default function SidebarDashboard({
   return (
     <aside className="flex w-full shrink-0 flex-col gap-5 bg-sidebar-bg p-4 text-sidebar-text lg:w-64 lg:min-h-screen lg:p-5">
       <Link href="/" className="flex items-center gap-2">
-        <Mascota size={36} />
+        <Logo className="h-10 w-10" />
         <span className="leading-tight">
-          <span className="block text-base font-bold">
-            academia <span className="text-python-yellow">python</span>
+          <span className="block text-base font-bold text-sidebar-text">
+            Academia <span className="text-python-yellow">Python</span>
           </span>
           <span className="block text-[9px] font-semibold uppercase tracking-wider text-sidebar-muted">
             Învață. Practică. Devino dezvoltator.

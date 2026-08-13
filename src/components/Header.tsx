@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Mascota from "@/components/Mascota";
+import Logo from "@/components/Logo";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
 
@@ -16,10 +16,12 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-black/5 bg-white/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-foreground">
-          <Mascota size={36} />
+        <Link href="/" className="flex items-center gap-2">
+          <Logo className="h-10 w-10 rounded-lg" />
           <span className="leading-none">
-            academia<span className="text-brand">python</span>
+            <span className="text-[15px] font-bold text-foreground">
+              Academia<span className="text-brand">Python</span>
+            </span>
             <span className="mt-0.5 hidden text-[9px] font-semibold uppercase tracking-wider text-foreground/40 sm:block">
               Învață. Practică. Devino dezvoltator.
             </span>
