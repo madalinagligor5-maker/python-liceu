@@ -9,9 +9,11 @@ import Image from "next/image";
 export default function Logo({
   className = "",
   badge = false,
+  style,
 }: {
   className?: string;
   badge?: boolean;
+  style?: React.CSSProperties;
 }) {
   const img = (
     <Image
@@ -20,6 +22,7 @@ export default function Logo({
       width={1254}
       height={1254}
       className={className}
+      style={style}
       priority
     />
   );

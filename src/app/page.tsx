@@ -126,8 +126,15 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           {/* stânga: logo mare + text */}
           <div>
             <div className="flex items-center gap-4">
-              <Logo className="h-20 w-20 rounded-2xl sm:h-24 sm:w-24" />
-              <span className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+              <img
+                src="/logo.png"
+                alt="Academia Python"
+                width={160}
+                height={160}
+                style={{ width: 160, height: 160 }}
+                className="rounded-2xl"
+              />
+              <span className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
                 Academia<span className="text-brand">Python</span>
               </span>
             </div>
