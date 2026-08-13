@@ -1,23 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* Paletă preluată exact din specificația de UI (indigo Tailwind). */
-  --background: #f8fafc;
-  --surface: #f1f5f9;
+  /* Paletă „look mov" — preluată din referința vizuală trimisă.
+     Sidebar închis + accent violet, fundal lavandă deschis. */
+  --background: #f5f3ff;
+  --surface: #ede9fe;
   --foreground: #1e1b4b;
-  --muted: #475569;
-  --border: #e2e8f0;
-  --brand: #4f46e5;
-  --brand-dark: #4338ca;
-  --brand-light: #eef2ff;
-  --brand-light-2: #e0e7ff;
-  --brand-border: #c7d2fe;
-  --accent: #6366f1;
+  --muted: #6b7280;
+  --border: #e9d5ff;
+  --brand: #7c3aed;
+  --brand-dark: #6d28d9;
+  --brand-light: #f5f3ff;
+  --brand-light-2: #ede9fe;
+  --brand-border: #c4b5fd;
+  --accent: #8b5cf6;
   --success: #22c55e;
-  --warning: #f59e0b;
+  --warning: #f97316;
   --locked: #94a3b8;
-  --python-green: #4caf50;
+  --python-green: #84cc16;
   --python-yellow: #ffd43b;
+
+  /* Sidebar întunecat (mov închis). */
+  --sidebar-bg: #2e1065;
+  --sidebar-bg-2: #3b0764;
+  --sidebar-text: #ede9fe;
+  --sidebar-muted: #c4b5fd;
+  --sidebar-active: #7c3aed;
 }
 
 @theme inline {
@@ -37,6 +45,11 @@
   --color-locked: var(--locked);
   --color-python-green: var(--python-green);
   --color-python-yellow: var(--python-yellow);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-bg-2: var(--sidebar-bg-2);
+  --color-sidebar-text: var(--sidebar-text);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-active: var(--sidebar-active);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }

@@ -89,7 +89,13 @@ export default function Dashboard({
           {/* Coloana principală */}
           <div className="min-w-0">
             {/* Hero */}
-            <section className="rounded-[20px] border border-brand-border bg-gradient-to-br from-brand-light to-brand-light-2 p-6 sm:p-8">
+            <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#f5f3ff] to-[#ede9fe] p-6 sm:p-8">
+              {/* Decoruri din referința vizuală: cod, cafea, plantă. */}
+              <span aria-hidden="true" className="pointer-events-none absolute -left-2 top-3 text-2xl opacity-30">{"{}"}</span>
+              <span aria-hidden="true" className="pointer-events-none absolute right-40 top-2 text-2xl opacity-20">&lt;/&gt;</span>
+              <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-44 text-xl opacity-40">☕</span>
+              <span aria-hidden="true" className="pointer-events-none absolute bottom-4 left-1/3 text-xl opacity-40">🪴</span>
+
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
@@ -116,7 +122,16 @@ export default function Dashboard({
                   )}
                 </div>
 
-                <Mascota size={104} className="hidden shrink-0 sm:block" />
+                {/* Mascota lângă laptop + balon cu cod. */}
+                <div className="relative hidden shrink-0 sm:block">
+                  <Mascota size={104} />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-6 top-0 rounded-lg bg-white px-2 py-1 text-[10px] font-semibold text-brand-dark shadow-sm"
+                  >
+                    print(&quot;Hello, Python!&quot;)
+                  </span>
+                </div>
               </div>
             </section>
 

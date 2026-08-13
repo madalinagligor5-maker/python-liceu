@@ -2,7 +2,7 @@ import Link from "next/link";
 import Mascota from "@/components/Mascota";
 import { progresNivel } from "@/lib/progres";
 
-/** Meniul din specificația de UI. Rutele care nu există încă sunt marcate. */
+/** Meniul din referința vizuală. Rutele care nu există încă sunt marcate. */
 const MENIU = [
   { icon: "🏠", label: "Acasă", href: "/", activ: true },
   { icon: "📚", label: "Curriculum", href: "/curriculum" },
@@ -16,6 +16,34 @@ const MENIU = [
   { icon: "🎓", label: "Certificări", href: null },
 ] as const;
 
+function HexagonNivel({ nivel }: { nivel: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-7 w-7 shrink-0"
+      aria-hidden="true"
+      fill="none"
+    >
+      <path
+        d="M12 2.5 20 7v10l-8 4.5L4 17V7l8-4.5Z"
+        fill="#a78bfa"
+        stroke="#c4b5fd"
+        strokeWidth="1"
+      />
+      <text
+        x="12"
+        y="16"
+        textAnchor="middle"
+        fontSize="9"
+        fontWeight="bold"
+        fill="#2e1065"
+      >
+        {nivel}
+      </text>
+    </svg>
+  );
+}
+
 export default function SidebarDashboard({
   prenume,
   xpTotal,
@@ -24,22 +52,21 @@ export default function SidebarDashboard({
   xpTotal: number;
 }) {
   const { nivel, xpNivelUrmator, procent } = progresNivel(xpTotal);
+  const initiala = (prenume.charAt(0) || "?").toUpperCase();
 
   return (
-    <aside className="w-full shrink-0 rounded-2xl border border-border bg-white p-4 lg:w-64 lg:rounded-none lg:border-0 lg:border-r lg:bg-white lg:p-5">
+    <aside className="flex w-full shrink-0 flex-col gap-5 bg-sidebar-bg p-4 text-sidebar-text lg:w-64 lg:min-h-screen lg:p-5">
       <Link href="/" className="flex items-center gap-2">
-        <Mascota size={40} />
+        <Mascota size={36} />
         <span className="leading-tight">
-          <span className="block text-base font-bold text-foreground">
-            academia <span className="text-brand">python</span>
+          <span className="block text-base font-bold">
+            academia <span className="text-python-yellow">python</span>
           </span>
-          <span className="block text-[9px] font-semibold uppercase tracking-wider text-muted">
+          <span className="block text-[9px] font-semibold uppercase tracking-wider text-sidebar-muted">
             Învață. Practică. Devino dezvoltator.
           </span>
         </span>
       </Link>
-
-      <hr className="my-4 border-border" />
 
       <nav aria-label="Meniu principal">
         <ul className="space-y-1">
@@ -51,7 +78,7 @@ export default function SidebarDashboard({
               return (
                 <li key={m.label}>
                   <span
-                    className={`${clase} cursor-not-allowed text-foreground/35`}
+                    className={`${clase} cursor-not-allowed text-sidebar-muted/50`}
                     title="Secțiune în curând"
                   >
                     <span aria-hidden="true">{m.icon}</span>
@@ -71,8 +98,8 @@ export default function SidebarDashboard({
                   aria-current={"activ" in m && m.activ ? "page" : undefined}
                   className={`${clase} ${
                     "activ" in m && m.activ
-                      ? "bg-brand text-white shadow-sm"
-                      : "text-foreground/75 hover:bg-brand-light hover:text-brand-dark"
+                      ? "bg-sidebar-active text-white shadow-sm"
+                      : "text-sidebar-text/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   <span aria-hidden="true">{m.icon}</span>
@@ -84,36 +111,47 @@ export default function SidebarDashboard({
         </ul>
       </nav>
 
-      <hr className="my-4 border-border" />
-
-      <div className="rounded-2xl bg-brand p-4 text-white">
-        <p className="text-sm font-semibold">
-          <span aria-hidden="true">🔷</span> Nivelul tău: {nivel}
-        </p>
+      <div className="rounded-2xl bg-gradient-to-br from-sidebar-active to-brand-dark p-4">
+        <div className="flex items-center gap-2">
+          <HexagonNivel nivel={nivel} />
+          <div className="leading-tight">
+            <p className="text-xs font-semibold text-white/80">Nivelul tău</p>
+            <p className="text-sm font-bold text-white">{nivel}</p>
+          </div>
+        </div>
         <div
-          className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/25"
+          className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/25"
           role="progressbar"
           aria-valuenow={procent}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label="Progres către nivelul următor"
         >
-          <div className="h-full rounded-full bg-white transition-all" style={{ width: `${procent}%` }} />
+          <div
+            className="h-full rounded-full bg-python-yellow transition-all"
+            style={{ width: `${procent}%` }}
+          />
         </div>
         <p className="mt-2 text-xs text-white/80">
           {xpTotal} / {xpNivelUrmator} XP
         </p>
+        <Link
+          href="/progres"
+          className="mt-2 inline-block text-xs font-semibold text-python-yellow hover:underline"
+        >
+          Vezi progresul →
+        </Link>
       </div>
 
-      <hr className="my-4 border-border" />
-
-      <div className="flex items-center gap-2">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-light text-sm font-bold text-brand-dark">
-          {prenume.charAt(0).toUpperCase()}
+      <div className="mt-auto flex items-center gap-2 border-t border-white/10 pt-4">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
+          {initiala}
         </span>
         <span className="leading-tight">
-          <span className="block text-sm font-semibold text-foreground">{prenume}</span>
-          <span className="block text-xs italic text-muted">Explorator Python 🐍</span>
+          <span className="block text-sm font-semibold text-white">{prenume}</span>
+          <span className="block text-xs italic text-sidebar-muted">
+            Explorator Python 🐍
+          </span>
         </span>
       </div>
     </aside>
