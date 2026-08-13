@@ -26,8 +26,8 @@ function HexagonNivel({ nivel }: { nivel: number }) {
     >
       <path
         d="M12 2.5 20 7v10l-8 4.5L4 17V7l8-4.5Z"
-        fill="#a78bfa"
-        stroke="#c4b5fd"
+        fill="#f5b301"
+        stroke="#d99a00"
         strokeWidth="1"
       />
       <text
@@ -36,7 +36,7 @@ function HexagonNivel({ nivel }: { nivel: number }) {
         textAnchor="middle"
         fontSize="9"
         fontWeight="bold"
-        fill="#2e1065"
+        fill="#16163a"
       >
         {nivel}
       </text>

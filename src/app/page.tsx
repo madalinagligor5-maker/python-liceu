@@ -107,7 +107,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-light to-[#ede9fe]">
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-light to-[#f6efdc]">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
           <div>
             <div className="flex items-center gap-3">

@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* Paletă „look mov" — preluată din referința vizuală trimisă.
-     Sidebar închis + accent violet, fundal lavandă deschis. */
-  --background: #f5f3ff;
-  --surface: #ede9fe;
-  --foreground: #1e1b4b;
-  --muted: #6b7280;
-  --border: #e9d5ff;
-  --brand: #7c3aed;
-  --brand-dark: #6d28d9;
-  --brand-light: #f5f3ff;
-  --brand-light-2: #ede9fe;
-  --brand-border: #c4b5fd;
-  --accent: #8b5cf6;
+  /* Paletă „premium" — în concordanță cu logo-ul.
+     Navy închis (litera A) + auriu (șarpele / „Python") pe crem deschis. */
+  --background: #faf8f3;
+  --surface: #f3efe6;
+  --foreground: #1a1a3a;
+  --muted: #6b6a7b;
+  --border: #e7e0d2;
+  --brand: #f5b301;        /* auriu — accent principal (butoane, linkuri) */
+  --brand-dark: #d99a00;   /* auriu mai închis (hover) */
+  --brand-light: #fdf6e3;  /* crem auriu deschis (fundal secțiuni) */
+  --brand-light-2: #f6efdc;
+  --brand-border: #ecd9a0;
+  --accent: #e0a92e;       /* auriu secundar */
   --success: #22c55e;
-  --warning: #f97316;
-  --locked: #94a3b8;
+  --warning: #f59e0b;
+  --locked: #9a9786;
   --python-green: #84cc16;
-  --python-yellow: #ffd43b;
+  --python-yellow: #f5b301;
 
-  /* Sidebar întunecat (mov închis). */
-  --sidebar-bg: #2e1065;
-  --sidebar-bg-2: #3b0764;
-  --sidebar-text: #ede9fe;
-  --sidebar-muted: #c4b5fd;
-  --sidebar-active: #7c3aed;
+  /* Sidebar întunecat (navy închis, ca litera A din logo). */
+  --sidebar-bg: #16163a;
+  --sidebar-bg-2: #1f1f4a;
+  --sidebar-text: #f4f1e6;
+  --sidebar-muted: #b8b6cc;
+  --sidebar-active: #f5b301;
 }
 
 @theme inline {

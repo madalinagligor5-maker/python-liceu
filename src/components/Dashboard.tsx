@@ -89,7 +89,7 @@ export default function Dashboard({
           {/* Coloana principală */}
           <div className="min-w-0">
             {/* Hero */}
-            <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#f5f3ff] to-[#ede9fe] p-6 sm:p-8">
+            <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#fdf6e3] to-[#f6efdc] p-6 sm:p-8">
               {/* Decoruri din referința vizuală: cod, cafea, plantă. */}
               <span aria-hidden="true" className="pointer-events-none absolute -left-2 top-3 text-2xl opacity-30">{"{}"}</span>
               <span aria-hidden="true" className="pointer-events-none absolute right-40 top-2 text-2xl opacity-20">&lt;/&gt;</span>
