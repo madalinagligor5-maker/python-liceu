@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CodeBlock from "@/components/CodeBlock";
-import Mascota from "@/components/Mascota";
+import Logo from "@/components/Logo";
 import Dashboard from "@/components/Dashboard";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
@@ -32,11 +32,29 @@ const CLASE = [
   },
 ];
 
+const PAȘI = [
+  {
+    icon: "📘",
+    titlu: "Învață",
+    text: "Fiecare lecție e structurată în 6 pași scurți: recapitulare, concept nou, predicție, exerciții ghidate, exerciții independente și verificare.",
+  },
+  {
+    icon: "💻",
+    titlu: "Practică",
+    text: "Exersezi direct în pagină, cu cod comentat linie cu linie și feedback lapte. Nu instalezi nimic — totul rulează în browser.",
+  },
+  {
+    icon: "✅",
+    titlu: "Verifică",
+    text: "La finalul fiecărei lecții susții un mic test. Treci mai departe doar când demonstrezi că ai înțeles — așa se fixează cunoștința.",
+  },
+];
+
 const FAQ = [
   {
     intrebare: "Chiar sunt gratuite primele lecții?",
     raspuns:
-      "Da. Primele 5 lecții sunt complet gratuite și nu necesită cont — poți începe direct din pagina de lecții.",
+      "Da. Primele module din clasa a IX-a sunt complet gratuite — poți începe direct, fără cont.",
   },
   {
     intrebare: "Am nevoie să instalez Python pe calculator?",
@@ -88,88 +106,122 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
 
   return (
     <div>
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
-        <div>
-          <span className="inline-flex items-center rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark">
-            Pentru elevii de liceu, clasele IX-XII
-          </span>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl">
-            Învață <span className="text-brand">Python</span>, pas cu pas, direct din browser.
-          </h1>
-          <p className="mt-4 text-lg text-foreground/70">
-            Lecții clare, exemple de cod comentate și exerciții interactive, conform programei
-            oficiale de Informatică. Primele 5 lecții sunt gratuite — fără cont, fără card.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/lectii"
-              className="rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
-            >
-              Începe gratuit →
-            </Link>
-            <Link
-              href="/preturi"
-              className="rounded-xl border border-black/10 px-6 py-3 text-base font-semibold text-foreground transition hover:border-brand hover:text-brand"
-            >
-              Vezi prețurile
-            </Link>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-light to-[#ede9fe]">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+          <div>
+            <div className="flex items-center gap-3">
+              <Logo className="h-14 w-14 rounded-xl" />
+              <span className="text-lg font-bold text-foreground">
+                Academia<span className="text-brand">Python</span>
+              </span>
+            </div>
+            <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl">
+              Învață <span className="text-brand">Python</span>, pas cu pas, direct din browser.
+            </h1>
+            <p className="mt-4 text-lg text-foreground/70">
+              Lecții clare, exemple de cod comentate și exerciții interactive, conform programei
+              oficiale de Informatică. Primele module sunt gratuite — fără cont, fără card.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/curriculum"
+                className="rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
+              >
+                Începe gratuit →
+              </Link>
+              <Link
+                href="/preturi"
+                className="rounded-xl border border-black/10 px-6 py-3 text-base font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                Vezi prețurile
+              </Link>
+            </div>
           </div>
-        </div>
 
-        <div className="relative">
-          <Mascota
-            size={110}
-            className="absolute -top-14 right-2 hidden lg:block"
-            eticheta="Py, mascota Academiei Python"
-          />
-          <CodeBlock
-            label="lectie_1.py"
-            code={`def saluta(nume):\n    print("Salut,", nume, "!")\n\nsaluta("Academia Python")\n# Salut, Academia Python !`}
-          />
+          <div className="relative">
+            <CodeBlock
+              label="lectie_1.py"
+              code={`def saluta(nume):
+    print("Salut,", nume, "!")
+
+saluta("Academia Python")
+# Salut, Academia Python !`}
+            />
+          </div>
         </div>
       </section>
 
+      {/* Cum funcționează */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-          Un drum de învățare, nu o listă de lecții
+          Cum funcționează învățarea
         </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          După ce îți faci cont, vezi un traseu vizual pentru clasa ta: ce ai terminat, care e
-          pasul următor și ce urmează. Plus XP, niveluri și serii de zile — ca să-ți fie ușor să
-          revii.
+          Un drum de învățare, nu o listă de lecții. Fiecare lecție trece prin trei momente
+          care fac ca cunoștința să se fixeze.
         </p>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {CLASE.map((c) => (
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {PAȘI.map((p) => (
             <div
-              key={c.clasa}
-              className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              key={p.titlu}
+              className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-light text-sm font-bold text-brand-dark">
-                {c.clasa}
+              <div className="text-3xl" aria-hidden="true">
+                {p.icon}
               </div>
-              <h3 className="mt-4 font-semibold text-foreground">{c.titlu}</h3>
-              <p className="mt-2 text-sm text-foreground/60">{c.descriere}</p>
+              <h3 className="mt-3 font-semibold text-foreground">{p.titlu}</h3>
+              <p className="mt-2 text-sm text-foreground/60">{p.text}</p>
             </div>
           ))}
         </div>
       </section>
 
+      {/* Clase */}
       <section className="bg-brand-light/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Prețuri simple</h2>
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+            Patru ani, un traseu clar
+          </h2>
           <p className="mt-2 max-w-2xl text-foreground/70">
-            Acces complet la toate lecțiile, exercițiile și proiectele, pentru un abonament mic.
+            Conținutul e organizat pe clase, de la primele noțiuni până la proiecte și pregătirea
+            pentru examen.
           </p>
-          <Link
-            href="/preturi"
-            className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
-          >
-            Vezi planurile de abonament →
-          </Link>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {CLASE.map((c) => (
+              <Link
+                key={c.clasa}
+                href={`/curriculum/${c.clasa}`}
+                className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-light text-sm font-bold text-brand-dark">
+                  {c.clasa}
+                </div>
+                <h3 className="mt-4 font-semibold text-foreground">{c.titlu}</h3>
+                <p className="mt-2 text-sm text-foreground/60">{c.descriere}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* Prețuri scurte */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Prețuri simple</h2>
+        <p className="mt-2 max-w-2xl text-foreground/70">
+          Acces complet la toate lecțiile, exercițiile și proiectele, pentru un abonament mic.
+        </p>
+        <Link
+          href="/preturi"
+          className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
+        >
+          Vezi planurile de abonament →
+        </Link>
+      </section>
+
+      {/* FAQ */}
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Întrebări frecvente</h2>
         <div className="mt-8 space-y-4">
