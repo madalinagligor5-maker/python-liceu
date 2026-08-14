@@ -86,3 +86,48 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Carduri de teorie (:::tip / :::exemplu / :::atentie din Markdown). */
+.bloc-card {
+  border-radius: 0 14px 14px 0;
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  background: #fff;
+  padding: 16px 20px;
+  margin: 4px 0;
+}
+.bloc-card--icon {
+  font-size: 18px;
+  line-height: 1.4;
+}
+.bloc-card--titlu {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.bloc-card--corp p {
+  margin: 0 0 6px;
+}
+.bloc-card--corp p:last-child {
+  margin-bottom: 0;
+}
+.bloc-card--tip {
+  border-left-color: var(--brand);
+  background: var(--brand-light);
+}
+.bloc-card--tip .bloc-card--titlu {
+  color: var(--brand-dark);
+}
+.bloc-card--exemplu {
+  border-left-color: var(--success);
+  background: #eafaf0;
+}
+.bloc-card--exemplu .bloc-card--titlu {
+  color: #15803d;
+}
+.bloc-card--atentie {
+  border-left-color: #dc2626;
+  background: #fdecec;
+}
+.bloc-card--atentie .bloc-card--titlu {
+  color: #b91c1c;
+}

@@ -10,6 +10,14 @@ Respectă exact structura de pe `academiapython.ro/curriculum/IX` — 6 sublecț
 
 Nu ai încă o lecție anterioară pe platformă — dar ai deja experiență cu algoritmi, chiar dacă nu i-ai numit așa. De câte ori urmezi o rețetă de gătit, montezi un mobilier după instrucțiuni sau explici cuiva drumul spre casa ta, dai de fapt o succesiune de pași clari, în ordine. Exact asta e un algoritm. Gândește-te un minut: cum ai explica unui robot, pas cu pas, cum se face un ceai?
 
+:::exemplu
+## Exemple de algoritmi din viața de zi cu zi
+- O rețetă de gătit (pași în ordine: fierbi apa, pui plicu, lași 3 minute).
+- Montarea unui mobilier după instrucțiuni.
+- Explicarea drumului spre casă cuiva.
+Toate sunt succesiuni de pași clari, executați în ordine — adică algoritmi.
+:::
+
 ### 💡 1.1.2 Concept nou și exemplu
 
 Un **algoritm** este o succesiune finită de pași, clari și fără ambiguitate, care rezolvă o problemă. Un **program** este un algoritm scris într-un limbaj pe care îl înțelege calculatorul — la noi, **Python**.
@@ -20,6 +28,13 @@ Orice program trece prin patru etape:
 2. **Proiectare** — construim algoritmul: pașii, în ordine, care duc de la intrare la ieșire.
 3. **Implementare** — scriem algoritmul în cod Python.
 4. **Testare** — rulăm programul cu mai multe exemple și verificăm dacă rezultatul e corect.
+
+:::atentie
+## Atenție — ce NU e un algoritm corect
+- „Dacă plouă, stai acasă sau mergi la film" — **lipsită de claritate** (nu se știe ce alegi).
+- „Se afișează numerele naturale pare" — **lipsită de finitudine** (nu se oprește niciodată, sunt infinite).
+Un algoritm bun are mereu claritate (fiecare pas e neambiguu) și finitudine (se termină după un număr finit de pași).
+:::
 
 ```python
 # Etapa 1 (analiză): avem 2 note, vrem media lor

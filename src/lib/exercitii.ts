@@ -1,13 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-
-export type Exercitiu = {
-  id: string;
-  enunt: string;
-  template?: string;
-  expectedOutput?: string;
-  hint?: string;
-};
+import { Exercitiu } from "@/lib/exercitii-tipuri";
 
 type IndexExercitii = Record<string, Exercitiu[]>; // cod sublecție -> exerciții
 

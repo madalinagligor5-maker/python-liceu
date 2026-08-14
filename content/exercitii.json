@@ -2,24 +2,48 @@
   "1.1.4": [
     {
       "id": "1.1.4.ex1",
-      "enunt": "Scrie un program Python care calculează și afișează media a trei note: 7, 9 și 10.",
-      "template": "n1, n2, n3 = 7, 9, 10\nprint((n1 + n2 + n3) / 3)",
-      "expectedOutput": "8.666666666666666",
-      "hint": "media = (n1 + n2 + n3) / 3"
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează codul ca să calculezi aria unui dreptunghi (lungime = 6, lățime = 3).",
+      "template": "lungime = 6\nlatime = 3\naria = lungime * latime\nprint(\"Aria este:\", aria)",
+      "expectedOutput": "Aria este: 18",
+      "hint": "aria = lungime * latime"
     },
     {
       "id": "1.1.4.ex2",
-      "enunt": "Scrie un program care calculează perimetrul unui pătrat, știind latura acestuia (latura = 5).",
-      "template": "",
-      "expectedOutput": "20",
-      "hint": "perimetru = 4 * latura"
+      "nivel": "consolidat",
+      "tip": "ordonare",
+      "enunt": "Pune cele 4 etape ale elaborării unui program în ordinea corectă.",
+      "pasi": [
+        "Testare — rulăm cu mai multe exemple",
+        "Analiză — ce date avem și ce vrem să obținem",
+        "Implementare — scriem codul în Python",
+        "Proiectare — construim algoritmul pas cu pas"
+      ],
+      "ordineCorecta": [
+        "Analiză — ce date avem și ce vrem să obținem",
+        "Proiectare — construim algoritmul pas cu pas",
+        "Implementare — scriem codul în Python",
+        "Testare — rulăm cu mai multe exemple"
+      ],
+      "hint": "Te gândești cum rezolvi o problemă în realitate: mai întâi înțelegi ce vrei, apoi planifici, apoi faci, apoi verifici."
+    },
+    {
+      "id": "1.1.4.ex3",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Descrie, în ordine, cele 4 etape pentru problema: „calculează prețul total pentru 3 produse cu prețuri diferite\". Nu scrie cod — doar descrie fiecare etapă într-o propoziție.",
+      "modelRaspuns": "Analiză: avem cele 3 prețuri, vrem suma lor. Proiectare: citim prețurile, le adunăm, afișăm totalul. Implementare: scriem codul în Python. Testare: încercăm cu alte prețuri și verificăm suma.",
+      "hint": "Urmează exact cele 4 etape, în ordine."
     }
   ],
   "1.2.5": [
     {
       "id": "1.2.5.ex1",
-      "enunt": "Scrie codul Python pentru: citește un număr; dacă e mai mare decât 100, afișează 'mare', altfel afișează 'mic' (pentru n = 150).",
-      "template": "",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie codul pentru: citește un număr (n = 150); dacă e mai mare decât 100, afișează 'mare', altfel 'mic'.",
+      "template": "n = 150\nif n > 100:\n    print('mare')\nelse:\n    print('mic')",
       "expectedOutput": "mare",
       "hint": "if n > 100: print('mare') else: print('mic')"
     }
@@ -27,8 +51,10 @@
   "1.3.5": [
     {
       "id": "1.3.5.ex1",
-      "enunt": "Scrie un program care afișează suma primelor 5 numere naturale folosind formula lui Gauss (n=5).",
-      "template": "",
+      "nivel": "avansat",
+      "tip": "cod",
+      "enunt": "Afișează suma primelor 5 numere naturale folosind formula lui Gauss (n=5).",
+      "template": "n = 5\nprint(n * (n + 1) // 2)",
       "expectedOutput": "15",
       "hint": "s = n * (n + 1) // 2"
     }
@@ -36,6 +62,8 @@
   "1.4.5": [
     {
       "id": "1.4.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
       "enunt": "Completează funcția care calculează aria unui cerc (raza = 3, folosește 3.14).",
       "template": "def aria_cerc(raza):\n    return 3.14 * raza * raza\n\nprint(aria_cerc(3))",
       "expectedOutput": "28.26",
@@ -45,8 +73,10 @@
   "1.5.5": [
     {
       "id": "1.5.5.ex1",
+      "nivel": "avansat",
+      "tip": "cod",
       "enunt": "Scrie o funcție converteste_in_celsius(fahrenheit) pentru F = 98.6.",
-      "template": "",
+      "template": "def converteste_in_celsius(f):\n    return (f - 32) * 5 / 9\n\nprint(converteste_in_celsius(98.6))",
       "expectedOutput": "37.0",
       "hint": "(F - 32) * 5 / 9"
     }
@@ -54,8 +84,10 @@
   "1.6.5": [
     {
       "id": "1.6.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
       "enunt": "Scrie o funcție calculeaza_tva(pret) pentru pret = 100 (TVA 19%).",
-      "template": "",
+      "template": "def calculeaza_tva(pret):\n    return pret * 19 / 100\n\nprint(calculeaza_tva(100))",
       "expectedOutput": "19.0",
       "hint": "tva = pret * 19 / 100"
     }
@@ -63,8 +95,10 @@
   "1.7.5": [
     {
       "id": "1.7.5.ex1",
+      "nivel": "avansat",
+      "tip": "cod",
       "enunt": "Pentru lista varste = [14, 15, 16, 15, 14, 17], afișează vârsta minimă, maximă și media (rotunjită la o zecimală).",
-      "template": "",
+      "template": "varste = [14, 15, 16, 15, 14, 17]\nprint(min(varste), max(varste), round(sum(varste)/len(varste), 1))",
       "expectedOutput": "14 17 15.2",
       "hint": "min(varste), max(varste), round(sum(varste)/len(varste), 1)"
     }
@@ -72,8 +106,10 @@
   "1.8.5": [
     {
       "id": "1.8.5.ex1",
+      "nivel": "avansat",
+      "tip": "cod",
       "enunt": "Scrie un program care determină cea mai mare cifră dintr-un număr (pentru 4839).",
-      "template": "",
+      "template": "n = 4839\nprint(max(int(c) for c in str(n)))",
       "expectedOutput": "9",
       "hint": "parcurge cifrele și păstrează maxima"
     }

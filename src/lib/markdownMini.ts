@@ -11,7 +11,12 @@
 
 export type BlocCode = { tip: "code"; lang: string; code: string };
 export type BlocText = { tip: "text"; html: string };
-export type Bloc = BlocCode | BlocText;
+export type BlocCard = {
+  tip: "card";
+  variant: "tip" | "exemplu" | "atentie";
+  html: string;
+};
+export type Bloc = BlocCode | BlocText | BlocCard;
 
 export type SublectieContinut = {
   cod: string; // ex. "1.1.1"
@@ -44,6 +49,42 @@ function parseazaBlocuri(lines: string[]): Bloc[] {
 
   while (i < lines.length) {
     const linie = lines[i];
+
+    // Directivă de card: :::tip / :::exemplu / :::atentie ... :::
+    const dirMatch = linie.trim().match(/^:::(tip|exemplu|atentie)\s*$/);
+    if (dirMatch) {
+      const variant = dirMatch[1] as "tip" | "exemplu" | "atentie";
+      const inner: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== ":::") {
+        inner.push(lines[i]);
+        i++;
+      }
+      i++; // sară ::: de închidere
+      const continut = inner.join("\n").trim();
+      // Suportăm un titlu opțional pe prima linie (## Titlu) urmat de rest.
+      const liniiInner = continut.split("\n");
+      let titluCard = "";
+      let rest = continut;
+      const hMatch = liniiInner[0]?.match(/^##\s+(.+)$/);
+      if (hMatch && liniiInner.length > 1) {
+        titluCard = hMatch[1].trim();
+        rest = liniiInner.slice(1).join("\n").trim();
+      }
+      const corpHtml = rest
+        .split("\n")
+        .filter((l) => l.trim() !== "")
+        .map((l) => `<p>${inline(l)}</p>`)
+        .join("");
+      blocuri.push({
+        tip: "card",
+        variant,
+        html: titluCard
+          ? `<div class="card-titlu">${inline(titluCard)}</div>${corpHtml}`
+          : corpHtml,
+      });
+      continue;
+    }
 
     // Bloc de cod
     if (linie.trimStart().startsWith("```")) {
