@@ -1,4 +1,24 @@
 {
+  "1.1.5": [
+    {
+      "id": "1.1.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program Python care calculează și afișează media a trei note: 7, 9 și 10.",
+      "template": "n1, n2, n3 = 7, 9, 10\n# scrie aici calculul mediei și afișează-o",
+      "expectedOutput": "8.666666666666666",
+      "hint": "media = (n1 + n2 + n3) / 3"
+    },
+    {
+      "id": "1.1.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program care calculează perimetrul unui pătrat, știind latura acestuia (alege tu o valoare pentru latură).",
+      "template": "latura = 5\n# scrie aici calculul perimetrului și afișează-l",
+      "expectedOutput": "20",
+      "hint": "perimetru = 4 * latura"
+    }
+  ],
   "1.1.4": [
     {
       "id": "1.1.4.ex1",
