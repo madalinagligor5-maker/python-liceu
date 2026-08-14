@@ -18,6 +18,8 @@ import ExercitiiInteractive from "@/components/ExercitiiInteractive";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
+import { getPredicție } from "@/lib/predicții";
+import PredicțieWidget from "@/components/PredicțieWidget";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -50,6 +52,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const { user } = await getUtilizatorCurent();
   const intrebari = await getQuizSublectie(sublectieCod);
   const exercitii = await getExercitiiSublectie(sublectieCod);
+  const predic = await getPredicție(sublectieCod);
 
   if (!modul || !capitol || !continut) notFound();
 
@@ -95,6 +98,8 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       <article className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
         <BlocuriSublectie blocuri={continut.blocuri} />
       </article>
+
+      {predic && <PredicțieWidget predic={predic} />}
 
       <ExercitiiInteractive exercitii={exercitii} />
 

@@ -1,0 +1,82 @@
+{
+  "1.1.3": {
+    "cod": "pret = 20\nreducere = 5\npret_final = pret - reducere\n\nprint(\"Prețul final este:\", pret_final)",
+    "enunt": "Uită-te la cod, fără să-l rulezi. Ce crezi că se va afișa?",
+    "variante": [
+      "Prețul final este: 15",
+      "Prețul final este: 25",
+      "Prețul final este: 100"
+    ],
+    "corect": 0
+  },
+  "1.2.3": {
+    "cod": "varsta = 16\n\nif varsta >= 18:\n    print(\"major\")\nelse:\n    print(\"minor\")",
+    "enunt": "Cu varsta = 16, ce se afișează?",
+    "variante": [
+      "major",
+      "minor",
+      "nimic (eroare)"
+    ],
+    "corect": 1
+  },
+  "1.3.3": {
+    "cod": "n = 100000\n\ncount_a = 0\nfor i in range(n):\n    count_a += 1\n\ncount_b = n\n\nprint(count_a == count_b)",
+    "enunt": "Varianta A face o buclă de 100.000 de pași, varianta B un singur pas. Ce se afișează?",
+    "variante": [
+      "True (ambele calculează același lucru)",
+      "False (dau rezultate diferite)",
+      "Eroare de tip"
+    ],
+    "corect": 0
+  },
+  "1.4.3": {
+    "cod": "def dubleaza(x):\n    return x * 2\n\na = dubleaza(5)\nb = dubleaza(a)\n\nprint(a, b)",
+    "enunt": "Ce se afișează? (b folosește rezultatul lui a)",
+    "variante": [
+      "5 5",
+      "5 10",
+      "10 10"
+    ],
+    "corect": 1
+  },
+  "1.5.3": {
+    "cod": "x = 10\n\ndef schimba(x):\n    x = 99\n    print(\"în funcție, x este:\", x)\n\nschimba(x)\nprint(\"în afara funcției, x este:\", x)",
+    "enunt": "Se schimbă x-ul din afara funcției? Ce se afișează pe ultima linie?",
+    "variante": [
+      "în afara funcției, x este: 99",
+      "în afara funcției, x este: 10",
+      "eroare — x nu există"
+    ],
+    "corect": 1
+  },
+  "1.6.3": {
+    "cod": "preturi = [15, 22, 8, 40, 12]\n\ntotal = sum(preturi)\ncel_mai_scump = max(preturi)\nmedie = round(total / len(preturi), 1)\n\nprint(total, cel_mai_scump, medie)",
+    "enunt": "Ce trei valori se afișează?",
+    "variante": [
+      "97 40 19.4",
+      "97 15 19.4",
+      "40 12 19.4"
+    ],
+    "corect": 0
+  },
+  "1.7.3": {
+    "cod": "n = 4739\nsuma_cifrelor = 0\n\nwhile n > 0:\n    cifra = n % 10\n    suma_cifrelor += cifra\n    n = n // 10\n\nprint(suma_cifrelor)",
+    "enunt": "Ce se afișează? (se adună toate cifrele lui 4739)",
+    "variante": [
+      "23",
+      "4739",
+      "4"
+    ],
+    "corect": 0
+  },
+  "1.8.3": {
+    "cod": "sir = \"informatica\"\n\nprint(sir[0], sir[-1], len(sir))",
+    "enunt": "Ce se afișează pentru șirul 'informatica'?",
+    "variante": [
+      "i a 11",
+      "i a 10",
+      "i c 11"
+    ],
+    "corect": 0
+  }
+}

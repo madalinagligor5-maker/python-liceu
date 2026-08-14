@@ -143,6 +143,13 @@ else:
 
 Observă cât de aproape e pseudocodul de codul Python — de asta pseudocodul e o etapă utilă de proiectare: gândești logica, fără să te lupți încă cu sintaxa exactă.
 
+:::atentie
+## Nu confunda cele trei forme
+- **Schema logică** se desenează (forme + săgeți), nu se scrie cod.
+- **Pseudocodul** nu rulează — e doar un plan în limbaj apropiat de programare.
+- Doar **codul Python** se execută efectiv pe calculator.
+:::
+
 ### 🔮 1.2.3 Citește și prezice
 
 Ai acest pseudocod:
@@ -163,6 +170,11 @@ else:
     print("minor")
 ```
 Ce crezi că se afișează? Scrie predicția înainte să citești mai departe.
+
+:::tip
+## Cum faci o predicție bună
+Citește codul de sus în jos, ca calculatorul. Urmărește ce valoare are fiecare variabilă la fiecare linie și ce se trimite la `print`. Nu ghici — urmărește pașii.
+:::
 
 ### 🤝 1.2.4 Exerciții ghidate
 
@@ -243,6 +255,11 @@ print(prim)
 ```
 
 Ambele dau același rezultat corect, dar pentru un număr foarte mare (ex. un milion), varianta 2 termină aproape instant, iar varianta 1 durează vizibil mai mult.
+
+:::tip
+## Ce reții despre eficiență
+Nu e nevoie să știi acum notația O matematică. Ideea importantă: pentru aceeași problemă, un algoritm mai inteligent termină mai repede și folosește mai puțină memorie. Când ai două soluții care dau același rezultat, alege-o pe cea care face mai puțini pași.
+:::
 
 ### 🔮 1.3.3 Citește și prezice
 
@@ -332,6 +349,11 @@ print("Altă medie:", calculeaza_media(6, 7))
 
 Observă: `nota1` și `nota2` sunt parametrii — locuri libere pe care le completezi cu valori reale (8 și 10) atunci când apelezi funcția.
 
+:::exemplu
+## De ce folosim funcții
+În loc să copiezi de 10 ori aceeași formulă în program, o scrii o dată într-o funcție și o „chemi" (apelezi) ori de câte ori ai nevoie, cu alte numere. Codul e mai scurt, mai ușor de citit și, dacă găsești o greșeală, o corectezi într-un singur loc.
+:::
+
 ### 🔮 1.4.3 Citește și prezice
 
 ```python
@@ -411,6 +433,11 @@ print(scor_total)     # funcționează: 0, variabila globală e vizibilă peste 
 ```
 
 O greșeală frecventă: elevii cred că o variabilă locală „rămâne" după ce funcția se termină. Nu rămâne — memoria ei se eliberează.
+
+:::atentie
+## Capcană: variabila locală nu supraviețuiește
+O variabilă creată în interiorul unei funcții dispare când funcția se termină. Dacă vrei să o folosești în altă parte, fie o întorci cu `return`, fie o faci globală. Altfel, încercarea de a o citi în afara funcției dă eroare.
+:::
 
 ### 🔮 1.5.3 Citește și prezice
 
@@ -493,6 +520,11 @@ print(sum(note))     # suma valorilor -> 40
 
 Combinate, aceste funcții îți economisesc mult cod: media notelor devine `sum(note) / len(note)`, în loc să scrii tu o buclă care adună fiecare notă.
 
+:::tip
+## Nu reinventa roata
+Înainte să scrii o buclă sau un calcul de mână, întreabă-te: nu există deja o funcție predefinită pentru asta? `len`, `min`, `max`, `sum`, `abs`, `round`, `pow` și cele din `math` rezolvă de obicei problema mai scurt și mai sigur.
+:::
+
 ### 🔮 1.6.3 Citește și prezice
 
 ```python
@@ -567,6 +599,11 @@ print("Numărul fără ultima cifră:", n_fara_ultima)
 ```
 
 Combinând cele două operații într-o buclă `while`, poți parcurge **toate** cifrele unui număr, una câte una:
+
+:::exemplu
+## Cum extrageai cifrele „de mână"
+Pentru 4739: `4739 % 10 = 9` (ultima), apoi `4739 // 10 = 473` (fără ultima). Apoi `473 % 10 = 3`, `473 // 10 = 47`... și tot așa până rămâne 0. Bucla face exact asta, automat.
+:::
 
 ```python
 n = 4739
