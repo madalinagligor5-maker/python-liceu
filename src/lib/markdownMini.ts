@@ -25,6 +25,7 @@ export type SublectieContinut = {
   module: string; // cod modul, ex. "1.1"
   blocuri: Bloc[];
   esteVerificare: boolean; // true pentru sublecțiile de tip „Verifică-ți înțelegerea"
+  esteExercitii: boolean; // true pentru sublecțiile de exerciții (🤝/🎯) — redată de ExercitiiInteractive
 };
 
 export type ModulContinut = {
@@ -150,8 +151,13 @@ export function parseazaContinut(md: string): ModulContinut[] {
       // de tip „a) ... b) ... c)" care apar pe aceeași linie în sursă. În acest
       // caz blocurile sunt redate de widget-ul QuizSublectie, nu în articol.
       const eVerificare = /a\)\s.*b\)\s.*c\)/.test(bufferSub.join("\n"));
-      subCurent.blocuri = eVerificare ? [] : parseazaBlocuri(bufferSub);
+      const titluSubCurent = subCurent.titlu;
+      // O sublecție de exerciții (🤝/🎯) e redată de ExercitiiInteractive, nu
+      // în articol (ca să nu se dubleze textul întrebărilor).
+      const eExercitii = /(Exerciții ghidate|Exerciții independente)/.test(titluSubCurent);
+      subCurent.blocuri = eExercitii ? [] : parseazaBlocuri(bufferSub);
       subCurent.esteVerificare = eVerificare;
+      subCurent.esteExercitii = eExercitii;
       modulCurent.sublectii.push(subCurent);
     }
     bufferSub = [];
@@ -174,7 +180,7 @@ export function parseazaContinut(md: string): ModulContinut[] {
       const cod = subMatch[2]; // ex. 1.1.1
       const titlu = subMatch[3].trim();
       const moduleCod = cod.split(".").slice(0, 2).join(".");
-      subCurent = { cod, icon, titlu, module: moduleCod, blocuri: [], esteVerificare: false };
+      subCurent = { cod, icon, titlu, module: moduleCod, blocuri: [], esteVerificare: false, esteExercitii: false };
       continue;
     }
 

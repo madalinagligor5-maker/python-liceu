@@ -21,11 +21,13 @@ const CARD_ICON: Record<string, string> = {
 export default function BlocuriSublectie({
   blocuri,
   esteVerificare = false,
+  esteExercitii = false,
 }: {
   blocuri: Bloc[];
   esteVerificare?: boolean;
+  esteExercitii?: boolean;
 }) {
-  if (esteVerificare) return null;
+  if (esteVerificare || esteExercitii) return null;
 
   return (
     <div className="space-y-4">
