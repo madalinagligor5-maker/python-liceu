@@ -24,6 +24,7 @@ export type SublectieContinut = {
   titlu: string;
   module: string; // cod modul, ex. "1.1"
   blocuri: Bloc[];
+  esteVerificare: boolean; // true pentru sublecțiile de tip „Verifică-ți înțelegerea"
 };
 
 export type ModulContinut = {
@@ -145,7 +146,12 @@ export function parseazaContinut(md: string): ModulContinut[] {
 
   const flushSub = () => {
     if (modulCurent && subCurent) {
-      subCurent.blocuri = parseazaBlocuri(bufferSub);
+      // O sublecție de „Verifică-ți înțelegerea" e recunoscută după variantele
+      // de tip „a) ... b) ... c)" care apar pe aceeași linie în sursă. În acest
+      // caz blocurile sunt redate de widget-ul QuizSublectie, nu în articol.
+      const eVerificare = /a\)\s.*b\)\s.*c\)/.test(bufferSub.join("\n"));
+      subCurent.blocuri = eVerificare ? [] : parseazaBlocuri(bufferSub);
+      subCurent.esteVerificare = eVerificare;
       modulCurent.sublectii.push(subCurent);
     }
     bufferSub = [];
@@ -168,7 +174,7 @@ export function parseazaContinut(md: string): ModulContinut[] {
       const cod = subMatch[2]; // ex. 1.1.1
       const titlu = subMatch[3].trim();
       const moduleCod = cod.split(".").slice(0, 2).join(".");
-      subCurent = { cod, icon, titlu, module: moduleCod, blocuri: [] };
+      subCurent = { cod, icon, titlu, module: moduleCod, blocuri: [], esteVerificare: false };
       continue;
     }
 
