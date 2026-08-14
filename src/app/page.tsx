@@ -12,66 +12,66 @@ const CLASE = [
     clasa: "IX",
     titlu: "Bazele programării",
     descriere:
-      "Gândire computațională, variabile, tipuri de date, operatori, structuri de control, liste.",
+      "De la zero: ce e un algoritm, cum scrii un program, variabile, operații cu numere, liste și cum citești ce a scris altul.",
   },
   {
     clasa: "X",
     titlu: "Funcții și structuri de date",
     descriere:
-      "Funcții, parametri, tupluri, seturi, dicționare, prelucrarea șirurilor de caractere.",
+      "Înveți să împarți un program în bucăți mai mici (funcții), apoi lucrezi cu tupluri, seturi, dicționare și text.",
   },
   {
     clasa: "XI",
     titlu: "Programare orientată pe obiecte",
     descriere:
-      "Clase, obiecte, moștenire, structuri de date avansate, algoritmi de sortare și căutare.",
+      "Clase și obiecte, cum refolosești codul prin moștenire, plus algoritmi de care ai nevoie la olimpiadă și la școală.",
   },
   {
     clasa: "XII",
     titlu: "Proiecte și pregătire examen",
     descriere:
-      "Recapitulare integrată, proiecte practice, pregătire pentru evaluarea la Informatică.",
+      "Pui cap la cap tot ce ai învățat în proiecte mai mari și exersezi exact ce pică la evaluarea de la Informatică.",
   },
 ];
 
 const PAȘI = [
   {
     icon: "📘",
-    titlu: "Învață",
-    text: "Fiecare lecție e structurată în 6 pași scurți: recapitulare, concept nou, predicție, exerciții ghidate, exerciții independente și verificare.",
+    titlu: "Citești lecția",
+    text: "Fiecare lecție e împărțită în 6 pași scurți: recapitrezi ce știai, vezi noțiunea nouă, încearcă să ghicești ce face o bucată de cod, apoi rezolvi exerciții.",
   },
   {
     icon: "💻",
-    titlu: "Practică",
-    text: "Exersezi direct în pagină, cu cod comentat linie cu linie și feedback imediat. Nu instalezi nimic — totul rulează în browser.",
+    titlu: "Scrii codul",
+    text: "Exersezi direct pe pagină. Codul e comentat linie cu linie și rulează în browser — nu instalezi nimic pe calculator, deschizi lecția și scrii.",
   },
   {
     icon: "✅",
-    titlu: "Verifică",
-    text: "La finalul fiecărei lecții susții un mic test. Treci mai departe doar când demonstrezi că ai înțeles — așa se fixează cunoștința.",
+    titlu: "Verifici ce ai priceput",
+    text: "La sfârșit ai câteva întrebări. Le rezolvi și vezi imediat ce ai greșit și de ce. Treci mai departe numai când le-ai făcut pe toate.",
   },
 ];
 
 const FAQ = [
   {
-    intrebare: "Chiar sunt gratuite primele lecții?",
+    intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Primele module din clasa a IX-a sunt complet gratuite — poți începe direct, fără cont.",
+      "Da. Primele trei module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
   },
   {
-    intrebare: "Am nevoie să instalez Python pe calculator?",
+    intrebare: "Trebuie să instalez Python pe laptop?",
     raspuns:
-      "Nu pentru exercițiile din lecții — codul rulează direct în pagină, în browser. Poți instala Python separat dacă vrei să exersezi și acasă.",
+      "Nu. Codul se scrie și rulează direct în pagină, în browser. Dacă vrei să mai exersezi și acasă, poți instala Python separat, dar nu e nevoie ca să urmezi lecțiile.",
   },
   {
-    intrebare: "Conținutul respectă programa școlară?",
+    intrebare: "Se potrivește cu ce facem la școală?",
     raspuns:
-      "Da, lecțiile sunt structurate pe clase (IX-XII) și unități, conform programei oficiale de Informatică pentru liceu.",
+      "Se potrivește. Lecțiile sunt grupate pe clase (IX–XII) și urmează programa de Informatică de liceu, așa că ce înveți aici îți e util direct la ora de curs și la teme.",
   },
   {
-    intrebare: "Pot anula abonamentul oricând?",
+    intrebare: "Pot renunța la abonament dacă nu mai vreau?",
     raspuns:
-      "Da, abonamentul se poate anula oricând din pagina de cont, fără costuri suplimentare.",
+      "Poți anula oricând din pagina ta de cont. Nu e nicio obligație pe termen lung și nu plătești nimic în plus.",
   },
 ];
 
@@ -140,15 +140,17 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-              Învață <span className="text-brand">Python</span>, pas cu pas,
-              <br className="hidden sm:block" /> direct din browser.
+              Înveți <span className="text-brand">Python</span> direct
+              în browser,
+              <br className="hidden sm:block" /> fără instalări.
             </h1>
 
             <p className="mt-5 max-w-xl text-lg text-foreground/70">
-              Lecții clare, exemple de cod comentate și exerciții interactive, conform
-              programei oficiale de Informatică. Primele module sunt{" "}
-              <span className="font-semibold text-brand-dark">gratuite</span> — fără cont,
-              fără card.
+              Lecții făcute pe programa de Informatică de liceu, cu explicații
+              clare și exerciții la care scrii tu însuți codul. Primele module din
+              clasa a IX-a sunt{" "}
+              <span className="font-semibold text-brand-dark">deschise gratuit</span> —
+              intri și începi, fără cont și fără card.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -156,19 +158,21 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
                 href="/curriculum"
                 className="rounded-xl bg-brand px-7 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
               >
-                Începe gratuit →
+                Intră la lecții →
               </Link>
               <Link
                 href="/preturi"
                 className="rounded-xl border border-black/10 px-7 py-3.5 text-base font-semibold text-foreground transition hover:border-brand hover:text-brand"
               >
-                Vezi prețurile
+                Cât costă restul?
               </Link>
             </div>
 
             <div className="mt-8 flex items-center gap-2 text-sm text-foreground/55">
               <Mascota size={34} />
-              <span>Peste 500 de lecții, de la zero la proiecte reale.</span>
+              <span>
+                De la primele linii de cod până la proiecte mai mari, pas cu pas.
+              </span>
             </div>
           </div>
 
@@ -192,11 +196,11 @@ saluta("Academia Python")
       {/* CUM FUNCȚIONEAZĂ */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-          Cum funcționează învățarea
+          Cum merg lecțiile
         </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          Un drum de învățare, nu o listă de lecții. Fiecare lecție trece prin trei momente
-          care fac ca cunoștința să se fixeze.
+          Nu e o listă de lecturi de citit și gata. La fiecare lecție treci prin
+          trei lucruri simple, care te ajută să ții minte ce ai învățat.
         </p>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
@@ -219,11 +223,12 @@ saluta("Academia Python")
       <section className="bg-brand-light/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Patru ani, un traseu clar
+            Ce înveți pe clase
           </h2>
           <p className="mt-2 max-w-2xl text-foreground/70">
-            Conținutul e organizat pe clase, de la primele noțiuni până la proiecte și
-            pregătirea pentru examen.
+            Totul e împărțit pe anii de liceu, așa cum e la școală. Intri pe clasa ta
+            și vezi ce ai de învățat, de la primele noțiuni până la proiectele de la
+            sfârșit.
           </p>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -250,11 +255,12 @@ saluta("Academia Python")
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-                Începe chiar acum — gratuit
+                Începe acum, fără bani
               </h2>
               <p className="mt-2 max-w-2xl text-foreground/70">
-                Primele trei module din clasa a IX-a sunt deschise complet. Fără cont, fără
-                card.
+                Primele trei module din clasa a IX-a le poți parcurge de la cap la coadă
+                chiar acum. Deschizi o lecție, scrii codul în pagină, rezolvi exercițiile
+                — și gata, fără cont.
               </p>
             </div>
             <Link
@@ -294,9 +300,13 @@ saluta("Academia Python")
 
       {/* PREȚURI SCURTE */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Prețuri simple</h2>
+        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+          Cât costă restul lecțiilor
+        </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          Acces complet la toate lecțiile, exercițiile și proiectele, pentru un abonament mic.
+          Cele trei module din clasa a IX-a sunt gratuite. Pentru tot ce e după ele —
+          toate celelalte clase, exercițiile și proiectele — e un abonament mic, pe
+          lună. Vezi prețul exact mai jos.
         </p>
         <Link
           href="/preturi"

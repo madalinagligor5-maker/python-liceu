@@ -14,8 +14,10 @@ import {
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import QuizSublectie from "@/components/QuizSublectie";
+import ExercitiiInteractive from "@/components/ExercitiiInteractive";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
+import { getExercitiiSublectie } from "@/lib/exercitii";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -47,6 +49,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const continut = await getSublectieContinut(sublectieCod);
   const { user } = await getUtilizatorCurent();
   const intrebari = await getQuizSublectie(sublectieCod);
+  const exercitii = await getExercitiiSublectie(sublectieCod);
 
   if (!modul || !capitol || !continut) notFound();
 
@@ -92,6 +95,8 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       <article className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
         <BlocuriSublectie blocuri={continut.blocuri} />
       </article>
+
+      <ExercitiiInteractive exercitii={exercitii} />
 
       {intrebari.length > 0 && (
         <div className="mt-6">

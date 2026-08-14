@@ -1,0 +1,148 @@
+"use client";
+
+import { useState } from "react";
+
+type Props = {
+  /** Codul inițial (poate conține găuri ___ care devin input-uri). */
+  initialCode?: string;
+  /** Output-ul așteptat pentru verificare automată (opțional). */
+  expectedOutput?: string;
+  /** Label afișat deasupra editorului. */
+  titlu?: string;
+  /** Înălțimea în px a zonei de cod. */
+  height?: number;
+};
+
+// Pyodide se încarcă o singură dată per pagină.
+let pyodidePromisiune: Promise<unknown> | null = null;
+
+type PyodideApi = {
+  setStdout: (o: { batched: (s: string) => void }) => void;
+  setStderr: (o: { batched: (s: string) => void }) => void;
+  runPythonAsync: (code: string) => Promise<void>;
+};
+
+async function incarcaPyodide(): Promise<PyodideApi> {
+  if (pyodidePromisiune) return pyodidePromisiune as Promise<PyodideApi>;
+  pyodidePromisiune = (async () => {
+    await new Promise<void>((res) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+      s.onload = () => res();
+      s.onerror = () => res();
+      document.body.appendChild(s);
+    });
+    const w = window as unknown as {
+      loadPyodide?: (opts: { indexURL: string }) => Promise<PyodideApi>;
+    };
+    const py = await w.loadPyodide!({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/",
+    });
+    return py;
+  })();
+  return pyodidePromisiune as Promise<PyodideApi>;
+}
+
+export default function PythonEditor({
+  initialCode = 'print("Salut, lume!")',
+  expectedOutput,
+  titlu = "Scrie codul tău Python",
+  height = 220,
+}: Props) {
+  const [cod, setCod] = useState(initialCode);
+  const [output, setOutput] = useState("");
+  const [eroare, setEroare] = useState("");
+  const [ruleaza, setRuleaza] = useState(false);
+  const [verdict, setVerdict] = useState<"ok" | "gresit" | null>(null);
+  const [folosestePy, setFolosestePy] = useState(true);
+
+  const ruleazaCod = async () => {
+    console.log("RULEAZA_CLICK", { hasPy: !!pyodidePromisiune, exp: expectedOutput });
+    setRuleaza(true);
+    setEroare("");
+    setVerdict(null);
+    setOutput("");
+    try {
+      const py = await incarcaPyodide();
+      let capturat = "";
+      py.setStdout({ batched: (s: string) => { capturat += s; console.log("STDOUT_CHUNK", JSON.stringify(s)); setOutput(capturat); } });
+      py.setStderr({ batched: (s: string) => setEroare((e) => e + s) });
+      await py.runPythonAsync(cod);
+      if (expectedOutput !== undefined) {
+        const curat = (s: string) => s.replace(/\s+/g, " ").trim();
+        setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
+      }
+    } catch (e) {
+      console.error("PYODIDE_ERR", e);
+      setEroare("Interpretorul Python nu a putut fi încărcat.");
+      setFolosestePy(false);
+    } finally {
+      setRuleaza(false);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl border border-brand-border bg-white p-4 shadow-sm">
+      {titlu && (
+        <div className="mb-2 flex items-center gap-2">
+          <span className="text-xl" aria-hidden="true">
+            🐍
+          </span>
+          <h4 className="text-sm font-semibold text-foreground">{titlu}</h4>
+        </div>
+      )}
+
+      <div className="relative rounded-xl border border-black/10 bg-[#1e1b3a] overflow-hidden">
+        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+          <span className="ml-2 text-xs text-white/50">python</span>
+        </div>
+        <textarea
+          value={cod}
+          onChange={(e) => setCod(e.target.value)}
+          spellCheck={false}
+          className="block w-full resize-y bg-transparent p-3 font-mono text-sm leading-relaxed text-white outline-none"
+          style={{ minHeight: height }}
+        />
+      </div>
+
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={ruleazaCod}
+          disabled={ruleaza}
+          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {ruleaza ? "Se rulează…" : "▶ Rulează codul"}
+        </button>
+        {verdict === "ok" && (
+          <span className="text-sm font-semibold text-success">
+            ✓ Corect! Output-ul e exact cum trebuie.
+          </span>
+        )}
+        {verdict === "gresit" && (
+          <span className="text-sm font-semibold text-red-600">
+            ✗ Output-ul tău diferă de cel așteptat. Încearcă din nou.
+          </span>
+        )}
+      </div>
+
+      {(output || eroare) && (
+        <pre className="mt-3 max-h-48 overflow-auto rounded-lg bg-black/90 p-3 font-mono text-xs leading-relaxed text-green-300">
+          {output}
+          {eroare && <span className="text-red-400">{eroare}</span>}
+        </pre>
+      )}
+
+      {!folosestePy && (
+        <p className="mt-2 text-xs text-amber-600">
+          Interpretorul Python nu a putut fi încărcat (necesită conexiune la
+          CDN și cross-origin isolation). Verificarea automată a output-ului e
+          suspendată.
+        </p>
+      )}
+    </div>
+  );
+}
