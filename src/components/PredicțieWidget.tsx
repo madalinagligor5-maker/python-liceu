@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
+import { finalizeazaPredicție } from "@/app/actions/progres";
 
 type Predic = {
   cod: string;
@@ -44,21 +45,43 @@ async function incarcaPyodide(): Promise<{
   }>;
 }
 
-export default function PredicțieWidget({ predic }: { predic: Predic }) {
+export default function PredicțieWidget({
+  predic,
+  sublectieCod,
+}: {
+  predic: Predic;
+  sublectieCod: string;
+}) {
   const [ales, setAles] = useState<number | null>(null);
   const [dezv, setDezv] = useState(false);
   const [outputReal, setOutputReal] = useState<string>("");
+  const [xpMesaj, setXpMesaj] = useState<string>("");
 
   const verifica = async () => {
     setDezv(true);
+    let out = "";
     try {
       const py = await incarcaPyodide();
-      let out = "";
       py.setStdout({ batched: (s: string) => (out += s) });
       await py.runPythonAsync(predic.cod);
-      setOutputReal(out.trim());
     } catch {
-      setOutputReal("(nu am putut rula codul acum)");
+      out = "";
+    }
+    setOutputReal(out.trim());
+
+    if (ales === predic.corect) {
+      try {
+        const res = await finalizeazaPredicție("IX", sublectieCod, true);
+        if (res.ok) {
+          setXpMesaj(
+            res.insigneNoi?.includes("predictie-reusita")
+              ? "Ai câștigat XP și ai deblocat insigna Predicție! 🏅"
+              : "Ai câștigat XP pentru predicția corectă! 🎉"
+          );
+        }
+      } catch {
+        // XP-ul e best-effort; nu blocăm afișarea rezultatului.
+      }
     }
   };
 
@@ -139,6 +162,7 @@ export default function PredicțieWidget({ predic }: { predic: Predic }) {
           {corect ? "✓ Corect! " : "✗ Nu chiar. "}
           Codul afișează de fapt:{" "}
           <code className="font-mono">{outputReal || "—"}</code>
+          {xpMesaj && <div className="mt-1 font-semibold">{xpMesaj}</div>}
         </div>
       )}
     </div>

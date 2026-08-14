@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getLectie } from "@/lib/content";
 import { creeazaClientServer } from "@/lib/supabase/server";
-import { XP_PE_QUIZ } from "@/lib/progres";
+import { XP_PE_QUIZ, XP_PE_PREDIČIE } from "@/lib/progres";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 
 export type RezultatFinalizare =
@@ -84,6 +84,7 @@ export async function finalizeazaLectie(
   const insigneNoi = await acordaInsigne(supabase, user.id, {
     streak: rezultat?.streak_zile ?? 0,
     scorPerfect: intrebari.length > 0 && scor === intrebari.length,
+    predicțieCorecta: false,
   });
 
   // Dashboard-ul și header-ul citesc progresul server-side; fără asta ar
@@ -108,7 +109,7 @@ type ClientSupabase = Awaited<ReturnType<typeof creeazaClientServer>>;
 async function acordaInsigne(
   supabase: ClientSupabase,
   userId: string,
-  ctx: { streak: number; scorPerfect: boolean }
+  ctx: { streak: number; scorPerfect: boolean; predicțieCorecta?: boolean }
 ): Promise<string[]> {
   const { count } = await supabase
     .from("progres_lectii")
@@ -124,6 +125,7 @@ async function acordaInsigne(
   if (ctx.streak >= 3) candidate.push("serie-3-zile");
   if (ctx.streak >= 7) candidate.push("serie-7-zile");
   if (ctx.scorPerfect) candidate.push("quiz-perfect");
+  if (ctx.predicțieCorecta) candidate.push("predictie-reusita");
 
   if (!candidate.length) return [];
 
@@ -199,6 +201,7 @@ export async function finalizeazaSublectie(
   const insigneNoi = await acordaInsigne(supabase, user.id, {
     streak: rezultat?.streak_zile ?? 0,
     scorPerfect: intrebari.length > 0 && scor === intrebari.length,
+    predicțieCorecta: false,
   });
 
   revalidatePath("/");
@@ -211,6 +214,71 @@ export async function finalizeazaSublectie(
     nivel: rezultat?.nivel ?? 1,
     scor,
     dinTotal: intrebari.length,
+    insigneNoi,
+  };
+}
+
+/**
+ * Finalizează o predicție interactivă (secțiunea „Citește și prezice") și acordă
+ * XP dacă răspunsul a fost corect. Merge prin același RPC `finalizeaza_lectie`,
+ * ca să beneficieze de același trigger de protecție (streak, nivel, XP).
+ */
+export async function finalizeazaPredicție(
+  clasa: string,
+  sublectieCod: string,
+  corect: boolean
+): Promise<RezultatFinalizare> {
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return { ok: false, eroare: "Progresul necesită configurarea Supabase." };
+  }
+
+  if (!corect) {
+    return {
+      ok: true,
+      xpTotal: 0,
+      streakZile: 0,
+      nivel: 1,
+      scor: 0,
+      dinTotal: 1,
+      insigneNoi: [],
+    };
+  }
+
+  const supabase = await creeazaClientServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return { ok: false, eroare: "Trebuie să fii autentificat." };
+
+  const { data, error } = await supabase.rpc("finalizeaza_lectie", {
+    p_lectie_slug: `sub-${sublectieCod}`,
+    p_xp_quiz: XP_PE_PREDIČIE,
+  });
+
+  if (error) return { ok: false, eroare: error.message };
+
+  const rezultat = Array.isArray(data) ? data[0] : data;
+
+  const insigneNoi = await acordaInsigne(supabase, user.id, {
+    streak: rezultat?.streak_zile ?? 0,
+    scorPerfect: false,
+    predicțieCorecta: true,
+  });
+
+  revalidatePath("/");
+  revalidatePath(`/curriculum/${clasa}`);
+
+  return {
+    ok: true,
+    xpTotal: rezultat?.xp_total ?? 0,
+    streakZile: rezultat?.streak_zile ?? 0,
+    nivel: rezultat?.nivel ?? 1,
+    scor: 1,
+    dinTotal: 1,
     insigneNoi,
   };
 }

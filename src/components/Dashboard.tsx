@@ -194,14 +194,21 @@ export default function Dashboard({
                   <span aria-hidden="true">🎖️</span> Insigne
                 </h3>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {progres.insigne.map((slug) => (
-                    <li
-                      key={slug}
-                      className="rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark"
-                    >
-                      {slug.replaceAll("-", " ")}
+                  {progres.insigne.includes("predictie-reusita") && (
+                    <li className="rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700">
+                      <span aria-hidden="true">🔮</span> Predicție
                     </li>
-                  ))}
+                  )}
+                  {progres.insigne
+                    .filter((s) => s !== "predictie-reusita")
+                    .map((slug) => (
+                      <li
+                        key={slug}
+                        className="rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark"
+                      >
+                        {slug.replaceAll("-", " ")}
+                      </li>
+                    ))}
                 </ul>
               </div>
             )}

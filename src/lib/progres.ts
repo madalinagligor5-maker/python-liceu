@@ -3,6 +3,7 @@ import { getLectiiGrupate, toateLectiile, type Lectie } from "@/lib/content";
 
 export const XP_PE_LECTIE = 20;
 export const XP_PE_QUIZ = 10;
+export const XP_PE_PREDIČIE = 10;
 
 export type StareNod = "finalizat" | "curent" | "blocat";
 

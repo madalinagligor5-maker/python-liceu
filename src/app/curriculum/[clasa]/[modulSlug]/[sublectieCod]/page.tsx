@@ -99,7 +99,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         <BlocuriSublectie blocuri={continut.blocuri} />
       </article>
 
-      {predic && <PredicțieWidget predic={predic} />}
+      {predic && <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />}
 
       <ExercitiiInteractive exercitii={exercitii} />
 
