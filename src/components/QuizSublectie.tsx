@@ -9,6 +9,7 @@ type Props = {
   clasa: string;
   sublectieCod: string;
   autentificat?: boolean;
+  deblocat?: boolean;
 };
 
 const LITERE = ["a", "b", "c", "d"];
@@ -18,6 +19,7 @@ export default function QuizSublectie({
   clasa,
   sublectieCod,
   autentificat = false,
+  deblocat = true,
 }: Props) {
   const [raspunsuri, setRaspunsuri] = useState<Record<number, number>>({});
   const [dezvaltat, setDezvaltat] = useState(false);
@@ -48,6 +50,21 @@ export default function QuizSublectie({
 
   return (
     <div className="rounded-2xl border border-brand-border bg-white p-6 shadow-sm">
+      {!deblocat ? (
+        <div className="flex flex-col items-center gap-2 py-6 text-center">
+          <span className="text-3xl" aria-hidden="true">
+            🔒
+          </span>
+          <h3 className="text-lg font-bold text-foreground">
+            Rezolvă mai întâi exercițiile
+          </h3>
+          <p className="max-w-sm text-sm text-foreground/60">
+            Ca să fii sigur că ai înțeles, completează exercițiile de mai sus.
+            Abia apoi se deblochează quiz-ul de verificare.
+          </p>
+        </div>
+      ) : (
+      <>
       <div className="flex items-center gap-2">
         <span className="text-2xl" aria-hidden="true">
           🧠
@@ -179,6 +196,8 @@ export default function QuizSublectie({
         <p className="mt-4 text-xs text-foreground/55">
           Autentifică-te ca să-ți salvezi progresul și să câștigi XP.
         </p>
+      )}
+      </>
       )}
     </div>
   );

@@ -5,7 +5,13 @@ import PythonEditor from "@/components/PythonEditor";
 import { Exercitiu, Nivel, NIVELE } from "@/lib/exercitii-tipuri";
 
 /** Widget pentru exercițiul de ordonare a pașilor. */
-function ExercitiuOrdonare({ ex }: { ex: Extract<Exercitiu, { tip: "ordonare" }> }) {
+function ExercitiuOrdonare({
+  ex,
+  onVerificat,
+}: {
+  ex: Extract<Exercitiu, { tip: "ordonare" }>;
+  onVerificat?: () => void;
+}) {
   const [ordine, setOrdine] = useState<string[]>([]);
   const [folosite, setFolosite] = useState<Set<number>>(new Set());
   const [verdict, setVerdict] = useState<"ok" | "gresit" | null>(null);
@@ -25,6 +31,7 @@ function ExercitiuOrdonare({ ex }: { ex: Extract<Exercitiu, { tip: "ordonare" }>
     const corect =
       JSON.stringify(ordine) === JSON.stringify(ex.ordineCorecta);
     setVerdict(corect ? "ok" : "gresit");
+    onVerificat?.();
   };
 
   return (
@@ -91,8 +98,19 @@ function ExercitiuOrdonare({ ex }: { ex: Extract<Exercitiu, { tip: "ordonare" }>
 }
 
 /** Widget pentru răspuns liber (text) cu dezvăluire model. */
-function ExercitiuText({ ex }: { ex: Extract<Exercitiu, { tip: "text" }> }) {
+function ExercitiuText({
+  ex,
+  onVerificat,
+}: {
+  ex: Extract<Exercitiu, { tip: "text" }>;
+  onVerificat?: () => void;
+}) {
   const [arata, setArata] = useState(false);
+  const [verificat, setVerificat] = useState(false);
+  const marcheaza = () => {
+    setVerificat(true);
+    onVerificat?.();
+  };
   return (
     <div>
       <textarea
@@ -100,7 +118,14 @@ function ExercitiuText({ ex }: { ex: Extract<Exercitiu, { tip: "text" }> }) {
         className="mt-2 w-full rounded-xl border border-black/15 p-3 text-sm text-foreground outline-none focus:border-brand"
         rows={4}
       />
-      <div className="mt-2">
+      <div className="mt-2 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={marcheaza}
+          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+        >
+          Marchează ca rezolvat
+        </button>
         <button
           type="button"
           onClick={() => setArata((a) => !a)}
@@ -108,20 +133,29 @@ function ExercitiuText({ ex }: { ex: Extract<Exercitiu, { tip: "text" }> }) {
         >
           {arata ? "Ascunde răspunsul model" : "Vezi un răspuns model"}
         </button>
-        {arata && ex.modelRaspuns && (
-          <p className="mt-2 rounded-lg bg-brand-light/60 p-3 text-sm text-brand-dark">
-            {ex.modelRaspuns}
-          </p>
-        )}
       </div>
+      {arata && ex.modelRaspuns && (
+        <p className="mt-2 rounded-lg bg-brand-light/60 p-3 text-sm text-brand-dark">
+          {ex.modelRaspuns}
+        </p>
+      )}
+      {verificat && (
+        <p className="mt-2 text-sm font-semibold text-success">
+          ✓ Marchează ca rezolvit.
+        </p>
+      )}
     </div>
   );
 }
 
 export default function ExercitiiInteractive({
   exercitii,
+  deblocat = true,
+  onRezolvat,
 }: {
   exercitii: Exercitiu[];
+  deblocat?: boolean;
+  onRezolvat?: (id: string) => void;
 }) {
   const [nivelActiv, setNivelActiv] = useState<Nivel>("de-baza");
   const [arataHint, setArataHint] = useState<Record<string, boolean>>({});
@@ -138,77 +172,101 @@ export default function ExercitiiInteractive({
 
   return (
     <div className="mt-6 space-y-6">
-      <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
-        <span className="text-2xl" aria-hidden="true">
-          💻
-        </span>
-        Exerciții — scrie și verifică
-      </h3>
-
-      {niveleDisponibile.length > 1 && (
-        <div className="flex flex-wrap gap-2">
-          {niveleDisponibile.map((n) => (
-            <button
-              key={n.id}
-              type="button"
-              onClick={() => setNivelActiv(n.id)}
-              className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition ${
-                n.id === activ?.id
-                  ? "border-brand bg-brand text-white"
-                  : "border-brand-border bg-white text-foreground/70 hover:border-brand"
-              }`}
-            >
-              {n.eticheta}
-            </button>
-          ))}
+      {!deblocat && (
+        <div className="flex flex-col items-center gap-2 rounded-2xl border border-brand-border bg-white p-6 text-center shadow-sm">
+          <span className="text-3xl" aria-hidden="true">
+            🔒
+          </span>
+          <h3 className="text-lg font-bold text-foreground">
+            Citește mai întâi lecția
+          </h3>
+          <p className="max-w-sm text-sm text-foreground/60">
+            Derulează până la capătul lecției de mai sus, apoi se deblochează
+            exercițiile.
+          </p>
         </div>
       )}
 
-      {lista.map((ex, i) => (
-        <div
-          key={ex.id}
-          className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
-        >
-          <p className="text-sm font-medium text-foreground">
-            <span className="mr-2 rounded-md bg-brand-light px-2 py-0.5 text-xs font-bold text-brand-dark">
-              {activ?.eticheta} · Ex. {i + 1}
+      {deblocat && (
+        <>
+          <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
+            <span className="text-2xl" aria-hidden="true">
+              💻
             </span>
-            {ex.enunt}
-          </p>
+            Exerciții — scrie și verifică
+          </h3>
 
-          <div className="mt-3">
-            {ex.tip === "cod" && (
-              <PythonEditor
-                initialCode={ex.template || "# Scrie aici codul tău Python\n"}
-                expectedOutput={ex.expectedOutput}
-                titlu="Editor Python (rulează în browser)"
-                height={ex.template ? 180 : 140}
-              />
-            )}
-            {ex.tip === "ordonare" && <ExercitiuOrdonare ex={ex} />}
-            {ex.tip === "text" && <ExercitiuText ex={ex} />}
-          </div>
-
-          {ex.hint && ex.tip !== "text" && (
-            <div className="mt-2">
-              <button
-                type="button"
-                onClick={() =>
-                  setArataHint((p) => ({ ...p, [ex.id]: !p[ex.id] }))
-                }
-                className="text-xs font-medium text-brand hover:text-brand-dark"
-              >
-                {arataHint[ex.id] ? "Ascunde indiciul" : "Arată un indiciu"}
-              </button>
-              {arataHint[ex.id] && (
-                <p className="mt-1 rounded-lg bg-brand-light/60 p-2 font-mono text-xs text-brand-dark">
-                  {ex.hint}
-                </p>
-              )}
+          {niveleDisponibile.length > 1 && (
+            <div className="flex flex-wrap gap-2">
+              {niveleDisponibile.map((n) => (
+                <button
+                  key={n.id}
+                  type="button"
+                  onClick={() => setNivelActiv(n.id)}
+                  className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition ${
+                    n.id === activ?.id
+                      ? "border-brand bg-brand text-white"
+                      : "border-brand-border bg-white text-foreground/70 hover:border-brand"
+                  }`}
+                >
+                  {n.eticheta}
+                </button>
+              ))}
             </div>
           )}
-        </div>
-      ))}
+
+          {lista.map((ex, i) => (
+            <div
+              key={ex.id}
+              className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
+            >
+              <p className="text-sm font-medium text-foreground">
+                <span className="mr-2 rounded-md bg-brand-light px-2 py-0.5 text-xs font-bold text-brand-dark">
+                  {activ?.eticheta} · Ex. {i + 1}
+                </span>
+                {ex.enunt}
+              </p>
+
+              <div className="mt-3">
+                {ex.tip === "cod" && (
+                  <PythonEditor
+                    initialCode={ex.template || "# Scrie aici codul tău Python\n"}
+                    expectedOutput={ex.expectedOutput}
+                    titlu="Editor Python (rulează în browser)"
+                    height={ex.template ? 180 : 140}
+                    onVerificat={() => onRezolvat?.(ex.id)}
+                  />
+                )}
+                {ex.tip === "ordonare" && (
+                  <ExercitiuOrdonare ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
+                )}
+                {ex.tip === "text" && (
+                  <ExercitiuText ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
+                )}
+              </div>
+
+              {ex.hint && ex.tip !== "text" && (
+                <div className="mt-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setArataHint((p) => ({ ...p, [ex.id]: !p[ex.id] }))
+                    }
+                    className="text-xs font-medium text-brand hover:text-brand-dark"
+                  >
+                    {arataHint[ex.id] ? "Ascunde indiciul" : "Arată un indiciu"}
+                  </button>
+                  {arataHint[ex.id] && (
+                    <p className="mt-1 rounded-lg bg-brand-light/60 p-2 font-mono text-xs text-brand-dark">
+                      {ex.hint}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }

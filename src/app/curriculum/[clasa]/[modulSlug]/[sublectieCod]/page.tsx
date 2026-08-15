@@ -13,8 +13,7 @@ import {
   sublectieUrmatoare,
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
-import QuizSublectie from "@/components/QuizSublectie";
-import ExercitiiInteractive from "@/components/ExercitiiInteractive";
+import SublectieGate from "@/components/SublectieGate";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
@@ -95,24 +94,22 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         </div>
       </div>
 
-      <article className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
+      <article
+        id="lectie-articol"
+        className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8"
+      >
         <BlocuriSublectie blocuri={continut.blocuri} esteVerificare={continut.esteVerificare} esteExercitii={continut.esteExercitii} />
       </article>
 
       {predic && <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />}
 
-      <ExercitiiInteractive exercitii={exercitii} />
-
-      {intrebari.length > 0 && (
-        <div className="mt-6">
-          <QuizSublectie
-            intrebari={intrebari}
-            clasa={clasa}
-            sublectieCod={sublectieCod}
-            autentificat={Boolean(user)}
-          />
-        </div>
-      )}
+      <SublectieGate
+        exercitii={exercitii}
+        intrebari={intrebari}
+        clasa={clasa}
+        sublectieCod={sublectieCod}
+        autentificat={Boolean(user)}
+      />
 
       <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
         {anterior ? (

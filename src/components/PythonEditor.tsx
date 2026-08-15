@@ -11,6 +11,8 @@ type Props = {
   titlu?: string;
   /** Înălțimea în px a zonei de cod. */
   height?: number;
+  /** Apelat când elevul apasă „Rulează codul" (indiferent de rezultat). */
+  onVerificat?: () => void;
 };
 
 // Pyodide se încarcă o singură dată per pagină.
@@ -48,6 +50,7 @@ export default function PythonEditor({
   expectedOutput,
   titlu = "Scrie codul tău Python",
   height = 220,
+  onVerificat,
 }: Props) {
   const [cod, setCod] = useState(initialCode);
   const [output, setOutput] = useState("");
@@ -57,7 +60,6 @@ export default function PythonEditor({
   const [folosestePy, setFolosestePy] = useState(true);
 
   const ruleazaCod = async () => {
-    console.log("RULEAZA_CLICK", { hasPy: !!pyodidePromisiune, exp: expectedOutput });
     setRuleaza(true);
     setEroare("");
     setVerdict(null);
@@ -65,13 +67,14 @@ export default function PythonEditor({
     try {
       const py = await incarcaPyodide();
       let capturat = "";
-      py.setStdout({ batched: (s: string) => { capturat += s; console.log("STDOUT_CHUNK", JSON.stringify(s)); setOutput(capturat); } });
+      py.setStdout({ batched: (s: string) => { capturat += s; setOutput(capturat); } });
       py.setStderr({ batched: (s: string) => setEroare((e) => e + s) });
       await py.runPythonAsync(cod);
       if (expectedOutput !== undefined) {
         const curat = (s: string) => s.replace(/\s+/g, " ").trim();
         setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
       }
+      onVerificat?.();
     } catch (e) {
       console.error("PYODIDE_ERR", e);
       setEroare("Interpretorul Python nu a putut fi încărcat.");
