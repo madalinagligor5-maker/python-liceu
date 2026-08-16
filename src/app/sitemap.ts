@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
 import { capitole } from "@/lib/curriculum";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://python-liceu-git-main-mada-s-projects.vercel.app";
+const SITE_URL = "https://www.academiapython.ro";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (p: string) => `${SITE_URL}${p}`;
