@@ -22,9 +22,8 @@ function citesteRezolvate(): Set<string> {
 /**
  * Gestionează „gate-ul" de parcurgere:
  *  - exercițiile se deblochează doar după ce elevul a derulat articolul până la capăt (scroll 100%);
- *  - quiz-ul se deblochează doar după ce a rezolvat (măcar a încercat) exercițiile din acest modul
- *    (starea persistă între pagini prin localStorage, ca să nu fie blocat pe 1.X.6 doar pentru că
- *    exercițiile sunt pe 1.X.4 / 1.X.5).
+ *  - quiz-ul se deblochează doar după ce a rezolvat exercițiile necesare (de obicei cele de pe
+ *    1.X.4 și 1.X.5, pentru că quiz-ul e pe 1.X.6). Starea persistă între pagini prin localStorage.
  * Totul e client-side (nu blochează XP-ul server-side dacă cineva forțează), dar pentru un elev
  * obișnuit fluxul e clar: citește → exersează → verifică.
  */
@@ -34,18 +33,20 @@ export default function SublectieGate({
   clasa,
   sublectieCod,
   autentificat,
+  exercitiiNecesare = [],
 }: {
   exercitii: Exercitiu[];
   intrebari: IntrebareQuiz[];
   clasa: string;
   sublectieCod: string;
   autentificat: boolean;
+  /** Coduri de exerciții (ex. "1.1.4", "1.1.5") ce trebuie rezolvate înainte de quiz. */
+  exercitiiNecesare?: string[];
 }) {
   const [aCitit, setACitit] = useState(false);
   const [rezolvate, setRezolvate] = useState<Set<string>>(new Set());
 
-  // La mount, citește progresul salvat (ca să deblocheze quiz-ul pe 1.X.6
-  // dacă exercițiile de pe 1.X.4 / 1.X.5 au fost deja făcute).
+  // La mount, citește progresul salvat.
   useEffect(() => {
     setRezolvate(citesteRezolvate());
   }, []);
@@ -79,8 +80,14 @@ export default function SublectieGate({
     });
   };
 
-  const toateRezolvate =
-    exercitii.length > 0 && exercitii.every((e) => rezolvate.has(e.id));
+  // Dacă pagina are exerciții proprii, gate-ul ține cont de ele.
+  // Dacă e o pagină de quiz (fără exerciții pe ea), ține cont de exercitiiNecesare.
+  const conditieRezolvate =
+    exercitii.length > 0
+      ? exercitii.every((e) => rezolvate.has(e.id))
+      : exercitiiNecesare.every((c) => rezolvate.has(c));
+
+  const toateRezolvate = conditieRezolvate;
 
   return (
     <>

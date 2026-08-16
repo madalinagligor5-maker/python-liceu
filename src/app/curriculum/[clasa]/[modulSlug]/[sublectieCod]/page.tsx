@@ -53,6 +53,13 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const exercitii = await getExercitiiSublectie(sublectieCod);
   const predic = await getPredicție(sublectieCod);
 
+  // Pentru o pagină de quiz (1.X.6), exercițiile necesare înainte de deblocare
+  // sunt cele de pe 1.X.4 și 1.X.5 (care stau pe alte pagini). Le deducem din cod.
+  const exercitiiNecesare: string[] =
+    intrebari.length > 0 && exercitii.length === 0
+      ? [`${sublectieCod.replace(/\.\d+$/, "")}.4`, `${sublectieCod.replace(/\.\d+$/, "")}.5`]
+      : [];
+
   if (!modul || !capitol || !continut) notFound();
 
   const anterior = await sublectieAnterioara(sublectieCod);
@@ -109,6 +116,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         clasa={clasa}
         sublectieCod={sublectieCod}
         autentificat={Boolean(user)}
+        exercitiiNecesare={exercitiiNecesare}
       />
 
       <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
