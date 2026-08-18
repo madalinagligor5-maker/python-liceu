@@ -56,7 +56,7 @@ const FAQ = [
   {
     intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Primele trei module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
+      "Da. Primele cinci module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
   },
   {
     intrebare: "Trebuie să instalez Python pe laptop?",
@@ -106,10 +106,10 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     }
   }
 
-  // Module reale din curriculum (primele 3 din clasa IX, gratuite).
+  // Module reale din curriculum (primele 5 din clasa IX, gratuite).
   const moduleGratuite = capitole
     .find((c) => c.clasa === "IX")
-    ?.module.slice(0, 3)
+    ?.module.slice(0, 5)
     .map((m) => {
       return { cod: m.cod, titlu: m.titlu, slug: m.slug };
     }) ?? [];
@@ -258,7 +258,7 @@ saluta("Academia Python")
                 Începe acum, fără bani
               </h2>
               <p className="mt-2 max-w-2xl text-foreground/70">
-                Primele trei module din clasa a IX-a le poți parcurge de la cap la coadă
+                Primele cinci module din clasa a IX-a le poți parcurge de la cap la coadă
                 chiar acum. Deschizi o lecție, scrii codul în pagină, rezolvi exercițiile
                 — și gata, fără cont.
               </p>
@@ -304,7 +304,7 @@ saluta("Academia Python")
           Cât costă restul lecțiilor
         </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          Cele trei module din clasa a IX-a sunt gratuite. Pentru tot ce e după ele —
+          Cele cinci module din clasa a IX-a sunt gratuite. Pentru tot ce e după ele —
           toate celelalte clase, exercițiile și proiectele — e un abonament mic, pe
           lună. Vezi prețul exact mai jos.
         </p>

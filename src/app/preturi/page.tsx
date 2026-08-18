@@ -44,7 +44,7 @@ export default function PreturiPage() {
           Alege planul potrivit pentru tine
         </h1>
         <p className="mt-3 text-foreground/70">
-          Primele 5 lecții rămân gratuite, oricând, fără cont. Abonamentul deblochează tot restul
+          Primele 5 module din clasa a IX-a rămân gratuite, oricând, fără cont. Abonamentul deblochează tot restul
           conținutului.
         </p>
       </div>
