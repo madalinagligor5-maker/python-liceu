@@ -78,5 +78,125 @@
       "i c 11"
     ],
     "corect": 0
+  },
+  "1.9.3": {
+    "cod": "def din_baza(sir, b):\n    total = 0\n    for i, c in enumerate(reversed(sir)):\n        total += int(c) * (b ** i)\n    return total\n\nrezultat = din_baza(\"1010\", 2)\nprint(rezultat)",
+    "enunt": "Uită-te la cod, fără să-l rulezi. Ce crezi că se va afișa? (E scrisul lui 1010 în binar, trecut în zecimal.)",
+    "variante": [
+      "8",
+      "10",
+      "12"
+    ],
+    "corect": 1
+  },
+  "1.10.3": {
+    "cod": "def ciur(n):\n    este_prim = [True] * (n + 1)\n    este_prim[0] = este_prim[1] = False\n    for p in range(2, int(n ** 0.5) + 1):\n        if este_prim[p]:\n            for m in range(p * p, n + 1, p):\n                este_prim[m] = False\n    return [i for i in range(2, n + 1) if este_prim[i]]\n\nrezultat = ciur(20)\nprint(len(rezultat))",
+    "enunt": "Câte numere prime sunt între 2 și 20?",
+    "variante": [
+      "7",
+      "8",
+      "9"
+    ],
+    "corect": 1
+  },
+  "1.11.3": {
+    "cod": "class Persoana:\n    def __init__(self, nume, varsta):\n        self.nume = nume\n        self.varsta = varsta\n\n    def salut(self):\n        return \"Salut, \" + self.nume\n\np = Persoana(\"Ana\", 16)\nmesaj = p.salut()\nprint(mesaj)",
+    "enunt": "Ce se afișează când rulezi acest cod (o clasă cu o metodă salut)?",
+    "variante": [
+      "Salut, Ana",
+      "Salut, 16",
+      "Ana"
+    ],
+    "corect": 0
+  },
+  "1.12.3": {
+    "cod": "import tkinter as tk\n\nf = tk.Tk()\nl = tk.Label(f, text=\"Salut\")\nl.pack()\nf.mainloop()",
+    "enunt": "Ce apare pe ecran când rulezi acest cod cu tkinter?",
+    "variante": [
+      "O fereastră cu textul „Salut\"",
+      "Un mesaj în consolă: Salut",
+      "Eroare (tkinter nu e instalat)"
+    ],
+    "corect": 0
+  },
+  "1.13.3": {
+    "cod": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"A\").grid(row=0, column=0)\ntk.Label(f, text=\"B\").grid(row=0, column=1)\ntk.Label(f, text=\"C\").grid(row=1, column=0)\nf.mainloop()",
+    "enunt": "Unde apare textul „C\" în fereastră?",
+    "variante": [
+      "Rândul 0, coloana 1",
+      "Rândul 1, coloana 0",
+      "Centrat"
+    ],
+    "corect": 1
+  },
+  "1.14.3": {
+    "cod": "with open(\"test.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Salut\")\n    f.write(\"Lume\")\n\nwith open(\"test.txt\", \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\nprint(text)",
+    "enunt": "Ce se va afișa? (Atentie: cele două write-uri nu au spațiu între ele.)",
+    "variante": [
+      "Salut Lume",
+      "SalutLume",
+      "Salut\\nLume"
+    ],
+    "corect": 1
+  },
+  "1.15.3": {
+    "cod": "stiva = []\nstiva.append(10)\nstiva.append(20)\nstiva.append(30)\nprint(stiva.pop())\nprint(stiva.pop())",
+    "enunt": "Ce se afișează pe cele două linii? (Stiva e LIFO.)",
+    "variante": [
+      "30 apoi 20",
+      "10 apoi 20",
+      "30 apoi 10"
+    ],
+    "corect": 0
+  },
+  "1.16.3": {
+    "cod": "L = [10, 20, 30, 40]\nprint(L[-1])\nprint(L[1:3])\nprint(20 in L)",
+    "enunt": "Ce se afișează pe fiecare linie?",
+    "variante": [
+      "40, [20, 30], True",
+      "10, [10, 20], False",
+      "40, [20, 30], False"
+    ],
+    "corect": 0
+  },
+  "1.17.3": {
+    "cod": "L = [3, 1, 4, 1, 5]\nL.sort()\nprint(L)\nL.reverse()\nprint(L)",
+    "enunt": "Ce se afișează pe cele două linii?",
+    "variante": [
+      "[1, 3, 4, 5], [5, 4, 3, 1]",
+      "[1, 1, 3, 4, 5], [5, 4, 3, 1, 1]",
+      "[3, 1, 4, 1, 5], [5, 1, 4, 1, 3]"
+    ],
+    "corect": 1
+  },
+  "1.18.3": {
+    "cod": "total = 0\nfor i in range(1, 4):\n    for j in range(1, 4):\n        total += i * j\nprint(total)",
+    "enunt": "Ce valoare se afișează? (Suma tuturor produselor i*j pentru i,j în 1,2,3.)",
+    "variante": [
+      "18",
+      "36",
+      "9"
+    ],
+    "corect": 1
+  },
+  "1.19.3": {
+    "cod": "def selectie_minim(L):\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(i + 1, n):\n            if L[j] < L[minim]:\n                minim = j\n        L[i], L[minim] = L[minim], L[i]\n    return L\n\nrez = selectie_minim([3, 1, 2])\nprint(rez)",
+    "enunt": "Ce listă se afișează după sortarea prin selecția minimului?",
+    "variante": [
+      "[1, 2, 3]",
+      "[3, 1, 2]",
+      "[2, 1, 3]"
+    ],
+    "corect": 0
+  },
+  "1.20.3": {
+    "cod": "def bubble(L):\n    n = len(L)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if L[j] > L[j + 1]:\n                L[j], L[j + 1] = L[j + 1], L[j]\n    return L\n\nrez = bubble([3, 2, 1])\nprint(rez)",
+    "enunt": "Ce listă se afișează după bubble sort?",
+    "variante": [
+      "[1, 2, 3]",
+      "[3, 2, 1]",
+      "[2, 1, 3]"
+    ],
+    "corect": 0
   }
 }

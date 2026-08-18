@@ -250,5 +250,439 @@
       "enunt": "Scrie o funcție sunt_prietene(a, b) care verifică dacă două numere au același cmmdc cu un al treilea număr dat.",
       "modelRaspuns": "def cmmdc(x, y):\n    while y:\n        x, y = y, x % y\n    return x\ndef sunt_prietene(a, b, c):\n    return cmmdc(a, c) == cmmdc(b, c)"
     }
+  ],
+  "1.9.4": [
+    {
+      "id": "1.9.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează funcția care convertește un număr zecimal în binar folosind împărțirile repetate.",
+      "template": "def in_binar(n):\n    sir = \"\"\n    while n > 0:\n        sir = str(n % 2) + sir\n        n = n // ___\n    return sir\n\nprint(in_binar(10))  # 1010",
+      "expectedOutput": "1010",
+      "hint": "n = n // 2"
+    },
+    {
+      "id": "1.9.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie o funcție care convertește un șir binar în zecimal.",
+      "template": "def bin_in_dec(sir):\n    total = 0\n    for i, c in enumerate(reversed(sir)):\n        total += int(c) * (2 ** ___)\n    return total\n\nprint(bin_in_dec(\"101\"))  # 5",
+      "expectedOutput": "5",
+      "hint": "folosește 2 ** i ca ponder"
+    }
+  ],
+  "1.9.5": [
+    {
+      "id": "1.9.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program care convertește un număr zecimal în hexadecimal (bază 16, cu cifre 0-9 și A-F).",
+      "template": "def in_hex(n):\n    simboluri = \"0123456789ABCDEF\"\n    sir = \"\"\n    while n > 0:\n        sir = simboluri[n % 16] + sir\n        n = n // 16\n    return sir if sir else \"0\"\n\nprint(in_hex(255))  # FF",
+      "expectedOutput": "FF",
+      "hint": "n % 16 dă restul, n // 16 câtul"
+    },
+    {
+      "id": "1.9.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Explică de ce conversia din zecimal în altă bază prin împărțiri repetate funcționează (de ce resturile citite de jos în sus dau cifrele).",
+      "modelRaspuns": "Fiecare împărțire extrage cifra de pe poziția curentă: n % b e cifra cea mai puțin semnificativă, iar n // b elimină acea cifră. Repetând, obținem cifrele de la cea mai mică la cea mai mare putere, deci le citim de jos în sus."
+    }
+  ],
+  "1.10.4": [
+    {
+      "id": "1.10.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția care verifică dacă x este prim (testează divizorii de la 2 la √x).",
+      "template": "def este_prim(x):\n    if x < 2:\n        return False\n    for d in range(2, int(x ** 0.5) + 1):\n        if x % ___ == 0:\n            return False\n    return True\n\nprint(este_prim(17))  # True",
+      "expectedOutput": "True",
+      "hint": "x % d == 0 înseamnă că d divide x"
+    },
+    {
+      "id": "1.10.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Calculează 3^13 folosind exponențierea rapidă.",
+      "template": "def putere_rapida(b, e):\n    rez = 1\n    while e > 0:\n        if e % 2 == 1:\n            rez *= b\n        b *= b\n        e //= 2\n    return rez\n\nprint(putere_rapida(3, 13))",
+      "expectedOutput": "1594323",
+      "hint": "algoritmul înmulțește doar când bit-ul curent e 1"
+    }
+  ],
+  "1.10.5": [
+    {
+      "id": "1.10.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Afișează toate perechile de numere prime gemene (p, p+2) până la 100.",
+      "template": "def este_prim(x):\n    if x < 2: return False\n    for d in range(2, int(x**0.5)+1):\n        if x % d == 0: return False\n    return True\n\nfor p in range(2, 99):\n    if este_prim(p) and este_prim(p+2):\n        print(p, p+2)",
+      "expectedOutput": "3 5\n5 7\n11 13\n17 19\n29 31\n41 43\n59 61\n71 73",
+      "hint": "verifică ambele numere cu este_prim"
+    },
+    {
+      "id": "1.10.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "De ce ciurul lui Eratostene e mai eficient decât testarea fiecărui număr individual pentru primalitate?",
+      "modelRaspuns": "Ciurul marchează o dată pentru totdeauna multiplii fiecărui prim, evitând re-testarea. Complexitatea e ~O(n log log n), mult mai bună decât O(n·√n) dacă ai testa fiecare număr separat."
+    }
+  ],
+  "1.11.4": [
+    {
+      "id": "1.11.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează clasa Cerc care are atributul raza și metoda arie().",
+      "template": "import math\n\nclass Cerc:\n    def __init__(self, raza):\n        self.___ = raza\n\n    def arie(self):\n        return math.pi * self.raza ** 2\n\nc = Cerc(2)\nprint(round(c.arie(), 2))  # 12.57",
+      "expectedOutput": "12.57",
+      "hint": "self.raza = raza"
+    },
+    {
+      "id": "1.11.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Adaugă metoda perimetru() la clasa Cerc (2·π·raza).",
+      "template": "import math\n\nclass Cerc:\n    def __init__(self, raza):\n        self.raza = raza\n    def perimetru(self):\n        return 2 * math.pi * self.raza\n\nc = Cerc(3)\nprint(round(c.perimetru(), 2))",
+      "expectedOutput": "18.85",
+      "hint": "perimetrul = 2·π·r"
+    }
+  ],
+  "1.11.5": [
+    {
+      "id": "1.11.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Creează clasa Student cu atribute nume, note (listă) și metoda medie() care calculează media notelor.",
+      "modelRaspuns": "class Student:\n    def __init__(self, nume, note):\n        self.nume = nume\n        self.note = note\n    def medie(self):\n        return sum(self.note) / len(self.note)\n\ns = Student('Ana', [9, 10, 8])\nprint(s.medie())  # 9.0"
+    },
+    {
+      "id": "1.11.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Creează clasa ContBancar cu sold și metodele depune(sumă) și retrage(sumă) (nu permite retragerea dacă nu e suficient).",
+      "modelRaspuns": "class ContBancar:\n    def __init__(self, sold=0):\n        self.sold = sold\n    def depune(self, suma):\n        self.sold += suma\n    def retrage(self, suma):\n        if suma <= self.sold:\n            self.sold -= suma\n        else:\n            print('Fonduri insuficiente')\n\nc = ContBancar(100)\nc.retrage(30)\nprint(c.sold)  # 70"
+    }
+  ],
+  "1.12.4": [
+    {
+      "id": "1.12.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează ca să creezi o fereastră cu un buton care schimbă textul etichetei.",
+      "template": "import tkinter as tk\n\nf = tk.Tk()\neticheta = tk.Label(f, text=\"Început\")\neticheta.pack()\n\ndef schimba():\n    eticheta.config(text=\"___\")\n\ntk.Button(f, text=\"Schimbă\", command=___).pack()\nf.mainloop()",
+      "expectedOutput": "",
+      "hint": "completează textul nou și command=schimba"
+    },
+    {
+      "id": "1.12.4.ex2",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Adaugă un Entry (câmp de text) și un buton care afișează ce ai scris în etichetă.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\nent = tk.Entry(f)\nent.pack()\neticheta = tk.Label(f, text=\"\")\neticheta.pack()\ndef afiseaza():\n    eticheta.config(text=ent.get())\ntk.Button(f, text='Afiseaza', command=afiseaza).pack()\nf.mainloop()"
+    }
+  ],
+  "1.12.5": [
+    {
+      "id": "1.12.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Fă o aplicație cu un câmp de intrare și un buton „Calculează\" care afișează dublul numărului introdus.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\nent = tk.Entry(f)\nent.pack()\net = tk.Label(f, text='')\net.pack()\ndef calc():\n    n = int(ent.get())\n    et.config(text=str(n*2))\ntk.Button(f, text='Calculeaza', command=calc).pack()\nf.mainloop()"
+    },
+    {
+      "id": "1.12.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Fă o fereastră cu 3 butoane de culori care schimbă culoarea de fundal a etichetei.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\net = tk.Label(f, text='Culoare')\net.pack()\ndef rosu(): et.config(bg='red')\ndef albastru(): et.config(bg='blue')\ndef verde(): et.config(bg='green')\ntk.Button(f, text='Rosu', command=rosu).pack()\ntk.Button(f, text='Albastru', command=albastru).pack()\ntk.Button(f, text='Verde', command=verde).pack()\nf.mainloop()"
+    }
+  ],
+  "1.13.4": [
+    {
+      "id": "1.13.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează plasarea cu grid pentru un formular (nume pe rândul 0, vârstă pe rândul 1).",
+      "template": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"Nume:\").___(row=0, column=0)\ntk.Entry(f).___(row=0, column=1)\ntk.Label(f, text=\"Vârsta:\").grid(row=1, column=0)\ntk.Entry(f).grid(row=1, column=1)\nf.mainloop()",
+      "expectedOutput": "",
+      "hint": "folosește .grid(row=, column=)"
+    },
+    {
+      "id": "1.13.4.ex2",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Leagă un eveniment de tastatură care afișează tasta apăsată într-o etichetă.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\net = tk.Label(f, text='Apasa o tasta')\net.pack()\ndef la_tasta(e):\n    et.config(text=e.keysym)\nf.bind('<Key>', la_tasta)\nf.mainloop()"
+    }
+  ],
+  "1.13.5": [
+    {
+      "id": "1.13.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Fă o fereastră cu un Entry și un Label; la fiecare tastare, Label-ul arată lungimea textului introdus.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\nent = tk.Entry(f)\nent.pack()\nlab = tk.Label(f, text='0')\nlab.pack()\ndef upd(e):\n    lab.config(text=str(len(ent.get())))\nent.bind('<KeyRelease>', upd)\nf.mainloop()"
+    },
+    {
+      "id": "1.13.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Creează o mini-calculatoare cu butoane 0-9 și +, -, = aranjate în grid.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\necuatie = ''\nlab = tk.Label(f, text='')\nlab.grid(row=0, column=0, columnspan=3)\ndef apasa(s):\n    global ecuatie\n    ecuatie += s\n    lab.config(text=ecuatie)\ndef calc():\n    global ecuatie\n    lab.config(text=str(eval(ecuatie)))\nfor i in range(10):\n    tk.Button(f, text=str(i), command=lambda x=i: apasa(str(x))).grid(row=1+i//3, column=i%3)\ntk.Button(f, text='+', command=lambda: apasa('+')).grid(row=4, column=0)\ntk.Button(f, text='-', command=lambda: apasa('-')).grid(row=4, column=1)\ntk.Button(f, text='=', command=calc).grid(row=4, column=2)\nf.mainloop()"
+    }
+  ],
+  "1.14.4": [
+    {
+      "id": "1.14.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează ca să scrii numele într-un fișier și să-l citești înapoi.",
+      "template": "with open(\"nume.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"___Mihai\")\n\nwith open(\"nume.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.___())",
+      "expectedOutput": "Mihai",
+      "hint": "scrie numele tău și folosește f.read()"
+    },
+    {
+      "id": "1.14.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program care citește un fișier linie cu linie și numără câte linii are.",
+      "template": "with open(\"date.txt\", \"r\", encoding=\"utf-8\") as f:\n    contor = 0\n    for linie in f:\n        contor += 1\n    print(contor)",
+      "expectedOutput": "",
+      "hint": "fiecare iterație e o linie"
+    }
+  ],
+  "1.14.5": [
+    {
+      "id": "1.14.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program care copiază conținutul unui fișier a.txt în b.txt.",
+      "template": "with open(\"a.txt\", \"r\", encoding=\"utf-8\") as src:\n    continut = src.read()\nwith open(\"b.txt\", \"w\", encoding=\"utf-8\") as dst:\n    dst.write(continut)\nprint(\"Copiat\")",
+      "expectedOutput": "Copiat",
+      "hint": "citește tot, apoi scrie tot"
+    },
+    {
+      "id": "1.14.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Scrie un program care citește numere dintr-un fișier (câte unul pe linie) și afișează suma lor.",
+      "modelRaspuns": "with open('numere.txt', 'r', encoding='utf-8') as f:\n    total = 0\n    for linie in f:\n        total += int(linie.strip())\n    print(total)"
+    }
+  ],
+  "1.15.4": [
+    {
+      "id": "1.15.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează o coadă folosind deque și afișează elementele în ordinea ieșirii.",
+      "template": "from collections import deque\nc = deque()\nc.append(\"X\")\nc.append(\"Y\")\nc.append(\"Z\")\nprint(c.___())  # primul care iese\nprint(c.___())",
+      "expectedOutput": "X\nY",
+      "hint": "coada folosește popleft()"
+    },
+    {
+      "id": "1.15.4.ex2",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Simulează o stivă: adaugă 5 numere, apoi golește-o afișând elementele.",
+      "modelRaspuns": "stiva = []\nfor i in range(1, 6):\n    stiva.append(i)\nwhile stiva:\n    print(stiva.pop())"
+    }
+  ],
+  "1.15.5": [
+    {
+      "id": "1.15.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Scrie o funcție este_palindrom_stiva(sir) care folosește o stivă pentru a verifica dacă un șir e palindrom.",
+      "modelRaspuns": "def este_palindrom_stiva(sir):\n    stiva = []\n    for c in sir:\n        stiva.append(c)\n    for c in sir:\n        if stiva.pop() != c:\n            return False\n    return True\n\nprint(este_palindrom_stiva('radar'))  # True"
+    },
+    {
+      "id": "1.15.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Simulează o coadă de așteptare: clienții vin (se adaugă) și sunt serviți în ordinea venirii.",
+      "modelRaspuns": "from collections import deque\ncoada = deque()\ncoada.append('Client1')\ncoada.append('Client2')\nwhile coada:\n    print('Servesc', coada.popleft())"
+    }
+  ],
+  "1.16.4": [
+    {
+      "id": "1.16.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează pentru a adăuga 99 la începutul listei și a șterge ultimul element.",
+      "template": "L = [1, 2, 3]\nL.___(0, 99)   # inserează 99 pe poziția 0\nL.___()        # șterge ultimul\nprint(L)",
+      "expectedOutput": "[99, 1, 2]",
+      "hint": "folosește insert(0, 99) și pop()"
+    },
+    {
+      "id": "1.16.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Folosind L.count(x), numără câte apariții are valoarea 5 într-o listă.",
+      "template": "L = [5, 2, 5, 8, 5]\nprint(L.count(___))",
+      "expectedOutput": "3",
+      "hint": "count() numără aparițiile"
+    }
+  ],
+  "1.16.5": [
+    {
+      "id": "1.16.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie un program care primește o listă și o afișează inversată (fără reversed, folosind slice-uri).",
+      "template": "L = [1, 2, 3, 4, 5]\nprint(L[___:___:-1])",
+      "expectedOutput": "[5, 4, 3, 2, 1]",
+      "hint": "slice cu pas negativ: L[::-1]"
+    },
+    {
+      "id": "1.16.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Scrie un program care elimină toate elementele egale cu o valoare dată dintr-o listă.",
+      "modelRaspuns": "L = [1, 2, 2, 3, 2]\nval = 2\nL = [x for x in L if x != val]\nprint(L)  # [1, 3]"
+    }
+  ],
+  "1.17.4": [
+    {
+      "id": "1.17.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează o căutare care întoarce toate pozițiile unei valori.",
+      "template": "def pozitii(L, x):\n    rez = []\n    for i in range(len(L)):\n        if L[i] == ___:\n            rez.append(___)\n    return rez\n\nprint(pozitii([1, 5, 1, 5], 5))  # [1, 3]",
+      "expectedOutput": "[1, 3]",
+      "hint": "compară L[i] cu x și adaugă i"
+    },
+    {
+      "id": "1.17.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Sortează o listă descrescător folosind sort(reverse=True).",
+      "template": "L = [3, 1, 4, 1, 5]\nL.sort(___)\nprint(L)",
+      "expectedOutput": "[5, 4, 3, 1, 1]",
+      "hint": "reverse=True"
+    }
+  ],
+  "1.17.5": [
+    {
+      "id": "1.17.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Scrie o funcție sterge_toate(L, x) care șterge toate aparițiile lui x dintr-o listă folosind o listă nouă.",
+      "modelRaspuns": "def sterge_toate(L, x):\n    return [e for e in L if e != x]\n\nprint(sterge_toate([1, 2, 2, 3], 2))  # [1, 3]"
+    },
+    {
+      "id": "1.17.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Scrie o funcție care sortează o listă de tupluri (nume, nota) după notă descrescător.",
+      "modelRaspuns": "studenti = [('Ana', 9), ('Bogdan', 7), ('Cristi', 10)]\nstudenti.sort(key=lambda s: s[1], reverse=True)\nprint(studenti)  # [('Cristi', 10), ('Ana', 9), ('Bogdan', 7)]"
+    }
+  ],
+  "1.18.4": [
+    {
+      "id": "1.18.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează pentru a afișa toate perechile (a, b) cu a < b, a,b ∈ {1,2,3,4}.",
+      "template": "for a in range(1, 5):\n    for b in range(___, 5):\n        print(a, b)",
+      "expectedOutput": "1 2\n1 3\n1 4\n2 3\n2 4\n3 4",
+      "hint": "b pornește de la a+1"
+    },
+    {
+      "id": "1.18.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Generează toate numerele de 2 cifre (10-99) care sunt pare.",
+      "template": "for n in range(10, 100):\n    if n % ___ == 0:\n        print(n)",
+      "expectedOutput": "10\n12\n14\n...continuă...",
+      "hint": "n % 2 == 0"
+    }
+  ],
+  "1.18.5": [
+    {
+      "id": "1.18.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Generează toate numerele de 3 cifre care au cifrele în ordine strict crescătoare.",
+      "modelRaspuns": "for a in range(1, 10):\n    for b in range(a+1, 10):\n        for c in range(b+1, 10):\n            print(a, b, c)"
+    },
+    {
+      "id": "1.18.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Scrie toate șirurile binare de lungime 4 (0000 ... 1111).",
+      "modelRaspuns": "for a in '01':\n    for b in '01':\n        for c in '01':\n            for d in '01':\n                print(a+b+c+d)"
+    }
+  ],
+  "1.19.4": [
+    {
+      "id": "1.19.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează bucla interioară care găsește poziția minimului.",
+      "template": "def selectie_minim(L):\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(___, n):\n            if L[j] < L[minim]:\n                minim = ___\n        L[i], L[minim] = L[minim], L[i]\n    return L",
+      "expectedOutput": "",
+      "hint": "j pornește de la i+1, actualizează minim"
+    },
+    {
+      "id": "1.19.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Numără câte comparări face selecția minimului pentru o listă de 5 elemente.",
+      "template": "L = [5, 2, 9, 1, 5, 6]\ncomparari = 0\nn = len(L)\nfor i in range(n):\n    minim = i\n    for j in range(i+1, n):\n        comparari += 1\n        if L[j] < L[minim]:\n            minim = j\n    L[i], L[minim] = L[minim], L[i]\nprint(comparari)",
+      "expectedOutput": "15",
+      "hint": "pentru n=5: 4+3+2+1 = 10, dar aici n=6 → 5+4+3+2+1 = 15"
+    }
+  ],
+  "1.19.5": [
+    {
+      "id": "1.19.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Scrie o variantă care sortează descrescător (găsește maximul, nu minimul).",
+      "modelRaspuns": "def selectie_max(L):\n    n = len(L)\n    for i in range(n):\n        maxim = i\n        for j in range(i+1, n):\n            if L[j] > L[maxim]:\n                maxim = j\n        L[i], L[maxim] = L[maxim], L[i]\n    return L\n\nprint(selectie_max([3,1,2]))  # [3,2,1]"
+    },
+    {
+      "id": "1.19.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Implementează o funcție care întoarce și lista de poziții unde au avut loc interschimbările.",
+      "modelRaspuns": "def selectie_min_log(L):\n    schimbari = []\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(i+1, n):\n            if L[j] < L[minim]:\n                minim = j\n        if minim != i:\n            L[i], L[minim] = L[minim], L[i]\n            schimbari.append(i)\n    return L, schimbari\n\nprint(selectie_min_log([5,2,9,1]))"
+    }
+  ],
+  "1.20.4": [
+    {
+      "id": "1.20.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția de interschimbare din bubble sort.",
+      "template": "def bubble(L):\n    n = len(L)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if L[j] ___ L[j + 1]:   # interschimbă dacă sunt în ordine greșită\n                L[j], L[j + 1] = L[j + 1], L[j]\n    return L",
+      "expectedOutput": "",
+      "hint": "folosește > pentru sortare crescătoare"
+    },
+    {
+      "id": "1.20.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie counting_sort pentru o listă de note (valori 1-10).",
+      "template": "def counting_sort(lista, max_val):\n    freq = [0] * (max_val + 1)\n    for x in lista:\n        freq[x] += 1\n    rez = []\n    for val in range(max_val + 1):\n        rez.extend([val] * freq[val])\n    return rez\n\nprint(counting_sort([2, 3, 2, 1, 3], 3))",
+      "expectedOutput": "[1, 2, 2, 3, 3]",
+      "hint": "freq[număr] numără aparițiile"
+    }
+  ],
+  "1.20.5": [
+    {
+      "id": "1.20.5.ex1",
+      "nivel": "consolidat",
+      "tip": "text",
+      "enunt": "Adaugă o condiție de oprire timpurie la bubble sort (dacă o tură trece fără nicio interschimbare, lista e sortată).",
+      "modelRaspuns": "def bubble_optimizat(L):\n    n = len(L)\n    for i in range(n):\n        schimbat = False\n        for j in range(0, n - i - 1):\n            if L[j] > L[j+1]:\n                L[j], L[j+1] = L[j+1], L[j]\n                schimbat = True\n        if not schimbat:\n            break\n    return L"
+    },
+    {
+      "id": "1.20.5.ex2",
+      "nivel": "avansat",
+      "tip": "text",
+      "enunt": "Folosește lista de frecvențe pentru a afla care e cea mai frecventă valoare dintr-o listă.",
+      "modelRaspuns": "def cel_mai_frecvent(L):\n    from collections import Counter\n    return Counter(L).most_common(1)[0][0]\n\nprint(cel_mai_frecvent([1,2,2,3,2]))  # 2"
+    }
   ]
 }

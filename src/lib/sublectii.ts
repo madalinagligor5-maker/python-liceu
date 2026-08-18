@@ -19,7 +19,7 @@ let cache: IndexContinut | null = null;
 async function incarcaTot(): Promise<IndexContinut> {
   if (cache) return cache;
 
-  const fisiere = ["lectii_IX_1.1-1.8.md"];
+  const fisiere = ["lectii_IX_1.1-1.8.md", "lectii_IX_1.9-1.20.md"];
   const moduleMap: Record<string, ModulContinut> = {};
   const sublectii: Record<string, SublectieContinut> = {};
   const ordine: string[] = [];
