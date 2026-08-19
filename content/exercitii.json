@@ -684,5 +684,383 @@
       "enunt": "Folosește lista de frecvențe pentru a afla care e cea mai frecventă valoare dintr-o listă.",
       "modelRaspuns": "def cel_mai_frecvent(L):\n    from collections import Counter\n    return Counter(L).most_common(1)[0][0]\n\nprint(cel_mai_frecvent([1,2,2,3,2]))  # 2"
     }
+  ],
+  "2.1.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează condiția care actualizează `dreapta` când elementul de la mijloc e mai mare decât x.",
+      "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1",
+      "expectedOutput": "",
+      "hint": "Când valoarea de la mijloc e mai mare, căutăm în jumătatea stângă → mutăm capătul dreapta."
+    }
+  ],
+  "2.1.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care returnează poziția unde ar trebui inserat elementul (dacă nu există), în loc de -1.",
+      "template": "def pozitie_inserare(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    # completează logica\n    return ___",
+      "expectedOutput": "",
+      "hint": "Când intervalul devine vid (stanga > dreapta), stanga e poziția de inserare."
+    }
+  ],
+  "2.3.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează mulțimea {5, 10, 15} și verifică apartenența lui 10.",
+      "template": "m = ___\nprint(10 ___ m)",
+      "expectedOutput": "True",
+      "hint": "Mulțimea se creează cu acolade. Operatorul de apartenență e `in`."
+    }
+  ],
+  "2.3.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un program care citește un text și afișează mulțimea cuvintelor distincte.",
+      "template": "text = input('Text: ')\ncuvinte = text.split()\nmultime = ___\nprint(multime)",
+      "expectedOutput": "",
+      "hint": "Transformă lista de cuvinte într-o mulțime cu set(lista)."
+    }
+  ],
+  "2.2.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează linia lipsă din interclaseaza (unde adaugi elementul din b când e mai mic).",
+      "template": "def interclaseaza(a, b):\n    rez = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            rez.append(a[i]); i += 1\n        else:\n            ___ ; j += 1\n    rez.extend(a[i:]); rez.extend(b[j:])\n    return rez",
+      "expectedOutput": "",
+      "hint": "Trebuie să adaugi b[j] în rezultat."
+    }
+  ],
+  "2.2.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care interclasează două liste sortate și elimină duplicatele.",
+      "template": "def interclaseaza_fara_dubluri(a, b):\n    # completează\n    return ___",
+      "expectedOutput": "",
+      "hint": "Folosește un set sau verifică dacă ultimul adăugat e identic."
+    }
+  ],
+  "2.4.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a adăuga 7 în mulțimea m.",
+      "template": "m = {1, 2, 3}\n___  # adaugă 7\nprint(m)",
+      "expectedOutput": "{1, 2, 3, 7}",
+      "hint": "Folosește m.add(7)."
+    }
+  ],
+  "2.4.5": [
+    {
+      "tip": "cod",
+      "enunt": "Determină elevii înscriși la exact un curs (nu la ambele), folosind mulțimi.",
+      "template": "curs1 = {\"Ana\", \"Bogdan\", \"Cristi\"}\ncurs2 = {\"Bogdan\", \"Dana\"}\n# completează\nrez = ___",
+      "expectedOutput": "",
+      "hint": "Diferența simetrică: curs1 ^ curs2."
+    }
+  ],
+  "2.5.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a extrage ultimul caracter cu index negativ.",
+      "template": "s = \"python\"\nultim = ___  # index negativ\nprint(ultim)",
+      "expectedOutput": "n",
+      "hint": "Ultimul caracter e s[-1]."
+    }
+  ],
+  "2.5.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care verifică dacă un șir e palindrom.",
+      "template": "def palindrom(s):\n    # completează\n    return ___",
+      "expectedOutput": "",
+      "hint": "Compară s cu s[::-1]."
+    }
+  ],
+  "2.6.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a număra aparițiile lui 'ana' într-un text.",
+      "template": "text = \"ana are ana\"\n___  # metoda care numără aparițiile",
+      "expectedOutput": "2",
+      "hint": "Folosește text.count('ana')."
+    }
+  ],
+  "2.6.5": [
+    {
+      "tip": "cod",
+      "enunt": "Numără cuvintele distincte dintr-un text folosind split() și o mulțime.",
+      "template": "text = \"ana ana bogdan\"\ncuvinte = text.split()\ndistincte = ___\nprint(distincte)",
+      "expectedOutput": "{'ana', 'bogdan'}",
+      "hint": "Transformă lista în set."
+    }
+  ],
+  "2.7.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a extrage literele de pe poziții pare (slicing cu pas 2).",
+      "template": "s = \"abcdef\"\n___  # slicing pas 2",
+      "expectedOutput": "ace",
+      "hint": "s[::2] ia fiecare a doua literă."
+    }
+  ],
+  "2.7.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care returnează șirul inversat (fără reversed).",
+      "template": "def inversat(s):\n    # completează\n    return ___",
+      "expectedOutput": "",
+      "hint": "s[::-1]."
+    }
+  ],
+  "2.8.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie funcția de decriptare Cezar (refolosește cezar cu deplasare opusă).",
+      "template": "def decriptare_cezar(text, deplasare):\n    return cezar(text, ___)  # deplasare opusă",
+      "expectedOutput": "",
+      "hint": "Cezar cu -deplasare."
+    }
+  ],
+  "2.8.5": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează cifrul cu substituție monoalfabetică (dicționar literă→literă).",
+      "template": "cheie = {'a':'x', 'b':'y', 'c':'z'}\ndef substitutie(text):\n    # completează\n    return ___",
+      "expectedOutput": "",
+      "hint": "Pentru fiecare literă, înlocuiește cu cheie.get(litera, litera)."
+    }
+  ],
+  "2.9.4": [
+    {
+      "tip": "cod",
+      "enunt": "Testează că decriptare_vigenere(vigenere(t, k), k) == t.",
+      "template": "t = \"secret\"\nk = \"cheie\"\nassert decriptare_vigenere(vigenere(t, k), k) == ___\nprint('OK')",
+      "expectedOutput": "OK",
+      "hint": "Ar trebui să dea t."
+    }
+  ],
+  "2.9.5": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Vigenère folosind cezar() din 2.8 ca piesă reutilizabilă.",
+      "template": "def vigenere_din_cezar(text, cheie):\n    # completează (apelează cezar per literă)\n    return ___",
+      "expectedOutput": "",
+      "hint": "Aplică cezar(text, deplasare) per caracter cu deplasarea din cheie."
+    }
+  ],
+  "2.10.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a verifica dacă două seturi au aceeași sumă Fletcher.",
+      "template": "def verifica(a, b):\n    return ___ == fletcher(b)",
+      "expectedOutput": "",
+      "hint": "Compară fletcher(a) cu fletcher(b)."
+    }
+  ],
+  "2.10.5": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează un checksum simplu pentru un șir (folosește ord()).",
+      "template": "def checksum(s):\n    suma = 0\n    for c in s:\n        suma = (suma + ord(c)) % 255\n    return ___",
+      "expectedOutput": "",
+      "hint": "Returnează suma."
+    }
+  ],
+  "2.11.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a adăuga o pereche cheie-valoare.",
+      "template": "d = {\"x\": 10}\n___ = 20  # adaugă \"y\" -> 20\nprint(d)",
+      "expectedOutput": "{'x': 10, 'y': 20}",
+      "hint": "d['y'] = 20."
+    }
+  ],
+  "2.11.5": [
+    {
+      "tip": "cod",
+      "enunt": "Construiește un dicționar care asociază fiecărei litere frecvența ei într-un text.",
+      "template": "text = \"ana\"\nfreq = {}\nfor c in text:\n    freq[c] = ___\nprint(freq)",
+      "expectedOutput": "{'a': 2, 'n': 1}",
+      "hint": "freq.get(c, 0) + 1."
+    }
+  ],
+  "2.12.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a accesa sigur o cheie cu valoare implicită 0.",
+      "template": "d = {\"x\": 5}\nval = ___  # folosește .get() cu implicit 0",
+      "expectedOutput": "5",
+      "hint": "d.get('x', 0)."
+    }
+  ],
+  "2.12.5": [
+    {
+      "tip": "cod",
+      "enunt": "Construiește cuvânt→număr de apariții pentru un text folosind .get(cuvant, 0) + 1.",
+      "template": "text = \"ana ana\"\ncontor = {}\nfor cuvant in text.split():\n    contor[cuvant] = ___\nprint(contor)",
+      "expectedOutput": "{'ana': 2}",
+      "hint": "contor.get(cuvant, 0) + 1."
+    }
+  ],
+  "2.13.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a extrage x și y dintr-un tuplu.",
+      "template": "punct = (10, 20)\n___ = punct  # despachetare\nprint(x, y)",
+      "expectedOutput": "10 20",
+      "hint": "x, y = punct."
+    }
+  ],
+  "2.13.5": [
+    {
+      "tip": "cod",
+      "enunt": "Reprezintă o listă de puncte 2D ca listă de tupluri și calculează distanța între primele două.",
+      "template": "puncte = [(0, 0), (3, 4)]\n# completează calculul distanței\nimport math\ndist = ___",
+      "expectedOutput": "",
+      "hint": "math.dist(puncte[0], puncte[1])."
+    }
+  ],
+  "2.14.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a crea un tuplu cu un singur element.",
+      "template": "singur = ___  # tuplu cu valoarea 5",
+      "expectedOutput": "(5,)",
+      "hint": "Trebuie virgulă: (5,)."
+    }
+  ],
+  "2.14.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care returnează tuplul (min, max) dintr-o listă.",
+      "template": "def min_max(lista):\n    return ___\nprint(min_max([3, 1, 4, 1, 5]))",
+      "expectedOutput": "(1, 5)",
+      "hint": "(min(lista), max(lista))."
+    }
+  ],
+  "2.15.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a accesa nota primului elev.",
+      "template": "date = [{\"nume\": \"Ana\", \"nota\": 10}]\n___  # accesează \"nota\" din primul element",
+      "expectedOutput": "10",
+      "hint": "date[0]['nota']."
+    }
+  ],
+  "2.15.5": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează media generală a clasei dintr-o listă de dicționare.",
+      "template": "elevi = [{\"nume\": \"Ana\", \"note\": [9, 10]}, {\"nume\": \"Bogdan\", \"note\": [7, 8]}]\ntotal = 0\ncnt = 0\nfor e in elevi:\n    for n in e[\"note\"]:\n        total += n\n        cnt += 1\nmedia = ___",
+      "expectedOutput": "",
+      "hint": "total / cnt."
+    }
+  ],
+  "2.16.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a accesa linia 2, coloana 3 dintr-o matrice.",
+      "template": "m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n___  # linia 2 (index 2), coloana 3 (index 2)",
+      "expectedOutput": "9",
+      "hint": "m[2][2]."
+    }
+  ],
+  "2.16.5": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează media pe fiecare linie a unei matrici.",
+      "template": "m = [[1, 2, 3], [4, 5, 6]]\nfor linie in m:\n    print(___)",
+      "expectedOutput": "",
+      "hint": "sum(linie)/len(linie)."
+    }
+  ],
+  "2.17.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează cazul de bază pentru suma cifrelor.",
+      "template": "def suma_cifre(n):\n    if n == 0:\n        return 0\n    return ___ + suma_cifre(n // 10)",
+      "expectedOutput": "",
+      "hint": "n % 10 + restul."
+    }
+  ],
+  "2.17.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie putere(a, n) recursiv.",
+      "template": "def putere(a, n):\n    if n == 0:\n        return 1\n    return ___",
+      "expectedOutput": "",
+      "hint": "a * putere(a, n-1)."
+    }
+  ],
+  "2.18.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează cazul de bază pentru quicksort.",
+      "template": "def quicksort(lista):\n    if ___:   # condiție de oprire\n        return lista",
+      "expectedOutput": "",
+      "hint": "if len(lista) <= 1:"
+    }
+  ],
+  "2.18.5": [
+    {
+      "tip": "cod",
+      "enunt": "Desenează arborele de apeluri pentru merge_sort([5, 2, 8, 1]) (scrie ordinea divizărilor).",
+      "template": "# Exercițiu de desen - scrie aici observațiile tale\ndef merge_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    m = len(lista)//2\n    return merge_sort(lista[:m]) + merge_sort(lista[m:])\n\nprint('Apeluri:', merge_sort([5, 2, 8, 1]))",
+      "expectedOutput": "[5, 2, 8, 1]",
+      "hint": "Divide până la liste de 1 element."
+    }
+  ],
+  "2.19.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a alege pivotul ca ultimul element.",
+      "template": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = ___  # ultimul element\n    stanga = [x for x in lista[:-1] if x < pivot]\n    dreapta = [x for x in lista[:-1] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)",
+      "expectedOutput": "",
+      "hint": "pivot = lista[-1]."
+    }
+  ],
+  "2.19.5": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează quicksort in-place (cu swap).",
+      "template": "def quicksort_inplace(lista, stanga=0, dreapta=None):\n    if dreapta is None:\n        dreapta = len(lista) - 1\n    # completează (partition + recursivitate)\n    return ___",
+      "expectedOutput": "",
+      "hint": "Vezi implementarea standard Lomuto."
+    }
+  ],
+  "2.20.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează verificarea marginilor în Flood Fill.",
+      "template": "def flood_fill(grila, i, j, veche, noua):\n    if ___:   # i sau j în afara grilei\n        return\n    if grila[i][j] != veche:\n        return\n    grila[i][j] = noua\n    # apeluri recursively...",
+      "expectedOutput": "",
+      "hint": "if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):"
+    }
+  ],
+  "2.20.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modifică Flood Fill să numere celulele colorate (returnează numărul).",
+      "template": "def flood_fill_numara(grila, i, j, veche, noua):\n    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):\n        return 0\n    if grila[i][j] != veche:\n        return 0\n    grila[i][j] = noua\n    # completează: sumă 1 + cele 4 vecini\n    return ___",
+      "expectedOutput": "",
+      "hint": "1 + apelurile pentru cele 4 vecini."
+    }
+  ],
+  "2.21.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează pentru a returna rezultatul dacă restul s-a dat complet.",
+      "template": "def rest_greedy(suma, monede):\n    monede = sorted(monede, reverse=True)\n    rez = []\n    for m in monede:\n        while suma >= m:\n            rez.append(m); suma -= m\n    return ___ if suma == 0 else None",
+      "expectedOutput": "",
+      "hint": "return rez if suma == 0 else None."
+    }
+  ],
+  "2.21.5": [
+    {
+      "tip": "cod",
+      "enunt": "Găsește un set de monede (diferit de [1,3,4]) unde Greedy e suboptimal pentru o sumă dată.",
+      "template": "monede = [1, 4, 5]  # exemplu\n# demonstrează că pentru suma 8, Greedy (5+1+1+1) e mai slab decât (4+4)\nsuma = 8\nrez_greedy = rest_greedy(suma, monede)\nprint(rez_greedy)  # arată că e suboptimal",
+      "expectedOutput": "",
+      "hint": "Pentru [1,4,5] și suma 8, Greedy dă 5+1+1+1 (4 monede), dar 4+4 (2 monede)."
+    }
   ]
 }
