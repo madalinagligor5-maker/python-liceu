@@ -4,6 +4,8 @@ Platformă educațională pentru disciplina Informatică (Python), clasele IX-XI
 oficiale de liceu. Model de acces freemium: primele 5 lecții sunt gratuite, fără cont; restul
 necesită cont + abonament activ.
 
+<!-- trigger redeploy: clasa X completă (21 module) + IX 1.9-1.20 live -->
+
 ## Stare curentă
 
 Implementat:
