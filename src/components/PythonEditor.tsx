@@ -37,23 +37,28 @@ async function incarcaPyodide(): Promise<PyodideApi> {
   if (typeof window !== "undefined" && window.__pyodideInstance) {
     return window.__pyodideInstance;
   }
-  // Dacă scriptul nu e încă în DOM, îl adăugăm (o singură dată).
-  if (typeof window !== "undefined" && !document.querySelector("script[data-pyodide]")) {
+  // Dacă scriptul nu e încă în DOM (și loadPyodide nu e deja încărcat),
+  // îl adăugăm o singură dată.
+  if (
+    typeof window !== "undefined" &&
+    !window.loadPyodide &&
+    !document.querySelector("script[data-pyodide]")
+  ) {
     await new Promise<void>((res, rej) => {
       const s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+      s.src = "/pyodide/pyodide.js";
       s.setAttribute("data-pyodide", "1");
       s.onload = () => res();
-      s.onerror = () => rej(new Error("Nu s-a putut încărca Pyodide de pe CDN."));
+      s.onerror = () => rej(new Error("Nu s-a putut încărca interpretorul Python."));
       document.body.appendChild(s);
     });
   }
   if (typeof window === "undefined" || !window.loadPyodide) {
     throw new Error("Interpretorul Python nu a putut fi inițializat.");
   }
-  const py = await window.loadPyodide({
-    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/",
-  });
+  // Dacă o altă parte a paginii a inițializat deja Pyodide, refolosim instanța.
+  const existenta = (window as unknown as { pyodide?: PyodideApi }).pyodide;
+  const py = existenta ?? (await window.loadPyodide({ indexURL: "/pyodide/" }));
   if (typeof window !== "undefined") window.__pyodideInstance = py;
   return py;
 }
