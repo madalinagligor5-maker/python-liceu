@@ -88,6 +88,10 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
           <span className="rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-bold text-success">
             gratuit
           </span>
+        ) : modul.numar <= 5 ? (
+          <span className="rounded-full bg-brand-light px-2 py-0.5 text-[11px] font-bold text-brand-dark">
+            acces deschis
+          </span>
         ) : (
           <span className="rounded-full bg-brand-light px-2 py-0.5 text-[11px] font-bold text-brand-dark">
             necesită abonament

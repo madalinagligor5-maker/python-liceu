@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: [
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
+          // Pyodide (Python în browser via WASM) încarcă resurse de pe
+          // cdn.jsdelivr.net. Cu "require-corp", acele resurse sunt blocate
+          // (CDN-ul nu trimite Cross-Origin-Resource-Policy), așa că
+          // interpretorul nu pornește. "credentialless" permite încărcarea
+          // resurselor cross-origin fără credentiale — e setarea corectă.
+          { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
         ],
       },
     ];

@@ -188,7 +188,7 @@ export default function ExercitiiInteractive({
       )}
 
       {deblocat && (
-        <>
+        <div className="space-y-6">
           <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
             <span className="text-2xl" aria-hidden="true">
               💻
@@ -284,7 +284,7 @@ export default function ExercitiiInteractive({
               )}
             </div>
           ))}
-        </>
+        </div>
       )}
     </div>
   );

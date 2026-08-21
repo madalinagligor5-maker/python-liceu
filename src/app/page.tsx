@@ -56,7 +56,7 @@ const FAQ = [
   {
     intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Primele cinci module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
+      "Da. Primele 3 module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
   },
   {
     intrebare: "Trebuie să instalez Python pe laptop?",
@@ -126,12 +126,12 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     }
   }
 
-  // Module reale din curriculum (primele 5 din clasa IX, gratuite).
+  // Module reale din curriculum (primele 3 gratuite, următoarele 2 deschise).
   const moduleGratuite = capitole
     .find((c) => c.clasa === "IX")
     ?.module.slice(0, 5)
-    .map((m) => {
-      return { cod: m.cod, titlu: m.titlu, slug: m.slug };
+    .map((m, i) => {
+      return { cod: m.cod, titlu: m.titlu, slug: m.slug, gratuit: i < 3 };
     }) ?? [];
 
   return (
@@ -167,10 +167,11 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
 
             <p className="mt-5 max-w-xl text-lg text-foreground/70">
               Lecții făcute pe programa de Informatică de liceu, cu explicații
-              clare și exerciții la care scrii tu însuți codul. Primele module din
+              clare și exerciții la care scrii tu însuți codul. Primele 3 module din
               clasa a IX-a sunt{" "}
-              <span className="font-semibold text-brand-dark">deschise gratuit</span> —
-              intri și începi, fără cont și fără card.
+              <span className="font-semibold text-brand-dark">gratuite</span>, iar
+              următoarele 2 sunt deschise pentru explorare — intri și începi, fără
+              cont și fără card.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -278,7 +279,7 @@ saluta("Academia Python")
                 Începe acum, fără bani
               </h2>
               <p className="mt-2 max-w-2xl text-foreground/70">
-                Primele cinci module din clasa a IX-a le poți parcurge de la cap la coadă
+                Primele 3 module din clasa a IX-a le poți parcurge de la cap la coadă
                 chiar acum. Deschizi o lecție, scrii codul în pagină, rezolvi exercițiile
                 — și gata, fără cont.
               </p>
@@ -302,9 +303,15 @@ saluta("Academia Python")
                   <span className="rounded-lg bg-brand-light px-2 py-1 text-xs font-bold text-brand-dark">
                     {m.cod}
                   </span>
-                  <span className="rounded-lg bg-[#dcfce7] px-2 py-1 text-xs font-semibold text-[#15803d]">
-                    Gratuit
-                  </span>
+                  {m.gratuit ? (
+                    <span className="rounded-lg bg-[#dcfce7] px-2 py-1 text-xs font-semibold text-[#15803d]">
+                      Gratuit
+                    </span>
+                  ) : (
+                    <span className="rounded-lg bg-brand-light px-2 py-1 text-xs font-semibold text-brand-dark">
+                      Deschis
+                    </span>
+                  )}
                 </div>
                 <h3 className="mt-4 font-semibold text-foreground transition group-hover:text-brand">
                   {m.titlu}
@@ -324,7 +331,7 @@ saluta("Academia Python")
           Cât costă restul lecțiilor
         </h2>
         <p className="mt-2 max-w-2xl text-foreground/70">
-          Cele cinci module din clasa a IX-a sunt gratuite. Pentru tot ce e după ele —
+          Cele 3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2 sunt deschise pentru explorare. Pentru tot ce e după ele —
           toate celelalte clase, exercițiile și proiectele — e un abonament mic, pe
           lună. Vezi prețul exact mai jos.
         </p>

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s — Academia Python",
   },
   description:
-    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de liceu. Drum de învățare vizual, exerciții interactive în browser, primele lecții gratuite.",
+    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de liceu. Drum de învățare vizual, exerciții interactive în browser, primele 3 module gratuite.",
   keywords: [
     "Python liceu",
     "informatică liceu",

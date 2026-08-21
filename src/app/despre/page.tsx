@@ -46,8 +46,9 @@ export default function DesprePage() {
 
         <p>
           Lecțiile sunt grupate pe clase (IX–XII) și urmează programa de
-          Informatică de liceu. Primele module sunt deschise complet, fără cont și
-          fără card. Intri, înveți, vezi că merge — și de acolo merge mai departe.
+          Informatică de liceu. Primele 3 module din clasa a IX-a sunt{" "}
+          <strong>gratuite</strong> (fără cont, fără card), iar următoarele 2
+          sunt deschise pentru explorare. Restul se deblochează cu abonament.
         </p>
       </div>
 

@@ -15,34 +15,47 @@ type Props = {
   onVerificat?: () => void;
 };
 
-// Pyodide se încarcă o singură dată per pagină.
-let pyodidePromisiune: Promise<unknown> | null = null;
-
+// Pyodide se încarcă o singură dată per pagină. Ținem instanța Pyodide
+// (nu doar promisiunea de apel loadPyodide) într-o variabilă globală, ca să
+// o putem refolosi între toate editorele de pe pagină fără să re-inițializăm
+// (loadPyodide aruncă eroare dacă e apelat de 2 ori).
 type PyodideApi = {
   setStdout: (o: { batched: (s: string) => void }) => void;
   setStderr: (o: { batched: (s: string) => void }) => void;
   runPythonAsync: (code: string) => Promise<void>;
 };
 
+declare global {
+  interface Window {
+    loadPyodide?: (opts: { indexURL: string }) => Promise<PyodideApi>;
+    __pyodideInstance?: PyodideApi | null;
+  }
+}
+
 async function incarcaPyodide(): Promise<PyodideApi> {
-  if (pyodidePromisiune) return pyodidePromisiune as Promise<PyodideApi>;
-  pyodidePromisiune = (async () => {
-    await new Promise<void>((res) => {
+  // Dacă avem deja o instanță, o refolosim.
+  if (typeof window !== "undefined" && window.__pyodideInstance) {
+    return window.__pyodideInstance;
+  }
+  // Dacă scriptul nu e încă în DOM, îl adăugăm (o singură dată).
+  if (typeof window !== "undefined" && !document.querySelector("script[data-pyodide]")) {
+    await new Promise<void>((res, rej) => {
       const s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js";
+      s.setAttribute("data-pyodide", "1");
       s.onload = () => res();
-      s.onerror = () => res();
+      s.onerror = () => rej(new Error("Nu s-a putut încărca Pyodide de pe CDN."));
       document.body.appendChild(s);
     });
-    const w = window as unknown as {
-      loadPyodide?: (opts: { indexURL: string }) => Promise<PyodideApi>;
-    };
-    const py = await w.loadPyodide!({
-      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/",
-    });
-    return py;
-  })();
-  return pyodidePromisiune as Promise<PyodideApi>;
+  }
+  if (typeof window === "undefined" || !window.loadPyodide) {
+    throw new Error("Interpretorul Python nu a putut fi inițializat.");
+  }
+  const py = await window.loadPyodide({
+    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/",
+  });
+  if (typeof window !== "undefined") window.__pyodideInstance = py;
+  return py;
 }
 
 export default function PythonEditor({

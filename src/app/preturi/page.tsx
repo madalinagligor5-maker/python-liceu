@@ -44,8 +44,9 @@ export default function PreturiPage() {
           Alege planul potrivit pentru tine
         </h1>
         <p className="mt-3 text-foreground/70">
-          Primele 5 module din clasa a IX-a rămân gratuite, oricând, fără cont. Abonamentul deblochează tot restul
-          conținutului.
+          Primele 3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2
+          sunt deschise pentru explorare — totul fără cont. Abonamentul deblochează
+          tot restul conținutului.
         </p>
 
         <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-brand bg-brand-light/50 p-4">

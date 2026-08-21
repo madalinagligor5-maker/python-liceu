@@ -82,9 +82,17 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
               <span className="min-w-0 flex-1">
                 <span className="flex flex-wrap items-center gap-2">
                   <span className="font-semibold text-foreground">{m.titlu}</span>
-                  {m.gratuit && (
+                  {m.gratuit ? (
                     <span className="rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-bold text-success">
                       gratuit
+                    </span>
+                  ) : m.numar <= 5 ? (
+                    <span className="rounded-full bg-brand-light px-2 py-0.5 text-[11px] font-bold text-brand-dark">
+                      acces deschis
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-bold text-locked">
+                      necesită abonament
                     </span>
                   )}
                 </span>
