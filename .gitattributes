@@ -1,4 +1,0 @@
-# Pyodide (Python în browser) — fișiere binare mari, gestionate cu Git LFS
-public/pyodide/*.wasm filter=lfs diff=lfs merge=lfs -text
-public/pyodide/*.zip filter=lfs diff=lfs merge=lfs -text
-public/pyodide/*.js filter=lfs diff=lfs merge=lfs -text
