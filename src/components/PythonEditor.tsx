@@ -90,7 +90,21 @@ export default function PythonEditor({
       await py.runPythonAsync(cod);
       if (expectedOutput !== undefined) {
         const curat = (s: string) => s.replace(/\s+/g, " ").trim();
-        setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
+        // Verificare numerică (toleranță) când ambele părți sunt numere —
+        // rezolvă cazul în care elevul afișează 8.67 iar așteptarea e 8.666…
+        const nrOut = parseFloat(capturat.replace(",", "."));
+        const nrExp = parseFloat(String(expectedOutput).replace(",", "."));
+        const ambeleNumere =
+          !Number.isNaN(nrOut) &&
+          !Number.isNaN(nrExp) &&
+          /^-?\d/.test(capturat.trim()) &&
+          /^-?\d/.test(String(expectedOutput).trim());
+        if (ambeleNumere) {
+          const corect = Math.abs(nrOut - nrExp) < 0.01;
+          setVerdict(corect ? "ok" : "gresit");
+        } else {
+          setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
+        }
       }
       onVerificat?.();
     } catch (e) {

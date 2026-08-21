@@ -44,7 +44,7 @@
       "tip": "cod",
       "enunt": "Scrie un program Python care calculează și afișează media a trei note: 7, 9 și 10.",
       "template": "n1, n2, n3 = 7, 9, 10\n# scrie aici calculul mediei și afișează-o",
-      "expectedOutput": "8.666666666666666",
+      "expectedOutput": "8.67",
       "hint": "media = (n1 + n2 + n3) / 3"
     },
     {
