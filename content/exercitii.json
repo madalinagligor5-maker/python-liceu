@@ -1462,5 +1462,357 @@
       "expectedOutput": "8",
       "hint": " Metodele adună/scad/înmulțesc self.valoare."
     }
+  ],
+  "4.18.5": [
+    {
+      "tip": "cod",
+      "enunt": "Antrenează un MLPClassifier pe un set mic și raportează acuratețea.",
+      "expectedOutput": "score>0.5",
+      "hint": " nn.fit(X,y).score(X,y)."
+    }
+  ],
+  "4.19.4": [
+    {
+      "tip": "cod",
+      "enunt": "Desenează un grafic cu linie pentru vânzările a 5 luni.",
+      "expectedOutput": "plt.plot(...)",
+      "hint": " plt.plot(luni, vanzari)."
+    }
+  ],
+  "4.19.5": [
+    {
+      "tip": "cod",
+      "enunt": "Folosește scatter pentru a vizualiza 2 features ale unui set.",
+      "expectedOutput": "plt.scatter(...)",
+      "hint": " plt.scatter(x, y)."
+    }
+  ],
+  "4.20.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează un DataFrame cu 3 coloane și afișează describe().",
+      "expectedOutput": "df.describe()",
+      "hint": " pd.DataFrame({...})."
+    }
+  ],
+  "4.20.5": [
+    {
+      "tip": "cod",
+      "enunt": "Încarcă un CSV (pd.read_csv) și calculează media pe o coloană.",
+      "expectedOutput": "df['col'].mean()",
+      "hint": " pd.read_csv('fisier.csv')."
+    }
+  ],
+  "4.21.4": [
+    {
+      "tip": "cod",
+      "enunt": "Împarte un set în train/test, antrenează, raportează acuratețea.",
+      "expectedOutput": "accuracy_score",
+      "hint": " train_test_split + score."
+    }
+  ],
+  "4.21.5": [
+    {
+      "tip": "cod",
+      "enunt": "Folosește cross_val_score pentru evaluare robustă.",
+      "expectedOutput": "cross_val_score",
+      "hint": " cross_val_score(model, X, y, cv=5)."
+    }
+  ],
+  "4.22.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează o matrice 2x2 și calculează suma pe linii și coloane.",
+      "expectedOutput": "sum(axis=...)",
+      "hint": " m.sum(axis=0/1)."
+    }
+  ],
+  "4.22.5": [
+    {
+      "tip": "cod",
+      "enunt": "Înmulțește două matrici cu np.dot și verifică rezultatul.",
+      "expectedOutput": "np.dot(a,b)",
+      "hint": " np.dot(a, b)."
+    }
+  ],
+  "4.1.4": [
+    {
+      "tip": "cod",
+      "enunt": "Definește în Python (dicționar) entitatea Carte cu atributele isbn, titlu, autor, an.",
+      "expectedOutput": "{'isbn': 'X', 'titlu': 'Y', 'autor': 'Z', 'an': 2000}",
+      "hint": " Un dicționar cu 4 chei."
+    }
+  ],
+  "4.1.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o listă de 3 cărți (dicționare), fiecare cu cele 4 atribute.",
+      "expectedOutput": "3 carti",
+      "hint": " Listă de 3 dicționare."
+    }
+  ],
+  "4.2.4": [
+    {
+      "tip": "cod",
+      "enunt": "Modelați relația 1:N 'Un autor scrie multe cărți' cu Autor și Carte (cheie externă).",
+      "expectedOutput": "carte_id in Carte",
+      "hint": " Cheia externă e în partea 'N'."
+    }
+  ],
+  "4.2.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modelați relația M:N Studenți-Proiecte cu tabelă asociativă.",
+      "expectedOutput": "Inscriere(student_id, proiect_id)",
+      "hint": " Tabela asociativă are ambele chei."
+    }
+  ],
+  "4.3.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie CREATE TABLE pentru Student și Curs cu relația 1:N.",
+      "expectedOutput": "curs_id REFERENCES Curs(id)",
+      "hint": " Cheia externă în Student."
+    }
+  ],
+  "4.3.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie CREATE TABLE pentru M:N cu tabelă asociativă Inscriere.",
+      "expectedOutput": "Inscriere(id_student, id_curs)",
+      "hint": " Ambele chei externe."
+    }
+  ],
+  "4.4.4": [
+    {
+      "tip": "cod",
+      "enunt": "CREATE TABLE Comanda(id, data, client_id REFERENCES Client(id)) cu constrângeri.",
+      "expectedOutput": "client_id REFERENCES Client(id)",
+      "hint": " FOREIGN KEY."
+    }
+  ],
+  "4.4.5": [
+    {
+      "tip": "cod",
+      "enunt": "Adaugă CHECK care nu permite vârsta negativă la Student.",
+      "expectedOutput": "CHECK (varsta >= 0)",
+      "hint": " CHECK (condiție)."
+    }
+  ],
+  "4.5.4": [
+    {
+      "tip": "cod",
+      "enunt": "Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane într-o celulă.",
+      "expectedOutput": "telefoane intr-o singura celula",
+      "hint": " FN1 cere valori atomice."
+    }
+  ],
+  "4.5.5": [
+    {
+      "tip": "cod",
+      "enunt": "Normalizează la FN3: Angajat(id, nume, dept, locatie_dept).",
+      "expectedOutput": "Dept(id, nume, locatie)",
+      "hint": " Separă dept și locația."
+    }
+  ],
+  "4.6.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează agenda.db cu Persoana(id, nume, telefon) folosind sqlite3.",
+      "expectedOutput": "CREATE TABLE Persoana",
+      "hint": " sqlite3.connect + execute."
+    }
+  ],
+  "4.6.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie adauga(conn, nume, telefon) care inserează și face commit.",
+      "expectedOutput": "commit()",
+      "hint": " Nu uita commit."
+    }
+  ],
+  "4.7.4": [
+    {
+      "tip": "cod",
+      "enunt": "SELECT numele studenților >18 ani, ordonați alfabetic.",
+      "expectedOutput": "ORDER BY nume",
+      "hint": " WHERE varsta>18 ORDER BY nume."
+    }
+  ],
+  "4.7.5": [
+    {
+      "tip": "cod",
+      "enunt": "Creează tabela, inserează 3 rânduri, afișează ordonate (Python + sqlite3).",
+      "expectedOutput": "3 randuri ordonate",
+      "hint": " fetchall după SELECT ORDER BY."
+    }
+  ],
+  "4.8.4": [
+    {
+      "tip": "cod",
+      "enunt": "Numără studenții pe fiecare oraș (GROUP BY).",
+      "expectedOutput": "GROUP BY oras",
+      "hint": " COUNT(*) GROUP BY."
+    }
+  ],
+  "4.8.5": [
+    {
+      "tip": "cod",
+      "enunt": "Media vârstei per oraș, doar orașe cu >=2 studenți (HAVING).",
+      "expectedOutput": "HAVING COUNT(*)>=2",
+      "hint": " HAVING după GROUP BY."
+    }
+  ],
+  "4.9.4": [
+    {
+      "tip": "cod",
+      "enunt": "JOIN care afișează numele studenților și denumirea cursurilor.",
+      "expectedOutput": "JOIN Inscriere ON ... JOIN Curs ON ...",
+      "hint": " Două JOIN-uri."
+    }
+  ],
+  "4.9.5": [
+    {
+      "tip": "cod",
+      "enunt": "Subinterogare care returnează studenții înscriși la un curs dat.",
+      "expectedOutput": "WHERE id IN (SELECT ...)",
+      "hint": " IN (subinterogare)."
+    }
+  ],
+  "4.10.4": [
+    {
+      "tip": "cod",
+      "enunt": "Inserează 3 studenți apoi actualizează vârsta unuia (Python).",
+      "expectedOutput": "UPDATE ... commit",
+      "hint": " execute + commit."
+    }
+  ],
+  "4.10.5": [
+    {
+      "tip": "cod",
+      "enunt": "Șterge rândurile cu vârsta < 16 (execute + commit).",
+      "expectedOutput": "DELETE WHERE varsta<16",
+      "hint": " DELETE FROM ... WHERE."
+    }
+  ],
+  "4.11.4": [
+    {
+      "tip": "cod",
+      "enunt": "CREATE TABLE Produs(id,nume,pret) apoi ALTER ADD stoc.",
+      "expectedOutput": "ALTER TABLE Produs ADD COLUMN stoc",
+      "hint": " ALTER TABLE ADD COLUMN."
+    }
+  ],
+  "4.11.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modifică tipul unei coloane sau șterge o coloană.",
+      "expectedOutput": "ALTER/DROP COLUMN",
+      "hint": " Depinde de sistem."
+    }
+  ],
+  "4.12.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un transfer bancar cu try/except și commit/rollback.",
+      "expectedOutput": "rollback()",
+      "hint": " În except: rollback."
+    }
+  ],
+  "4.12.5": [
+    {
+      "tip": "cod",
+      "enunt": "SAVEPOINT înainte de ștergere, apoi ROLLBACK TO SAVEPOINT.",
+      "expectedOutput": "ROLLBACK TO SAVEPOINT",
+      "hint": " Salvăm punctul."
+    }
+  ],
+  "4.13.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează dicționar cu 5 exemple supervizate (features + target).",
+      "expectedOutput": "5 exemple",
+      "hint": " Listă de dicționare."
+    }
+  ],
+  "4.13.5": [
+    {
+      "tip": "cod",
+      "enunt": "Separă features de target în tupluri (features, eticheta).",
+      "expectedOutput": "(features, eticheta)",
+      "hint": " Tupluri."
+    }
+  ],
+  "4.14.4": [
+    {
+      "tip": "cod",
+      "enunt": "Înlocuiește valorile lipsă (None) dintr-o listă cu media.",
+      "expectedOutput": "media fara None",
+      "hint": " Calculează media pe cele valide."
+    }
+  ],
+  "4.14.5": [
+    {
+      "tip": "cod",
+      "enunt": "Normalizare min-max pentru o listă de numere.",
+      "expectedOutput": "(x-min)/(max-min)",
+      "hint": " Formulă min-max."
+    }
+  ],
+  "4.15.4": [
+    {
+      "tip": "cod",
+      "enunt": "Folosește KMeans pe puncte 2D și afișează labels_.",
+      "expectedOutput": "km.labels_",
+      "hint": " KMeans(n_clusters=2).fit(X)."
+    }
+  ],
+  "4.15.5": [
+    {
+      "tip": "cod",
+      "enunt": "Un pas manual K-means pe 4 puncte cu 2 centroizi.",
+      "expectedOutput": "atribuiri noi",
+      "hint": " Atribuie cel mai apropiat centru."
+    }
+  ],
+  "4.16.4": [
+    {
+      "tip": "cod",
+      "enunt": "Antrenează regresie liniară pe (1,3),(2,5),(3,7), prezice x=4.",
+      "expectedOutput": "9",
+      "hint": " y=2x+1."
+    }
+  ],
+  "4.16.5": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează manual panta a pentru 2 puncte și prezice.",
+      "expectedOutput": "panta*a",
+      "hint": " a = (y2-y1)/(x2-x1)."
+    }
+  ],
+  "4.17.4": [
+    {
+      "tip": "cod",
+      "enunt": "Antrenează KNN pe un set mic și prezice un punct nou.",
+      "expectedOutput": "eticheta prezisa",
+      "hint": " KNeighborsClassifier.fit/predict."
+    }
+  ],
+  "4.17.5": [
+    {
+      "tip": "cod",
+      "enunt": "Antrenează arbore de decizie și afișează importanța features.",
+      "expectedOutput": "feature_importances_",
+      "hint": " DecisionTreeClassifier."
+    }
+  ],
+  "4.18.4": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează ieșirea unui neuron cu 2 intrări, 2 greutăți, bias.",
+      "expectedOutput": "w1*x1+w2*x2+b",
+      "hint": " Sumă ponderată + bias."
+    }
   ]
 }

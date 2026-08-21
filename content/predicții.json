@@ -658,5 +658,225 @@
       "[1, 4, 9, 16, 25]"
     ],
     "corect": "[1, 4, 9, 16]"
+  },
+  "4.1.3": {
+    "cod": "# Student(id, nume, varsta) = (1, 'Ana', 17)\n# Care e valoarea atributului 'nume'?",
+    "variante": [
+      "Ana",
+      "1",
+      "17",
+      "Student"
+    ],
+    "corect": "Ana"
+  },
+  "4.2.3": {
+    "cod": "# Student-Curs e relatie M:N.\n# Cate tabele rezulta din mapare?\n# (Student, Curs, si ?)",
+    "variante": [
+      "2",
+      "3",
+      "1",
+      "4"
+    ],
+    "corect": "3"
+  },
+  "4.3.3": {
+    "cod": "# Student(id,nume) si Curs(cod,denumire), relatie 1:N\n# (un curs are multi studenti)\n# In ce tabel se pune cheia externa curs_id?",
+    "variante": [
+      "Student",
+      "Curs",
+      "Ambele",
+      "Niciunul"
+    ],
+    "corect": "Student"
+  },
+  "4.4.3": {
+    "cod": "# Student(curs_id REFERENCES Curs(id))\n# Inserare Student cu curs_id=99 dar Curs(99) nu exista?",
+    "variante": [
+      "Eroare (integritate referențială)",
+      "Merge",
+      "Sterge Cursul",
+      "Ignoră"
+    ],
+    "corect": "Eroare (integritate referențială)"
+  },
+  "4.5.3": {
+    "cod": "# Comanda(id, produs, pret, client, adresa_client)\n# client determina adresa_client (tranzitiv)\n# In ce forma normala e?",
+    "variante": [
+      "FN3 incălcat",
+      "FN1",
+      "FN2",
+      "FN3"
+    ],
+    "corect": "FN3 incălcat"
+  },
+  "4.6.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE T(x INTEGER)')\ncur.execute('INSERT INTO T VALUES (5)')\n# Cat are T inainte de commit? (count)",
+    "variante": [
+      "1",
+      "0",
+      "Eroare",
+      "Necunoscut"
+    ],
+    "corect": "1"
+  },
+  "4.7.3": {
+    "cod": "# Student(nume,varsta): ('Ana',17),('Bogdan',19),('Cris',17)\n# SELECT nume FROM Student ORDER BY varsta DESC, nume ASC\n# Primul rezultat?",
+    "variante": [
+      "Bogdan",
+      "Ana",
+      "Cris",
+      "Bogdan,Ana"
+    ],
+    "corect": "Bogdan"
+  },
+  "4.8.3": {
+    "cod": "# Vanzari(oras,suma): ('A',100),('A',200),('B',50)\n# SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras\n# Suma pentru 'A'?",
+    "variante": [
+      "300",
+      "100",
+      "350",
+      "200"
+    ],
+    "corect": "300"
+  },
+  "4.9.3": {
+    "cod": "# Student(1,'Ana'),(2,'Bogdan'); Inscriere(1,10),(2,10)\n# INNER JOIN Student-Inscriere: cate randuri?",
+    "variante": [
+      "2",
+      "1",
+      "0",
+      "4"
+    ],
+    "corect": "2"
+  },
+  "4.10.3": {
+    "cod": "# Tabela: ('Ana',17),('Bogdan',19)\n# UPDATE Student SET varsta=varsta+1 WHERE nume='Ana'\n# Cat are Ana?",
+    "variante": [
+      "18",
+      "17",
+      "19",
+      "Eroare"
+    ],
+    "corect": "18"
+  },
+  "4.11.3": {
+    "cod": "# CREATE TABLE T(a INT); ALTER TABLE T ADD COLUMN b INT;\n# Cat coloane are T?",
+    "variante": [
+      "2",
+      "1",
+      "3",
+      "0"
+    ],
+    "corect": "2"
+  },
+  "4.12.3": {
+    "cod": "# Transfer 100 de la contul 1 la 2.\n# Daca a 2-a UPDATE da eroare, ce face ROLLBACK?",
+    "variante": [
+      "Anuleaza tot transferul",
+      "Pastreaza prima",
+      "Nu face nimic",
+      "Sterge conturile"
+    ],
+    "corect": "Anuleaza tot transferul"
+  },
+  "4.13.3": {
+    "cod": "# Coloane: varsta, venit, aprobare(Da/Nu)\n# Care e caracteristica si care tinta?",
+    "variante": [
+      "varsta,venit=features; aprobare=target",
+      "toate features",
+      "aprobare=feature",
+      "nimic"
+    ],
+    "corect": "varsta,venit=features; aprobare=target"
+  },
+  "4.14.3": {
+    "cod": "# Valori: [10,20,30]. Normalizare min-max pentru 20?",
+    "variante": [
+      "0.5",
+      "0",
+      "1",
+      "20"
+    ],
+    "corect": "0.5"
+  },
+  "4.15.3": {
+    "cod": "# Puncte: 1,2,9,10. k=2.\n# Cele 2 clustere probabil?",
+    "variante": [
+      "[1,2] si [9,10]",
+      "[1,9] si [2,10]",
+      "[1] si [2,9,10]",
+      "[1,2,9] si [10]"
+    ],
+    "corect": "[1,2] si [9,10]"
+  },
+  "4.16.3": {
+    "cod": "# model antrenat pe y = 2*x + 1\n# model.predict([[5]]) => ?",
+    "variante": [
+      "11",
+      "10",
+      "5",
+      "2"
+    ],
+    "corect": "11"
+  },
+  "4.17.3": {
+    "cod": "# 3 vecini: Da, Da, Nu. Ce prezice KNN (k=3)?",
+    "variante": [
+      "Da",
+      "Nu",
+      "Eroare",
+      "Ambele"
+    ],
+    "corect": "Da"
+  },
+  "4.18.3": {
+    "cod": "# Neuron: x=2, w=3, b=1, iesire = w*x + b\n# Care e iesirea?",
+    "variante": [
+      "7",
+      "6",
+      "5",
+      "3"
+    ],
+    "corect": "7"
+  },
+  "4.19.3": {
+    "cod": "import matplotlib.pyplot as plt\nplt.plot([0,1,2], [3,1,4])\n# Forma graficului?",
+    "variante": [
+      "Mix (crescator apoi descrescator)",
+      "Crescator",
+      "Descrescator",
+      "Constant"
+    ],
+    "corect": "Mix (crescator apoi descrescator)"
+  },
+  "4.20.3": {
+    "cod": "import pandas as pd\ndf = pd.DataFrame({'x':[1,2,3,4]})\n# df['x'].mean()?",
+    "variante": [
+      "2.5",
+      "2",
+      "3",
+      "1"
+    ],
+    "corect": "2.5"
+  },
+  "4.21.3": {
+    "cod": "# 100 exemple, test_size=0.2\n# Cate in setul de test?",
+    "variante": [
+      "20",
+      "80",
+      "0.2",
+      "100"
+    ],
+    "corect": "20"
+  },
+  "4.22.3": {
+    "cod": "import numpy as np\na = np.array([1,2,3])\nprint(a*a)",
+    "variante": [
+      "[1 4 9]",
+      "[2 4 6]",
+      "[1 2 3]",
+      "[3 6 9]"
+    ],
+    "corect": "[1 4 9]"
   }
 }
