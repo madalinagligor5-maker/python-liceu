@@ -24,6 +24,23 @@ export default function CurriculumPage() {
       </p>
       <p className="mt-2 text-xs text-muted">Sursă: {structura.sursa}</p>
 
+      <div className="mt-4 rounded-2xl border border-brand-border bg-brand-light/40 p-4 text-sm text-brand-dark">
+        <p className="font-semibold">Despre profil și programă</p>
+        <p className="mt-1">
+          Lecțiile urmează <strong>Ordinul ministrului educației nr. 4.370/2026</strong>{" "}
+          (Monitorul Oficial nr. 591 bis din 20 iulie 2026), anexele 8–11 — traseul de{" "}
+          <strong>matematică-informatică, profil real, cu predare în regim intensiv</strong>.
+          Este cel mai exigente dintre traseele de Informatică de liceu și e urmat de elevii
+          care învață Python și C++ în paralel.
+        </p>
+        <p className="mt-2">
+          Programa nouă se aplică <strong>progresiv</strong>: în anul școlar 2026–2027 intră la
+          clasa a IX-a; clasele X, XI și XII continuă pe programa lor până la trecerea completă.
+          Conținutul de aici e aliniat la nivelul și ordinea noii programe, grupat pe clase
+          (IX–XII) ca să fie util direct la ora de curs și la teme.
+        </p>
+      </div>
+
       <dl className="mt-6 grid grid-cols-3 gap-3 sm:max-w-md">
         {[
           ["Capitole", nrCapitole],

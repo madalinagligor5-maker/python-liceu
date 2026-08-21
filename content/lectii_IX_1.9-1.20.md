@@ -104,6 +104,17 @@ print(in_binar(10))  # 1010
 4. În baza 16, cifra care urmează după 9 este:
    a) 10  b) **A**  c) 0
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.10 — Ciurul lui Eratostene si exponentiere rapida
 
 ### 🔄 1.10.1 Recapitulare
@@ -198,6 +209,17 @@ print(este_prim(17))  # True
 4. `putere_rapida(2, 10)` returnează:
    a) 100  b) **1024**  c) 20
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.11 — Introducere in programarea orientata pe obiecte
 
 ### 🔄 1.11.1 Recapitulare
@@ -280,6 +302,17 @@ print(round(c.arie(), 2))  # 12.57
 4. `p = Punct(3, 4)` creează:
    a) O clasă  b) **O instanță (obiect)**  c) O funcție
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.12 — tkinter: fereastra principala si widget-uri de baza
 
 ### 🔄 1.12.1 Recapitulare
@@ -360,6 +393,17 @@ f.mainloop()
 4. `pack()` servește la:
    a) **Aranjarea widget-ului în fereastră**  b) Închiderea ferestrei  c) Citirea input-ului
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.13 — tkinter: gestionarea plasarii si a evenimentelor
 
 ### 🔄 1.13.1 Recapitulare
@@ -439,6 +483,17 @@ f.mainloop()
 4. `f.bind("<Key>", func)` apelează `func`:
    a) La click  b) **La orice tastă**  c) La închiderea ferestrei
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.14 — Fisiere text: deschidere, citire, scriere, inchidere
 
 ### 🔄 1.14.1 Recapitulare
@@ -511,6 +566,17 @@ with open("nume.txt", "r", encoding="utf-8") as f:
 
 4. `f.read()` citește:
    a) O linie  b) **Tot conținutul**  c) Primul caracter
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.15 — Modelul conceptual lista: stiva, coada, acces direct/secvential
 
@@ -587,6 +653,17 @@ print(c.___())
 4. Pentru coadă în Python folosim:
    a) `list` cu `pop()`  b) **`deque` cu `popleft()`**  c) `set`
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.16 — Clasa list: operatori de baza
 
 ### 🔄 1.16.1 Recapitulare
@@ -655,6 +732,17 @@ print(L)
 
 4. `5 in L` returnează:
    a) Poziția lui 5  b) **True/False dacă 5 e în listă**  c) Numărul de apariții
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.17 — Clasa list: metode (căutare, inserare, stergere, sortare)
 
@@ -731,6 +819,17 @@ print(pozitii([1, 5, 1, 5], 5))  # [1, 3]
 4. O căutare liniară are complexitate:
    a) O(1)  b) **O(n)**  c) O(log n)
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.18 — Generarea sistematica a secventelor de valori
 
 ### 🔄 1.18.1 Recapitulare
@@ -797,6 +896,17 @@ for a in range(1, 5):
 
 4. Generarea sistematică e utilă pentru:
    a) Sortare  b) **A testa toate variantele posibile**  c) Citirea fișierelor
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.19 — Sortare: selectia minimului
 
@@ -878,6 +988,17 @@ def selectie_minim(L):
 
 4. Interschimbarea `L[i], L[minim] = ...` se numește:
    a) Atribuire  b) **Swap**  c) Append
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.20 — Sortare: metoda bulelor si lista de frecvente
 
@@ -966,3 +1087,14 @@ def bubble(L):
 
 4. `freq[x] += 1` în counting sort:
    a) Adaugă x la rezultat  b) **Numără o apariție a lui x**  c) Șterge x
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::

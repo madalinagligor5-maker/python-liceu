@@ -7,7 +7,9 @@
       "enunt": "Completează codul ca să calculezi aria unui dreptunghi (lungime = 6, lățime = 3).",
       "template": "lungime = 6\nlatime = 3\naria = lungime * latime\nprint(\"Aria este:\", aria)",
       "expectedOutput": "Aria este: 18",
-      "hint": "aria = lungime * latime"
+      "hint": "aria = lungime * latime",
+      "hint2": "Gândește-te la pașii pe care i-ai face tu de mână: deschizi editorul, scrii codul, rulezi, verifici rezultatul.",
+      "extindere": "Scrie și un mesaj de bun-venit care folosește și numele tău în loc de 'lume'."
     },
     {
       "id": "1.1.4.ex2",
@@ -63,7 +65,9 @@
       "enunt": "Transformă pseudocodul în cod Python: dacă temperatura > 30 afișează „zi caniculară\", altfel „temperatură normală\". (temperatura = 33)",
       "template": "temperatura = 33\n\n# completează aici codul Python echivalent",
       "expectedOutput": "zi caniculară",
-      "hint": "if temperatura > 30: print(\"zi caniculară\") else: print(\"temperatură normală\")"
+      "hint": "if temperatura > 30: print(\"zi caniculară\") else: print(\"temperatură normală\")",
+      "hint2": "Un algoritm trebuie să se oprească și să dea același rezultat pentru aceeași intrare.",
+      "extindere": "Scrie algoritmul pentru a verifica dacă un număr e prim, nu doar descrierea."
     },
     {
       "id": "1.2.4.ex2",
@@ -259,7 +263,9 @@
       "enunt": "Completează funcția care convertește un număr zecimal în binar folosind împărțirile repetate.",
       "template": "def in_binar(n):\n    sir = \"\"\n    while n > 0:\n        sir = str(n % 2) + sir\n        n = n // ___\n    return sir\n\nprint(in_binar(10))  # 1010",
       "expectedOutput": "1010",
-      "hint": "n = n // 2"
+      "hint": "n = n // 2",
+      "hint2": "Parcurgi cifrele de la dreapta la stânga și construiești puterile lui 2 (1, 2, 4, 8...).",
+      "extindere": "Extinde pentru baze 3, 8 și 16 (hexazecimal) cu litere A–F."
     },
     {
       "id": "1.9.4.ex2",
@@ -691,7 +697,9 @@
       "enunt": "Completează condiția care actualizează `dreapta` când elementul de la mijloc e mai mare decât x.",
       "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1",
       "expectedOutput": "",
-      "hint": "Când valoarea de la mijloc e mai mare, căutăm în jumătatea stângă → mutăm capătul dreapta."
+      "hint": "Când valoarea de la mijloc e mai mare, căutăm în jumătatea stângă → mutăm capătul dreapta.",
+      "hint2": "Calculează mereu mijlocul și compară cu x — dacă e mai mare, caută în jumătatea stângă.",
+      "extindere": "Modifică funcția să returneze poziția (indexul) unde a fost găsit x, sau -1."
     }
   ],
   "2.1.5": [
@@ -745,7 +753,9 @@
       "enunt": "Completează pentru a adăuga 7 în mulțimea m.",
       "template": "m = {1, 2, 3}\n___  # adaugă 7\nprint(m)",
       "expectedOutput": "{1, 2, 3, 7}",
-      "hint": "Folosește m.add(7)."
+      "hint": "Folosește m.add(7).",
+      "hint2": "Folosește o mulțime (set) pentru a verifica apartenența în O(1).",
+      "extindere": "Implementează și o metodă de diferență între două mulțimi."
     }
   ],
   "2.4.5": [
@@ -1068,7 +1078,9 @@
       "tip": "cod",
       "enunt": "Completează clasa Nod și funcția de parcurgere care afișează valorile unei liste înlănțuite de la cap la sfârșit (câte unul pe linie).",
       "expectedOutput": "5\n8\n12",
-      "hint": " Folosește un `curent = cap` și avansează cu `curent = curent.urmator` cât timp nu e None."
+      "hint": " Folosește un `curent = cap` și avansează cu `curent = curent.urmator` cât timp nu e None.",
+      "hint2": "Pentru fiecare nod, ține referința către următorul; la capăt, adaugă None.",
+      "extindere": "Adaugă o funcție care verifică dacă o valoare există deja în listă înainte de inserare."
     }
   ],
   "3.1.5": [
@@ -1148,7 +1160,9 @@
       "tip": "cod",
       "enunt": "Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o grilă m×n (doar dreapta/jos) folosind programare dinamică.",
       "expectedOutput": "6",
-      "hint": " dp[i][j] = dp[i-1][j] + dp[i][j-1]."
+      "hint": " dp[i][j] = dp[i-1][j] + dp[i][j-1].",
+      "hint2": "dp[i][j] = numărul de căi de a ajunge în (i,j) = suma căilor din stânga și de sus.",
+      "extindere": "Generalizează pentru o grilă cu obstacole (anumite celule blocate)."
     }
   ],
   "3.6.5": [
@@ -1540,7 +1554,9 @@
       "tip": "cod",
       "enunt": "Definește în Python (dicționar) entitatea Carte cu atributele isbn, titlu, autor, an.",
       "expectedOutput": "{'isbn': 'X', 'titlu': 'Y', 'autor': 'Z', 'an': 2000}",
-      "hint": " Un dicționar cu 4 chei."
+      "hint": " Un dicționar cu 4 chei.",
+      "hint2": "Un dicționar e echivalentul unei înregistrări: cheia e atributul, valoarea e datele.",
+      "extindere": "Adaugă un câmp 'an' și filtrează cărțile publicate după 2010."
     }
   ],
   "4.1.5": [
@@ -1620,7 +1636,9 @@
       "tip": "cod",
       "enunt": "Creează agenda.db cu Persoana(id, nume, telefon) folosind sqlite3.",
       "expectedOutput": "CREATE TABLE Persoana",
-      "hint": " sqlite3.connect + execute."
+      "hint": " sqlite3.connect + execute.",
+      "hint2": "sqlite3.connect crează fișierul dacă nu există; cursorul execută SQL-ul.",
+      "extindere": "Creează două tabele legate prin cheie externă și fă un JOIN între ele."
     }
   ],
   "4.6.5": [

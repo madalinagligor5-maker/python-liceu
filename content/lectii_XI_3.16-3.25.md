@@ -52,6 +52,17 @@ De ce ai nevoie de Union-Find (și nu doar de un set de vârfuri vizitate) ca s�
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.17 — Modelul conceptual arbore: concepte de bază
 
 ### 🔄 3.17.1 Recapitulare
@@ -91,6 +102,17 @@ Numără frunzele unui arbore (nodurile care nu apar ca părinte al nimănui).
 De ce nu poate exista un arbore cu cicluri sau deconectat, având în același timp n vârfuri și n−1 muchii?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.18 — Arbori binari și arbori binari de căutare
 
@@ -146,6 +168,17 @@ De ce căutarea într-un BST echilibrat e O(log n), nu O(n)?
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.19 — Heap (ansamblu)
 
 ### 🔄 3.19.1 Recapitulare
@@ -195,6 +228,17 @@ De ce un heap bazat pe listă e mai eficient decât re-sortarea listei la fiecar
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.20 — Parcurgerea arborilor: preordine, inordine, postordine
 
 ### 🔄 3.20.1 Recapitulare
@@ -240,6 +284,17 @@ Calculează înălțimea unui arbore binar folosind postordinea.
 De ce inordinea unui BST dă mereu valorile sortate crescător?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.21 — Căutare și inserare într-un arbore binar de căutare
 
@@ -288,6 +343,17 @@ Scrie `sterge(rad, v)` care elimină un nod dintr-un BST păstrând proprietatea
 De ce ștergerea unui nod cu doi copii e mai complicată decât a unui nod cu cel mult un copil?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.22 — Modelul conceptual obiectual: clase, obiecte, moștenire
 
@@ -339,6 +405,17 @@ Adaugă metoda `descriere()` în `Forma` și suprascrie-o în derivate.
 Ce înseamnă "polimorfismul" când apelezi `sunet()` pe un `Animal` care e de fapt un `Caine`?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.23 — POO în Python: sintaxa `class` și constructorul
 
@@ -396,6 +473,17 @@ De ce `self` trebuie să fie primul parametru al metodei, deși nu îl scrii la 
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.24 — POO în Python: niveluri de acces și clase derivate
 
 ### 🔄 3.24.1 Recapitulare
@@ -448,6 +536,17 @@ De ce Python folosește convenții (`_`, `__`) în loc de cuvinte cheie `private
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.25 — Paradigme de programare
 
 ### 🔄 3.25.1 Recapitulare
@@ -486,3 +585,14 @@ Scrie o clasă `Calculator` (POO) care expune operații ca metode, demonstrând 
 ### ✅ 3.25.6 Verifică-ți înțelegerea
 
 În ce situații ai alege paradigma funcțională în loc de cea procedurală?
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::

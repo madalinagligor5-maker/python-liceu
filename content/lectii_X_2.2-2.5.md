@@ -81,6 +81,17 @@ def interclaseaza(a, b):
 4. Dacă una din liste se termină, ce se adaugă?
    a) Nimic  b) **Restul celeilalte liste**  c) Zero
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.4 — Clasa set: operatori și metode
 
 ### 🔄 2.4.1 Recapitulare
@@ -143,6 +154,17 @@ print(m)
 4. `a <= b` verifică:
    a) **Dacă a e submulțime a lui b**  b) Dacă a e mai mare  c) Dacă sunt egale
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.5 — Modelul conceptual: șir de caractere
 
 ### 🔄 2.5.1 Recapitulare
@@ -199,3 +221,14 @@ print(ultim)
 
 4. `s[-1]` accesează:
    a) Primul caracter  b) **Ultimul caracter**  c) Caracterul -1
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::

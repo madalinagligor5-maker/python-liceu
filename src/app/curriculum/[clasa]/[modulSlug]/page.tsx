@@ -11,6 +11,7 @@ import {
   modulAnterior,
   modulUrmator,
 } from "@/lib/curriculum";
+import { getPredicțiiClasa } from "@/lib/predicții";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -47,6 +48,23 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   const modulC = await getModulContinut(modul.cod);
   const areContinut = Boolean(modulC && modulC.sublectii.length > 0);
+
+  // Recapitulare cumulativă (interleaving): la fiecare modul al cărui număr
+  // e multiplu de 5, arătăm 2 predicții din module mai vechi ale clasei.
+  const nrModul = modul.numar; // number
+  const faceRecapitulare = nrModul % 5 === 0 && nrModul > 0;
+  let recapitulare: { cod: string; enunt: string; variante: string[]; corect: number }[] = [];
+  if (faceRecapitulare) {
+    const toate = await getPredicțiiClasa(clasa);
+    const anterioare = toate
+      .filter((p) => {
+        const m = p.cod.split(".");
+        return parseInt(m[1], 10) < nrModul;
+      })
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 2);
+    recapitulare = anterioare;
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
@@ -89,6 +107,51 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
           Structura modulului este pregătită. Conținutul sublecțiilor (explicații,
           exemple de cod, exerciții) va fi adăugat pas cu pas.
         </p>
+      )}
+
+      {faceRecapitulare && recapitulare.length > 0 && (
+        <section className="mt-6 rounded-2xl border border-dashed border-brand-border bg-brand-light/30 p-5">
+          <h2 className="flex items-center gap-2 text-base font-bold text-brand-dark">
+            <span className="text-xl" aria-hidden="true">
+              🔁
+            </span>
+            Recapitulare din modulele anterioare
+          </h2>
+          <p className="mt-1 text-sm text-foreground/70">
+            Înainte de modulul nou, revino rapid la concepte de mai devreme — așa se
+            fixează mai bine. Citește enunțul și alege răspunsul.
+          </p>
+          <ul className="mt-3 space-y-3">
+            {recapitulare.map((r) => (
+              <li
+                key={r.cod}
+                className="rounded-xl border border-black/5 bg-white p-3"
+              >
+                <p className="text-xs font-semibold text-muted">
+                  Din modulul {r.cod.split(".").slice(0, 2).join(".")}
+                </p>
+                <p className="mt-1 text-sm font-medium text-foreground">
+                  {r.enunt}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {r.variante.map((v, vi) => (
+                    <span
+                      key={vi}
+                      className={`rounded-full border px-3 py-1 text-xs ${
+                        vi === r.corect
+                          ? "border-success bg-success/10 text-success"
+                          : "border-black/10 text-foreground/70"
+                      }`}
+                    >
+                      {v}
+                      {vi === r.corect && " ✓"}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       <ol className="mt-6 space-y-3">

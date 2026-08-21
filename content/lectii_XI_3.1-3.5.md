@@ -50,6 +50,17 @@ Poți explica de ce într-o listă înlănțuită nu putem accesa elementul de p
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.2 — Liste înlănțuite: operații de bază (adăugare, eliminare)
 
 ### 🔄 3.2.1 Recapitulare
@@ -109,6 +120,17 @@ De ce adăugarea la sfârșit într-o listă simplu înlănțuită necesită par
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.3 — Backtracking: principiu și condiții
 
 ### 🔄 3.3.1 Recapitulare
@@ -166,6 +188,17 @@ Modifică generatorul de mai sus să nu permită două 'A' alăturate.
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.4 — Backtracking: probleme clasice (permutări, regine)
 
 ### 🔄 3.4.1 Recapitulare
@@ -216,6 +249,17 @@ De ce condiția `abs(sol[i] - col) == lin - i` verifică atacul pe diagonală?
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.5 — Backtracking generalizat
 
 ### 🔄 3.5.1 Recapitulare
@@ -257,3 +301,14 @@ Scrie un backtracking care găsește o submulțime cu suma exact `t` dintr-o lis
 ### ✅ 3.5.6 Verifică-ți înțelegerea
 
 Când este mai eficient backtracking-ul decât a genera toate soluțiile și a le filtra pe cele valide?
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::

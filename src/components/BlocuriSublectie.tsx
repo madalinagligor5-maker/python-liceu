@@ -58,13 +58,16 @@ export default function BlocuriSublectie({
               </div>
             );
           }
-          return (
-            <div
-              key={i}
-              className="text-[15px] leading-relaxed text-foreground/90"
-              dangerouslySetInnerHTML={{ __html: b.html }}
-            />
-          );
+          if (b.tip === "text") {
+            return (
+              <div
+                key={i}
+                className="text-[15px] leading-relaxed text-foreground/90"
+                dangerouslySetInnerHTML={{ __html: b.html }}
+              />
+            );
+          }
+          return null;
         })}
     </div>
   );

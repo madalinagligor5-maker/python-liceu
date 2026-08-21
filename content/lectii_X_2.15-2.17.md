@@ -59,6 +59,17 @@ ___  # accesează "nota" din primul element
 4. La accesul imbricat, eroarea comună e:
    a) Prea multe bucle  b) **Nivelul greșit de indexare**  c) Sintaxa greșită
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.16 — Elemente de limbaj pentru modele mixte
 
 ### 🔄 2.16.1 Recapitulare
@@ -116,6 +127,17 @@ ___  # linia 2 (index 2), coloana 3 (index 2)
 
 4. O matrice e implementată ca:
    a) Dicționar  b) **Listă de liste**  c) Tuplu
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
 
 # Modulul 2.17 — Subprograme recursive
 
@@ -179,3 +201,14 @@ def suma_cifre(n):
 
 4. Pasul recursiv trebuie să:
    a) Mărească problema  b) **Reduce problema**  c) Repete același apel
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::

@@ -16,9 +16,92 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+  metadataBase: new URL("https://www.academiapython.ro"),
+  title: {
+    default: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    template: "%s — Academia Python",
+  },
   description:
-    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de liceu. Drum de învățare vizual, exerciții interactive, primele lecții gratuite.",
+    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de liceu. Drum de învățare vizual, exerciții interactive în browser, primele lecții gratuite.",
+  keywords: [
+    "Python liceu",
+    "informatică liceu",
+    "Python clasa a IX-a",
+    "Python clasa a X-a",
+    "Python clasa a XI-a",
+    "Python clasa a XII-a",
+    "pregătire bacalaureat informatică",
+    "programe liceale informatică 2026",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ro_RO",
+    url: "https://www.academiapython.ro",
+    siteName: "Academia Python",
+    title: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    description:
+      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele IX–XII, conform programei de Informatică.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Academia Python — învață Python pentru liceu",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    description:
+      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele IX–XII.",
+    images: ["/og-image.png"],
+  },
+};
+
+// Date structurate JSON-LD (schema.org) pentru rezultate îmbogățite în căutări.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      name: "Academia Python",
+      url: "https://www.academiapython.ro",
+      description:
+        "Platformă de învățare Python pentru liceu, clasele IX–XII, conform programei de Informatică.",
+      sameAs: ["https://www.academiapython.ro"],
+    },
+    {
+      "@type": "Course",
+      name: "Informatică cu Python — clasele IX–XII",
+      description:
+        "Curs complet de Informatică (Python) structurat pe clasele IX–XII: 4 capitole, 88 module, 528 sublecții, cu exerciții interactive și verificare a înțelegerii.",
+      provider: {
+        "@type": "EducationalOrganization",
+        name: "Academia Python",
+        url: "https://www.academiapython.ro",
+      },
+      educationalLevel: "Liceu (IX–XII)",
+      teaches: ["Programare Python", "Algoritmi", "Structuri de date", "Baze de date", "Învățare automată"],
+      inLanguage: "ro",
+      isAccessibleForFree: true,
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: "online",
+        courseWorkload: "PT528H",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "RON",
+        price: "199.00",
+        availability: "https://schema.org/InStock",
+        url: "https://www.academiapython.ro/preturi",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -27,6 +110,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ro"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background">
         <HeaderConditional>
           <Header />

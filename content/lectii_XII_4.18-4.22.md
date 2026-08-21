@@ -45,6 +45,14 @@ De ce rețelele neuronale sunt considerate "cutii negre" față de arborele de d
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.19 — Biblioteca Matplotlib: vizualizarea datelor
 
 ### 🔄 4.19.1 Recapitulare
@@ -87,6 +95,14 @@ Folosește `scatter` pentru a vizualiza 2 features ale unui set de date.
 De ce vizualizarea e importantă înainte de a alege un model ML?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.20 — Biblioteca Pandas: DataFrame și statistici descriptive
 
@@ -132,6 +148,14 @@ De ce DataFrame e mai util decât o listă de dicționare pentru date cu multe c
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.21 — Biblioteca Scikit-learn: antrenare, predicție, evaluare
 
 ### 🔄 4.21.1 Recapitulare
@@ -174,6 +198,14 @@ Folosește `cross_val_score` pentru o evaluare mai robustă.
 De ce e greșit să evaluezi modelul pe aceleași date pe care l-ai antrenat?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.22 — Biblioteca NumPy: operații cu matrici
 
@@ -219,3 +251,11 @@ Creează o matrice 2×2 și calculează suma pe linii și coloane.
 ### ✅ 4.22.6 Verifică-ți înțelegerea
 
 De ce NumPy e mai rapid decât listele Python pentru operații matematice?
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::

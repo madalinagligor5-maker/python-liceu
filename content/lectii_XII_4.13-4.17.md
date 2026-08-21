@@ -39,6 +39,14 @@ Care e diferența între învățarea supervizată și cea nesupervizată, print
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.14 — Pregătirea datelor (normalizare, valori lipsă)
 
 ### 🔄 4.14.1 Recapitulare
@@ -77,6 +85,14 @@ Scrie normalizarea min-max pentru o listă de numere.
 De ce normalizarea e importantă când unele features au valori de ordinul miilor, altele de ordinul unităților?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.15 — Învățare nesupervizată: K-means
 
@@ -124,6 +140,14 @@ De ce K-means are nevoie de `k` dat, și cum alegem `k` în practică?
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.16 — Învățare supervizată: regresie liniară
 
 ### 🔄 4.16.1 Recapitulare
@@ -164,6 +188,14 @@ Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
 Când folosești regresie liniară în loc de clasificare?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.17 — Învățare supervizată: KNN și arbore de decizie
 
@@ -207,3 +239,11 @@ Antrenează un arbore de decizie și afișează structura (sau importanța featu
 ### ✅ 4.17.6 Verifică-ți înțelegerea
 
 De ce arborele de decizie e mai explicabil decât KNN pentru un non-tehnician?
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::

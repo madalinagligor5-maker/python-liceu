@@ -16,7 +16,13 @@ export type BlocCard = {
   variant: "tip" | "exemplu" | "atentie";
   html: string;
 };
-export type Bloc = BlocCode | BlocText | BlocCard;
+export type BlocVerificaCod = {
+  tip: "verifica-cod";
+  enunt: string;
+  template?: string;
+  expectedOutput?: string;
+};
+export type Bloc = BlocCode | BlocText | BlocCard | BlocVerificaCod;
 
 export type SublectieContinut = {
   cod: string; // ex. "1.1.1"
@@ -85,6 +91,51 @@ function parseazaBlocuri(lines: string[]): Bloc[] {
           ? `<div class="card-titlu">${inline(titluCard)}</div>${corpHtml}`
           : corpHtml,
       });
+      continue;
+    }
+
+    // Directivă de verificare prin cod: :::verifica-cod ... :::
+    // Adaugă la quiz un item de scriere/corectare cod (transfer real de
+    // competență), nu doar grilă. Format:
+    //   ## Enunț (opțional)
+    //   template: <cod>
+    //   output: <așteptat>
+    const verifMatch = linie.trim().match(/^:::verifica-cod\s*$/);
+    if (verifMatch) {
+      const inner: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== ":::") {
+        inner.push(lines[i]);
+        i++;
+      }
+      i++; // sară ::: de închidere
+      const liniiInner = inner.join("\n").split("\n");
+      let enunt = "";
+      let template: string | undefined;
+      let expectedOutput: string | undefined;
+      let buf: string[] = [];
+      const flushBuf = (label: "template" | "output") => {
+        const text = buf.join("\n").trim();
+        if (label === "template") template = text || undefined;
+        else expectedOutput = text || undefined;
+        buf = [];
+      };
+      for (const l of liniiInner) {
+        const tm = l.match(/^template:\s*(.*)$/);
+        const om = l.match(/^output:\s*(.*)$/);
+        if (tm) {
+          flushBuf("output");
+          buf = [tm[1]];
+        } else if (om) {
+          flushBuf("template");
+          buf = [om[1]];
+        } else {
+          buf.push(l);
+        }
+      }
+      flushBuf("output");
+      enunt = buf.join("\n").trim() || "Scrie codul care rezolvă cerința de mai sus.";
+      blocuri.push({ tip: "verifica-cod", enunt, template, expectedOutput });
       continue;
     }
 

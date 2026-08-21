@@ -257,10 +257,29 @@ export default function ExercitiiInteractive({
                     {arataHint[ex.id] ? "Ascunde indiciul" : "Arată un indiciu"}
                   </button>
                   {arataHint[ex.id] && (
-                    <p className="mt-1 rounded-lg bg-brand-light/60 p-2 font-mono text-xs text-brand-dark">
-                      {ex.hint}
-                    </p>
+                    <div className="mt-1 space-y-1">
+                      <p className="rounded-lg bg-brand-light/60 p-2 font-mono text-xs text-brand-dark">
+                        {ex.hint}
+                      </p>
+                      {ex.hint2 && (
+                        <p className="rounded-lg bg-brand-light/60 p-2 font-mono text-xs text-brand-dark">
+                          <span className="font-semibold">Alt indiciu: </span>
+                          {ex.hint2}
+                        </p>
+                      )}
+                    </div>
                   )}
+                </div>
+              )}
+
+              {ex.extindere && (
+                <div className="mt-2">
+                  <details className="rounded-lg border border-dashed border-brand-border bg-brand-light/30 p-2">
+                    <summary className="cursor-pointer text-xs font-semibold text-brand-dark">
+                      Vrei mai mult? Încearcă varianta de extindere →
+                    </summary>
+                    <p className="mt-2 text-sm text-foreground/80">{ex.extindere}</p>
+                  </details>
                 </div>
               )}
             </div>

@@ -55,6 +55,17 @@ print(d)
 4. Când alegi un dicționar în loc de listă?
    a) Mereu  b) **Când datele au o structură etichetă→info**  c) Niciodată
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.12 — Clasa dict: acces și metode uzuale
 
 ### 🔄 2.12.1 Recapitulare
@@ -111,6 +122,17 @@ val = ___  # folosește .get() cu implicit 0
 
 4. `.values()` returnează:
    a) Cheile  b) **Valorile**  c) Perechile
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
 
 # Modulul 2.13 — Modelul conceptual: tuplu
 
@@ -171,6 +193,17 @@ print(x, y)
 4. `punct[0] = 1` produce:
    a) Modificare  b) **Eroare (imutabil)**  c) Nothing
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.14 — Clasa tuple: operatori și metode
 
 ### 🔄 2.14.1 Recapitulare
@@ -227,3 +260,14 @@ singur = ___  # tuplu cu valoarea 5
 
 4. `t.index(x)` returnează:
    a) **Prima poziție a lui x**  b) Numărul de apariții  c) True/False
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::

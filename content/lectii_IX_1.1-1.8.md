@@ -104,6 +104,17 @@ print("Aria este:", ___)  # completează aici
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.2 — Reprezentarea algoritmilor: scheme logice, pseudocod, cod
 
 ### 🔄 1.2.1 Recapitulare
@@ -216,6 +227,17 @@ temperatura = 33
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.3 — Eficiența unui algoritm — noțiuni de bază
 
 ### 🔄 1.3.1 Recapitulare
@@ -320,6 +342,17 @@ print(suma1 == suma2)
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.4 — Subprograme (funcții): definire și apel
 
 ### 🔄 1.4.1 Recapitulare
@@ -408,6 +441,17 @@ Scrie codul care apelează funcția pentru numărul 17 și afișează rezultatul
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
+
 # Modulul 1.5 — Variabile locale și globale, transmiterea prin parametri
 
 ### 🔄 1.5.1 Recapitulare
@@ -487,6 +531,17 @@ dubleaza_si_afiseaza(7)
    a) Pentru că variabilele locale au nume interzise  b) **Pentru că variabila locală nu mai există în afara funcției**  c) Pentru că Python nu permite variabile în funcții
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.6 — Funcții predefinite pentru calcule și pentru colecții
 
@@ -574,6 +629,17 @@ print(cea_mai_mica, cea_mai_mare, numar_zile)
    a) O buclă care adună manual  b) **`sum(lista) / len(lista)`**  c) `max(lista) - min(lista)`
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.7 — Prelucrarea cifrelor unui număr
 
@@ -669,6 +735,17 @@ print("Numărul are", numar_cifre, "cifre")
    a) Crește  b) **Scade cu una**  c) Rămâne la fel
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::
 
 # Modulul 1.8 — Divizori, multipli, algoritmul lui Euclid
 
@@ -775,3 +852,14 @@ print(numar_divizori)
 
 4. În algoritmul lui Euclid prin împărțiri, când se oprește bucla `while b != 0`?
    a) Când `a` devine 0  b) **Când `b` devine 0**  c) Când `a` și `b` sunt egale
+
+
+:::verifica-cod
+Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
+template: def salut(nume):
+    # completeaza
+    pass
+
+salut('Ana')
+output: Salut, Ana!
+:::

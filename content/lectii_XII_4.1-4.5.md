@@ -43,6 +43,14 @@ De ce fiecare entitate are nevoie de o cheie (atribut care identifică unic)?
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.2 — Modelul entitate-relație: relații și cardinalitate
 
 ### 🔄 4.2.1 Recapitulare
@@ -83,6 +91,14 @@ Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
 De ce o relație M:N nu poate fi reprezentată doar prin chei externe într-una din tabele?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.3 — Diagrama ERD și maparea la modelul fizic
 
@@ -126,6 +142,14 @@ Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
 De ce la maparea M:N rezultă o tabelă suplimentară față de cele două entități?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.4 — Chei primare, chei externe, constrângeri de integritate
 
@@ -175,6 +199,14 @@ De ce e utilă integritatea referențială și ce se întâmplă dacă e încăl
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.5 — Forme normale: FN1, FN2, FN3
 
 ### 🔄 4.5.1 Recapitulare
@@ -213,3 +245,11 @@ Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
 ### ✅ 4.5.6 Verifică-ți înțelegerea
 
 De ce normalizarea previne anomalii la actualizare (ex. schimbi orașul unui client în 5 rânduri)?
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::

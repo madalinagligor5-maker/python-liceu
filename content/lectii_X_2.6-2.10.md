@@ -56,6 +56,17 @@ ___  # metoda care numără aparițiile unui subșir
 4. `",".join(["a","b"])` produce:
    a) "ab"  b) **"a,b"**  c) "[a,b]"
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.7 — Clasa str: indexare, slicing, concatenare, comparare
 
 ### 🔄 2.7.1 Recapitulare
@@ -111,6 +122,17 @@ ___  # slicing cu pas 2
 
 4. `"x" in "examen"` este:
    a) **True**  b) False  c) None
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
 
 # Modulul 2.8 — Criptare simplă: substituție și cifrul lui Cezar
 
@@ -185,6 +207,17 @@ def decriptare_cezar(text, deplasare):
 
 4. Caracterele non-litere (spații, cifre):
    a) Se criptează și ele  b) **Rămân neschimbate**  c) Se șterg
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
 
 # Modulul 2.9 — Cifrul Vigenère
 
@@ -273,6 +306,17 @@ def decriptare_vigenere(text, cheie):
 4. Decriptarea Vigenère folosește:
    a) **Deplasare negativă per literă**  b) O altă cheie  c) Forță brută
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.10 — Suma de control (algoritmul lui Fletcher)
 
 ### 🔄 2.10.1 Recapitulare
@@ -339,3 +383,14 @@ def verifica(a, b):
 
 4. La destinație se:
    a) Calculează o nouă cheie  b) **Recalculează și compară suma**  c) Șterge datele
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::

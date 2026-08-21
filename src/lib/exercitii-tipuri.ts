@@ -10,6 +10,12 @@ export type Exercitiu =
       template?: string;
       expectedOutput?: string;
       hint?: string;
+      /** Al doilea nivel de sprijin: un indiciu mai explicit pentru când
+       *  elevul e blocat după primul indiciu. */
+      hint2?: string;
+      /** Variantă de extindere pentru cei care termină repede: o cerință
+       *  mai grea pe aceeași temă. */
+      extindere?: string;
     }
   // Exercițiu în care elevul pune pașii în ordinea corectă.
   | {
@@ -20,6 +26,8 @@ export type Exercitiu =
       pasi: string[];
       ordineCorecta: string[];
       hint?: string;
+      hint2?: string;
+      extindere?: string;
     }
   // Răspuns liber (text) cu dezvăluire model.
   | {
@@ -29,6 +37,8 @@ export type Exercitiu =
       enunt: string;
       modelRaspuns?: string;
       hint?: string;
+      hint2?: string;
+      extindere?: string;
     };
 
 export const NIVELE: { id: Nivel; eticheta: string }[] = [

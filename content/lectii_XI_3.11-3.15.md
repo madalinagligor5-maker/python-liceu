@@ -46,6 +46,17 @@ De ce DFS recursează natural, în timp ce BFS are nevoie de o coadă?
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.12 — Matricea drumurilor — algoritmul Roy-Warshall
 
 ### 🔄 3.12.1 Recapitulare
@@ -93,6 +104,17 @@ Folosește rezultatul pentru a număra perechile de vârfuri între care există
 De ce bucla `k` (vârful intermediar) e cea din exterior, nu una din interioare?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.13 — Drumuri de cost minim — algoritmul lui Dijkstra
 
@@ -143,6 +165,17 @@ De ce Dijkstra e corect când toate costurile sunt pozitive, dar eșuează cu co
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.14 — Drumuri de cost minim — algoritmul Roy-Floyd
 
 ### 🔄 3.14.1 Recapitulare
@@ -189,6 +222,17 @@ Detectează dacă graful are un ciclu de cost negativ (verifică dacă vreo diag
 De ce Roy-Floyd e O(n³) deși pare să calculeze n² distanțe independente?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.15 — Arbore de acoperire minim — algoritmul lui Prim
 
@@ -241,3 +285,14 @@ Modifică să returneze și lista muchiilor alese (nu doar costul).
 ### ✅ 3.15.6 Verifică-ți înțelegerea
 
 De ce Prim și Kruskal dau același cost total pentru MST, deși aleg muchiile în ordine diferită?
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::

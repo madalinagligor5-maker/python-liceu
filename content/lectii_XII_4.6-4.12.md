@@ -48,6 +48,14 @@ De ce ai nevoie de ambele — Connection (pentru commit/close) și Cursor (pentr
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.7 — SQL: interogări SELECT, proiecție, ordonare
 
 ### 🔄 4.7.1 Recapitulare
@@ -91,6 +99,14 @@ Ce diferență e între `WHERE` (filtrare rânduri) și proiecția `SELECT col1,
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.8 — SQL: funcții agregate și grupare
 
 ### 🔄 4.8.1 Recapitulare
@@ -131,6 +147,14 @@ Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studen
 De ce `HAVING COUNT(*) > 1` e permis, dar `WHERE COUNT(*) > 1` nu?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.9 — SQL: JOIN și subinterogări
 
@@ -178,6 +202,14 @@ Când preferi o subinterogare în loc de JOIN (sau invers)?
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.10 — SQL: DML — inserare, actualizare, ștergere
 
 ### 🔄 4.10.1 Recapitulare
@@ -220,6 +252,14 @@ De ce `DELETE FROM Tabela` (fără WHERE) e periculos și cum îl refuzi dacă e
 
 ---
 
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
+
 # Modulul 4.11 — SQL: DDL — creare și modificare a structurii
 
 ### 🔄 4.11.1 Recapitulare
@@ -260,6 +300,14 @@ Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
 Care e diferența între DDL (`CREATE/ALTER`) și DML (`INSERT/UPDATE`)?
 
 ---
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::
 
 # Modulul 4.12 — SQL: DCL și TCL — drepturi și tranzacții
 
@@ -304,3 +352,11 @@ Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO
 ### ✅ 4.12.6 Verifică-ți înțelegerea
 
 De ce tranzacțiile sunt esențiale pentru operațiuni financiare (și nu doar `commit` simplu)?
+
+
+:::verifica-cod
+Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
+template: # Scrie aici codul
+
+
+:::

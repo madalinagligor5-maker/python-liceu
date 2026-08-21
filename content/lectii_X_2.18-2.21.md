@@ -69,6 +69,17 @@ def quicksort(lista):
 4. Fără caz de bază, recursivitatea:
    a) Merge  b) **Eroare infinită**  c) Returnează lista
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.19 — Sortare prin interclasare și quicksort
 
 ### 🔄 2.19.1 Recapitulare
@@ -143,6 +154,17 @@ def quicksort(lista):
 4. Merge sort folosește:
    a) Pivot  b) **Interclasarea**  c) Bule
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.20 — Algoritmi de umplere (Flood Fill)
 
 ### 🔄 2.20.1 Recapitulare
@@ -210,6 +232,17 @@ def flood_fill(grila, i, j, veche, noua):
 
 4. Flood Fill e folosit în:
    a) Sortare  b) **Editoare grafice (găleata de vopsea)**  c) Căutare binară
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
 
 # Modulul 2.21 — Metoda Greedy
 
@@ -286,3 +319,14 @@ def rest_greedy(suma, monede):
 
 4. Pentru rest la bani cu monede uzuale, Greedy:
    a) Eroare  b) **Este optim**  c) E suboptimal
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::

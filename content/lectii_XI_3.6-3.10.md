@@ -48,6 +48,17 @@ De ce Fibonacci recursiv naiv e O(2ⁿ), iar cu memoizare devine O(n)?
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.7 — Modelul conceptual graf: concepte de bază
 
 ### 🔄 3.7.1 Recapitulare
@@ -87,6 +98,17 @@ Scrie o funcție care verifică dacă un graf neorientat e **complet** (orice pe
 De ce în orice graf neorientat, suma gradelor tuturor vârfurilor e egală cu 2 × numărul de muchii?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.8 — Reprezentarea grafurilor (matrice, liste de adiacență)
 
@@ -138,6 +160,17 @@ Când preferi matricea de adiacență în detrimentul listei?
 
 ---
 
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
+
 # Modulul 3.9 — Tipuri de grafuri (complet, conex, ponderat, hamiltonian, eulerian)
 
 ### 🔄 3.9.1 Recapitulare
@@ -175,6 +208,17 @@ Scrie o funcție care verifică dacă un graf are toate gradele pare (condiție 
 De ce găsirea unui ciclu hamiltonian e mult mai grea (NP-completă) decât verificarea unui circuit eulerian?
 
 ---
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::
 
 # Modulul 3.10 — Parcurgerea grafurilor: BFS
 
@@ -224,3 +268,14 @@ Numără componentele conexe ale unui graf folosind BFS repetat.
 ### ✅ 3.10.6 Verifică-ți înțelegerea
 
 De ce BFS găsește întotdeauna drumul cu număr minim de muchii între două vârfuri?
+
+
+:::verifica-cod
+Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
+template: def numara(el, lst):
+    # completeaza
+    pass
+
+print(numara(2,[1,2,2,3]))
+output: 2
+:::

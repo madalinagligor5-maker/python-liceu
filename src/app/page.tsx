@@ -73,6 +73,26 @@ const FAQ = [
     raspuns:
       "Poți anula oricând din pagina ta de cont. Nu e nicio obligație pe termen lung și nu plătești nimic în plus.",
   },
+  {
+    intrebare: "Ce fac dacă mă blochez la un exercițiu?",
+    raspuns:
+      "Fiecare exercițiu are un indiciu (și, la nevoie, un al doilea indiciu mai explicit) și un răspuns-model. La verificare primești feedback imediat, iar la exercițiile cu cod vezi rezultatul exact al rulării.",
+  },
+  {
+    intrebare: "Mă ajută la bacalaureat la Informatică?",
+    raspuns:
+      "Da. Conținutul acoperă algoritmi, structuri de date, programare și baze de date — exact domeniile evaluabile la bacalaureatul de Informatică. Lecțiile urmează programa oficială, așa că practica de aici se traduce direct la examen.",
+  },
+  {
+    intrebare: "Aveți un preț pentru o clasă sau pentru o școală?",
+    raspuns:
+      "Da, pregătim licențe de grup (o clasă întreagă sau un liceu). Scrie-ne de pe pagina de contact și îți trimitem o ofertă pentru numărul de elevi și durata dorită.",
+  },
+  {
+    intrebare: "Ce se întâmplă cu progresul meu dacă îmi schimb planul?",
+    raspuns:
+      "Progresul tău (module făcute, XP, insignele) rămâne salvat în cont, indiferent dacă treci de la gratuit la abonament sau schimbi între planul lunar și cel anual. Nu pierzi nimic din ce ai parcurs.",
+  },
 ];
 
 function prenumeDinEmail(email: string): string {

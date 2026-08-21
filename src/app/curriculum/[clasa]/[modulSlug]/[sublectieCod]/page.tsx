@@ -14,6 +14,7 @@ import {
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import SublectieGate from "@/components/SublectieGate";
+import PythonEditor from "@/components/PythonEditor";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
@@ -52,6 +53,9 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const intrebari = await getQuizSublectie(sublectieCod);
   const exercitii = await getExercitiiSublectie(sublectieCod);
   const predic = await getPredicție(sublectieCod);
+  const itemsCod = (continut?.blocuri ?? []).filter(
+    (b) => b.tip === "verifica-cod"
+  );
 
   // Pentru o pagină de quiz (1.X.6), exercițiile necesare înainte de deblocare
   // sunt cele de pe 1.X.4 și 1.X.5 (care stau pe alte pagini). Le deducem din cod.
@@ -109,6 +113,43 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       </article>
 
       {predic && <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />}
+
+      {itemsCod.length > 0 && (
+        <div className="mt-6 space-y-6">
+          <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
+            <span className="text-2xl" aria-hidden="true">
+              ✍️
+            </span>
+            Scrie tu codul — verificare prin execuție
+          </h3>
+          {itemsCod.map((b, idx) => {
+            const item = b as Extract<
+              import("@/lib/markdownMini").Bloc,
+              { tip: "verifica-cod" }
+            >;
+            return (
+              <div
+                key={idx}
+                className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
+              >
+                <p className="text-sm font-medium text-foreground">{item.enunt}</p>
+                <div className="mt-3">
+                  <PythonEditor
+                    initialCode={item.template || "# Scrie aici codul tău Python\n"}
+                    expectedOutput={item.expectedOutput}
+                    titlu="Editor Python (rulează în browser)"
+                    height={item.template ? 180 : 140}
+                  />
+                </div>
+                <p className="mt-2 text-xs text-foreground/55">
+                  Rulește codul — dacă output-ul corespunde, ai demonstrat că
+                  stăpânești conceptul, nu doar l-ai recunoscut în grilă.
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <SublectieGate
         exercitii={exercitii}

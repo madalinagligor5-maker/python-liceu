@@ -103,6 +103,17 @@ def cautare_binara(lista, x):
 4. Dacă `lista[mijloc] < x`, ce facem?
    a) `dreapta = mijloc - 1`  b) **`stanga = mijloc + 1`**  c) Returnăm -1
 
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
+
 # Modulul 2.3 — Modelul conceptual mulțime
 
 ### 🔄 2.3.1 Recapitulare
@@ -167,3 +178,14 @@ print(10 ___ m)  # True (completează operatorul de apartenență)
 
 4. `3 in {1, 2, 3}` returnează:
    a) **True**  b) False  c) 3
+
+
+:::verifica-cod
+Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
+template: def este_par(x):
+    # completeaza
+    pass
+
+print(este_par(4))
+output: True
+:::
