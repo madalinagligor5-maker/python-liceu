@@ -81,7 +81,7 @@ def interclaseaza(a, b):
 4. Dacă una din liste se termină, ce se adaugă?
    a) Nimic  b) **Restul celeilalte liste**  c) Zero
 
-## 2.4 Clasa set: operatori și metode
+# Modulul 2.4 — Clasa set: operatori și metode
 
 ### 🔄 2.4.1 Recapitulare
 
@@ -143,7 +143,7 @@ print(m)
 4. `a <= b` verifică:
    a) **Dacă a e submulțime a lui b**  b) Dacă a e mai mare  c) Dacă sunt egale
 
-## 2.5 Modelul conceptual: șir de caractere
+# Modulul 2.5 — Modelul conceptual: șir de caractere
 
 ### 🔄 2.5.1 Recapitulare
 

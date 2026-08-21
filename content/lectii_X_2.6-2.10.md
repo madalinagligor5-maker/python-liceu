@@ -56,7 +56,7 @@ ___  # metoda care numără aparițiile unui subșir
 4. `",".join(["a","b"])` produce:
    a) "ab"  b) **"a,b"**  c) "[a,b]"
 
-## 2.7 Clasa str: indexare, slicing, concatenare, comparare
+# Modulul 2.7 — Clasa str: indexare, slicing, concatenare, comparare
 
 ### 🔄 2.7.1 Recapitulare
 
@@ -112,7 +112,7 @@ ___  # slicing cu pas 2
 4. `"x" in "examen"` este:
    a) **True**  b) False  c) None
 
-## 2.8 Criptare simplă: substituție și cifrul lui Cezar
+# Modulul 2.8 — Criptare simplă: substituție și cifrul lui Cezar
 
 ### 🔄 2.8.1 Recapitulare
 
@@ -186,7 +186,7 @@ def decriptare_cezar(text, deplasare):
 4. Caracterele non-litere (spații, cifre):
    a) Se criptează și ele  b) **Rămân neschimbate**  c) Se șterg
 
-## 2.9 Cifrul Vigenère
+# Modulul 2.9 — Cifrul Vigenère
 
 ### 🔄 2.9.1 Recapitulare
 
@@ -273,7 +273,7 @@ def decriptare_vigenere(text, cheie):
 4. Decriptarea Vigenère folosește:
    a) **Deplasare negativă per literă**  b) O altă cheie  c) Forță brută
 
-## 2.10 Suma de control (algoritmul lui Fletcher)
+# Modulul 2.10 — Suma de control (algoritmul lui Fletcher)
 
 ### 🔄 2.10.1 Recapitulare
 

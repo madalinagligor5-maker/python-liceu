@@ -59,7 +59,7 @@ ___  # accesează "nota" din primul element
 4. La accesul imbricat, eroarea comună e:
    a) Prea multe bucle  b) **Nivelul greșit de indexare**  c) Sintaxa greșită
 
-## 2.16 Elemente de limbaj pentru modele mixte
+# Modulul 2.16 — Elemente de limbaj pentru modele mixte
 
 ### 🔄 2.16.1 Recapitulare
 
@@ -117,7 +117,7 @@ ___  # linia 2 (index 2), coloana 3 (index 2)
 4. O matrice e implementată ca:
    a) Dicționar  b) **Listă de liste**  c) Tuplu
 
-## 2.17 Subprograme recursive
+# Modulul 2.17 — Subprograme recursive
 
 ### 🔄 2.17.1 Recapitulare
 

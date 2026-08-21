@@ -103,7 +103,7 @@ def cautare_binara(lista, x):
 4. Dacă `lista[mijloc] < x`, ce facem?
    a) `dreapta = mijloc - 1`  b) **`stanga = mijloc + 1`**  c) Returnăm -1
 
-## 2.3 Modelul conceptual mulțime
+# Modulul 2.3 — Modelul conceptual mulțime
 
 ### 🔄 2.3.1 Recapitulare
 

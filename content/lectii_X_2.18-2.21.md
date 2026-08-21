@@ -69,7 +69,7 @@ def quicksort(lista):
 4. Fără caz de bază, recursivitatea:
    a) Merge  b) **Eroare infinită**  c) Returnează lista
 
-## 2.19 Sortare prin interclasare și quicksort
+# Modulul 2.19 — Sortare prin interclasare și quicksort
 
 ### 🔄 2.19.1 Recapitulare
 
@@ -143,7 +143,7 @@ def quicksort(lista):
 4. Merge sort folosește:
    a) Pivot  b) **Interclasarea**  c) Bule
 
-## 2.20 Algoritmi de umplere (Flood Fill)
+# Modulul 2.20 — Algoritmi de umplere (Flood Fill)
 
 ### 🔄 2.20.1 Recapitulare
 
@@ -211,7 +211,7 @@ def flood_fill(grila, i, j, veche, noua):
 4. Flood Fill e folosit în:
    a) Sortare  b) **Editoare grafice (găleata de vopsea)**  c) Căutare binară
 
-## 2.21 Metoda Greedy
+# Modulul 2.21 — Metoda Greedy
 
 ### 🔄 2.21.1 Recapitulare
 

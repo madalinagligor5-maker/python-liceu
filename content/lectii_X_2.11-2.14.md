@@ -55,7 +55,7 @@ print(d)
 4. Când alegi un dicționar în loc de listă?
    a) Mereu  b) **Când datele au o structură etichetă→info**  c) Niciodată
 
-## 2.12 Clasa dict: acces și metode uzuale
+# Modulul 2.12 — Clasa dict: acces și metode uzuale
 
 ### 🔄 2.12.1 Recapitulare
 
@@ -112,7 +112,7 @@ val = ___  # folosește .get() cu implicit 0
 4. `.values()` returnează:
    a) Cheile  b) **Valorile**  c) Perechile
 
-## 2.13 Modelul conceptual: tuplu
+# Modulul 2.13 — Modelul conceptual: tuplu
 
 ### 🔄 2.13.1 Recapitulare
 
@@ -171,7 +171,7 @@ print(x, y)
 4. `punct[0] = 1` produce:
    a) Modificare  b) **Eroare (imutabil)**  c) Nothing
 
-## 2.14 Clasa tuple: operatori și metode
+# Modulul 2.14 — Clasa tuple: operatori și metode
 
 ### 🔄 2.14.1 Recapitulare
 
