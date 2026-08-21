@@ -32,6 +32,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/despre" className="hover:text-brand">
+                Despre
+              </Link>
+            </li>
+            <li>
               <Link href="/cont" className="hover:text-brand">
                 Contul meu
               </Link>

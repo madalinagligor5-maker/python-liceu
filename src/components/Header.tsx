@@ -7,6 +7,7 @@ const linkuri = [
   { href: "/curriculum", label: "Curriculum" },
   { href: "/lectii", label: "Lecții" },
   { href: "/preturi", label: "Prețuri" },
+  { href: "/despre", label: "Despre" },
 ];
 
 export default async function Header() {

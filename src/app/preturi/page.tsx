@@ -47,6 +47,23 @@ export default function PreturiPage() {
           Primele 5 module din clasa a IX-a rămân gratuite, oricând, fără cont. Abonamentul deblochează tot restul
           conținutului.
         </p>
+
+        <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-brand bg-brand-light/50 p-4">
+          <p className="text-sm font-semibold text-brand-dark">
+            🎁 Încearcă 7 zile gratuit — fără card, fără obligații
+          </p>
+          <p className="mt-1 text-sm text-foreground/70">
+            Vezi dacă ți se potrivește. Lași un review după 7 zile și intri la
+            tombola pentru{" "}
+            <strong>6 luni de abonament gratuit</strong>.
+          </p>
+          <a
+            href="/tombola"
+            className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          >
+            Vezi detaliile tombolă →
+          </a>
+        </div>
       </div>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
