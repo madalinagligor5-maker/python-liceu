@@ -103,6 +103,11 @@ export default function PreturiPage() {
               plan={plan.plan}
               className="mt-6 w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
             />
+
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-foreground/50">
+              <span aria-hidden="true">↩️</span>
+              Ai 14 zile de răzgândire — rambursează-te integral dacă nu ți se potrivește.
+            </p>
           </div>
         ))}
       </div>
