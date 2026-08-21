@@ -408,5 +408,255 @@
       "[4, 1, 1, 1]"
     ],
     "corect": 0
+  },
+  "3.1.3": {
+    "cod": "n1 = Nod(10)\nn2 = Nod(20)\nn3 = Nod(30)\nn1.urmator = n2\nn2.urmator = n3\nprint(n1.urmator.urmator.valoare)",
+    "variante": [
+      "10",
+      "20",
+      "30",
+      "None"
+    ],
+    "corect": "30"
+  },
+  "3.2.3": {
+    "cod": "cap = None\ncap = adauga_sfarsit(cap, 1)\ncap = adauga_sfarsit(cap, 2)\ncap = adauga_inceput(cap, 0)\n# Afiseaza valorile la parcurgere",
+    "variante": [
+      "0 1 2",
+      "1 2 0",
+      "2 1 0",
+      "0 2 1"
+    ],
+    "corect": "0 1 2"
+  },
+  "3.3.3": {
+    "cod": "def f(n):\n    if n == 0:\n        return 1\n    total = 0\n    for i in range(2):\n        total += f(n - 1)\n    return total\nprint(f(3))",
+    "variante": [
+      "4",
+      "6",
+      "8",
+      "16"
+    ],
+    "corect": "8"
+  },
+  "3.4.3": {
+    "cod": "# Problema reginelor pentru n=4\n# Cate solutii de plasare exista?",
+    "variante": [
+      "0",
+      "1",
+      "2",
+      "4"
+    ],
+    "corect": "2"
+  },
+  "3.5.3": {
+    "cod": "# Submultimile multimii {1,2,3,4}\n# Cate submultimi are?",
+    "variante": [
+      "8",
+      "12",
+      "16",
+      "24"
+    ],
+    "corect": "16"
+  },
+  "3.6.3": {
+    "cod": "from functools import lru_cache\n@lru_cache(None)\ndef fib(n):\n    if n < 2: return n\n    return fib(n-1) + fib(n-2)\nprint(fib(10))",
+    "variante": [
+      "10",
+      "34",
+      "55",
+      "89"
+    ],
+    "corect": "55"
+  },
+  "3.7.3": {
+    "cod": "# Graful are 5 varfuri si 7 muchii neorientate.\n# Care e suma gradelor tuturor varfurilor?",
+    "variante": [
+      "7",
+      "10",
+      "14",
+      "35"
+    ],
+    "corect": "14"
+  },
+  "3.8.3": {
+    "cod": "adiacenta = {1:[2,3], 2:[1], 3:[1,2]}\n# Cat are gradul varfului 1?",
+    "variante": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "corect": "2"
+  },
+  "3.9.3": {
+    "cod": "# Graful complet K4 are 4 varfuri. Cate muchii are?",
+    "variante": [
+      "4",
+      "6",
+      "8",
+      "12"
+    ],
+    "corect": "6"
+  },
+  "3.10.3": {
+    "cod": "adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}\n# In ce ordine viziteaza BFS din 1 (vecini in ordine)?",
+    "variante": [
+      "1 2 3 4",
+      "1 3 2 4",
+      "1 4 2 3",
+      "1 2 4 3"
+    ],
+    "corect": "1 2 3 4"
+  },
+  "3.11.3": {
+    "cod": "adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}\n# In ce ordine viziteaza DFS din 1 (vecini in ordine)?",
+    "variante": [
+      "1 2 4 3",
+      "1 3 4 2",
+      "1 2 3 4",
+      "1 4 2 3"
+    ],
+    "corect": "1 2 4 3"
+  },
+  "3.12.3": {
+    "cod": "a = [[0,1,0],[0,0,1],[1,0,0]]\n# Dupa Roy-Warshall, exista drum de la 1 la 3 (a[0][2])?",
+    "variante": [
+      "Da (1)",
+      "Nu (0)",
+      "Depinde",
+      "Eroare"
+    ],
+    "corect": "Da (1)"
+  },
+  "3.13.3": {
+    "cod": "graf = {1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}\n# Distanta minima de la 1 la 2?",
+    "variante": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "corect": "3"
+  },
+  "3.14.3": {
+    "cod": "d = [[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]]\n# Distanta minima de la 1 la 3 dupa Roy-Floyd?",
+    "variante": [
+      "3",
+      "4",
+      "infinit",
+      "1"
+    ],
+    "corect": "4"
+  },
+  "3.15.3": {
+    "cod": "graf = {1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}\n# Costul MST (Prim din 1)?",
+    "variante": [
+      "3",
+      "5",
+      "6",
+      "7"
+    ],
+    "corect": "3"
+  },
+  "3.16.3": {
+    "cod": "muchii = [(1,2,1),(2,3,2),(1,3,4)]\n# Costul MST (Kruskal)?",
+    "variante": [
+      "3",
+      "4",
+      "5",
+      "7"
+    ],
+    "corect": "3"
+  },
+  "3.17.3": {
+    "cod": "# Un arbore are 10 varfuri. Cate muchii are?",
+    "variante": [
+      "9",
+      "10",
+      "11",
+      "20"
+    ],
+    "corect": "9"
+  },
+  "3.18.3": {
+    "cod": "rad = None\nfor x in [5, 3, 8, 1, 4]:\n    rad = inserare(rad, x)\n# Fiul stang al radacinii (rad.v=5)?",
+    "variante": [
+      "3",
+      "8",
+      "1",
+      "4"
+    ],
+    "corect": "3"
+  },
+  "3.19.3": {
+    "cod": "import heapq\nh = []\nfor x in [3, 1, 2]:\n    heapq.heappush(h, x)\nprint(heapq.heappop(h), heapq.heappop(h))",
+    "variante": [
+      "1 2",
+      "3 1",
+      "2 1",
+      "1 3"
+    ],
+    "corect": "1 2"
+  },
+  "3.20.3": {
+    "cod": "# BST cu 5,3,8,1,4 (rad=5)\n# Ce afiseaza inordinea?",
+    "variante": [
+      "1 3 4 5 8",
+      "5 3 1 4 8",
+      "1 4 3 8 5",
+      "8 5 4 3 1"
+    ],
+    "corect": "1 3 4 5 8"
+  },
+  "3.21.3": {
+    "cod": "rad = None\nfor x in [50, 30, 70, 20, 40]:\n    rad = inserare(rad, x)\n# Exista 40 in arbore?",
+    "variante": [
+      "Da",
+      "Nu",
+      "Eroare",
+      "Doar 20"
+    ],
+    "corect": "Da"
+  },
+  "3.22.3": {
+    "cod": "c = Caine('Rex')\nprint(c.nume, c.sunet())",
+    "variante": [
+      "Rex Ham!",
+      "Rex ...",
+      "Caine Ham!",
+      "Rex Rex"
+    ],
+    "corect": "Rex Ham!"
+  },
+  "3.23.3": {
+    "cod": "c = ContBancar('Ana', 100)\nc.retrage(30)\nprint(c.sold)",
+    "variante": [
+      "70",
+      "100",
+      "30",
+      "130"
+    ],
+    "corect": "70"
+  },
+  "3.24.3": {
+    "cod": "a = Angajat('Ion', 'dev')\nprint(a.nume, a.post)",
+    "variante": [
+      "Ion dev",
+      "Ion Angajat",
+      "dev Ion",
+      "Eroare"
+    ],
+    "corect": "Ion dev"
+  },
+  "3.25.3": {
+    "cod": "l = [1, 2, 3, 4]\nprint(list(map(lambda x: x**2, l)))",
+    "variante": [
+      "[1, 4, 9, 16]",
+      "[2, 4, 6, 8]",
+      "[1, 2, 3, 4]",
+      "[1, 4, 9, 16, 25]"
+    ],
+    "corect": "[1, 4, 9, 16]"
   }
 }

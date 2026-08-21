@@ -1062,5 +1062,405 @@
       "expectedOutput": "",
       "hint": "Pentru [1,4,5] și suma 8, Greedy dă 5+1+1+1 (4 monede), dar 4+4 (2 monede)."
     }
+  ],
+  "3.1.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează clasa Nod și funcția de parcurgere care afișează valorile unei liste înlănțuite de la cap la sfârșit (câte unul pe linie).",
+      "expectedOutput": "5\n8\n12",
+      "hint": " Folosește un `curent = cap` și avansează cu `curent = curent.urmator` cât timp nu e None."
+    }
+  ],
+  "3.1.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie funcția `lungime(cap)` care returnează numărul de noduri dintr-o listă înlănțuită.",
+      "expectedOutput": "3",
+      "hint": " Parcurge lista și numără nodurile."
+    }
+  ],
+  "3.2.4": [
+    {
+      "tip": "cod",
+      "enunt": "Completează `elimina_valoare(cap, x)` care elimină primul nod cu valoarea x dintr-o listă simplu înlănțuită și returnează noul cap.",
+      "expectedOutput": "1 3",
+      "hint": " Ține minte nodul anterior pentru a reface legătura."
+    }
+  ],
+  "3.2.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea y imediat după primul nod cu valoarea x.",
+      "expectedOutput": "1 2 9 3",
+      "hint": " Creează un nod nou și refă legăturile."
+    }
+  ],
+  "3.3.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un backtracking care generează și afișează toate șirurile de lungime n formate doar din 'A' și 'B'.",
+      "expectedOutput": "AA\nAB\nBA\nBB",
+      "hint": " La fiecare pas alegi 'A' sau 'B'."
+    }
+  ],
+  "3.3.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modifică generatorul să nu permită două 'A' alăturate în șir.",
+      "expectedOutput": "AB\nBA\nBB",
+      "hint": " Verifică dacă ultimul caracter adăugat e deja 'A'."
+    }
+  ],
+  "3.4.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează toate permutările listei [1, 2, 3].",
+      "expectedOutput": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1",
+      "hint": " Folosește backtracking: la fiecare poziție încearcă fiecare element nefolosit."
+    }
+  ],
+  "3.4.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modifică problema reginelor să returneze numărul de soluții pentru n dat, nu să le afișeze.",
+      "expectedOutput": "2",
+      "hint": " În loc de print, incrementează un contor."
+    }
+  ],
+  "3.5.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un backtracking care generează toate combinațiile de k elemente dintr-o listă de n (fără repetare).",
+      "expectedOutput": "1 2\n1 3\n2 3",
+      "hint": " Păstrează indexul de unde poți alege în continuare."
+    }
+  ],
+  "3.5.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie un backtracking care găsește o submulțime cu suma exact t dintr-o listă de numere (returnează prima găsită).",
+      "expectedOutput": "2 3",
+      "hint": " La fiecare pas decizi: incluzi elementul sau nu."
+    }
+  ],
+  "3.6.4": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o grilă m×n (doar dreapta/jos) folosind programare dinamică.",
+      "expectedOutput": "6",
+      "hint": " dp[i][j] = dp[i-1][j] + dp[i][j-1]."
+    }
+  ],
+  "3.6.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie PD pentru numărul de moduri de a face suma s cu monede dintr-o listă.",
+      "expectedOutput": "3",
+      "hint": " Pentru fiecare monedă, adună modurile de a face suma rămasă."
+    }
+  ],
+  "3.7.4": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează gradul fiecărui vârf pentru graful cu muchiile (1,2),(2,3),(3,4),(1,4).",
+      "expectedOutput": "2 2 2 2",
+      "hint": " Gradul = numărul de muchii incidente."
+    }
+  ],
+  "3.7.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care verifică dacă un graf neorientat e complet.",
+      "expectedOutput": "False",
+      "hint": " Verifică dacă orice pereche de vârfuri distincte e legată."
+    }
+  ],
+  "3.8.4": [
+    {
+      "tip": "cod",
+      "enunt": "Convertește o listă de muchii într-o listă de adiacență.",
+      "expectedOutput": "{1: [2], 2: [1, 3], 3: [2]}",
+      "hint": " Pentru fiecare muchie (a,b), adaugă b la a și a la b."
+    }
+  ],
+  "3.8.5": [
+    {
+      "tip": "cod",
+      "enunt": "Verifică dacă există muchie între două vârfuri date, folosind lista de adiacență.",
+      "expectedOutput": "True",
+      "hint": " Caută vecinul în lista de adiacență a primului vârf."
+    }
+  ],
+  "3.9.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o funcție care verifică dacă un graf neorientat e conex (parcurge din orice vârf).",
+      "expectedOutput": "True",
+      "hint": " Folosește BFS/DFS și vezi dacă ajungi la toate vârfurile."
+    }
+  ],
+  "3.9.5": [
+    {
+      "tip": "cod",
+      "enunt": "Verifică dacă un graf are toate gradele pare (condiție circuit eulerian).",
+      "expectedOutput": "True",
+      "hint": " Calculează gradul fiecărui vârf și verifică paritatea."
+    }
+  ],
+  "3.10.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie BFS care returnează drumul cel mai scurt (lista de vârfuri) de la start la țintă.",
+      "expectedOutput": "[1, 2, 4]",
+      "hint": " Ține minte predecesorul fiecărui vârf."
+    }
+  ],
+  "3.10.5": [
+    {
+      "tip": "cod",
+      "enunt": "Numără componentele conexe ale unui graf folosind BFS repetat.",
+      "expectedOutput": "1",
+      "hint": " Pentru fiecare vârf nevizitat, pornește un BFS nou."
+    }
+  ],
+  "3.11.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie DFS iterativ (cu stivă explicită) care afișează ordinea vizitării.",
+      "expectedOutput": "1 2 4 3",
+      "hint": " Folosește o listă ca stivă și explorează vecinii în ordine inversă."
+    }
+  ],
+  "3.11.5": [
+    {
+      "tip": "cod",
+      "enunt": "Detectează dacă un graf neorientat conține un ciclu folosind DFS.",
+      "expectedOutput": "True",
+      "hint": " Dacă găsești un vecin deja vizitat care nu e părintele, e ciclu."
+    }
+  ],
+  "3.12.4": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Roy-Warshall pe o matrice de adiacență (0/1).",
+      "expectedOutput": "[[1,1,1],[1,1,1],[1,1,1]]",
+      "hint": " d[i][j] = d[i][j] or (d[i][k] and d[k][j])."
+    }
+  ],
+  "3.12.5": [
+    {
+      "tip": "cod",
+      "enunt": "Numără perechile de vârfuri între care există drum (folosind Roy-Warshall).",
+      "expectedOutput": "6",
+      "hint": " Contorizează valorile 1 din matricea rezultată."
+    }
+  ],
+  "3.13.4": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Dijkstra și afișează distanța minimă de la sursă la fiecare vârf.",
+      "expectedOutput": "{1: 0, 2: 3, 3: 1}",
+      "hint": " Relaxează vecinii folosind o coadă de priorități."
+    }
+  ],
+  "3.13.5": [
+    {
+      "tip": "cod",
+      "enunt": "Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul.",
+      "expectedOutput": "[1, 3, 2]",
+      "hint": " Mergi înapoi de la țintă la sursă prin predecesori."
+    }
+  ],
+  "3.14.4": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Roy-Floyd pe o matrice de costuri cu infinit pentru muchii lipsă.",
+      "expectedOutput": "[[0, 3, 4], [inf, 0, 1], [inf, inf, 0]]",
+      "hint": " d[i][j] = min(d[i][j], d[i][k] + d[k][j])."
+    }
+  ],
+  "3.14.5": [
+    {
+      "tip": "cod",
+      "enunt": "Detectează ciclu de cost negativ verificând dacă vreo diagonală devine negativă.",
+      "expectedOutput": "False",
+      "hint": " După Roy-Floyd, d[i][i] < 0 indică ciclu negativ."
+    }
+  ],
+  "3.15.4": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Prim și returnează costul total al MST-ului.",
+      "expectedOutput": "3",
+      "hint": " Alege mereu muchia minimă către un vârf neatins."
+    }
+  ],
+  "3.15.5": [
+    {
+      "tip": "cod",
+      "enunt": "Modifică Prim să returneze și lista muchiilor alese.",
+      "expectedOutput": "[(1,2),(2,3)]",
+      "hint": " Salvează muchia la fiecare adăugare."
+    }
+  ],
+  "3.16.4": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează Kruskal cu Union-Find și returnează costul MST.",
+      "expectedOutput": "3",
+      "hint": " Sortează muchiile și adaugă dacă nu formează ciclu."
+    }
+  ],
+  "3.16.5": [
+    {
+      "tip": "cod",
+      "enunt": "Returnează lista muchiilor alese de Kruskal.",
+      "expectedOutput": "[(1,2,1),(2,3,2)]",
+      "hint": " Salvează muchia la fiecare union reușit."
+    }
+  ],
+  "3.17.4": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează înălțimea unui arbore reprezentat prin parinte[v].",
+      "expectedOutput": "2",
+      "hint": " Înălțimea = max(adâncime de la rădăcină la frunză)."
+    }
+  ],
+  "3.17.5": [
+    {
+      "tip": "cod",
+      "enunt": "Numără frunzele unui arbore (nodurile care nu apar ca părinte).",
+      "expectedOutput": "3",
+      "hint": " O frunză nu e cheie în dicționarul de părinți."
+    }
+  ],
+  "3.18.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie inserare și o funcție care verifică dacă un arbore e BST valid.",
+      "expectedOutput": "True",
+      "hint": " Pentru fiecare nod, stânga < nod < dreapta (recursiv cu limite)."
+    }
+  ],
+  "3.18.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie minim_bst(rad) care returnează cea mai mică valoare dintr-un BST.",
+      "expectedOutput": "1",
+      "hint": " Mergi tot timpul la fiul stâng."
+    }
+  ],
+  "3.19.4": [
+    {
+      "tip": "cod",
+      "enunt": "Folosește heapq pentru a sorta o listă în ordine crescătoare.",
+      "expectedOutput": "[1, 2, 3, 5]",
+      "hint": " Push toate, apoi pop până e gol."
+    }
+  ],
+  "3.19.5": [
+    {
+      "tip": "cod",
+      "enunt": "Implementează manual push într-un min-heap reprezentat ca listă.",
+      "expectedOutput": "[1, 3, 2]",
+      "hint": " Adaugă la sfârșit, apoi 'percolează' în sus comparând cu părintele."
+    }
+  ],
+  "3.20.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie preordine, inordine, postordine pentru un arbore binar.",
+      "expectedOutput": "5 3 1 4 8",
+      "hint": " Alege ordinea: nod-st-dr / st-nod-dr / st-dr-nod."
+    }
+  ],
+  "3.20.5": [
+    {
+      "tip": "cod",
+      "enunt": "Calculează înălțimea unui arbore binar folosind postordinea.",
+      "expectedOutput": "2",
+      "hint": " Înălțimea = 1 + max(înălțime stânga, înălțime dreapta)."
+    }
+  ],
+  "3.21.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie cauta și inserare iterativ pentru un BST.",
+      "expectedOutput": "True",
+      "hint": " Coboară comparând cu v; la oprire agață noul nod."
+    }
+  ],
+  "3.21.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie sterge(rad, v) care elimină un nod dintr-un BST păstrând proprietatea.",
+      "expectedOutput": "True",
+      "hint": " Cazuri: 0 copii, 1 copil, 2 copii (înlocuiește cu succesorul)."
+    }
+  ],
+  "3.22.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează clasa Forma cu atribut culoare și Cerc/Patrat care moștenesc Forma.",
+      "expectedOutput": "rosu",
+      "hint": " Clasele derivate apelează super().__init__."
+    }
+  ],
+  "3.22.5": [
+    {
+      "tip": "cod",
+      "enunt": "Adaugă metoda descriere() în Forma și suprascrie-o în derivate.",
+      "expectedOutput": "Cerc rosu",
+      "hint": " Derivatele redefinește metoda."
+    }
+  ],
+  "3.23.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează clasa Produs cu nume, pret, stoc și metoda vinde(n) care scade stocul.",
+      "expectedOutput": "7",
+      "hint": " self.stoc -= n în metodă."
+    }
+  ],
+  "3.23.5": [
+    {
+      "tip": "cod",
+      "enunt": "Adaugă metoda total() care returnează pret * stoc.",
+      "expectedOutput": "80",
+      "hint": " return self.pret * self.stoc."
+    }
+  ],
+  "3.24.4": [
+    {
+      "tip": "cod",
+      "enunt": "Creează Vehicul (cu __viteza) și Bicicleta/Masina care moștenesc, folosind super().",
+      "expectedOutput": "0",
+      "hint": " super().__init__ în constructorul derivat."
+    }
+  ],
+  "3.24.5": [
+    {
+      "tip": "cod",
+      "enunt": "Demonstrează name mangling: accesează atributul privat din exterior ca _Clasa__atribut.",
+      "expectedOutput": "0",
+      "hint": " Python redenumește __viteza în _Vehicul__viteza."
+    }
+  ],
+  "3.25.4": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie același program (filtrat numere pare) în stil procedural și funcțional (filter).",
+      "expectedOutput": "[2, 4]",
+      "hint": " filter(lambda x: x%2==0, l) în stil funcțional."
+    }
+  ],
+  "3.25.5": [
+    {
+      "tip": "cod",
+      "enunt": "Scrie o clasă Calculator (POO) care expune operații ca metode.",
+      "expectedOutput": "8",
+      "hint": " Metodele adună/scad/înmulțesc self.valoare."
+    }
   ]
 }
