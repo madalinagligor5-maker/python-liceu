@@ -90,18 +90,20 @@ export default function PythonEditor({
       await py.runPythonAsync(cod);
       if (expectedOutput !== undefined) {
         const curat = (s: string) => s.replace(/\s+/g, " ").trim();
-        // Verificare numerică (toleranță) când ambele părți sunt numere —
-        // rezolvă cazul în care elevul afișează 8.67 iar așteptarea e 8.666…
-        const nrOut = parseFloat(capturat.replace(",", "."));
-        const nrExp = parseFloat(String(expectedOutput).replace(",", "."));
-        const ambeleNumere =
-          !Number.isNaN(nrOut) &&
-          !Number.isNaN(nrExp) &&
-          /^-?\d/.test(capturat.trim()) &&
-          /^-?\d/.test(String(expectedOutput).trim());
-        if (ambeleNumere) {
-          const corect = Math.abs(nrOut - nrExp) < 0.01;
-          setVerdict(corect ? "ok" : "gresit");
+        // Extrage toate numerele din text (indiferent de cuvintele din jur).
+        // Rezolvă cazul în care elevul scrie „Media este: 8.67” iar
+        // așteptarea e doar „8.67”, sau afișează 8.67 în loc de 8.666… .
+        const extrageNumere = (s: string): number[] => {
+          const m = s.replace(",", ".").match(/-?\d+(\.\d+)?/g);
+          return m ? m.map(Number) : [];
+        };
+        const nrOut = extrageNumere(capturat);
+        const nrExp = extrageNumere(String(expectedOutput));
+        if (nrOut.length > 0 && nrExp.length > 0) {
+          const potrivite =
+            nrOut.length === nrExp.length &&
+            nrOut.every((v, i) => Math.abs(v - nrExp[i]) < 0.01);
+          setVerdict(potrivite ? "ok" : "gresit");
         } else {
           setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
         }
