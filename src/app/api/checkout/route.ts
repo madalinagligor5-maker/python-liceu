@@ -42,34 +42,56 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Plățile nu sunt încă configurate." }, { status: 500 });
   }
 
-  const { data: meta } = await supabase
-    .from("users_meta")
-    .select("stripe_customer_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  try {
+    const { data: meta, error: metaErr } = await supabase
+      .from("users_meta")
+      .select("stripe_customer_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
 
-  let customerId = meta?.stripe_customer_id ?? null;
+    if (metaErr) {
+      return NextResponse.json(
+        { error: "Eroare DB users_meta: " + metaErr.message },
+        { status: 500 }
+      );
+    }
 
-  if (!customerId) {
-    const customer = await stripe.customers.create({
-      email: user.email,
-      metadata: { supabase_user_id: user.id },
+    let customerId = meta?.stripe_customer_id ?? null;
+
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        metadata: { supabase_user_id: user.id },
+      });
+      customerId = customer.id;
+      const { error: updErr } = await supabase
+        .from("users_meta")
+        .update({ stripe_customer_id: customerId })
+        .eq("user_id", user.id);
+      if (updErr) {
+        return NextResponse.json(
+          { error: "Eroare update users_meta: " + updErr.message },
+          { status: 500 }
+        );
+      }
+    }
+
+    const origin = request.nextUrl.origin;
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      customer: customerId,
+      client_reference_id: user.id,
+      line_items: [{ price: priceId, quantity: 1 }],
+      subscription_data: { metadata: { supabase_user_id: user.id } },
+      success_url: `${origin}/cont?checkout=success`,
+      cancel_url: `${origin}/preturi`,
     });
-    customerId = customer.id;
-    await supabase.from("users_meta").update({ stripe_customer_id: customerId }).eq("user_id", user.id);
+
+    return NextResponse.json({ url: session.url });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error("CHECKOUT_ERR", msg);
+    return NextResponse.json({ error: "Eroare Stripe/Supabase: " + msg }, { status: 500 });
   }
-
-  const origin = request.nextUrl.origin;
-
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    customer: customerId,
-    client_reference_id: user.id,
-    line_items: [{ price: priceId, quantity: 1 }],
-    subscription_data: { metadata: { supabase_user_id: user.id } },
-    success_url: `${origin}/cont?checkout=success`,
-    cancel_url: `${origin}/preturi`,
-  });
-
-  return NextResponse.json({ url: session.url });
 }
