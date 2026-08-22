@@ -10,7 +10,7 @@ export default function GestioneazaAbonamentButton() {
     setSeIncarca(true);
     setEroare(null);
     try {
-      const res = await fetch("/api/stripe/portal", { method: "POST" });
+      const res = await fetch("/api/portal", { method: "POST" });
       const data = await res.json();
       if (!res.ok || !data.url) {
         setEroare(data.error || "Nu am putut deschide portalul de facturare.");
