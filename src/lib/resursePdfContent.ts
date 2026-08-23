@@ -23,6 +23,15 @@ const BAZA_PDF: Record<string, FisaPdfContent> = {
       "Verifică dacă un număr întreg este pozitiv, negativ sau egal cu zero (folosește if, elif și else)."
     ]
   },
+  "1.3": {
+    teorie: "Eficiența unui algoritm se măsoară în funcție de resursele consumate: timpul de rulare (complexitate de timp) și memoria utilizată (complexitate de spațiu). Folosim notația Big O (ex: O(1), O(n), O(n²)) pentru a exprima cum crește timpul de execuție în raport cu volumul datelor de intrare (n).",
+    sintaxa: "# Eficiență O(1) versus O(n)\ndef primul_element(lista):\n    return lista[0]  # O(1) - timp constant\n\ndef afiseaza_tot(lista):\n    for x in lista:\n        print(x)  # O(n) - timp liniar",
+    exercitii: [
+      "Care este complexitatea de timp (în notație Big O) a unui algoritm care caută secvențial un element într-o listă nesortată de n elemente?",
+      "Dacă un algoritm are o complexitate de tip O(n²), de câte ori va crește timpul de execuție când dublăm cantitatea datelor de intrare?",
+      "Explică diferența fundamentală de performanță dintre un algoritm O(1) și un algoritm O(n) pe seturi mari de date."
+    ]
+  },
   "1.4": {
     teorie: "Functiile (subprogramele) reprezintă blocuri de cod reutilizabile, create pentru a realiza o acțiune specifică. Ele ne permit să nu duplicăm codul. O funcție se definește prin cuvântul cheie `def`, urmat de nume și paranteze. Ea poate primi argumente și poate întoarce o valoare folosind instrucțiunea `return`.",
     sintaxa: "# Definire funcție de adunare\ndef aduna(a, b):\n    return a + b\n\nrezultat = aduna(10, 5)\nprint(rezultat)  # Afișează 15",
@@ -30,6 +39,15 @@ const BAZA_PDF: Record<string, FisaPdfContent> = {
       "Definește o funcție `perimetru_dreptunghi(L, l)` care returnează perimetrul unui dreptunghi.",
       "Scrie o funcție `este_par(n)` care returnează True dacă n este par și False în caz contrar.",
       "Creează o funcție `salut(nume)` care afișează textul 'Salut, [nume]!' în consolă."
+    ]
+  },
+  "1.5": {
+    teorie: "Domeniul de vizibilitate (scope) al unei variabile determină unde poate fi accesată aceasta. O variabilă definită în interiorul unei funcții este locală și există doar în timpul rulării acelei funcții. O variabilă definită în corpul principal este globală și poate fi citită de oriunde. Modificarea unei variabile globale în interiorul unei funcții necesită utilizarea cuvântului cheie 'global'.",
+    sintaxa: "# Domeniu de vizibilitate (Scope)\nx = 10  # Variabilă globală\n\ndef test_scope():\n    y = 5  # Variabilă locală\n    print('Valoare locală:', y)\n    print('Valoare globală citită:', x)\n\ntest_scope()",
+    exercitii: [
+      "Scrie o funcție care încearcă să modifice o variabilă globală fără a utiliza cuvântul cheie `global` și observă rezultatul. Explică fenomenul.",
+      "Creează o funcție `calculeaza_reducere(pret, procent)` ce folosește parametri și returnează prețul final redus.",
+      "Analizează codul următor și explică ce se va afișa: a = 3; def f(): a = 7; f(); print(a)."
     ]
   },
   "2.1": {
