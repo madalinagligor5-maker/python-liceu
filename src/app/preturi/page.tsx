@@ -37,6 +37,13 @@ const PLANURI = [
 ];
 
 export default function PreturiPage() {
+  const stripeConfigurat = 
+    !!process.env.STRIPE_SECRET_KEY &&
+    !!process.env.STRIPE_PRICE_ID_LUNAR &&
+    process.env.STRIPE_PRICE_ID_LUNAR.startsWith("price_") &&
+    !!process.env.STRIPE_PRICE_ID_ANUAL &&
+    process.env.STRIPE_PRICE_ID_ANUAL.startsWith("price_");
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
       <div className="text-center">
@@ -48,6 +55,22 @@ export default function PreturiPage() {
           sunt deschise pentru explorare — totul fără cont. Abonamentul deblochează
           tot restul conținutului.
         </p>
+
+        {!stripeConfigurat && (
+          <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-amber-300 bg-amber-50 p-4 text-left">
+            <h3 className="text-sm font-semibold text-amber-800 flex items-center gap-1.5">
+              <span>⚠️</span> Stripe nu este complet configurat local
+            </h3>
+            <p className="mt-1 text-xs text-amber-700">
+              Pentru a testa fluxul de plată, adaugă cheile în fișierul <code className="bg-amber-100 px-1 rounded">.env.local</code> (copiază din <code className="bg-amber-100 px-1 rounded">.env.example</code>):
+            </p>
+            <ul className="mt-2 list-disc pl-4 text-xs text-amber-700 space-y-1">
+              {!process.env.STRIPE_SECRET_KEY && <li>Lipsește <code className="bg-amber-100 px-1">STRIPE_SECRET_KEY</code></li>}
+              {(!process.env.STRIPE_PRICE_ID_LUNAR || !process.env.STRIPE_PRICE_ID_LUNAR.startsWith("price_")) && <li>Lipsește sau este invalid <code className="bg-amber-100 px-1">STRIPE_PRICE_ID_LUNAR</code> (ex. price_...)</li>}
+              {(!process.env.STRIPE_PRICE_ID_ANUAL || !process.env.STRIPE_PRICE_ID_ANUAL.startsWith("price_")) && <li>Lipsește sau este invalid <code className="bg-amber-100 px-1">STRIPE_PRICE_ID_ANUAL</code> (ex. price_...)</li>}
+            </ul>
+          </div>
+        )}
 
         <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-brand bg-brand-light/50 p-4">
           <p className="text-sm font-semibold text-brand-dark">
