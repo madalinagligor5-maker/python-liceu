@@ -1,19 +1,18 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { progresNivel } from "@/lib/progres";
+import SignOutButton from "@/components/auth/SignOutButton";
 
-/** Meniul din referința vizuală. Rutele care nu există încă sunt marcate. */
 const MENIU = [
   { icon: "🏠", label: "Acasă", href: "/", activ: true },
   { icon: "📚", label: "Curriculum", href: "/curriculum" },
   { icon: "📝", label: "Lecții", href: "/lectii" },
-  { icon: "✏️", label: "Exerciții", href: null },
-  { icon: "🚀", label: "Proiecte", href: null },
-  { icon: "🔬", label: "Lab (Cod online)", href: null },
-  { icon: "🏆", label: "Provocări", href: null },
-  { icon: "💬", label: "Discuții", href: null },
-  { icon: "📂", label: "Resurse", href: null },
-  { icon: "🎓", label: "Certificări", href: null },
+  { icon: "✏️", label: "Exerciții", href: "/lectii" },
+  { icon: "🚀", label: "Proiecte", href: "/curriculum" },
+  { icon: "🔬", label: "Lab (Cod online)", href: "/lab" },
+  { icon: "🏆", label: "Provocări", href: "/" },
+  { icon: "💬", label: "Discuții", href: "mailto:contact@academiapython.ro" },
+  { icon: "📂", label: "Resurse", href: "/curriculum" },
 ] as const;
 
 function HexagonNivel({ nivel }: { nivel: number }) {
@@ -70,17 +69,18 @@ export default function SidebarDashboard({
           </span>
         </Link>
 
-        {/* Profilul utilizatorului vizibil în dreapta pe mobil */}
+        {/* Profilul utilizatorului vizibil în dreapta pe mobil, cu buton de Deconectare */}
         <div className="flex items-center gap-2 lg:hidden">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white border border-white/10">
             {initiala}
           </span>
-          <span className="text-xs font-semibold text-white truncate max-w-[80px]">
+          <span className="text-xs font-semibold text-white truncate max-w-[60px]">
             {prenume}
           </span>
-          <span className="rounded-lg bg-python-yellow/10 border border-python-yellow/20 px-1.5 py-0.5 text-[10px] font-bold text-python-yellow">
+          <span className="rounded bg-python-yellow/10 px-1.5 py-0.5 text-[9px] font-bold text-python-yellow">
             Lvl {nivel}
           </span>
+          <SignOutButton className="rounded bg-white/10 hover:bg-red-500/10 px-2 py-0.5 text-[9px] font-bold text-red-400 border border-red-500/20 cursor-pointer" />
         </div>
       </div>
 
@@ -90,23 +90,6 @@ export default function SidebarDashboard({
           {MENIU.map((m) => {
             const clase =
               "flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs lg:text-sm font-medium transition shrink-0 whitespace-nowrap lg:w-full";
-
-            if (!m.href) {
-              return (
-                <li key={m.label} className="shrink-0">
-                  <span
-                    className={`${clase} cursor-not-allowed text-sidebar-muted/40`}
-                    title="Secțiune în curând"
-                  >
-                    <span aria-hidden="true">{m.icon}</span>
-                    {m.label}
-                    <span className="ml-1 text-[8px] font-semibold uppercase text-locked/70 lg:ml-auto">
-                      curând
-                    </span>
-                  </span>
-                </li>
-              );
-            }
 
             return (
               <li key={m.label} className="shrink-0">
@@ -161,17 +144,20 @@ export default function SidebarDashboard({
         </Link>
       </div>
 
-      {/* Profilul extins în partea de jos (doar pe desktop) */}
-      <div className="hidden lg:flex mt-auto items-center gap-2 border-t border-white/10 pt-4">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
-          {initiala}
-        </span>
-        <div className="leading-tight min-w-0">
-          <span className="block text-sm font-semibold text-white truncate">{prenume}</span>
-          <span className="block text-xs italic text-sidebar-muted truncate">
-            Explorator Python 🐍
+      {/* Profilul extins în partea de jos cu Deconectare (doar pe desktop) */}
+      <div className="hidden lg:flex mt-auto items-center justify-between gap-2 border-t border-white/10 pt-4 w-full">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
+            {initiala}
           </span>
+          <div className="leading-tight min-w-0">
+            <span className="block text-sm font-semibold text-white truncate">{prenume}</span>
+            <span className="block text-xs italic text-sidebar-muted truncate">
+              Explorator Python 🐍
+            </span>
+          </div>
         </div>
+        <SignOutButton className="rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 px-2.5 py-1 text-xs font-bold text-red-400 cursor-pointer transition shrink-0 ml-1" />
       </div>
     </aside>
   );
