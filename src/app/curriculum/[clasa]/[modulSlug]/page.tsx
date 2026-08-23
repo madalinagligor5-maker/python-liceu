@@ -111,6 +111,24 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
         {capitol.titlu} · 6 sublecții
       </p>
 
+      {/* Resurse și Exerciții Gratuite ale Modulului */}
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        <Link
+          href={`/resurse/${clasa}/${modulSlug}`}
+          className="flex items-center justify-center gap-2 rounded-2xl border border-success/20 bg-success/5 hover:bg-success/10 p-3 text-center text-sm font-bold text-success transition"
+        >
+          <span>📂</span> Fișă de lucru (Teorie)
+          <span className="rounded bg-success/20 px-1.5 py-0.5 text-[9px] font-bold text-success ml-1">Gratis</span>
+        </Link>
+        <Link
+          href={`/exercitii/${clasa}/${modulSlug}`}
+          className="flex items-center justify-center gap-2 rounded-2xl border border-success/20 bg-success/5 hover:bg-success/10 p-3 text-center text-sm font-bold text-success transition"
+        >
+          <span>📝</span> Exerciții practice
+          <span className="rounded bg-success/20 px-1.5 py-0.5 text-[9px] font-bold text-success ml-1">Gratis</span>
+        </Link>
+      </div>
+
       {!areAcces && (
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 text-center">
           <p className="font-semibold text-amber-900">

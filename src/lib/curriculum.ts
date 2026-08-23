@@ -56,11 +56,13 @@ export const ICOANE_SUBLECTIE: Record<TipSublectie, string> = {
 };
 
 export function getCapitol(clasa: string): Capitol | undefined {
-  return capitole.find((c) => c.clasa === clasa);
+  return capitole.find((c) => c.clasa.toUpperCase() === clasa.toUpperCase());
 }
 
 export function getModul(clasa: string, modulSlug: string): Modul | undefined {
-  return getCapitol(clasa)?.module.find((m) => m.slug === modulSlug);
+  return getCapitol(clasa)?.module.find(
+    (m) => m.slug.toLowerCase() === modulSlug.toLowerCase()
+  );
 }
 
 export function toateModulele(): Modul[] {
