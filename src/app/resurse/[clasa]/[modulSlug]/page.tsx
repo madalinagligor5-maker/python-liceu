@@ -42,6 +42,21 @@ export default async function ModulResursePage({
 
   return (
     <div className="min-h-screen bg-surface px-4 py-16 sm:px-6 print:py-0 print:px-0 print:bg-transparent">
+      {/* Stiluri speciale pentru printare: ascunde complet header-ul și footer-ul global al site-ului */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          header, footer, nav, aside, .print-hidden {
+            display: none !important;
+          }
+          body, html, main {
+            background: white !important;
+            color: black !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+        }
+      `}} />
+
       {/* Scriptul care declanșează automat dialogul de printare/salvare PDF */}
       <AutoPrint />
 
