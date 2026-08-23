@@ -91,7 +91,7 @@ export default function Dashboard({
             {/* Hero */}
             <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#fdf6e3] to-[#f6efdc] p-6 sm:p-8">
               {/* Decoruri din referința vizuală: cod, cafea, plantă. */}
-              <span aria-hidden="true" className="pointer-events-none absolute -left-2 top-3 text-2xl opacity-30">{"{}"}</span>
+              <span aria-hidden="true" className="pointer-events-none absolute left-4 top-3 text-2xl opacity-30">{"{}"}</span>
               <span aria-hidden="true" className="pointer-events-none absolute right-40 top-2 text-2xl opacity-20">&lt;/&gt;</span>
               <span aria-hidden="true" className="pointer-events-none absolute bottom-3 right-44 text-xl opacity-40">☕</span>
               <span aria-hidden="true" className="pointer-events-none absolute bottom-4 left-1/3 text-xl opacity-40">🪴</span>

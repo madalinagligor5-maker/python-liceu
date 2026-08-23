@@ -115,7 +115,7 @@ export default function SidebarDashboard({
                   aria-current={"activ" in m && m.activ ? "page" : undefined}
                   className={`${clase} ${
                     "activ" in m && m.activ
-                      ? "bg-sidebar-active text-white shadow-sm font-semibold"
+                      ? "bg-sidebar-active text-foreground shadow-sm font-extrabold"
                       : "text-sidebar-text/80 hover:bg-white/15 hover:text-white"
                   }`}
                 >
@@ -129,7 +129,7 @@ export default function SidebarDashboard({
       </nav>
 
       {/* Caseta de Nivel (ascunsă pe mobil deoarece profilul de sus e suficient) */}
-      <div className="hidden lg:block rounded-2xl bg-gradient-to-br from-sidebar-active to-brand-dark p-4">
+      <div className="hidden lg:block rounded-2xl bg-sidebar-bg-2 border border-white/5 p-4">
         <div className="flex items-center gap-2">
           <HexagonNivel nivel={nivel} />
           <div className="leading-tight">
