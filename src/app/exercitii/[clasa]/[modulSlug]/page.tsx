@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
 import { obtineExercitiuSuplimentar } from "@/lib/exercitiiSuplimentare";
 import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -34,6 +35,19 @@ export default async function ModulExercitiiPage({
   const capitol = getCapitol(clasa);
 
   if (!modul || !capitol) notFound();
+
+  // Verificare acces premium pentru exerciții
+  const { user, meta } = await getUtilizatorCurent();
+  const esteGratuit = modul.gratuit || (clasa === "IX" && modul.numar <= 5);
+  const areAcces = esteGratuit || areAbonamentActiv(meta);
+
+  if (!areAcces) {
+    if (!user) {
+      redirect(`/login?redirect=${encodeURIComponent(`/exercitii/${clasa}/${modulSlug}`)}`);
+    } else {
+      redirect("/preturi");
+    }
+  }
 
   // Preluăm exercițiul de cod independent dedicat acestui modul
   const exercitiu = obtineExercitiuSuplimentar(modul.cod, modul.titlu);

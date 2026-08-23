@@ -70,10 +70,22 @@ export default async function ModulResursePage({
         </div>
       </div>
 
-      <div className="mt-8 space-y-10 print:space-y-6">
+      {/* Box de descărcare PDF (Apare doar pe ecran) */}
+      <div className="mt-8 rounded-3xl border border-brand/20 bg-brand-light/35 p-8 text-center print:hidden shadow-sm">
+        <span className="text-5xl" aria-hidden="true">📄</span>
+        <h3 className="mt-4 text-lg font-extrabold text-foreground">Fișa de lucru în format PDF</h3>
+        <p className="mt-2 text-sm text-foreground/75 max-w-sm mx-auto leading-relaxed">
+          Conținutul teoretic complet și suportul de curs pentru modulul <strong>{modul.cod}</strong> sunt oferite gratuit sub formă de document PDF sau printabil.
+        </p>
+        <div className="mt-6 flex justify-center">
+          <PrintButton />
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-10 print:space-y-6 hidden print:block">
         {/* Secțiune 1: Recapitulare / Introducere */}
         {recap && recap.blocuri && recap.blocuri.length > 0 && (
-          <section className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm print:border-0 print:shadow-none print:p-0">
+          <section className="print:border-0 print:shadow-none print:p-0">
             <h2 className="text-lg font-bold text-foreground border-b border-black/5 pb-2 mb-4 print:text-base">
               📌 Recapitulare și Context
             </h2>
@@ -83,19 +95,15 @@ export default async function ModulResursePage({
 
         {/* Secțiune 2: Teoria propriu-zisă */}
         {teorie && teorie.blocuri && teorie.blocuri.length > 0 ? (
-          <section className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm print:border-0 print:shadow-none print:p-0">
+          <section className="print:border-0 print:shadow-none print:p-0">
             <h2 className="text-lg font-bold text-foreground border-b border-black/5 pb-2 mb-4 print:text-base">
               📘 Concept teoretic și Exemple de Cod
             </h2>
             <BlocuriSublectie blocuri={teorie.blocuri} />
           </section>
         ) : (
-          <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-8 text-center print:hidden">
-            <span className="text-4xl" aria-hidden="true">📖</span>
-            <h3 className="mt-3 text-base font-bold text-foreground">Materialul este în curs de redactare</h3>
-            <p className="mt-1 text-sm text-foreground/60 max-w-md mx-auto">
-              Teoria detaliată pentru acest modul urmează să fie publicată. Poți verifica restul modulelor active!
-            </p>
+          <div className="text-center py-8">
+            <p className="text-sm text-muted">Materialul teoretic pentru acest modul urmează să fie publicat.</p>
           </div>
         )}
       </div>
@@ -111,7 +119,7 @@ export default async function ModulResursePage({
           href={`/exercitii/${clasa}/${modulSlug}`} 
           className="text-sm font-semibold text-brand hover:text-brand-dark transition"
         >
-          Rezolvă exercițiile practice →
+          Mergi la exerciții practice →
         </Link>
       </div>
     </div>
