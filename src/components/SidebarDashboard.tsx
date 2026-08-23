@@ -55,35 +55,52 @@ export default function SidebarDashboard({
   const initiala = (prenume.charAt(0) || "?").toUpperCase();
 
   return (
-    <aside className="flex w-full shrink-0 flex-col gap-5 bg-sidebar-bg p-4 text-sidebar-text lg:w-64 lg:min-h-screen lg:p-5">
-      <Link href="/" className="flex items-center gap-2">
-        <Logo className="h-10 w-10" />
-        <span className="leading-tight">
-          <span className="block text-base font-bold text-sidebar-text">
-            Academia <span className="text-python-yellow">Python</span>
+    <aside className="flex w-full shrink-0 flex-col gap-4 bg-sidebar-bg p-4 text-sidebar-text lg:w-64 lg:min-h-screen lg:p-5">
+      {/* Header cu logo și profil (pe mobil stau pe același rând) */}
+      <div className="flex items-center justify-between gap-3 lg:flex-col lg:items-start lg:gap-5">
+        <Link href="/" className="flex items-center gap-2">
+          <Logo className="h-9 w-9 lg:h-10 lg:w-10" />
+          <span className="leading-tight">
+            <span className="block text-sm lg:text-base font-bold text-sidebar-text">
+              Academia <span className="text-python-yellow">Python</span>
+            </span>
+            <span className="block text-[8px] lg:text-[9px] font-semibold uppercase tracking-wider text-sidebar-muted">
+              Învață. Practică. Devino dezvoltator.
+            </span>
           </span>
-          <span className="block text-[9px] font-semibold uppercase tracking-wider text-sidebar-muted">
-            Învață. Practică. Devino dezvoltator.
-          </span>
-        </span>
-      </Link>
+        </Link>
 
-      <nav aria-label="Meniu principal">
-        <ul className="space-y-1">
+        {/* Profilul utilizatorului vizibil în dreapta pe mobil */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white border border-white/10">
+            {initiala}
+          </span>
+          <span className="text-xs font-semibold text-white truncate max-w-[80px]">
+            {prenume}
+          </span>
+          <span className="rounded-lg bg-python-yellow/10 border border-python-yellow/20 px-1.5 py-0.5 text-[10px] font-bold text-python-yellow">
+            Lvl {nivel}
+          </span>
+        </div>
+      </div>
+
+      {/* Navigare - listă orizontală pe mobil, listă verticală pe desktop */}
+      <nav aria-label="Meniu principal" className="w-full overflow-hidden">
+        <ul className="flex flex-row gap-2 overflow-x-auto pb-1 max-w-full scrollbar-none lg:flex-col lg:space-y-1 lg:overflow-x-visible lg:pb-0">
           {MENIU.map((m) => {
             const clase =
-              "flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition";
+              "flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs lg:text-sm font-medium transition shrink-0 whitespace-nowrap lg:w-full";
 
             if (!m.href) {
               return (
-                <li key={m.label}>
+                <li key={m.label} className="shrink-0">
                   <span
-                    className={`${clase} cursor-not-allowed text-sidebar-muted/50`}
+                    className={`${clase} cursor-not-allowed text-sidebar-muted/40`}
                     title="Secțiune în curând"
                   >
                     <span aria-hidden="true">{m.icon}</span>
                     {m.label}
-                    <span className="ml-auto text-[9px] font-semibold uppercase text-locked">
+                    <span className="ml-1 text-[8px] font-semibold uppercase text-locked/70 lg:ml-auto">
                       curând
                     </span>
                   </span>
@@ -92,14 +109,14 @@ export default function SidebarDashboard({
             }
 
             return (
-              <li key={m.label}>
+              <li key={m.label} className="shrink-0">
                 <Link
                   href={m.href}
                   aria-current={"activ" in m && m.activ ? "page" : undefined}
                   className={`${clase} ${
                     "activ" in m && m.activ
-                      ? "bg-sidebar-active text-white shadow-sm"
-                      : "text-sidebar-text/80 hover:bg-white/10 hover:text-white"
+                      ? "bg-sidebar-active text-white shadow-sm font-semibold"
+                      : "text-sidebar-text/80 hover:bg-white/15 hover:text-white"
                   }`}
                 >
                   <span aria-hidden="true">{m.icon}</span>
@@ -111,7 +128,8 @@ export default function SidebarDashboard({
         </ul>
       </nav>
 
-      <div className="rounded-2xl bg-gradient-to-br from-sidebar-active to-brand-dark p-4">
+      {/* Caseta de Nivel (ascunsă pe mobil deoarece profilul de sus e suficient) */}
+      <div className="hidden lg:block rounded-2xl bg-gradient-to-br from-sidebar-active to-brand-dark p-4">
         <div className="flex items-center gap-2">
           <HexagonNivel nivel={nivel} />
           <div className="leading-tight">
@@ -136,23 +154,24 @@ export default function SidebarDashboard({
           {xpTotal} / {xpNivelUrmator} XP
         </p>
         <Link
-          href="/progres"
+          href="/cont"
           className="mt-2 inline-block text-xs font-semibold text-python-yellow hover:underline"
         >
           Vezi progresul →
         </Link>
       </div>
 
-      <div className="mt-auto flex items-center gap-2 border-t border-white/10 pt-4">
+      {/* Profilul extins în partea de jos (doar pe desktop) */}
+      <div className="hidden lg:flex mt-auto items-center gap-2 border-t border-white/10 pt-4">
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
           {initiala}
         </span>
-        <span className="leading-tight">
-          <span className="block text-sm font-semibold text-white">{prenume}</span>
-          <span className="block text-xs italic text-sidebar-muted">
+        <div className="leading-tight min-w-0">
+          <span className="block text-sm font-semibold text-white truncate">{prenume}</span>
+          <span className="block text-xs italic text-sidebar-muted truncate">
             Explorator Python 🐍
           </span>
-        </span>
+        </div>
       </div>
     </aside>
   );

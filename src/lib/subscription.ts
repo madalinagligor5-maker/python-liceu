@@ -6,6 +6,10 @@ export type UtilizatorMeta = {
   subscriptionStatus: "none" | "active" | "past_due" | "canceled";
   subscriptionCurrentPeriodEnd: string | null;
   stripeCustomerId: string | null;
+  xpTotal: number;
+  streakZile: number;
+  clasa: string | null;
+  nivel: number;
 };
 
 /**
@@ -30,9 +34,12 @@ export async function getUtilizatorCurent(): Promise<{
 
   const { data: meta } = await supabase
     .from("users_meta")
-    .select("subscription_status, subscription_current_period_end, stripe_customer_id")
+    .select("subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa")
     .eq("user_id", user.id)
     .maybeSingle();
+
+  const xpTotal = meta?.xp_total ?? 0;
+  const nivel = Math.max(1, Math.floor(Math.sqrt(Math.max(xpTotal, 0) / 100)) + 1);
 
   return {
     user: { id: user.id, email: user.email ?? "" },
@@ -42,6 +49,10 @@ export async function getUtilizatorCurent(): Promise<{
       subscriptionStatus: (meta?.subscription_status as UtilizatorMeta["subscriptionStatus"]) ?? "none",
       subscriptionCurrentPeriodEnd: meta?.subscription_current_period_end ?? null,
       stripeCustomerId: meta?.stripe_customer_id ?? null,
+      xpTotal,
+      streakZile: meta?.streak_zile ?? 0,
+      clasa: meta?.clasa ?? null,
+      nivel,
     },
   };
 }
