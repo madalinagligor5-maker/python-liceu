@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
       customer: customerId,
       client_reference_id: user.id,
       payment_method_types: ["card"],
+      allow_promotion_codes: true,
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: {
         metadata: { supabase_user_id: user.id },

@@ -3,6 +3,7 @@ import CodeBlock from "@/components/CodeBlock";
 import Logo from "@/components/Logo";
 import Mascota from "@/components/Mascota";
 import Dashboard from "@/components/Dashboard";
+import NewsletterForm from "@/components/NewsletterForm";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
@@ -341,6 +342,11 @@ saluta("Academia Python")
         >
           Vezi planurile de abonament →
         </Link>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+        <NewsletterForm />
       </section>
 
       {/* FAQ */}

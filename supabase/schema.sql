@@ -224,3 +224,19 @@ $$;
 
 revoke all on function public.finalizeaza_lectie(text, integer) from public;
 grant execute on function public.finalizeaza_lectie(text, integer) to authenticated;
+
+-- ============================================================
+-- EXTINDERE: Tabelă pentru newsletter
+-- ============================================================
+create table if not exists public.newsletter_emails (
+  id uuid default gen_random_uuid() primary key,
+  email text not null unique,
+  created_at timestamptz not null default now()
+);
+
+alter table public.newsletter_emails enable row level security;
+
+-- Oricine poate introduce un email (abonare), dar nu îl poate citi de pe client
+create policy "newsletter_emails: insert public" on public.newsletter_emails
+  for insert with check (true);
+

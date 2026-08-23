@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Prețuri — Academia Python",
@@ -138,6 +139,10 @@ export default function PreturiPage() {
       <p className="mt-6 text-center text-xs text-foreground/40">
         Plățile se vor procesa integral prin Stripe. Nu stocăm date de card.
       </p>
+
+      <div className="mt-12 border-t border-black/5 pt-10">
+        <NewsletterForm />
+      </div>
 
       <div className="mt-10 text-center">
         <Link href="/lectii" className="text-sm font-medium text-brand hover:text-brand-dark">
