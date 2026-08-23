@@ -4,6 +4,7 @@ import { getModul, getCapitol } from "@/lib/curriculum";
 import { getSublectieContinut } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import AutoPrint from "@/components/AutoPrint";
+import PrintFallbackActions from "@/components/PrintFallbackActions";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -55,25 +56,7 @@ export default async function ModulResursePage({
           Caseta de salvare PDF s-a deschis automat. Dacă nu a apărut, folosește butonul de mai jos.
         </p>
         
-        <div className="mt-6 flex flex-col gap-2">
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") window.print();
-            }}
-            className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark cursor-pointer"
-          >
-            🖨️ Deschide manual caseta de salvare
-          </button>
-          
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") window.close();
-            }}
-            className="w-full rounded-xl border border-black/10 px-5 py-3 text-sm font-semibold text-foreground/80 transition hover:bg-black/5 cursor-pointer"
-          >
-            Închide această filă
-          </button>
-        </div>
+        <PrintFallbackActions />
       </div>
 
       {/* Conținutul propriu-zis care este complet ascuns pe ecran, dar vizibil la tipărire/salvare PDF */}
