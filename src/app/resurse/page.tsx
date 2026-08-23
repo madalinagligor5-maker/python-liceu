@@ -3,18 +3,18 @@ import type { Metadata } from "next";
 import { capitole } from "@/lib/curriculum";
 
 export const metadata: Metadata = {
-  title: "Resurse & Fișe de Lucru Teoretice — Academia Python",
-  description: "Fișe de lucru gratuite, sinteze teoretice și exemple rezolvate pe module școlare pentru elevii de liceu.",
+  title: "Fise de lucru PDF Gratuite — Academia Python",
+  description: "Descarcă fișe de lucru PDF gratuite și sinteze de teorie pentru orele de informatică de liceu.",
 };
 
 export default function ResurseCatalogPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
       <div className="border-b border-black/5 pb-6">
-        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">Fișe de lucru & Teorie</h1>
+        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">Fișe de lucru PDF</h1>
         <p className="mt-2 text-foreground/70 text-sm">
-          Aici găsești rezumate teoretice, explicații pas cu pas și sinteze gata de printat pentru orele de informatică. 
-          Toate resursele sunt **gratuite** și acoperă programa oficială de liceu. Selectează un modul pentru a deschide fișa de studiu!
+          Aici găsești rezumate teoretice și exemple de cod gata de salvat ca PDF sau de printat. 
+          Toate resursele sunt **gratuite**. Apasă pe butonul de descărcare din dreptul fiecărui modul!
         </p>
       </div>
 
@@ -28,7 +28,7 @@ export default function ResurseCatalogPage() {
               Clasa a {capitol.clasa}-a
             </h2>
             <p className="text-xs text-foreground/50 mt-1 font-semibold uppercase tracking-wider">
-              Fișe de lucru pentru {capitol.titlu}
+              Fișe PDF gratuite pentru {capitol.titlu}
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -36,7 +36,8 @@ export default function ResurseCatalogPage() {
                 <div key={modul.cod}>
                   <Link
                     href={`/resurse/${capitol.clasa}/${modul.slug}`}
-                    className="flex items-start justify-between gap-4 rounded-2xl border border-black/10 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md h-full group"
+                    target="_blank"
+                    className="flex items-center justify-between gap-4 rounded-2xl border border-black/10 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md h-full group"
                   >
                     <div className="min-w-0">
                       <span className="text-[10px] font-bold text-brand uppercase tracking-wider">
@@ -46,12 +47,12 @@ export default function ResurseCatalogPage() {
                         {modul.titlu}
                       </h3>
                       <p className="mt-1 text-xs text-foreground/50">
-                        Fișă teoretică de studiu completă
+                        Fișă PDF completă
                       </p>
                     </div>
                     <div className="shrink-0">
-                      <span className="inline-flex items-center rounded-full bg-success/10 px-2.5 py-1 text-xs font-semibold text-success">
-                        Gratuit
+                      <span className="inline-flex items-center gap-1.5 rounded-xl bg-success px-3 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-success-dark">
+                        📥 Descarcă PDF
                       </span>
                     </div>
                   </Link>
