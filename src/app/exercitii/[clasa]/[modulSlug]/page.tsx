@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
-import { getExercitiiSublectie } from "@/lib/exercitii";
-import ExercitiiInteractive from "@/components/ExercitiiInteractive";
+import { obtineExercitiuSuplimentar } from "@/lib/exercitiiSuplimentare";
+import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -19,8 +19,8 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return {
-    title: `Exerciții practice: ${modul.titlu} — Academia Python`,
-    description: `Rezolvă exerciții practice de cod și quiz-uri pentru modulul ${modul.titlu}.`,
+    title: `Exercițiu de Evaluare: ${modul.titlu} — Academia Python`,
+    description: `Rezolvă exercițiul practic de cod de sine stătător și primește evaluare/îndrumare inteligentă de la profesorul AI pentru modulul ${modul.titlu}.`,
   };
 }
 
@@ -35,10 +35,8 @@ export default async function ModulExercitiiPage({
 
   if (!modul || !capitol) notFound();
 
-  // Exercițiile sunt pe pașii 4 (.4 - Ghidat) și 5 (.5 - Independent)
-  const exercitiiGhidate = await getExercitiiSublectie(`${modul.cod}.4`);
-  const exercitiiIndependente = await getExercitiiSublectie(`${modul.cod}.5`);
-  const toateExercitiile = [...exercitiiGhidate, ...exercitiiIndependente];
+  // Preluăm exercițiul de cod independent dedicat acestui modul
+  const exercitiu = obtineExercitiuSuplimentar(modul.cod, modul.titlu);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
@@ -53,43 +51,32 @@ export default async function ModulExercitiiPage({
       </nav>
 
       <div className="mt-4 border-b border-black/5 pb-5">
-        <span className="inline-flex items-center rounded-full bg-success/10 px-2.5 py-1 text-xs font-bold text-success mb-2">
-          Zonă de antrenament gratuită
-        </span>
+        <div className="flex flex-wrap gap-2 mb-2">
+          <span className="inline-flex items-center rounded-full bg-success/10 px-2.5 py-1 text-xs font-bold text-success">
+            Zonă de antrenament gratuită
+          </span>
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 border border-blue-100">
+            🤖 Evaluare & Îndrumare AI
+          </span>
+        </div>
         <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
-          Exerciții practice: {modul.titlu}
+          Problema: {exercitiu.titlu}
         </h1>
-        <p className="mt-2 text-sm text-foreground/75 leading-relaxed">
-          Rezolvă problemele de mai jos pentru a-ți consolida cunoștințele din modulul **{modul.cod}**. 
-          Scrie codul în editor, verifică execuția și corectează erorile direct în pagină!
-        </p>
+        <div className="mt-3 rounded-2xl bg-white border border-black/5 p-5 shadow-inner-sm">
+          <p className="text-xs font-bold text-brand uppercase tracking-wider mb-2">Enunțul problemei:</p>
+          <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+            {exercitiu.enunt}
+          </p>
+        </div>
       </div>
 
-      <div className="mt-8 space-y-8">
-        {toateExercitiile.length > 0 ? (
-          <div>
-            {/* Utilizăm direct componenta interactivă a platformei, forțând starea de deblocare */}
-            <ExercitiiInteractive 
-              exercitii={toateExercitiile} 
-              deblocat={true} 
-            />
-          </div>
-        ) : (
-          <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-8 text-center">
-            <span className="text-4xl" aria-hidden="true">📝</span>
-            <h3 className="mt-3 text-base font-bold text-foreground">Nu există exerciții separate</h3>
-            <p className="mt-1 text-sm text-foreground/60 max-w-md mx-auto">
-              Pentru acest modul, exercițiile practice sunt integrate direct în corpul teoriei sau în quiz-uri. 
-              Poți explora lecția completă din curriculum.
-            </p>
-            <Link 
-              href={`/curriculum/${clasa}/${modulSlug}`} 
-              className="mt-4 inline-block rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
-            >
-              Vezi în curriculum
-            </Link>
-          </div>
-        )}
+      <div className="mt-6">
+        <ExercitiuEvaluator
+          titlu={exercitiu.titlu}
+          enunt={exercitiu.enunt}
+          template={exercitiu.template}
+          expectedOutput={exercitiu.expectedOutput}
+        />
       </div>
 
       <div className="mt-10 flex justify-between border-t border-black/5 pt-6">
