@@ -16,14 +16,26 @@ async function actualizeazaDinAbonament(subscription: Stripe.Subscription) {
     typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
 
   const perioada = subscription.items.data[0]?.current_period_end;
+  const supabaseUserId = subscription.metadata?.supabase_user_id;
 
-  await supabaseAdmin
-    .from("users_meta")
-    .update({
-      subscription_status: mapeazaStatus(subscription.status),
-      subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
-    })
-    .eq("stripe_customer_id", customerId);
+  if (supabaseUserId) {
+    await supabaseAdmin
+      .from("users_meta")
+      .update({
+        stripe_customer_id: customerId,
+        subscription_status: mapeazaStatus(subscription.status),
+        subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
+      })
+      .eq("user_id", supabaseUserId);
+  } else {
+    await supabaseAdmin
+      .from("users_meta")
+      .update({
+        subscription_status: mapeazaStatus(subscription.status),
+        subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
+      })
+      .eq("stripe_customer_id", customerId);
+  }
 }
 
 export async function POST(request: NextRequest) {
