@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
-import { getSublectieContinut } from "@/lib/sublectii";
-import BlocuriSublectie from "@/components/BlocuriSublectie";
+import { obtineFisaPdfContent } from "@/lib/resursePdfContent";
 import AutoPrint from "@/components/AutoPrint";
 import PrintFallbackActions from "@/components/PrintFallbackActions";
+import Logo from "@/components/Logo";
+import CodeBlock from "@/components/CodeBlock";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -36,9 +37,8 @@ export default async function ModulResursePage({
 
   if (!modul || !capitol) notFound();
 
-  // Încărcăm teoria (.2) și recapitularea (.1)
-  const recap = await getSublectieContinut(`${modul.cod}.1`);
-  const teorie = await getSublectieContinut(`${modul.cod}.2`);
+  // Preluăm conținutul dedicat fișei PDF
+  const fisa = obtineFisaPdfContent(modul.cod, modul.titlu);
 
   return (
     <div className="min-h-screen bg-surface px-4 py-16 sm:px-6 print:py-0 print:px-0 print:bg-transparent">
@@ -61,33 +61,73 @@ export default async function ModulResursePage({
 
       {/* Conținutul propriu-zis care este complet ascuns pe ecran, dar vizibil la tipărire/salvare PDF */}
       <div className="hidden print:block w-full text-black">
-        <div className="border-b-2 border-black pb-4 mb-6">
-          <p className="text-sm font-bold tracking-wider uppercase text-gray-600">Academia Python — Fișă de lucru pentru elevi</p>
-          <h1 className="text-2xl font-black mt-1">Clasa a {clasa}-a · Modulul {modul.cod}: {modul.titlu}</h1>
+        {/* Doar sigla Academia Python și denumirea */}
+        <div className="flex items-center gap-3 border-b-2 border-black pb-4 mb-8">
+          <Logo className="h-14 w-14 rounded-xl" />
+          <div className="leading-none">
+            <span className="text-2xl font-black text-black">
+              Academia<span className="text-brand">Python</span>
+            </span>
+            <span className="block mt-1 text-[11px] font-bold uppercase tracking-wider text-black/55">
+              Fișă de studiu & lucru · Clasa a {clasa}-a
+            </span>
+          </div>
         </div>
 
         <div className="space-y-8">
-          {/* Secțiune 1: Recapitulare */}
-          {recap && recap.blocuri && recap.blocuri.length > 0 && (
-            <section className="space-y-3">
-              <h2 className="text-base font-extrabold uppercase border-b border-gray-300 pb-1 mb-2">
-                1. Recapitulare și Context
-              </h2>
-              <BlocuriSublectie blocuri={recap.blocuri} />
-            </section>
-          )}
+          {/* Titlul modulului */}
+          <div>
+            <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">
+              Modulul {modul.cod}
+            </span>
+            <h1 className="text-xl font-black text-black mt-0.5">
+              {modul.titlu}
+            </h1>
+          </div>
 
-          {/* Secțiune 2: Teorie și cod */}
-          {teorie && teorie.blocuri && teorie.blocuri.length > 0 ? (
-            <section className="space-y-3">
-              <h2 className="text-base font-extrabold uppercase border-b border-gray-300 pb-1 mb-2">
-                2. Concept teoretic și Exemple de Cod
-              </h2>
-              <BlocuriSublectie blocuri={teorie.blocuri} />
-            </section>
-          ) : (
-            <p className="text-sm italic text-gray-500">Materialul teoretic pentru acest modul este în curs de redactare.</p>
-          )}
+          {/* Secțiunea 1: Teoria sinteză */}
+          <section className="space-y-3">
+            <h2 className="text-sm font-extrabold uppercase border-b border-gray-300 pb-1 mb-2 text-black/80">
+              📌 Sinteză Teoretică
+            </h2>
+            <p className="text-sm text-black/90 leading-relaxed text-justify">
+              {fisa.teorie}
+            </p>
+          </section>
+
+          {/* Secțiunea 2: Sintaxă / Exemplu model */}
+          <section className="space-y-3">
+            <h2 className="text-sm font-extrabold uppercase border-b border-gray-300 pb-1 mb-2 text-black/80">
+              💻 Sintaxă & Cod Model (Python)
+            </h2>
+            <div className="rounded-xl border border-gray-300 overflow-hidden text-xs bg-gray-50">
+              <CodeBlock code={fisa.sintaxa} label="exemplu.py" />
+            </div>
+          </section>
+
+          {/* Secțiunea 3: Exerciții propuse */}
+          <section className="space-y-3 pt-4">
+            <h2 className="text-sm font-extrabold uppercase border-b border-gray-300 pb-1 mb-2 text-black/80">
+              ✍️ Exerciții de antrenament
+            </h2>
+            <p className="text-xs text-gray-500 italic mb-2">
+              Rezolvă următoarele exerciții pe foaie sau în editorul online al platformei:
+            </p>
+            <ol className="list-decimal pl-5 space-y-3 text-sm text-black/90">
+              {fisa.exercitii.map((ex, idx) => (
+                <li key={idx} className="leading-relaxed">
+                  {ex}
+                </li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        {/* Footer-ul fișei PDF */}
+        <div className="mt-20 border-t border-gray-300 pt-3 text-center">
+          <p className="text-[10px] text-gray-400 font-medium">
+            Document generat automat de AcademiaPython.ro. Toate drepturile rezervate.
+          </p>
         </div>
       </div>
     </div>
