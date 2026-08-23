@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
       mode: "subscription",
       customer: customerId,
       client_reference_id: user.id,
+      payment_method_types: ["card"],
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: { metadata: { supabase_user_id: user.id } },
       success_url: `${origin}/cont?checkout=success`,
