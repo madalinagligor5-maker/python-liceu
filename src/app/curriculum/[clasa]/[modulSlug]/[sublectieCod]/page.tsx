@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import {
   getCapitol,
   getModul,
@@ -15,7 +15,7 @@ import {
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import SublectieGate from "@/components/SublectieGate";
 import PythonEditor from "@/components/PythonEditor";
-import { getUtilizatorCurent } from "@/lib/subscription";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { getPredicție } from "@/lib/predicții";
@@ -48,8 +48,23 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const { clasa, modulSlug, sublectieCod } = await params;
   const modul = getModul(clasa, modulSlug);
   const capitol = getCapitol(clasa);
+
+  if (!modul || !capitol) notFound();
+
+  // Verificare acces premium:
+  const { user, meta } = await getUtilizatorCurent();
+  const esteGratuit = modul.gratuit || modul.numar <= 5;
+  const areAcces = esteGratuit || areAbonamentActiv(meta);
+
+  if (!areAcces) {
+    if (!user) {
+      redirect(`/login?redirect=${encodeURIComponent(`/curriculum/${clasa}/${modulSlug}/${sublectieCod}`)}`);
+    } else {
+      redirect("/preturi");
+    }
+  }
+
   const continut = await getSublectieContinut(sublectieCod);
-  const { user } = await getUtilizatorCurent();
   const intrebari = await getQuizSublectie(sublectieCod);
   const exercitii = await getExercitiiSublectie(sublectieCod);
   const predic = await getPredicție(sublectieCod);
@@ -64,7 +79,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       ? [`${sublectieCod.replace(/\.\d+$/, "")}.4`, `${sublectieCod.replace(/\.\d+$/, "")}.5`]
       : [];
 
-  if (!modul || !capitol || !continut) notFound();
+  if (!continut) notFound();
 
   const anterior = await sublectieAnterioara(sublectieCod);
   const urmatoarea = await sublectieUrmatoare(sublectieCod);

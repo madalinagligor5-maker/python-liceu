@@ -12,6 +12,7 @@ import {
   modulUrmator,
 } from "@/lib/curriculum";
 import { getPredicțiiClasa } from "@/lib/predicții";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -42,6 +43,10 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
   const capitol = getCapitol(clasa);
 
   if (!modul || !capitol) notFound();
+
+  const { meta } = await getUtilizatorCurent();
+  const esteGratuit = modul.gratuit || modul.numar <= 5;
+  const areAcces = esteGratuit || areAbonamentActiv(meta);
 
   const anterior = modulAnterior(clasa, modulSlug);
   const urmator = modulUrmator(clasa, modulSlug);
@@ -105,6 +110,31 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
       <p className="mt-2 text-sm text-muted">
         {capitol.titlu} · 6 sublecții
       </p>
+
+      {!areAcces && (
+        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 text-center">
+          <p className="font-semibold text-amber-900">
+            🔒 Acest modul necesită cont și abonament activ.
+          </p>
+          <p className="mt-1 text-sm text-amber-700">
+            Deblochează toate modulele, testele și exercițiile practice de programare cu un abonament activ.
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/preturi"
+              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+            >
+              Vezi planurile de abonament
+            </Link>
+            <Link
+              href="/cont"
+              className="rounded-xl border border-black/10 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+            >
+              Contul meu
+            </Link>
+          </div>
+        </div>
+      )}
 
       {!areContinut && (
         <p className="mt-6 rounded-2xl border border-brand-border bg-brand-light/50 p-4 text-sm text-brand-dark">
@@ -178,12 +208,21 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
                 <p className="mt-1 text-sm text-muted">{s.descriere}</p>
               </div>
               {conteaza ? (
-                <Link
-                  href={href}
-                  className="self-center rounded-full bg-brand px-3 py-1 text-[11px] font-semibold text-white hover:bg-brand-dark"
-                >
-                  Deschide →
-                </Link>
+                areAcces ? (
+                  <Link
+                    href={href}
+                    className="self-center rounded-full bg-brand px-3 py-1 text-[11px] font-semibold text-white hover:bg-brand-dark"
+                  >
+                    Deschide →
+                  </Link>
+                ) : (
+                  <Link
+                    href="/preturi"
+                    className="self-center rounded-full bg-amber-500 px-3 py-1 text-[11px] font-semibold text-white hover:bg-amber-600 flex items-center gap-1"
+                  >
+                    <span>🔒</span> Premium
+                  </Link>
+                )
               ) : (
                 <span className="self-center rounded-full bg-surface px-2 py-1 text-[11px] font-semibold text-locked">
                   în pregătire
