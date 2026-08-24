@@ -1,5 +1,31 @@
 {
   "sursa": "Ordinul 4.370/2026, Anexele 8-11",
+  "sablon_sublectii": [
+    {
+      "titlu": "Recapitulare",
+      "descriere": "Leaga lectia de ce s-a invatat deja."
+    },
+    {
+      "titlu": "Concept nou si exemplu",
+      "descriere": "Explicatie pas cu pas si un exemplu de cod comentat."
+    },
+    {
+      "titlu": "Citeste si prezice",
+      "descriere": "Citesti un fragment de cod si anticipezi rezultatul."
+    },
+    {
+      "titlu": "Exercitii ghidate",
+      "descriere": "Probleme rezolvate partial, cu indicii."
+    },
+    {
+      "titlu": "Exercitii independente",
+      "descriere": "Probleme de rezolvat singur, fara sprijin."
+    },
+    {
+      "titlu": "Verifica-ti intelegerea",
+      "descriere": "3-5 intrebari scurte inainte de modulul urmator."
+    }
+  ],
   "statistici": {
     "capitole": 9,
     "module": 103,
