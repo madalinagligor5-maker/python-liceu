@@ -155,7 +155,7 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
       }
 
       setVerdicte((prev) => ({ ...prev, [curentIdx]: potriveste ? "ok" : "gresit" }));
-    } catch (e) {
+    } catch (e: any) {
       console.error("PYODIDE_ERR", e);
       if (e instanceof Error && e.message === "TIMEOUT_EXECUTION") {
         setErori((prev) => ({
@@ -163,11 +163,16 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
           [curentIdx]: "⚠️ Timpul de execuție a fost depășit (4s). Verifică dacă nu ai o buclă infinită (ex: while fără incrementare)!"
         }));
       } else {
+        const msg = e?.message || String(e);
+        // Daca eroarea provine din executia de cod Python, o afisam direct elevului
+        const esteEroareCod = msg.includes("Error") || msg.includes("Traceback") || msg.includes("Exception");
         setErori((prev) => ({ 
           ...prev, 
-          [curentIdx]: "Eroare tehnică la rularea codului local." 
+          [curentIdx]: esteEroareCod ? msg : "Eroare tehnică la rularea codului local." 
         }));
-        setFolosestePy(false);
+        if (!esteEroareCod) {
+          setFolosestePy(false);
+        }
       }
     } finally {
       setRuleaza(false);
