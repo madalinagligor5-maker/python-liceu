@@ -195,3 +195,73 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
 
   return { ok: true, feedback: feedbackFallback };
 }
+
+export async function explicaLinieCod(
+  linieCod: string,
+  codComplet: string
+): Promise<{ ok: boolean; explicatie?: string; eroare?: string }> {
+  const { user } = await getUtilizatorCurent();
+  if (!user) {
+    return { ok: false, eroare: "Trebuie să fii autentificat pentru a folosi asistentul AI." };
+  }
+
+  let geminiApiKey = (process.env.GEMINI_API_KEY || "").trim();
+  if (geminiApiKey.startsWith('"') && geminiApiKey.endsWith('"')) {
+    geminiApiKey = geminiApiKey.slice(1, -1);
+  }
+  if (geminiApiKey.startsWith("'") && geminiApiKey.endsWith("'")) {
+    geminiApiKey = geminiApiKey.slice(1, -1);
+  }
+
+  if (!geminiApiKey) {
+    return { ok: false, eroare: "Serviciul AI nu este configurat pe server." };
+  }
+
+  try {
+    const prompt = `
+Ești un profesor asistent de informatică (tutor AI) pentru elevi de liceu din România.
+Sarcina ta este să explici în mod scurt, clar și prietenos ce face o anumită linie de cod dintr-un program Python, adaptat pentru un începător de clasa a IX-a sau a X-a.
+
+Codul complet pentru context:
+\`\`\`python
+${codComplet}
+\`\`\`
+
+Linia de cod pe care trebuie să o explici:
+\`\`\`python
+${linieCod}
+\`\`\`
+
+Te rog să oferi explicația în limba română în maximum 2-3 propoziții clare și simple. Nu folosi formatare JSON, scrie direct textul explicației. Fii încurajator!
+`;
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${geminiApiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      let det = "";
+      try { det = await response.text(); } catch (_) {}
+      throw new Error(`Răspuns API invalid: ${response.status}. Detalii: ${det}`);
+    }
+
+    const data = await response.json();
+    const explicatie = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!explicatie) {
+      throw new Error("Nu s-a primit răspuns de la asistent.");
+    }
+
+    return { ok: true, explicatie: explicatie.trim() };
+  } catch (e: any) {
+    console.error("EXPLAIN_LINE_ERR", e);
+    return { ok: false, eroare: e?.message || "Eroare la generarea explicației." };
+  }
+}
+

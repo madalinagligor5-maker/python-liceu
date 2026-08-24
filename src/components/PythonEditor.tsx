@@ -13,6 +13,8 @@ type Props = {
   height?: number;
   /** Apelat când elevul apasă „Rulează codul" (indiferent de rezultat). */
   onVerificat?: () => void;
+  /** Apelat când se modifică codul în editor. */
+  onCodeChange?: (code: string) => void;
 };
 
 // Pyodide se încarcă o singură dată per pagină. Ținem instanța Pyodide
@@ -22,7 +24,8 @@ type Props = {
 type PyodideApi = {
   setStdout: (o: { batched: (s: string) => void }) => void;
   setStderr: (o: { batched: (s: string) => void }) => void;
-  runPythonAsync: (code: string) => Promise<void>;
+  runPythonAsync: (code: string) => Promise<any>;
+  globals?: any;
 };
 
 declare global {
@@ -32,31 +35,51 @@ declare global {
   }
 }
 
+let pyodidePromise: Promise<void> | null = null;
+
 async function incarcaPyodide(): Promise<PyodideApi> {
-  // Dacă avem deja o instanță, o refolosim.
-  if (typeof window !== "undefined" && window.__pyodideInstance) {
+  if (typeof window === "undefined") {
+    throw new Error("Rularea locală nu este disponibilă pe server.");
+  }
+  if (window.__pyodideInstance) {
     return window.__pyodideInstance;
   }
-  // Dacă scriptul nu e încă în DOM (și loadPyodide nu e deja încărcat),
-  // îl adăugăm o singură dată.
-  if (
-    typeof window !== "undefined" &&
-    !window.loadPyodide &&
-    !document.querySelector("script[data-pyodide]")
-  ) {
-    await new Promise<void>((res, rej) => {
-      const s = document.createElement("script");
-      s.src = "/pyodide/pyodide.js";
-      s.setAttribute("data-pyodide", "1");
-      s.onload = () => res();
-      s.onerror = () => rej(new Error("Nu s-a putut încărca interpretorul Python."));
-      document.body.appendChild(s);
+
+  if (!pyodidePromise) {
+    pyodidePromise = new Promise<void>((res, rej) => {
+      const dejaIncarcat = document.querySelector("script[data-pyodide]");
+      if (dejaIncarcat && window.loadPyodide) {
+        res();
+        return;
+      }
+
+      const s = (dejaIncarcat as HTMLScriptElement) ?? document.createElement("script");
+      if (!dejaIncarcat) {
+        s.src = "/pyodide/pyodide.js";
+        s.setAttribute("data-pyodide", "1");
+        document.body.appendChild(s);
+      }
+
+      const originalOnload = s.onload;
+      s.onload = (e) => {
+        if (originalOnload) (originalOnload as Function)(e);
+        res();
+      };
+
+      const originalOnerror = s.onerror;
+      s.onerror = (e) => {
+        if (originalOnerror) (originalOnerror as Function)(e);
+        rej(new Error("Nu s-a putut încărca interpretorul Python."));
+      };
     });
   }
-  if (typeof window === "undefined" || !window.loadPyodide) {
+
+  await pyodidePromise;
+
+  if (!window.loadPyodide) {
     throw new Error("Interpretorul Python nu a putut fi inițializat.");
   }
-  // Dacă o altă parte a paginii a inițializat deja Pyodide, refolosim instanța.
+
   const existenta = (window as unknown as { pyodide?: PyodideApi }).pyodide;
   const py = existenta ?? (await window.loadPyodide({ indexURL: "/pyodide/" }));
   if (typeof window !== "undefined") window.__pyodideInstance = py;
@@ -69,6 +92,7 @@ export default function PythonEditor({
   titlu = "Scrie codul tău Python",
   height = 220,
   onVerificat,
+  onCodeChange,
 }: Props) {
   const [cod, setCod] = useState(initialCode);
   const [output, setOutput] = useState("");
@@ -138,7 +162,11 @@ export default function PythonEditor({
         </div>
         <textarea
           value={cod}
-          onChange={(e) => setCod(e.target.value)}
+          onChange={(e) => {
+            const val = e.target.value;
+            setCod(val);
+            onCodeChange?.(val);
+          }}
           spellCheck={false}
           className="block w-full resize-y bg-transparent p-3 font-mono text-sm leading-relaxed text-white outline-none"
           style={{ minHeight: height }}

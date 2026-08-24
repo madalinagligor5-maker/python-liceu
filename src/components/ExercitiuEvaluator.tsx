@@ -18,7 +18,8 @@ type Props = {
 type PyodideApi = {
   setStdout: (o: { batched: (s: string) => void }) => void;
   setStderr: (o: { batched: (s: string) => void }) => void;
-  runPythonAsync: (code: string) => Promise<void>;
+  runPythonAsync: (code: string) => Promise<any>;
+  globals?: any;
 };
 
 declare global {
@@ -92,6 +93,10 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
   const [ruleaza, setRuleaza] = useState(false);
   const [evaluarePending, setEvaluarePending] = useState(false);
   const [folosestePy, setFolosestePy] = useState(true);
+
+  const [debugSteps, setDebugSteps] = useState<any[]>([]);
+  const [currentDebugStep, setCurrentDebugStep] = useState<number>(-1);
+  const [debugMode, setDebugMode] = useState<boolean>(false);
 
   // Inițializăm codurile cu șabloanele corespunzătoare
   useEffect(() => {
@@ -203,6 +208,84 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
     }
   };
 
+  const debugCod = async () => {
+    setRuleaza(true);
+    setErori((prev) => ({ ...prev, [curentIdx]: "" }));
+    setVerdicte((prev) => ({ ...prev, [curentIdx]: null }));
+    setOutputs((prev) => ({ ...prev, [curentIdx]: "" }));
+    setDebugMode(false);
+    setDebugSteps([]);
+    setCurrentDebugStep(-1);
+
+    try {
+      const py = await incarcaPyodide();
+
+      py.globals.set("___USER_CODE___", codCurent);
+
+      const runScript = `
+import sys
+import json
+
+steps = []
+max_steps = 150
+
+def trace_lines(frame, event, arg):
+    if len(steps) >= max_steps:
+        raise Exception("TIMEOUT_EXECUTION")
+    if event == 'line':
+        if frame.f_code.co_filename == '<string>':
+            line_no = frame.f_lineno
+            local_vars = {}
+            for k, v in frame.f_locals.items():
+                if k.startswith('__') or hasattr(v, '__call__'):
+                    continue
+                val_str = repr(v)
+                if len(val_str) > 100:
+                    val_str = val_str[:97] + "..."
+                local_vars[k] = val_str
+            steps.append({"line": line_no, "locals": local_vars})
+    return trace_lines
+
+sys.settrace(trace_lines)
+try:
+    exec(compile(___USER_CODE___, '<string>', 'exec'), {})
+except Exception as e:
+    tb = sys.exc_info()[2]
+    while tb and tb.tb_next:
+        tb = tb.tb_next
+    line_err = tb.tb_lineno if tb else 1
+    steps.append({"line": line_err, "locals": {}, "error": str(e)})
+finally:
+    sys.settrace(None)
+
+json.dumps(steps)
+`;
+
+      const stepsJson = await py.runPythonAsync(runScript);
+      const steps = JSON.parse(stepsJson);
+
+      if (steps.length > 0) {
+        setDebugSteps(steps);
+        setCurrentDebugStep(0);
+        setDebugMode(true);
+      } else {
+        setErori((prev) => ({ ...prev, [curentIdx]: "Nu s-au putut înregistra pași de execuție." }));
+      }
+    } catch (e: any) {
+      console.error("DEBUG_ERR", e);
+      if (e instanceof Error && e.message.includes("TIMEOUT_EXECUTION")) {
+        setErori((prev) => ({
+          ...prev,
+          [curentIdx]: "⚠️ Debugger-ul a fost oprit deoarece codul a efectuat prea mulți pași (bucle infinite sau recursive)."
+        }));
+      } else {
+        setErori((prev) => ({ ...prev, [curentIdx]: "Eroare la pornirea debuggerului: " + (e?.message || String(e)) }));
+      }
+    } finally {
+      setRuleaza(false);
+    }
+  };
+
   const solicitaEvaluareAI = async () => {
     setEvaluarePending(true);
     setFeedbacksAI((prev) => ({ ...prev, [curentIdx]: null }));
@@ -243,7 +326,12 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
             <button
               key={ex.id}
               type="button"
-              onClick={() => setCurentIdx(idx)}
+              onClick={() => {
+                setCurentIdx(idx);
+                setDebugMode(false);
+                setDebugSteps([]);
+                setCurrentDebugStep(-1);
+              }}
               className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                 esteActiv
                   ? "bg-brand text-white shadow-sm font-extrabold"
@@ -305,6 +393,14 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
             </button>
             <button
               type="button"
+              onClick={debugCod}
+              disabled={ruleaza}
+              className="w-full sm:w-auto rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 font-semibold py-3 px-6 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer text-center text-sm"
+            >
+              🐞 Depanează pas cu pas
+            </button>
+            <button
+              type="button"
               onClick={solicitaEvaluareAI}
               disabled={evaluarePending}
               className="w-full sm:w-auto rounded-xl text-slate-800 border-2 border-amber-400 bg-amber-50/50 hover:bg-amber-100 py-3 px-6 text-sm font-bold text-center transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
@@ -326,6 +422,74 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
             )}
           </div>
         </div>
+
+      {debugMode && debugSteps.length > 0 && (
+        <div className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50/30 p-4 shadow-sm">
+          <div className="flex items-center justify-between">
+            <h5 className="text-sm font-bold text-indigo-900 flex items-center gap-1.5">
+              <span>🐞</span> Vizualizator pas cu pas (Debugger)
+            </h5>
+            <button
+              onClick={() => { setDebugMode(false); setDebugSteps([]); }}
+              className="text-xs text-indigo-600 hover:text-indigo-800 underline font-medium cursor-pointer"
+            >
+              Închide vizualizator
+            </button>
+          </div>
+          
+          <div className="mt-3 flex items-center gap-3">
+            <button
+              type="button"
+              disabled={currentDebugStep <= 0}
+              onClick={() => setCurrentDebugStep(prev => prev - 1)}
+              className="rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1.5 px-3 text-xs disabled:opacity-40 transition cursor-pointer"
+            >
+              ◀ Înapoi
+            </button>
+            <span className="text-xs font-semibold text-slate-700">
+              Pasul {currentDebugStep + 1} din {debugSteps.length}
+            </span>
+            <button
+              type="button"
+              disabled={currentDebugStep >= debugSteps.length - 1}
+              onClick={() => setCurrentDebugStep(prev => prev + 1)}
+              className="rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1.5 px-3 text-xs disabled:opacity-40 transition cursor-pointer"
+            >
+              Înainte ▶
+            </button>
+          </div>
+
+          <div className="mt-3 text-xs font-mono bg-slate-900 text-slate-100 p-2.5 rounded-lg border border-slate-800">
+            <span className="text-amber-400 font-bold mr-2">Linia {debugSteps[currentDebugStep]?.line}:</span>
+            <span>{codCurent.split("\n")[debugSteps[currentDebugStep]?.line - 1] || "..."}</span>
+          </div>
+
+          <div className="mt-3 rounded-xl border border-indigo-100 bg-white p-3">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              Variabile active la pasul {currentDebugStep + 1}:
+            </span>
+            {Object.keys(debugSteps[currentDebugStep]?.locals || {}).length === 0 ? (
+              <p className="mt-1.5 text-xs text-slate-400 italic">Nicio variabilă definită încă la această linie.</p>
+            ) : (
+              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {Object.entries(debugSteps[currentDebugStep].locals).map(([name, val]: any) => (
+                  <div key={name} className="flex items-center gap-2 rounded bg-slate-50 border border-slate-100 p-1.5 font-mono text-xs text-slate-700">
+                    <span className="font-bold text-brand">{name}</span>
+                    <span className="text-slate-400">=</span>
+                    <span className="text-slate-800">{val}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {debugSteps[currentDebugStep]?.error && (
+              <div className="mt-2 rounded-lg bg-red-50 border border-red-100 p-2 text-xs text-red-600 font-sans">
+                <strong>Eroare la acest pas:</strong> {debugSteps[currentDebugStep].error}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
         {(outputCurent || eroareCurenta) && (
           <div className="mt-3">

@@ -390,6 +390,63 @@ saluta("Academia Python")
         </section>
       )}
 
+      {/* PENTRU PĂRINȚI */}
+      <section className="bg-[#fcf8f2] py-16 border-t border-b border-orange-100">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] items-center">
+            <div>
+              <span className="inline-flex rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-800">
+                Secțiune pentru Părinți
+              </span>
+              <h2 className="mt-4 text-3xl font-extrabold text-foreground leading-tight">
+                O investiție sigură în viitorul copilului tău
+              </h2>
+              <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
+                Știm că programarea poate părea complicată, iar meditațiile clasice pot fi costisitoare. Academia Python a fost creată de profesori de informatică pentru a oferi o alternativă modernă, sigură și eficientă.
+              </p>
+              <div className="mt-6 flex items-center gap-3">
+                <span className="text-3xl">🛡️</span>
+                <span className="text-xs font-semibold text-foreground/60 leading-normal">
+                  Garanție de rambursare 14 zile. Plăți securizate prin Stripe. Anulare instantă din cont.
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
+                <span className="text-3xl shrink-0">🎯</span>
+                <div>
+                  <h3 className="font-bold text-foreground">Aliniat la Programa Școlară (clasele IX-XII)</h3>
+                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
+                    Întregul curriculum respectă programa oficială de Informatică aprobată de Ministerul Educației. Copilul învață exact ce i se cere la clasă, pentru note excelente și pregătire de teză.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
+                <span className="text-3xl shrink-0">💰</span>
+                <div>
+                  <h3 className="font-bold text-foreground">Alternativă accesibilă la meditații clasice</h3>
+                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
+                    O singură oră de meditație costă între 100 și 150 de lei. Pe platformă, copilul beneficiază de asistență AI inteligentă 24/7 care îi explică erorile pas cu pas, la o fracțiune din cost.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
+                <span className="text-3xl shrink-0">🚀</span>
+                <div>
+                  <h3 className="font-bold text-foreground">Start excelent în carieră sau facultate</h3>
+                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
+                    Python este limbajul numărul 1 în inteligență artificială și software engineering. Dobândirea acestor cunoștințe din liceu îi oferă copilului un avantaj competitiv uriaș.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PREȚURI SCURTE */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="text-2xl font-bold text-foreground sm:text-3xl">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PythonEditor from "@/components/PythonEditor";
+import LabClient from "@/components/LabClient";
 
 export const metadata: Metadata = {
   title: "Lab (Cod online) — Academia Python",
@@ -16,11 +16,7 @@ export default function LabPage() {
         </p>
       </div>
       
-      <PythonEditor 
-        initialCode={`# Scrie codul tău Python mai jos\n\nfor i in range(5):\n    print("Nivel", i + 1, "la Academia Python! 🐍")\n`}
-        titlu="Sandbox Python"
-        height={320}
-      />
+      <LabClient />
     </div>
   );
 }
