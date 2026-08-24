@@ -28,27 +28,51 @@ declare global {
   }
 }
 
+let pyodidePromise: Promise<void> | null = null;
+
 async function incarcaPyodide(): Promise<PyodideApi> {
-  if (typeof window !== "undefined" && window.__pyodideInstance) {
+  if (typeof window === "undefined") {
+    throw new Error("Rularea locală nu este disponibilă pe server.");
+  }
+  if (window.__pyodideInstance) {
     return window.__pyodideInstance;
   }
-  if (
-    typeof window !== "undefined" &&
-    !window.loadPyodide &&
-    !document.querySelector("script[data-pyodide]")
-  ) {
-    await new Promise<void>((res, rej) => {
-      const s = document.createElement("script");
-      s.src = "/pyodide/pyodide.js";
-      s.setAttribute("data-pyodide", "1");
-      s.onload = () => res();
-      s.onerror = () => rej(new Error("Nu s-a putut încărca interpretorul Python."));
-      document.body.appendChild(s);
+
+  if (!pyodidePromise) {
+    pyodidePromise = new Promise<void>((res, rej) => {
+      const dejaIncarcat = document.querySelector("script[data-pyodide]");
+      if (dejaIncarcat && window.loadPyodide) {
+        res();
+        return;
+      }
+
+      const s = (dejaIncarcat as HTMLScriptElement) ?? document.createElement("script");
+      if (!dejaIncarcat) {
+        s.src = "/pyodide/pyodide.js";
+        s.setAttribute("data-pyodide", "1");
+        document.body.appendChild(s);
+      }
+
+      const originalOnload = s.onload;
+      s.onload = (e) => {
+        if (originalOnload) (originalOnload as Function)(e);
+        res();
+      };
+
+      const originalOnerror = s.onerror;
+      s.onerror = (e) => {
+        if (originalOnerror) (originalOnerror as Function)(e);
+        rej(new Error("Nu s-a putut încărca interpretorul Python."));
+      };
     });
   }
-  if (typeof window === "undefined" || !window.loadPyodide) {
+
+  await pyodidePromise;
+
+  if (!window.loadPyodide) {
     throw new Error("Interpretorul Python nu a putut fi inițializat.");
   }
+
   const existenta = (window as unknown as { pyodide?: PyodideApi }).pyodide;
   const py = existenta ?? (await window.loadPyodide({ indexURL: "/pyodide/" }));
   if (typeof window !== "undefined") window.__pyodideInstance = py;
