@@ -1,24 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-type Sublectie = {
-  cod: string;
-  titlu: string;
-  descriere: string;
-  slug: string;
-  tip: string;
-};
-
-type Modul = {
-  cod: string;
-  numar: number;
-  titlu: string;
-  slug: string;
-  clasa: string;
-  gratuit: boolean;
-  sublectii: Sublectie[];
-};
+import type { Modul } from "@/lib/curriculum";
 
 export default function ModuleListCollapsible({
   module,
