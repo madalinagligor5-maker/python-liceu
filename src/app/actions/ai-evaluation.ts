@@ -68,7 +68,13 @@ export async function evalueazaCodCuAI(
     };
   }
 
-  const geminiApiKey = process.env.GEMINI_API_KEY;
+  let geminiApiKey = (process.env.GEMINI_API_KEY || "").trim();
+  if (geminiApiKey.startsWith('"') && geminiApiKey.endsWith('"')) {
+    geminiApiKey = geminiApiKey.slice(1, -1);
+  }
+  if (geminiApiKey.startsWith("'") && geminiApiKey.endsWith("'")) {
+    geminiApiKey = geminiApiKey.slice(1, -1);
+  }
   let eroareApelAPI: string | null = null;
 
   if (geminiApiKey) {
@@ -100,7 +106,7 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
 `;
 
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
+        `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -112,7 +118,9 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
       );
 
       if (!response.ok) {
-        throw new Error(`Răspuns API invalid: ${response.statusText}`);
+        let det = "";
+        try { det = await response.text(); } catch (_) {}
+        throw new Error(`Răspuns API invalid: ${response.status} ${response.statusText || ""}. Detalii: ${det}`);
       }
 
       const date = await response.json();
