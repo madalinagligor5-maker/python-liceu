@@ -10,102 +10,100 @@ export const metadata: Metadata = {
 };
 
 export default function CurriculumPage() {
-  const stats = structura.statistici;
-  // Afișăm doar capitolele de liceu (IX–XII), nu cele de copii (P7–P11)
   const capitoleLiceu = capitole.filter((c) => !c.clasa.startsWith("P"));
   const nrCapitole = capitoleLiceu.length;
   const nrModule = capitoleLiceu.reduce((acc, c) => acc + c.module.length, 0);
   const nrSublectii = nrModule * 6;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
-        Curriculum complet
-      </h1>
-      <p className="mt-3 max-w-2xl text-foreground/70">
-        Structura cursului pentru clasele IX-XII, organizată ca{" "}
-        <strong>capitol → modul → sublecții</strong>. Fiecare modul urmează același
-        șablon de 6 sublecții, ca să știi mereu unde ești în lecție.
-      </p>
-      <p className="mt-2 text-xs text-muted">Sursă: {structura.sursa}</p>
-
-      <div className="mt-4 rounded-2xl border border-brand-border bg-brand-light/40 p-4 text-sm text-brand-dark">
-        <p className="font-semibold">Despre profil și programă</p>
-        <p className="mt-1">
-          Lecțiile urmează <strong>Ordinul ministrului educației nr. 4.370/2026</strong>{" "}
-          (Monitorul Oficial nr. 591 bis din 20 iulie 2026), anexele 8–11 — traseul de{" "}
-          <strong>matematică-informatică, profil real, cu predare în regim intensiv</strong>.
-          Este cel mai exigente dintre traseele de Informatică de liceu și e urmat de elevii
-          care învață Python și C++ în paralel.
+    <div className="bg-slate-950 text-slate-100 min-h-screen">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+        <span className="inline-flex rounded-full bg-indigo-950 border border-indigo-500/30 px-3.5 py-1 text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">
+          Programa Școlară Oficială 2026
+        </span>
+        <h1 className="text-3xl font-black text-white sm:text-4xl">
+          Curriculum complet de Informatică
+        </h1>
+        <p className="mt-3 max-w-2xl text-slate-400 font-medium text-sm sm:text-base">
+          Structura cursului pentru clasele IX-XII, organizată ca{" "}
+          <strong className="text-amber-400 font-bold">capitol → modul → sublecții</strong>. Fiecare modul urmează același șablon de 6 sublecții interactive.
         </p>
-        <p className="mt-2">
-          Programa nouă se aplică <strong>progresiv</strong>: în anul școlar 2026–2027 intră la
-          clasa a IX-a; clasele X, XI și XII continuă pe programa lor până la trecerea completă.
-          Conținutul de aici e aliniat la nivelul și ordinea noii programe, grupat pe clase
-          (IX–XII) ca să fie util direct la ora de curs și la teme.
-        </p>
-      </div>
 
-      <dl className="mt-6 grid grid-cols-3 gap-3 sm:max-w-md">
-        {[
-          ["Capitole", nrCapitole],
-          ["Module", nrModule],
-          ["Sublecții", nrSublectii],
-        ].map(([eticheta, valoare]) => (
-          <div
-            key={String(eticheta)}
-            className="rounded-2xl border border-border bg-white p-4 text-center shadow-sm"
-          >
-            <dt className="text-xs font-semibold uppercase text-muted">{eticheta}</dt>
-            <dd className="text-2xl font-extrabold text-brand">{valoare}</dd>
-          </div>
-        ))}
-      </dl>
+        <div className="mt-6 rounded-3xl border border-indigo-500/30 bg-indigo-950/30 p-5 text-xs sm:text-sm text-indigo-200 backdrop-blur-md">
+          <p className="font-extrabold text-amber-400 text-sm mb-1">
+            📜 Ordinul Ministrului Educației nr. 4.370/2026
+          </p>
+          <p className="leading-relaxed text-slate-300">
+            Lecțiile sunt aliniate programei de <strong>Matematică-Informatică (intensiv)</strong>. Conținutul acoperă algoritmi, structuri de date, programare orientată pe obiecte și pregătire completă pentru Bacalaureat și Olimpiade.
+          </p>
+        </div>
 
-      <section className="mt-10">
-        <h2 className="text-xl font-bold text-foreground">Șablonul unei lecții</h2>
-        <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {structura.sablon_sublectii.map((s, i) => (
-            <li
-              key={s.titlu}
-              className="rounded-2xl border border-border bg-white p-4 shadow-sm"
+        {/* Statistici rapide */}
+        <dl className="mt-8 grid grid-cols-3 gap-4 sm:max-w-md">
+          {[
+            ["Capitole", nrCapitole],
+            ["Module", nrModule],
+            ["Sublecții", nrSublectii],
+          ].map(([eticheta, valoare]) => (
+            <div
+              key={String(eticheta)}
+              className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 text-center shadow-lg"
             >
-              <span className="text-xs font-bold text-brand">Pasul {i + 1}</span>
-              <p className="mt-1 font-semibold text-foreground">{s.titlu}</p>
-              <p className="mt-1 text-xs text-muted">{s.descriere}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="mt-12 space-y-5">
-        {capitoleLiceu.map((c) => (
-          <article
-            key={c.clasa}
-            className="rounded-2xl border border-border bg-white p-4 sm:p-6 shadow-sm"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-                  Capitolul {c.numar} · Clasa a {c.clasa}-a
-                </p>
-                <h3 className="mt-1 text-lg font-bold text-foreground">{c.titlu}</h3>
-                <p className="mt-1 text-sm text-muted">
-                  {c.module.length} module · {c.module.length * 6} sublecții
-                </p>
-              </div>
-              <Link
-                href={`/curriculum/${c.clasa}`}
-                className="rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
-              >
-                Vezi modulele →
-              </Link>
+              <dt className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">{eticheta}</dt>
+              <dd className="text-2xl font-black text-amber-400 mt-1">{valoare}</dd>
             </div>
+          ))}
+        </dl>
 
-            <ModuleListCollapsible module={c.module} clasa={c.clasa} />
-          </article>
-        ))}
-      </section>
+        {/* Șablonul lecțiilor */}
+        <section className="mt-12">
+          <h2 className="text-xl font-black text-white">Șablonul celor 6 pași ai unei lecții</h2>
+          <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {structura.sablon_sublectii.map((s, i) => (
+              <li
+                key={s.titlu}
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 shadow-md"
+              >
+                <span className="text-xs font-black text-amber-400">Pasul {i + 1}</span>
+                <p className="mt-1 font-bold text-white text-sm">{s.titlu}</p>
+                <p className="mt-1 text-xs text-slate-400">{s.descriere}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* Lista capitolelor IX - XII */}
+        <section className="mt-12 space-y-6">
+          {capitoleLiceu.map((c) => (
+            <article
+              key={c.clasa}
+              className="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-wider text-amber-400">
+                    Capitolul {c.numar} · Clasa a {c.clasa}-a
+                  </p>
+                  <h3 className="mt-1 text-xl font-black text-white">{c.titlu}</h3>
+                  <p className="mt-1 text-xs text-slate-400 font-medium">
+                    {c.module.length} module · {c.module.length * 6} sublecții
+                  </p>
+                </div>
+                <Link
+                  href={`/curriculum/${c.clasa}`}
+                  className="rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-5 py-2.5 text-xs shadow-md transition active:scale-95"
+                >
+                  Vezi modulele →
+                </Link>
+              </div>
+
+              <div className="mt-4 text-slate-300">
+                <ModuleListCollapsible module={c.module} clasa={c.clasa} />
+              </div>
+            </article>
+          ))}
+        </section>
+      </div>
     </div>
   );
 }

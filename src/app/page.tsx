@@ -1,12 +1,12 @@
 import Link from "next/link";
-import CodeBlock from "@/components/CodeBlock";
-import Logo from "@/components/Logo";
-import Mascota from "@/components/Mascota";
+import HeroCodeRunner from "@/components/HeroCodeRunner";
+import AiAssistantWidget from "@/components/AiAssistantWidget";
 import Dashboard from "@/components/Dashboard";
 import NewsletterForm from "@/components/NewsletterForm";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
+import { creeazaClientServer } from "@/lib/supabase/server";
 
 const CLASE = [
   {
@@ -14,42 +14,32 @@ const CLASE = [
     titlu: "Bazele programării",
     descriere:
       "De la zero: ce e un algoritm, cum scrii un program, variabile, operații cu numere, liste și cum citești ce a scris altul.",
+    icon: "🧭",
+    culoare: "border-emerald-500/30 bg-emerald-950/20 text-emerald-300",
   },
   {
     clasa: "X",
     titlu: "Funcții și structuri de date",
     descriere:
       "Înveți să împarți un program în bucăți mai mici (funcții), apoi lucrezi cu tupluri, seturi, dicționare și text.",
+    icon: "🔁",
+    culoare: "border-sky-500/30 bg-sky-950/20 text-sky-300",
   },
   {
     clasa: "XI",
     titlu: "Programare orientată pe obiecte",
     descriere:
       "Clase și obiecte, cum refolosești codul prin moștenire, plus algoritmi de care ai nevoie la olimpiadă și la școală.",
+    icon: "🔀",
+    culoare: "border-violet-500/30 bg-violet-950/20 text-violet-300",
   },
   {
     clasa: "XII",
     titlu: "Proiecte și pregătire examen",
     descriere:
       "Pui cap la cap tot ce ai învățat în proiecte mai mari și exersezi exact ce pică la evaluarea de la Informatică.",
-  },
-];
-
-const PAȘI = [
-  {
-    icon: "📘",
-    titlu: "Citești lecția",
-    text: "Fiecare lecție e împărțită în 6 pași scurți: recapitrezi ce știai, vezi noțiunea nouă, încearcă să ghicești ce face o bucată de cod, apoi rezolvi exerciții.",
-  },
-  {
-    icon: "💻",
-    titlu: "Scrii codul",
-    text: "Exersezi direct pe pagină. Codul e comentat linie cu linie și rulează în browser — nu instalezi nimic pe calculator, deschizi lecția și scrii.",
-  },
-  {
-    icon: "✅",
-    titlu: "Verifici ce ai priceput",
-    text: "La sfârșit ai câteva întrebări. Le rezolvi și vezi imediat ce ai greșit și de ce. Treci mai departe numai când le-ai făcut pe toate.",
+    icon: "🎒",
+    culoare: "border-amber-500/30 bg-amber-950/20 text-amber-300",
   },
 ];
 
@@ -57,42 +47,22 @@ const FAQ = [
   {
     intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Primele 3 module din clasa a IX-a sunt deschise complet. Intri pe ele, citești, scrii cod și rezolvi exercițiile fără cont și fără card.",
+      "Da. Toate cele 6 module din Academia Junior sunt 100% GRATUITE. De asemenea, primele 3 module din liceu sunt deschise complet fără card.",
   },
   {
     intrebare: "Trebuie să instalez Python pe laptop?",
     raspuns:
-      "Nu. Codul se scrie și rulează direct în pagină, în browser. Dacă vrei să mai exersezi și acasă, poți instala Python separat, dar nu e nevoie ca să urmezi lecțiile.",
+      "Nu. Codul se scrie și rulează direct în pagină, în browser. Nu ai nevoie de instalări pe calculator.",
   },
   {
     intrebare: "Se potrivește cu ce facem la școală?",
     raspuns:
-      "Se potrivește. Lecțiile sunt grupate pe clase (IX–XII) și urmează programa de Informatică de liceu, așa că ce înveți aici îți e util direct la ora de curs și la teme.",
-  },
-  {
-    intrebare: "Pot renunța la abonament dacă nu mai vreau?",
-    raspuns:
-      "Poți anula oricând din pagina ta de cont. Nu e nicio obligație pe termen lung și nu plătești nimic în plus.",
-  },
-  {
-    intrebare: "Ce fac dacă mă blochez la un exercițiu?",
-    raspuns:
-      "Fiecare exercițiu are un indiciu (și, la nevoie, un al doilea indiciu mai explicit) și un răspuns-model. La verificare primești feedback imediat, iar la exercițiile cu cod vezi rezultatul exact al rulării.",
+      "Se potrivește 100%. Lecțiile sunt grupate pe clase (IX–XII & Ciclul Primar) și respectă programa școlară de Informatică.",
   },
   {
     intrebare: "Mă ajută la bacalaureat la Informatică?",
     raspuns:
-      "Da. Conținutul acoperă algoritmi, structuri de date, programare și baze de date — exact domeniile evaluabile la bacalaureatul de Informatică. Lecțiile urmează programa oficială, așa că practica de aici se traduce direct la examen.",
-  },
-  {
-    intrebare: "Aveți un preț pentru o clasă sau pentru o școală?",
-    raspuns:
-      "Da, pregătim licențe de grup (o clasă întreagă sau un liceu). Scrie-ne de pe pagina de contact și îți trimitem o ofertă pentru numărul de elevi și durata dorită.",
-  },
-  {
-    intrebare: "Ce se întâmplă cu progresul meu dacă îmi schimb planul?",
-    raspuns:
-      "Progresul tău (module făcute, XP, insignele) rămâne salvat în cont, indiferent dacă treci de la gratuit la abonament sau schimbi între planul lunar și cel anual. Nu pierzi nimic din ce ai parcurs.",
+      "Da. Conținutul acoperă algoritmi, structuri de date, programare și baze de date — exact subiectele de la Bacalaureat.",
   },
 ];
 
@@ -107,12 +77,9 @@ function prenumeDinEmail(email: string): string {
   return faraCifre.charAt(0).toUpperCase() + faraCifre.slice(1);
 }
 
-import { creeazaClientServer } from "@/lib/supabase/server";
-
 export default async function HomePage({ searchParams }: PageProps<"/">) {
   const { user } = await getUtilizatorCurent();
 
-  // Utilizator autentificat: "Acasă" e dashboard-ul personal, nu marketingul.
   if (user) {
     const progres = await getProgresUtilizator(user.id);
     const params = await searchParams;
@@ -150,347 +117,228 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     }
   }
 
-  // Module reale din curriculum (primele 3 gratuite, următoarele 2 deschise).
-  const moduleGratuite = capitole
-    .find((c) => c.clasa === "IX")
-    ?.module.slice(0, 5)
-    .map((m, i) => {
-      return { cod: m.cod, titlu: m.titlu, slug: m.slug, gratuit: i < 3 };
-    }) ?? [];
+  const moduleGratuite =
+    capitole
+      .find((c) => c.clasa === "IX")
+      ?.module.slice(0, 5)
+      .map((m, i) => ({ cod: m.cod, titlu: m.titlu, slug: m.slug, gratuit: i < 3 })) ?? [];
 
   return (
-    <div>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-light via-[#f6effc] to-[#f6efdc]">
-        {/* decoruri */}
-        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand/10 blur-2xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-0 h-56 w-56 rounded-full bg-[#fbbf24]/10 blur-2xl" />
+    <div className="bg-slate-950 text-slate-100 min-h-screen relative overflow-hidden font-sans">
+      {/* Glow decorative radial background accents */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/10 to-amber-500/10 blur-[120px]" />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
-          {/* stânga: logo mare + text */}
-          <div>
-            <div className="flex items-center gap-4">
-              <img
-                src="/logo.png"
-                alt="Academia Python"
-                width={160}
-                height={160}
-                style={{ width: 160, height: 160 }}
-                className="rounded-2xl"
-              />
-              <span className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-                Academia<span className="text-brand">Python</span>
+      {/* HERO SECTION */}
+      <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        {/* Sub-brand Pills */}
+        <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
+          <Link
+            href="/curriculum"
+            className="flex items-center gap-2 rounded-full bg-indigo-950/80 border border-indigo-500/40 px-4 py-1.5 text-xs font-bold text-indigo-300 shadow-md hover:border-indigo-400 transition"
+          >
+            <span>🎓 Academia Python Liceu</span>
+            <span className="text-indigo-400/70">Clasele IX–XII</span>
+          </Link>
+          <Link
+            href="/kids/junior"
+            className="flex items-center gap-2 rounded-full bg-emerald-950/80 border border-emerald-500/40 px-4 py-1.5 text-xs font-bold text-emerald-300 shadow-md hover:border-emerald-400 transition"
+          >
+            <span>🎮 Academia Python Junior</span>
+            <span className="text-emerald-400/70">Clasele I–IV (100% Gratuit)</span>
+          </Link>
+        </div>
+
+        {/* Layout cu 3 coloane / 2 randuri */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Coloana Stânga: Text & CTA (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-none"
+              style={{ fontFamily: "'Baloo 2', sans-serif" }}
+            >
+              Învață. Practică. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-200">
+                Devino dezvoltator.
               </span>
-            </div>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-              Înveți <span className="text-brand">Python</span> direct
-              în browser,
-              <br className="hidden sm:block" /> fără instalări.
             </h1>
 
-            <p className="mt-5 max-w-xl text-lg text-foreground/70">
-              Lecții făcute pe programa de Informatică de liceu, cu explicații
-              clare și exerciții la care scrii tu însuți codul. Primele 3 module din
-              clasa a IX-a sunt{" "}
-              <span className="font-semibold text-brand-dark">gratuite</span>, iar
-              următoarele 2 sunt deschise pentru explorare — intri și începi, fără
-              cont și fără card.
+            <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed">
+              Platforma educațională Python pentru liceu și juniori, direct în browser. De la prima linie de cod până la proiecte reale.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            {/* Lista bife verzi */}
+            <div className="space-y-3 pt-2">
+              {[
+                "Python direct în browser — fără instalări",
+                "Lecții interactive, aliniate cu programa școlară",
+                "Profesor Asistent AI, exerciții cu feedback instant",
+                "XP, streak-uri și diplome pentru motivație",
+              ].map((bifa, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-black border border-emerald-500/40 shrink-0">
+                    ✓
+                  </div>
+                  <span className="text-sm font-semibold text-slate-200">{bifa}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Butoane CTA */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link
                 href="/curriculum"
-                className="rounded-xl bg-brand px-7 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
+                className="rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-7 py-3.5 text-base shadow-xl shadow-amber-400/20 active:scale-95 transition-all flex items-center gap-2"
               >
-                Intră la lecții →
+                <span>Începe să înveți</span>
+                <span>🎯</span>
               </Link>
               <Link
-                href="/preturi"
-                className="rounded-xl border border-black/10 px-7 py-3.5 text-base font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                href="/kids/junior"
+                className="rounded-xl border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-extrabold px-6 py-3.5 text-base transition shadow-md"
               >
-                Cât costă restul?
+                Testează gratuit
               </Link>
-            </div>
-
-            <div className="mt-8 flex items-center gap-2 text-sm text-foreground/55">
-              <Mascota size={34} />
-              <span>
-                De la primele linii de cod până la proiecte mai mari, pas cu pas.
-              </span>
             </div>
           </div>
 
-          {/* dreapta: code block + mascota */}
-          <div className="relative">
-            <div className="absolute -right-4 -top-6 z-10">
-              <Mascota size={72} eticheta="Mascota Py" />
-            </div>
-            <CodeBlock
-              label="lectie_1.py"
-              code={`def saluta(nume):
-    print("Salut,", nume, "!")
+          {/* Coloana Centru: IDE Mockup Interactiv (4 Cols) */}
+          <div className="lg:col-span-4">
+            <HeroCodeRunner />
+          </div>
 
-saluta("Academia Python")
-# Salut, Academia Python !`}
-            />
+          {/* Coloana Dreapta: Floating Widgets (3 Cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            {/* Widget Asistent AI */}
+            <AiAssistantWidget />
+
+            {/* Widget Progres & Gamification */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 shadow-xl backdrop-blur-md">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider">
+                  Progres & Gamification
+                </span>
+                <span className="text-xs text-amber-400 font-black">Level 12</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-2">
+                  <span className="text-lg">🏆</span>
+                  <p className="text-[10px] text-amber-300 font-bold uppercase mt-1">+1250 XP</p>
+                </div>
+                <div className="rounded-xl bg-orange-500/10 border border-orange-500/30 p-2">
+                  <span className="text-lg">🔥</span>
+                  <p className="text-[10px] text-orange-300 font-bold uppercase mt-1">7 Zile</p>
+                </div>
+                <div className="rounded-xl bg-indigo-500/10 border border-indigo-500/30 p-2">
+                  <span className="text-lg">⭐</span>
+                  <p className="text-[10px] text-indigo-300 font-bold uppercase mt-1">Badge-uri</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CUM FUNCȚIONEAZĂ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-          Cum merg lecțiile
-        </h2>
-        <p className="mt-2 max-w-2xl text-foreground/70">
-          Nu e o listă de lecturi de citit și gata. La fiecare lecție treci prin
-          trei lucruri simple, care te ajută să ții minte ce ai învățat.
-        </p>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-3">
-          {PAȘI.map((p) => (
-            <div
-              key={p.titlu}
-              className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
-            >
-              <div className="text-3xl" aria-hidden="true">
-                {p.icon}
-              </div>
-              <h3 className="mt-3 font-semibold text-foreground">{p.titlu}</h3>
-              <p className="mt-2 text-sm text-foreground/60">{p.text}</p>
+      {/* PILONI DE ÎNCREDERE (4 CARDE VIZUALE) */}
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 border-t border-slate-800/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg flex items-center gap-4 hover:border-indigo-500/50 transition">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/20 text-2xl border border-indigo-500/30 shrink-0">
+              💻
             </div>
+            <div>
+              <h3 className="font-extrabold text-white text-sm">Învățare în ritm propriu</h3>
+              <p className="text-xs text-slate-400">Oriunde, oricând pe laptop sau tabletă</p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg flex items-center gap-4 hover:border-emerald-500/50 transition">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/20 text-2xl border border-emerald-500/30 shrink-0">
+              📋
+            </div>
+            <div>
+              <h3 className="font-extrabold text-white text-sm">Exerciții interactive</h3>
+              <p className="text-xs text-slate-400">Feedback instant la fiecare linie</p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg flex items-center gap-4 hover:border-amber-500/50 transition">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/20 text-2xl border border-amber-500/30 shrink-0">
+              🎓
+            </div>
+            <div>
+              <h3 className="font-extrabold text-white text-sm">Pregătire Bac & Școală</h3>
+              <p className="text-xs text-slate-400">Aliniat la programa oficială RO</p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg flex items-center gap-4 hover:border-purple-500/50 transition">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/20 text-2xl border border-purple-500/30 shrink-0">
+              👥
+            </div>
+            <div>
+              <h3 className="font-extrabold text-white text-sm">Comunitate activă</h3>
+              <p className="text-xs text-slate-400">Suport de la profesori și elevi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CLASE CURRICULUM */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="inline-flex rounded-full bg-indigo-950 border border-indigo-500/30 px-3.5 py-1 text-xs font-bold text-indigo-300 uppercase tracking-widest mb-3">
+            Programa Școlară
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-white">Ce înveți pe clase</h2>
+          <p className="mt-2 text-sm text-slate-400 font-medium">
+            Parcurge modulele de la clasa a IX-a până la examenul de Bacalaureat.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {CLASE.map((c) => (
+            <Link
+              key={c.clasa}
+              href={`/curriculum/${c.clasa}`}
+              className={`rounded-3xl border ${c.culoare} p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl`}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 font-black text-lg">
+                  {c.clasa}
+                </span>
+                <span className="text-3xl">{c.icon}</span>
+              </div>
+              <h3 className="text-lg font-black text-white">{c.titlu}</h3>
+              <p className="mt-2 text-xs text-slate-300 leading-relaxed">{c.descriere}</p>
+            </Link>
           ))}
         </div>
-      </section>
-
-      {/* AVANTAJE / DIFERENȚIATORI UNIQUE */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="text-center">
-          <span className="inline-flex rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark">
-            De ce noi?
-          </span>
-          <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
-            Cu ce suntem diferiți față de alte platforme
-          </h2>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-foreground/60">
-            Am construit Academia Python combinând tehnologia modernă cu metode didactice dovedite, pentru o învățare mult mai interactivă.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-            <span className="text-4xl" role="img" aria-label="AI Assistant">🤖</span>
-            <h3 className="mt-4 text-lg font-bold text-foreground">Profesor Asistent AI</h3>
-            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
-              Cel mai mare avantaj unic! Asistentul nostru AI analizează codul scris de tine în timp real și îți oferă indicii pedagogice inteligente când te blochezi, exact ca un meditator personal.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-            <span className="text-4xl" role="img" aria-label="Gamification">🔥</span>
-            <h3 className="mt-4 text-lg font-bold text-foreground">Gamification Interactiv</h3>
-            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
-              Învățarea devine un obicei distractiv. Acumulezi puncte XP, îți menții streak-ul zilnic și deblochezi insigne de performanță pe măsură ce parcurgi lecțiile din curriculum.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-            <span className="text-4xl" role="img" aria-label="PDF Download">📥</span>
-            <h3 className="mt-4 text-lg font-bold text-foreground">Fișe PDF Descărcabile</h3>
-            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
-              Fiecare modul vine cu o fișă recapitulativă completă în format PDF. O poți descărca și tipări gratuit pentru studiu individual, teme sau pregătirea pentru teste și teze la școală.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CLASE */}
-      <section className="bg-brand-light/40 py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Ce înveți pe clase
-          </h2>
-          <p className="mt-2 max-w-2xl text-foreground/70">
-            Totul e împărțit pe anii de liceu, așa cum e la școală. Intri pe clasa ta
-            și vezi ce ai de învățat, de la primele noțiuni până la proiectele de la
-            sfârșit.
-          </p>
-
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {CLASE.map((c) => (
-              <Link
-                key={c.clasa}
-                href={`/curriculum/${c.clasa}`}
-                className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-light text-sm font-bold text-brand-dark">
-                  {c.clasa}
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground">{c.titlu}</h3>
-                <p className="mt-2 text-sm text-foreground/60">{c.descriere}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* MODULE GRATUITE — preview real din curriculum */}
-      {moduleGratuite.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-                Începe acum, fără bani
-              </h2>
-              <p className="mt-2 max-w-2xl text-foreground/70">
-                Primele 3 module din clasa a IX-a le poți parcurge de la cap la coadă
-                chiar acum. Deschizi o lecție, scrii codul în pagină, rezolvi exercițiile
-                — și gata, fără cont.
-              </p>
-            </div>
-            <Link
-              href="/curriculum/IX"
-              className="hidden shrink-0 rounded-xl border border-brand px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-brand-light sm:inline-block"
-            >
-              Vezi tot curriculumul →
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {moduleGratuite.map((m) => (
-              <Link
-                key={m.cod}
-                href={`/curriculum/IX/${m.slug}`}
-                className="group rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="rounded-lg bg-brand-light px-2 py-1 text-xs font-bold text-brand-dark">
-                    {m.cod}
-                  </span>
-                  {m.gratuit ? (
-                    <span className="rounded-lg bg-[#dcfce7] px-2 py-1 text-xs font-semibold text-[#15803d]">
-                      Gratuit
-                    </span>
-                  ) : (
-                    <span className="rounded-lg bg-brand-light px-2 py-1 text-xs font-semibold text-brand-dark">
-                      Deschis
-                    </span>
-                  )}
-                </div>
-                <h3 className="mt-4 font-semibold text-foreground transition group-hover:text-brand">
-                  {m.titlu}
-                </h3>
-                <p className="mt-2 text-sm text-foreground/55">
-                  Acces la toate cele 6 lecții ale modulului.
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* PENTRU PĂRINȚI */}
-      <section className="bg-[#fcf8f2] py-16 border-t border-b border-orange-100">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] items-center">
-            <div>
-              <span className="inline-flex rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-800">
-                Secțiune pentru Părinți
-              </span>
-              <h2 className="mt-4 text-3xl font-extrabold text-foreground leading-tight">
-                O investiție sigură în viitorul copilului tău
-              </h2>
-              <p className="mt-4 text-sm text-foreground/75 leading-relaxed">
-                Știm că programarea poate părea complicată, iar meditațiile clasice pot fi costisitoare. Academia Python a fost creată de profesori de informatică pentru a oferi o alternativă modernă, sigură și eficientă.
-              </p>
-              <div className="mt-6 flex items-center gap-3">
-                <span className="text-3xl">🛡️</span>
-                <span className="text-xs font-semibold text-foreground/60 leading-normal">
-                  Garanție de rambursare 14 zile. Plăți securizate prin Stripe. Anulare instantă din cont.
-                </span>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
-                <span className="text-3xl shrink-0">🎯</span>
-                <div>
-                  <h3 className="font-bold text-foreground">Aliniat la Programa Școlară (clasele IX-XII)</h3>
-                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
-                    Întregul curriculum respectă programa oficială de Informatică aprobată de Ministerul Educației. Copilul învață exact ce i se cere la clasă, pentru note excelente și pregătire de teză.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
-                <span className="text-3xl shrink-0">💰</span>
-                <div>
-                  <h3 className="font-bold text-foreground">Alternativă accesibilă la meditații clasice</h3>
-                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
-                    O singură oră de meditație costă între 100 și 150 de lei. Pe platformă, copilul beneficiază de asistență AI inteligentă 24/7 care îi explică erorile pas cu pas, la o fracțiune din cost.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 rounded-2xl bg-white p-5 shadow-sm border border-orange-50">
-                <span className="text-3xl shrink-0">🚀</span>
-                <div>
-                  <h3 className="font-bold text-foreground">Start excelent în carieră sau facultate</h3>
-                  <p className="mt-1 text-xs text-foreground/60 leading-relaxed">
-                    Python este limbajul numărul 1 în inteligență artificială și software engineering. Dobândirea acestor cunoștințe din liceu îi oferă copilului un avantaj competitiv uriaș.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* PREȚURI SCURTE */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-          Cât costă restul lecțiilor
-        </h2>
-        <p className="mt-2 max-w-2xl text-foreground/70">
-          Cele 3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2 sunt deschise pentru explorare. Pentru tot ce e după ele —
-          toate celelalte clase, exercițiile și proiectele — e un abonament mic, pe
-          lună. Vezi prețul exact mai jos.
-        </p>
-        <Link
-          href="/preturi"
-          className="mt-6 inline-flex rounded-xl bg-brand px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-dark"
-        >
-          Vezi planurile de abonament →
-        </Link>
-      </section>
-
-      {/* NEWSLETTER */}
-      <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-        <NewsletterForm />
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 border-t border-slate-800">
+        <h2 className="text-2xl font-black text-white text-center mb-8 sm:text-3xl">
           Întrebări frecvente
         </h2>
-        <div className="mt-8 space-y-4">
+        <div className="space-y-4">
           {FAQ.map((f) => (
             <details
               key={f.intrebare}
-              className="group rounded-xl border border-black/10 bg-white p-4 open:shadow-sm"
+              className="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 font-sans"
             >
-              <summary className="cursor-pointer list-none font-medium text-foreground marker:content-none">
-                <span className="flex items-center justify-between">
-                  {f.intrebare}
-                  <span className="ml-4 text-brand transition group-open:rotate-45">+</span>
-                </span>
+              <summary className="cursor-pointer font-bold text-white text-sm sm:text-base flex items-center justify-between">
+                <span>{f.intrebare}</span>
+                <span className="text-amber-400 text-xl group-open:rotate-45 transition-transform">+</span>
               </summary>
-              <p className="mt-3 text-sm text-foreground/70">{f.raspuns}</p>
+              <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">{f.raspuns}</p>
             </details>
           ))}
         </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <NewsletterForm />
       </section>
     </div>
   );
