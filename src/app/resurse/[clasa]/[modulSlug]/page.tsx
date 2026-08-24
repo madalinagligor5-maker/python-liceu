@@ -34,9 +34,9 @@ export default async function ResursaPdfPreviewPage({
   const downloadUrl = `/api/pdf/${clasa}/${modulSlug}?download=true`;
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900 text-white">
+    <div className="h-screen w-screen overflow-hidden flex flex-col bg-slate-900 text-white">
       {/* Header bar pentru vizualizare */}
-      <div className="flex items-center justify-between gap-4 border-b border-white/10 bg-slate-950 px-4 py-4 sm:px-6 shadow-md">
+      <div className="flex items-center justify-between gap-4 border-b border-white/10 bg-slate-950 px-4 py-4 sm:px-6 shadow-md shrink-0">
         <div className="min-w-0">
           <nav className="text-xs text-slate-400 flex items-center gap-1.5">
             <Link href="/resurse" className="hover:text-white transition">
@@ -71,7 +71,7 @@ export default async function ResursaPdfPreviewPage({
       </div>
 
       {/* Container Iframe Viewer - Fullscreen */}
-      <div className="flex-1 w-full relative bg-slate-900 h-[calc(100vh-73px)]">
+      <div className="flex-1 w-full bg-slate-900 relative">
         <iframe
           src={pdfUrl}
           className="w-full h-full border-none bg-slate-900"

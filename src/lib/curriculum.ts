@@ -60,8 +60,9 @@ export function getCapitol(clasa: string): Capitol | undefined {
 }
 
 export function getModul(clasa: string, modulSlug: string): Modul | undefined {
+  const normalizedSlug = (modulSlug || "").replace(/_/g, "-").toLowerCase();
   return getCapitol(clasa)?.module.find(
-    (m) => m.slug.toLowerCase() === modulSlug.toLowerCase()
+    (m) => m.slug.replace(/_/g, "-").toLowerCase() === normalizedSlug
   );
 }
 
