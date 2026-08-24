@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 
 export default function CurriculumPage() {
   const stats = structura.statistici;
-  const nrCapitole = stats?.capitole ?? 0;
-  const nrModule = stats?.module ?? 0;
-  const nrSublectii = stats?.sublectii ?? 0;
+  // Afișăm doar capitolele de liceu (IX–XII), nu cele de copii (P7–P11)
+  const capitoleLiceu = capitole.filter((c) => !c.clasa.startsWith("P"));
+  const nrCapitole = capitoleLiceu.length;
+  const nrModule = capitoleLiceu.reduce((acc, c) => acc + c.module.length, 0);
+  const nrSublectii = nrModule * 6;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
@@ -77,7 +79,7 @@ export default function CurriculumPage() {
       </section>
 
       <section className="mt-12 space-y-5">
-        {capitole.map((c) => (
+        {capitoleLiceu.map((c) => (
           <article
             key={c.clasa}
             className="rounded-2xl border border-border bg-white p-4 sm:p-6 shadow-sm"
