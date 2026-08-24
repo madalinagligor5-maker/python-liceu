@@ -7,12 +7,12 @@ const MENIU = [
   { icon: "🏠", label: "Acasă", href: "/", activ: true },
   { icon: "📚", label: "Curriculum", href: "/curriculum" },
   { icon: "📝", label: "Lecții", href: "/lectii" },
-  { icon: "✏️", label: "Exerciții", href: "/lectii" },
+  { icon: "✏️", label: "Exerciții", href: "/exercitii" },
   { icon: "🚀", label: "Proiecte", href: "/curriculum" },
   { icon: "🔬", label: "Lab (Cod online)", href: "/lab" },
   { icon: "🏆", label: "Provocări", href: "/" },
   { icon: "💬", label: "Discuții", href: "mailto:contact@academiapython.ro" },
-  { icon: "📂", label: "Resurse", href: "/curriculum" },
+  { icon: "📂", label: "Resurse", href: "/resurse" },
 ] as const;
 
 function HexagonNivel({ nivel }: { nivel: number }) {
