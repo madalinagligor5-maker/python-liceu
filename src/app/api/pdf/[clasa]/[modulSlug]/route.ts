@@ -1,5 +1,5 @@
 import PDFDocument from "pdfkit";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getModul } from "@/lib/curriculum";
 import { obtineFisaPdfContent } from "@/lib/resursePdfContent";
 
@@ -25,8 +25,11 @@ export async function GET(
     const { clasa, modulSlug } = await params;
     const modul = getModul(clasa, modulSlug);
     if (!modul) {
-      return new NextResponse("Modulul nu a fost gasit", { status: 404 });
+      return new Response("Modulul nu a fost gasit", { status: 404 });
     }
+
+    const { searchParams } = new URL(request.url);
+    const download = searchParams.get("download") === "true";
 
     const fisa = obtineFisaPdfContent(modul.cod, modul.titlu);
 
@@ -59,8 +62,8 @@ export async function GET(
     doc.fontSize(16).font("Helvetica-Bold").fillColor("#16163a").text(curataDiacritice(modul.titlu));
     doc.moveDown(1.5);
 
-    // 1. Sinteza teoretica
-    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("📌 SINTEZA TEORETICA");
+    // 1. Sinteza teoretica (Fara emoji)
+    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("SINTEZA TEORETICA");
     doc.moveDown(0.3);
     doc.fontSize(10).font("Helvetica").fillColor("#2d2d4d").text(curataDiacritice(fisa.teorie), {
       align: "justify",
@@ -68,8 +71,8 @@ export async function GET(
     });
     doc.moveDown(1.5);
 
-    // 2. Sintaxa si Cod Model
-    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("💻 SINTAXA & COD MODEL (PYTHON)");
+    // 2. Sintaxa si Cod Model (Fara emoji)
+    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("SINTAXA & COD MODEL (PYTHON)");
     doc.moveDown(0.5);
 
     // Calcul inaltime caseta terminal
@@ -91,8 +94,8 @@ export async function GET(
     doc.y = startY + codInaltime;
     doc.moveDown(1.5);
 
-    // 3. Exercitii de antrenament
-    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("✍️ EXERCITII DE ANTRENAMENT");
+    // 3. Exercitii de antrenament (Fara emoji)
+    doc.fontSize(11).font("Helvetica-Bold").fillColor("#16163a").text("EXERCITII DE ANTRENAMENT");
     doc.moveDown(0.5);
     
     doc.fontSize(9).font("Helvetica-Oblique").fillColor("#6b6a7b").text("Rezolva urmatoarele exercitii pe foaie sau in editorul online al platformei:");
@@ -127,10 +130,12 @@ export async function GET(
       doc.on("error", (err) => reject(err));
     });
 
+    const disposition = download ? "attachment" : "inline";
+
     return new Response(new Uint8Array(pdfBuffer), {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="AcademiaPython_Fisa_${modul.cod.replace(".", "_")}.pdf"`,
+        "Content-Disposition": `${disposition}; filename="AcademiaPython_Fisa_${modul.cod.replace(".", "_")}.pdf"`,
       },
     });
   } catch (error) {

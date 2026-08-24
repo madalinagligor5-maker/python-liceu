@@ -70,10 +70,10 @@ export default async function ClasaResursePage({
               
               <div className="shrink-0 w-full sm:w-auto">
                 <Link
-                  href={`/api/pdf/${clasa}/${modul.slug}`}
+                  href={`/resurse/${clasa}/${modul.slug}`}
                   className="inline-flex w-full sm:w-auto justify-center items-center gap-1.5 rounded-xl bg-success px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-success-dark"
                 >
-                  📥 Descarcă PDF
+                  👁️ Vizualizează PDF
                 </Link>
               </div>
             </div>

@@ -114,10 +114,10 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
       {/* Resurse și Exerciții ale Modulului */}
       <div className="mt-5 grid grid-cols-2 gap-3">
         <Link
-          href={`/api/pdf/${clasa}/${modulSlug}`}
+          href={`/resurse/${clasa}/${modulSlug}`}
           className="flex items-center justify-center gap-2 rounded-2xl border border-success/20 bg-success/5 hover:bg-success/10 p-3 text-center text-sm font-bold text-success transition"
         >
-          <span>📥</span> Descarcă PDF
+          <span>👁️</span> Vizualizează PDF
           <span className="rounded bg-success/20 px-1.5 py-0.5 text-[9px] font-bold text-success ml-1">Gratis</span>
         </Link>
         <Link
