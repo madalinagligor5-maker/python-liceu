@@ -114,8 +114,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
       {/* Resurse și Exerciții ale Modulului */}
       <div className="mt-5 grid grid-cols-2 gap-3">
         <Link
-          href={`/resurse/${clasa}/${modulSlug}`}
-          target="_blank"
+          href={`/api/pdf/${clasa}/${modulSlug}`}
           className="flex items-center justify-center gap-2 rounded-2xl border border-success/20 bg-success/5 hover:bg-success/10 p-3 text-center text-sm font-bold text-success transition"
         >
           <span>📥</span> Descarcă PDF

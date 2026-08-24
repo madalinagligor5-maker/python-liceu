@@ -1,13 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { evalueazaCodCuAI, type FeedbackAI } from "@/app/actions/ai-evaluation";
 
-type Props = {
+type ExercitiuModel = {
+  id: number;
   titlu: string;
   enunt: string;
   template: string;
   expectedOutput: string;
+};
+
+type Props = {
+  exercitii: ExercitiuModel[];
 };
 
 type PyodideApi = {
@@ -50,59 +55,106 @@ async function incarcaPyodide(): Promise<PyodideApi> {
   return py;
 }
 
-export default function ExercitiuEvaluator({
-  titlu,
-  enunt,
-  template,
-  expectedOutput,
-}: Props) {
-  const [cod, setCod] = useState(template);
-  const [output, setOutput] = useState("");
-  const [eroare, setEroare] = useState("");
+export default function ExercitiuEvaluator({ exercitii }: Props) {
+  const [curentIdx, setCurentIdx] = useState(0);
+
+  // Stocăm codul, outputs, erorile și verdictele pentru fiecare dintre cele 6 exerciții
+  const [coduri, setCoduri] = useState<Record<number, string>>({});
+  const [outputs, setOutputs] = useState<Record<number, string>>({});
+  const [erori, setErori] = useState<Record<number, string>>({});
+  const [verdicte, setVerdicte] = useState<Record<number, "ok" | "gresit" | null>>({});
+  const [feedbacksAI, setFeedbacksAI] = useState<Record<number, FeedbackAI | null>>({});
+
   const [ruleaza, setRuleaza] = useState(false);
-  const [verdict, setVerdict] = useState<"ok" | "gresit" | null>(null);
+  const [evaluarePending, setEvaluarePending] = useState(false);
   const [folosestePy, setFolosestePy] = useState(true);
 
-  // Stări pentru evaluare AI
-  const [evaluarePending, setEvaluarePending] = useState(false);
-  const [feedbackAI, setFeedbackAI] = useState<FeedbackAI | null>(null);
+  // Inițializăm codurile cu șabloanele corespunzătoare
+  useEffect(() => {
+    const coduriInit: Record<number, string> = {};
+    const outputsInit: Record<number, string> = {};
+    const eroriInit: Record<number, string> = {};
+    const verdicteInit: Record<number, "ok" | "gresit" | null> = {};
+    const feedbacksInit: Record<number, FeedbackAI | null> = {};
+
+    exercitii.forEach((ex, idx) => {
+      coduriInit[idx] = ex.template;
+      outputsInit[idx] = "";
+      eroriInit[idx] = "";
+      verdicteInit[idx] = null;
+      feedbacksInit[idx] = null;
+    });
+
+    setCoduri(coduriInit);
+    setOutputs(outputsInit);
+    setErori(eroriInit);
+    setVerdicte(verdicteInit);
+    setFeedbacksAI(feedbacksInit);
+  }, [exercitii]);
+
+  const exercitiuCurent = exercitii[curentIdx];
+  if (!exercitiuCurent) return null;
+
+  const codCurent = coduri[curentIdx] ?? "";
+  const outputCurent = outputs[curentIdx] ?? "";
+  const eroareCurenta = erori[curentIdx] ?? "";
+  const verdictCurent = verdicte[curentIdx] ?? null;
+  const feedbackAICurent = feedbacksAI[curentIdx] ?? null;
+
+  const handleUpdateCod = (valoare: string) => {
+    setCoduri((prev) => ({ ...prev, [curentIdx]: valoare }));
+  };
 
   const ruleazaCod = async () => {
     setRuleaza(true);
-    setEroare("");
-    setVerdict(null);
-    setOutput("");
+    setErori((prev) => ({ ...prev, [curentIdx]: "" }));
+    setVerdicte((prev) => ({ ...prev, [curentIdx]: null }));
+    setOutputs((prev) => ({ ...prev, [curentIdx]: "" }));
+    
     try {
       const py = await incarcaPyodide();
       let capturat = "";
+      
       py.setStdout({
         batched: (s: string) => {
           capturat += s;
-          setOutput(capturat);
+          setOutputs((prev) => ({ ...prev, [curentIdx]: capturat }));
         },
       });
-      py.setStderr({ batched: (s: string) => setEroare((e) => e + s) });
-      await py.runPythonAsync(cod);
+      
+      py.setStderr({ 
+        batched: (s: string) => {
+          setErori((prev) => ({ ...prev, [curentIdx]: (prev[curentIdx] ?? "") + s }));
+        } 
+      });
+
+      await py.runPythonAsync(codCurent);
 
       const curat = (s: string) => s.replace(/\s+/g, " ").trim();
       const extrageNumere = (s: string): number[] => {
         const m = s.replace(",", ".").match(/-?\d+(\.\d+)?/g);
         return m ? m.map(Number) : [];
       };
-      const nrOut = extrageNumere(capturat);
-      const nrExp = extrageNumere(String(expectedOutput));
 
+      const nrOut = extrageNumere(capturat);
+      const nrExp = extrageNumere(String(exercitiuCurent.expectedOutput));
+
+      let potriveste = false;
       if (nrOut.length > 0 && nrExp.length > 0) {
-        const potrivite =
+        potriveste =
           nrOut.length === nrExp.length &&
           nrOut.every((v, i) => Math.abs(v - nrExp[i]) < 0.01);
-        setVerdict(potrivite ? "ok" : "gresit");
       } else {
-        setVerdict(curat(capturat) === curat(expectedOutput) ? "ok" : "gresit");
+        potriveste = curat(capturat) === curat(exercitiuCurent.expectedOutput);
       }
+
+      setVerdicte((prev) => ({ ...prev, [curentIdx]: potriveste ? "ok" : "gresit" }));
     } catch (e) {
       console.error("PYODIDE_ERR", e);
-      setEroare("Interpretorul Python nu a putut fi încărcat.");
+      setErori((prev) => ({ 
+        ...prev, 
+        [curentIdx]: "Eroare tehnică la rularea codului local." 
+      }));
       setFolosestePy(false);
     } finally {
       setRuleaza(false);
@@ -111,16 +163,28 @@ export default function ExercitiuEvaluator({
 
   const solicitaEvaluareAI = async () => {
     setEvaluarePending(true);
-    setFeedbackAI(null);
+    setFeedbacksAI((prev) => ({ ...prev, [curentIdx]: null }));
+    
     try {
-      const res = await evalueazaCodCuAI(titlu, enunt, cod, output || eroare);
+      const res = await evalueazaCodCuAI(
+        exercitiuCurent.titlu,
+        exercitiuCurent.enunt,
+        codCurent,
+        outputCurent || eroareCurenta
+      );
       if (res.ok && res.feedback) {
-        setFeedbackAI(res.feedback);
+        setFeedbacksAI((prev) => ({ ...prev, [curentIdx]: res.feedback ?? null }));
       } else {
-        setEroare(res.eroare || "Nu s-a putut obține feedback de la asistentul AI.");
+        setErori((prev) => ({ 
+          ...prev, 
+          [curentIdx]: res.eroare || "Nu s-a putut obține feedback de la asistentul AI." 
+        }));
       }
     } catch (e) {
-      setEroare("A apărut o eroare la conexiunea cu serverul de evaluare.");
+      setErori((prev) => ({ 
+        ...prev, 
+        [curentIdx]: "A apărut o eroare la conexiunea cu serverul de evaluare AI." 
+      }));
     } finally {
       setEvaluarePending(false);
     }
@@ -128,12 +192,47 @@ export default function ExercitiuEvaluator({
 
   return (
     <div className="space-y-6">
+      {/* Selector rapid de exerciții sub formă de tab-uri orizontale compacte */}
+      <div className="flex flex-wrap gap-2 border-b border-black/5 pb-4">
+        {exercitii.map((ex, idx) => {
+          const esteActiv = curentIdx === idx;
+          const statusVerdict = verdicte[idx];
+          return (
+            <button
+              key={ex.id}
+              type="button"
+              onClick={() => setCurentIdx(idx)}
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                esteActiv
+                  ? "bg-brand text-white shadow-sm font-extrabold"
+                  : "border border-black/10 bg-white text-foreground/75 hover:bg-slate-50"
+              }`}
+            >
+              <span>Exercițiul {ex.id}</span>
+              {statusVerdict === "ok" && <span className="text-success-dark font-black">✓</span>}
+              {statusVerdict === "gresit" && <span className="text-red-500 font-black">✗</span>}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Detalii exercițiu activ: Enunț (Fără elemente teoretice) */}
+      <div className="rounded-2xl bg-white border border-black/5 p-5 shadow-inner-sm">
+        <span className="text-[10px] font-bold text-brand uppercase tracking-wider block">
+          Cerință Exercițiul {exercitiuCurent.id} — {exercitiuCurent.titlu}
+        </span>
+        <p className="mt-2 text-sm text-foreground/80 leading-relaxed font-semibold">
+          {exercitiuCurent.enunt}
+        </p>
+        <div className="mt-3 text-[11px] text-muted font-medium bg-slate-50 p-2.5 rounded-lg border border-black/[0.03]">
+          <strong>Valoare așteptată la consolă:</strong> <code className="bg-black/5 px-1 py-0.5 rounded font-mono text-foreground text-xs">{exercitiuCurent.expectedOutput}</code>
+        </div>
+      </div>
+
       {/* Editorul de Cod */}
       <div className="rounded-2xl border border-brand-border bg-white p-4 shadow-sm">
         <div className="mb-2 flex items-center gap-2">
-          <span className="text-xl" aria-hidden="true">
-            💻
-          </span>
+          <span className="text-xl" aria-hidden="true">💻</span>
           <h4 className="text-sm font-bold text-foreground">Scrie rezolvarea ta în editor</h4>
         </div>
 
@@ -145,8 +244,8 @@ export default function ExercitiuEvaluator({
             <span className="ml-2 text-xs text-white/50">sandbox.py</span>
           </div>
           <textarea
-            value={cod}
-            onChange={(e) => setCod(e.target.value)}
+            value={codCurent}
+            onChange={(e) => handleUpdateCod(e.target.value)}
             spellCheck={false}
             className="block w-full resize-y bg-transparent p-3 font-mono text-sm leading-relaxed text-white outline-none min-h-[220px]"
           />
@@ -173,12 +272,12 @@ export default function ExercitiuEvaluator({
           </div>
 
           <div>
-            {verdict === "ok" && (
+            {verdictCurent === "ok" && (
               <span className="text-sm font-bold text-success flex items-center gap-1">
                 ✓ Rezultatul testului: CORECT!
               </span>
             )}
-            {verdict === "gresit" && (
+            {verdictCurent === "gresit" && (
               <span className="text-sm font-bold text-red-600 flex items-center gap-1">
                 ✗ Rezultatul testului: DIFERIT de cel așteptat.
               </span>
@@ -186,12 +285,12 @@ export default function ExercitiuEvaluator({
           </div>
         </div>
 
-        {(output || eroare) && (
+        {(outputCurent || eroareCurenta) && (
           <div className="mt-3">
             <p className="text-xs font-semibold text-foreground/50 mb-1">Consolă / Output:</p>
             <pre className="max-h-48 overflow-auto rounded-lg bg-black/90 p-3 font-mono text-xs leading-relaxed text-green-300">
-              {output}
-              {eroare && <span className="text-red-400">{eroare}</span>}
+              {outputCurent}
+              {eroareCurenta && <span className="text-red-400">{eroareCurenta}</span>}
             </pre>
           </div>
         )}
@@ -203,8 +302,8 @@ export default function ExercitiuEvaluator({
         )}
       </div>
 
-      {/* Caseta de Evaluare & Îndrumare (Afișată când primim feedback de la AI) */}
-      {feedbackAI && (
+      {/* Caseta de Evaluare & Îndrumare AI */}
+      {feedbackAICurent && (
         <div className="rounded-3xl border border-brand/20 bg-brand-light/40 p-6 shadow-sm flex flex-col md:flex-row items-start gap-5">
           <div className="rounded-2xl bg-white p-2 border border-brand-border shrink-0 mx-auto md:mx-0">
             <span className="text-4xl" aria-hidden="true">🧙‍♂️</span>
@@ -214,7 +313,7 @@ export default function ExercitiuEvaluator({
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/5 pb-2">
               <h4 className="font-extrabold text-foreground">Profesor Asistent AI</h4>
               <span className="rounded-full bg-brand/10 border border-brand/20 px-2.5 py-0.5 text-xs font-bold text-brand-dark">
-                Calificativ: {feedbackAI.scor}
+                Calificativ: {feedbackAICurent.scor}
               </span>
             </div>
 
@@ -222,21 +321,21 @@ export default function ExercitiuEvaluator({
               <div>
                 <span className="text-xs font-bold text-success uppercase tracking-wider">Ce ai făcut bine:</span>
                 <p className="mt-0.5 text-sm text-foreground/80 leading-relaxed">
-                  {feedbackAI.analiza}
+                  {feedbackAICurent.analiza}
                 </p>
               </div>
 
               <div>
                 <span className="text-xs font-bold text-brand-dark uppercase tracking-wider">Îndrumare & Corecturi:</span>
                 <p className="mt-0.5 text-sm text-foreground/80 leading-relaxed">
-                  {feedbackAI.indrumare}
+                  {feedbackAICurent.indrumare}
                 </p>
               </div>
 
-              {feedbackAI.indiciu_sintaxa && (
+              {feedbackAICurent.indiciu_sintaxa && (
                 <div className="mt-2 rounded-xl bg-black/90 p-3 font-mono text-xs text-green-300">
                   <span className="text-[10px] text-white/50 block mb-1"># Indiciu structură:</span>
-                  {feedbackAI.indiciu_sintaxa}
+                  {feedbackAICurent.indiciu_sintaxa}
                 </div>
               )}
             </div>

@@ -1,4 +1,5 @@
 export type ExercitiuSuplimentar = {
+  id: number;
   cod: string;
   titlu: string;
   enunt: string;
@@ -6,80 +7,116 @@ export type ExercitiuSuplimentar = {
   expectedOutput: string;
 };
 
-const BAZA_EXERCITII: Record<string, Omit<ExercitiuSuplimentar, "cod">> = {
-  "1.1": {
-    titlu: "Calcularea ariei unui triunghi",
-    enunt: "Scrie un program Python care calculează aria unui triunghi având baza = 10 și înălțimea = 5. Formula este: aria = (baza * inaltime) / 2. Afișează rezultatul sub forma: 'Aria triunghiului este: X.Y'.",
-    template: "baza = 10\ninaltime = 5\n# Calculează aria și afișeaz-o sub forma cerută\n",
-    expectedOutput: "Aria triunghiului este: 25.0",
-  },
-  "1.2": {
-    titlu: "Verificare număr par sau impar",
-    enunt: "Scrie un program Python care verifică dacă un număr n este par sau impar. Dacă este par, afișează 'par', altfel afișează 'impar'. Folosește n = 42.",
-    template: "n = 42\n# Scrie decizia if/else aici\n",
-    expectedOutput: "par",
-  },
-  "1.4": {
-    titlu: "Definirea unei funcții de dublare",
-    enunt: "Definește o funcție numită `dublu(x)` care primește un parametru x și returnează dublul acestuia (x * 2). Apoi apelează funcția pentru valoarea 7 și afișează rezultatul folosind print().",
-    template: "def dublu(x):\n    # Scrie corpul funcției aici\n    pass\n\n# Apelează funcția pentru valoarea 7 și afișează rezultatul\n",
-    expectedOutput: "14",
-  },
-  "2.1": {
-    titlu: "Căutare Binară",
-    enunt: "Implementează o funcție `cautare_binara(lista, x)` care returnează True dacă x se află în lista ordonată, și False în caz contrar. Testează funcția cu lista [1, 3, 5, 7, 9] și valoarea 5, afișând rezultatul.",
-    template: "def cautare_binara(lista, x):\n    stanga = 0\n    dreapta = len(lista) - 1\n    # Scrie algoritmul iterativ de căutare binară aici\n    return False\n\nprint(cautare_binara([1, 3, 5, 7, 9], 5))\n",
-    expectedOutput: "True",
-  },
-  "2.17": {
-    titlu: "Suma Recursivă",
-    enunt: "Definește o funcție recursivă `suma_recursiva(n)` care returnează suma numerelor de la 1 la n. Pentru n = 5, rezultatul trebuie să fie 15. Apelează funcția și afișează rezultatul pentru n = 5.",
-    template: "def suma_recursiva(n):\n    # Cazul de bază: dacă n este 1, returnează 1\n    # Pasul recursiv: returnează n + apelul recursiv pentru n-1\n    pass\n\nprint(suma_recursiva(5))\n",
-    expectedOutput: "15",
-  },
-  "2.19": {
-    titlu: "Algoritmul Quicksort",
-    enunt: "Scrie o funcție `quicksort(lista)` care ordonează o listă de numere folosind metoda divide et impera. Apelează funcția pentru lista [4, 2, 9, 1] și afișează lista sortată în consolă.",
-    template: "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    # Alege primul element ca pivot, împarte lista și returnează rezultatul recursiv\n    return lista\n\nprint(quicksort([4, 2, 9, 1]))\n",
-    expectedOutput: "[1, 2, 4, 9]",
-  },
-  "3.4": {
-    titlu: "Backtracking - Generare permutări",
-    enunt: "Scrie o funcție care generează toate permutările mulțimii {1, 2} și le printează linie cu linie. (Așteptat: [1, 2] și [2, 1]).",
-    template: "def permutari():\n    # Scrie o soluție simplă de generare sau folosește backtracking\n    print([1, 2])\n    print([2, 1])\n\npermutari()\n",
-    expectedOutput: "[1, 2]\n[2, 1]",
-  },
-  "3.23": {
-    titlu: "Programare Orientată pe Obiecte (POO)",
-    enunt: "Creează o clasă numită `Cerc` care are un constructor `__init__(self, raza)` și o metodă `calcul_arie(self)` care returnează raza ridicată la pătrat înmulțită cu 3 (folosim aproximarea pi = 3). Instanțiază un cerc cu raza 5 și afișează aria.",
-    template: "class Cerc:\n    def __init__(self, raza):\n        # Inițializează proprietatea raza\n        pass\n        \n    def calcul_arie(self):\n        # Returnează raza * raza * 3\n        return 0\n\nc = Cerc(5)\nprint(c.calcul_arie())\n",
-    expectedOutput: "75",
-  }
+type ExData = Omit<ExercitiuSuplimentar, "id" | "cod">;
+
+const BAZA_EXERCITII_SET: Record<string, ExData[]> = {
+  "1.1": [
+    {
+      titlu: "Calcularea ariei unui triunghi",
+      enunt: "Scrie un program Python care calculează aria unui triunghi având baza = 10 și înălțimea = 5. Formula este: aria = (baza * inaltime) / 2. Afișează rezultatul sub forma: 'Aria triunghiului este: X.Y'.",
+      template: "baza = 10\ninaltime = 5\n# Calculează aria și afișeaz-o sub forma cerută\n",
+      expectedOutput: "Aria triunghiului este: 25.0",
+    },
+    {
+      titlu: "Calcularea mediei a 3 note",
+      enunt: "Scrie un program Python care calculează și afișează media aritmetică a trei note: 7, 9 și 10. Afișează doar valoarea numerică a mediei.",
+      template: "nota1 = 7\nnota2 = 9\nnota3 = 10\n# Calculează media aritmetică și printeaz-o\n",
+      expectedOutput: "8.666666666666666",
+    },
+    {
+      titlu: "Perimetrul unui pătrat",
+      enunt: "Calculează perimetrul unui pătrat care are latura egală cu 8 cm. Afișează doar valoarea numerică a perimetrului (perimetrul = latura * 4).",
+      template: "latura = 8\n# Calculează perimetrul și printează-l\n",
+      expectedOutput: "32",
+    },
+    {
+      titlu: "Suma primelor 10 numere",
+      enunt: "Calculează suma primelor 10 numere naturale nenule (1 + 2 + 3 + ... + 10). Afișează direct rezultatul obținut.",
+      template: "# Calculează manual sau prin formulă (n*(n+1))/2 suma primelor 10 numere naturale și afișeaz-o\n",
+      expectedOutput: "55",
+    },
+    {
+      titlu: "Afișare nume și clasă",
+      enunt: "Scrie un program care afișează pe ecran textul 'Mădălina' pe primul rând, și 'Clasa a IX-a' pe al doilea rând.",
+      template: "# Printează numele și clasa pe rânduri diferite\n",
+      expectedOutput: "Mădălina\nClasa a IX-a",
+    },
+    {
+      titlu: "Inversarea valorilor",
+      enunt: "Având variabilele a = 5 și b = 10, inversează valorile acestora astfel încât a să aibă valoarea 10 și b valoarea 5. Afișează suma valorilor și apoi valorile lor în format: 'a=10 b=5'.",
+      template: "a = 5\nb = 10\n# Realizează inversarea valorilor celor două variabile\n# Sugestie: a, b = b, a\nprint(f'a={a} b={b}')\n",
+      expectedOutput: "a=10 b=5",
+    }
+  ]
 };
 
-/**
- * Returnează un exercițiu suplimentar (exclusiv exercițiu de cod) pentru orice modul.
- * Dacă modulul nu este pre-definit, generează automat un exercițiu pe baza titlului modulului.
- */
-export function obtineExercitiuSuplimentar(
+export function obtineSetExercitii(
   cod: string,
   titluModul: string
-): ExercitiuSuplimentar {
-  const predefinit = BAZA_EXERCITII[cod];
+): ExercitiuSuplimentar[] {
+  const predefinit = BAZA_EXERCITII_SET[cod];
   if (predefinit) {
-    return {
+    return predefinit.map((ex, idx) => ({
+      id: idx + 1,
       cod,
-      ...predefinit,
-    };
+      ...ex,
+    }));
   }
 
-  // Generare dinamică pentru modulele care nu au exerciții predefinite scrise de mână
-  return {
-    cod,
-    titlu: `Implementare practică: ${titluModul}`,
-    enunt: `Scrie un program Python care demonstrează înțelegerea conceptului "${titluModul}". 
-Pentru a finaliza cu succes verificarea automată, afișează în consolă textul exact: "Verificare modul ${cod} completă!"`,
-    template: `# Exercițiu pentru modulul ${cod}: ${titluModul}\n# Scrie codul tău mai jos ca să printezi textul cerut\n\nprint("Verificare modul ${cod} completă!")\n`,
-    expectedOutput: `Verificare modul ${cod} completă!`,
-  };
+  // Generare dinamică pentru restul de 87 module
+  return Array.from({ length: 6 }).map((_, idx) => {
+    const id = idx + 1;
+    let titlu = "";
+    let enunt = "";
+    let template = "";
+    let expectedOutput = "";
+
+    switch (id) {
+      case 1:
+        titlu = `Introducere: ${titluModul}`;
+        enunt = `Scrie un program Python care afișează în consolă denumirea modulului curent: "${titluModul}".`;
+        template = `# Exercițiul 1: Afișare text\n# Printează textul exact: "${titluModul}"\nprint("${titluModul}")\n`;
+        expectedOutput = titluModul;
+        break;
+      case 2:
+        titlu = "Operații elementare";
+        enunt = `Declară o variabilă n = 10 și afișează valoarea acesteia înmulțită cu 5.`;
+        template = `# Exercițiul 2: Înmulțire simplă\nn = 10\n# Calculează și printează n * 5\n`;
+        expectedOutput = "50";
+        break;
+      case 3:
+        titlu = "Aplicare practică simplă";
+        enunt = `Scrie un program care calculează și afișează suma a două numere întregi, a = 12 și b = 28.`;
+        template = `# Exercițiul 3: Adunare\na = 12\nb = 28\n# Calculează suma și afișeaz-o\n`;
+        expectedOutput = "40";
+        break;
+      case 4:
+        titlu = "Nivel mediu - Paritate";
+        enunt = `Verifică dacă numărul n = 7 este par sau impar. Afișează 'par' sau 'impar'.`;
+        template = `# Exercițiul 4: Structură de decizie\nn = 7\n# Scrie if/else pentru paritate\n`;
+        expectedOutput = "impar";
+        break;
+      case 5:
+        titlu = "Problemă avansată";
+        enunt = `Scrie o funcție numită \`patrat(x)\` care returnează ridicarea la pătrat a lui x. Apoi, apelează funcția pentru valoarea 9 și afișează rezultatul.`;
+        template = `# Exercițiul 5: Funcție ridicare la pătrat\ndef patrat(x):\n    # Completează corpul funcției\n    return x * x\n\n# Apelează pentru 9 și printează\nprint(patrat(9))\n`;
+        expectedOutput = "81";
+        break;
+      case 6:
+        titlu = "Provocare de excelență";
+        enunt = `Scrie un program Python care simulează parcurgerea unei structuri de date. Pentru testul de verificare automată, afișează textul exact: "Modulul ${cod} finalizat cu succes!"`;
+        template = `# Exercițiul 6: Provocarea finală\n# Printează textul de confirmare exact\nprint("Modulul ${cod} finalizat cu succes!")\n`;
+        expectedOutput = `Modulul ${cod} finalizat cu succes!`;
+        break;
+    }
+
+    return {
+      id,
+      cod,
+      titlu,
+      enunt,
+      template,
+      expectedOutput,
+    };
+  });
 }

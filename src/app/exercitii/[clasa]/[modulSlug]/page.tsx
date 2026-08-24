@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
-import { obtineExercitiuSuplimentar } from "@/lib/exercitiiSuplimentare";
+import { obtineSetExercitii } from "@/lib/exercitiiSuplimentare";
 import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 
@@ -49,8 +49,8 @@ export default async function ModulExercitiiPage({
     }
   }
 
-  // Preluăm exercițiul de cod independent dedicat acestui modul
-  const exercitiu = obtineExercitiuSuplimentar(modul.cod, modul.titlu);
+  // Preluăm setul de 6 exerciții practice progresive pentru acest modul
+  const exercitii = obtineSetExercitii(modul.cod, modul.titlu);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
@@ -74,23 +74,12 @@ export default async function ModulExercitiiPage({
           </span>
         </div>
         <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
-          Problema: {exercitiu.titlu}
+          Set de Lucru: {modul.titlu}
         </h1>
-        <div className="mt-3 rounded-2xl bg-white border border-black/5 p-5 shadow-inner-sm">
-          <p className="text-xs font-bold text-brand uppercase tracking-wider mb-2">Enunțul problemei:</p>
-          <p className="text-sm text-foreground/80 leading-relaxed font-medium">
-            {exercitiu.enunt}
-          </p>
-        </div>
       </div>
 
       <div className="mt-6">
-        <ExercitiuEvaluator
-          titlu={exercitiu.titlu}
-          enunt={exercitiu.enunt}
-          template={exercitiu.template}
-          expectedOutput={exercitiu.expectedOutput}
-        />
+        <ExercitiuEvaluator exercitii={exercitii} />
       </div>
 
       <div className="mt-10 flex justify-between border-t border-black/5 pt-6">

@@ -57,22 +57,21 @@ export default async function ClasaResursePage({
           capitol.module.map((modul) => (
             <div
               key={modul.cod}
-              className="flex items-center justify-between gap-4 rounded-2xl border border-black/10 bg-white p-4 shadow-sm hover:border-brand hover:shadow-md transition group"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-black/10 bg-white p-4 shadow-sm hover:border-brand hover:shadow-md transition group"
             >
               <div className="min-w-0">
-                <span className="text-[10px] font-bold text-brand uppercase tracking-wider">
-                  Modulul {modul.cod}
-                </span>
-                <h3 className="font-bold text-foreground text-sm leading-snug mt-0.5 group-hover:text-brand transition">
-                  {modul.titlu}
+                <h3 className="font-bold text-foreground text-sm leading-snug group-hover:text-brand transition flex flex-wrap items-center gap-2">
+                  <span>Modulul {modul.cod} — {modul.titlu}</span>
+                  <span className="inline-flex items-center rounded bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-500 shrink-0">
+                    PDF · 1 pagină
+                  </span>
                 </h3>
               </div>
               
-              <div className="shrink-0">
+              <div className="shrink-0 w-full sm:w-auto">
                 <Link
-                  href={`/resurse/${clasa}/${modul.slug}`}
-                  target="_blank"
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-success px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-success-dark"
+                  href={`/api/pdf/${clasa}/${modul.slug}`}
+                  className="inline-flex w-full sm:w-auto justify-center items-center gap-1.5 rounded-xl bg-success px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-success-dark"
                 >
                   📥 Descarcă PDF
                 </Link>
