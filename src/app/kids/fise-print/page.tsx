@@ -200,8 +200,107 @@ export default function KidsPrintPage() {
               <span>Nota / Evaluarea: ____________</span>
             </div>
           </div>
+
+          {/* FIȘA 3 - CONDIȚIONALE (Page Break) */}
+          <div className="print-card print-break bg-white rounded-3xl border border-black/5 p-8 shadow-sm">
+            <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
+              <h1 className="text-2xl font-black text-indigo-900">
+                Aventura lui Pippy — Fișă Didactică 3
+              </h1>
+              <p className="text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
+                Nivelul: Avansat (Clasele III–IV) · Tema: Decizii Logice („Dacă... Atunci”)
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h2 className="text-sm font-bold text-slate-800">
+                Cerință: Verifică semnalul steluței!
+              </h2>
+              <p className="text-xs text-slate-600 mt-1">
+                Pippy 🤖 avansează pas cu pas. Dacă pe pătratul curent se află o steluță ⭐, el trebuie să vireze spre dreapta ➡️. Altfel, continuă drept înainte. Scrie pașii pentru fiecare dintre cele 4 celule din drum!
+              </p>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <div className="grid grid-cols-4 gap-3 max-w-[320px] w-full border-4 border-slate-300 p-3 rounded-2xl bg-slate-50">
+                <div className="flex items-center justify-center h-16 bg-white border border-slate-300 rounded-xl font-bold">🤖 (Start)</div>
+                <div className="flex items-center justify-center h-16 bg-white border border-slate-300 rounded-xl font-bold">⭐</div>
+                <div className="flex items-center justify-center h-16 bg-white border border-slate-300 rounded-xl font-bold">🟩</div>
+                <div className="flex items-center justify-center h-16 bg-white border border-slate-300 rounded-xl font-bold">🏁</div>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                Completează regula de decizie (Dacă... Atunci):
+              </h3>
+              <div className="mt-3 space-y-3 font-mono text-xs">
+                <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                  Dacă văd steluță ⭐ : _____________________________________
+                </div>
+                <div className="p-3 bg-indigo-50 border border-indigo-200 rounded-xl">
+                  Altfel (drum liber) : _____________________________________
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 flex justify-between border-t border-slate-100 pt-6 text-xs text-slate-500 font-medium">
+              <span>Elev: _________________________</span>
+              <span>Nota / Evaluarea: ____________</span>
+            </div>
+          </div>
+
+          {/* FIȘA 4 - VARIABILE (Page Break) */}
+          <div className="print-card print-break bg-white rounded-3xl border border-black/5 p-8 shadow-sm">
+            <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
+              <h1 className="text-2xl font-black text-indigo-900">
+                Aventura lui Pippy — Fișă Didactică 4
+              </h1>
+              <p className="text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
+                Nivelul: Avansat (Clasele III–IV) · Tema: Variabile și Numărare
+              </p>
+            </div>
+
+            <div className="mt-6">
+              <h2 className="text-sm font-bold text-slate-800">
+                Cerință: Numără steluțele din rucsac!
+              </h2>
+              <p className="text-xs text-slate-600 mt-1">
+                Pippy 🤖 parcurge traseul de mai jos și adună steluțe în rucsacul său (`stele`). Completează valoarea variabilei `stele` după fiecare pas!
+              </p>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <div className="grid grid-cols-5 gap-2 max-w-[360px] w-full border-4 border-slate-300 p-3 rounded-2xl bg-slate-50 text-center font-bold text-sm">
+                <div className="p-2 bg-white border rounded-xl">1. 🤖</div>
+                <div className="p-2 bg-white border rounded-xl">2. ⭐</div>
+                <div className="p-2 bg-white border rounded-xl">3. ⭐</div>
+                <div className="p-2 bg-white border rounded-xl">4. 🟩</div>
+                <div className="p-2 bg-white border rounded-xl">5. ⭐ 🏁</div>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                Valoarea variabilei `stele` la fiecare pas:
+              </h3>
+              <div className="mt-3 grid grid-cols-5 gap-2 font-mono text-xs text-center">
+                <div className="p-3 bg-slate-100 border rounded-xl">Pas 1: stele = 0</div>
+                <div className="p-3 bg-amber-50 border border-amber-300 rounded-xl font-bold">Pas 2: stele = ___</div>
+                <div className="p-3 bg-amber-50 border border-amber-300 rounded-xl font-bold">Pas 3: stele = ___</div>
+                <div className="p-3 bg-slate-100 border rounded-xl font-bold">Pas 4: stele = ___</div>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold">Pas 5: stele = ___</div>
+              </div>
+            </div>
+
+            <div className="mt-12 flex justify-between border-t border-slate-100 pt-6 text-xs text-slate-500 font-medium">
+              <span>Elev: _________________________</span>
+              <span>Nota / Evaluarea: ____________</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+

@@ -3,6 +3,11 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import nivelurileModul1 from "@/lib/junior/niveluri/modul1";
+import nivelurileModul2 from "@/lib/junior/niveluri/modul2";
+import nivelurileModul3 from "@/lib/junior/niveluri/modul3";
+import nivelurileModul4 from "@/lib/junior/niveluri/modul4";
+import nivelurileModul5 from "@/lib/junior/niveluri/modul5";
+import nivelurileModul6 from "@/lib/junior/niveluri/modul6";
 import {
   executaProgramJoc,
   genereazaPython,
@@ -21,9 +26,18 @@ import BlockEditor from "@/components/junior/BlockEditor";
 import PythonPanel from "@/components/junior/PythonPanel";
 import MascotaByte from "@/components/junior/MascotaByte";
 
-// Map de niveluri suportat (doar M1 acum, M2-M6 coming soon)
+// Map de niveluri suportat pentru toate cele 6 module
 const TOATE_NIVELURILE: Record<string, DateNivel> = {};
-nivelurileModul1.forEach((n) => { TOATE_NIVELURILE[n.id] = n; });
+[
+  ...nivelurileModul1,
+  ...nivelurileModul2,
+  ...nivelurileModul3,
+  ...nivelurileModul4,
+  ...nivelurileModul5,
+  ...nivelurileModul6,
+].forEach((n) => {
+  TOATE_NIVELURILE[n.id] = n;
+});
 
 const VITEZA_ANIMATIE = 400; // ms per pas
 
