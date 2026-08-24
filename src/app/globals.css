@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Paletă EdTech Curată & Caldă (Stil Duolingo / Khan Academy) */
-  --background: #f8fafc;
+  /* Paletă Fildeș / Hârtie de Calitate („Modern Notebook & Textbook") */
+  --background: #FDFBF7;
   --surface: #ffffff;
-  --foreground: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --brand: #f59e0b;        /* Galben auriu cald (butoane, acțiuni) */
-  --brand-dark: #d97706;   /* Auriu mai închis pentru hover */
-  --brand-light: #fef3c7;  /* Crem auriu deschis */
-  --brand-border: #fde68a;
-  --accent: #4f46e5;       /* Indigo cald pentru linkuri/interactivitate */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --python-green: #84cc16;
-  --python-yellow: #f5b301;
+  --foreground: #1E2430;
+  --muted: #525B6C;
+  --border: #EBE7DF;
+  --brand: #F59E0B;        /* Galben auriu cald (butoane, acțiuni) */
+  --brand-dark: #D97706;   /* Auriu mai închis pentru hover */
+  --brand-light: #FEF3C7;  /* Crem auriu deschis */
+  --brand-border: #FDE68A;
+  --accent: #4F46E5;       /* Indigo cald pentru linkuri/interactivitate */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --python-green: #84CC16;
+  --python-yellow: #F5B301;
 }
 
 @theme inline {
@@ -42,8 +42,8 @@ body {
 }
 
 ::selection {
-  background: #fef3c7;
-  color: #78350f;
+  background: #FEF3C7;
+  color: #78350F;
 }
 
 @media print {

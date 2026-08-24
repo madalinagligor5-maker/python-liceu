@@ -18,16 +18,16 @@ export default async function Header() {
   const progres = user ? await getProgresUtilizator(user.id) : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md text-slate-900 shadow-xs">
+    <header className="sticky top-0 z-50 border-b border-[#EBE7DF] bg-[#FDFBF7]/95 backdrop-blur-md text-[#1E2430] shadow-xs">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <Logo className="h-10 w-10 rounded-xl transition group-hover:scale-105" />
           <span className="leading-none">
-            <span className="text-base font-black tracking-tight text-slate-900 font-sans">
+            <span className="text-base font-black tracking-tight text-[#1E2430] font-sans">
               Academia<span className="text-amber-500">Python</span>
             </span>
-            <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-slate-500 sm:block">
+            <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-[#525B6C] sm:block">
               Învață. Practică. Devino dezvoltator.
             </span>
           </span>
@@ -64,7 +64,7 @@ export default async function Header() {
           {/* Buton Pentru Părinți */}
           <Link
             href="/kids"
-            className="hidden md:flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 px-3.5 py-2 text-xs font-bold text-slate-700 transition shadow-xs"
+            className="hidden md:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
           >
             <span>👥</span>
             <span>Pentru părinți</span>
@@ -73,14 +73,14 @@ export default async function Header() {
           {user ? (
             <Link
               href="/cont"
-              className="hidden max-w-[10rem] truncate rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-bold text-slate-700 hover:text-indigo-600 sm:inline-block"
+              className="hidden max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600 sm:inline-block"
             >
               {extrageAliasNume(user.email)}
             </Link>
           ) : (
             <Link
               href="/login"
-              className="hidden rounded-xl px-3 py-2 text-xs font-bold text-slate-600 hover:text-indigo-600 sm:inline-block"
+              className="hidden rounded-xl px-3 py-2 text-xs font-bold text-[#525B6C] hover:text-indigo-600 sm:inline-block"
             >
               Autentificare
             </Link>
@@ -88,7 +88,7 @@ export default async function Header() {
 
           <Link
             href="/curriculum"
-            className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4.5 py-2 text-xs shadow-sm transition active:scale-95"
+            className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4.5 py-2 text-xs shadow-xs transition active:scale-95"
           >
             {user ? "Contul meu" : "Începe gratuit"}
           </Link>
