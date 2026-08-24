@@ -150,6 +150,15 @@ export default function HartaJunior() {
         </div>
       </div>
 
+      {/* BANNER INFORMARE 100% GRATUIT */}
+      <div className="mx-auto max-w-3xl mb-6 rounded-3xl bg-gradient-to-r from-emerald-500 to-teal-600 p-4 text-white shadow-lg border-2 border-emerald-300 flex items-center gap-3">
+        <span className="text-3xl">🎉</span>
+        <div>
+          <h3 className="font-black text-sm uppercase tracking-wide">Academia Junior Start este 100% GRATUITĂ!</h3>
+          <p className="text-xs opacity-90 font-medium">Învață primii pași în programare cu robotul Byte. Toate cele 6 insule sunt deschise tuturor copiilor!</p>
+        </div>
+      </div>
+
       {/* Mascotă Byte */}
       <div className="mx-auto max-w-3xl mb-8">
         <MascotaByte

@@ -77,24 +77,17 @@ export function getProgresNivel(
   };
 }
 
-/** Verifică dacă primul nivel al unui modul este accesibil (modul deblocat) */
-export function esteModulDeblocat(modulIndex: number): boolean {
-  if (modulIndex === 1) return true; // Modulul 1 e mereu deblocat
-  const profil = getProfilElev();
-  if (!profil) return false;
-  const modulAnterior = `M${modulIndex - 1}`;
-  return !!profil.module[modulAnterior]?.insignaDeblocata;
+/** Verifică dacă un modul este accesibil (Toate cele 6 module sunt 100% GRATUITE) */
+export function esteModulDeblocat(_modulIndex: number): boolean {
+  return true; // 100% Gratuit și deblocat pentru orice utilizator
 }
 
-/** Verifică dacă un nivel specific este accesibil */
+/** Verifică dacă un nivel specific este accesibil (Toate cele 24 niveluri sunt 100% GRATUITE) */
 export function esteNivelDeblocat(
-  modulId: string,
-  nivelNumar: number
+  _modulId: string,
+  _nivelNumar: number
 ): boolean {
-  if (nivelNumar === 1) return true;
-  const profil = getProfilElev();
-  const nivelAntId = `${modulId}N${nivelNumar - 1}`;
-  return !!profil?.module[modulId]?.niveluri[nivelAntId]?.completat;
+  return true; // 100% Gratuit și deblocat pentru orice utilizator
 }
 
 /** Total stele acumulate */

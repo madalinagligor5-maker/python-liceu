@@ -293,31 +293,59 @@ export default function NivelPage() {
           {/* Overlay succes */}
           {faza === "succes" && (
             <div className="rounded-2xl bg-emerald-50 border-2 border-emerald-300 p-4 text-center">
-              <p className="text-3xl mb-1">🎉</p>
-              <p className="font-black text-emerald-800 text-lg">Felicitări!</p>
+              <p className="text-4xl mb-1">🎉 🎓 🚀</p>
+              <p className="font-black text-emerald-900 text-xl">
+                {nivel.modul === 6 ? "Marea Absolvire Byte!" : "Felicitări!"}
+              </p>
               <div className="flex justify-center gap-1 my-2">
                 {[1, 2, 3].map((s) => (
                   <span key={s} className={`text-3xl ${s <= steleObtinute ? "text-amber-400" : "text-slate-200"}`}>★</span>
                 ))}
               </div>
-              <div className="flex gap-2 justify-center mt-3">
-                {nivel.numar < 5 && (
-                  <Link
-                    href={`/kids/junior/nivel/M${nivel.modul}/M${nivel.modul}N${nivel.numar + 1}`}
-                    className="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 text-sm"
-                  >
-                    Nivelul următor →
-                  </Link>
-                )}
-                {nivel.numar === 5 && (
-                  <Link
-                    href="/kids/junior/harta"
-                    className="rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-2.5 text-sm"
-                  >
-                    🏅 Înapoi la hartă!
-                  </Link>
-                )}
-              </div>
+
+              {nivel.modul === 6 ? (
+                <div className="mt-3 p-3 bg-white rounded-xl border border-emerald-200 text-xs font-semibold text-slate-700">
+                  <p className="text-emerald-950 font-bold text-sm mb-2">
+                    Felicitări! Ai absolvit Academia de Bază Byte!
+                  </p>
+                  <p className="text-slate-600 mb-3">
+                    Ești gata să desenezi cu cod și să creezi primele tale jocuri?
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      href="/kids/junior/diploma"
+                      className="rounded-xl bg-amber-400 hover:bg-amber-300 text-amber-950 font-black px-4 py-2.5 text-xs shadow-md transition active:scale-95 flex items-center justify-center gap-1.5"
+                    >
+                      🏆 Descarcă Diplomă de Absolvire
+                    </Link>
+                    <Link
+                      href="/kids"
+                      className="rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black px-4 py-2.5 text-xs shadow-md transition active:scale-95 flex items-center justify-center gap-1.5"
+                    >
+                      🚀 Vezi Lecțiile Următoare & Studio
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-2 justify-center mt-3">
+                  {nivel.numar < 5 && (
+                    <Link
+                      href={`/kids/junior/nivel/M${nivel.modul}/M${nivel.modul}N${nivel.numar + 1}`}
+                      className="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 text-sm"
+                    >
+                      Nivelul următor →
+                    </Link>
+                  )}
+                  {(nivel.numar === 5 || nivel.modul > 1) && (
+                    <Link
+                      href="/kids/junior/harta"
+                      className="rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-2.5 text-sm"
+                    >
+                      🏅 Înapoi la hartă!
+                    </Link>
+                  )}
+                </div>
+              )}
             </div>
           )}
         </div>
