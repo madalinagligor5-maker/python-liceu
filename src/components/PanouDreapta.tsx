@@ -139,7 +139,7 @@ export function CardProvocareZilei({
 
     setLoading(true);
     try {
-      const res = await valideazaProvocareZilnica(index, corect, xp);
+      const res = await valideazaProvocareZilnica(index);
       if (res.ok) {
         setRezolvata(true);
         setFeedback({ ok: true, text: res.mesaj });

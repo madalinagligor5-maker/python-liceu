@@ -12,8 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/curriculum"), changeFrequency: "weekly", priority: 0.9 },
     { url: url("/preturi"), changeFrequency: "monthly", priority: 0.6 },
     { url: url("/lectii"), changeFrequency: "weekly", priority: 0.7 },
-    { url: url("/termeni"), changeFrequency: "yearly", priority: 0.2 },
-    { url: url("/confidentialitate"), changeFrequency: "yearly", priority: 0.2 },
+    { url: url("/termeni-si-conditii"), changeFrequency: "yearly", priority: 0.2 },
+    { url: url("/politica-de-confidentialitate"), changeFrequency: "yearly", priority: 0.2 },
+    { url: url("/politica-de-rambursare"), changeFrequency: "yearly", priority: 0.2 },
   ];
 
   // Toate sublecțiile din structura curriculară (clasă → modul → sublecție).

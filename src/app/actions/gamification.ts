@@ -3,15 +3,27 @@
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getUtilizatorCurent } from "@/lib/subscription";
 
+import { provocareaZilei, getProgresUtilizator } from "@/lib/progres";
+
 export async function valideazaProvocareZilnica(
-  opțiuneSelectată: number,
-  răspunsCorect: number,
-  xpRecompensă: number
+  opțiuneSelectată: number
 ): Promise<{ ok: boolean; mesaj: string; xpAdăugat?: number }> {
   const { user, meta } = await getUtilizatorCurent();
   if (!user || !meta) {
     return { ok: false, mesaj: "Trebuie să fii autentificat pentru a primi XP." };
   }
+
+  // Preluăm progresul utilizatorului pe server pentru a calcula provocarea zilei determinist
+  const metaProgres = await getProgresUtilizator(user.id);
+  const lectiiFinalizate = metaProgres?.lectiiFinalizate ?? [];
+  const provocare = provocareaZilei(lectiiFinalizate);
+
+  if (!provocare) {
+    return { ok: false, mesaj: "Nu ai nicio provocare disponibilă astăzi." };
+  }
+
+  const răspunsCorect = provocare.intrebare.corect;
+  const xpRecompensă = 50; // Recompensă fixă pe server
 
   if (opțiuneSelectată !== răspunsCorect) {
     return { ok: false, mesaj: "Răspuns greșit! Mai încearcă, citește cu atenție enunțul." };

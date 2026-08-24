@@ -7,12 +7,23 @@ export type FeedbackAI = {
   indiciu_sintaxa: string;
 };
 
+import { getUtilizatorCurent } from "@/lib/subscription";
+
 export async function evalueazaCodCuAI(
   titluProblema: string,
   enuntProblema: string,
   codElev: string,
   outputRulare: string
 ): Promise<{ ok: boolean; feedback?: FeedbackAI; eroare?: string }> {
+  // Verificare autentificare pe server pentru a preveni abuzul de API Gemini
+  const { user } = await getUtilizatorCurent();
+  if (!user) {
+    return {
+      ok: false,
+      eroare: "Trebuie sa fii autentificat pentru a primi feedback si indrumare de la asistentul AI.",
+    };
+  }
+
   const cod = (codElev || "").trim();
   const output = (outputRulare || "").trim();
 
