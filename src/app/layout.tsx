@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderConditional from "@/components/HeaderConditional";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <HeaderConditional>
           <Footer />
         </HeaderConditional>
+        <NewsletterPopup />
       </body>
     </html>
   );
