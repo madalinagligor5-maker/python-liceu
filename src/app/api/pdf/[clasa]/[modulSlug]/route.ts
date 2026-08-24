@@ -6,18 +6,15 @@ import { obtineFisaPdfContent } from "@/lib/resursePdfContent";
 export const dynamic = "force-dynamic";
 
 function curataDiacritice(text: string): string {
+  if (!text) return "";
   return text
-    .replace(/ș/g, "s")
-    .replace(/Ș/g, "S")
-    .replace(/ț/g, "t")
-    .replace(/Ț/g, "T")
-    .replace(/ă/g, "a")
-    .replace(/Ă/g, "A")
-    .replace(/â/g, "a")
-    .replace(/Â/g, "A")
-    .replace(/î/g, "i")
-    .replace(/Î/g, "I")
-    .replace(/î/g, "i");
+    .replace(/[șşȘŞ]/g, "s")
+    .replace(/[țţȚŢ]/g, "t")
+    .replace(/[ăăĂĂãã]/g, "a")
+    .replace(/[âÂ]/g, "a")
+    .replace(/[îîÎÎ]/g, "i")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 export async function GET(
@@ -114,13 +111,9 @@ export async function GET(
     doc.strokeColor("#e7e0d2").lineWidth(1).moveTo(40, doc.y).lineTo(555, doc.y).stroke();
     doc.moveDown(0.5);
 
-    // Footer reclama
-    doc.fontSize(8.5).font("Helvetica-Bold").fillColor("#16163a").text(
-      "Testeaza acest cod si verifica-ti rezolvarea pas cu pas cu asistentul AI pe academiapython.ro",
-      { align: "center" }
-    );
-    doc.fontSize(7.5).font("Helvetica").fillColor("#6b6a7b").text(
-      "Fișa de lucru generată automat de AcademiaPython.ro. Toate drepturile rezervate.",
+    // Footer simplu
+    doc.fontSize(8).font("Helvetica").fillColor("#6b6a7b").text(
+      "Fisa de lucru generata automat de AcademiaPython.ro. Toate drepturile rezervate.",
       { align: "center" }
     );
 
