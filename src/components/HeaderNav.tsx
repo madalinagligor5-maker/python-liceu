@@ -43,9 +43,9 @@ export default function HeaderNav() {
   }
 
   return (
-    <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/70 lg:flex">
+    <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 lg:flex">
       {linkuriLiceu.map((l) => (
-        <Link key={l.href} href={l.href} className="transition hover:text-brand">
+        <Link key={l.href} href={l.href} className="transition-colors hover:text-indigo-600">
           {l.label}
         </Link>
       ))}

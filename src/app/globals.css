@@ -1,31 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Paletă „premium" — în concordanță cu logo-ul.
-     Navy închis (litera A) + auriu (șarpele / „Python") pe crem deschis. */
-  --background: #faf8f3;
-  --surface: #f3efe6;
-  --foreground: #1a1a3a;
-  --muted: #6b6a7b;
-  --border: #e7e0d2;
-  --brand: #f5b301;        /* auriu — accent principal (butoane, linkuri) */
-  --brand-dark: #d99a00;   /* auriu mai închis (hover) */
-  --brand-light: #fdf6e3;  /* crem auriu deschis (fundal secțiuni) */
-  --brand-light-2: #f6efdc;
-  --brand-border: #ecd9a0;
-  --accent: #e0a92e;       /* auriu secundar */
-  --success: #22c55e;
+  /* Paletă EdTech Curată & Caldă (Stil Duolingo / Khan Academy) */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --brand: #f59e0b;        /* Galben auriu cald (butoane, acțiuni) */
+  --brand-dark: #d97706;   /* Auriu mai închis pentru hover */
+  --brand-light: #fef3c7;  /* Crem auriu deschis */
+  --brand-border: #fde68a;
+  --accent: #4f46e5;       /* Indigo cald pentru linkuri/interactivitate */
+  --success: #10b981;
   --warning: #f59e0b;
-  --locked: #9a9786;
   --python-green: #84cc16;
   --python-yellow: #f5b301;
-
-  /* Sidebar întunecat (navy închis, ca litera A din logo). */
-  --sidebar-bg: #16163a;
-  --sidebar-bg-2: #1f1f4a;
-  --sidebar-text: #f4f1e6;
-  --sidebar-muted: #b8b6cc;
-  --sidebar-active: #f5b301;
 }
 
 @theme inline {
@@ -37,19 +27,10 @@
   --color-brand: var(--brand);
   --color-brand-dark: var(--brand-dark);
   --color-brand-light: var(--brand-light);
-  --color-brand-light-2: var(--brand-light-2);
   --color-brand-border: var(--brand-border);
   --color-accent: var(--accent);
   --color-success: var(--success);
   --color-warning: var(--warning);
-  --color-locked: var(--locked);
-  --color-python-green: var(--python-green);
-  --color-python-yellow: var(--python-yellow);
-  --color-sidebar-bg: var(--sidebar-bg);
-  --color-sidebar-bg-2: var(--sidebar-bg-2);
-  --color-sidebar-text: var(--sidebar-text);
-  --color-sidebar-muted: var(--sidebar-muted);
-  --color-sidebar-active: var(--sidebar-active);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -61,75 +42,8 @@ body {
 }
 
 ::selection {
-  background: var(--brand-light);
-  color: var(--brand-dark);
-}
-
-/* Linia care leagă nodurile drumului de învățare. */
-.linie-drum {
-  background-image: linear-gradient(
-    to right,
-    var(--locked) 0,
-    var(--locked) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-  background-size: 12px 3px;
-  background-repeat: repeat-x;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Carduri de teorie (:::tip / :::exemplu / :::atentie din Markdown). */
-.bloc-card {
-  border-radius: 0 14px 14px 0;
-  border: 1px solid var(--border);
-  border-left-width: 4px;
-  background: #fff;
-  padding: 16px 20px;
-  margin: 4px 0;
-}
-.bloc-card--icon {
-  font-size: 18px;
-  line-height: 1.4;
-}
-.bloc-card--titlu {
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.bloc-card--corp p {
-  margin: 0 0 6px;
-}
-.bloc-card--corp p:last-child {
-  margin-bottom: 0;
-}
-.bloc-card--tip {
-  border-left-color: var(--brand);
-  background: var(--brand-light);
-}
-.bloc-card--tip .bloc-card--titlu {
-  color: var(--brand-dark);
-}
-.bloc-card--exemplu {
-  border-left-color: var(--success);
-  background: #eafaf0;
-}
-.bloc-card--exemplu .bloc-card--titlu {
-  color: #15803d;
-}
-.bloc-card--atentie {
-  border-left-color: #dc2626;
-  background: #fdecec;
-}
-.bloc-card--atentie .bloc-card--titlu {
-  color: #b91c1c;
+  background: #fef3c7;
+  color: #78350f;
 }
 
 @media print {
