@@ -6,9 +6,19 @@ import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
 const linkuri = [
   { href: "/curriculum", label: "Curriculum" },
   { href: "/lectii", label: "Lecții" },
+  { href: "/exercitii", label: "Exerciții" },
+  { href: "/resurse", label: "Resurse" },
   { href: "/preturi", label: "Prețuri" },
   { href: "/despre", label: "Despre" },
 ];
+
+function extrageAliasNume(email: string): string {
+  const localPart = email.split("@")[0];
+  if (localPart.includes("madalinagligor")) {
+    return "Mădălina G.";
+  }
+  return localPart.charAt(0).toUpperCase() + localPart.slice(1).replace(/[0-9_.-]/g, " ").trim();
+}
 
 export default async function Header() {
   const { user } = await getUtilizatorCurent();
@@ -64,7 +74,7 @@ export default async function Header() {
               href="/cont"
               className="hidden max-w-[11rem] truncate rounded-lg px-3 py-2 text-sm font-medium text-foreground/70 transition hover:text-brand sm:inline-block"
             >
-              {user.email}
+              {extrageAliasNume(user.email)}
             </Link>
           ) : (
             <Link
