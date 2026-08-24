@@ -263,9 +263,16 @@ export default function NivelPage() {
               <button
                 onClick={ruleaza}
                 disabled={faza === "ruleaza" || comenzi.length === 0}
-                className="flex-1 rounded-2xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-black text-lg py-4 shadow-lg transition-all active:scale-95"
+                className={`
+                  flex-1 rounded-2xl font-black text-xl py-4.5 px-6 shadow-xl transition-all
+                  border-b-4 active:scale-95 active:border-b-0 disabled:opacity-50 disabled:animate-none
+                  ${comenzi.length > 0 && faza !== "ruleaza"
+                    ? "bg-emerald-500 hover:bg-emerald-400 border-emerald-700 text-slate-950 animate-pulse ring-4 ring-emerald-300"
+                    : "bg-slate-300 border-slate-400 text-slate-600"
+                  }
+                `}
               >
-                {faza === "ruleaza" ? "⏳ Rulează..." : "▶ Rulează!"}
+                {faza === "ruleaza" ? "⏳ Byte merge..." : "▶ RULEAZĂ CODUL!"}
               </button>
             )}
             {(faza === "esec" || faza === "succes") && (

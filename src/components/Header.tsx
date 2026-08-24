@@ -3,6 +3,7 @@ import Logo from "@/components/Logo";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
 import HeaderSwitch from "@/components/HeaderSwitch";
+import HeaderNav from "@/components/HeaderNav";
 
 const linkuri = [
   { href: "/curriculum", label: "Curriculum" },
@@ -42,13 +43,7 @@ export default async function Header() {
 
         <HeaderSwitch />
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/70 lg:flex">
-          {linkuri.map((l) => (
-            <Link key={l.href} href={l.href} className="transition hover:text-brand">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        <HeaderNav />
 
         <div className="flex items-center gap-2">
           {progres && (

@@ -113,70 +113,87 @@ function BlocVizual({
     });
   };
 
+  const handleDeOriChange = (valStr: string) => {
+    const num = parseInt(valStr, 10);
+    onUpdate({ ...bloc, deOri: isNaN(num) ? 2 : Math.max(1, num) });
+  };
+
   return (
-    <div
-      className={`rounded-xl border-2 border-b-4 text-white font-bold text-sm select-none ${def.culoare}`}
-      style={{ marginLeft: indent * 16 }}
-    >
-      <div className="flex items-center gap-2 px-3 py-2">
-        <span className="text-xl">{def.icon}</span>
-        <span className="flex-1">{def.eticheta}</span>
+    <div className="relative group">
+      {/* Puzzle connector notch top (zimț conectare puzzle) */}
+      {indent === 0 && (
+        <div className="flex justify-start pl-8 -mb-1 relative z-10">
+          <div className="h-2 w-7 rounded-t-md bg-white/30 border-t-2 border-x-2 border-white/50" />
+        </div>
+      )}
 
-        {bloc.tip === "repeta" && (
-          <input
-            type="number"
-            min={1}
-            max={10}
-            value={bloc.deOri ?? 2}
-            disabled={disabled}
-            onChange={(e) =>
-              onUpdate({ ...bloc, deOri: Math.max(1, parseInt(e.target.value) || 2) })
-            }
-            className="w-14 rounded-lg border-2 border-white/50 bg-white/20 text-center text-white font-extrabold text-lg focus:outline-none"
-          />
-        )}
+      <div
+        className={`relative rounded-2xl border-2 border-b-4 text-white font-bold text-sm select-none shadow-md ${def.culoare}`}
+        style={{ marginLeft: indent * 16 }}
+      >
+        <div className="flex items-center gap-2 px-3.5 py-2.5">
+          <span className="text-xl drop-shadow">{def.icon}</span>
+          <span className="flex-1 font-black text-base">{def.eticheta}</span>
 
-        {!disabled && (
-          <button
-            onClick={onRemove}
-            className="ml-1 rounded-full bg-white/20 hover:bg-white/40 px-2 py-0.5 text-xs"
-          >
-            ✕
-          </button>
-        )}
-      </div>
+          {bloc.tip === "repeta" && (
+            <div className="flex items-center gap-1 bg-black/20 rounded-xl px-2 py-1">
+              <span className="text-xs">de</span>
+              <input
+                type="number"
+                min={1}
+                max={10}
+                value={bloc.deOri ?? 2}
+                disabled={disabled}
+                onChange={(e) => handleDeOriChange(e.target.value)}
+                className="w-10 rounded-lg bg-white text-center text-slate-900 font-black text-base focus:outline-none"
+              />
+              <span className="text-xs">ori</span>
+            </div>
+          )}
 
-      {/* Sub-blocuri (pentru repeta / daca) */}
-      {(bloc.tip === "repeta" || bloc.tip === "daca_stea") && (
-        <div className="mx-2 mb-2 rounded-lg bg-white/10 p-2 space-y-1 min-h-[40px]">
-          {(bloc.subBlocuri ?? []).map((sub, i) => (
-            <BlocVizual
-              key={sub.id}
-              bloc={sub}
-              disabled={disabled}
-              indent={0}
-              onRemove={() => {
-                const newSubs = [...(bloc.subBlocuri ?? [])];
-                newSubs.splice(i, 1);
-                onUpdate({ ...bloc, subBlocuri: newSubs });
-              }}
-              onUpdate={(updated) => {
-                const newSubs = [...(bloc.subBlocuri ?? [])];
-                newSubs[i] = updated;
-                onUpdate({ ...bloc, subBlocuri: newSubs });
-              }}
-            />
-          ))}
           {!disabled && (
             <button
-              onClick={addSub}
-              className="w-full rounded-lg border-2 border-dashed border-white/40 py-1 text-xs text-white/70 hover:border-white/70 hover:text-white"
+              onClick={onRemove}
+              className="ml-1 rounded-full bg-white/20 hover:bg-white/40 h-6 w-6 flex items-center justify-center text-xs font-bold"
+              title="Șterge blocul"
             >
-              + adaugă comandă
+              ✕
             </button>
           )}
         </div>
-      )}
+
+        {/* Sub-blocuri (pentru repeta / daca) */}
+        {(bloc.tip === "repeta" || bloc.tip === "daca_stea") && (
+          <div className="mx-2 mb-2 rounded-lg bg-white/10 p-2 space-y-1 min-h-[40px]">
+            {(bloc.subBlocuri ?? []).map((sub, i) => (
+              <BlocVizual
+                key={sub.id}
+                bloc={sub}
+                disabled={disabled}
+                indent={0}
+                onRemove={() => {
+                  const newSubs = [...(bloc.subBlocuri ?? [])];
+                  newSubs.splice(i, 1);
+                  onUpdate({ ...bloc, subBlocuri: newSubs });
+                }}
+                onUpdate={(updated) => {
+                  const newSubs = [...(bloc.subBlocuri ?? [])];
+                  newSubs[i] = updated;
+                  onUpdate({ ...bloc, subBlocuri: newSubs });
+                }}
+              />
+            ))}
+            {!disabled && (
+              <button
+                onClick={addSub}
+                className="w-full rounded-lg border-2 border-dashed border-white/40 py-1 text-xs text-white/70 hover:border-white/70 hover:text-white font-bold"
+              >
+                + adaugă comandă
+              </button>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

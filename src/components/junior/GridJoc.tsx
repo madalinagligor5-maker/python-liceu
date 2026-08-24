@@ -79,15 +79,30 @@ export default function GridJoc({ grila, stare, animand }: Props) {
                 </span>
               )}
 
-              {/* Byte (robotul) */}
+              {/* Byte (robotul) + Indicator de direcție clar pentru copii */}
               {esteAici && (
-                <span
-                  className={`text-xl z-20 ${animand ? "animate-bounce" : ""}`}
-                  role="img"
-                  aria-label="Byte robotul"
+                <div
+                  className={`relative flex items-center justify-center z-20 ${
+                    animand ? "animate-bounce scale-110" : ""
+                  }`}
                 >
-                  {stare.esuat ? "😵" : stare.completat ? "🎉" : "🤖"}
-                </span>
+                  <span className="text-2xl" role="img" aria-label="Byte robotul">
+                    {stare.esuat ? "😵" : stare.completat ? "🎉" : "🤖"}
+                  </span>
+                  {/* Săgeată indicator de direcție stilizat */}
+                  {!stare.esuat && !stare.completat && (
+                    <span
+                      className={`
+                        absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center
+                        rounded-full bg-amber-400 text-slate-900 text-xs font-black shadow-md
+                        border-2 border-white ring-2 ring-indigo-500 animate-pulse
+                      `}
+                      title={`Orientat spre ${stare.directie === "N" ? "Nord (Sus)" : stare.directie === "E" ? "Est (Dreapta)" : stare.directie === "S" ? "Sud (Jos)" : "Vest (Stânga)"}`}
+                    >
+                      {stare.directie === "N" ? "⬆️" : stare.directie === "E" ? "➡️" : stare.directie === "S" ? "⬇️" : "⬅️"}
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           );
