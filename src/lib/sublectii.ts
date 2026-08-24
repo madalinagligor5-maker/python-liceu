@@ -19,7 +19,19 @@ let cache: IndexContinut | null = null;
 async function incarcaTot(): Promise<IndexContinut> {
   if (cache) return cache;
 
-  const fisiere = ["lectii_IX_1.1-1.8.md", "lectii_IX_1.9-1.20.md", "lectii_X_2.1-2.3.md", "lectii_X_2.2-2.5.md", "lectii_X_2.6-2.10.md", "lectii_X_2.11-2.14.md", "lectii_X_2.15-2.17.md", "lectii_X_2.18-2.21.md", "lectii_XI_3.1-3.5.md", "lectii_XI_3.6-3.10.md", "lectii_XI_3.11-3.15.md", "lectii_XI_3.16-3.25.md", "lectii_XII_4.1-4.5.md", "lectii_XII_4.6-4.12.md", "lectii_XII_4.13-4.17.md", "lectii_XII_4.18-4.22.md"];
+  const fisiere = [
+    "lectii_IX_1.1-1.8.md", "lectii_IX_1.9-1.20.md",
+    "lectii_X_2.1-2.3.md", "lectii_X_2.2-2.5.md", "lectii_X_2.6-2.10.md",
+    "lectii_X_2.11-2.14.md", "lectii_X_2.15-2.17.md", "lectii_X_2.18-2.21.md",
+    "lectii_XI_3.1-3.5.md", "lectii_XI_3.6-3.10.md", "lectii_XI_3.11-3.15.md",
+    "lectii_XI_3.16-3.25.md", "lectii_XII_4.1-4.5.md", "lectii_XII_4.6-4.12.md",
+    "lectii_XII_4.13-4.17.md", "lectii_XII_4.18-4.22.md",
+    "lectii_P7_P7.1.md", "lectii_P7_P7.2.md", "lectii_P7_P7.3.md",
+    "lectii_P8_P8.1.md", "lectii_P8_P8.2.md", "lectii_P8_P8.3.md",
+    "lectii_P9_P9.1.md", "lectii_P9_P9.2.md", "lectii_P9_P9.3.md",
+    "lectii_P10_P10.1.md", "lectii_P10_P10.2.md", "lectii_P10_P10.3.md",
+    "lectii_P11_P11.1.md", "lectii_P11_P11.2.md", "lectii_P11_P11.3.md",
+  ];
   const moduleMap: Record<string, ModulContinut> = {};
   const sublectii: Record<string, SublectieContinut> = {};
   const ordine: string[] = [];

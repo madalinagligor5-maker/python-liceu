@@ -215,7 +215,7 @@ export function parseazaContinut(md: string): ModulContinut[] {
   };
 
   for (const linie of lines) {
-    const modulMatch = linie.match(/^#\s+Modulul\s+(\d+\.\d+)\s+—\s+(.+)$/);
+    const modulMatch = linie.match(/^#\s+Modulul\s+(\S+\.\S+)\s+—\s+(.+)$/);
     if (modulMatch) {
       flushSub();
       subCurent = null;

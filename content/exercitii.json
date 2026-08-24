@@ -1832,5 +1832,323 @@
       "expectedOutput": "w1*x1+w2*x2+b",
       "hint": " Sumă ponderată + bias."
     }
+  ],
+  "P7.1.4": [
+    {
+      "id": "P7.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează programul pentru a afișa numele micului robot: Pippy!",
+      "template": "# Scrie codul mai jos:\nprint(\"...\")",
+      "expectedOutput": "Pippy",
+      "hint": "Scrie exact Pippy între ghilimele."
+    },
+    {
+      "id": "P7.1.4.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Afișează textul 'Salut!' pe prima linie și 'Eu sunt Pippy!' pe a doua linie.",
+      "template": "print(\"Salut!\")\nprint(\"...\")",
+      "expectedOutput": "Salut!\nEu sunt Pippy!",
+      "hint": "Completează a doua funcție print."
+    }
+  ],
+  "P7.1.5": [
+    {
+      "id": "P7.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează numărul 7 pe ecran.",
+      "template": "print(...)",
+      "expectedOutput": "7"
+    },
+    {
+      "id": "P7.1.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Afișează rezultatul adunării 3 + 4.",
+      "template": "print(3 + ...)",
+      "expectedOutput": "7"
+    }
+  ],
+  "P7.2.4": [
+    {
+      "id": "P7.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează cuvântul 'turtle' pe ecran.",
+      "template": "print(\"...\")",
+      "expectedOutput": "turtle"
+    }
+  ],
+  "P7.2.5": [
+    {
+      "id": "P7.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează culoarea preferată a lui Pippy: 'verde'.",
+      "template": "print(\"...\")",
+      "expectedOutput": "verde"
+    }
+  ],
+  "P7.3.4": [
+    {
+      "id": "P7.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează numărul de laturi ale unui pătrat (4).",
+      "template": "print(...)",
+      "expectedOutput": "4"
+    }
+  ],
+  "P7.3.5": [
+    {
+      "id": "P7.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează unghiul de rotație pentru un pătrat (90).",
+      "template": "print(...)",
+      "expectedOutput": "90"
+    }
+  ],
+  "P8.1.4": [
+    {
+      "id": "P8.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Convertește textul '10' într-un număr întreg și afișează-l înmulțit cu 2.",
+      "template": "text_numar = \"10\"\nnumar = int(text_numar)\nprint(numar * ...)",
+      "expectedOutput": "20"
+    }
+  ],
+  "P8.1.5": [
+    {
+      "id": "P8.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Convertește textul '3.14' într-un număr cu virgulă (float) și afișează-l.",
+      "template": "text = \"3.14\"\nnumar = float(...)\nprint(numar)",
+      "expectedOutput": "3.14"
+    }
+  ],
+  "P8.2.4": [
+    {
+      "id": "P8.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează lungimea textului 'Pippy'.",
+      "template": "nume = \"Pippy\"\nprint(len(...))",
+      "expectedOutput": "5"
+    }
+  ],
+  "P8.2.5": [
+    {
+      "id": "P8.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Convertește textul 'pippy' în litere mari (UPPERCASE) și afișează-l.",
+      "template": "text = \"pippy\"\nprint(text.upper())",
+      "expectedOutput": "PIPPY"
+    }
+  ],
+  "P8.3.4": [
+    {
+      "id": "P8.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează prima culoare din listă: rosu, verde, albastru.",
+      "template": "culori = [\"rosu\", \"verde\", \"albastru\"]\nprint(culori[...])",
+      "expectedOutput": "rosu"
+    }
+  ],
+  "P8.3.5": [
+    {
+      "id": "P8.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Adaugă culoarea 'galben' în listă folosind append și afișează lungimea noii liste.",
+      "template": "culori = [\"rosu\", \"verde\"]\nculori.append(\"galben\")\nprint(len(culori))",
+      "expectedOutput": "3"
+    }
+  ],
+  "P9.1.4": [
+    {
+      "id": "P9.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Folosește range pentru a afișa numerele de la 0 la 2.",
+      "template": "for i in range(3):\n    print(i)",
+      "expectedOutput": "0\n1\n2"
+    }
+  ],
+  "P9.1.5": [
+    {
+      "id": "P9.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează indexul și valoarea din listă folosind enumerate.",
+      "template": "culori = [\"rosu\", \"verde\"]\nfor idx, culoare in enumerate(culori):\n    print(f\"{idx}: {culoare}\")",
+      "expectedOutput": "0: rosu\n1: verde"
+    }
+  ],
+  "P9.2.4": [
+    {
+      "id": "P9.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Adună 5 la variabila scor folosind operatorul += și afișează scorul.",
+      "template": "scor = 10\nscor += ...\nprint(scor)",
+      "expectedOutput": "15"
+    }
+  ],
+  "P9.2.5": [
+    {
+      "id": "P9.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Folosește un f-string pentru a afișa 'Scor: 20' din variabila scor = 20.",
+      "template": "scor = 20\nprint(f\"Scor: {scor}\")",
+      "expectedOutput": "Scor: 20"
+    }
+  ],
+  "P9.3.4": [
+    {
+      "id": "P9.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Definește o funcție numită saluta care returnează 'Salut!' și apeleaz-o.",
+      "template": "def saluta():\n    return \"Salut!\"\n\nprint(saluta())",
+      "expectedOutput": "Salut!"
+    }
+  ],
+  "P9.3.5": [
+    {
+      "id": "P9.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Definește o funcție numită adunare(a, b) care returnează suma lor.",
+      "template": "def adunare(a, b):\n    return ...\n\nprint(adunare(5, 5))",
+      "expectedOutput": "10"
+    }
+  ],
+  "P10.1.4": [
+    {
+      "id": "P10.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția pentru a verifica dacă numărul este par.",
+      "template": "numar = 4\nif numar % 2 == 0:\n    print(\"par\")\nelse:\n    print(\"impar\")",
+      "expectedOutput": "par"
+    }
+  ],
+  "P10.1.5": [
+    {
+      "id": "P10.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Verifică dacă culoarea 'rosu' se află în listă.",
+      "template": "culori = [\"rosu\", \"verde\"]\nif \"rosu\" in culori:\n    print(\"da\")",
+      "expectedOutput": "da"
+    }
+  ],
+  "P10.2.4": [
+    {
+      "id": "P10.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Folosește break pentru a opri bucla când i ajunge la 2.",
+      "template": "for i in range(5):\n    if i == 2:\n        break\n    print(i)",
+      "expectedOutput": "0\n1"
+    }
+  ],
+  "P10.2.5": [
+    {
+      "id": "P10.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Folosește continue pentru a sări peste afișarea numărului 2.",
+      "template": "for i in range(4):\n    if i == 2:\n        continue\n    print(i)",
+      "expectedOutput": "0\n1\n3"
+    }
+  ],
+  "P10.3.4": [
+    {
+      "id": "P10.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Definește o funcție care saluta cu valoare implicită 'Pippy'.",
+      "template": "def saluta(nume=\"Pippy\"):\n    print(f\"Salut, {nume}!\")\n\nsaluta()",
+      "expectedOutput": "Salut, Pippy!"
+    }
+  ],
+  "P10.3.5": [
+    {
+      "id": "P10.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Creează o funcție putere(baza, exponent=2) care returnează baza ridicată la exponent.",
+      "template": "def putere(baza, exponent=2):\n    return baza ** exponent\n\nprint(putere(3))",
+      "expectedOutput": "9"
+    }
+  ],
+  "P11.1.4": [
+    {
+      "id": "P11.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează clasa Robot pentru a afișa numele robotului.",
+      "template": "class Robot:\n    def __init__(self, nume):\n        self.nume = nume\n\nr = Robot(\"Pippy\")\nprint(r.nume)",
+      "expectedOutput": "Pippy"
+    }
+  ],
+  "P11.1.5": [
+    {
+      "id": "P11.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Adaugă o metodă saluta în clasa Robot care returnează 'Salut din clasa Robot!'.",
+      "template": "class Robot:\n    def saluta(self):\n        return \"Salut din clasa Robot!\"\n\nr = Robot()\nprint(r.saluta())",
+      "expectedOutput": "Salut din clasa Robot!"
+    }
+  ],
+  "P11.2.4": [
+    {
+      "id": "P11.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează viteza inițială a mingii pe axa X (3).",
+      "template": "viteza_x = 3\nprint(viteza_x)",
+      "expectedOutput": "3"
+    }
+  ],
+  "P11.2.5": [
+    {
+      "id": "P11.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Simulează lovirea peretelui stâng: inversează viteza_x.",
+      "template": "viteza_x = -3\nif True:\n    viteza_x = -viteza_x\nprint(viteza_x)",
+      "expectedOutput": "3"
+    }
+  ],
+  "P11.3.4": [
+    {
+      "id": "P11.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Găsește elementul maxim dintr-o listă.",
+      "template": "note = [7, 9, 10]\nprint(max(note))",
+      "expectedOutput": "10"
+    }
+  ],
+  "P11.3.5": [
+    {
+      "id": "P11.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Calculează suma notelor dintr-o listă.",
+      "template": "note = [8, 9, 10]\nprint(sum(note))",
+      "expectedOutput": "27"
+    }
   ]
 }

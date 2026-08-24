@@ -21,7 +21,8 @@ export type Modul = {
   numar: number;
   titlu: string;
   slug: string;
-  clasa: string;
+  virsta?: string;
+  clasa?: string;
   gratuit: boolean;
   sublectii: Sublectie[];
 };
@@ -32,13 +33,15 @@ export type Capitol = {
   titlu: string;
   slug: string;
   module: Modul[];
+  descriere?: string;
+  virsta?: string;
 };
 
 export type Structura = {
   sursa: string;
   sablon_sublectii: { titlu: string; descriere: string }[];
   capitole: Capitol[];
-  statistici: { capitole: number; module: number; sublectii: number };
+  statistici?: { capitole: number; module: number; sublectii: number };
 };
 
 export const structura = structuraRaw as Structura;

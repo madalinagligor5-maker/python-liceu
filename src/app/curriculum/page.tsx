@@ -10,8 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function CurriculumPage() {
-  const { capitole: nrCapitole, module: nrModule, sublectii: nrSublectii } =
-    structura.statistici;
+  const stats = structura.statistici;
+  const nrCapitole = stats?.capitole ?? 0;
+  const nrModule = stats?.module ?? 0;
+  const nrSublectii = stats?.sublectii ?? 0;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">

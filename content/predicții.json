@@ -878,5 +878,155 @@
       "[3 6 9]"
     ],
     "corect": "[1 4 9]"
+  },
+  "P7.1.3": {
+    "cod": "print(\"Salut Pippy!\")",
+    "enunt": "Ce va scrie calculatorul pe ecran când rulează acest cod?",
+    "variante": [
+      "Salut Pippy!",
+      "print(\"Salut Pippy!\")",
+      "Pippy"
+    ],
+    "corect": 0
+  },
+  "P7.2.3": {
+    "cod": "import turtle\nt = turtle.Pen()\nt.forward(100)",
+    "enunt": "Ce va face creionul din Python (turtle) când rulează acest cod?",
+    "variante": [
+      "Va desena o linie dreaptă de lungime 100",
+      "Se va roti la stânga",
+      "Nu va desena nimic"
+    ],
+    "corect": 0
+  },
+  "P7.3.3": {
+    "cod": "import turtle\nt = turtle.Pen()\nfor i in range(4):\n    t.forward(50)\n    t.left(90)",
+    "enunt": "Ce figură geometrică va desena creionul nostru?",
+    "variante": [
+      "Un cerc",
+      "Un pătrat",
+      "Un triunghi"
+    ],
+    "corect": 1
+  },
+  "P8.1.3": {
+    "cod": "nr = int(\"5\")\nprint(nr + 2)",
+    "enunt": "Transformăm textul \"5\" în număr și adunăm 2. Ce se va afișa?",
+    "variante": [
+      "7",
+      "52",
+      "Eroare"
+    ],
+    "corect": 0
+  },
+  "P8.2.3": {
+    "cod": "mesaj = \"Python\"\nprint(mesaj[0] + mesaj[1])",
+    "enunt": "Folosim indexarea pentru a lua primele două litere din \"Python\". Ce se va afișa?",
+    "variante": [
+      "Py",
+      "Pt",
+      "th"
+    ],
+    "corect": 0
+  },
+  "P8.3.3": {
+    "cod": "culori = [\"rosu\", \"verde\", \"albastru\"]\nprint(len(culori))",
+    "enunt": "Câte elemente sunt în lista noastră de culori?",
+    "variante": [
+      "2",
+      "3",
+      "4"
+    ],
+    "corect": 1
+  },
+  "P9.1.3": {
+    "cod": "suma = 0\nfor i in range(3):\n    suma += i\nprint(suma)",
+    "enunt": "Buclele în Python încep de la 0. Codul adună 0, 1 și 2. Ce se va afișa la final?",
+    "variante": [
+      "3",
+      "6",
+      "Eroare"
+    ],
+    "corect": 0
+  },
+  "P9.2.3": {
+    "cod": "nume = \"Pippy\"\nmesaj = f\"Salut, {nume}!\"\nprint(mesaj)",
+    "enunt": "Folosim un f-string pentru a pune numele în mesaj. Ce se va afișa?",
+    "variante": [
+      "Salut, Pippy!",
+      "Salut, {nume}!",
+      "Pippy"
+    ],
+    "corect": 0
+  },
+  "P9.3.3": {
+    "cod": "def dublu(x):\n    return x * 2\n\nprint(dublu(10))",
+    "enunt": "Apelăm funcția dublu cu valoarea 10. Ce se va afișa?",
+    "variante": [
+      "10",
+      "20",
+      "2"
+    ],
+    "corect": 1
+  },
+  "P10.1.3": {
+    "cod": "punctaj = 85\nif punctaj >= 90:\n    print(\"Excelent\")\nelif punctaj >= 80:\n    print(\"Foarte Bine\")\nelse:\n    print(\"Bine\")",
+    "enunt": "Punctajul este 85. Care dintre mesaje se va afișa pe ecran?",
+    "variante": [
+      "Excelent",
+      "Foarte Bine",
+      "Bine"
+    ],
+    "corect": 1
+  },
+  "P10.2.3": {
+    "cod": "numar = 1\nwhile numar < 4:\n    numar += 1\nprint(numar)",
+    "enunt": "Cât timp numărul este mai mic decât 4, adunăm 1. Ce se va afișa la final?",
+    "variante": [
+      "3",
+      "4",
+      "5"
+    ],
+    "corect": 1
+  },
+  "P10.3.3": {
+    "cod": "def saluta(nume=\"Copil\"):\n    print(\"Salut \" + nume)\n\nsaluta()",
+    "enunt": "Apelăm funcția saluta fără a oferi niciun nume. Ce se va afișa?",
+    "variante": [
+      "Salut Copil",
+      "Salut",
+      "Eroare"
+    ],
+    "corect": 0
+  },
+  "P11.1.3": {
+    "cod": "class Animal:\n    def __init__(self, nume):\n        self.nume = nume\n\nc = Animal(\"Pippy\")\nprint(c.nume)",
+    "enunt": "Creăm un obiect din clasa Animal. Ce se va afișa la rulare?",
+    "variante": [
+      "Animal",
+      "Pippy",
+      "self.nume"
+    ],
+    "corect": 1
+  },
+  "P11.2.3": {
+    "cod": "directie_x = 3\n# Daca atingem peretele din dreapta\natingere_dreapta = True\nif atingere_dreapta:\n    directie_x = -directie_x\nprint(directie_x)",
+    "enunt": "În jocul Bounce!, când mingea lovește peretele din dreapta, ce se întâmplă cu viteza ei pe direcția X?",
+    "variante": [
+      "Mingea se oprește",
+      "Mingea își schimbă direcția (devine -3)",
+      "Mingea merge mai rapid"
+    ],
+    "corect": 1
+  },
+  "P11.3.3": {
+    "cod": "numere = [1, 2, 3]\nnumere.append(4)\nprint(numere)",
+    "enunt": "Adăugăm numărul 4 la sfârșitul listei. Ce va afișa calculatorul?",
+    "variante": [
+      "[1, 2, 3, 4]",
+      "[4, 1, 2, 3]",
+      "[1, 2, 3]"
+    ],
+    "corect": 0
   }
 }
