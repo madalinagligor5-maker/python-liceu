@@ -131,3 +131,9 @@ body {
 .bloc-card--atentie .bloc-card--titlu {
   color: #b91c1c;
 }
+
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+}
