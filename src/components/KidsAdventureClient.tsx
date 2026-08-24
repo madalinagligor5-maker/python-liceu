@@ -311,7 +311,7 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
   };
 
   return (
-    <div className="grid gap-6 md:grid-cols-[1.1fr_1.3fr_0.9fr] items-stretch">
+    <div className="grid gap-6 lg:grid-cols-[1.1fr_1.3fr_0.9fr] grid-cols-1 items-stretch">
       {/* PANOU STÂNGA: COMENZI */}
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm flex flex-col justify-between">
         <div>

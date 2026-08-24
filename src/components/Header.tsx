@@ -42,7 +42,7 @@ export default async function Header() {
 
         <HeaderSwitch />
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/70 sm:flex">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/70 lg:flex">
           {linkuri.map((l) => (
             <Link key={l.href} href={l.href} className="transition hover:text-brand">
               {l.label}

@@ -17,7 +17,7 @@ export default function HeaderSwitch() {
             : "text-foreground/60 hover:text-foreground"
         }`}
       >
-        <span>🎒 Kids (I-IV)</span>
+        <span>🎒 Kids <span className="hidden sm:inline">(I-IV)</span></span>
       </Link>
       <Link
         href="/curriculum"
@@ -27,7 +27,7 @@ export default function HeaderSwitch() {
             : "text-foreground/60 hover:text-foreground"
         }`}
       >
-        <span>🚀 Liceu (IX-XII)</span>
+        <span>🚀 Liceu <span className="hidden sm:inline">(IX-XII)</span></span>
       </Link>
     </div>
   );
