@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresKids } from "@/lib/progres";
+import { capitole } from "@/lib/curriculum";
 
 export const metadata: Metadata = {
   title: "Kids — Academia Python pentru clasele I–IV",
@@ -42,6 +43,17 @@ export default async function KidsPage() {
   const { user } = await getUtilizatorCurent();
   const progres = user ? await getProgresKids(user.id) : {};
 
+  // Capitolele Kids din structura curriculum (P7, P8, P9, P10, P11)
+  const capitoleKids = capitole.filter((c) => c.clasa.startsWith("P"));
+
+  const culoriVarste: Record<string, { bg: string; badge: string; border: string }> = {
+    P7: { bg: "bg-emerald-50", badge: "bg-emerald-100 text-emerald-800", border: "border-emerald-200" },
+    P8: { bg: "bg-sky-50", badge: "bg-sky-100 text-sky-800", border: "border-sky-200" },
+    P9: { bg: "bg-violet-50", badge: "bg-violet-100 text-violet-800", border: "border-violet-200" },
+    P10: { bg: "bg-amber-50", badge: "bg-amber-100 text-amber-800", border: "border-amber-200" },
+    P11: { bg: "bg-rose-50", badge: "bg-rose-100 text-rose-800", border: "border-rose-200" },
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6">
       {/* HERO SECTION */}
@@ -53,14 +65,57 @@ export default async function KidsPage() {
           Salut! Eu sunt <span className="text-amber-500">Pippy</span>! 🤖
         </h1>
         <p className="mt-4 mx-auto max-w-xl text-base text-slate-600 leading-relaxed font-medium">
-          Bine ai venit la <strong>Academia Python Kids</strong>! Împreună vom explora lumea algoritmilor prin jocuri distractive și labirinturi interactive.
+          Bine ai venit la <strong>Academia Python Kids</strong>! Împreună vom explora lumea algoritmilor prin jocuri distractive și lecții adaptate vârstei tale.
         </p>
 
-        {/* MAP DE AVENTURĂ */}
-        <div className="mt-12 text-left max-w-2xl mx-auto">
-          <h2 className="text-xl font-black text-indigo-950 text-center mb-6">
-            🗺️ Harta Aventurii Noastre
+        {/* LECȚII STRUCTURATE P7–P11 */}
+        <div className="mt-14 text-left max-w-3xl mx-auto">
+          <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
+            📚 Lecțiile tale Python — pe vârste
           </h2>
+          <p className="text-center text-sm text-slate-500 mb-8">
+            Alege vârsta ta și începe să înveți Python pas cu pas!
+          </p>
+          <div className="space-y-6">
+            {capitoleKids.map((cap) => {
+              const culori = culoriVarste[cap.clasa] ?? { bg: "bg-slate-50", badge: "bg-slate-100 text-slate-700", border: "border-slate-200" };
+              return (
+                <div key={cap.clasa} className={`rounded-2xl border p-5 shadow-sm ${culori.bg} ${culori.border}`}>
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div>
+                      <span className={`inline-block rounded-full px-3 py-0.5 text-xs font-bold mb-1 ${culori.badge}`}>
+                        {cap.clasa} · {(cap as { virsta?: string }).virsta ?? "7-11 ani"}
+                      </span>
+                      <h3 className="font-extrabold text-slate-800 text-lg leading-tight">{cap.titlu}</h3>
+                    </div>
+                    <span className="text-sm text-slate-500">{cap.module.length} module · {cap.module.length * 6} lecții</span>
+                  </div>
+                  <div className="grid gap-2 sm:grid-cols-3">
+                    {cap.module.map((m) => (
+                      <Link
+                        key={m.cod}
+                        href={`/curriculum/${cap.clasa}/${m.slug}`}
+                        className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 px-4 py-3 text-xs font-bold text-slate-700 transition shadow-sm"
+                      >
+                        <span className="text-indigo-500 shrink-0">📖</span>
+                        <span className="leading-tight">{m.cod} {m.titlu}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* MAP DE AVENTURĂ */}
+        <div className="mt-16 text-left max-w-2xl mx-auto">
+          <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
+            🗺️ Jocuri Interactive
+          </h2>
+          <p className="text-center text-sm text-slate-500 mb-6">
+            Exersează logica programării prin labirinturi și puzzle-uri distractive!
+          </p>
           <div className="space-y-4">
             {NIVELE.map((niv) => {
               const completat = progres[`kids-nivel-${niv.id}`];
@@ -92,7 +147,6 @@ export default async function KidsPage() {
                     </div>
 
                     <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0 border-t sm:border-t-0 border-slate-200/50 pt-3 sm:pt-0">
-                      {/* Rating stele */}
                       <div className="flex gap-0.5 text-lg" aria-label={`Scor: ${stele} stele`}>
                         {[1, 2, 3].map((s) => (
                           <span key={s} className={s <= stele ? "text-amber-400" : "text-slate-300"}>
