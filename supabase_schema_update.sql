@@ -67,3 +67,28 @@ CREATE POLICY "Users can insert their own daily challenges"
 ON public.provocari_zilnice
 FOR INSERT
 WITH CHECK (auth.uid() = user_id);
+
+-- 7. CREATE NEWSLETTER_EMAILS TABLE
+CREATE TABLE IF NOT EXISTS public.newsletter_emails (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL UNIQUE,
+  abonat_la TIMESTAMPTZ DEFAULT now() NOT NULL,
+  activ BOOLEAN DEFAULT true NOT NULL
+);
+
+COMMENT ON TABLE public.newsletter_emails IS 'Adresele de email abonate la newsletter-ul Academia Python';
+
+-- Activare RLS pe tabela de newsletter
+ALTER TABLE public.newsletter_emails ENABLE ROW LEVEL SECURITY;
+
+-- Oricine poate face INSERT (abonare din formularul public)
+CREATE POLICY "Oricine poate adauga un email la newsletter"
+ON public.newsletter_emails
+FOR INSERT
+WITH CHECK (true);
+
+-- Doar service_role poate citi toata lista (pentru trimitere email)
+CREATE POLICY "Doar adminii pot citi lista newsletter"
+ON public.newsletter_emails
+FOR SELECT
+USING (auth.role() = 'service_role');

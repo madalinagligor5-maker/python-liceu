@@ -74,6 +74,19 @@ export async function POST(request: NextRequest) {
       }
       break;
     }
+    case "invoice.paid":
+    case "invoice.payment_succeeded": {
+      const invoice = event.data.object as Stripe.Invoice;
+      const subscriptionId = (invoice as any).parent?.subscription_details?.subscription
+        || (invoice as any).subscription;
+      if (subscriptionId) {
+        const stripe = getStripe();
+        const subId = typeof subscriptionId === "string" ? subscriptionId : subscriptionId.id;
+        const subscription = await stripe.subscriptions.retrieve(subId);
+        await actualizeazaDinAbonament(subscription);
+      }
+      break;
+    }
     case "customer.subscription.updated":
     case "customer.subscription.created": {
       await actualizeazaDinAbonament(event.data.object as Stripe.Subscription);
