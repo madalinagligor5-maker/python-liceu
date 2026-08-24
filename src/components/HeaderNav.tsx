@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import KidsHeaderRight from "@/components/KidsHeaderRight";
 
 const linkuriLiceu = [
   { href: "/curriculum", label: "Curriculum" },
@@ -24,17 +25,20 @@ export default function HeaderNav() {
 
   if (isKids) {
     return (
-      <nav className="hidden items-center gap-4 text-xs font-bold text-slate-700 lg:flex">
-        {linkuriKids.map((l) => (
-          <Link
-            key={l.href}
-            href={l.href}
-            className="rounded-full bg-slate-100 hover:bg-amber-100 hover:text-amber-900 px-3 py-1.5 transition border border-slate-200"
-          >
-            {l.label}
-          </Link>
-        ))}
-      </nav>
+      <div className="flex items-center gap-3">
+        <nav className="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-700">
+          {linkuriKids.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="rounded-full bg-slate-100 hover:bg-amber-100 hover:text-amber-900 px-3 py-1.5 transition border border-slate-200"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <KidsHeaderRight />
+      </div>
     );
   }
 

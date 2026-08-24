@@ -186,7 +186,7 @@ export default function HartaJunior() {
                   relative rounded-3xl border-4 p-5 shadow-xl overflow-hidden
                   bg-gradient-to-br text-white transition-all
                   ${deblocat
-                    ? `${modul.culoareActiv} hover:scale-[1.02] cursor-pointer`
+                    ? `${modul.culoareActiv} hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer`
                     : "from-slate-200 to-slate-300 border-slate-400 cursor-not-allowed opacity-80"
                   }
                 `}

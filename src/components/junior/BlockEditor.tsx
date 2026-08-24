@@ -49,13 +49,12 @@ const BLOCURI_DISPONIBILE: DefBloc[] = [
   },
 ];
 
-// ─── Tipuri UI ────────────────────────────────────────────
 type BlocUI = {
   id: string;
   tip: TipBloc;
-  deOri?: number; // pentru repeta
-  subBlocuri?: BlocUI[]; // pentru repeta / daca
-  subBlocuriAltfel?: BlocUI[]; // pentru daca
+  deOri?: number;
+  subBlocuri?: BlocUI[];
+  subBlocuriAltfel?: BlocUI[];
 };
 
 function uiBlocToComanda(b: BlocUI): BlocComanda {
@@ -76,11 +75,11 @@ function uiBlocToComanda(b: BlocUI): BlocComanda {
   return { tip: b.tip } as BlocComanda;
 }
 
-// ─── Componenta ───────────────────────────────────────────
 type Props = {
   blocuriPermise: TipBloc[];
   onChange: (comenzi: BlocComanda[]) => void;
   disabled?: boolean;
+  pasActivIndex?: number | null; // Pasul curent activat în timpul rulării (0-indexed)
 };
 
 let nextId = 1;
@@ -94,12 +93,14 @@ function BlocVizual({
   onUpdate,
   disabled,
   indent = 0,
+  esteActiv = false,
 }: {
   bloc: BlocUI;
   onRemove: () => void;
   onUpdate: (updated: BlocUI) => void;
   disabled?: boolean;
   indent?: number;
+  esteActiv?: boolean;
 }) {
   const def = BLOCURI_DISPONIBILE.find((d) => d.tip === bloc.tip)!;
 
@@ -128,7 +129,12 @@ function BlocVizual({
       )}
 
       <div
-        className={`relative rounded-2xl border-2 border-b-4 text-white font-bold text-sm select-none shadow-md ${def.culoare}`}
+        onClick={() => !disabled && onRemove()}
+        title={disabled ? "" : "Apasă ca să ștergi blocul"}
+        className={`
+          relative rounded-2xl border-2 border-b-4 text-white font-bold text-sm select-none shadow-md transition-all cursor-pointer
+          ${esteActiv ? "ring-4 ring-amber-400 scale-105 z-30 bg-amber-500 animate-pulse border-amber-600" : def.culoare}
+        `}
         style={{ marginLeft: indent * 16 }}
       >
         <div className="flex items-center gap-2 px-3.5 py-2.5">
@@ -136,7 +142,10 @@ function BlocVizual({
           <span className="flex-1 font-black text-base">{def.eticheta}</span>
 
           {bloc.tip === "repeta" && (
-            <div className="flex items-center gap-1 bg-black/20 rounded-xl px-2 py-1">
+            <div
+              className="flex items-center gap-1 bg-black/20 rounded-xl px-2 py-1"
+              onClick={(e) => e.stopPropagation()} // Previne ștergerea la click pe input de număr
+            >
               <span className="text-xs">de</span>
               <input
                 type="number"
@@ -153,7 +162,10 @@ function BlocVizual({
 
           {!disabled && (
             <button
-              onClick={onRemove}
+              onClick={(e) => {
+                e.stopPropagation();
+                onRemove();
+              }}
               className="ml-1 rounded-full bg-white/20 hover:bg-white/40 h-6 w-6 flex items-center justify-center text-xs font-bold"
               title="Șterge blocul"
             >
@@ -164,7 +176,10 @@ function BlocVizual({
 
         {/* Sub-blocuri (pentru repeta / daca) */}
         {(bloc.tip === "repeta" || bloc.tip === "daca_stea") && (
-          <div className="mx-2 mb-2 rounded-lg bg-white/10 p-2 space-y-1 min-h-[40px]">
+          <div
+            className="mx-2 mb-2 rounded-lg bg-white/10 p-2 space-y-1 min-h-[40px]"
+            onClick={(e) => e.stopPropagation()}
+          >
             {(bloc.subBlocuri ?? []).map((sub, i) => (
               <BlocVizual
                 key={sub.id}
@@ -185,7 +200,10 @@ function BlocVizual({
             ))}
             {!disabled && (
               <button
-                onClick={addSub}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addSub();
+                }}
                 className="w-full rounded-lg border-2 border-dashed border-white/40 py-1 text-xs text-white/70 hover:border-white/70 hover:text-white font-bold"
               >
                 + adaugă comandă
@@ -198,7 +216,7 @@ function BlocVizual({
   );
 }
 
-export default function BlockEditor({ blocuriPermise, onChange, disabled }: Props) {
+export default function BlockEditor({ blocuriPermise, onChange, disabled, pasActivIndex }: Props) {
   const [program, setProgram] = useState<BlocUI[]>([]);
 
   const permise = BLOCURI_DISPONIBILE.filter((b) =>
@@ -229,6 +247,12 @@ export default function BlockEditor({ blocuriPermise, onChange, disabled }: Prop
     updateProgram(updated);
   };
 
+  const stergeUltimulBloc = () => {
+    if (program.length === 0) return;
+    const updated = program.slice(0, -1);
+    updateProgram(updated);
+  };
+
   const updateBloc = (index: number, updated: BlocUI) => {
     const newProg = [...program];
     newProg[index] = updated;
@@ -242,7 +266,7 @@ export default function BlockEditor({ blocuriPermise, onChange, disabled }: Prop
       {/* Toolbox — blocuri disponibile */}
       <div className="rounded-2xl bg-slate-100 border border-slate-200 p-3">
         <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">
-          📦 Blocuri disponibile — trage sau apasă
+          📦 Blocuri disponibile — apasă ca să adaugi
         </p>
         <div className="flex flex-wrap gap-2">
           {permise.map((b) => (
@@ -266,17 +290,26 @@ export default function BlockEditor({ blocuriPermise, onChange, disabled }: Prop
 
       {/* Program area */}
       <div className="flex-1 rounded-2xl bg-indigo-50 border-2 border-indigo-200 p-3 overflow-y-auto min-h-[200px]">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
           <p className="text-xs font-bold text-indigo-600 uppercase tracking-wide">
-            🧩 Programul tău
+            🧩 Programul tău ({program.length} pas{program.length !== 1 ? "i" : ""})
           </p>
           {program.length > 0 && !disabled && (
-            <button
-              onClick={golesteProgramul}
-              className="text-xs text-red-500 hover:text-red-700 font-semibold"
-            >
-              🗑️ Șterge tot
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={stergeUltimulBloc}
+                className="text-xs text-indigo-700 hover:text-indigo-900 font-bold flex items-center gap-1 bg-indigo-100 px-2 py-0.5 rounded-lg border border-indigo-200"
+                title="Șterge ultimul pas adăugat"
+              >
+                ↩️ Undo
+              </button>
+              <button
+                onClick={golesteProgramul}
+                className="text-xs text-red-500 hover:text-red-700 font-semibold"
+              >
+                🗑️ Șterge tot
+              </button>
+            </div>
           )}
         </div>
 
@@ -286,12 +319,13 @@ export default function BlockEditor({ blocuriPermise, onChange, disabled }: Prop
             <p className="text-sm mt-2">Apasă un bloc de sus ca să-l adaugi!</p>
           </div>
         ) : (
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             {program.map((bloc, i) => (
               <BlocVizual
                 key={bloc.id}
                 bloc={bloc}
                 disabled={disabled}
+                esteActiv={pasActivIndex === i}
                 onRemove={() => stergeBloc(i)}
                 onUpdate={(updated) => updateBloc(i, updated)}
               />

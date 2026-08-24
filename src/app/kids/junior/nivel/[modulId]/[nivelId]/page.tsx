@@ -58,6 +58,7 @@ export default function NivelPage() {
   const nivel = nivelId ? TOATE_NIVELURILE[nivelId] : null;
 
   const [faza, setFaza] = useState<FazaJoc>("intro");
+  const [pasActivIndex, setPasActivIndex] = useState<number | null>(null);
   const [comenzi, setComenzi] = useState<BlocComanda[]>([]);
   const [codPython, setCodPython] = useState("");
   const [stareJoc, setStareJoc] = useState<StareJoc>(() =>
@@ -94,6 +95,7 @@ export default function NivelPage() {
   const resetJoc = useCallback(() => {
     if (!nivel) return;
     stopRef.current = true;
+    setPasActivIndex(null);
     setStareJoc({
       x: nivel.startPos.x,
       y: nivel.startPos.y,
@@ -136,12 +138,13 @@ export default function NivelPage() {
       nivel.grila
     );
 
-    // Animăm fiecare pas și redăm efectele sonore 8-bit
+    // Animăm fiecare pas și redăm efectele sonore 8-bit cu highlight pas cu pas
     let steleAnterioare = 0;
     for (let i = 0; i < istoricStari.length; i++) {
       if (stopRef.current) break;
       const pasCurent = istoricStari[i];
       setStareJoc(pasCurent);
+      setPasActivIndex(i > 0 ? i - 1 : 0);
 
       if (pasCurent.steleColectate > steleAnterioare) {
         playStarSound();
@@ -154,6 +157,7 @@ export default function NivelPage() {
     }
 
     setAnimand(false);
+    setPasActivIndex(null);
     const stareFinala = istoricStari[istoricStari.length - 1];
 
     if (stareFinala.completat) {
@@ -255,6 +259,7 @@ export default function NivelPage() {
             blocuriPermise={nivel.blocuriPermise}
             onChange={setComenzi}
             disabled={faza === "ruleaza"}
+            pasActivIndex={pasActivIndex}
           />
 
           {/* Butoane acțiune */}
