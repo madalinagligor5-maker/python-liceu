@@ -92,3 +92,12 @@ CREATE POLICY "Doar adminii pot citi lista newsletter"
 ON public.newsletter_emails
 FOR SELECT
 USING (auth.role() = 'service_role');
+
+-- 8. EXTEND PROGRES_LECTII WITH TIP AND STARS COLUMNS FOR KIDS MODULE
+ALTER TABLE public.progres_lectii
+ADD COLUMN IF NOT EXISTS tip TEXT DEFAULT 'lesson' NOT NULL,
+ADD COLUMN IF NOT EXISTS stars INTEGER DEFAULT 0 NOT NULL;
+
+COMMENT ON COLUMN public.progres_lectii.tip IS 'Tipul progresului: lesson (liceu) sau kids_level (ciclul primar)';
+COMMENT ON COLUMN public.progres_lectii.stars IS 'Numarul de stele aurii obtinute (1-3) pentru kids_level';
+

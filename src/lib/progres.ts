@@ -193,3 +193,30 @@ export async function getProgresUtilizator(
     insigne: (insigne.data ?? []).map((r) => r.insigna_slug as string),
   };
 }
+
+export async function getProgresKids(
+  userId: string
+): Promise<Record<string, { stars: number }>> {
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return {};
+  }
+
+  const supabase = await creeazaClientServer();
+  const { data } = await supabase
+    .from("progres_lectii")
+    .select("lectie_slug, stars")
+    .eq("user_id", userId)
+    .eq("tip", "kids_level");
+
+  const rez: Record<string, { stars: number }> = {};
+  if (data) {
+    data.forEach((r) => {
+      rez[r.lectie_slug] = { stars: Number(r.stars) || 0 };
+    });
+  }
+  return rez;
+}
+

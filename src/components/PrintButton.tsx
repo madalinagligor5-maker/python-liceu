@@ -4,11 +4,12 @@ export default function PrintButton() {
   return (
     <button
       type="button"
-      onClick={() => window.print()}
-      className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white px-4 py-2.5 text-xs font-semibold text-foreground/80 shadow-sm transition hover:border-brand hover:text-brand cursor-pointer"
+      onClick={() => {
+        if (typeof window !== "undefined") window.print();
+      }}
+      className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-2 px-6 text-xs transition shadow-sm cursor-pointer"
     >
-      <span aria-hidden="true">🖨️</span>
-      Printează fișa (sau salvează PDF)
+      🖨️ Printează Acum
     </button>
   );
 }

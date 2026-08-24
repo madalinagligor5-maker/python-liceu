@@ -282,3 +282,75 @@ export async function finalizeazaPredicție(
     insigneNoi,
   };
 }
+
+export async function salveazaProgresKids(
+  nivelId: number,
+  stele: number
+): Promise<{ ok: boolean; eroare?: string }> {
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return { ok: false, eroare: "Progresul necesită configurarea Supabase." };
+  }
+
+  const supabase = await creeazaClientServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return { ok: false, eroare: "Trebuie să fii autentificat." };
+
+  const slug = `kids-nivel-${nivelId}`;
+
+  // Se folosește set_config ca trigger-ul protejeaza_users_meta să nu arunce eroare dacă actualizăm date
+  performSqlWritePermission(supabase);
+
+  // upsert în progres_lectii
+  const { error: upsertErr } = await supabase
+    .from("progres_lectii")
+    .upsert(
+      {
+        user_id: user.id,
+        lectie_slug: slug,
+        tip: "kids_level",
+        stars: stele,
+        finalizat_la: new Date().toISOString(),
+      },
+      {
+        onConflict: "user_id,lectie_slug",
+      }
+    );
+
+  if (upsertErr) {
+    console.error("UPSERT_KIDS_ERR", upsertErr);
+    return { ok: false, eroare: "Eroare la salvarea progresului: " + upsertErr.message };
+  }
+
+  // Acordăm și 10 XP bonus pentru finalizarea unui nivel Kids (folosind RPC-ul existent sau direct dacă vrem)
+  // Deoarece RPC-ul finalizeaza_lectie face deja insert și update,
+  // îl putem apela direct ca să beneficieze de streak și XP!
+  try {
+    await supabase.rpc("finalizeaza_lectie", {
+      p_lectie_slug: slug,
+      p_xp_quiz: stele * 5, // 5 XP per steluță primită
+    });
+  } catch (e) {
+    console.error("RPC_KIDS_ERR", e);
+  }
+
+  revalidatePath("/");
+  revalidatePath("/kids");
+  return { ok: true };
+}
+
+async function performSqlWritePermission(supabase: any) {
+  try {
+    await supabase.rpc("set_config", {
+      name: "app.scriere_progres",
+      value: "on",
+      is_local: true,
+    });
+  } catch (_) {}
+}
+

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
+import HeaderSwitch from "@/components/HeaderSwitch";
 
 const linkuri = [
   { href: "/curriculum", label: "Curriculum" },
@@ -38,6 +39,8 @@ export default async function Header() {
             </span>
           </span>
         </Link>
+
+        <HeaderSwitch />
 
         <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/70 sm:flex">
           {linkuri.map((l) => (
