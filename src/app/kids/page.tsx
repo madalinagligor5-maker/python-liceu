@@ -68,7 +68,27 @@ export default async function KidsPage() {
           Bine ai venit la <strong>Academia Python Kids</strong>! Împreună vom explora lumea algoritmilor prin jocuri distractive și lecții adaptate vârstei tale.
         </p>
 
-        {/* LECȚII STRUCTURATE P7–P11 */}
+        {/* ACADEMIA PYTHON JUNIOR — banner proeminent */}
+        <div className="mt-10 mx-auto max-w-2xl rounded-3xl bg-gradient-to-br from-indigo-500 to-violet-600 p-6 text-white shadow-xl">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="text-6xl shrink-0">🤖</div>
+            <div className="text-left">
+              <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">NOU · Clasele I–IV (6–10 ani)</p>
+              <h2 className="text-2xl font-black">Academia Python Junior</h2>
+              <p className="mt-1 text-sm opacity-90">
+                Jocuri interactive, robotul Byte și 6 module de programare prin drag-and-drop — fără tastatură, fără text!
+              </p>
+            </div>
+            <Link
+              href="/kids/junior"
+              className="shrink-0 rounded-2xl bg-white text-indigo-700 hover:bg-indigo-50 font-black px-6 py-3 text-sm shadow-md transition-all active:scale-95"
+            >
+              Joacă acum! ▶
+            </Link>
+          </div>
+        </div>
+
+
         <div className="mt-14 text-left max-w-3xl mx-auto">
           <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
             📚 Lecțiile tale Python — pe vârste
