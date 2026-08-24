@@ -1,3 +1,5 @@
+import { capitole } from "./curriculum";
+
 export type FisaPdfContent = {
   teorie: string;
   sintaxa: string;
@@ -6,83 +8,79 @@ export type FisaPdfContent = {
 
 const BAZA_PDF: Record<string, FisaPdfContent> = {
   "1.1": {
-    teorie: "Un algoritm reprezintă o succesiune logică de pași pentru rezolvarea unei probleme. În Python, scriem cod format din instrucțiuni executate în ordine de sus în jos. Orice program are o etapă de analiză (ce date avem?), proiectare (cum le prelucrăm?), implementare (scrierea codului) și testare (rularea cu diverse date de intrare).",
-    sintaxa: "# Declarare variabile și afișare\nnume = 'Elev'\nvarsta = 16\nprint('Numele meu este:', nume)\nprint('Vârsta:', varsta)",
+    teorie: "Un algoritm reprezinta o succesiune logica de pasi pentru rezolvarea unei probleme. In Python, scriem cod format din instructiuni executate in ordine de sus in jos. Orice program are o etapa de analiza (ce date avem?), proiectare (cum le prelucram?), implementare (scrierea codului) si testare (rularea cu diverse date de intrare).",
+    sintaxa: "# Declarare variabile si afisare\nnume = 'Elev'\nvarsta = 16\nprint('Numele meu este:', nume)\nprint('Varsta:', varsta)",
     exercitii: [
-      "Scrie un program care afișează numele tău și clasa în care ești pe două rânduri diferite.",
-      "Calculează aria unui pătrat cu latura de 12 cm. Afișează rezultatul cu un mesaj potrivit.",
-      "Declară două variabile cu numere întregi și afișează suma, diferența și produsul lor."
+      "Scrie un program care afiseaza numele tau si clasa in care esti pe doua randuri diferite.",
+      "Calculeaza aria unui patrat cu latura de 12 cm. Afiseaza rezultatul cu un mesaj potrivit.",
+      "Declara doua variabile cu numere intregi si afiseaza suma, diferenta si produsul lor."
     ]
   },
   "1.2": {
-    teorie: "Structura de decizie (if-else) îi permite programului să aleagă între două sau mai multe căi de execuție, în funcție de o condiție logică. În Python, blocul de cod care se execută dacă condiția este adevărată se termină obligatoriu cu două puncte (:), iar liniile următoare trebuie să fie indentate (deplasate spre dreapta cu 4 spații).",
-    sintaxa: "# Verificare număr\nnr = 15\nif nr > 10:\n    print('Numărul este mai mare decât 10')\nelse:\n    print('Numărul este mic')",
+    teorie: "Structura de decizie (if-else) ii permite programului sa aleaga intre doua sau mai multe cai de executie, in functie de o conditie logica. In Python, blocul de cod care se executa daca conditia este adevarata se termina obligatoriu cu doua puncte (:), iar liniile urmatoare trebuie sa fie indentate (deplasate spre dreapta cu 4 spatii).",
+    sintaxa: "# Verificare numar\nnr = 15\nif nr > 10:\n    print('Numarul este mai mare decat 10')\nelse:\n    print('Numarul este mic')",
     exercitii: [
-      "Scrie un program care verifică dacă o notă introdusă este mai mare sau egală cu 5 și afișează 'Trecut' sau 'Respins'.",
-      "Declară două variabile, x și y. Afișează-o pe cea mai mare dintre ele în consolă.",
-      "Verifică dacă un număr întreg este pozitiv, negativ sau egal cu zero (folosește if, elif și else)."
+      "Scrie un program care verifica daca o nota introdusa este mai mare sau egala cu 5 si afiseaza 'Trecut' sau 'Respins'.",
+      "Declara doua variabile, x si y. Afiseaza-o pe cea mai mare dintre ele in consola.",
+      "Verifica daca un numar intreg este pozitiv, negativ sau egal cu zero (foloseste if, elif si else)."
     ]
   },
   "1.3": {
-    teorie: "Eficiența unui algoritm se măsoară în funcție de resursele consumate: timpul de rulare (complexitate de timp) și memoria utilizată (complexitate de spațiu). Folosim notația Big O (ex: O(1), O(n), O(n²)) pentru a exprima cum crește timpul de execuție în raport cu volumul datelor de intrare (n).",
-    sintaxa: "# Eficiență O(1) versus O(n)\ndef primul_element(lista):\n    return lista[0]  # O(1) - timp constant\n\ndef afiseaza_tot(lista):\n    for x in lista:\n        print(x)  # O(n) - timp liniar",
+    teorie: "Eficienta unui algoritm se masoara in functie de resursele consumate: timpul de rulare (complexitate de timp) si memoria utilizata (complexitate de spatiu). Folosim notatia Big O (ex: O(1), O(n), O(n2)) pentru a exprima cum creste timpul de executie in raport cu volumul datelor de intrare (n).",
+    sintaxa: "# Eficienta O(1) versus O(n)\ndef primul_element(lista):\n    return lista[0]  # O(1) - timp constant\n\ndef afiseaza_tot(lista):\n    for x in lista:\n        print(x)  # O(n) - timp liniar",
     exercitii: [
-      "Care este complexitatea de timp (în notație Big O) a unui algoritm care caută secvențial un element într-o listă nesortată de n elemente?",
-      "Dacă un algoritm are o complexitate de tip O(n²), de câte ori va crește timpul de execuție când dublăm cantitatea datelor de intrare?",
-      "Explică diferența fundamentală de performanță dintre un algoritm O(1) și un algoritm O(n) pe seturi mari de date."
+      "Care este complexitatea de timp (in notatie Big O) a unui algoritm care cauta secvential un element intr-o lista nesortata de n elemente?",
+      "Daca un algoritm are o complexitate de tip O(n2), de cate ori va creste timpul de executie cand dublam cantitatea datelor de intrare?",
+      "Explica diferenta fundamentala de performanta dintre un algoritm O(1) si un algoritm O(n) pe seturi mari de date."
     ]
   },
   "1.4": {
-    teorie: "Functiile (subprogramele) reprezintă blocuri de cod reutilizabile, create pentru a realiza o acțiune specifică. Ele ne permit să nu duplicăm codul. O funcție se definește prin cuvântul cheie `def`, urmat de nume și paranteze. Ea poate primi argumente și poate întoarce o valoare folosind instrucțiunea `return`.",
-    sintaxa: "# Definire funcție de adunare\ndef aduna(a, b):\n    return a + b\n\nrezultat = aduna(10, 5)\nprint(rezultat)  # Afișează 15",
+    teorie: "Functiile (subprogramele) reprezinta blocuri de cod reutilizabile, create pentru a realiza o actiune specifica. Ele ne permit sa nu duplicam codul. O functie se defineste prin cuvantul cheie `def`, urmat de nume si paranteze. Ea poate primi argumente si poate intoarce o valoare folosind instructiunea `return`.",
+    sintaxa: "# Definire functie de adunare\ndef aduna(a, b):\n    return a + b\n\nrezultat = aduna(10, 5)\nprint(rezultat)  # Afiseaza 15",
     exercitii: [
-      "Definește o funcție `perimetru_dreptunghi(L, l)` care returnează perimetrul unui dreptunghi.",
-      "Scrie o funcție `este_par(n)` care returnează True dacă n este par și False în caz contrar.",
-      "Creează o funcție `salut(nume)` care afișează textul 'Salut, [nume]!' în consolă."
+      "Definește o funcție `perimetru_dreptunghi(L, l)` care returneaza perimetrul unui dreptunghi.",
+      "Scrie o functie `este_par(n)` care returneaza True daca n este par si False in caz contrar.",
+      "Creeaza o functie `salut(nume)` care afiseaza textul 'Salut, [nume]!' in consola."
     ]
   },
   "1.5": {
-    teorie: "Domeniul de vizibilitate (scope) al unei variabile determină unde poate fi accesată aceasta. O variabilă definită în interiorul unei funcții este locală și există doar în timpul rulării acelei funcții. O variabilă definită în corpul principal este globală și poate fi citită de oriunde. Modificarea unei variabile globale în interiorul unei funcții necesită utilizarea cuvântului cheie 'global'.",
-    sintaxa: "# Domeniu de vizibilitate (Scope)\nx = 10  # Variabilă globală\n\ndef test_scope():\n    y = 5  # Variabilă locală\n    print('Valoare locală:', y)\n    print('Valoare globală citită:', x)\n\ntest_scope()",
+    teorie: "Domeniul de vizibilitate (scope) al unei variabile determina unde poate fi accesata aceasta. O variabila definita in interiorul unei functii este locala si exista doar in timpul rularii acelei functii. O variabila definita in corpul principal este globala si poate fi citita de oriunde. Modificarea unei variabile globale in interiorul unei functii necesita utilizarea cuvantului cheie 'global'.",
+    sintaxa: "# Domeniu de vizibilitate (Scope)\nx = 10  # Variabila globala\n\ndef test_scope():\n    y = 5  # Variabila locala\n    print('Valoare locala:', y)\n    print('Valoare globala citita:', x)\n\ntest_scope()",
     exercitii: [
-      "Scrie o funcție care încearcă să modifice o variabilă globală fără a utiliza cuvântul cheie `global` și observă rezultatul. Explică fenomenul.",
-      "Creează o funcție `calculeaza_reducere(pret, procent)` ce folosește parametri și returnează prețul final redus.",
-      "Analizează codul următor și explică ce se va afișa: a = 3; def f(): a = 7; f(); print(a)."
+      "Scrie o functie care incearca sa modifice o variabila globala fara a utiliza cuvantul cheie `global` si observa rezultatul. Explica fenomenul.",
+      "Creeaza o functie `calculeaza_reducere(pret, procent)` ce foloseste parametri si returneaza pretul final redus.",
+      "Analizeaza codul urmator si explica ce se va afisa: a = 3; def f(): a = 7; f(); print(a)."
     ]
   },
   "2.1": {
-    teorie: "Căutarea binară este un algoritm extrem de eficient pentru găsirea unui element într-o listă sortată. În loc să verificăm elementele unul câte unul, comparăm valoarea căutată cu mijlocul intervalului. La fiecare pas, înjumătățim spațiul de căutare, obținând o complexitate de O(log n).",
-    sintaxa: "# Căutare binară iterativă\ndef cauta(lista, x):\n    st = 0\n    dr = len(lista) - 1\n    while st <= dr:\n        mj = (st + dr) // 2\n        if lista[mj] == x: return mj\n        elif lista[mj] < x: st = mj + 1\n        else: dr = mj - 1\n    return -1",
+    teorie: "Cautarea binara este un algoritm extrem de eficient pentru gasirea unui element intr-o lista sortata. In loc sa verificam elementele unul cate unul, comparam valoarea cautata cu mijlocul intervalului. La fiecare pas, injumatatim spatiul de cautare, obtinand o complexitate de O(log n).",
+    sintaxa: "# Cautare binara iterativa\ndef cauta(lista, x):\n    st = 0\n    dr = len(lista) - 1\n    while st <= dr:\n        mj = (st + dr) // 2\n        if lista[mj] == x: return mj\n        elif lista[mj] < x: st = mj + 1\n        else: dr = mj - 1\n    return -1",
     exercitii: [
-      "Simulează pe foaie căutarea binară a numărului 35 în lista [5, 12, 18, 25, 35, 42, 50]. Scrie indicii stânga, dreapta și mijloc la fiecare pas.",
-      "Explică de ce căutarea binară nu poate fi aplicată direct pe o listă nesortată.",
-      "Modifică algoritmul pentru a returna True dacă elementul există și False dacă nu există."
+      "Simuleaza pe foaie cautarea binara a numarului 35 in lista [5, 12, 18, 25, 35, 42, 50]. Scrie indicii stanga, dreapta si mijloc la fiecare pas.",
+      "Explica de ce cautarea binara nu poate fi aplicata direct pe o lista nesortata.",
+      "Modifica algoritmul pentru a returna True daca elementul exista si False daca nu exista."
     ]
   },
   "2.17": {
-    teorie: "Recursivitatea reprezintă tehnica prin care o funcție se apelează pe ea însăși pentru a rezolva subprobleme mai mici. Orice algoritm recursiv trebuie să aibă un caz de bază (condiția de oprire, care nu mai face apel recursiv) și un pas recursiv (care simplifică problema și tinde spre cazul de bază). Fără caz de bază, programul intră în buclă infinită.",
-    sintaxa: "# Calculează factorialul unui număr recursiv\ndef factorial(n):\n    if n <= 1:\n        return 1  # Cazul de bază\n    return n * factorial(n - 1)  # Pasul recursiv",
+    teorie: "Recursivitatea reprezinta tehnica prin care o functie se apeleaza pe ea insasi pentru a rezolva subprobleme mai mici. Orice algoritm recursiv trebuie sa aiba un caz de baza (conditia de oprire, care nu mai face apel recursiv) si un pas recursiv (care simplifica problema si tinde spre cazul de baza). Fara caz de baza, programul intra in bucla infinita.",
+    sintaxa: "# Calculeaza factorialul unui numar recursiv\ndef factorial(n):\n    if n <= 1:\n        return 1  # Cazul de baza\n    return n * factorial(n - 1)  # Pasul recursiv",
     exercitii: [
-      "Scrie o funcție recursivă `suma_n(n)` care returnează suma primelor n numere naturale.",
-      "Implementează recursiv algoritmul pentru a calcula al n-lea termen din șirul lui Fibonacci.",
-      "Explică ce este eroarea 'RecursionError: maximum recursion depth exceeded' și din ce cauză apare."
+      "Scrie o functie recursiva `suma_n(n)` care returneaza suma primelor n numere naturale.",
+      "Implementeaza recursiv algoritmul pentru a calcula al n-lea termen din sirul lui Fibonacci.",
+      "Explica ce este eroarea 'RecursionError: maximum recursion depth exceeded' si din ce cauza apare."
     ]
   },
   "2.19": {
-    teorie: "Quicksort (Sortarea Rapidă) este un algoritm de sortare bazat pe tehnica Divide et Impera. Se alege un element numit 'pivot', se partitionează lista astfel încât elementele mai mici decât pivotul să fie în stânga, iar cele mai mari în dreapta, apoi se sortează recursiv cele două subliste. Complexitatea medie este O(n log n).",
-    sintaxa: "# Implementare simplă Quicksort\ndef quicksort(arr):\n    if len(arr) <= 1: return arr\n    pivot = arr[0]\n    st = [x for x in arr[1:] if x <= pivot]\n    dr = [x for x in arr[1:] if x > pivot]\n    return quicksort(st) + [pivot] + quicksort(dr)",
+    teorie: "Quicksort (Sortarea Rapida) este un algoritm de sortare bazat pe tehnica Divide et Impera. Se alege un element numit 'pivot', se partitioneaza lista astfel incat elementele mai mici decat pivotul sa fie in stanga, iar cele mai mari in dreapta, apoi se sorteaza recursiv cele doua subliste. Complexitatea medie este O(n log n).",
+    sintaxa: "# Implementare simpla Quicksort\ndef quicksort(arr):\n    if len(arr) <= 1: return arr\n    pivot = arr[0]\n    st = [x for x in arr[1:] if x <= pivot]\n    dr = [x for x in arr[1:] if x > pivot]\n    return quicksort(st) + [pivot] + quicksort(dr)",
     exercitii: [
-      "Simulează sortarea rapidă pentru lista [8, 4, 3, 9, 1, 5] folosind ca pivot primul element. Arată pașii de partiționare.",
-      "Care este cazul cel mai nefavorabil (worst-case) pentru Quicksort și ce complexitate are în acest caz?",
-      "Modifică algoritmul quicksort pentru a sorta lista în ordine descrescătoare."
+      "Simuleaza sortarea rapida pentru lista [8, 4, 3, 9, 1, 5] folosind ca pivot primul element. Arata pasii de partitionare.",
+      "Care este cazul cel mai nefavorabil (worst-case) pentru Quicksort si ce complexitate are in acest caz?",
+      "Modifica algoritmul quicksort pentru a sorta lista in ordine descrescatoare."
     ]
   }
 };
 
-/**
- * Returnează fișa teoretică și exercițiile pentru PDF.
- * Dacă modulul nu este definit în baza dedicată, generează dinamic o fișă potrivită.
- */
 export function obtineFisaPdfContent(
   cod: string,
   titluModul: string
@@ -92,14 +90,49 @@ export function obtineFisaPdfContent(
     return predefinit;
   }
 
-  // Generare dinamică standard cu conținut alternativ coerent
+  // Căutăm modulul în baza de capitole a curriculumului pentru a genera conținut personalizat explicit
+  let modulGăsit = null;
+  for (const c of capitole) {
+    const m = c.module.find((mod) => mod.cod === cod);
+    if (m) {
+      modulGăsit = m;
+      break;
+    }
+  }
+
+  if (modulGăsit) {
+    const sublectiiInfo = modulGăsit.sublectii
+      .map((s) => `  - Pasul ${s.cod}: ${s.titlu} (${s.descriere})`)
+      .join("\n");
+
+    return {
+      teorie: `Fisa de studiu pentru tema "${titluModul}" (Modulul ${cod}) acopera directiile si conceptele stabilite de curriculumul scolar de informatica.\n\n` +
+             `In cadrul acestui modul, se aprofundeaza urmatoarele aspecte practice si teoretice:\n` +
+             `${sublectiiInfo}\n\n` +
+             `Retine: Un algoritm corect se bazeaza pe o structurare logica, scrierea curata a functiilor si testarea repetata a conditiilor de intrare.`,
+      sintaxa: `# Sintaxa si Exemple practice specifice temei: ${titluModul}\n` +
+               `# Analizeaza codul demonstrativ si ruleaza-l in sandbox\n\n` +
+               `def demonstratie_concept_modul_${cod.replace(".", "_")}():\n` +
+               `    # TODO: Implementeaza solutia si testeaza rezultatul\n` +
+               `    mesaj = "Studiu practic finalizat cu succes pentru modulul ${cod}!"\n` +
+               `    print(mesaj)\n\n` +
+               `demonstratie_concept_modul_${cod.replace(".", "_")}()`,
+      exercitii: [
+        `Analizeaza conceptele practice discutate la pasul "${modulGăsit.sublectii[0]?.titlu || 'Recapitulare'}" si raspunde in scris la intrebarea: care sunt limitele si erorile comune in implementarea acestei structuri?`,
+        `Scrie un script in Python care implementeaza elementele de la pasul "${modulGăsit.sublectii[1]?.titlu || 'Concept nou'}", adaugand comentarii explicative pentru fiecare instructiune.`,
+        `Rezolva o problema algoritmica bazata pe cerintele practice si testele de la pasul "${modulGăsit.sublectii[4]?.titlu || 'Exercitii independente'}", afisand rezultatul corespunzator.`
+      ]
+    };
+  }
+
+  // Generare fallback
   return {
-    teorie: `Această fișă constituie suportul de studiu teoretic pentru modulul "${titluModul}". Conține definiții condensate, reguli de sintaxă în Python și exemple rezolvate pentru a te ajuta să înțelegi noțiunile cheie conform programei școlare oficiale.`,
-    sintaxa: `# Sintaxă model pentru tema: ${titluModul}\n# Scrie cod curat și comentează fiecare pas\nprint("Studiu finalizat pentru modulul ${cod}!")`,
+    teorie: `Aceasta fisa constituie suportul de studiu teoretic pentru modulul "${titluModul}". Contine definitii condensate, reguli de sintaxa in Python si exemple rezolvate pentru a te ajuta sa intelegi notiunile cheie conform programei scolare oficiale.`,
+    sintaxa: `# Sintaxa model pentru tema: ${titluModul}\n# Scrie cod curat si comenteaza fiecare pas\nprint("Studiu finalizat pentru modulul ${cod}!")`,
     exercitii: [
-      `Scrie o aplicație Python simplă care utilizează conceptele descrise în modulul "${titluModul}".`,
-      `Explică, în 3-4 rânduri, utilitatea practică a temei "${titluModul}" în viața de zi cu zi sau în industrie.`,
-      `Modifică exemplul de cod prezentat în această fișă pentru a procesa un set diferit de date de intrare.`
+      `Scrie o aplicatie Python simpla care utilizeaza conceptele descrise in modulul "${titluModul}".`,
+      `Implementeaza un exemplu practic care testeaza limitele comportamentului pentru "${titluModul}".`,
+      `Rezolva o problema aplicata de nivel mediu bazata pe sintaxa Python a acestui modul.`
     ]
   };
 }

@@ -70,15 +70,13 @@ export default async function ResursaPdfPreviewPage({
         </div>
       </div>
 
-      {/* Container Iframe Viewer */}
-      <div className="flex-1 w-full relative bg-slate-800 p-2 sm:p-4 md:p-6 flex justify-center items-center h-[calc(100vh-73px)]">
-        <div className="w-full h-full max-w-5xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl bg-white relative">
-          <iframe
-            src={pdfUrl}
-            className="w-full h-full border-none"
-            title={`Vizualizare Fisa PDF - Modulul ${modul.cod}`}
-          />
-        </div>
+      {/* Container Iframe Viewer - Fullscreen */}
+      <div className="flex-1 w-full relative bg-slate-900 h-[calc(100vh-73px)]">
+        <iframe
+          src={pdfUrl}
+          className="w-full h-full border-none bg-slate-900"
+          title={`Vizualizare Fisa PDF - Modulul ${modul.cod}`}
+        />
       </div>
     </div>
   );
