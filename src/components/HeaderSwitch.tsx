@@ -8,26 +8,26 @@ export default function HeaderSwitch() {
   const isKids = pathname?.startsWith("/kids");
 
   return (
-    <div className="flex items-center gap-0.5 bg-slate-100 p-0.5 rounded-full border border-black/5 select-none shrink-0 scale-90 sm:scale-100">
+    <div className="flex items-center gap-0.5 bg-slate-100/80 p-0.5 rounded-full border border-black/8 select-none shrink-0">
       <Link
         href="/kids"
-        className={`flex items-center gap-1 px-3 py-1.5 text-[11px] sm:text-xs font-extrabold rounded-full transition ${
+        className={`px-2.5 py-1 text-[10px] font-bold rounded-full transition ${
           isKids
-            ? "bg-amber-400 text-amber-950 shadow-sm"
-            : "text-foreground/60 hover:text-foreground"
+            ? "bg-amber-400/90 text-amber-950 shadow-sm"
+            : "text-foreground/50 hover:text-foreground/80"
         }`}
       >
-        <span>🎒 Kids <span className="hidden sm:inline">(I-IV)</span></span>
+        Kids
       </Link>
       <Link
         href="/curriculum"
-        className={`flex items-center gap-1 px-3 py-1.5 text-[11px] sm:text-xs font-extrabold rounded-full transition ${
+        className={`px-2.5 py-1 text-[10px] font-bold rounded-full transition ${
           !isKids
-            ? "bg-brand text-white shadow-sm"
-            : "text-foreground/60 hover:text-foreground"
+            ? "bg-brand/90 text-white shadow-sm"
+            : "text-foreground/50 hover:text-foreground/80"
         }`}
       >
-        <span>🚀 Liceu <span className="hidden sm:inline">(IX-XII)</span></span>
+        Liceu
       </Link>
     </div>
   );
