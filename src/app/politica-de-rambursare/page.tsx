@@ -55,7 +55,7 @@ export default function PoliticaRambursarePage() {
         </p>
         <ul className="list-disc pl-5 text-sm text-slate-700 space-y-2 mt-2">
           <li><strong>Probleme Tehnice Nerezolvate:</strong> Dacă întâmpinați erori de rețea, erori tehnice de platformă sau probleme de acces premium care vă împiedică în mod obiectiv să folosiți serviciul și pe care asistența noastră tehnică nu le poate soluționa în termen de 3 zile lucrătoare, aveți dreptul de a solicita o **rambursare completă în termen de 14 zile** de la data achiziției.</li>
-          <li><strong>Procedura de Solicitare:</strong> Pentru a solicita o rambursare, trimiteți un e-mail la adresa <a href="mailto:contact@academiapython.ro" className="text-brand hover:underline font-semibold">contact@academiapython.ro</a> cu subiectul *„Solicitare Rambursare Cont”*, precizând e-mail-ul asociat contului și descrierea problemei tehnice întâmpinate.</li>
+          <li><strong>Procedura de Solicitare:</strong> Pentru a solicita o rambursare, trimiteți un e-mail la adresa <a href="mailto:academipython@gmail.com" className="text-brand hover:underline font-semibold">academipython@gmail.com</a> cu subiectul *„Solicitare Rambursare Cont”*, precizând e-mail-ul asociat contului și descrierea problemei tehnice întâmpinate.</li>
           <li><strong>Procesarea Rambursării:</strong> Cererile aprobate sunt procesate în maximum 5 zile lucrătoare. Fondurile vor fi returnate pe cardul inițial folosit la plată, prin intermediul partenerului nostru Stripe. Timpul de apariție a banilor în cont depinde de banca emitentă a cardului dumneavoastră (de regulă între 2 și 10 zile lucrătoare).</li>
         </ul>
       </article>

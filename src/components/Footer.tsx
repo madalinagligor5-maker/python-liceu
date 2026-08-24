@@ -13,9 +13,14 @@ export default function Footer() {
             </span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">
-            Învață Python pas cu pas, conform programei de Informatică pentru liceu, clasele
-            IX-XII.
+            Învață Python pas cu pas, conform programei de Informatică pentru liceu și juniori.
           </p>
+          <a
+            href="mailto:academipython@gmail.com"
+            className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-brand hover:underline"
+          >
+            <span>📧</span> academipython@gmail.com
+          </a>
         </div>
 
         <div>

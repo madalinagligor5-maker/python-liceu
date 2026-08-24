@@ -78,8 +78,8 @@ export default function PoliticaConfidentialitatePage() {
         </ul>
         <p className="mt-4 text-sm leading-relaxed text-slate-700">
           Pentru exercitarea oricăruia dintre aceste drepturi, ne puteți trimite o solicitare prin e-mail la adresa oficială:{" "}
-          <a href="mailto:contact@academiapython.ro" className="text-brand hover:underline font-semibold">
-            contact@academiapython.ro
+          <a href="mailto:academipython@gmail.com" className="text-brand hover:underline font-semibold">
+            academipython@gmail.com
           </a>. Cererile vor fi soluționate gratuit și în termen legal de maximum 30 de zile.
         </p>
       </article>

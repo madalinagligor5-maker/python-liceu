@@ -37,7 +37,7 @@ export default function TermeniSiConditiiPage() {
           <li><strong>Cod Unic de Înregistrare (CUI):</strong> 51874932</li>
           <li><strong>Număr Reg. Com:</strong> F05/123/2026</li>
           <li><strong>Sediu Social:</strong> Cluj-Napoca, Județul Cluj, România</li>
-          <li><strong>E-mail oficial de contact:</strong> <a href="mailto:contact@academiapython.ro" className="text-brand hover:underline font-semibold">contact@academiapython.ro</a></li>
+          <li><strong>E-mail oficial de contact:</strong> <a href="mailto:academipython@gmail.com" className="text-brand hover:underline font-semibold">academipython@gmail.com</a></li>
         </ul>
 
         <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">
