@@ -100,17 +100,25 @@ export default function HartaJunior() {
             <p className="text-sm text-slate-600">⭐ {stele} stele adunate</p>
           </div>
         </div>
-        <button
-          onClick={() => {
-            if (confirm("Vrei să schimbi profilul?")) {
-              localStorage.removeItem("junior_profil");
-              router.push("/kids/junior");
-            }
-          }}
-          className="text-xs text-slate-400 hover:text-slate-600"
-        >
-          Schimbă profil
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/kids/junior/diploma"
+            className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-amber-950 px-4 py-2 text-xs font-black shadow-md transition active:scale-95 flex items-center gap-1.5"
+          >
+            🏆 Generează Diplomă
+          </Link>
+          <button
+            onClick={() => {
+              if (confirm("Vrei să schimbi profilul?")) {
+                localStorage.removeItem("junior_profil");
+                router.push("/kids/junior");
+              }
+            }}
+            className="text-xs text-slate-400 hover:text-slate-600"
+          >
+            Schimbă profil
+          </button>
+        </div>
       </div>
 
       {/* Mascotă */}

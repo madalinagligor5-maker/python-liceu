@@ -9,6 +9,14 @@ import nivelurileModul4 from "@/lib/junior/niveluri/modul4";
 import nivelurileModul5 from "@/lib/junior/niveluri/modul5";
 import nivelurileModul6 from "@/lib/junior/niveluri/modul6";
 import {
+  playMoveSound,
+  playStarSound,
+  playSuccessSound,
+  playFailSound,
+  toggleAudio,
+  isAudioEnabled,
+} from "@/lib/junior/audio";
+import {
   executaProgramJoc,
   genereazaPython,
   calculeazaStele,
@@ -128,10 +136,20 @@ export default function NivelPage() {
       nivel.grila
     );
 
-    // Animăm fiecare pas
+    // Animăm fiecare pas și redăm efectele sonore 8-bit
+    let steleAnterioare = 0;
     for (let i = 0; i < istoricStari.length; i++) {
       if (stopRef.current) break;
-      setStareJoc(istoricStari[i]);
+      const pasCurent = istoricStari[i];
+      setStareJoc(pasCurent);
+
+      if (pasCurent.steleColectate > steleAnterioare) {
+        playStarSound();
+        steleAnterioare = pasCurent.steleColectate;
+      } else if (i > 0) {
+        playMoveSound();
+      }
+
       await new Promise((r) => setTimeout(r, VITEZA_ANIMATIE));
     }
 
@@ -139,6 +157,7 @@ export default function NivelPage() {
     const stareFinala = istoricStari[istoricStari.length - 1];
 
     if (stareFinala.completat) {
+      playSuccessSound();
       // Calculare stele
       const nrOptim = numaraBlocuriSimple(nivel.solutieOptima);
       const nrUtilizat = numaraBlocuriSimple(comenzi);
@@ -160,6 +179,7 @@ export default function NivelPage() {
         deblocheazaInsigna(`M${nivel.modul}`);
       }
     } else {
+      playFailSound();
       setFaza("esec");
       setStareMascota("trist");
       setMesajMascota(stareFinala.mesajEroare ?? "Nu a mers! Hai să încercăm altfel! 💪");
