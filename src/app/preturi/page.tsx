@@ -12,11 +12,11 @@ const PLANURI = [
   {
     plan: "lunar" as const,
     nume: "Lunar",
-    pretVechi: null,
+    pretVechi: "29 lei",
     pret: "15 lei",
     perioada: "/ lună",
     descriere: "Ideal dacă vrei să încerci platforma pe termen scurt.",
-    badge: null,
+    badge: "⚡ Reducere 50%",
     beneficii: [
       "Acces la toate lecțiile, clasele IX-XII",
       "Exerciții interactive și quiz-uri",

@@ -264,6 +264,47 @@ saluta("Academia Python")
         </div>
       </section>
 
+      {/* AVANTAJE / DIFERENȚIATORI UNIQUE */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="text-center">
+          <span className="inline-flex rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark">
+            De ce noi?
+          </span>
+          <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
+            Cu ce suntem diferiți față de alte platforme
+          </h2>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-foreground/60">
+            Am construit Academia Python combinând tehnologia modernă cu metode didactice dovedite, pentru o învățare mult mai interactivă.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+            <span className="text-4xl" role="img" aria-label="AI Assistant">🤖</span>
+            <h3 className="mt-4 text-lg font-bold text-foreground">Profesor Asistent AI</h3>
+            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
+              Cel mai mare avantaj unic! Asistentul nostru AI analizează codul scris de tine în timp real și îți oferă indicii pedagogice inteligente când te blochezi, exact ca un meditator personal.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+            <span className="text-4xl" role="img" aria-label="Gamification">🔥</span>
+            <h3 className="mt-4 text-lg font-bold text-foreground">Gamification Interactiv</h3>
+            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
+              Învățarea devine un obicei distractiv. Acumulezi puncte XP, îți menții streak-ul zilnic și deblochezi insigne de performanță pe măsură ce parcurgi lecțiile din curriculum.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+            <span className="text-4xl" role="img" aria-label="PDF Download">📥</span>
+            <h3 className="mt-4 text-lg font-bold text-foreground">Fișe PDF Descărcabile</h3>
+            <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
+              Fiecare modul vine cu o fișă recapitulativă completă în format PDF. O poți descărca și tipări gratuit pentru studiu individual, teme sau pregătirea pentru teste și teze la școală.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CLASE */}
       <section className="bg-brand-light/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
