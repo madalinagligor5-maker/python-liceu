@@ -176,9 +176,9 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
     feedbackFallback.analiza = "Codul se compilează, dar rulează cu erori în interpretor.";
     feedbackFallback.indrumare = `Interpretorul a raportat eroarea: "${output}". Verifică numele variabilelor utilizate și asigură-te că nu împarți la zero sau că nu accesezi un index greșit dintr-o listă.`;
   } else {
-    feedbackFallback.scor = "Verificare Generală";
-    feedbackFallback.analiza = "Codul rulează fără erori semnalate de consolă.";
-    feedbackFallback.indrumare = "Dacă rezultatul obținut în consolă corespunde cerinței problemei, poți trece la modulul următor! Nu uita să testezi și cazuri de margine (cum ar fi liste goale sau valori negative).";
+    feedbackFallback.scor = "Verificare Generală (Local)";
+    feedbackFallback.analiza = "Codul rulează fără erori semnalate de consolă locală.";
+    feedbackFallback.indrumare = "Asistentul AI este momentan dezactivat. Vă rugăm asigurați-vă că variabila GEMINI_API_KEY este adăugată corect în Vercel și proiectul a fost redeploat.";
   }
 
   return { ok: true, feedback: feedbackFallback };
