@@ -8,6 +8,7 @@ export type FeedbackAI = {
 };
 
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { creeazaClientServer } from "@/lib/supabase/server";
 
 export async function evalueazaCodCuAI(
   titluProblema: string,
@@ -21,6 +22,34 @@ export async function evalueazaCodCuAI(
     return {
       ok: false,
       eroare: "Trebuie sa fii autentificat pentru a primi feedback si indrumare de la asistentul AI.",
+    };
+  }
+
+  const supabase = await creeazaClientServer();
+  const { data: dbMeta } = await supabase
+    .from("users_meta")
+    .select("subscription_status, ai_requests_today, last_ai_request_date")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  const azi = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+  let requestsToday = dbMeta?.ai_requests_today ?? 0;
+  const lastRequestDate = dbMeta?.last_ai_request_date ?? "";
+
+  // Resetare contor daca s-a schimbat ziua de server
+  if (lastRequestDate !== azi) {
+    requestsToday = 0;
+  }
+
+  const isPremium = dbMeta?.subscription_status === "active";
+  const limit = isPremium ? 15 : 1;
+
+  if (requestsToday >= limit) {
+    return {
+      ok: false,
+      eroare: isPremium
+        ? "Ai atins limita zilnică de evaluări AI (15/zi). Te așteptăm mâine pentru noi provocări!"
+        : "Ai atins limita zilnică de evaluări AI pentru contul gratuit (1/zi). Abonează-te la Premium pentru 15 evaluari zilnice!",
     };
   }
 
@@ -92,6 +121,16 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
       }
 
       const feedback = JSON.parse(textRaspuns) as FeedbackAI;
+
+      // Increment contor AI in DB la apel reusit
+      await supabase
+        .from("users_meta")
+        .update({
+          ai_requests_today: requestsToday + 1,
+          last_ai_request_date: azi,
+        })
+        .eq("user_id", user.id);
+
       return { ok: true, feedback };
     } catch (e) {
       console.error("Eroare evaluare Gemini:", e);

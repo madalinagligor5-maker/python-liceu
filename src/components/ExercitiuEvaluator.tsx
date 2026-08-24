@@ -128,7 +128,13 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
         } 
       });
 
-      await py.runPythonAsync(codCurent);
+      // Mecanism de timeout de 4 secunde (4000 ms) împotriva buclelor infinite
+      const runPromise = py.runPythonAsync(codCurent);
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("TIMEOUT_EXECUTION")), 4000)
+      );
+
+      await Promise.race([runPromise, timeoutPromise]);
 
       const curat = (s: string) => s.replace(/\s+/g, " ").trim();
       const extrageNumere = (s: string): number[] => {
@@ -151,11 +157,18 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
       setVerdicte((prev) => ({ ...prev, [curentIdx]: potriveste ? "ok" : "gresit" }));
     } catch (e) {
       console.error("PYODIDE_ERR", e);
-      setErori((prev) => ({ 
-        ...prev, 
-        [curentIdx]: "Eroare tehnică la rularea codului local." 
-      }));
-      setFolosestePy(false);
+      if (e instanceof Error && e.message === "TIMEOUT_EXECUTION") {
+        setErori((prev) => ({
+          ...prev,
+          [curentIdx]: "⚠️ Timpul de execuție a fost depășit (4s). Verifică dacă nu ai o buclă infinită (ex: while fără incrementare)!"
+        }));
+      } else {
+        setErori((prev) => ({ 
+          ...prev, 
+          [curentIdx]: "Eroare tehnică la rularea codului local." 
+        }));
+        setFolosestePy(false);
+      }
     } finally {
       setRuleaza(false);
     }
