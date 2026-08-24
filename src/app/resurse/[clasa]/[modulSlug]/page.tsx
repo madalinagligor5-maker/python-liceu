@@ -45,7 +45,11 @@ export default async function ModulResursePage({
       {/* Stiluri speciale pentru printare: ascunde complet header-ul și footer-ul global al site-ului */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          header, footer, nav, aside, .print-hidden {
+          @page {
+            size: A4;
+            margin: 12mm !important;
+          }
+          header, footer, nav, aside, .print-hidden, [role="navigation"], .sticky {
             display: none !important;
           }
           body, html, main {
@@ -115,9 +119,12 @@ export default async function ModulResursePage({
             <h2 className="text-sm font-extrabold uppercase border-b border-gray-300 pb-1 mb-2 text-black/80">
               💻 Sintaxă & Cod Model (Python)
             </h2>
-            <div className="rounded-xl border border-gray-300 overflow-hidden text-xs bg-gray-50">
-              <CodeBlock code={fisa.sintaxa} label="exemplu.py" />
-            </div>
+            <pre 
+              className="rounded-xl bg-slate-900 text-white p-4 font-mono text-[11px] leading-relaxed whitespace-pre-wrap overflow-x-auto border border-slate-800" 
+              style={{ WebkitPrintColorAdjust: "exact", printColorAdjust: "exact" }}
+            >
+              {fisa.sintaxa}
+            </pre>
           </section>
 
           {/* Secțiunea 3: Exerciții propuse */}
@@ -138,10 +145,13 @@ export default async function ModulResursePage({
           </section>
         </div>
 
-        {/* Footer-ul fișei PDF */}
-        <div className="mt-20 border-t border-gray-300 pt-3 text-center">
-          <p className="text-[10px] text-gray-400 font-medium">
-            Document generat automat de AcademiaPython.ro. Toate drepturile rezervate.
+        {/* Footer-ul fișei PDF - cu conversie promoțională */}
+        <div className="mt-16 border-t border-gray-300 pt-4 text-center">
+          <p className="text-xs font-bold text-slate-800 mb-2 leading-relaxed">
+            💡 Testează acest cod și verifică-ți rezolvarea pas cu pas cu asistentul AI pe academiapython.ro
+          </p>
+          <p className="text-[9px] text-gray-400 font-medium">
+            Fișă de lucru generată automat de AcademiaPython.ro. Toate drepturile rezervate.
           </p>
         </div>
       </div>

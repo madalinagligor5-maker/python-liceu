@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { capitole, structura } from "@/lib/curriculum";
+import ModuleListCollapsible from "@/components/ModuleListCollapsible";
 
 export const metadata: Metadata = {
   title: "Curriculum complet — Academia Python",
@@ -77,7 +78,7 @@ export default function CurriculumPage() {
         {capitole.map((c) => (
           <article
             key={c.clasa}
-            className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-border bg-white p-4 sm:p-6 shadow-sm"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
@@ -97,21 +98,7 @@ export default function CurriculumPage() {
               </Link>
             </div>
 
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {c.module.slice(0, 6).map((m) => (
-                <li
-                  key={m.cod}
-                  className="rounded-full bg-surface px-3 py-1 text-xs text-foreground/70"
-                >
-                  {m.cod} {m.titlu}
-                </li>
-              ))}
-              {c.module.length > 6 && (
-                <li className="rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark">
-                  +{c.module.length - 6} module
-                </li>
-              )}
-            </ul>
+            <ModuleListCollapsible module={c.module} clasa={c.clasa} />
           </article>
         ))}
       </section>

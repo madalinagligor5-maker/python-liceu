@@ -88,40 +88,56 @@ export default async function ContPage() {
   const xpCurentInNivel = Math.max(0, xpTotal - xpNivelCurent);
   const procentajNivel = Math.min(100, Math.round((xpCurentInNivel / totalXpNivel) * 100));
 
+  // Curățare prenume pentru afișare prietenoasă
+  const curataPrenume = (emailStr: string): string => {
+    const local = emailStr.split("@")[0] ?? "";
+    const prima = local.split(/[._-]/)[0] ?? local;
+    const faraCifre = prima.replace(/\d+$/, "");
+    if (!faraCifre) return "Elev Python";
+    if (faraCifre.toLowerCase().startsWith("madalinagligor")) {
+      return "Mădălina G.";
+    }
+    return faraCifre.charAt(0).toUpperCase() + faraCifre.slice(1);
+  };
+
+  const numeAfisare = curataPrenume(user.email);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       {/* Panou Profil / Dashboard Elev */}
       <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
-        {/* Header Decorativ */}
-        <div className="bg-gradient-to-r from-brand to-brand-dark px-6 py-8 text-white sm:px-8 flex flex-col sm:flex-row items-center gap-6">
-          <div className="relative rounded-2xl bg-white/10 p-2 backdrop-blur-sm border border-white/10">
+        {/* Header Decorativ - Galben cu text închis de contrast maxim */}
+        <div className="bg-gradient-to-r from-yellow-450 to-amber-450 px-6 py-8 text-slate-900 sm:px-8 flex flex-col sm:flex-row items-center gap-6">
+          <div className="relative rounded-2xl bg-slate-900/10 p-2 border border-slate-900/20">
             <Mascota size={80} />
-            <span className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-yellow-450 font-mono text-sm font-extrabold text-brand-dark shadow-md border border-white">
+            <span className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 font-mono text-sm font-extrabold text-yellow-450 shadow-md border border-white">
               {nivel}
             </span>
           </div>
 
           <div className="text-center sm:text-left flex-1 min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-light/90">Panoul elevului</p>
-            <h1 className="mt-1 text-2xl font-extrabold truncate">{user.email}</h1>
-            <p className="text-sm text-white/85 mt-0.5">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-900/80">Panoul elevului</p>
+            <h1 className="mt-1 text-2xl font-black truncate text-slate-900">{numeAfisare}</h1>
+            <p className="text-xs text-slate-800/85 truncate font-medium">{user.email}</p>
+            
+            <p className="text-sm text-slate-900 font-bold mt-2">
               Clasa a {meta.clasa || "IX"}-a · Nivel {nivel}
             </p>
             
-            {/* XP progress bar */}
+            {/* XP progress bar închis cu fundal transparent potrivit */}
             <div className="mt-4 max-w-md">
-              <div className="flex items-center justify-between text-xs text-white/80 mb-1 font-semibold">
+              <div className="flex items-center justify-between text-xs text-slate-900/90 mb-1 font-bold">
                 <span>Nivel {nivel}</span>
                 <span>{xpTotal} / {xpNivelUrmator} XP</span>
                 <span>Nivel {nivel + 1}</span>
               </div>
-              <div className="h-2.5 w-full rounded-full bg-white/20 overflow-hidden border border-white/5">
+              <div className="h-2.5 w-full rounded-full bg-slate-900/15 overflow-hidden border border-slate-900/5">
                 <div 
-                  className="h-full rounded-full bg-yellow-450 transition-all duration-550"
+                  className="h-full rounded-full bg-slate-900 transition-all duration-550"
                   style={{ width: `${procentajNivel}%` }}
                 />
               </div>
-              <p className="text-[11px] text-white/70 mt-1 italic">
+              <p className="text-[11px] text-slate-800/85 mt-1 italic font-medium">
                 Mai ai nevoie de {xpNivelUrmator - xpTotal} XP până la nivelul următor!
               </p>
             </div>

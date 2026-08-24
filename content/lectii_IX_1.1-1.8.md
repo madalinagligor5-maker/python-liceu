@@ -22,29 +22,48 @@ Toate sunt succesiuni de pași clari, executați în ordine — adică algoritmi
 
 Un **algoritm** este o succesiune finită de pași, clari și fără ambiguitate, care rezolvă o problemă. Un **program** este un algoritm scris într-un limbaj pe care îl înțelege calculatorul — la noi, **Python**.
 
-Orice program trece prin patru etape:
+Orice program trece prin patru etape de elaborare:
 
-1. **Analiză** — înțelegem problema: ce date avem (intrare) și ce vrem să obținem (ieșire)?
-2. **Proiectare** — construim algoritmul: pașii, în ordine, care duc de la intrare la ieșire.
-3. **Implementare** — scriem algoritmul în cod Python.
-4. **Testare** — rulăm programul cu mai multe exemple și verificăm dacă rezultatul e corect.
+:::tip
+## 1. Analiză
+Înțelegem problema în detaliu. Identificăm ce date primim (date de intrare) și ce rezultate dorim să obținem (date de ieșire).
+*Cod model:* `nota1 = 8`, `nota2 = 10` (datele cunoscute din problemă).
+:::
+
+:::tip
+## 2. Proiectare
+Construim algoritmul. Stabilim succesiunea logică de pași clari care transformă datele de intrare în rezultate finale.
+*Cod model:* `media = (nota1 + nota2) / 2` (formula matematică a mediei).
+:::
+
+:::tip
+## 3. Implementare
+Scriem efectiv algoritmul într-un limbaj de programare real. Traducem pașii proiectați în instrucțiuni de cod Python.
+*Cod model:* Scrierea liniilor de cod în editor, atribuind valorile variabilelor.
+:::
+
+:::tip
+## 4. Testare
+Rulăm codul scris cu diverse seturi de date pentru a verifica dacă rezultatele returnate sunt 100% corecte.
+*Cod model:* `print("Media este:", media)` (afișarea rezultatului pe ecran).
+:::
 
 :::atentie
-## Atenție — ce NU e un algoritm corect
-- „Dacă plouă, stai acasă sau mergi la film" — **lipsită de claritate** (nu se știe ce alegi).
-- „Se afișează numerele naturale pare" — **lipsită de finitudine** (nu se oprește niciodată, sunt infinite).
-Un algoritm bun are mereu claritate (fiecare pas e neambiguu) și finitudine (se termină după un număr finit de pași).
+## Atenție — ce NU este un algoritm corect
+- „Dacă plouă, stai acasă sau mergi la film" — **lipsă de claritate** (nu știi ce să alegi exact).
+- „Afișează numerele pare" — **lipsă de finitudine** (dacă nu spui unde se oprește, rulează la infinit).
+Un algoritm corect are mereu claritate (pași exacți) și finitudine (se oprește garantat).
 :::
 
 ```python
-# Etapa 1 (analiză): avem 2 note, vrem media lor
-# Etapa 2 (proiectare): citim nota1, citim nota2, calculăm media, afișăm
-
+# Exemplu complet de program cu cele 4 etape
+# Analiză: avem notele 8 și 10. Proiectare: adunăm și împărțim la 2.
 nota1 = 8
 nota2 = 10
 media = (nota1 + nota2) / 2
 
-print("Media este:", media)
+# Implementare & Testare: afișăm valoarea obținută
+print("Media notelor este:", media)
 ```
 
 Observă: primele două linii sunt comentarii (încep cu `#`) — nu sunt executate, dar arată gândirea din spatele codului. E o obișnuință bună: comentează *de ce* faci un pas, nu doar *ce* face linia.

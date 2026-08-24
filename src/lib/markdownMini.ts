@@ -88,7 +88,7 @@ function parseazaBlocuri(lines: string[]): Bloc[] {
         tip: "card",
         variant,
         html: titluCard
-          ? `<div class="card-titlu">${inline(titluCard)}</div>${corpHtml}`
+          ? `<div class="bloc-card--titlu">${inline(titluCard)}</div>${corpHtml}`
           : corpHtml,
       });
       continue;

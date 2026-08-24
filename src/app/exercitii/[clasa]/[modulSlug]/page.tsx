@@ -65,7 +65,7 @@ export default async function ModulExercitiiPage({
       </nav>
 
       <div className="mt-4 border-b border-black/5 pb-5">
-        <div className="flex flex-wrap gap-2 mb-2">
+        <div className="flex flex-row flex-wrap gap-2 items-center mb-2">
           <span className="inline-flex items-center rounded-full bg-success/10 px-2.5 py-1 text-xs font-bold text-success">
             Zonă de antrenament gratuită
           </span>

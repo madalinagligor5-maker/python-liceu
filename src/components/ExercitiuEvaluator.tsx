@@ -148,28 +148,27 @@ export default function ExercitiuEvaluator({
             value={cod}
             onChange={(e) => setCod(e.target.value)}
             spellCheck={false}
-            className="block w-full resize-y bg-transparent p-3 font-mono text-sm leading-relaxed text-white outline-none"
-            style={{ minHeight: 220 }}
+            className="block w-full resize-y bg-transparent p-3 font-mono text-sm leading-relaxed text-white outline-none min-h-[220px]"
           />
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 w-full">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <button
               type="button"
               onClick={ruleazaCod}
               disabled={ruleaza}
-              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+              className="w-full sm:w-auto rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer text-center text-sm"
             >
-              {ruleaza ? "Se rulează…" : "▶ Rutează codul"}
+              {ruleaza ? "Se rulează…" : "▶ Rulează codul"}
             </button>
             <button
               type="button"
               onClick={solicitaEvaluareAI}
               disabled={evaluarePending}
-              className="rounded-xl border border-brand-border bg-brand-light/50 hover:bg-brand-light px-5 py-2.5 text-sm font-semibold text-brand-dark transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+              className="w-full sm:w-auto rounded-xl text-slate-800 border-2 border-amber-400 bg-amber-50/50 hover:bg-amber-100 py-3 px-6 text-sm font-bold text-center transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
             >
-              {evaluarePending ? "🧠 Analiză AI..." : "🧠 Cere Evaluare & Îndrumare"}
+              {evaluarePending ? "🧠 Analiză AI..." : "🤖 Cere Evaluare & Îndrumare AI"}
             </button>
           </div>
 

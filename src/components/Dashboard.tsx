@@ -24,10 +24,12 @@ export default function Dashboard({
   prenume,
   progres,
   clasaSelectata,
+  provocareRezolvata = false,
 }: {
   prenume: string;
   progres: ProgresUtilizator;
   clasaSelectata: string;
+  provocareRezolvata?: boolean;
 }) {
   const unitati = construiesteDrum(clasaSelectata, progres.lectiiFinalizate);
   const urmatoarea = urmatoareaLectie(clasaSelectata, progres.lectiiFinalizate);
@@ -172,20 +174,18 @@ export default function Dashboard({
           {/* Coloana dreapta */}
           <aside className="space-y-4">
             <CardStreakSaptamana zile={progres.streakZile} />
-            <CardCitat />
             <CardClasament randuri={clasament} />
             <CardProvocareZilei
-              enunt={
+              intrebare={
                 provocare
                   ? provocare.intrebare.intrebare
-                  : "Termină prima lecție ca să primești provocări de recapitulare."
+                  : "Termină prima lecție ca să deblochezi provocările zilnice."
               }
+              variante={provocare?.intrebare?.variante ?? []}
+              corect={provocare?.intrebare?.corect ?? 0}
               xp={provocare?.xp ?? 50}
-              href={
-                provocare
-                  ? `/lectii/${provocare.lectie.clasa}/${provocare.lectie.unitate_slug}/${provocare.lectie.lectie_slug}`
-                  : null
-              }
+              deblocata={Boolean(provocare)}
+              dejaRezolvata={provocareRezolvata}
             />
 
             {progres.insigne.length > 0 && (
@@ -212,6 +212,8 @@ export default function Dashboard({
                 </ul>
               </div>
             )}
+            
+            <CardCitat />
           </aside>
         </div>
       </div>

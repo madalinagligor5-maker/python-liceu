@@ -99,8 +99,15 @@ const FAQ = [
 function prenumeDinEmail(email: string): string {
   const local = email.split("@")[0] ?? "";
   const prima = local.split(/[._-]/)[0] ?? local;
-  return prima ? prima.charAt(0).toUpperCase() + prima.slice(1) : "prietene";
+  const faraCifre = prima.replace(/\d+$/, "");
+  if (!faraCifre) return "Elev Python";
+  if (faraCifre.toLowerCase().startsWith("madalinagligor")) {
+    return "Mădălina G.";
+  }
+  return faraCifre.charAt(0).toUpperCase() + faraCifre.slice(1);
 }
+
+import { creeazaClientServer } from "@/lib/supabase/server";
 
 export default async function HomePage({ searchParams }: PageProps<"/">) {
   const { user } = await getUtilizatorCurent();
@@ -117,11 +124,27 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       "IX";
 
     if (progres) {
+      let provocareRezolvata = false;
+      try {
+        const supabase = await creeazaClientServer();
+        const azi = new Date().toISOString().split("T")[0];
+        const { data: provAzi } = await supabase
+          .from("provocari_zilnice")
+          .select("finalizata")
+          .eq("user_id", user.id)
+          .eq("data", azi)
+          .maybeSingle();
+        provocareRezolvata = Boolean(provAzi?.finalizata);
+      } catch (err) {
+        console.error("Eroare citire provocare zilnica:", err);
+      }
+
       return (
         <Dashboard
           prenume={prenumeDinEmail(user.email)}
           progres={progres}
           clasaSelectata={clasaSelectata}
+          provocareRezolvata={provocareRezolvata}
         />
       );
     }

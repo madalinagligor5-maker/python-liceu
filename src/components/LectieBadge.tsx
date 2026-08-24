@@ -9,7 +9,7 @@ export default function LectieBadge({ gratuit }: { gratuit: boolean }) {
 
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-brand-light px-2.5 py-1 text-xs font-semibold text-brand-dark">
-      🔒 Cont
+      🔒 Premium
     </span>
   );
 }
