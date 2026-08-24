@@ -12,12 +12,15 @@ const PLANURI = [
   {
     plan: "lunar" as const,
     nume: "Lunar",
-    pret: "29 lei",
+    pretVechi: null,
+    pret: "15 lei",
     perioada: "/ lună",
     descriere: "Ideal dacă vrei să încerci platforma pe termen scurt.",
+    badge: null,
     beneficii: [
       "Acces la toate lecțiile, clasele IX-XII",
       "Exerciții interactive și quiz-uri",
+      "Asistent AI pentru evaluarea codului",
       "Anulare oricând, fără costuri",
     ],
     evidentiat: false,
@@ -25,13 +28,16 @@ const PLANURI = [
   {
     plan: "anual" as const,
     nume: "Anual",
-    pret: "199 lei",
+    pretVechi: "199 lei",
+    pret: "89 lei",
     perioada: "/ an",
-    descriere: "Cel mai bun preț pe lună — echivalentul a ~17 lei/lună.",
+    descriere: "Promo de lansare — echivalentul a ~7,4 lei/lună. Valabil 3 luni!",
+    badge: "🎉 Preț promoțional lansare",
     beneficii: [
       "Tot ce include planul lunar",
-      "Economisești peste 40% față de plata lunară",
+      "Economisești 55% față de prețul obișnuit",
       "Acces pe tot parcursul anului școlar",
+      "Asistent AI nelimitat pentru cod",
     ],
     evidentiat: true,
   },
@@ -93,7 +99,7 @@ export default function PreturiPage() {
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
         {PLANURI.map((plan) => (
-          <div
+        <div
             key={plan.nume}
             className={[
               "rounded-2xl border p-6 shadow-sm",
@@ -102,16 +108,26 @@ export default function PreturiPage() {
                 : "border-black/10 bg-white",
             ].join(" ")}
           >
-            {plan.evidentiat && (
+            {plan.badge && (
+              <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-amber-900">
+                {plan.badge}
+              </span>
+            )}
+            {!plan.badge && plan.evidentiat && (
               <span className="inline-flex rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
                 Recomandat
               </span>
             )}
             <h2 className="mt-3 text-xl font-bold text-foreground">{plan.nume}</h2>
             <p className="mt-1 text-sm text-foreground/60">{plan.descriere}</p>
-            <p className="mt-4">
+            <p className="mt-4 flex items-baseline gap-2">
+              {plan.pretVechi && (
+                <span className="text-base font-medium text-foreground/35 line-through">
+                  {plan.pretVechi}
+                </span>
+              )}
               <span className="text-3xl font-extrabold text-foreground">{plan.pret}</span>
-              <span className="text-sm text-foreground/50"> {plan.perioada}</span>
+              <span className="text-sm text-foreground/50">{plan.perioada}</span>
             </p>
 
             <ul className="mt-5 space-y-2 text-sm text-foreground/70">
