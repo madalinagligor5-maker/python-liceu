@@ -4,7 +4,6 @@ import { notFound, redirect } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
 import { obtineSetExercitii } from "@/lib/exercitiiSuplimentare";
 import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
-import LaboratorConsolidare from "@/components/LaboratorConsolidare";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 
 type Params = { clasa: string; modulSlug: string };
@@ -81,7 +80,6 @@ export default async function ModulExercitiiPage({
 
       <div className="mt-6 space-y-8">
         <ExercitiuEvaluator exercitii={exercitii} />
-        <LaboratorConsolidare codModul={modul.cod} titluModul={modul.titlu} />
       </div>
 
       <div className="mt-10 flex justify-between border-t border-black/5 pt-6">
