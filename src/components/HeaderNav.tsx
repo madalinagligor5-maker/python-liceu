@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import KidsHeaderRight from "@/components/KidsHeaderRight";
+import Logo from "@/components/Logo";
+import HeaderSwitch from "@/components/HeaderSwitch";
 
 const linkuriLiceu = [
   { href: "/curriculum", label: "📚 Curriculum & Cursuri", sub: "Clasele IX–XII" },
@@ -24,6 +26,18 @@ export default function HeaderNav() {
   const pathname = usePathname();
   const isKids = pathname?.startsWith("/kids");
   const [mobileMeniuDeschis, setMobileMeniuDeschis] = useState(false);
+
+  // Previne scroll-ul pe fundal când meniul mobil este deschis
+  useEffect(() => {
+    if (mobileMeniuDeschis) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMeniuDeschis]);
 
   return (
     <>
@@ -59,62 +73,86 @@ export default function HeaderNav() {
 
       {/* Mobile Hamburger Button */}
       <button
-        onClick={() => setMobileMeniuDeschis(!mobileMeniuDeschis)}
-        className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0 z-50"
-        aria-label="Meniu Mobil"
+        onClick={() => setMobileMeniuDeschis(true)}
+        className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0"
+        aria-label="Deschide Meniu Mobil"
       >
-        <span className="text-xl font-black">{mobileMeniuDeschis ? "✕" : "☰"}</span>
+        <span className="text-xl font-black">☰</span>
       </button>
 
-      {/* FULL-SCREEN MOBILE OVERLAY MENU */}
+      {/* 100% FULL-SCREEN MOBILE OVERLAY (Acoperă tot ecranul) */}
       {mobileMeniuDeschis && (
-        <div className="fixed inset-0 top-[52px] sm:top-[57px] z-[9999] bg-[#FDFBF7] p-5 sm:p-8 overflow-y-auto lg:hidden border-t-2 border-[#EBE7DF] flex flex-col justify-between">
-          <div className="flex flex-col gap-4 max-w-lg mx-auto w-full pb-10">
-            {/* Header Meniu Mobil */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#EBE7DF]">
+        <div className="fixed inset-0 h-screen w-screen z-[99999] bg-[#FDFBF7] p-4 sm:p-6 overflow-y-auto lg:hidden flex flex-col justify-between animate-fadeIn">
+          <div className="flex flex-col gap-4 max-w-lg mx-auto w-full pb-8">
+            {/* Header Meniu Mobil: Logo + Switch + Buton Închidere ✕ */}
+            <div className="flex items-center justify-between pb-4 border-b border-[#EBE7DF]">
+              <Link
+                href="/"
+                onClick={() => setMobileMeniuDeschis(false)}
+                className="flex items-center gap-2"
+              >
+                <Logo className="h-9 w-9 rounded-xl" />
+                <span className="text-sm font-black text-[#1E2430]">
+                  Academia<span className="text-amber-500">Python</span>
+                </span>
+              </Link>
+
+              <HeaderSwitch />
+
+              <button
+                onClick={() => setMobileMeniuDeschis(false)}
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-[#EBE7DF] text-slate-900 shadow-sm active:scale-95 transition"
+                aria-label="Închide Meniu"
+              >
+                <span className="text-xl font-black">✕</span>
+              </button>
+            </div>
+
+            {/* Stele / Profil dacă e pe Kids */}
+            {isKids && (
+              <div className="p-3.5 bg-white rounded-2xl border border-[#EBE7DF] shadow-xs">
+                <KidsHeaderRight />
+              </div>
+            )}
+
+            {/* Titlu meniu */}
+            <div className="flex items-center justify-between pt-1">
               <span className="text-xs font-black uppercase tracking-widest text-indigo-900">
-                Meniu Navigație {isKids ? "Kids" : "Liceu"}
+                Toate Cursurile & Opțiunile
               </span>
               <span className="text-xs text-[#525B6C] font-semibold">
                 {isKids ? "Ciclul Primar" : "Clasele IX–XII"}
               </span>
             </div>
 
-            {/* Status Stele Kids dacă pe Kids */}
-            {isKids && (
-              <div className="p-3 bg-white rounded-2xl border border-[#EBE7DF] shadow-xs">
-                <KidsHeaderRight />
-              </div>
-            )}
-
-            {/* Lista Toate Linkurile Vizibile Complet */}
-            <div className="flex flex-col gap-2.5 my-2">
+            {/* TOATE LINK-URILE DIN MENIU VIZIBILE COMPLET */}
+            <div className="flex flex-col gap-2.5 my-1">
               {(isKids ? linkuriKids : linkuriLiceu).map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
                   onClick={() => setMobileMeniuDeschis(false)}
-                  className="rounded-2xl border border-[#EBE7DF] bg-white p-3.5 text-left transition shadow-xs hover:border-amber-400 active:bg-amber-50 flex items-center justify-between group"
+                  className="rounded-2xl border border-[#EBE7DF] bg-white p-4 text-left transition shadow-xs hover:border-amber-400 active:bg-amber-50 flex items-center justify-between group"
                 >
                   <div>
-                    <span className="text-sm font-black text-[#1E2430] group-hover:text-amber-700 block">
+                    <span className="text-base font-black text-[#1E2430] group-hover:text-amber-700 block">
                       {l.label}
                     </span>
-                    <span className="text-[11px] font-medium text-[#525B6C] block mt-0.5">
+                    <span className="text-xs font-medium text-[#525B6C] block mt-0.5">
                       {l.sub}
                     </span>
                   </div>
-                  <span className="text-amber-500 font-bold text-base">→</span>
+                  <span className="text-amber-500 font-black text-lg">→</span>
                 </Link>
               ))}
             </div>
 
-            {/* Butoane Acțiuni Rapide Mobil */}
-            <div className="pt-3 border-t border-[#EBE7DF] flex flex-col gap-2.5">
+            {/* Butoane Acțiuni Rapide la Baza Meniului Mobil */}
+            <div className="pt-4 border-t border-[#EBE7DF] flex flex-col gap-3">
               <Link
                 href="/kids"
                 onClick={() => setMobileMeniuDeschis(false)}
-                className="rounded-2xl border border-slate-200 bg-slate-100/70 p-3 text-xs font-bold text-slate-800 text-center flex items-center justify-center gap-2"
+                className="rounded-2xl border border-slate-200 bg-white p-3.5 text-xs font-bold text-slate-800 text-center flex items-center justify-center gap-2 shadow-xs"
               >
                 <span>👥</span>
                 <span>Secțiunea pentru părinți</span>
@@ -122,9 +160,9 @@ export default function HeaderNav() {
               <Link
                 href="/curriculum"
                 onClick={() => setMobileMeniuDeschis(false)}
-                className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-3.5 text-sm text-center shadow-md active:scale-95 transition"
+                className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
               >
-                🚀 Începe gratuit / Toate Cursurile
+                🚀 Începe gratuit / Vezi Cursurile
               </Link>
             </div>
           </div>
