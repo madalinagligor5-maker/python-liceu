@@ -132,7 +132,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
       {/* HERO SECTION */}
-      <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 bg-hero-glow rounded-3xl">
         {/* Pastile de Acces Rapid */}
         <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
           <Link
@@ -155,7 +155,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Coloana Stânga: Text & CTA */}
           <div className="lg:col-span-5 space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-none">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-none [font-family:var(--font-fraunces)]">
               Învață Python direct în browser. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700">
                 Progresezi pas cu pas.

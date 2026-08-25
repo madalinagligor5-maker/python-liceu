@@ -107,7 +107,7 @@ export default function Dashboard({
 
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+                  <h2 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl [font-family:var(--font-fraunces)]">
                     Învață <span className="text-brand">Python</span>.
                     <br />
                     Construiește viitorul tău.

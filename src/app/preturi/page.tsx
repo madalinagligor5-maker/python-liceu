@@ -52,9 +52,9 @@ export default function PreturiPage() {
     process.env.STRIPE_PRICE_ID_ANUAL.startsWith("price_");
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
+    <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 bg-hero-glow rounded-3xl">
       <div className="text-center">
-        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">
+        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
           Alege planul potrivit pentru tine
         </h1>
         <p className="mt-3 text-foreground/70">

@@ -17,11 +17,11 @@ export default function CurriculumPage() {
 
   return (
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen">
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 bg-hero-glow rounded-3xl">
         <span className="inline-flex rounded-full bg-indigo-50 border border-indigo-200 px-3.5 py-1 text-xs font-bold text-indigo-900 uppercase tracking-widest mb-3">
           Programa Școlară Oficială 2026
         </span>
-        <h1 className="text-3xl font-black text-[#1E2430] sm:text-4xl">
+        <h1 className="text-3xl font-black text-[#1E2430] sm:text-4xl [font-family:var(--font-fraunces)]">
           Curriculum complet de Informatică
         </h1>
         <p className="mt-3 max-w-2xl text-[#525B6C] font-medium text-sm sm:text-base">

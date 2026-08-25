@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { valideazaProvocareZilnica } from "@/app/actions/gamification";
+import IconStreak from "@/components/icons/IconStreak";
+import IconTrofeu from "@/components/icons/IconTrofeu";
 
 const ZILE = ["L", "M", "M", "J", "V", "S", "D"] as const;
 
@@ -20,8 +21,8 @@ export function CardStreakSaptamana({ zile }: { zile: number }) {
 
   return (
     <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-      <h3 className="text-sm font-bold text-foreground">
-        <span aria-hidden="true">🔥</span> Streak de Învățare
+      <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+        <IconStreak className={`w-5 h-5 ${zile > 0 ? "text-amber-500 animate-pulse" : "text-slate-300"}`} /> Streak de Învățare
       </h3>
       <p className="mt-1 text-lg font-bold text-foreground">
         {zile > 0 ? `${zile} ${zile === 1 ? "zi" : "zile"} la rând!` : "Niciun streak activ"}
@@ -74,8 +75,8 @@ export type RandClasament = {
 export function CardClasament({ randuri }: { randuri: RandClasament[] }) {
   return (
     <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-      <h3 className="text-sm font-bold text-foreground">
-        <span aria-hidden="true">🏆</span> Clasament (Leaderboard)
+      <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+        <IconTrofeu className="w-5 h-5 text-amber-500" /> Clasament (Leaderboard)
       </h3>
 
       {randuri.length ? (

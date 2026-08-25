@@ -1,27 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { intreabaAsistentDemo } from "@/app/actions/ai-demo";
 
 export default function AiAssistantWidget() {
   const [deschis, setDeschis] = useState(false);
   const [intrebare, setIntrebare] = useState("");
   const [raspuns, setRaspuns] = useState<string | null>(null);
+  const [eroare, setEroare] = useState<string | null>(null);
   const [seIncarca, setSeIncarca] = useState(false);
 
-  const intreaba = (e: React.FormEvent) => {
+  const intreaba = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!intrebare.trim()) return;
+    if (!intrebare.trim() || seIncarca) return;
+
     setSeIncarca(true);
     setRaspuns(null);
+    setEroare(null);
 
-    setTimeout(() => {
+    try {
+      const res = await intreabaAsistentDemo(intrebare);
+      if (res.ok && res.raspuns) {
+        setRaspuns(res.raspuns);
+      } else {
+        setEroare(res.eroare ?? "A apărut o eroare la comunicarea cu asistentul AI.");
+      }
+    } catch (err) {
+      console.error("Eroare AI Widget:", err);
+      setEroare("Serviciul AI este temporar indisponibil. Încearcă din nou mai târziu.");
+    } finally {
       setSeIncarca(false);
-      setRaspuns(
-        `🤖 **Profesor AI:** Excelentă întrebare! În Python, ` +
-          `\`for i in range(1, 6)\` generează o secvență de numere de la 1 la 5. ` +
-          `Dacă ai nevoie de ajutor la orice exercițiu, te ajut pas cu pas!`
-      );
-    }, 800);
+    }
   };
 
   return (
@@ -31,7 +40,7 @@ export default function AiAssistantWidget() {
           🤖
         </div>
         <div>
-          <h3 className="font-extrabold text-slate-900 text-sm">Profesor Asistent AI</h3>
+          <h3 className="font-extrabold text-slate-900 text-sm">Profesor Asistent AI (Demo)</h3>
           <p className="text-xs text-slate-500 font-medium leading-snug">
             Ai o întrebare? Îți ofer răspunsuri, sfaturi și exemple de cod!
           </p>
@@ -53,6 +62,7 @@ export default function AiAssistantWidget() {
             value={intrebare}
             onChange={(e) => setIntrebare(e.target.value)}
             placeholder="Ex: Cum funcționează bucla for?"
+            maxLength={300}
             className="w-full rounded-xl bg-slate-50 border border-slate-300 px-3 py-2 text-xs font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500"
           />
           <div className="flex gap-2">
@@ -68,17 +78,29 @@ export default function AiAssistantWidget() {
               onClick={() => {
                 setDeschis(false);
                 setRaspuns(null);
+                setEroare(null);
               }}
               className="rounded-xl bg-slate-100 text-slate-600 px-3 py-2 text-xs hover:bg-slate-200"
             >
               ✕
             </button>
           </div>
+
           {raspuns && (
             <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-3 text-xs text-indigo-950 font-sans leading-relaxed animate-fadeIn">
-              {raspuns}
+              <strong>🤖 Profesor AI:</strong> {raspuns}
             </div>
           )}
+
+          {eroare && (
+            <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 text-xs text-amber-900 font-sans leading-relaxed animate-fadeIn">
+              ⚠️ {eroare}
+            </div>
+          )}
+
+          <p className="text-[10px] text-slate-400 text-center font-medium pt-1">
+            Ai o întrebare gratuită pe zi. Creează-ți un cont pentru acces nelimitat (în limita planului tău).
+          </p>
         </form>
       )}
     </div>

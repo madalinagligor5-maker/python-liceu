@@ -1,5 +1,8 @@
 "use client";
 
+import IconMeniu from "@/components/icons/IconMeniu";
+import IconInchide from "@/components/icons/IconInchide";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -77,7 +80,7 @@ export default function HeaderNav() {
         className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0"
         aria-label="Deschide Meniu Mobil"
       >
-        <span className="text-xl font-black">☰</span>
+        <IconMeniu className="h-6 w-6 text-[#1E2430]" />
       </button>
 
       {/* 100% FULL-SCREEN MOBILE OVERLAY (Acoperă tot ecranul) */}
@@ -104,7 +107,7 @@ export default function HeaderNav() {
                 className="flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-[#EBE7DF] text-slate-900 shadow-sm active:scale-95 transition"
                 aria-label="Închide Meniu"
               >
-                <span className="text-xl font-black">✕</span>
+                <IconInchide className="h-5 w-5 text-slate-900" />
               </button>
             </div>
 
