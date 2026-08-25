@@ -36,11 +36,11 @@ export default function CelebrareModul({
       <div className="flex items-center gap-4 rounded-2xl border border-amber-400 bg-white p-4 shadow-2xl animate-celebrateBurst text-slate-900">
         <Mascota size={56} eticheta="Mascotă fericită" />
         <div>
-          <div className="flex items-center gap-1.5 font-black text-xs text-amber-600 uppercase tracking-wider">
-            <IconXp className="w-4 h-4 text-amber-500" />
+          <div className="flex items-center gap-1.5 font-black text-xs text-blue-600 uppercase tracking-wider">
+            <IconXp className="w-4 h-4 text-blue-500" />
             <span>+{xp} XP Câștigați!</span>
           </div>
-          <p className="text-sm font-extrabold text-slate-900 mt-0.5">{titlu}</p>
+          <p className="text-sm font-extrabold text-slate-950 mt-0.5">{titlu}</p>
           <p className="text-[11px] text-slate-500 font-medium">Click pentru a închide</p>
         </div>
       </div>

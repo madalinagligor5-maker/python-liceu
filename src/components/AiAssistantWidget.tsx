@@ -36,12 +36,12 @@ export default function AiAssistantWidget() {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-lg text-slate-900">
       <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 border border-indigo-200 text-2xl shrink-0">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 border border-blue-200 text-2xl shrink-0">
           🤖
         </div>
         <div>
-          <h3 className="font-extrabold text-slate-900 text-sm">Profesor Asistent AI (Demo)</h3>
-          <p className="text-xs text-slate-500 font-medium leading-snug">
+          <h3 className="font-extrabold text-slate-950 text-sm">Profesor Asistent AI (Demo)</h3>
+          <p className="text-xs text-slate-600 font-medium leading-snug">
             Ai o întrebare? Îți ofer răspunsuri, sfaturi și exemple de cod!
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function AiAssistantWidget() {
       {!deschis ? (
         <button
           onClick={() => setDeschis(true)}
-          className="mt-3.5 w-full rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs py-2.5 shadow-sm transition active:scale-95 flex items-center justify-center gap-1.5"
+          className="mt-3.5 w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs py-2.5 shadow-sm transition active:scale-95 flex items-center justify-center gap-1.5"
         >
           <span>Întreabă-mă</span>
           <span className="text-amber-300">✨</span>
@@ -87,7 +87,7 @@ export default function AiAssistantWidget() {
           </div>
 
           {raspuns && (
-            <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-3 text-xs text-indigo-950 font-sans leading-relaxed animate-fadeIn">
+            <div className="rounded-xl bg-blue-50 border border-blue-200 p-3 text-xs text-blue-950 font-sans leading-relaxed animate-fadeIn">
               <strong>🤖 Profesor AI:</strong> {raspuns}
             </div>
           )}

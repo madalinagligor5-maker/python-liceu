@@ -94,7 +94,7 @@ export default function HeroCodeRunner() {
           <span className="h-3 w-3 rounded-full bg-red-500/80" />
           <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
           <span className="h-3 w-3 rounded-full bg-green-500/80" />
-          <div className="ml-3 flex items-center gap-1.5 rounded-lg bg-[#313244]/80 px-3 py-1 text-xs font-mono text-indigo-300 border border-slate-700/50">
+          <div className="ml-3 flex items-center gap-1.5 rounded-lg bg-[#313244]/80 px-3 py-1 text-xs font-mono text-blue-300 border border-slate-700/50">
             <span>🐍</span> main.py
           </div>
         </div>

@@ -137,10 +137,10 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
           <Link
             href="/curriculum"
-            className="flex items-center gap-2 rounded-full bg-indigo-50 border border-indigo-200 px-4 py-1.5 text-xs font-bold text-indigo-900 hover:bg-indigo-100 transition shadow-xs"
+            className="flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-1.5 text-xs font-bold text-blue-900 hover:bg-blue-100 transition shadow-xs"
           >
             <span>🎓 Academia Liceu</span>
-            <span className="text-indigo-700 font-semibold">Clasele IX–XII</span>
+            <span className="text-blue-700 font-semibold">Clasele IX–XII</span>
           </Link>
           <Link
             href="/kids/junior"

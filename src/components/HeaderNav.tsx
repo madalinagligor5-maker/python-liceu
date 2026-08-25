@@ -120,7 +120,7 @@ export default function HeaderNav() {
 
             {/* Titlu meniu */}
             <div className="flex items-center justify-between pt-1">
-              <span className="text-xs font-black uppercase tracking-widest text-indigo-900">
+              <span className="text-xs font-black uppercase tracking-widest text-blue-900">
                 Toate Cursurile & Opțiunile
               </span>
               <span className="text-xs text-[#525B6C] font-semibold">
