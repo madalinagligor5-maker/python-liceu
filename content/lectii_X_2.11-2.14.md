@@ -15,6 +15,12 @@ print(note["Ana"])          # 9
 print("Ion" in note)        # False
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.11.3 Citește și prezice
 
 ```python
@@ -85,6 +91,12 @@ print(note.values())          # dict_values([9, 7])
 
 Metode: `.get()`, `.keys()`, `.values()`, `.items()`, `in` (verifică cheia).
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.12.3 Citește și prezice
 
 ```python
@@ -152,6 +164,12 @@ print(punct[0])       # 3
 ```
 
 Tuplurile pot fi chei de dicționar (listele nu pot).
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.13.3 Citește și prezice
 
@@ -223,6 +241,12 @@ print((1,) * 3)         # (1, 1, 1) (repetare)
 Operatori: acces prin index, `in`, `+` (concatenare), `*` (repetare). Metode: `count()`, `index()`.
 
 **Atenție:** un tuplu cu un singur element se scrie `(1,)` — virgula e obligatorie!
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.14.3 Citește și prezice
 

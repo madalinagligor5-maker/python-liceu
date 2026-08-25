@@ -36,9 +36,29 @@ adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}
 
 Scrie DFS iterativ (cu o stivă explicită) care afișează ordinea vizitării.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.11.5 Exerciții independente
 
 Detectează dacă un graf neorientat conține un ciclu, folosind DFS.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.11.6 Verifică-ți înțelegerea
 
@@ -84,6 +104,12 @@ Complexitate: O(n³). Bun pentru grafuri cu muchii (existență drum), nu neapă
 Roy-Warshall lucrează pe matrice de adiacență (0/1 pentru existență). Pentru cost minim folosești Roy-Floyd (3.14).
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.12.3 Citește și prezice
 
 ```python
@@ -95,9 +121,29 @@ a = [[0,1,0],[0,0,1],[1,0,0]]
 
 Implementează Roy-Warshall pe o matrice de adiacență citită ca listă de liste.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.12.5 Exerciții independente
 
 Folosește rezultatul pentru a număra perechile de vârfuri între care există drum.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.12.6 Verifică-ți înțelegerea
 
@@ -155,9 +201,29 @@ graf = {1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}
 
 Implementează Dijkstra și afișează distanța minimă de la sursă la fiecare vârf.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.13.5 Exerciții independente
 
 Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul fiecărui vârf.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.13.6 Verifică-ți înțelegerea
 
@@ -213,9 +279,29 @@ d = [[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]]
 
 Implementează Roy-Floyd pe o matrice de costuri cu infinit pentru muchii lipsă.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.14.5 Exerciții independente
 
 Detectează dacă graful are un ciclu de cost negativ (verifică dacă vreo diagonală devine negativă).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.14.6 Verifică-ți înțelegerea
 
@@ -278,9 +364,29 @@ graf = {1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}
 
 Implementează Prim și returnează costul total al MST-ului.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.15.5 Exerciții independente
 
 Modifică să returneze și lista muchiilor alese (nu doar costul).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.15.6 Verifică-ți înțelegerea
 

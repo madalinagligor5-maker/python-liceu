@@ -42,14 +42,14 @@ export async function evalueazaCodCuAI(
   }
 
   const isPremium = dbMeta?.subscription_status === "active";
-  const limit = isPremium ? 15 : 1;
+  const limit = isPremium ? 15 : 3;
 
   if (requestsToday >= limit) {
     return {
       ok: false,
       eroare: isPremium
         ? "Ai atins limita zilnică de evaluări AI (15/zi). Te așteptăm mâine pentru noi provocări!"
-        : "Ai atins limita zilnică de evaluări AI pentru contul gratuit (1/zi). Abonează-te la Premium pentru 15 evaluari zilnice!",
+        : "Ai atins limita zilnică de evaluări AI pentru contul gratuit (3/zi). Abonează-te la Premium pentru 15 evaluări zilnice!",
     };
   }
 

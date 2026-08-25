@@ -40,9 +40,29 @@ n2.urmator = n3
 
 Construiește o listă simplu înlănțuită cu valorile 5, 8, 12 și afișeaz-o parcurgând de la `n1` la `None`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.1.5 Exerciții independente
 
 Scrie o funcție `lungime(nod_inceput)` care returnează numărul de noduri dintr-o listă înlănțuită.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.1.6 Verifică-ți înțelegerea
 
@@ -96,6 +116,12 @@ def adauga_sfarsit(cap, valoare):
 La eliminarea capului, noul cap devine `cap.urmator`. Dacă uiți să actualizezi referința listei, pierzi întreaga listă!
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.2.3 Citește și prezice
 
 ```python
@@ -110,9 +136,29 @@ cap = adauga_inceput(cap, 0)
 
 Scrie `elimina_valoare(cap, x)` care elimină primul nod cu valoarea `x` dintr-o listă.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.2.5 Exerciții independente
 
 Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea `y` imediat după primul nod cu valoarea `x`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.2.6 Verifică-ți înțelegerea
 
@@ -178,9 +224,29 @@ def f(n):
 
 Scrie un backtracking care generează toate șirurile de lungime `n` formate doar din 'A' și 'B'.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.3.5 Exerciții independente
 
 Modifică generatorul de mai sus să nu permită două 'A' alăturate.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.3.6 Verifică-ți înțelegerea
 
@@ -228,6 +294,12 @@ def regine(n):
     bk(0)
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.4.3 Citește și prezice
 
 ```python
@@ -239,9 +311,29 @@ def regine(n):
 
 Scrie un program care afișează toate permutările listei `[1, 2, 3]`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.4.5 Exerciții independente
 
 Modifică problema reginelor să returneze numărul de soluții, nu să le afișeze.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.4.6 Verifică-ți înțelegerea
 
@@ -294,9 +386,29 @@ Folosește backtracking generalizat când vrei să generezi soluții și să le 
 
 Scrie un backtracking care generează toate combinațiile de `k` elemente dintr-o listă de `n`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.5.5 Exerciții independente
 
 Scrie un backtracking care găsește o submulțime cu suma exact `t` dintr-o listă de numere.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.5.6 Verifică-ți înțelegerea
 

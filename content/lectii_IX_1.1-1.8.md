@@ -224,6 +224,20 @@ temperatura = 33
 
 **Exercițiul 2.** Scrie pseudocodul (nu codul!) pentru: „dacă un elev are media peste 9, primește calificativul Excelent, altfel primește Bine".
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 1.2.5 Exerciții independente
 
 **Exercițiul 1.** Scrie pseudocodul *și* codul Python pentru: „citește un număr; dacă e mai mare decât 100, afișează 'mare', altfel afișează 'mic'".
@@ -500,6 +514,12 @@ O greșeală frecventă: elevii cred că o variabilă locală „rămâne" după
 :::atentie
 ## Capcană: variabila locală nu supraviețuiește
 O variabilă creată în interiorul unei funcții dispare când funcția se termină. Dacă vrei să o folosești în altă parte, fie o întorci cu `return`, fie o faci globală. Altfel, încercarea de a o citi în afara funcției dă eroare.
+:::
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
 :::
 
 ### 🔮 1.5.3 Citește și prezice
@@ -822,6 +842,12 @@ print(cmmdc_impartiri(48, 18))  # 6
 ```
 
 Varianta cu împărțiri e cea folosită în practică — vezi legătura cu modulul despre eficiența algoritmilor (1.3): face mult mai puțini pași decât varianta cu scăderi, mai ales pentru numere mari.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.8.3 Citește și prezice
 

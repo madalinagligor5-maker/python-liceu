@@ -17,6 +17,18 @@ Student(id, nume, varsta)
 Curs(cod, denumire, credite)
 ```
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.1
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 O entitate = o "tabelă" în SQL; un atribut = o "coloană"; o înregistrare = un "rând".
 :::
@@ -33,9 +45,29 @@ O entitate = o "tabelă" în SQL; un atribut = o "coloană"; o înregistrare = u
 
 Definește în Python (ca dicționar) o entitate `Carte` cu atributele `isbn`, `titlu`, `autor`, `an`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.1.5 Exerciții independente
 
 Scrie o listă de dicționare care să reprezinte 3 cărți, fiecare cu cele 4 atribute.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.1.6 Verifică-ți înțelegerea
 
@@ -66,6 +98,18 @@ template: # Scrie aici codul
 
 Relațiile M:N se rezolva printr-o **tabelă asociativă** (ex. `Inscriere(student_id, curs_id)`).
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.2
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Cardinalitatea M:N nu se poate pune direct ca cheie externă într-o singură tabelă — de aia folosim tabela asociativă.
 :::
@@ -82,9 +126,29 @@ Cardinalitatea M:N nu se poate pune direct ca cheie externă într-o singură ta
 
 Modelați relația 1:N "Un autor scrie multe cărți" cu două tabele (`Autor`, `Carte`).
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.2.5 Exerciții independente
 
 Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.2.6 Verifică-ți înțelegerea
 
@@ -117,6 +181,18 @@ template: # Scrie aici codul
 - Relație 1:N → cheie externă în tabela "N"
 - Relație M:N → tabelă nouă cu două chei externe
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.3
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 La mapare, ordinalitatea contează: pentru 1:N, cheia externă merge în partea "N" (cea cu multe).
 :::
@@ -133,9 +209,29 @@ La mapare, ordinalitatea contează: pentru 1:N, cheia externă merge în partea 
 
 Scrie instrucțiunile `CREATE TABLE` pentru `Student` și `Curs` cu relația 1:N.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.3.5 Exerciții independente
 
 Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.3.6 Verifică-ți înțelegerea
 
@@ -173,8 +269,26 @@ CREATE TABLE Student (
 );
 ```
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.4
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::atentie
 Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza (sau va șterge în cascadă, dacă e设定 așa). Asta e integritatea referențială.
+:::
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
 :::
 
 ### 🔮 4.4.3 Citește și prezice
@@ -185,13 +299,43 @@ Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza 
 -- cu curs_id=99 dar Curs(id=99) nu exista?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.4.4 Exerciții ghidate
 
 Scrie `CREATE TABLE` pentru `Comanda(id, data, client_id REFERENCES Client(id))` cu constrângeri.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.4.5 Exerciții independente
 
 Adaugă o constrângere `CHECK` care să nu permită vârsta negativă la `Student`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.4.6 Verifică-ți înțelegerea
 
@@ -222,6 +366,18 @@ Ai definit tabele cu chei și constrângeri (4.4). Dar cum aranjăm coloanele ca
 
 Exemplu FN3 încălcat: `Student(id, nume, oras, tara)` — `tara` depinde de `oras`, nu direct de `id`. Se separă în `Oras(id, nume, tara)`.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.5
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Regula practică: fiecare tabelă descrie un singur tip de lucru. Dacă o coloană depinde de altceva decât cheia, mut-o în alt tabel.
 :::
@@ -238,9 +394,29 @@ Regula practică: fiecare tabelă descrie un singur tip de lucru. Dacă o coloan
 
 Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane într-o singură celulă.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.5.5 Exerciții independente
 
 Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.5.6 Verifică-ți înțelegerea
 

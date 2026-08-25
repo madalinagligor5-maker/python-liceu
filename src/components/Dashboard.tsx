@@ -7,6 +7,7 @@ import {
   CardCitat,
   CardClasament,
   CardProvocareZilei,
+  CardRecapitulareSpatiata,
   CardStreakSaptamana,
   type RandClasament,
 } from "@/components/PanouDreapta";
@@ -25,11 +26,17 @@ export default function Dashboard({
   progres,
   clasaSelectata,
   provocareRezolvata = false,
+  recapitulare = null,
 }: {
   prenume: string;
   progres: ProgresUtilizator;
   clasaSelectata: string;
   provocareRezolvata?: boolean;
+  recapitulare?: {
+    sublectieSlug: string;
+    intrebare: { intrebare: string; variante: string[]; corect: number };
+    xp: number;
+  } | null;
 }) {
   const unitati = construiesteDrum(clasaSelectata, progres.lectiiFinalizate);
   const urmatoarea = urmatoareaLectie(clasaSelectata, progres.lectiiFinalizate);
@@ -175,6 +182,18 @@ export default function Dashboard({
           <aside className="space-y-4">
             <CardStreakSaptamana zile={progres.streakZile} />
             <CardClasament randuri={clasament} />
+
+            {/* Card Recapitulare Spațiată (Apare doar dacă sunt lecții scadențe de revizuit azi) */}
+            {recapitulare && (
+              <CardRecapitulareSpatiata
+                sublectieSlug={recapitulare.sublectieSlug}
+                intrebare={recapitulare.intrebare.intrebare}
+                variante={recapitulare.intrebare.variante}
+                corect={recapitulare.intrebare.corect}
+                xp={recapitulare.xp}
+              />
+            )}
+
             <CardProvocareZilei
               intrebare={
                 provocare

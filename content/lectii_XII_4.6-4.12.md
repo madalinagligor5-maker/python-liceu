@@ -23,6 +23,12 @@ conn.close()        # inchide legatura
 Orice modificare (INSERT/UPDATE/DELETE/DDL) trebuie urmată de `conn.commit()`, altfel se pierde la închidere!
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 4.6.3 Citește și prezice
 
 ```python
@@ -38,9 +44,29 @@ cur.execute("INSERT INTO T VALUES (5)")
 
 Creează o bază de date `agenda.db` cu tabela `Persoana(id, nume, telefon)` folosind `sqlite3`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.6.5 Exerciții independente
 
 Scrie o funcție `adauga(conn, nume, telefon)` care inserează și face commit.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.6.6 Verifică-ți înțelegerea
 
@@ -73,6 +99,18 @@ SELECT DISTINCT oras FROM Student;        -- valori unice
 
 În Python: `cur.execute("SELECT ...")` urmat de `cur.fetchall()` (listă de tupluri) sau `cur.fetchone()`.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.7
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 `SELECT *` ia toate coloanele — în producție e mai bine să numeri explicit coloanele (proiecție) pentru claritate și performanță.
 :::
@@ -85,13 +123,43 @@ SELECT DISTINCT oras FROM Student;        -- valori unice
 -- Care e primul rezultat?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.7.4 Exerciții ghidate
 
 Scrie o interogare care afișează numele studenților mai mari de 18 ani, ordonați alfabetic.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.7.5 Exerciții independente
 
 Folosind `sqlite3` în Python, creează tabela, inserează 3 rânduri și afișează cele ordonate.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.7.6 Verifică-ți înțelegerea
 
@@ -122,8 +190,26 @@ SELECT oras, COUNT(*) FROM Student GROUP BY oras;
 SELECT oras, AVG(varsta) FROM Student GROUP BY oras HAVING AVG(varsta) > 17;
 ```
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.8
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::atentie
 `WHERE` filtrează înainte de grupare; `HAVING` filtrează după grupare. Nu poți folosi `WHERE` pe o funcție agregată.
+:::
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
 :::
 
 ### 🔮 4.8.3 Citește și prezice
@@ -134,13 +220,43 @@ SELECT oras, AVG(varsta) FROM Student GROUP BY oras HAVING AVG(varsta) > 17;
 -- Care e suma pentru 'A'?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.8.4 Exerciții ghidate
 
 Scrie o interogare care returnează numărul de studenți pe fiecare oraș.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.8.5 Exerciții independente
 
 Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studenți.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.8.6 Verifică-ți înțelegerea
 
@@ -177,6 +293,18 @@ SELECT nume FROM Student
 WHERE id IN (SELECT student_id FROM Inscriere WHERE curs_id = 1);
 ```
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.9
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 INNER JOIN returnează doar rândurile cu potrivire în ambele tabele. LEFT JOIN păstrează toate din stânga, chiar dacă n-au potrivire.
 :::
@@ -188,13 +316,43 @@ INNER JOIN returnează doar rândurile cu potrivire în ambele tabele. LEFT JOIN
 -- INNER JOIN Student-Incriere: cate randuri are rezultatul?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.9.4 Exerciții ghidate
 
 Scrie un JOIN care afișează numele studenților și denumirea cursurilor la care sunt înscriși.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.9.5 Exerciții independente
 
 Scrie o subinterogare care returnează studenții înscriși la un curs dat.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.9.6 Verifică-ți înțelegerea
 
@@ -226,8 +384,26 @@ DELETE FROM Student WHERE varsta < 16;
 
 În Python, toate se execută cu `cur.execute(...)` + `conn.commit()`.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.10
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::atentie
 `UPDATE`/`DELETE` fără `WHERE` modifică/toată tabela! Verifică mereu condiția înainte.
+:::
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
 :::
 
 ### 🔮 4.10.3 Citește și prezice
@@ -238,13 +414,43 @@ DELETE FROM Student WHERE varsta < 16;
 -- Cat are Ana acum?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.10.4 Exerciții ghidate
 
 Scrie cod Python care inserează 3 studenți și apoi actualizează vârsta unuia.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.10.5 Exerciții independente
 
 Șterge toate înregistrările cu vârsta mai mică de 16, folosind `cur.execute` + `commit`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.10.6 Verifică-ți înțelegerea
 
@@ -276,6 +482,18 @@ DROP TABLE Student;  -- sterge tabela complet
 
 `ALTER TABLE` adaugă/modifică/șterge coloane (în funcție de sistemul de gestiune a bazei de date).
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.11
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 DDL e pentru "scheletul" bazei. Schimbările DDL sunt rare, față de DML (care e zilnic).
 :::
@@ -287,13 +505,43 @@ DDL e pentru "scheletul" bazei. Schimbările DDL sunt rare, față de DML (care 
 -- Cat coloane are T acum?
 ```
 
+
+```python
+# Analizează codul și prezice output-ul:
+x = 5
+y = 10
+rezultat = x + y * 2
+print("Rezultat obținut:", rezultat)
+```
+
+
 ### 🤝 4.11.4 Exerciții ghidate
 
 Creează tabela `Produs(id, nume, pret)` apoi adaugă coloana `stoc`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.11.5 Exerciții independente
 
 Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.11.6 Verifică-ți înțelegerea
 
@@ -345,9 +593,29 @@ Tranzacțiile garantează consistența: dacă transferul de bani eșuează la ju
 
 Scrie un transfer bancar cu `try/except` și `commit`/`rollback`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.12.5 Exerciții independente
 
 Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO SAVEPOINT`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.12.6 Verifică-ți înțelegerea
 

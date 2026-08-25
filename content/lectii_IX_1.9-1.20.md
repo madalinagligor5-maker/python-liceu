@@ -54,6 +54,12 @@ def din_baza(sir, b):
 print(din_baza("1101", 2))  # 13
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.9.3 Citește și prezice
 
 ```python
@@ -155,6 +161,12 @@ def putere_rapida(b, e):
 print(putere_rapida(2, 10))  # 1024
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.10.3 Citește și prezice
 
 ```python
@@ -245,6 +257,12 @@ print(p.distanta_origine()) # 5.0
 ```
 
 `__init__` e constructorul — se apelează automat la crearea obiectului. `self` referă la obiectul curent.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.11.3 Citește și prezice
 
@@ -342,6 +360,12 @@ buton.pack()
 fereastra.mainloop()
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.12.3 Citește și prezice
 
 ```python
@@ -436,6 +460,12 @@ tk.Label(f, text="Vârsta:").grid(row=1, column=0)
 tk.Entry(f).grid(row=1, column=1)
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.13.3 Citește și prezice
 
 ```python
@@ -520,6 +550,12 @@ with open("note.txt", "r", encoding="utf-8") as f:
     for linie in f:
         print(linie.strip())
 ```
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.14.3 Citește și prezice
 
@@ -606,6 +642,12 @@ coada.append("B")
 print(coada.popleft())  # A (primul adăugat)
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.15.3 Citește și prezice
 
 ```python
@@ -691,6 +733,12 @@ L.index(5)           # pozitia lui 5
 L.count(1)           # de câte ori apare 1
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.16.3 Citește și prezice
 
 ```python
@@ -771,6 +819,12 @@ def cauta(L, x):
 
 print(cauta([5, 2, 8], 8))  # 2
 ```
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.17.3 Citește și prezice
 
@@ -855,6 +909,12 @@ perechi = [(x, y) for x in range(5) for y in range(5) if x < y]
 print(perechi)
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 1.18.3 Citește și prezice
 
 ```python
@@ -933,6 +993,12 @@ print(selectie_minim([5, 2, 9, 1, 5, 6]))  # [1, 2, 5, 5, 6, 9]
 ```
 
 Complexitate: O(n²) — pentru fiecare poziție parcurgem restul.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.19.3 Citește și prezice
 
@@ -1036,6 +1102,12 @@ def counting_sort(lista, max_val):
 
 print(counting_sort([2, 3, 2, 1, 3], 3))  # [1, 2, 2, 3, 3]
 ```
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 1.20.3 Citește și prezice
 

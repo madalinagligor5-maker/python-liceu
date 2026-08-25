@@ -65,6 +65,20 @@ Fii atent la semnele de două puncte (:) de la sfârșitul liniilor cu if, elif 
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P10.1.5 Exerciții independente
 
 **Exercițiul 1.** Verifică dacă culoarea 'rosu' se află în lista ["rosu", "verde"].

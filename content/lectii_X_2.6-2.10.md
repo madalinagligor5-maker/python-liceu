@@ -18,6 +18,12 @@ Operatori: `in` (apartenență subșir), `+` (concatenare), `*` (repetare), comp
 
 **Atenție:** `replace()`/`upper()` etc. returnează un șir nou — nu modifică originalul!
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.6.3 Citește și prezice
 
 ```python
@@ -84,6 +90,12 @@ print(a[0:2])         # ab (slicing)
 print("abc" < "abd")  # True (comparare lexicografică)
 print("a" in "racheta")  # True
 ```
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.7.3 Citește și prezice
 
@@ -160,6 +172,12 @@ print(cezar("xyz", 1))   # yza
 ```
 
 **Eroare frecventă:** omiterea `% 26` → literele trec de Z și produc caractere invalide.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.8.3 Citește și prezice
 
@@ -246,6 +264,12 @@ print(vigenere("criptare", "cheie"))
 
 **Eroare frecventă:** uitarea ciclării cheii (`i % len(cheie)`) când mesajul e mai lung.
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.9.3 Citește și prezice
 
 ```python
@@ -285,6 +309,20 @@ def decriptare_vigenere(text, cheie):
 ```
 
 **Exercițiul 2.** Testează că `decriptare_vigenere(vigenere(t, k), k) == t` pentru un text dat.
+
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
 
 ### 🎯 2.9.5 Exerciții independente
 
@@ -339,6 +377,12 @@ print(fletcher([72, 101, 108, 108, 111]))  # "Hello"
 ```
 
 Dacă un octet se schimbă, suma se schimbă → datele au fost alterate.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.10.3 Citește și prezice
 

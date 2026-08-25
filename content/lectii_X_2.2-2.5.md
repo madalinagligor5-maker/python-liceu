@@ -25,6 +25,12 @@ print(interclaseaza([1, 4, 7], [2, 3, 8]))  # [1, 2, 3, 4, 7, 8]
 
 Interclasarea e baza **sortării prin interclasare** (merge sort, modulul 2.19).
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.2.3 Citește și prezice
 
 ```python
@@ -114,6 +120,12 @@ a.remove(2)     # elimină; crapă dacă nu există
 
 Metode uzuale: `add(x)`, `remove(x)`/`discard(x)`, `union()`, `intersection()`, `difference()` (variante-metodă ale operatorilor).
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.4.3 Citește și prezice
 
 ```python
@@ -182,6 +194,12 @@ nou = "H" + text[1:]   # corect: șir nou
 print(nou)              # Hello
 print(text[1:4])        # ell (slicing)
 ```
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.5.3 Citește și prezice
 

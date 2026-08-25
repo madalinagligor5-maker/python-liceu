@@ -38,9 +38,29 @@ print(fib(10))
 
 Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o grilă `m×n`, mișcând doar dreapta sau jos, folosind PD.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.6.5 Exerciții independente
 
 Scrie PD pentru "numărul de moduri de a face suma `s` cu monede dintr-o listă dată".
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.6.6 Verifică-ți înțelegerea
 
@@ -74,6 +94,18 @@ Un **graf** G = (V, E) are:
 Graf **orientat**: muchiile au sens (A→B ≠ B→A). Graf **neorientat**: muchiile n-au sens.
 **Gradul** unui vârf = numărul de muchii care îl ating. În grafurile orientate: grad intrare / grad ieșire.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 3.7
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Multe probleme reale sunt grafuri: rețele sociale (noduri=oameni), hărți (noduri=orașe), dependențe de task-uri.
 :::
@@ -89,9 +121,29 @@ Multe probleme reale sunt grafuri: rețele sociale (noduri=oameni), hărți (nod
 
 Reprezintă un graf cu 4 vârfuri și muchiile (1,2), (2,3), (3,4), (1,4) și calculează gradul fiecărui vârf.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.7.5 Exerciții independente
 
 Scrie o funcție care verifică dacă un graf neorientat e **complet** (orice pereche de vârfuri e legată).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.7.6 Verifică-ți înțelegerea
 
@@ -139,6 +191,12 @@ adiacenta = {
 La grafuri cu multe vârfuri și puține muchii (sparse), lista de adiacență e mult mai eficientă decât matricea.
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.8.3 Citește și prezice
 
 ```python
@@ -150,9 +208,29 @@ adiacenta = {1:[2,3], 2:[1], 3:[1,2]}
 
 Scrie o funcție care convertește o listă de muchii într-o listă de adiacență.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.8.5 Exerciții independente
 
 Scrie o funcție care verifică dacă există muchie între două vârfuri date, folosind lista de adiacență.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.8.6 Verifică-ți înțelegerea
 
@@ -185,6 +263,18 @@ output: 2
 - **Eulerian**: are un circuit care trece prin fiecare muchie exact o dată (toate gradele pare, sau 0/2 impare pentru circuit/ciclu).
 - **Hamiltonian**: are un ciclu care vizitează fiecare vârf exact o dată.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 3.9
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Euler = muchii (muchie = latură), Hamilton = vârfuri (ham = nod). Un truc să ții minte: E=muchii, H=vârfuri.
 :::
@@ -199,9 +289,29 @@ Euler = muchii (muchie = latură), Hamilton = vârfuri (ham = nod). Un truc să 
 
 Scrie o funcție care verifică dacă un graf neorientat e conex (parcurge din orice vârf și vezi dacă ajungi la toate).
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.9.5 Exerciții independente
 
 Scrie o funcție care verifică dacă un graf are toate gradele pare (condiție pentru circuit eulerian).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.9.6 Verifică-ți înțelegerea
 
@@ -261,9 +371,29 @@ adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}
 
 Scrie BFS care returnează drumul cel mai scurt (lista de vârfuri) de la start la o țintă.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.10.5 Exerciții independente
 
 Numără componentele conexe ale unui graf folosind BFS repetat.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.10.6 Verifică-ți înțelegerea
 

@@ -62,6 +62,20 @@ Dacă uiți să modifici variabila din interiorul buclei while (de exemplu, uit�
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P10.2.5 Exerciții independente
 
 **Exercițiul 1.** Folosește continue pentru a sări peste afișarea numărului 2.

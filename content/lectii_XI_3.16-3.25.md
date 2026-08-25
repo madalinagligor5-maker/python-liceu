@@ -42,9 +42,29 @@ muchii = [(1,2,1),(2,3,2),(1,3,4)]
 
 Implementează Kruskal cu Union-Find și returnează costul MST.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.16.5 Exerciții independente
 
 Returnează lista muchiilor alese de Kruskal (nu doar costul).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.16.6 Verifică-ți înțelegerea
 
@@ -79,6 +99,18 @@ Un **arbore** are:
 
 Arborii apar natural: ierarhii, sisteme de fișiere, arborele de decizie, arborele binar de căutare.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 3.17
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Orice arbore conex cu n vârfuri are exact n−1 muchii. Dacă adaugi o muchie, apare un ciclu; dacă o scoți, se deconectează.
 :::
@@ -93,9 +125,29 @@ Orice arbore conex cu n vârfuri are exact n−1 muchii. Dacă adaugi o muchie, 
 
 Scrie o funcție care calculează înălțimea unui arbore reprezentat prin `parinte[v]`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.17.5 Exerciții independente
 
 Numără frunzele unui arbore (nodurile care nu apar ca părinte al nimănui).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.17.6 Verifică-ți înțelegerea
 
@@ -145,6 +197,12 @@ def inserare(rad, v):
 În BST, ordinea de inserare contează: aceleași valori inserate în altă ordine dau arbori cu forme diferite (dar aceeași mulțime).
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.18.3 Citește și prezice
 
 ```python
@@ -158,9 +216,29 @@ for x in [5, 3, 8, 1, 4]:
 
 Scrie `inserare` și o funcție care verifică dacă un arbore e BST valid.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.18.5 Exerciții independente
 
 Scrie `minim_bst(rad)` care returnează cea mai mică valoare dintr-un BST.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.18.6 Verifică-ți înțelegerea
 
@@ -218,9 +296,29 @@ print(heapq.heappop(h), heapq.heappop(h))
 
 Folosește `heapq` pentru a sorta o listă de numere în ordine crescătoare (Heapsort simplu).
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.19.5 Exerciții independente
 
 Implementează manual (fără `heapq`) operația `push` într-un min-heap reprezentat ca listă.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.19.6 Verifică-ți înțelegerea
 
@@ -275,9 +373,29 @@ def inordine(rad):
 
 Scrie funcțiile `preordine`, `inordine`, `postordine` pentru un arbore binar.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.20.5 Exerciții independente
 
 Calculează înălțimea unui arbore binar folosind postordinea.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.20.6 Verifică-ți înțelegerea
 
@@ -321,6 +439,12 @@ def cauta(rad, v):
 Căutarea e O(h) unde h = înălțimea. Într-un arbore dezechilibrat (lanț), h poate fi O(n) — de asta există AVL/roșu-negru.
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.21.3 Citește și prezice
 
 ```python
@@ -334,9 +458,29 @@ for x in [50, 30, 70, 20, 40]:
 
 Scrie `cauta` și `inserare` (iterativ, nu recursiv) pentru un BST.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.21.5 Exerciții independente
 
 Scrie `sterge(rad, v)` care elimină un nod dintr-un BST păstrând proprietatea.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.21.6 Verifică-ți înțelegerea
 
@@ -396,9 +540,29 @@ print(c.nume, c.sunet())
 
 Creează clasa `Forma` cu atribut `culoare` și clasele `Cerc` și `Patrat` care moștenesc `Forma`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.22.5 Exerciții independente
 
 Adaugă metoda `descriere()` în `Forma` și suprascrie-o în derivate.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.22.6 Verifică-ți înțelegerea
 
@@ -451,6 +615,12 @@ print(c.sold)  # 150
 `self` e obligatoriu în definiția metodei, dar NU la apel (Python îl pune automat: `c.depune(50)` nu `c.depune(c, 50)`).
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 3.23.3 Citește și prezice
 
 ```python
@@ -463,9 +633,29 @@ print(c.sold)
 
 Creează clasa `Produs` cu `nume`, `pret`, `stoc` și metoda `vinde(n)` care scade stocul.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.23.5 Exerciții independente
 
 Adaugă metoda `total()` care returnează `pret * stoc`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.23.6 Verifică-ți înțelegerea
 
@@ -526,9 +716,29 @@ print(a.nume, a.post)
 
 Creează `Vehicul` (cu `__viteza`) și `Bicicleta`/`Masina` care moștenesc, folosind `super()`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.24.5 Exerciții independente
 
 Demonstră name mangling: accesează atributul privat din exterior ca `_Clasa__atribut`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.24.6 Verifică-ți înțelegerea
 
@@ -563,6 +773,18 @@ Principalele paradigme:
 
 Python suportă multiple paradigme — le poți amesteca.
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 3.25
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 Nu e "una e mai bună". Procedural e simplu pentru scripturi; POO e bun pentru sisteme mari; funcționala e elegantă pentru transformări de date.
 :::
@@ -578,9 +800,29 @@ l = [1, 2, 3, 4]
 
 Scrie același program (filtrat numere pare dintr-o listă) în stil procedural și în stil funcțional (`filter`).
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 3.25.5 Exerciții independente
 
 Scrie o clasă `Calculator` (POO) care expune operații ca metode, demonstrând paradigma obiectuală.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 3.25.6 Verifică-ți înțelegerea
 

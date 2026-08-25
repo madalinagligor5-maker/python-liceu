@@ -18,6 +18,12 @@ for elev in elevi:
 
 Combinări frecvente: liste de liste (matrice), liste de tupluri, liste de dicționare, dicționare cu valori-listă.
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.15.3 Citește și prezice
 
 ```python
@@ -90,6 +96,12 @@ print(lista_dict[1]["x"]) # 10
 
 Se recomandă "citirea cu voce tare": `date[2]["note"][1]` = "al 3-lea elev, câmpul note, a 2-a notă".
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.16.3 Citește și prezice
 
 ```python
@@ -157,6 +169,12 @@ print(factorial(4))   # 24
 ```
 
 Orice funcție recursivă are: **caz de bază** (oprește recursivitatea) și **pas recursiv** (reduce problema).
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.17.3 Citește și prezice
 

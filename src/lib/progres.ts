@@ -138,6 +138,68 @@ export function provocareaZilei(lectiiFinalizate: string[]) {
   return { lectie, intrebare, xp: 50 };
 }
 
+/**
+ * Recapitulare spațiată (Spaced Repetition / Leitner System):
+ * Selectează o sublecție deja finalizată pentru care data de recapitulare (urmatoarea_recapitulare)
+ * este scadență (mai veche sau egală cu data/ora curentă).
+ * Întoarce întrebarea din quiz cu o recompensă de 20 XP.
+ */
+export async function getRecapitulareSpatiata(userId: string) {
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return null;
+  }
+
+  const supabase = await creeazaClientServer();
+
+  // Căutăm o lecție finalizată scadență la recapitulare
+  const { data: lectiiScadente } = await supabase
+    .from("progres_lectii")
+    .select("lectie_slug, nivel_leitner, urmatoarea_recapitulare")
+    .eq("user_id", userId)
+    .lte("urmatoarea_recapitulare", new Date().toISOString())
+    .order("urmatoarea_recapitulare", { ascending: true })
+    .limit(5);
+
+  if (!lectiiScadente || lectiiScadente.length === 0) {
+    return null; // Nicio recapitulare scadență azi! Cardul nu se afișează.
+  }
+
+  // Verificăm dacă nu cumva s-a făcut deja recapitularea pe azi pentru una din ele
+  const azi = new Date().toISOString().split("T")[0];
+  const { data: recAzi } = await supabase
+    .from("recapitulari_zilnice")
+    .select("sublectie_slug")
+    .eq("user_id", userId)
+    .eq("data", azi);
+
+  const rezolvateAzi = new Set((recAzi ?? []).map((r) => r.sublectie_slug));
+
+  const candidați = lectiiScadente.filter((l) => !rezolvateAzi.has(l.lectie_slug));
+  if (candidați.length === 0) {
+    return null;
+  }
+
+  const deRecapitulat = candidați[0];
+  const lectieGasita = toateLectiile.find((l) => l.lectie_slug === deRecapitulat.lectie_slug && l.quiz?.length);
+
+  if (!lectieGasita || !lectieGasita.quiz || lectieGasita.quiz.length === 0) {
+    return null;
+  }
+
+  const intrebare = lectieGasita.quiz[0];
+
+  return {
+    lectie: lectieGasita,
+    intrebare,
+    sublectieSlug: deRecapitulat.lectie_slug,
+    nivelLeitner: deRecapitulat.nivel_leitner ?? 1,
+    xp: 20, // 20 XP vs 50 XP (semnal clar că e revizuire)
+  };
+}
+
 /** Streak-ul e "viu" doar dacă ultima activitate e azi sau ieri. */
 export function streakActiv(ultimaActivitate: string | null): boolean {
   if (!ultimaActivitate) return false;

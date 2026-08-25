@@ -61,6 +61,20 @@ Funcția range(3) generează numerele 0, 1 și 2. Ea se oprește întotdeauna î
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P9.1.5 Exerciții independente
 
 **Exercițiul 1.** Afișează indexul și valoarea din listă folosind enumerate pentru lista ["rosu", "verde"].

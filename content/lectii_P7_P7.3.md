@@ -61,6 +61,20 @@ Liniile de sub for trebuie lăsate un pic mai la dreapta (indentare) ca Python s
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P7.3.5 Exerciții independente
 
 **Exercițiul 1.** Afișează unghiul de rotație pentru un pătrat (90).

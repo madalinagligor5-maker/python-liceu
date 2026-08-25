@@ -217,3 +217,97 @@ export function CardProvocareZilei({
     </div>
   );
 }
+
+export function CardRecapitulareSpatiata({
+  sublectieSlug,
+  intrebare,
+  variante,
+  corect,
+  xp = 20,
+}: {
+  sublectieSlug: string;
+  intrebare: string;
+  variante: string[];
+  corect: number;
+  xp?: number;
+}) {
+  const [selectat, setSelectat] = useState<number | null>(null);
+  const [rezolvata, setRezolvata] = useState(false);
+  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleValideaza = async (index: number) => {
+    if (rezolvata || loading) return;
+    setSelectat(index);
+    setLoading(true);
+
+    try {
+      const { valideazaRecapitulareSpatiata } = await import("@/app/actions/gamification");
+      const res = await valideazaRecapitulareSpatiata(sublectieSlug, index, corect);
+      setFeedback({ ok: res.ok, text: res.mesaj });
+      if (res.ok) setRezolvata(true);
+    } catch (e) {
+      console.error(e);
+      setFeedback({ ok: false, text: "Eroare la procesarea răspunsului." });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50/50 to-white p-5 shadow-sm">
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-bold text-indigo-950 flex items-center gap-1.5">
+          <span>📌</span> Recapitulare de azi
+        </h3>
+        <span className="rounded-full bg-indigo-100 px-2.5 py-0.5 text-[10px] font-black text-indigo-900">
+          +{xp} XP (Revizuire)
+        </span>
+      </div>
+
+      <p className="mt-1.5 text-xs text-indigo-800 font-medium">
+        Fixează conceptele din lecțiile finalizate anterior!
+      </p>
+
+      <p className="mt-3 text-sm font-semibold text-slate-800 leading-relaxed">
+        {intrebare}
+      </p>
+
+      <div className="mt-3 space-y-2">
+        {variante.map((varText, idx) => {
+          let btnClass = "w-full text-left rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/40 p-2.5 text-xs font-medium transition cursor-pointer text-slate-800";
+          if (selectat === idx) {
+            btnClass = idx === corect
+              ? "w-full text-left rounded-xl border border-emerald-500 bg-emerald-50 p-2.5 text-xs font-bold text-emerald-900"
+              : "w-full text-left rounded-xl border border-red-400 bg-red-50 p-2.5 text-xs font-bold text-red-900";
+          } else if (rezolvata && idx === corect) {
+            btnClass = "w-full text-left rounded-xl border border-emerald-400 bg-emerald-50/50 p-2.5 text-xs font-bold text-emerald-900";
+          }
+
+          return (
+            <button
+              key={idx}
+              disabled={rezolvata || loading}
+              onClick={() => handleValideaza(idx)}
+              className={btnClass}
+            >
+              {String.fromCharCode(97 + idx)}) {varText}
+            </button>
+          );
+        })}
+      </div>
+
+      {feedback && (
+        <div
+          className={`mt-3 rounded-xl p-3 text-xs font-semibold leading-relaxed border ${
+            feedback.ok
+              ? "bg-emerald-50 border-emerald-200 text-emerald-900"
+              : "bg-amber-50 border-amber-200 text-amber-900"
+          }`}
+        >
+          {feedback.text}
+        </div>
+      )}
+    </div>
+  );
+}

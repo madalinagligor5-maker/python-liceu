@@ -111,3 +111,40 @@ export async function valideazaProvocareZilnica(
     xpAdăugat: xpRecompensă 
   };
 }
+
+export async function valideazaRecapitulareSpatiata(
+  sublectieSlug: string,
+  opțiuneSelectată: number,
+  răspunsCorect: number
+): Promise<{ ok: boolean; mesaj: string; xpAdăugat?: number }> {
+  const { user } = await getUtilizatorCurent();
+  if (!user) {
+    return { ok: false, mesaj: "Trebuie să fii autentificat pentru a efectua recapitularea." };
+  }
+
+  const esteCorect = opțiuneSelectată === răspunsCorect;
+  const supabase = await creeazaClientServer();
+
+  // Apelăm RPC-ul salveaza_recapitulare_spatiata din Supabase
+  const { data, error } = await supabase.rpc("salveaza_recapitulare_spatiata", {
+    p_sublectie_slug: sublectieSlug,
+    p_corect: esteCorect,
+  });
+
+  if (error) {
+    console.error("Eroare la salvarea recapitulării spațiate:", error);
+  }
+
+  if (!esteCorect) {
+    return {
+      ok: false,
+      mesaj: "Răspuns greșit! Lecția a fost reprogramată mai devreme pentru a o fixa mai bine.",
+    };
+  }
+
+  return {
+    ok: true,
+    mesaj: "Excelent! Ai revizuit cu succes această lecție și ai obținut +20 XP! 📌",
+    xpAdăugat: 20,
+  };
+}

@@ -61,6 +61,20 @@ Codul din interiorul funcției trebuie să fie indentat (lăsat mai la dreapta) 
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P9.3.5 Exerciții independente
 
 **Exercițiul 1.** Definește o funcție numită adunare(a, b) care returnează suma lor.

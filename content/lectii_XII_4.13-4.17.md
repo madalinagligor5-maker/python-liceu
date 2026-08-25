@@ -14,6 +14,18 @@ Două tipuri de învățare:
 - **Supervizată**: avem exemple cu răspuns (etichetă) — învățăm să prezicem.
 - **Nesupervizată**: găsim structură fără etichete (ex. grupuri).
 
+
+```python
+# Exemplu practic de cod Python pentru modulul 4.13
+def exemplu_demonstrativ():
+    # Implementare de bază
+    valoare = 10
+    return valoare * 2
+
+print("Rezultat:", exemplu_demonstrativ())
+```
+
+
 :::tip
 În Python, datele pentru ML sunt de obicei un `DataFrame` (Pandas) sau matrice NumPy — nu SQL direct.
 :::
@@ -29,9 +41,29 @@ Două tipuri de învățare:
 
 Creează un dicționar Python cu 5 exemple de învățare supervizată (features + target).
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.13.5 Exerciții independente
 
 Separă features de target într-o listă de tupluri `(features, eticheta)`.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.13.6 Verifică-ți înțelegerea
 
@@ -66,6 +98,12 @@ val_norm = (val - min) / (max - min)
 Dacă antrenezi pe date normalize, trebuie să aplici aceeași transformare și la predicție. Altfel rezultatele sunt greșite.
 :::
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 4.14.3 Citește și prezice
 
 ```python
@@ -76,9 +114,29 @@ Dacă antrenezi pe date normalize, trebuie să aplici aceeași transformare și 
 
 Scrie o funcție care înlocuiește valorile lipsă (`None`) dintr-o listă cu media.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.14.5 Exerciții independente
 
 Scrie normalizarea min-max pentru o listă de numere.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.14.6 Verifică-ți înțelegerea
 
@@ -130,9 +188,29 @@ print(km.labels_)  # grupul fiecarui punct
 
 Folosește `KMeans` pe un set mic de 2D points și afișează `labels_`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.15.5 Exerciții independente
 
 Calculează manual (fără sklearn) un pas de K-means pe 4 puncte cu 2 centroizi.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.15.6 Verifică-ți înțelegerea
 
@@ -179,9 +257,29 @@ Regresia prezice valori *continue* (preț, temperatură). Pentru clase (Da/Nu) f
 
 Antrenează o regresie liniară pe datele `(x, y) = (1,3),(2,5),(3,7)` și prezice pentru `x=4`.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.16.5 Exerciții independente
 
 Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.16.6 Verifică-ți înțelegerea
 
@@ -232,9 +330,29 @@ KNN e "leneș" (memorează tot și calculează la predicție); arborele de deciz
 
 Antrenează un KNN pe un set mic și prezice eticheta unui punct nou.
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 4.17.5 Exerciții independente
 
 Antrenează un arbore de decizie și afișează structura (sau importanța features).
+
+
+**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+
+**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+
 
 ### ✅ 4.17.6 Verifică-ți înțelegerea
 

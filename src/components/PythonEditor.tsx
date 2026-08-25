@@ -21,19 +21,7 @@ type Props = {
 // (nu doar promisiunea de apel loadPyodide) într-o variabilă globală, ca să
 // o putem refolosi între toate editorele de pe pagină fără să re-inițializăm
 // (loadPyodide aruncă eroare dacă e apelat de 2 ori).
-type PyodideApi = {
-  setStdout: (o: { batched: (s: string) => void }) => void;
-  setStderr: (o: { batched: (s: string) => void }) => void;
-  runPythonAsync: (code: string) => Promise<any>;
-  globals?: any;
-};
-
-declare global {
-  interface Window {
-    loadPyodide?: (opts: { indexURL: string }) => Promise<PyodideApi>;
-    __pyodideInstance?: PyodideApi | null;
-  }
-}
+import type { PyodideApi } from "@/types/pyodide";
 
 let pyodidePromise: Promise<void> | null = null;
 
@@ -62,13 +50,13 @@ async function incarcaPyodide(): Promise<PyodideApi> {
 
       const originalOnload = s.onload;
       s.onload = (e) => {
-        if (originalOnload) (originalOnload as Function)(e);
+        if (originalOnload) (originalOnload as (...args: unknown[]) => void)(e);
         res();
       };
 
       const originalOnerror = s.onerror;
       s.onerror = (e) => {
-        if (originalOnerror) (originalOnerror as Function)(e);
+        if (originalOnerror) (originalOnerror as (...args: unknown[]) => void)(e);
         rej(new Error("Nu s-a putut încărca interpretorul Python."));
       };
     });

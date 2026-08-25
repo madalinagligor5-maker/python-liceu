@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
+import { usePathname } from "next/navigation";
 import { aboneazaNewsletter } from "@/app/actions/newsletter";
 
 const STORAGE_KEY = "newsletter_popup_dismissed";
 
 export default function NewsletterPopup() {
+  const pathname = usePathname();
   const [vizibil, setVizibil] = useState(false);
   const [email, setEmail] = useState("");
   const [inLucru, startTransition] = useTransition();
@@ -13,13 +15,16 @@ export default function NewsletterPopup() {
   const [eroare, setEroare] = useState<string | null>(null);
 
   useEffect(() => {
+    // Dezactivat explicit pe pagina de prețuri pentru a evita suprapunerea mesajelor de conversie
+    if (pathname === "/preturi") return;
+
     // Afișăm popup-ul doar dacă utilizatorul nu l-a închis anterior
     const deja = localStorage.getItem(STORAGE_KEY);
     if (!deja) {
       const timer = setTimeout(() => setVizibil(true), 5000); // apare după 5s
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [pathname]);
 
   function inchide() {
     localStorage.setItem(STORAGE_KEY, "1");

@@ -194,7 +194,7 @@ export default function LaboratorConsolidare({
                 <span>🧩</span> Reordonează liniile în ordinea lor logică de execuție
               </h3>
               <span className="text-[11px] font-bold text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded-full">
-                Parson's Problem
+                Parson&apos;s Problem
               </span>
             </div>
             <p className="text-xs text-slate-600">

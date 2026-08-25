@@ -65,6 +65,20 @@ Fiecare funcție definită în interiorul unei clase trebuie să aibă ca prim p
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P11.1.5 Exerciții independente
 
 **Exercițiul 1.** Adaugă o metodă saluta în clasa Robot care returnează 'Salut din clasa Robot!'.

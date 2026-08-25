@@ -57,6 +57,20 @@ Dacă încerci să faci int("salut"), Python va da eroare deoarece cuvântul 'sa
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P8.1.5 Exerciții independente
 
 **Exercițiul 1.** Convertește textul '3.14' într-un număr cu virgulă (float) și afișează-l.

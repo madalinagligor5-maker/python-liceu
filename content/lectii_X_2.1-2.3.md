@@ -44,6 +44,12 @@ def interclaseaza(a, b):
 print(interclaseaza([1, 4, 7], [2, 3, 8]))  # [1, 2, 3, 4, 7, 8]
 ```
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.1.3 Citește și prezice
 
 ```python
@@ -138,6 +144,12 @@ print(a)        # {2, 3, 4, 10}
 ```
 
 Atenție: `{}` creează un **dicționar** vid, nu o mulțime! Mulțimea vidă se creează cu `set()`.
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.3.3 Citește și prezice
 

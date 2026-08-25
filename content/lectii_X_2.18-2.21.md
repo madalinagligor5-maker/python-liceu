@@ -22,6 +22,12 @@ print(merge_sort([5, 2, 8, 1]))   # [1, 2, 5, 8]
 
 Complexitate O(n log n) — mult mai bună decât O(n²).
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.18.3 Citește și prezice
 
 ```python
@@ -103,6 +109,12 @@ print(quicksort([5, 2, 8, 1, 9]))   # [1, 2, 5, 8, 9]
 ```
 
 Quicksort: medie O(n log n), caz nefavorabil O(n²) (pivot prost, listă deja sortată).
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.19.3 Citește și prezice
 
@@ -190,6 +202,12 @@ def flood_fill(grila, i, j, veche, noua):
 
 **Erori frecvente:** omiterea verificării marginilor (eroare la acces în afara listei) sau a culorii (recursivitate infinită).
 
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
+
 ### 🔮 2.20.3 Citește și prezice
 
 ```python
@@ -268,6 +286,12 @@ print(rest_greedy(6, [1, 2, 5]))   # [5, 1]
 ```
 
 **Contraexemplu:** pentru monede [1, 3, 4] și suma 6, Greedy alege 4+1+1 (3 monede), dar optim e 3+3 (2 monede).
+
+
+:::tip
+## Sfaturi & Bune Practici Didactice
+Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::
 
 ### 🔮 2.21.3 Citește și prezice
 

@@ -58,6 +58,20 @@ F-string-urile funcționează doar dacă pui litera 'f' chiar înainte de ghilim
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P9.2.5 Exerciții independente
 
 **Exercițiul 1.** Folosește un f-string pentru a afișa 'Scor: 20' din variabila scor = 20.

@@ -62,6 +62,20 @@ Inversarea direcției (de la pozitiv la negativ și invers) face ca obiectele s�
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P11.2.5 Exerciții independente
 
 **Exercițiul 1.** Simulează lovirea peretelui stâng: inversează viteza_x.

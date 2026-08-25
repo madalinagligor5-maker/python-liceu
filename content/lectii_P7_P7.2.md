@@ -57,6 +57,20 @@ Pentru a desena, trebuie mereu să scriem numele țestoasei urmat de punct și a
 
 ---
 
+
+Completează spațiile punctate pentru a finaliza algoritmul:
+
+```python
+# Pasul 1: declarare date
+val1 = 15
+val2 = 30
+
+# Pasul 2: calcul
+total = ___ + ___  # Completează variabilele
+print("Total:", ___)
+```
+
+
 ### 🎯 P7.2.5 Exerciții independente
 
 **Exercițiul 1.** Afișează culoarea preferată a lui Pippy: 'verde'.

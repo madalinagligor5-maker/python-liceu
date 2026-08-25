@@ -144,9 +144,12 @@ export default function PreturiPage() {
               className="mt-6 w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
             />
 
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-foreground/50">
+            <p className="mt-3 flex flex-wrap items-center justify-center gap-1 text-center text-xs text-foreground/60">
               <span aria-hidden="true">↩️</span>
-              Ai 14 zile de răzgândire — rambursează-te integral dacă nu ți se potrivește.
+              <span>Ai 14 zile de răzgândire — rambursează-te integral dacă nu ți se potrivește.</span>
+              <Link href="/politica-de-rambursare" className="underline font-bold text-brand hover:text-brand-dark ml-1">
+                Politica de 14 zile →
+              </Link>
             </p>
           </div>
         ))}
@@ -156,8 +159,14 @@ export default function PreturiPage() {
         Plățile se vor procesa integral prin Stripe. Nu stocăm date de card.
       </p>
 
-      <div className="mt-12 border-t border-black/5 pt-10">
-        <NewsletterForm />
+      {/* Opțiune secundară discretă de abonare newsletter */}
+      <div className="mt-12 border-t border-black/5 pt-6 text-center">
+        <p className="text-xs text-foreground/60">
+          Nu ești încă sigur?{" "}
+          <Link href="/#newsletter" className="font-bold text-brand hover:underline">
+            Abonează-te la newsletter pentru actualizări și lecții gratuite →
+          </Link>
+        </p>
       </div>
 
       <div className="mt-10 text-center">

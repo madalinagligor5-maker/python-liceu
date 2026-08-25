@@ -62,7 +62,7 @@ const FAQ = [
   {
     intrebare: "Mă ajută la Bacalaureat și la evaluările de la școală?",
     raspuns:
-      "Da! Conținutul acoperă algoritmii de bază, structurile de date și gândirea computațională cerută la clasa. Notă: Noua programă școlară se aplică treptat, iar examenul de Bacalaureat pe noua programă va fi introdus din anul 2030, astfel încât noțiunile practice de pe platformă te ajută direct la teze, teste curente și olimpiade!",
+      "Da! Conținutul acoperă integral algoritmii de bază, structurile de date și cerințele pentru evaluări sumative, teste curente și olimpiade școlare. Important de știut: noua programă școlară se aplică treptat, iar examenul oficial de Bacalaureat pe noua programă va fi introdus începând din anul 2030.",
   },
 ];
 
@@ -106,12 +106,21 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         console.error("Eroare citire provocare zilnica:", err);
       }
 
+      let recapitulare = null;
+      try {
+        const { getRecapitulareSpatiata } = await import("@/lib/progres");
+        recapitulare = await getRecapitulareSpatiata(user.id);
+      } catch (err) {
+        console.error("Eroare citire recapitulare spatiata:", err);
+      }
+
       return (
         <Dashboard
           prenume={prenumeDinEmail(user.email)}
           progres={progres}
           clasaSelectata={clasaSelectata}
           provocareRezolvata={provocareRezolvata}
+          recapitulare={recapitulare}
         />
       );
     }

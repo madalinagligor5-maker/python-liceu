@@ -21,6 +21,11 @@ Fiecare acțiune e de fapt o comandă pe care calculatorul o înțelege și o ex
 - **Python Shell** (fereastra cu `>>>`) — aici scriem o comandă, apăsăm Enter, și calculatorul răspunde imediat.
 - **Editor de programe** — aici scriem programe mai lungi, le salvăm în fișiere `.py` și le rulăm.
 
+:::tip
+## Sfaturi & Bune Practici pentru Începători
+IDLE este mediul gratuit inclus direct la instalarea limbajului Python. Este cel mai simplu mod de a rula primele tale linii de cod fără nicio configurare complicată!
+:::
+
 #### Cum instalăm Python (pași simpli, Windows)
 
 1. Mergi pe [python.org](https://www.python.org/) în browser.
