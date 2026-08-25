@@ -136,7 +136,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         <button
           type="submit"
           disabled={seIncarca}
-          className="w-full rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:opacity-50"
+          className="w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-4 py-2.5 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
         >
           {seIncarca ? "Se procesează..." : mod === "login" ? "Autentificare" : "Creează cont"}
         </button>

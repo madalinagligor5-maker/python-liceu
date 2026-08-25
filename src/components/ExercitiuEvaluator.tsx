@@ -322,7 +322,7 @@ json.dumps(steps)
               }}
               className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                 esteActiv
-                  ? "bg-brand text-white shadow-sm font-extrabold"
+                  ? "bg-amber-400 text-slate-950 shadow-sm font-black"
                   : "border border-black/10 bg-white text-foreground/75 hover:bg-slate-50"
               }`}
             >
@@ -375,7 +375,7 @@ json.dumps(steps)
               type="button"
               onClick={ruleazaCod}
               disabled={ruleaza}
-              className="w-full sm:w-auto rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer text-center text-sm"
+              className="w-full sm:w-auto rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-3 px-6 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer text-center text-sm shadow-xs"
             >
               {ruleaza ? "Se rulează…" : "▶ Rulează codul"}
             </button>

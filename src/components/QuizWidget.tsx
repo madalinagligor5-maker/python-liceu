@@ -108,7 +108,7 @@ export default function QuizWidget({
           type="button"
           disabled={!toateCompletate || inLucru}
           onClick={verifica}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-40 shadow-xs cursor-pointer"
         >
           {inLucru ? "Se salvează…" : "Verifică răspunsurile"}
         </button>

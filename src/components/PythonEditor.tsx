@@ -115,7 +115,7 @@ export default function PythonEditor({
           type="button"
           onClick={ruleazaCod}
           disabled={ruleaza}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-50 shadow-xs cursor-pointer"
         >
           {ruleaza ? "Se rulează…" : "▶ Rulează codul"}
         </button>

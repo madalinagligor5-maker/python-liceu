@@ -73,7 +73,7 @@ function ExercitiuOrdonare({
           type="button"
           onClick={verifica}
           disabled={ordine.length < ex.ordineCorecta.length}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:opacity-50"
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
         >
           Verifică ordinea
         </button>
@@ -122,7 +122,7 @@ function ExercitiuText({
         <button
           type="button"
           onClick={marcheaza}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition shadow-xs cursor-pointer"
         >
           Marchează ca rezolvat
         </button>
@@ -203,10 +203,10 @@ export default function ExercitiiInteractive({
                   key={n.id}
                   type="button"
                   onClick={() => setNivelActiv(n.id)}
-                  className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition ${
+                  className={`rounded-full border px-4 py-1.5 text-sm font-black transition ${
                     n.id === activ?.id
-                      ? "border-brand bg-brand text-white"
-                      : "border-brand-border bg-white text-foreground/70 hover:border-brand"
+                      ? "border-amber-400 bg-amber-400 text-slate-950 shadow-xs"
+                      : "border-brand-border bg-white text-foreground/80 hover:border-brand"
                   }`}
                 >
                   {n.eticheta}

@@ -30,7 +30,7 @@ export default function GestioneazaAbonamentButton() {
         type="button"
         onClick={handleClick}
         disabled={seIncarca}
-        className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:opacity-50"
+        className="rounded-xl bg-amber-400 hover:bg-amber-500 px-5 py-2.5 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
       >
         {seIncarca ? "Se deschide..." : "Gestionează abonamentul"}
       </button>

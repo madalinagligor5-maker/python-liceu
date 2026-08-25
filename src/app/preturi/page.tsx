@@ -90,7 +90,7 @@ export default function PreturiPage() {
           </p>
           <a
             href="/tombola"
-            className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+            className="mt-3 inline-block rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition shadow-xs"
           >
             Vezi detaliile tombolă →
           </a>
@@ -114,7 +114,7 @@ export default function PreturiPage() {
               </span>
             )}
             {!plan.badge && plan.evidentiat && (
-              <span className="inline-flex rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
+              <span className="inline-flex rounded-full bg-amber-400 px-3 py-1 text-xs font-black text-slate-950">
                 Recomandat
               </span>
             )}
@@ -141,7 +141,7 @@ export default function PreturiPage() {
 
             <AbonaButton
               plan={plan.plan}
-              className="mt-6 w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-6 w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer shadow-xs"
             />
 
             <p className="mt-3 flex flex-wrap items-center justify-center gap-1 text-center text-xs text-foreground/60">

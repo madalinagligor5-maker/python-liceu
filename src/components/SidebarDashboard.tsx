@@ -71,16 +71,16 @@ export default function SidebarDashboard({
 
         {/* Profilul utilizatorului vizibil în dreapta pe mobil, cu buton de Deconectare */}
         <div className="flex items-center gap-2 lg:hidden">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-black text-slate-950 border border-white/10">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-black text-slate-950 border border-black/10">
             {initiala}
           </span>
-          <span className="text-xs font-semibold text-white truncate max-w-[60px]">
+          <span className="text-xs font-black text-slate-950 truncate max-w-[60px]">
             {prenume}
           </span>
-          <span className="rounded bg-python-yellow/10 px-1.5 py-0.5 text-[9px] font-bold text-python-yellow">
+          <span className="rounded bg-amber-400/20 px-1.5 py-0.5 text-[9px] font-black text-slate-950 border border-amber-400/30">
             Lvl {nivel}
           </span>
-          <SignOutButton className="rounded bg-white/10 hover:bg-red-500/10 px-2 py-0.5 text-[9px] font-bold text-red-400 border border-red-500/20 cursor-pointer" />
+          <SignOutButton className="rounded bg-red-50 hover:bg-red-100 px-2 py-0.5 text-[9px] font-bold text-red-600 border border-red-200 cursor-pointer" />
         </div>
       </div>
 
@@ -98,8 +98,8 @@ export default function SidebarDashboard({
                   aria-current={"activ" in m && m.activ ? "page" : undefined}
                   className={`${clase} ${
                     "activ" in m && m.activ
-                      ? "bg-sidebar-active text-foreground shadow-sm font-extrabold"
-                      : "text-sidebar-text/80 hover:bg-white/15 hover:text-white"
+                      ? "bg-amber-400 text-slate-950 shadow-sm font-black"
+                      : "text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-bold"
                   }`}
                 >
                   <span aria-hidden="true">{m.icon}</span>
@@ -112,16 +112,16 @@ export default function SidebarDashboard({
       </nav>
 
       {/* Caseta de Nivel (ascunsă pe mobil deoarece profilul de sus e suficient) */}
-      <div className="hidden lg:block rounded-2xl bg-sidebar-bg-2 border border-white/5 p-4">
+      <div className="hidden lg:block rounded-2xl bg-amber-400/15 border border-amber-400/30 p-4 text-slate-950">
         <div className="flex items-center gap-2">
           <HexagonNivel nivel={nivel} />
           <div className="leading-tight">
-            <p className="text-xs font-semibold text-white/80">Nivelul tău</p>
-            <p className="text-sm font-bold text-white">{nivel}</p>
+            <p className="text-xs font-black uppercase tracking-wider text-slate-950">Nivelul tău</p>
+            <p className="text-sm font-black text-slate-950">{nivel}</p>
           </div>
         </div>
         <div
-          className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/25"
+          className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-200/80"
           role="progressbar"
           aria-valuenow={procent}
           aria-valuemin={0}
@@ -129,35 +129,35 @@ export default function SidebarDashboard({
           aria-label="Progres către nivelul următor"
         >
           <div
-            className="h-full rounded-full bg-python-yellow transition-all"
+            className="h-full rounded-full bg-amber-500 transition-all"
             style={{ width: `${procent}%` }}
           />
         </div>
-        <p className="mt-2 text-xs text-white/80">
+        <p className="mt-2 text-xs font-black text-slate-950">
           {xpTotal} / {xpNivelUrmator} XP
         </p>
         <Link
           href="/cont"
-          className="mt-2 inline-block text-xs font-semibold text-python-yellow hover:underline"
+          className="mt-2 inline-block text-xs font-black text-amber-700 hover:underline"
         >
           Vezi progresul →
         </Link>
       </div>
 
       {/* Profilul extins în partea de jos cu Deconectare (doar pe desktop) */}
-      <div className="hidden lg:flex mt-auto items-center justify-between gap-2 border-t border-white/10 pt-4 w-full">
+      <div className="hidden lg:flex mt-auto items-center justify-between gap-2 border-t border-slate-200 pt-4 w-full">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-black text-slate-950">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-400 text-sm font-black text-slate-950 border border-amber-500/30">
             {initiala}
           </span>
           <div className="leading-tight min-w-0">
-            <span className="block text-sm font-semibold text-white truncate">{prenume}</span>
-            <span className="block text-xs italic text-sidebar-muted truncate">
+            <span className="block text-sm font-black text-slate-950 truncate">{prenume}</span>
+            <span className="block text-xs italic font-bold text-slate-600 truncate">
               Explorator Python 🐍
             </span>
           </div>
         </div>
-        <SignOutButton className="rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 px-2.5 py-1 text-xs font-bold text-red-400 cursor-pointer transition shrink-0 ml-1" />
+        <SignOutButton className="rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 px-2.5 py-1 text-xs font-bold text-red-600 cursor-pointer transition shrink-0 ml-1" />
       </div>
     </aside>
   );
