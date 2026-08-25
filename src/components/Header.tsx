@@ -19,30 +19,32 @@ export default async function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#EBE7DF] bg-[#FDFBF7]/95 backdrop-blur-md text-[#1E2430] shadow-xs">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <Logo className="h-10 w-10 rounded-xl transition group-hover:scale-105" />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:px-6 sm:py-3">
+        {/* Logo Compact pe Mobil */}
+        <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Logo className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl transition group-hover:scale-105" />
           <span className="leading-none">
-            <span className="text-base font-black tracking-tight text-[#1E2430] font-sans">
+            <span className="text-sm sm:text-base font-black tracking-tight text-[#1E2430] font-sans">
               Academia<span className="text-amber-500">Python</span>
             </span>
-            <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-[#525B6C] sm:block">
+            <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-[#525B6C] md:block">
               Învață. Practică. Devino dezvoltator.
             </span>
           </span>
         </Link>
 
         {/* Switch discret Kids/Liceu */}
-        <HeaderSwitch />
+        <div className="shrink-0">
+          <HeaderSwitch />
+        </div>
 
-        {/* Nav central adaptiv */}
+        {/* Nav central adaptiv + Meniu Mobil */}
         <HeaderNav />
 
-        {/* Acțiuni Dreapta */}
-        <div className="flex items-center gap-2.5">
+        {/* Acțiuni Dreapta (Desktop) */}
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
           {progres && (
-            <div className="hidden items-center gap-2 sm:flex">
+            <div className="hidden lg:flex items-center gap-2">
               {progres.streakZile > 0 && (
                 <span
                   className="flex items-center gap-1 rounded-xl bg-orange-50 border border-orange-200 px-2.5 py-1 text-xs font-black text-orange-600"
@@ -64,7 +66,7 @@ export default async function Header() {
           {/* Buton Pentru Părinți */}
           <Link
             href="/kids"
-            className="hidden md:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
+            className="hidden xl:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
           >
             <span>👥</span>
             <span>Pentru părinți</span>
@@ -73,14 +75,14 @@ export default async function Header() {
           {user ? (
             <Link
               href="/cont"
-              className="hidden max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600 sm:inline-block"
+              className="hidden md:inline-block max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600"
             >
               {extrageAliasNume(user.email)}
             </Link>
           ) : (
             <Link
               href="/login"
-              className="hidden rounded-xl px-3 py-2 text-xs font-bold text-[#525B6C] hover:text-indigo-600 sm:inline-block"
+              className="hidden md:inline-block rounded-xl px-3 py-2 text-xs font-bold text-[#525B6C] hover:text-indigo-600"
             >
               Autentificare
             </Link>
@@ -88,7 +90,7 @@ export default async function Header() {
 
           <Link
             href="/curriculum"
-            className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4.5 py-2 text-xs shadow-xs transition active:scale-95"
+            className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
           >
             {user ? "Contul meu" : "Începe gratuit"}
           </Link>
