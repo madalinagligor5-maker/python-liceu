@@ -28,7 +28,9 @@ Interclasarea e baza **sortării prin interclasare** (merge sort, modulul 2.19).
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+La calculul recursiv al șirului Fibonacci sau factorialului, verifică valorile de intrare pentru n <= 0 pentru a preveni apeluri infinite!
+:::
 :::
 
 ### 🔮 2.2.3 Citește și prezice
@@ -123,7 +125,9 @@ Metode uzuale: `add(x)`, `remove(x)`/`discard(x)`, `union()`, `intersection()`, 
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Căutarea binară funcționează EXCLUSIV pe tablouri deja sortate. Asigură-te că lista este ordonată înainte de apelul funcției!
+:::
 :::
 
 ### 🔮 2.4.3 Citește și prezice
@@ -198,7 +202,9 @@ print(text[1:4])        # ell (slicing)
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+MergeSort garantează o complexitate de O(n log n) în toate cazurile, dar folosește memorie suplimentară pentru interclasare!
+:::
 :::
 
 ### 🔮 2.5.3 Citește și prezice

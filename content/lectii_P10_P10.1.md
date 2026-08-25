@@ -69,13 +69,12 @@ Fii atent la semnele de două puncte (:) de la sfârșitul liniilor cu if, elif 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+varsta = 9
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+___ varsta >= 12:
+    print("Acces permis la filmul 12+")
+___:
+    print("Acces doar la desene animate")
 ```
 
 

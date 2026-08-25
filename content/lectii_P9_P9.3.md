@@ -65,13 +65,11 @@ Codul din interiorul funcției trebuie să fie indentat (lăsat mai la dreapta) 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+___ triplu(numar):
+    rezultat = numar * 3
+    ___ rezultat
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+print(triplu(4))
 ```
 
 

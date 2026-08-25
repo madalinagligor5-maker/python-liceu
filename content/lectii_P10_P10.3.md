@@ -64,13 +64,10 @@ Variabilele create în interiorul unei funcții sunt locale și pot fi folosite 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+def calculeaza_pret(pret, reducere=___):
+    return pret - reducere
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+print(calculeaza_pret(___))   # folosește reducerea implicită
 ```
 
 

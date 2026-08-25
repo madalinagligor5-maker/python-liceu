@@ -65,13 +65,13 @@ Liniile de sub for trebuie lăsate un pic mai la dreapta (indentare) ca Python s
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+import turtle
+t = turtle.Pen()
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Repetă de 4 ori: mergi înainte și rotește pentru a desena un pătrat
+for i in range(___):
+    t.forward(50)
+    t.___(90)
 ```
 
 

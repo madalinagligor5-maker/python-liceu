@@ -129,7 +129,16 @@ function BlocVizual({
       )}
 
       <div
+        role="button"
+        tabIndex={disabled ? -1 : 0}
         onClick={() => !disabled && onRemove()}
+        onKeyDown={(e) => {
+          if (disabled) return;
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onRemove();
+          }
+        }}
         title={disabled ? "" : "Apasă ca să ștergi blocul"}
         className={`
           relative rounded-2xl border-2 border-b-4 text-white font-bold text-sm select-none shadow-md transition-all cursor-pointer
@@ -142,9 +151,10 @@ function BlocVizual({
           <span className="flex-1 font-black text-base">{def.eticheta}</span>
 
           {bloc.tip === "repeta" && (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- oprește doar propagarea click-ului spre blocul părinte (ștergere), nu are acțiune proprie de tastatură
             <div
               className="flex items-center gap-1 bg-black/20 rounded-xl px-2 py-1"
-              onClick={(e) => e.stopPropagation()} // Previne ștergerea la click pe input de număr
+              onClick={(e) => e.stopPropagation()}
             >
               <span className="text-xs">de</span>
               <input
@@ -176,6 +186,7 @@ function BlocVizual({
 
         {/* Sub-blocuri (pentru repeta / daca) */}
         {(bloc.tip === "repeta" || bloc.tip === "daca_stea") && (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- oprește doar propagarea click-ului spre blocul părinte (ștergere), nu are acțiune proprie de tastatură
           <div
             className="mx-2 mb-2 rounded-lg bg-white/10 p-2 space-y-1 min-h-[40px]"
             onClick={(e) => e.stopPropagation()}

@@ -14,7 +14,7 @@ import {
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import LectieBadge from "@/components/LectieBadge";
-import LectieTemaToggle from "@/components/LectieTemaToggle";
+import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
 import PythonEditor from "@/components/PythonEditor";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
@@ -109,29 +109,23 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         <span>{sublectieCod}</span>
       </nav>
 
-      <div className="mt-4 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span aria-hidden="true" className="text-3xl">
-            {icon}
-          </span>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-              {modul.cod} {modul.titlu}
-            </p>
-            <h1 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
-              {continut.titlu}
-            </h1>
-          </div>
+      <div className="mt-4 flex items-center gap-3 mb-6">
+        <span aria-hidden="true" className="text-3xl">
+          {icon}
+        </span>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+            {modul.cod} {modul.titlu}
+          </p>
+          <h1 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+            {continut.titlu}
+          </h1>
         </div>
-        <LectieTemaToggle />
       </div>
 
-      <article
-        id="lectie-articol"
-        className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8"
-      >
+      <LectieContainer>
         <BlocuriSublectie blocuri={continut.blocuri} esteVerificare={continut.esteVerificare} esteExercitii={continut.esteExercitii} />
-      </article>
+      </LectieContainer>
 
       {predic && <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />}
 

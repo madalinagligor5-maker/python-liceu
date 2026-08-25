@@ -91,6 +91,28 @@ for (const file of mainFiles) {
       moduleErrors.push(`exercitii.json: lipsă intrări hint me pentru ${sub5Cod}`);
     }
 
+    // Detectează umplutura generică pe care scripts/fix_pedagogical_content.mjs
+    // (eliminat) o insera identic în module fără nicio legătură între ele — vezi
+    // auditul care a cerut eliminarea lui. Dacă oricare din aceste tipare mai
+    // apare, modulul nu a fost de fapt rescris cu conținut specific temei lui.
+    const TIPARE_UMPLUTURA = [
+      { nume: "exercițiu generic val1/val2", regex: /val1\s*=\s*15/ },
+      { nume: "funcție exemplu_demonstrativ", regex: /exemplu_demonstrativ/ },
+      {
+        nume: "exercițiu independent generic",
+        regex: /Scrie un program Python care rezolvă cerința directă/,
+      },
+      {
+        nume: "sfat generic despre tipuri/indentare",
+        regex: /Verifică întotdeauna tipul variabilelor și indentarea corectă/,
+      },
+    ];
+    for (const tipar of TIPARE_UMPLUTURA) {
+      if (tipar.regex.test(block)) {
+        moduleErrors.push(`Umplutură generică nespecifică temei: ${tipar.nume}`);
+      }
+    }
+
     if (moduleErrors.length > 0) {
       totalErrors += moduleErrors.length;
       report.push({ codModul, file, errors: moduleErrors });

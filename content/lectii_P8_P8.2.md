@@ -61,13 +61,12 @@ Ce se va afișa pe ecran?
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+mesaj = "Pippy"
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Află lungimea textului și prima literă
+lungime = ___(mesaj)
+prima_litera = mesaj[___]
+print(lungime, prima_litera)
 ```
 
 

@@ -60,13 +60,11 @@ Ghilimelele sunt foarte importante! Ele îi spun calculatorului unde începe și
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: alege ce vrei să afișezi
+mesaj = "Salut, Pippy!"
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: poruncește calculatorului să afișeze mesajul
+___(___)
 ```
 
 

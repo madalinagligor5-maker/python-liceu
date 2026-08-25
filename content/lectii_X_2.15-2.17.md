@@ -21,7 +21,9 @@ Combinări frecvente: liste de liste (matrice), liste de tupluri, liste de dicț
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+O stivă respectă principiul LIFO (Last In First Out), iar o coadă respectă FIFO (First In First Out). În Python le poți implementa eficient folosind collections.deque!
+:::
 :::
 
 ### 🔮 2.15.3 Citește și prezice
@@ -99,7 +101,9 @@ Se recomandă "citirea cu voce tare": `date[2]["note"][1]` = "al 3-lea elev, câ
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Înainte de a extrage un element dintr-o stivă sau coadă (pop/popleft), verifică întotdeauna dacă structura nu este goală!
+:::
 :::
 
 ### 🔮 2.16.3 Citește și prezice
@@ -173,7 +177,9 @@ Orice funcție recursivă are: **caz de bază** (oprește recursivitatea) și **
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+În listele simplu înlănțuite, fiecare nod conține valoarea și o referință (next) către nodul următor. Ultimul nod indică spre None!
+:::
 :::
 
 ### 🔮 2.17.3 Citește și prezice

@@ -20,8 +20,8 @@ Operatori: `in` (apartenență subșir), `+` (concatenare), `*` (repetare), comp
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## find() vs. index(): nu le confunda
+`text.find("x")` returnează **-1** dacă subșirul lipsește, în timp ce `text.index("x")` aruncă `ValueError` în aceeași situație. Dacă vrei doar să testezi apartenența, folosește operatorul `in` (mai clar); dacă ai nevoie de poziție și ești sigur că subșirul există, `index()` e mai sigur pentru că nu ascunde o eroare de logică sub un -1 trecut cu vederea. Și nu uita: `replace()`, `split()`, `strip()`, `upper()`/`lower()` nu modifică șirul pe care le apelezi — dacă nu reții rezultatul într-o variabilă (`text = text.strip()`), efectul se pierde.
 :::
 
 ### 🔮 2.6.3 Citește și prezice
@@ -93,8 +93,8 @@ print("a" in "racheta")  # True
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Slicing nu aruncă niciodată IndexError
+Dacă accesezi `a[10]` pe un șir cu 3 caractere, primești o eroare (`IndexError`). Dar `a[0:10]` pe același șir nu dă eroare — Python taie automat la lungimea disponibilă și returnează ce există, chiar și un șir gol dacă indicii sunt complet în afara intervalului. Reține și că indicii negativi numără de la coadă (`a[-1]` e ultimul caracter), iar comparațiile de tip `"abc" < "abd"` sunt lexicografice și sensibile la majuscule/minuscule — în ASCII literele mari sunt „mai mici" decât cele mici, deci `"Z" < "a"` este `True`.
 :::
 
 ### 🔮 2.7.3 Citește și prezice
@@ -175,8 +175,8 @@ print(cezar("xyz", 1))   # yza
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## De ce alegem `baza` în funcție de majusculă
+Formula `chr((ord(c) - baza + deplasare) % 26 + baza)` funcționează doar dacă `baza` e chiar litera de start a alfabetului cu aceeași capitalizare ca `c` (`'A'` pentru majuscule, `'a'` pentru minuscule). Dacă folosești mereu `ord('a')`, majusculele se transformă greșit — de exemplu 'A' + 3 ar deveni un caracter din altă zonă ASCII, nu 'D'. Testează mereu cifrul cu text care conține și majuscule, și minuscule, și caractere non-alfabetice (spații, cifre, punctuație) — acestea trebuie să rămână neschimbate, exact cum se întâmplă în ramura `else` a buclei.
 :::
 
 ### 🔮 2.8.3 Citește și prezice
@@ -266,8 +266,8 @@ print(vigenere("criptare", "cheie"))
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## `i` numără doar literele, nu toate caracterele
+Contorul `i` din `vigenere()` avansează exclusiv în interiorul lui `if c.isalpha():` — dacă l-ai incrementa la fiecare caracter (inclusiv spații sau punctuație), litera cheii folosită s-ar decala greșit față de literele reale ale mesajului. De asta un text cu spații criptat corect trebuie testat mereu: dacă cheia "pare" să nu se cicleze corect, prima suspiciune e că `i` a fost mutat în afara `if`-ului. Și nu uita `% len(cheie)` — fără el, indexarea `cheie[i]` produce `IndexError` de îndată ce mesajul depășește lungimea cheii.
 :::
 
 ### 🔮 2.9.3 Citește și prezice
@@ -314,13 +314,15 @@ def decriptare_vigenere(text, cheie):
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Criptăm un mesaj cu cheia "cifru" și verificăm decriptarea
+mesaj = "atac"
+cheie = "cifru"
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+criptat = ___(mesaj, ___)              # apelează vigenere() cu mesajul și cheia
+decriptat = decriptare_vigenere(___, ___)  # decriptează folosind aceeași cheie
+
+print("Criptat:", criptat)
+print("Decriptare corectă:", decriptat == ___)  # trebuie să fie True
 ```
 
 
@@ -380,8 +382,8 @@ Dacă un octet se schimbă, suma se schimbă → datele au fost alterate.
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Checksum nu înseamnă criptare
+Fletcher **detectează** alterări, dar nu ascunde conținutul — oricine poate recalcula suma pornind de la date, deci nu folosi un checksum ca metodă de securitate (pentru asta ai nevoie de criptare, ca Vigenère, sau de funcții hash criptografice). Observă și de ce `sum2` există: dacă ai folosi doar `sum1` (o simplă sumă a octeților), doi octeți care își schimbă locul între ei (de exemplu `[10, 20]` devine `[20, 10]`) ar produce aceeași sumă, deci eroarea ar trece neobservată. `sum2` acumulează sumele parțiale ale lui `sum1`, ceea ce face suma sensibilă și la *ordinea* octeților, nu doar la valorile lor.
 :::
 
 ### 🔮 2.10.3 Citește și prezice

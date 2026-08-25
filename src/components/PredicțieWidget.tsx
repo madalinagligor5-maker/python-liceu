@@ -104,7 +104,7 @@ export default function PredicțieWidget({
       <div className="mt-3 space-y-2">
         {predic.variante.map((v, i) => {
           let cls =
-            "rounded-lg border px-3 py-2 text-sm cursor-pointer transition ";
+            "w-full rounded-lg border px-3 py-2 text-left text-sm cursor-pointer transition ";
           if (!dezv) {
             cls +=
               "border-black/15 bg-white hover:border-brand hover:text-brand";
@@ -116,13 +116,15 @@ export default function PredicțieWidget({
             cls += "border-black/10 bg-black/5 text-foreground/50";
           }
           return (
-            <div
+            <button
               key={i}
+              type="button"
+              disabled={dezv}
               className={cls}
-              onClick={() => !dezv && setAles(i)}
+              onClick={() => setAles(i)}
             >
               {v}
-            </div>
+            </button>
           );
         })}
       </div>

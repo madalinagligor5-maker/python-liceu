@@ -66,13 +66,12 @@ Dacă uiți să modifici variabila din interiorul buclei while (de exemplu, uit�
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
-
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+numar = 1
+___ numar <= 5:
+    if numar == 3:
+        ___
+    print("Numar:", numar)
+    numar += 1
 ```
 
 

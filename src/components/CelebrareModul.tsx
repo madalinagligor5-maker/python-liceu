@@ -27,9 +27,18 @@ export default function CelebrareModul({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={() => {
         setVizibil(false);
         if (peInchidere) peInchidere();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
+          e.preventDefault();
+          setVizibil(false);
+          if (peInchidere) peInchidere();
+        }
       }}
       className="fixed bottom-6 right-6 z-[99999] cursor-pointer animate-popIn"
     >

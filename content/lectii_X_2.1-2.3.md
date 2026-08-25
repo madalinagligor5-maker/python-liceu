@@ -47,7 +47,9 @@ print(interclaseaza([1, 4, 7], [2, 3, 8]))  # [1, 2, 3, 4, 7, 8]
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Fiecare funcție recursivă trebuie să aibă cel puțin un caz de bază (condiție de oprire) bine definit, altfel va rezulta o eroare de tip RecursionError (stack overflow)!
+:::
 :::
 
 ### 🔮 2.1.3 Citește și prezice
@@ -148,7 +150,9 @@ Atenție: `{}` creează un **dicționar** vid, nu o mulțime! Mulțimea vidă se
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Tehnica Divide et Impera împarte problema în subprobleme independente de dimensiune mai mică, le rezolvă recursiv și combină rezultatele!
+:::
 :::
 
 ### 🔮 2.3.3 Citește și prezice

@@ -61,13 +61,10 @@ Dacă încerci să faci int("salut"), Python va da eroare deoarece cuvântul 'sa
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+varsta_text = ___("Câți ani ai? ")
+varsta = ___(varsta_text)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+print("Peste 5 ani vei avea:", varsta + 5)
 ```
 
 

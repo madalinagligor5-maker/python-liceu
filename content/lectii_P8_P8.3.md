@@ -61,13 +61,12 @@ Nu uita să scrii `import random` la începutul programului dacă vrei să folos
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+import random
+culori = ["rosu", "verde", "albastru"]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Alege o culoare la întâmplare din listă
+culoare_aleasa = random.___(___)
+print(culoare_aleasa)
 ```
 
 

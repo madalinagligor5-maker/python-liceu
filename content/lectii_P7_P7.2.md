@@ -61,13 +61,11 @@ Pentru a desena, trebuie mereu să scriem numele țestoasei urmat de punct și a
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+import turtle
+t = turtle.___()
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Mișcă țestoasa înainte cu 50 de pași
+t.___(50)
 ```
 
 

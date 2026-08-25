@@ -57,7 +57,9 @@ print(din_baza("1101", 2))  # 13
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+În Python, primul element dintr-o listă se află la indicele 0, iar ultimul element poate fi accesat direct cu indicele negativ -1!
+:::
 :::
 
 ### 🔮 1.9.3 Citește și prezice
@@ -164,7 +166,9 @@ print(putere_rapida(2, 10))  # 1024
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Căutarea secvențială parcurge fiecare element pe rând; dacă lista este ordonată, căutarea binară este mult mai rapidă (complexitate O(log n))!
+:::
 :::
 
 ### 🔮 1.10.3 Citește și prezice
@@ -261,7 +265,9 @@ print(p.distanta_origine()) # 5.0
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+La determinarea minimului sau maximului, inițializează variabila de sprijin cu primul element din listă (v[0]), nu cu 0 sau o valoare arbitrară!
+:::
 :::
 
 ### 🔮 1.11.3 Citește și prezice
@@ -363,7 +369,9 @@ fereastra.mainloop()
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Bubble Sort compară și schimbă elementele adiacente la fiecare pas, în timp ce Selection Sort caută minimul din restul tabloului și îl plasează la poziția curentă!
+:::
 :::
 
 ### 🔮 1.12.3 Citește și prezice
@@ -463,7 +471,9 @@ tk.Entry(f).grid(row=1, column=1)
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+La matrice (liste de liste), primul indice reprezintă linia, iar al doilea indice reprezintă coloana: matrice[linie][coloana]!
+:::
 :::
 
 ### 🔮 1.13.3 Citește și prezice
@@ -554,7 +564,9 @@ with open("note.txt", "r", encoding="utf-8") as f:
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Pe diagonala principală a unei matrice pătratice n x n avem i == j, iar pe diagonala secundară i + j == n - 1!
+:::
 :::
 
 ### 🔮 1.14.3 Citește și prezice
@@ -645,7 +657,9 @@ print(coada.popleft())  # A (primul adăugat)
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+În Python șirurile de caractere sunt imutabile. Orice metodă de tipul .upper() sau .replace() returnează un șir nou fără a modifica șirul original!
+:::
 :::
 
 ### 🔮 1.15.3 Citește și prezice
@@ -736,7 +750,9 @@ L.count(1)           # de câte ori apare 1
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Metoda .find() returnează -1 dacă subșirul nu este găsit, spre deosebire de .index() care aruncă o eroare ValueError!
+:::
 :::
 
 ### 🔮 1.16.3 Citește și prezice
@@ -823,7 +839,9 @@ print(cauta([5, 2, 8], 8))  # 2
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Metoda .split() fără parametri împarte textul după orice spațiu alb (spații, tab-uri, newline) și elimină spațiile libere multiple automat!
+:::
 :::
 
 ### 🔮 1.17.3 Citește și prezice
@@ -912,7 +930,9 @@ print(perechi)
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+O funcție oprește executarea imediat ce întâlnește instrucțiunea return. Codul scris după return în același bloc nu va fi executat niciodată!
+:::
 :::
 
 ### 🔮 1.18.3 Citește și prezice
@@ -997,7 +1017,9 @@ Complexitate: O(n²) — pentru fiecare poziție parcurgem restul.
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+În Python, obiectele mutabile (cum sunt listele) transmise ca parametri la funcții pot fi modificate direct în interiorul funcției!
+:::
 :::
 
 ### 🔮 1.19.3 Citește și prezice
@@ -1106,7 +1128,9 @@ print(counting_sort([2, 3, 2, 1, 3], 3))  # [1, 2, 2, 3, 3]
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Modificarea unei variabile globale în interiorul unei funcții necesită cuvântul cheie global; altfel, Python va crea o variabilă locală nouă cu același nume!
+:::
 :::
 
 ### 🔮 1.20.3 Citește și prezice

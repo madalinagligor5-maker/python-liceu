@@ -44,13 +44,20 @@ Construiește o listă simplu înlănțuită cu valorile 5, 8, 12 și afișeaz-o
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: creare noduri
+n1 = Nod(5)
+n2 = Nod(8)
+n3 = Nod(12)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: legare noduri
+n1.___ = n2
+n2.urmator = ___
+
+# Pasul 3: parcurgere si afisare
+curent = ___
+while curent is not None:
+    print(curent.valoare)
+    curent = curent.___
 ```
 
 
@@ -59,9 +66,9 @@ print("Total:", ___)
 Scrie o funcție `lungime(nod_inceput)` care returnează numărul de noduri dintr-o listă înlănțuită.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `contine(nod_inceput, x)` care returnează `True` dacă valoarea `x` apare în listă și `False` altfel, parcurgând nodurile de la `nod_inceput` până la `None`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind ideea funcției `lungime` de mai sus, scrie o funcție `element_la_pozitie(nod_inceput, i)` care returnează valoarea nodului aflat pe poziția `i` (indexată de la 0) sau `None` dacă poziția depășește lungimea listei.
 
 
 ### ✅ 3.1.6 Verifică-ți înțelegerea
@@ -118,8 +125,8 @@ La eliminarea capului, noul cap devine `cap.urmator`. Dacă uiți să actualizez
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Capcana referinței pierdute
+Funcțiile precum `adauga_inceput` sau `elimina_valoare` întorc noul cap al listei — trebuie mereu să reții rezultatul înapoi în variabilă (`cap = adauga_inceput(cap, x)`). Dacă apelezi funcția fără să suprascrii `cap`, nodurile noi există în memorie, dar restul programului tot vede lista veche, pentru că referința ta n-a fost actualizată.
 :::
 
 ### 🔮 3.2.3 Citește și prezice
@@ -140,13 +147,21 @@ Scrie `elimina_valoare(cap, x)` care elimină primul nod cu valoarea `x` dintr-o
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: construire lista goala
+cap = None
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: adaugare elemente la sfarsit
+cap = adauga_sfarsit(cap, 3)
+cap = adauga_sfarsit(___, 7)
+
+# Pasul 3: eliminare valoare din lista
+cap = elimina_valoare(___, 3)
+
+# Pasul 4: afisare rezultat
+curent = cap
+while curent is not None:
+    print(curent.___)
+    curent = curent.urmator
 ```
 
 
@@ -155,9 +170,9 @@ print("Total:", ___)
 Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea `y` imediat după primul nod cu valoarea `x`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `elimina_ultimul(cap)` care elimină ultimul nod din listă și întoarce noul cap (ai grijă la cazul în care lista are un singur nod).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind `insereaza_dupa` de mai sus, scrie un program care pornește de la o listă goală, adaugă la sfârșit valorile 1, 2 și 4, apoi inserează valoarea 3 după valoarea 2, și afișează lista finală: 1 2 3 4.
 
 
 ### ✅ 3.2.6 Verifică-ți înțelegerea
@@ -228,13 +243,17 @@ Scrie un backtracking care generează toate șirurile de lungime `n` formate doa
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: pornim de la un sir partial gol
+def genereaza(sir_partial, n):
+    # Pasul 2: conditia de oprire - sirul are lungimea n
+    if len(___) == n:
+        print(sir_partial)
+        return
+    # Pasul 3: incercam fiecare litera posibila
+    for litera in ___:
+        genereaza(sir_partial + ___, n)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+genereaza("", 3)
 ```
 
 
@@ -243,9 +262,9 @@ print("Total:", ___)
 Modifică generatorul de mai sus să nu permită două 'A' alăturate.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție de backtracking `genereaza_fara_AA(sir_partial, n)` care generează toate șirurile de lungime `n` din literele 'A' și 'B', dar nu permite două 'A' consecutive.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Modifică funcția de la exercițiul 1 astfel încât, în loc să afișeze fiecare șir, să numere câte șiruri valide există în total pentru un `n` dat și să afișeze doar numărul final.
 
 
 ### ✅ 3.3.6 Verifică-ți înțelegerea
@@ -296,8 +315,8 @@ def regine(n):
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Nu uita pasul de revenire
+La fiecare apel recursiv din backtracking — la permutări sau la problema reginelor — trebuie să anulezi alegerea făcută înainte de a încerca următoarea variantă: `sol.pop()` după `bk(lin + 1)`, sau marcarea unui element ca nefolosit după ce revii dintr-un apel pentru permutări. Dacă omiți acest pas, starea rămâne "murdară" de la o ramură la alta, iar soluțiile generate vor fi greșite sau incomplete.
 :::
 
 ### 🔮 3.4.3 Citește și prezice
@@ -315,13 +334,24 @@ Scrie un program care afișează toate permutările listei `[1, 2, 3]`.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: lista de start si starea de backtracking
+elemente = [1, 2, 3]
+folosite = [False, False, False]
+permutare_curenta = []
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+def backtrack_permutari():
+    # Pasul 2: conditia de oprire - permutarea e completa
+    if len(permutare_curenta) == len(___):
+        print(permutare_curenta)
+        return
+    # Pasul 3: incercam fiecare element nefolosit
+    for i in range(len(elemente)):
+        if not folosite[___]:
+            folosite[i] = True
+            permutare_curenta.append(elemente[___])
+            backtrack_permutari()
+            permutare_curenta.pop()
+            folosite[i] = ___
 ```
 
 
@@ -330,9 +360,9 @@ print("Total:", ___)
 Modifică problema reginelor să returneze numărul de soluții, nu să le afișeze.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Modifică funcția `regine(n)` astfel încât să returneze numărul total de soluții găsite, în loc să le afișeze cu `print`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind funcția modificată de la exercițiul 1, scrie un program care afișează, pentru fiecare valoare a lui `n` de la 1 la 8, numărul de soluții ale problemei celor `n` regine.
 
 
 ### ✅ 3.4.6 Verifică-ți înțelegerea
@@ -390,13 +420,19 @@ Scrie un backtracking care generează toate combinațiile de `k` elemente dintr-
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: lista rezultat, pornim de la o combinatie goala
+rezultat = []
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+def combinatii(start, k, elemente, combinatie_curenta):
+    # Pasul 2: conditia de oprire - combinatia are k elemente
+    if len(combinatie_curenta) == ___:
+        rezultat.append(combinatie_curenta[:])
+        return
+    # Pasul 3: incercam fiecare element ramas, de la pozitia start
+    for i in range(start, len(elemente)):
+        combinatie_curenta.append(elemente[___])
+        combinatii(i + 1, k, elemente, combinatie_curenta)
+        combinatie_curenta.___()
 ```
 
 
@@ -405,9 +441,9 @@ print("Total:", ___)
 Scrie un backtracking care găsește o submulțime cu suma exact `t` dintr-o listă de numere.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție de backtracking `submultime_suma(elemente, t)` care găsește și afișează prima submulțime a listei `elemente` a cărei sumă este exact `t`, oprind căutarea imediat ce o găsește.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Modifică funcția de la exercițiul 1 astfel încât să afișeze toate submulțimile a căror sumă este exact `t`, nu doar prima găsită.
 
 
 ### ✅ 3.5.6 Verifică-ți înțelegerea

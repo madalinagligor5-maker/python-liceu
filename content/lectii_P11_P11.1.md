@@ -69,13 +69,12 @@ Fiecare funcție definită în interiorul unei clase trebuie să aibă ca prim p
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+class Robot:
+    def __init__(___, nume):
+        ___.nume = nume
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+r = Robot("Pippy")
+print(r.nume)
 ```
 
 

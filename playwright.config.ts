@@ -1,5 +1,15 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// Procesul playwright test (spre deosebire de "next start" din webServer, mai jos)
+// nu încarcă automat .env.local. Testele din e2e/helpers/auth.ts au nevoie de
+// SUPABASE_SERVICE_ROLE_KEY etc. direct în acest proces, ca să poată crea/șterge
+// conturi de test și să citească/scrie users_meta ca admin.
+try {
+  process.loadEnvFile(".env.local");
+} catch {
+  // .env.local poate lipsi în CI, unde variabilele vin din secrete de mediu.
+}
+
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,

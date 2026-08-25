@@ -62,13 +62,10 @@ F-string-urile funcționează doar dacă pui litera 'f' chiar înainte de ghilim
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+scor = 10
+scor ___ 5   # adaugă 5 la scor folosind operatorul scurt
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+print(f"Scorul este {___}")
 ```
 
 

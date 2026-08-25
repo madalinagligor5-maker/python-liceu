@@ -19,13 +19,19 @@ Curs(cod, denumire, credite)
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.1
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Modelăm entitatea Student ca dicționar Python,
+# cu atributele si cheia stabilite in modelul ER
+student = {
+    "id": 1,          # cheie primara - identifica unic entitatea
+    "nume": "Ana",
+    "varsta": 17
+}
 
-print("Rezultat:", exemplu_demonstrativ())
+def afiseaza_entitate(entitate):
+    for atribut, valoare in entitate.items():
+        print(f"{atribut}: {valoare}")
+
+afiseaza_entitate(student)
 ```
 
 
@@ -49,13 +55,17 @@ Definește în Python (ca dicționar) o entitate `Carte` cu atributele `isbn`, `
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: declarare entitate Carte, cu atribute si cheie
+carte = {
+    "isbn": "978-973-0",
+    "titlu": "Ion",
+    "autor": "L. Rebreanu",
+    "an": 1920
+}
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: afisam cheia si un atribut al entitatii
+print("Cheie (isbn):", carte[___])
+print("Atribut (titlu):", carte[___])
 ```
 
 
@@ -64,9 +74,9 @@ print("Total:", ___)
 Scrie o listă de dicționare care să reprezinte 3 cărți, fiecare cu cele 4 atribute.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `gaseste_dupa_isbn(carti, isbn)` care primește lista de cărți și un ISBN și returnează dicționarul cărții cu acel ISBN (sau `None` dacă nu există).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția anterioară cu o entitate `Autor(id, nume, tara)` separată și afișează, pentru fiecare carte, numele autorului preluat din lista de autori (nu doar stocat direct ca text în `Carte`).
 
 
 ### ✅ 4.1.6 Verifică-ți înțelegerea
@@ -100,13 +110,18 @@ Relațiile M:N se rezolva printr-o **tabelă asociativă** (ex. `Inscriere(stude
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.2
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Simulam relatia M:N Student-Curs printr-o tabela asociativa,
+# reprezentata ca lista de perechi (student_id, curs_id)
+inscrieri = [
+    (1, "IA"),   # studentul 1 e inscris la cursul IA
+    (1, "BD"),   # studentul 1 e inscris si la cursul BD
+    (2, "BD"),   # studentul 2 e inscris la cursul BD
+]
 
-print("Rezultat:", exemplu_demonstrativ())
+def cursuri_ale_studentului(inscrieri, student_id):
+    return [curs for (sid, curs) in inscrieri if sid == student_id]
+
+print("Cursurile studentului 1:", cursuri_ale_studentului(inscrieri, 1))
 ```
 
 
@@ -130,13 +145,17 @@ Modelați relația 1:N "Un autor scrie multe cărți" cu două tabele (`Autor`, 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: relatia 1:N "Un autor scrie multe carti"
+autori = {1: "Rebreanu", 2: "Eminescu"}
+carti = [
+    {"titlu": "Ion", "autor_id": 1},
+    {"titlu": "Pădurea spânzuraților", "autor_id": 1},
+    {"titlu": "Luceafărul", "autor_id": 2},
+]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: gasim toate cartile scrise de autorul cu id 1
+carti_autor = [c["titlu"] for c in ___ if c[___] == 1]
+print("Cărțile autorului 1:", carti_autor)
 ```
 
 
@@ -145,9 +164,9 @@ print("Total:", ___)
 Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un program Python care, pornind de la o listă de tabele asociative `(student_id, proiect_id)`, afișează pentru fiecare student lista proiectelor la care participă.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior cu o funcție `colegi_de_proiect(inscrieri, student_id)` care returnează toți ceilalți studenți care participă la cel puțin un proiect comun cu studentul dat.
 
 
 ### ✅ 4.2.6 Verifică-ți înțelegerea
@@ -183,13 +202,19 @@ template: # Scrie aici codul
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.3
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Generam automat instructiunile CREATE TABLE
+# pornind de la o descriere simpla a entitatilor (mapare ERD -> SQL)
+entitati = {
+    "Student": {"id": "INTEGER PRIMARY KEY", "nume": "TEXT NOT NULL"},
+    "Curs": {"cod": "TEXT PRIMARY KEY", "denumire": "TEXT NOT NULL"},
+}
 
-print("Rezultat:", exemplu_demonstrativ())
+def genereaza_create_table(nume_tabel, coloane):
+    linii = ", ".join(f"{col} {tip}" for col, tip in coloane.items())
+    return f"CREATE TABLE {nume_tabel} ({linii});"
+
+for tabel, coloane in entitati.items():
+    print(genereaza_create_table(tabel, coloane))
 ```
 
 
@@ -213,13 +238,13 @@ Scrie instrucțiunile `CREATE TABLE` pentru `Student` și `Curs` cu relația 1:N
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: relatia 1:N Student-Curs, cheia externa merge in tabela "N"
+create_student = "CREATE TABLE Student (id INTEGER PRIMARY KEY, nume TEXT)"
+create_curs = "CREATE TABLE Curs (cod TEXT PRIMARY KEY, denumire TEXT)"
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: adaugam cheia externa curs_id in tabela Student (partea "N")
+create_student_fk = ___ + ", curs_id TEXT REFERENCES ___(cod))"
+print(create_student_fk)
 ```
 
 
@@ -228,9 +253,9 @@ print("Total:", ___)
 Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție Python `genereaza_erd_text(entitati, relatii)` care primește un dicționar de entități (nume tabel -> listă coloane) și o listă de relații 1:N, apoi afișează schema textuală a fiecărei tabele cu cheia externă corect plasată în partea "N".
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția anterioară pentru a trata și o relație M:N: pentru fiecare relație M:N primită ca parametru, generează automat tabela asociativă (cu cele două chei externe) și afișeaz-o alături de restul tabelelor.
 
 
 ### ✅ 4.3.6 Verifică-ți înțelegerea
@@ -271,13 +296,21 @@ CREATE TABLE Student (
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.4
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Simulam integritatea referentiala inainte de a trimite un INSERT la baza de date
+studenti_existenti = {1: "Ana", 2: "Radu"}
+cursuri_existente = {"BD", "IA"}
 
-print("Rezultat:", exemplu_demonstrativ())
+def poate_insera_student(id_student, curs_id, studenti, cursuri):
+    if id_student in studenti:
+        print(f"Eroare: id {id_student} exista deja (incalca PRIMARY KEY)")
+        return False
+    if curs_id not in cursuri:
+        print(f"Eroare: cursul '{curs_id}' nu exista (incalca FOREIGN KEY)")
+        return False
+    return True
+
+print(poate_insera_student(3, "BD", studenti_existenti, cursuri_existente))
+print(poate_insera_student(1, "BD", studenti_existenti, cursuri_existente))
 ```
 
 
@@ -287,8 +320,8 @@ Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza 
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Cum recunoști rapid PK vs. FK
+Cheia primară (PK) apare o singură dată pe rând și nu se repetă niciodată în tabelă — e „identitatea” rândului. Cheia externă (FK) se poate repeta de multe ori (ex. mai mulți studenți au același `curs_id`), pentru că ea exprimă o legătură către altă tabelă, nu o identitate proprie. Dacă o coloană se repetă des în date de test, e semn că e FK, nu PK.
 :::
 
 ### 🔮 4.4.3 Citește și prezice
@@ -317,13 +350,17 @@ Scrie `CREATE TABLE` pentru `Comanda(id, data, client_id REFERENCES Client(id))`
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: clientii existenti (cheile lor primare)
+clienti_existenti = {1, 2, 3}
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: validam o comanda noua inainte de INSERT
+def valideaza_comanda(client_id, clienti):
+    if client_id not in ___:
+        return False  # incalca FOREIGN KEY (client_id inexistent)
+    return True
+
+print("Comanda cu client_id=2:", valideaza_comanda(2, ___))
+print("Comanda cu client_id=99:", valideaza_comanda(99, clienti_existenti))
 ```
 
 
@@ -332,9 +369,9 @@ print("Total:", ___)
 Adaugă o constrângere `CHECK` care să nu permită vârsta negativă la `Student`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție Python `valideaza_student(student)` care verifică, înainte de un `INSERT`, dacă vârsta este un număr pozitiv și dacă numele nu este gol — echivalentul aplicației pentru constrângerile `CHECK` și `NOT NULL`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția anterioară cu `valideaza_comanda(comanda, clienti_existenti)`, care refuză comanda dacă `client_id` nu se regăsește în mulțimea clienților existenți (simulând integritatea referențială a unei chei externe), și afișează un mesaj de eroare clar pentru fiecare caz respins.
 
 
 ### ✅ 4.4.6 Verifică-ți înțelegerea
@@ -368,13 +405,21 @@ Exemplu FN3 încălcat: `Student(id, nume, oras, tara)` — `tara` depinde de `o
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.5
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Tabela nenormalizata: 'oras' si 'tara' depind de 'oras', nu direct de 'id' (incalca FN3)
+studenti = [
+    {"id": 1, "nume": "Ana", "oras": "Cluj", "tara": "România"},
+    {"id": 2, "nume": "Radu", "oras": "Cluj", "tara": "România"},
+]
 
-print("Rezultat:", exemplu_demonstrativ())
+def normalizeaza_fn3(studenti):
+    # extragem dependenta tranzitiva oras -> tara intr-o tabela separata
+    orase = {s["oras"]: s["tara"] for s in studenti}
+    studenti_fn3 = [{"id": s["id"], "nume": s["nume"], "oras": s["oras"]} for s in studenti]
+    return studenti_fn3, orase
+
+studenti_fn3, tabela_oras = normalizeaza_fn3(studenti)
+print("Student:", studenti_fn3)
+print("Oras:", tabela_oras)
 ```
 
 
@@ -398,13 +443,18 @@ Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane în
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: un tabel cu incalcare FN1 - o celula tine o lista de telefoane
+persoane = [
+    {"id": 1, "nume": "Ana", "telefoane": "0722111, 0733222"},
+]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: aducem la FN1 - despartim lista intr-un rand separat per telefon
+telefoane_fn1 = []
+for p in persoane:
+    for tel in p[___].split(", "):
+        telefoane_fn1.append({"persoana_id": p[___], "telefon": tel})
+
+print(telefoane_fn1)
 ```
 
 
@@ -413,9 +463,9 @@ print("Total:", ___)
 Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție Python `normalizeaza_fn1(persoane)` care primește o listă de persoane cu un câmp `telefoane` ce conține mai multe numere separate prin virgulă și returnează o listă nouă cu câte un rând pentru fiecare telefon (atomicitate FN1).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie o funcție `normalizeaza_fn3(angajati)` pentru tabelul `Angajat(id, nume, dept, locatie_dept)`, care separă dependența tranzitivă `dept -> locatie_dept` într-o tabelă `Departament(dept, locatie_dept)` și returnează cele două tabele rezultate.
 
 
 ### ✅ 4.5.6 Verifică-ți înțelegerea

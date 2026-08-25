@@ -46,13 +46,16 @@ Implementează Kruskal cu Union-Find și returnează costul MST.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: sortare muchii dupa cost (al treilea element din tuplu)
+muchii.sort(key=lambda m: m[___])
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: parcurgere si verificare ciclu cu Union-Find
+for a, b, w in muchii:
+    ra = gaseste(parinte, a)
+    rb = gaseste(parinte, ___)
+    if ra != ___:
+        parinte[ra] = rb
+        total += ___
 ```
 
 
@@ -61,9 +64,9 @@ print("Total:", ___)
 Returnează lista muchiilor alese de Kruskal (nu doar costul).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Modifică funcția `kruskal` astfel încât să primească și parametrul `n` (numărul de vârfuri) și să oprească parcurgerea muchiilor imediat ce arborele are `n - 1` muchii selectate.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie o funcție `cost_total(muchii_alese)` care primește lista de muchii returnată de Kruskal și calculează suma costurilor, apoi verifică că rezultatul coincide cu totalul calculat direct de `kruskal()`.
 
 
 ### ✅ 3.16.6 Verifică-ți înțelegerea
@@ -101,13 +104,14 @@ Arborii apar natural: ierarhii, sisteme de fișiere, arborele de decizie, arbore
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 3.17
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+copii = {1: [2, 3], 2: [4, 5], 3: [], 4: [], 5: []}
 
-print("Rezultat:", exemplu_demonstrativ())
+def inaltime(nod):
+    if not copii[nod]:
+        return 0
+    return 1 + max(inaltime(c) for c in copii[nod])
+
+print("Inaltimea arborelui:", inaltime(1))  # 2
 ```
 
 
@@ -129,13 +133,18 @@ Scrie o funcție care calculează înălțimea unui arbore reprezentat prin `par
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: numara nivelul unui nod urcand spre radacina
+def nivel(parinte, nod):
+    niv = 0
+    while parinte[nod] is not None:
+        nod = parinte[___]
+        niv += 1
+    return niv
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: inaltimea e nivelul maxim dintre toate nodurile
+noduri = [1, 2, 3, 4, 5]
+inaltimea = max(nivel(parinte, n) for n in ___)
+print("Inaltime:", ___)
 ```
 
 
@@ -144,9 +153,9 @@ print("Total:", ___)
 Numără frunzele unui arbore (nodurile care nu apar ca părinte al nimănui).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `frunze(parinte)` care primește dicționarul `parinte[v]` și returnează lista nodurilor care nu apar ca valoare în `parinte` (adică nu au niciun copil).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind structura `copii` din exemplul de mai sus, scrie `niveluri(radacina)` care returnează un dicționar `{nod: nivel}` pentru toate nodurile arborelui, calculat printr-o parcurgere pornind de la rădăcină.
 
 
 ### ✅ 3.17.6 Verifică-ți înțelegerea
@@ -199,8 +208,8 @@ def inserare(rad, v):
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Capcană frecventă la inserare
+Funcția `inserare` este recursivă și trebuie să returneze mereu `rad` la final — dacă uiți `return rad`, apelul `rad.st = inserare(rad.st, v)` primește `None` și pierzi tot subarborele construit până atunci.
 :::
 
 ### 🔮 3.18.3 Citește și prezice
@@ -220,13 +229,21 @@ Scrie `inserare` și o funcție care verifică dacă un arbore e BST valid.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: cauta valoarea folosind proprietatea BST
+def cauta_valoare(rad, v):
+    if rad is None:
+        return False
+    if v == ___:
+        return True
+    if v < rad.v:
+        return cauta_valoare(rad.___, v)
+    return cauta_valoare(rad.dr, ___)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: testeaza cautarea
+rad = None
+for x in [5, 3, 8]:
+    rad = inserare(rad, x)
+print(cauta_valoare(rad, ___))  # cauta valoarea 8
 ```
 
 
@@ -235,9 +252,9 @@ print("Total:", ___)
 Scrie `minim_bst(rad)` care returnează cea mai mică valoare dintr-un BST.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie `maxim_bst(rad)` care returnează cea mai mare valoare dintr-un BST, urmând mereu copilul drept până când acesta e `None`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie `este_bst_valid(rad, minim=None, maxim=None)` care verifică recursiv, pentru fiecare nod, că valoarea sa se încadrează în intervalul `(minim, maxim)` moștenit de la părinți.
 
 
 ### ✅ 3.18.6 Verifică-ți înțelegerea
@@ -300,13 +317,18 @@ Folosește `heapq` pentru a sorta o listă de numere în ordine crescătoare (He
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: construieste heap-ul din lista initiala
+import heapq
+numere = [7, 2, 9, 1, 5]
+h = []
+for x in numere:
+    heapq.___(h, x)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: extrage elementele in ordine crescatoare
+sortate = []
+while h:
+    sortate.append(heapq.___(h))
+print("Sortat:", ___)
 ```
 
 
@@ -315,9 +337,9 @@ print("Total:", ___)
 Implementează manual (fără `heapq`) operația `push` într-un min-heap reprezentat ca listă.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie funcția `push_manual(h, x)` care adaugă `x` la finalul listei `h`, apoi îl „urcă” (sift-up) interschimbându-l cu părintele său cât timp e mai mic decât acesta, folosind formula părinte `= (i - 1) // 2`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie `pop_manual(h)` care scoate elementul din vârf (`h[0]`), mută ultimul element pe poziția 0 și îl „coboară” (sift-down) interschimbându-l cu cel mai mic dintre copiii săi, cât timp proprietatea de min-heap nu e respectată.
 
 
 ### ✅ 3.19.6 Verifică-ți înțelegerea
@@ -377,13 +399,19 @@ Scrie funcțiile `preordine`, `inordine`, `postordine` pentru un arbore binar.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: preordine viziteaza nodul inaintea copiilor
+def preordine(rad):
+    if rad:
+        print(___.v)
+        preordine(rad.st)
+        preordine(rad.___)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: postordine viziteaza nodul dupa copii
+def postordine(rad):
+    if rad:
+        postordine(rad.st)
+        postordine(rad.dr)
+        print(___.v)
 ```
 
 
@@ -392,9 +420,9 @@ print("Total:", ___)
 Calculează înălțimea unui arbore binar folosind postordinea.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie `numara_noduri(rad)` care folosește o parcurgere (preordine, inordine sau postordine, la alegere) pentru a număra recursiv toate nodurile arborelui.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie `suma_valori(rad)` care parcurge arborele în inordine și adună valorile tuturor nodurilor într-un total, returnat la final.
 
 
 ### ✅ 3.20.6 Verifică-ți înțelegerea
@@ -441,8 +469,8 @@ Căutarea e O(h) unde h = înălțimea. Într-un arbore dezechilibrat (lanț), h
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Caută iterativ, nu recursiv, când poți
+Varianta iterativă a lui `cauta` (ca cea de mai sus) folosește O(1) memorie suplimentară, spre deosebire de o variantă recursivă care ocupă memorie proporțională cu înălțimea arborelui (stiva de apeluri). Pentru arbori foarte înalți, diferența contează.
 :::
 
 ### 🔮 3.21.3 Citește și prezice
@@ -462,13 +490,23 @@ Scrie `cauta` și `inserare` (iterativ, nu recursiv) pentru un BST.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: gaseste pozitia si parintele corect
+def inserare_iterativ(rad, v):
+    nod_nou = Nod(v)
+    if rad is None:
+        return nod_nou
+    curent = rad
+    parinte = None
+    while curent:
+        parinte = curent
+        curent = curent.st if v < curent.v else curent.___
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+    # Pasul 2: agata nodul nou de parinte
+    if v < parinte.v:
+        parinte.st = ___
+    else:
+        parinte.___ = nod_nou
+    return rad
 ```
 
 
@@ -477,9 +515,9 @@ print("Total:", ___)
 Scrie `sterge(rad, v)` care elimină un nod dintr-un BST păstrând proprietatea.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `gaseste_parinte(rad, v)` care returnează nodul părinte al nodului cu valoarea `v` (sau `None` dacă `v` e rădăcina sau nu există în arbore) — utilă ca pas pregătitor pentru ștergere.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind `sterge(rad, v)`, scrie un mic program care construiește un BST din lista `[50, 30, 70, 20, 40]`, șterge valoarea `30`, apoi afișează arborele rămas folosind inordinea.
 
 
 ### ✅ 3.21.6 Verifică-ți înțelegerea
@@ -544,13 +582,19 @@ Creează clasa `Forma` cu atribut `culoare` și clasele `Cerc` și `Patrat` care
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: definire clasa de baza
+class Forma:
+    def __init__(self, culoare):
+        self.culoare = ___
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: clasa derivata mosteneste Forma
+class Cerc(___):
+    def __init__(self, culoare, raza):
+        super().__init__(___)
+        self.raza = raza
+
+c = Cerc("rosu", 5)
+print(c.culoare, ___.raza)
 ```
 
 
@@ -559,9 +603,9 @@ print("Total:", ___)
 Adaugă metoda `descriere()` în `Forma` și suprascrie-o în derivate.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie clasa `Patrat` (moștenind `Forma`) cu atributul `latura` și metoda `arie()` care calculează `latura ** 2`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Creează o listă cu un `Cerc` și un `Patrat`, apoi parcurge lista afișând pentru fiecare `forma.descriere()` — observă cum Python apelează automat versiunea corectă a metodei pentru fiecare obiect (polimorfism).
 
 
 ### ✅ 3.22.6 Verifică-ți înțelegerea
@@ -617,8 +661,8 @@ print(c.sold)  # 150
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Atenție la valorile implicite mutabile în `__init__`
+`sold=0` e sigur ca valoare implicită, dar nu folosi niciodată o listă sau un dicționar ca valoare implicită (`def __init__(self, istoric=[])`) — acel obiect e creat o singură dată și ajunge partajat, din greșeală, între toate instanțele clasei.
 :::
 
 ### 🔮 3.23.3 Citește și prezice
@@ -637,13 +681,23 @@ Creează clasa `Produs` cu `nume`, `pret`, `stoc` și metoda `vinde(n)` care sca
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: constructorul clasei Produs
+class Produs:
+    def __init__(self, nume, pret, stoc):
+        self.nume = nume
+        self.pret = ___
+        self.stoc = stoc
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+    # Pasul 2: metoda care scade stocul
+    def vinde(self, n):
+        if n <= self.___:
+            self.stoc -= ___
+        else:
+            print("Stoc insuficient")
+
+p = Produs("Caiet", 5, 20)
+p.vinde(3)
+print(p.___)  # 17
 ```
 
 
@@ -652,9 +706,9 @@ print("Total:", ___)
 Adaugă metoda `total()` care returnează `pret * stoc`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Adaugă la clasa `Produs` metoda `reaprovizioneaza(n)` care crește stocul cu `n` bucăți și afișează un mesaj cu noul stoc.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie o funcție `valoare_totala_magazin(lista_produse)` care primește o listă de obiecte `Produs` și returnează suma valorilor `total()` pentru toate produsele din listă.
 
 
 ### ✅ 3.23.6 Verifică-ți înțelegerea
@@ -720,13 +774,20 @@ Creează `Vehicul` (cu `__viteza`) și `Bicicleta`/`Masina` care moștenesc, fol
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: clasa de baza cu atribut privat
+class Vehicul:
+    def __init__(self, marca, viteza_maxima):
+        self.marca = marca
+        self.__viteza = ___
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: clasa derivata apeleaza constructorul parintelui
+class Masina(___):
+    def __init__(self, marca, viteza_maxima, nr_usi):
+        super().__init__(marca, ___)
+        self.nr_usi = nr_usi
+
+m = Masina("Dacia", 180, 4)
+print(m.marca, m.___)
 ```
 
 
@@ -735,9 +796,9 @@ print("Total:", ___)
 Demonstră name mangling: accesează atributul privat din exterior ca `_Clasa__atribut`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie clasa `Bicicleta(Vehicul)` cu un atribut suplimentar `nr_viteze`, folosind `super().__init__()` pentru partea comună moștenită din `Vehicul`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Adaugă în `Vehicul` o metodă publică `viteza_maxima()` care returnează valoarea din `self.__viteza`, astfel încât clasele derivate să poată citi atributul privat fără să folosească name mangling direct.
 
 
 ### ✅ 3.24.6 Verifică-ți înțelegerea
@@ -775,13 +836,19 @@ Python suportă multiple paradigme — le poți amesteca.
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 3.25
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+numere = [1, 2, 3, 4, 5, 6]
 
-print("Rezultat:", exemplu_demonstrativ())
+# stil procedural
+pare_procedural = []
+for x in numere:
+    if x % 2 == 0:
+        pare_procedural.append(x)
+
+# stil functional
+pare_functional = list(filter(lambda x: x % 2 == 0, numere))
+
+print("Procedural:", pare_procedural)
+print("Functional:", pare_functional)
 ```
 
 
@@ -804,13 +871,16 @@ Scrie același program (filtrat numere pare dintr-o listă) în stil procedural 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: stil procedural
+numere = [1, 2, 3, 4, 5, 6]
+pare = []
+for x in numere:
+    if x % ___ == 0:
+        pare.append(___)
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: acelasi rezultat, stil functional
+pare_functional = list(___(lambda x: x % 2 == 0, numere))
+print("Rezultat:", ___)
 ```
 
 
@@ -819,9 +889,9 @@ print("Total:", ___)
 Scrie o clasă `Calculator` (POO) care expune operații ca metode, demonstrând paradigma obiectuală.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie aceeași logică din `Calculator` ca versiune procedurală — patru funcții separate `aduna(a, b)`, `scade(a, b)`, `inmulteste(a, b)`, `imparte(a, b)` — și compară cele două stiluri pe aceleași date de test.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie o versiune funcțională: o funcție `calculeaza(operatie, a, b)` care primește o funcție (de exemplu `aduna` sau `scade`) ca parametru și o aplică pe `a` și `b`, demonstrând folosirea funcțiilor ca valori de prim rang.
 
 
 ### ✅ 3.25.6 Verifică-ți înțelegerea

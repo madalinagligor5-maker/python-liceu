@@ -26,7 +26,7 @@ Orice modificare (INSERT/UPDATE/DELETE/DDL) trebuie urmată de `conn.commit()`, 
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+Deschide conexiunea cât mai târziu și închide-o cât mai devreme. Dacă uiți `conn.close()`, fișierul `.db` poate rămâne blocat pentru alte programe care vor să-l acceseze — cel mai sigur e să folosești `with sqlite3.connect(...) as conn:`, care închide automat conexiunea la ieșirea din bloc.
 :::
 
 ### 🔮 4.6.3 Citește și prezice
@@ -48,13 +48,16 @@ Creează o bază de date `agenda.db` cu tabela `Persoana(id, nume, telefon)` fol
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: deschide conexiunea si cursorul pentru agenda.db
+conn = sqlite3.___("agenda.db")
+cur = conn.___()
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: creeaza tabela Persoana daca nu exista
+cur.execute("CREATE TABLE IF NOT EXISTS Persoana(id INTEGER PRIMARY KEY, nume TEXT, telefon TEXT)")
+
+# Pasul 3: salveaza modificarile si inchide conexiunea
+conn.___()
+conn.___()
 ```
 
 
@@ -63,9 +66,9 @@ print("Total:", ___)
 Scrie o funcție `adauga(conn, nume, telefon)` care inserează și face commit.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `cauta_persoana(conn, nume)` care primește conexiunea către `agenda.db`, execută un `SELECT` pe tabela `Persoana` după nume și returnează rezultatul cu `cur.fetchone()`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior cu o funcție `sterge_persoana(conn, id)` care șterge o persoană din tabela `Persoana` după `id` și confirmă ștergerea printr-un mesaj afișat pe ecran.
 
 
 ### ✅ 4.6.6 Verifică-ți înțelegerea
@@ -101,13 +104,18 @@ SELECT DISTINCT oras FROM Student;        -- valori unice
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.7
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+import sqlite3
 
-print("Rezultat:", exemplu_demonstrativ())
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Student(nume TEXT, varsta INTEGER)")
+cur.executemany("INSERT INTO Student VALUES (?, ?)",
+                 [("Ana", 17), ("Bogdan", 19), ("Cris", 17)])
+conn.commit()
+
+cur.execute("SELECT nume FROM Student WHERE varsta > 17 ORDER BY nume")
+rezultate = cur.fetchall()
+print("Studenți peste 17 ani:", rezultate)
 ```
 
 
@@ -141,13 +149,12 @@ Scrie o interogare care afișează numele studenților mai mari de 18 ani, ordon
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: selecteaza numele studentilor majori, ordonati alfabetic
+cur.execute("SELECT nume FROM Student ___ varsta >= 18 ORDER ___ nume")
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: extrage toate randurile rezultate
+rezultate = cur.___()
+print("Studenți majori:", ___)
 ```
 
 
@@ -156,9 +163,9 @@ print("Total:", ___)
 Folosind `sqlite3` în Python, creează tabela, inserează 3 rânduri și afișează cele ordonate.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o interogare SQL care selectează doar coloanele `nume` și `oras` din tabela `Student`, pentru studenții cu vârsta sub 18 ani.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind Python și `sqlite3`, execută interogarea de mai sus cu `cur.execute`, apoi afișează rezultatele ordonate descrescător după vârstă, folosind `cur.fetchall()`.
 
 
 ### ✅ 4.7.6 Verifică-ți înțelegerea
@@ -192,13 +199,18 @@ SELECT oras, AVG(varsta) FROM Student GROUP BY oras HAVING AVG(varsta) > 17;
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.8
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+import sqlite3
 
-print("Rezultat:", exemplu_demonstrativ())
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Vanzari(oras TEXT, suma INTEGER)")
+cur.executemany("INSERT INTO Vanzari VALUES (?, ?)",
+                 [("Cluj", 100), ("Cluj", 200), ("Iasi", 50)])
+conn.commit()
+
+cur.execute("SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras")
+for oras, total in cur.fetchall():
+    print(f"{oras}: {total} lei")
 ```
 
 
@@ -209,7 +221,7 @@ print("Rezultat:", exemplu_demonstrativ())
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+Orice coloană din `SELECT` care nu e argument al unei funcții agregate trebuie să apară și în `GROUP BY` — altfel rezultatul e ambiguu (SQLite e permisiv și alege o valoare oarecare, dar alte SGBD-uri refuză direct interogarea).
 :::
 
 ### 🔮 4.8.3 Citește și prezice
@@ -238,13 +250,12 @@ Scrie o interogare care returnează numărul de studenți pe fiecare oraș.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: numara studentii din fiecare oras
+cur.execute("SELECT oras, ___(*) FROM Student ___ BY oras")
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: extrage rezultatele grupate
+grupuri = cur.___()
+print("Studenți pe oraș:", ___)
 ```
 
 
@@ -253,9 +264,9 @@ print("Total:", ___)
 Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studenți.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o interogare SQL care calculează suma vânzărilor (`SUM(suma)`) pentru fiecare oraș din tabela `Vanzari`, afișând doar orașele cu suma totală peste 100 (folosește `HAVING`).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind Python, execută interogarea de mai sus cu `cur.execute`, apoi afișează fiecare oraș cu totalul lui folosind un `for` care parcurge `cur.fetchall()`.
 
 
 ### ✅ 4.8.6 Verifică-ți înțelegerea
@@ -295,13 +306,25 @@ WHERE id IN (SELECT student_id FROM Inscriere WHERE curs_id = 1);
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.9
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+import sqlite3
 
-print("Rezultat:", exemplu_demonstrativ())
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Student(id INTEGER, nume TEXT)")
+cur.execute("CREATE TABLE Curs(id INTEGER, denumire TEXT)")
+cur.execute("CREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER)")
+cur.executemany("INSERT INTO Student VALUES (?, ?)", [(1, "Ana"), (2, "Bogdan")])
+cur.execute("INSERT INTO Curs VALUES (1, 'Python')")
+cur.execute("INSERT INTO Inscriere VALUES (1, 1)")
+conn.commit()
+
+cur.execute("""
+    SELECT s.nume, c.denumire
+    FROM Student s
+    JOIN Inscriere i ON s.id = i.student_id
+    JOIN Curs c ON i.curs_id = c.id
+""")
+print("Înscrieri:", cur.fetchall())
 ```
 
 
@@ -334,13 +357,17 @@ Scrie un JOIN care afișează numele studenților și denumirea cursurilor la ca
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: JOIN intre Student, Inscriere si Curs
+cur.execute("""
+    SELECT s.nume, c.denumire
+    FROM Student s
+    ___ Inscriere i ON s.id = i.student_id
+    ___ Curs c ON i.curs_id = c.id
+""")
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: extrage toate perechile nume-curs
+rezultate = cur.___()
+print("Studenți și cursuri:", ___)
 ```
 
 
@@ -349,9 +376,9 @@ print("Total:", ___)
 Scrie o subinterogare care returnează studenții înscriși la un curs dat.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un `LEFT JOIN` între tabelele `Student` și `Inscriere` care afișează numele fiecărui student și `curs_id`-ul la care e înscris, păstrând și studenții care nu sunt înscriși la niciun curs.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Scrie o subinterogare cu `NOT IN` care returnează numele studenților care NU sunt înscriși la cursul cu `id = 1`.
 
 
 ### ✅ 4.9.6 Verifică-ți înțelegerea
@@ -386,13 +413,18 @@ DELETE FROM Student WHERE varsta < 16;
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.10
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+import sqlite3
 
-print("Rezultat:", exemplu_demonstrativ())
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER)")
+
+cur.execute("INSERT INTO Student(nume, varsta) VALUES (?, ?)", ("Ana", 17))
+cur.execute("UPDATE Student SET varsta = ? WHERE nume = ?", (18, "Ana"))
+conn.commit()
+
+cur.execute("SELECT * FROM Student")
+print("Student după actualizare:", cur.fetchall())
 ```
 
 
@@ -403,7 +435,7 @@ print("Rezultat:", exemplu_demonstrativ())
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+Folosește întotdeauna parametri legați — `cur.execute("... WHERE nume = ?", (nume,))` — în loc să concatenezi valori direct în string-ul SQL. Previi atât erorile de sintaxă cauzate de ghilimele sau caractere speciale, cât și atacurile de tip SQL injection.
 :::
 
 ### 🔮 4.10.3 Citește și prezice
@@ -432,13 +464,14 @@ Scrie cod Python care inserează 3 studenți și apoi actualizează vârsta unui
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: insereaza un student nou
+cur.execute("INSERT INTO Student(nume, varsta) VALUES (?, ?)", ("Bogdan", 19))
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: actualizeaza varsta studentului
+cur.execute("___ Student SET varsta = ? WHERE nume = ?", (20, "Bogdan"))
+
+# Pasul 3: salveaza modificarile
+conn.___()
 ```
 
 
@@ -447,9 +480,9 @@ print("Total:", ___)
 Șterge toate înregistrările cu vârsta mai mică de 16, folosind `cur.execute` + `commit`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un program Python care inserează 3 studenți în tabela `Student` folosind `executemany`, apoi face `commit`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior cu o funcție `actualizeaza_varsta(conn, nume, varsta_noua)` care face `UPDATE` cu parametri legați și confirmă modificarea printr-un `SELECT` după nume.
 
 
 ### ✅ 4.10.6 Verifică-ți înțelegerea
@@ -484,13 +517,16 @@ DROP TABLE Student;  -- sterge tabela complet
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.11
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+import sqlite3
 
-print("Rezultat:", exemplu_demonstrativ())
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Produs(id INTEGER PRIMARY KEY, nume TEXT, pret REAL)")
+cur.execute("ALTER TABLE Produs ADD COLUMN stoc INTEGER")
+conn.commit()
+
+cur.execute("PRAGMA table_info(Produs)")
+print("Coloanele tabelei Produs:", cur.fetchall())
 ```
 
 
@@ -523,13 +559,14 @@ Creează tabela `Produs(id, nume, pret)` apoi adaugă coloana `stoc`.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: creeaza tabela Produs
+cur.execute("___ TABLE Produs(id INTEGER PRIMARY KEY, nume TEXT, pret REAL)")
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: adauga coloana stoc
+cur.execute("ALTER TABLE Produs ___ COLUMN stoc INTEGER")
+
+# Pasul 3: salveaza modificarile de structura
+conn.___()
 ```
 
 
@@ -538,9 +575,9 @@ print("Total:", ___)
 Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie cod Python care creează tabela `Produs(id, nume, pret)` și apoi adaugă coloana `stoc INTEGER` folosind `ALTER TABLE`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior cu o funcție `sterge_tabela(conn, nume_tabela)` care execută `DROP TABLE IF EXISTS` pentru tabela primită ca parametru și confirmă ștergerea printr-un mesaj.
 
 
 ### ✅ 4.11.6 Verifică-ți înțelegerea
@@ -597,13 +634,13 @@ Scrie un transfer bancar cu `try/except` și `commit`/`rollback`.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
-
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 1: incearca transferul intre conturi
+try:
+    cur.execute("UPDATE Cont SET sold = sold - 100 WHERE id=1")
+    cur.execute("UPDATE Cont SET sold = sold + 100 WHERE id=2")
+    conn.___()          # salveaza tranzactia daca ambele reusesc
+except:
+    conn.___()          # anuleaza tot daca a esuat ceva
 ```
 
 
@@ -612,9 +649,9 @@ print("Total:", ___)
 Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO SAVEPOINT`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `transfer(conn, id_sursa, id_dest, suma)` care face două `UPDATE`-uri (scade `suma` din contul sursă, o adaugă în contul destinație) și face `commit` doar dacă ambele reușesc.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția `transfer` cu un bloc `try/except` care apelează `conn.rollback()` dacă a doua actualizare eșuează, astfel încât soldul contului sursă să rămână neschimbat.
 
 
 ### ✅ 4.12.6 Verifică-ți înțelegerea

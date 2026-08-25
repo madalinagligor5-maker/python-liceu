@@ -229,12 +229,12 @@ Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
 # Pasul 1: declarare date
-val1 = 15
-val2 = 30
+pret_produs = 15
+taxa_transport = 5
 
 # Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+cost_total = pret_produs + taxa_transport  # Completează variabilele
+print("Cost total:", cost_total)
 ```
 
 
@@ -519,7 +519,9 @@ O variabilă creată în interiorul unei funcții dispare când funcția se term
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Întotdeauna acordă atenție diferenței dintre operatorul de atribuire (=) și cel de egalitate (==). Folosirea greșită în condiții poate duce la erori de sintaxă sau comportament neașteptat!
+:::
 :::
 
 ### 🔮 1.5.3 Citește și prezice
@@ -846,7 +848,9 @@ Varianta cu împărțiri e cea folosită în practică — vezi legătura cu mod
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Asigură-te că buclele while au o condiție de oprire clară care se modifică la fiecare pas, altfel algoritmul va intra într-o buclă infinită!
+:::
 :::
 
 ### 🔮 1.8.3 Citește și prezice

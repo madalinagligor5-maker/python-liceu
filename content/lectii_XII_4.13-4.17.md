@@ -16,13 +16,24 @@ Două tipuri de învățare:
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 4.13
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+def separa_features_target(exemple, coloana_tinta):
+    """Primește o listă de dicționare (exemple de antrenare) și numele
+    coloanei-țintă. Returnează (lista_features, lista_target)."""
+    features = []
+    target = []
+    for exemplu in exemple:
+        target.append(exemplu[coloana_tinta])
+        features.append({cheie: val for cheie, val in exemplu.items() if cheie != coloana_tinta})
+    return features, target
 
-print("Rezultat:", exemplu_demonstrativ())
+date = [
+    {"varsta": 25, "venit": 3200, "aprobare_credit": "Da"},
+    {"varsta": 41, "venit": 1800, "aprobare_credit": "Nu"},
+]
+
+X, y = separa_features_target(date, "aprobare_credit")
+print("Features:", X)
+print("Target:", y)
 ```
 
 
@@ -45,13 +56,14 @@ Creează un dicționar Python cu 5 exemple de învățare supervizată (features
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: un exemplu din setul de date
+exemplu = {"varsta": 30, "venit": 4200, "aprobare_credit": "Da"}
+coloana_tinta = "aprobare_credit"
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: separam eticheta (target) de restul caracteristicilor
+target = exemplu[___]
+features = {cheie: val for cheie, val in exemplu.items() if cheie != ___}
+print("Target:", ___)
 ```
 
 
@@ -60,9 +72,9 @@ print("Total:", ___)
 Separă features de target într-o listă de tupluri `(features, eticheta)`.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `este_supervizata(exemple)` care primește o listă de dicționare reprezentând exemple de antrenare și returnează `True` dacă fiecare dicționar conține o cheie `"eticheta"` (deci avem învățare supervizată) și `False` altfel.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția anterioară astfel încât, atunci când datele sunt supervizate, să construiască și să afișeze separat lista de features și lista de etichete extrase dintr-un set de minimum 5 exemple.
 
 
 ### ✅ 4.13.6 Verifică-ți înțelegerea
@@ -100,8 +112,8 @@ Dacă antrenezi pe date normalize, trebuie să aplici aceeași transformare și 
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Greșeală frecventă: normalizare pe tot setul deodată
+Nu calcula minimul și maximul pe toate datele (antrenare + test) laolaltă — asta se numește "data leakage". Calculează `min` și `max` doar pe datele de antrenare, apoi folosește aceleași valori pentru a normaliza și datele de test sau exemplele noi.
 :::
 
 ### 🔮 4.14.3 Citește și prezice
@@ -118,13 +130,16 @@ Scrie o funcție care înlocuiește valorile lipsă (`None`) dintr-o listă cu m
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: date cu valori lipsa
+note = [8, 9, None, 7, None, 10]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: calculam media valorilor cunoscute
+cunoscute = [n for n in note if n is not None]
+media = sum(___) / len(___)
+
+# Pasul 3: inlocuim valorile lipsa cu media
+note_complete = [n if n is not None else ___ for n in note]
+print("Note complete:", note_complete)
 ```
 
 
@@ -133,9 +148,9 @@ print("Total:", ___)
 Scrie normalizarea min-max pentru o listă de numere.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `normalizeaza(lista)` care primește o listă de numere și returnează o listă nouă în care fiecare valoare este transformată prin formula min-max `(val - min) / (max - min)`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția `normalizeaza` astfel încât, dacă lista de intrare conține valori `None`, acestea să fie mai întâi înlocuite cu media valorilor cunoscute, iar apoi să aplici normalizarea min-max pe lista completată.
 
 
 ### ✅ 4.14.6 Verifică-ți înțelegerea
@@ -192,13 +207,15 @@ Folosește `KMeans` pe un set mic de 2D points și afișează `labels_`.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: date de antrenare (2 grupuri clar separate)
+X = [[1, 1], [1, 2], [9, 9], [10, 10]]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: cream si antrenam modelul KMeans cu 2 clustere
+km = KMeans(n_clusters=___, n_init=10)
+km.fit(___)
+
+# Pasul 3: afisam eticheta atribuita fiecarui punct
+print("Clustere:", km.___)
 ```
 
 
@@ -207,9 +224,9 @@ print("Total:", ___)
 Calculează manual (fără sklearn) un pas de K-means pe 4 puncte cu 2 centroizi.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un program Python care aplică `KMeans` cu `k=3` pe o listă de 6 puncte 2D distribuite în trei grupuri vizibil separate și afișează `labels_`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior calculând, pentru fiecare cluster, coordonatele centroidului (media punctelor din acel grup) și afișează-le formatat, semnalând printr-un mesaj dacă vreun cluster a rămas fără puncte.
 
 
 ### ✅ 4.15.6 Verifică-ți înțelegerea
@@ -261,13 +278,17 @@ Antrenează o regresie liniară pe datele `(x, y) = (1,3),(2,5),(3,7)` și prezi
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: date de antrenare
+X = [[1], [2], [3]]
+y = [3, 5, 7]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: cream si antrenam modelul
+model = LinearRegression()
+model.fit(___, ___)
+
+# Pasul 3: prezicem pentru x=4
+predictie = model.predict([[___]])
+print("Predictie:", predictie)
 ```
 
 
@@ -276,9 +297,9 @@ print("Total:", ___)
 Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un program Python care antrenează un `LinearRegression` pe punctele `(1,3), (2,5), (3,7), (4,9)` și afișează coeficientul `a` (`model.coef_`) și termenul liber `b` (`model.intercept_`).
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior citind o valoare `x` de la utilizator cu `input()`, validează că textul introdus poate fi convertit la număr, apoi afișează predicția modelului formatată cu două zecimale.
 
 
 ### ✅ 4.16.6 Verifică-ți înțelegerea
@@ -334,13 +355,16 @@ Antrenează un KNN pe un set mic și prezice eticheta unui punct nou.
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Pasul 1: date de antrenare (features si etichete)
+X = [[1, 1], [1, 2], [8, 8], [9, 9]]
+y = ["A", "A", "B", "B"]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Pasul 2: cream si antrenam clasificatorul KNN cu 3 vecini
+knn = KNeighborsClassifier(n_neighbors=___)
+knn.___(X, y)
+
+# Pasul 3: prezicem eticheta unui punct nou
+print("Predictie:", knn.predict([[___, ___]]))
 ```
 
 
@@ -349,9 +373,9 @@ print("Total:", ___)
 Antrenează un arbore de decizie și afișează structura (sau importanța features).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie un program Python care antrenează un `DecisionTreeClassifier` pe un set de 6 exemple cu două features (de exemplu `venit` și `varsta`) și eticheta `aprobare` (Da/Nu), apoi afișează `feature_importances_`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde programul anterior antrenând și un `KNeighborsClassifier(n_neighbors=3)` pe aceleași date, prezice eticheta pentru un punct nou cu ambele modele și afișează, formatat, dacă cele două modele sunt de acord.
 
 
 ### ✅ 4.17.6 Verifică-ți înțelegerea

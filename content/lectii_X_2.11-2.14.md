@@ -18,7 +18,9 @@ print("Ion" in note)        # False
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Folosește blocul with open(...) as f: pentru a lucra cu fișiere — garantează închiderea automată a fișierului chiar dacă apar erori!
+:::
 :::
 
 ### 🔮 2.11.3 Citește și prezice
@@ -94,7 +96,9 @@ Metode: `.get()`, `.keys()`, `.values()`, `.items()`, `in` (verifică cheia).
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Metoda f.readline() include caracterul de linie nouă '\n' la finalul fiecărei linii. Folosește .strip() pentru a-l elimina!
+:::
 :::
 
 ### 🔮 2.12.3 Citește și prezice
@@ -168,7 +172,9 @@ Tuplurile pot fi chei de dicționar (listele nu pot).
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Cheile dintr-un dicționar Python trebuie să fie de tip imutabil (str, int, tuple) și sunt unice. Accesarea unei chei inexistente aruncă KeyError — folosește .get(cheie)!
+:::
 :::
 
 ### 🔮 2.13.3 Citește și prezice
@@ -245,7 +251,9 @@ Operatori: acces prin index, `in`, `+` (concatenare), `*` (repetare). Metode: `c
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Seturile (set) stochează doar elemente unice și neordonate, oferind operații rapide O(1) de verificare a apartenenței cu operatorul in!
+:::
 :::
 
 ### 🔮 2.14.3 Citește și prezice

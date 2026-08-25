@@ -61,13 +61,10 @@ Fii organizat în scrierea codului! Un cod curat și bine comentat este mult mai
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+note = [8, 9, 10, 7]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+media = ___(note) / ___(note)
+print(f"Media elevului este: {media}")
 ```
 
 

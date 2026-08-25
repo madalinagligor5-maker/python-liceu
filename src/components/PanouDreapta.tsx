@@ -40,10 +40,14 @@ export function CardStreakSaptamana({ zile }: { zile: number }) {
         {ZILE.map((z, i) => (
           <span
             key={`stare-${i}`}
-            className="text-sm"
+            className="flex items-center justify-center"
             title={aprinse.has(i) ? "activitate" : "fără activitate"}
           >
-            {aprinse.has(i) ? "🔥" : "⚪"}
+            {aprinse.has(i) ? (
+              <IconStreak className="w-3.5 h-3.5 text-amber-500" />
+            ) : (
+              <span className="block w-2.5 h-2.5 rounded-full border-2 border-slate-300" aria-hidden="true" />
+            )}
             <span className="sr-only">
               {z}: {aprinse.has(i) ? "activitate" : "fără activitate"}
             </span>

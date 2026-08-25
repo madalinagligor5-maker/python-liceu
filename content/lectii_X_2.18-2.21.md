@@ -25,7 +25,9 @@ Complexitate O(n log n) — mult mai bună decât O(n²).
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Un graf neorientat cu N noduri poate fi reprezentat prin matrice de adiacență de dimensiune N x N sau prin liste de adiacență (dicționar de liste)!
+:::
 :::
 
 ### 🔮 2.18.3 Citește și prezice
@@ -113,7 +115,9 @@ Quicksort: medie O(n log n), caz nefavorabil O(n²) (pivot prost, listă deja so
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::atentie
+Păstrează un set de noduri vizitate la parcurgerea grafurilor pentru a evita buclele infinite pe componente conexe sau cicluri!
+:::
 :::
 
 ### 🔮 2.19.3 Citește și prezice
@@ -205,7 +209,9 @@ def flood_fill(grila, i, j, veche, noua):
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Un arbore binar are pentru fiecare nod cel mult doi fii (stânga și dreapta). Rădăcina este singurul nod fără părinte!
+:::
 :::
 
 ### 🔮 2.20.3 Citește și prezice
@@ -290,7 +296,9 @@ print(rest_greedy(6, [1, 2, 5]))   # [5, 1]
 
 :::tip
 ## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+:::tip
+Parcurgerea în Inordine (stânga, rădăcină, dreapta) a unui Arbore Binar de Căutare (BST) vizitează nodurile în ordine strict crescătoare!
+:::
 :::
 
 ### 🔮 2.21.3 Citește și prezice

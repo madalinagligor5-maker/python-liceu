@@ -42,13 +42,15 @@ Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o gr
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Numarul de drumuri intr-o grila m x n (doar dreapta/jos)
+m, n = 3, 4
+drumuri = [[1] * n for _ in range(m)]
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+for i in range(1, m):
+    for j in range(1, n):
+        drumuri[i][j] = drumuri[i - 1][j] + drumuri[___][___]  # Completează indicii vecinului din stânga
+
+print("Numar de drumuri:", drumuri[___][___])  # Completează coltul dreapta-jos
 ```
 
 
@@ -57,9 +59,9 @@ print("Total:", ___)
 Scrie PD pentru "numărul de moduri de a face suma `s` cu monede dintr-o listă dată".
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `moduri_suma(monede, s)` care calculează, folosind programare dinamică (un tabel `dp` de dimensiune `s + 1`), în câte moduri poți obține suma `s` folosind monedele date, dacă fiecare monedă poate fi folosită de oricâte ori.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Extinde funcția anterioară astfel încât să reconstituie și să afișeze un exemplu concret de combinație de monede care formează suma `s`, nu doar numărul total de moduri.
 
 
 ### ✅ 3.6.6 Verifică-ți înțelegerea
@@ -96,13 +98,19 @@ Graf **orientat**: muchiile au sens (A→B ≠ B→A). Graf **neorientat**: much
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 3.7
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Reprezentam un graf neorientat si calculam gradul fiecarui varf
+graf = {
+    1: [2, 4],
+    2: [1, 3],
+    3: [2, 4],
+    4: [1, 3],
+}
 
-print("Rezultat:", exemplu_demonstrativ())
+def grad(varf):
+    return len(graf[varf])
+
+for v in graf:
+    print(f"Varful {v} are gradul {grad(v)}")
 ```
 
 
@@ -125,13 +133,16 @@ Reprezintă un graf cu 4 vârfuri și muchiile (1,2), (2,3), (3,4), (1,4) și ca
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Graful cu muchiile (1,2), (2,3), (3,4), (1,4)
+muchii = [(1, 2), (2, 3), (3, 4), (1, 4)]
+grade = {1: 0, 2: 0, 3: 0, 4: 0}
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+for a, b in muchii:
+    grade[___] += 1  # Completează cu primul varf al muchiei
+    grade[___] += 1  # Completează cu al doilea varf al muchiei
+
+for varf, g in grade.items():
+    print("Varful", varf, "are gradul", ___)  # Completează cu gradul curent
 ```
 
 
@@ -140,9 +151,9 @@ print("Total:", ___)
 Scrie o funcție care verifică dacă un graf neorientat e **complet** (orice pereche de vârfuri e legată).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `este_complet(graf)` care primește un graf neorientat reprezentat ca dicționar de liste de adiacență și returnează `True` dacă fiecare vârf are gradul `n - 1`, unde `n` e numărul total de vârfuri.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Testează funcția `este_complet` pe graful K4 (4 vârfuri, toate legate între ele) și pe un graf cu aceleași 4 vârfuri căruia îi lipsește o singură muchie, afișând rezultatul pentru fiecare caz.
 
 
 ### ✅ 3.7.6 Verifică-ți înțelegerea
@@ -193,8 +204,8 @@ La grafuri cu multe vârfuri și puține muchii (sparse), lista de adiacență e
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
-Verifică întotdeauna tipul variabilelor și indentarea corectă a liniilor de cod.
+## Cum alegi reprezentarea potrivită
+Dacă trebuie să răspunzi rapid la întrebarea „există muchie între x și y?" pe un graf dens, matricea de adiacență e mai potrivită (răspuns în O(1)). Dacă parcurgi des vecinii unui vârf, ca la BFS/DFS, sau graful e rar (puține muchii față de numărul de vârfuri), lista de adiacență economisește memorie și timp.
 :::
 
 ### 🔮 3.8.3 Citește și prezice
@@ -212,13 +223,15 @@ Scrie o funcție care convertește o listă de muchii într-o listă de adiacen�
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# Conversia unei liste de muchii intr-o lista de adiacenta
+muchii = [(1, 2), (2, 3), (1, 3)]
+adiacenta = {}
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+for a, b in muchii:
+    adiacenta.setdefault(a, []).append(___)  # Completează cu celălalt capăt al muchiei
+    adiacenta.setdefault(___, []).append(a)  # Completează cu primul varf, graful e neorientat
+
+print(adiacenta)
 ```
 
 
@@ -227,9 +240,9 @@ print("Total:", ___)
 Scrie o funcție care verifică dacă există muchie între două vârfuri date, folosind lista de adiacență.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `exista_muchie(adiacenta, x, y)` care primește un graf reprezentat ca listă de adiacență (dicționar vârf → listă vecini) și returnează `True` dacă există muchie între vârfurile `x` și `y`.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Folosind aceeași reprezentare, scrie o funcție `numara_muchii(adiacenta)` care calculează numărul total de muchii ale unui graf neorientat, având grijă să nu numeri fiecare muchie de două ori.
 
 
 ### ✅ 3.8.6 Verifică-ți înțelegerea
@@ -265,13 +278,16 @@ output: 2
 
 
 ```python
-# Exemplu practic de cod Python pentru modulul 3.9
-def exemplu_demonstrativ():
-    # Implementare de bază
-    valoare = 10
-    return valoare * 2
+# Verificam daca un graf neorientat este complet
+def este_complet(graf):
+    n = len(graf)
+    for v in graf:
+        if len(graf[v]) != n - 1:
+            return False
+    return True
 
-print("Rezultat:", exemplu_demonstrativ())
+graf = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+print("Graful este complet:", este_complet(graf))
 ```
 
 
@@ -293,13 +309,18 @@ Scrie o funcție care verifică dacă un graf neorientat e conex (parcurge din o
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
-
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+# Verificam daca un graf neorientat este conex, folosind parcurgere DFS
+def este_conex(graf):
+    start = next(iter(graf))
+    vizitate = set()
+    stiva = [start]
+    while stiva:
+        v = stiva.pop()
+        if v not in vizitate:
+            vizitate.add(___)  # Completează cu vârful curent
+            for vecin in graf[v]:
+                stiva.append(___)  # Completează cu vecinul din graf[v]
+    return len(vizitate) == ___  # Completează cu numărul total de vârfuri din graf
 ```
 
 
@@ -308,9 +329,9 @@ print("Total:", ___)
 Scrie o funcție care verifică dacă un graf are toate gradele pare (condiție pentru circuit eulerian).
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `are_toate_gradele_pare(graf)` care primește un graf neorientat (dicționar vârf → listă vecini) și returnează `True` dacă fiecare vârf are grad par — condiția necesară pentru existența unui circuit eulerian.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Testează funcția pe graful-ciclu cu 5 vârfuri (fiecare vârf legat de următoarele două, formând un pentagon) și pe un graf „stea" (un vârf central legat de toate celelalte), explicând într-un comentariu de ce rezultatele diferă.
 
 
 ### ✅ 3.9.6 Verifică-ți înțelegerea
@@ -375,13 +396,27 @@ Scrie BFS care returnează drumul cel mai scurt (lista de vârfuri) de la start 
 Completează spațiile punctate pentru a finaliza algoritmul:
 
 ```python
-# Pasul 1: declarare date
-val1 = 15
-val2 = 30
+# BFS care returneaza drumul cel mai scurt de la start la tinta
+from collections import deque
 
-# Pasul 2: calcul
-total = ___ + ___  # Completează variabilele
-print("Total:", ___)
+def drum_minim(adiacenta, start, tinta):
+    parinte = {start: None}
+    coada = deque([start])
+
+    while coada:
+        v = coada.popleft()
+        if v == tinta:
+            break
+        for u in adiacenta[v]:
+            if u not in parinte:
+                parinte[___] = v  # Completează cu vecinul descoperit
+                coada.append(___)  # Completează cu vecinul descoperit
+
+    drum = [tinta]
+    while drum[-1] != start:
+        drum.append(parinte[___])  # Completează cu ultimul varf adaugat in drum
+    drum.reverse()
+    return drum
 ```
 
 
@@ -390,9 +425,9 @@ print("Total:", ___)
 Numără componentele conexe ale unui graf folosind BFS repetat.
 
 
-**Exercițiul 1.** Scrie un program Python care rezolvă cerința directă folosind concepte din acest modul.
+**Exercițiul 1.** Scrie o funcție `numara_componente(adiacenta)` care primește un graf neorientat (listă de adiacență) și returnează numărul de componente conexe, rulând BFS din fiecare vârf nevizitat.
 
-**Exercițiul 2.** Extinde programul anterior adăugând afișare formatată și validare minimală.
+**Exercițiul 2.** Modifică funcția `numara_componente` să returneze și componentele efective (fiecare componentă fiind lista vârfurilor din ea), nu doar numărul lor.
 
 
 ### ✅ 3.10.6 Verifică-ți înțelegerea
