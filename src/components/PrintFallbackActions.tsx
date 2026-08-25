@@ -18,7 +18,7 @@ export default function PrintFallbackActions() {
       <button
         type="button"
         onClick={handlePrint}
-        className="w-full rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark cursor-pointer"
+        className="w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 transition cursor-pointer"
       >
         🖨️ Deschide manual caseta de salvare
       </button>

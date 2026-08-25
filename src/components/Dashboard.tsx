@@ -120,7 +120,7 @@ export default function Dashboard({
                   {urmatoarea ? (
                     <Link
                       href={`/lectii/${urmatoarea.clasa}/${urmatoarea.unitate_slug}/${urmatoarea.lectie_slug}`}
-                      className="mt-5 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark"
+                      className="mt-5 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-black text-slate-950 shadow-sm transition hover:bg-brand-dark"
                     >
                       Continuă lecția <span aria-hidden="true">▶</span>
                     </Link>
@@ -151,10 +151,10 @@ export default function Dashboard({
                   key={c}
                   href={`/?clasa=${c}`}
                   aria-current={c === clasaSelectata ? "page" : undefined}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                  className={`rounded-xl px-4 py-2 text-sm font-black transition ${
                     c === clasaSelectata
-                      ? "bg-brand text-white shadow-sm"
-                      : "border border-border bg-white text-foreground/70 hover:text-brand"
+                      ? "bg-brand text-slate-950 shadow-sm"
+                      : "border border-border bg-white text-foreground/80 hover:text-brand"
                   }`}
                 >
                   Clasa {c}

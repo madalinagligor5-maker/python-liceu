@@ -7,7 +7,7 @@ export default function PrintButton() {
       onClick={() => {
         if (typeof window !== "undefined") window.print();
       }}
-      className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-2 px-6 text-xs transition shadow-sm cursor-pointer"
+      className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-2 px-6 text-xs transition shadow-sm cursor-pointer"
     >
       🖨️ Printează Acum
     </button>

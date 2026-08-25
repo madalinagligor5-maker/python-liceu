@@ -5,32 +5,32 @@ export function CardNivel({ xpTotal }: { xpTotal: number }) {
   const { nivel, xpNivelUrmator, xpRamasi, procent } = progresNivel(xpTotal);
 
   return (
-    <div className="rounded-2xl bg-brand-dark p-5 text-white">
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm text-slate-950">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs uppercase tracking-wide text-white/60">Nivelul tău</p>
-          <p className="text-2xl font-extrabold">Nivel {nivel}</p>
+          <p className="text-xs font-black uppercase tracking-wider text-amber-600">Nivelul tău</p>
+          <p className="text-2xl font-black text-slate-950">Nivel {nivel}</p>
         </div>
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-lg font-extrabold text-brand-dark">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400 text-lg font-black text-slate-950 border border-amber-500 shadow-xs">
           {nivel}
         </span>
       </div>
 
       <div
-        className="mt-4 h-2 w-full overflow-hidden rounded-full bg-white/15"
+        className="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-100"
         role="progressbar"
         aria-valuenow={procent}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label="Progres către nivelul următor"
       >
-        <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${procent}%` }} />
+        <div className="h-full rounded-full bg-amber-400 transition-all" style={{ width: `${procent}%` }} />
       </div>
 
-      <p className="mt-2 text-xs text-white/70">
+      <p className="mt-2 text-xs font-bold text-slate-700">
         {xpTotal} / {xpNivelUrmator} XP · încă {xpRamasi} XP până la nivelul {nivel + 1}
       </p>
-      <p className="mt-3 text-[11px] leading-snug text-white/50">
+      <p className="mt-3 text-[11px] leading-snug text-slate-500 font-medium">
         Nivelul arată cât ai exersat. Nu influențează accesul la lecții.
       </p>
     </div>

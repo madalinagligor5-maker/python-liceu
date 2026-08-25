@@ -118,25 +118,23 @@ export default function QuizSublectie({
                           "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-bold",
                           arataBine
                             ? "border-success text-success"
-                            : arataRau
-                              ? "border-red-400 text-red-600"
                               : eSelectat
-                                ? "border-brand bg-brand text-white"
-                                : "border-black/20 text-foreground/50",
+                                ? "border-amber-400 bg-amber-400 text-slate-950 font-black"
+                                : "border-black/20 text-foreground/70",
                         ].join(" ")}
                       >
                         {LITERE[j] ?? j + 1}
                       </span>
                       <span>{varianta}</span>
-                      {arataBine && <span className="ml-auto text-success">✓</span>}
-                      {arataRau && <span className="ml-auto text-red-600">✗</span>}
+                      {arataBine && <span className="ml-auto text-success font-bold">✓</span>}
+                      {arataRau && <span className="ml-auto text-red-600 font-bold">✗</span>}
                     </button>
                   );
                 })}
               </div>
 
               {dezvaltat && !raspunsDat && (
-                <p className="mt-2 text-xs italic text-foreground/50">
+                <p className="mt-2 text-xs italic text-foreground/60">
                   N-ai selectat un răspuns pentru această întrebare.
                 </p>
               )}
@@ -151,7 +149,7 @@ export default function QuizSublectie({
             type="button"
             disabled={!toateCompletate || inLucru}
             onClick={verifica}
-            className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-lg bg-amber-400 hover:bg-amber-500 px-5 py-2.5 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-40"
           >
             Verifică răspunsurile
           </button>

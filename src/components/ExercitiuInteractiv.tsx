@@ -43,7 +43,7 @@ export default function ExercitiuInteractiv({
         <button
           type="button"
           onClick={() => setAratasolutie((v) => !v)}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition shadow-xs"
         >
           {aratasolutie ? "Ascunde soluția" : "Arată soluția"}
         </button>

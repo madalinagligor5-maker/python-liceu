@@ -57,7 +57,7 @@ export default function NewsletterForm() {
         <button
           type="submit"
           disabled={inLucru || (succes && !dejaAbonat)}
-          className="shrink-0 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-dark transition disabled:cursor-not-allowed disabled:opacity-50"
+          className="shrink-0 rounded-xl bg-amber-400 hover:bg-amber-500 px-6 py-3 text-sm font-black text-slate-950 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-50"
         >
           {inLucru ? "Se abonează..." : "Abonează-mă"}
         </button>

@@ -23,8 +23,8 @@ export default function HeaderSwitch() {
         href="/curriculum"
         className={`px-2.5 py-1 text-[10px] font-bold rounded-full transition ${
           !isKids
-            ? "bg-brand/90 text-white shadow-sm"
-            : "text-foreground/50 hover:text-foreground/80"
+            ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+            : "text-foreground/70 hover:text-foreground"
         }`}
       >
         Liceu

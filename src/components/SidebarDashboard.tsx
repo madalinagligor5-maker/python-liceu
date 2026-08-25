@@ -71,7 +71,7 @@ export default function SidebarDashboard({
 
         {/* Profilul utilizatorului vizibil în dreapta pe mobil, cu buton de Deconectare */}
         <div className="flex items-center gap-2 lg:hidden">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-bold text-white border border-white/10">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-black text-slate-950 border border-white/10">
             {initiala}
           </span>
           <span className="text-xs font-semibold text-white truncate max-w-[60px]">
@@ -147,7 +147,7 @@ export default function SidebarDashboard({
       {/* Profilul extins în partea de jos cu Deconectare (doar pe desktop) */}
       <div className="hidden lg:flex mt-auto items-center justify-between gap-2 border-t border-white/10 pt-4 w-full">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-black text-slate-950">
             {initiala}
           </span>
           <div className="leading-tight min-w-0">

@@ -76,7 +76,7 @@ export default function TombolaForm() {
         type="button"
         onClick={trimite}
         disabled={inLucru || stele === 0 || text.trim().length < 10}
-        className="mt-4 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-4 rounded-lg bg-amber-400 hover:bg-amber-500 px-5 py-2.5 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-40"
       >
         {inLucru ? "Se trimite..." : "Intră la tombolă"}
       </button>

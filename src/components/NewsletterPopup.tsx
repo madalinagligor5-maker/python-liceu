@@ -127,7 +127,7 @@ export default function NewsletterPopup() {
               <button
                 type="submit"
                 disabled={inLucru}
-                className="w-full rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-6 py-3 text-sm font-black text-slate-950 shadow-sm transition disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {inLucru ? "Se abonează..." : "Abonează-mă gratuit →"}
               </button>
