@@ -137,6 +137,20 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
         </Link>
       </div>
 
+      {/* Banner Laborator Consolidare & Practică */}
+      <div className="mt-4 p-4 rounded-2xl bg-amber-400/15 border border-amber-400/40 flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <span className="text-xs font-black text-amber-900 uppercase tracking-widest block">⚡ Laborator de Consolidare &amp; Practică Interactivă</span>
+          <span className="text-xs font-medium text-slate-700">Reordonează cod (Parson's), completează spațiile și rezolvă mini-proiectul pe 3 niveluri!</span>
+        </div>
+        <Link
+          href={`/exercitii/${clasa}/${modulSlug}`}
+          className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition"
+        >
+          Deschide Laboratorul →
+        </Link>
+      </div>
+
       {!areAcces && (
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 text-center">
           <p className="font-semibold text-amber-900">

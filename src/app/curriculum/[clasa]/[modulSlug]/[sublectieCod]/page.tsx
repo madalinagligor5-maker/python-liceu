@@ -21,6 +21,7 @@ import { getExercitiiSublectie } from "@/lib/exercitii";
 import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
 
+import LaboratorConsolidare from "@/components/LaboratorConsolidare";
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
 // Fără generateStaticParams: rută pur dinamică, generată la fiecare request.
@@ -163,6 +164,13 @@ export default async function SublectiePage({ params }: { params: Promise<Params
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Laborator de Consolidare & Practică pe sublecțiile de exerciții (.4, .5, .6) */}
+      {(continut.esteExercitii || continut.esteVerificare || sublectieCod.endsWith(".4") || sublectieCod.endsWith(".5") || sublectieCod.endsWith(".6")) && (
+        <div className="mt-8">
+          <LaboratorConsolidare codModul={modul.cod} titluModul={modul.titlu} />
         </div>
       )}
 
