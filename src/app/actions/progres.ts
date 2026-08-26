@@ -10,6 +10,8 @@ export type RezultatFinalizare =
   | {
       ok: true;
       xpTotal: number;
+      /** XP câștigat DOAR la această finalizare (nu cumulativ) — pentru celebrarea din UI. */
+      xpCastigat: number;
       streakZile: number;
       nivel: number;
       scor: number;
@@ -95,6 +97,7 @@ export async function finalizeazaLectie(
   return {
     ok: true,
     xpTotal: rezultat?.xp_total ?? 0,
+    xpCastigat: xpQuiz,
     streakZile: rezultat?.streak_zile ?? 0,
     nivel: rezultat?.nivel ?? 1,
     scor,
@@ -124,6 +127,8 @@ async function acordaInsigne(
   if (nrLectii >= 10) candidate.push("zece-lectii");
   if (ctx.streak >= 3) candidate.push("serie-3-zile");
   if (ctx.streak >= 7) candidate.push("serie-7-zile");
+  if (ctx.streak >= 30) candidate.push("serie-30-zile");
+  if (ctx.streak >= 100) candidate.push("serie-100-zile");
   if (ctx.scorPerfect) candidate.push("quiz-perfect");
   if (ctx.predicțieCorecta) candidate.push("predictie-reusita");
 
@@ -210,6 +215,7 @@ export async function finalizeazaSublectie(
   return {
     ok: true,
     xpTotal: rezultat?.xp_total ?? 0,
+    xpCastigat: xpQuiz,
     streakZile: rezultat?.streak_zile ?? 0,
     nivel: rezultat?.nivel ?? 1,
     scor,
@@ -239,6 +245,7 @@ export async function finalizeazaPredicție(
     return {
       ok: true,
       xpTotal: 0,
+      xpCastigat: 0,
       streakZile: 0,
       nivel: 1,
       scor: 0,
@@ -275,6 +282,7 @@ export async function finalizeazaPredicție(
   return {
     ok: true,
     xpTotal: rezultat?.xp_total ?? 0,
+    xpCastigat: XP_PE_PREDIČIE,
     streakZile: rezultat?.streak_zile ?? 0,
     nivel: rezultat?.nivel ?? 1,
     scor: 1,

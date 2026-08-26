@@ -3,6 +3,11 @@
 import { useState, useTransition } from "react";
 import type { IntrebareQuiz } from "@/lib/quizSublectii";
 import { finalizeazaSublectie, type RezultatFinalizare } from "@/app/actions/progres";
+import IconLectieBlocata from "@/components/icons/IconLectieBlocata";
+import IconStreak from "@/components/icons/IconStreak";
+import CelebrareModul from "@/components/CelebrareModul";
+
+const PRAGURI_STREAK = new Set([7, 30, 100]);
 
 type Props = {
   intrebari: IntrebareQuiz[];
@@ -52,9 +57,7 @@ export default function QuizSublectie({
     <div className="rounded-2xl border border-brand-border bg-white p-6 shadow-sm">
       {!deblocat ? (
         <div className="flex flex-col items-center gap-2 py-6 text-center">
-          <span className="text-3xl" aria-hidden="true">
-            🔒
-          </span>
+          <IconLectieBlocata className="h-8 w-8 text-foreground/40" />
           <h3 className="text-lg font-bold text-foreground">
             Rezolvă mai întâi exercițiile
           </h3>
@@ -172,16 +175,34 @@ export default function QuizSublectie({
       </div>
 
       {rezultat?.ok && (
-        <div
-          className="mt-4 rounded-xl border border-success/30 bg-success/10 p-4"
-          role="status"
-          aria-live="polite"
-        >
-          <p className="text-sm font-semibold text-foreground">
-            Felicitări! Ai câștigat {rezultat.xpTotal} XP · nivel {rezultat.nivel}
-            {rezultat.streakZile > 0 && ` · 🔥 ${rezultat.streakZile} zile`}
-          </p>
-        </div>
+        <>
+          <div
+            className="mt-4 rounded-xl border border-success/30 bg-success/10 p-4"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="flex flex-wrap items-center gap-1 text-sm font-semibold text-foreground">
+              Felicitări! Ai câștigat {rezultat.xpTotal} XP · nivel {rezultat.nivel}
+              {rezultat.streakZile > 0 && (
+                <span className="inline-flex items-center gap-1">
+                  · <IconStreak className="h-4 w-4 text-amber-500" /> {rezultat.streakZile} zile
+                </span>
+              )}
+            </p>
+          </div>
+
+          {PRAGURI_STREAK.has(rezultat.streakZile) ? (
+            <CelebrareModul
+              key={`streak-${rezultat.streakZile}`}
+              xp={rezultat.xpCastigat}
+              titlu={`${rezultat.streakZile} zile la rând! Ești pe val.`}
+              icon={IconStreak}
+              eticheta="Streak activ!"
+            />
+          ) : (
+            <CelebrareModul key="modul" xp={rezultat.xpCastigat} titlu="Sublecție finalizată cu succes!" />
+          )}
+        </>
       )}
 
       {rezultat && !rezultat.ok && (

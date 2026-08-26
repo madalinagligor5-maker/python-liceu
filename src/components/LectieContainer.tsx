@@ -37,7 +37,7 @@ export default function LectieContainer({
         id="lectie-articol"
         className={`mt-2 rounded-3xl border p-6 transition-colors duration-300 sm:p-8 ${
           montat && isDark
-            ? "border-slate-700/70 bg-[#1E1E2E] text-slate-100 shadow-2xl [&_h2]:text-amber-300 [&_h3]:text-amber-400 [&_p]:text-slate-200 [&_code]:text-amber-300 [&_strong]:text-amber-400"
+            ? "tema-dark border-slate-700/70 bg-[#1E1E2E] text-slate-100 shadow-2xl [&_h2]:text-amber-300 [&_h3]:text-amber-400 [&_p]:text-slate-200 [&_code]:text-amber-300 [&_strong]:text-amber-400"
             : "border-border bg-white text-foreground shadow-sm"
         }`}
       >

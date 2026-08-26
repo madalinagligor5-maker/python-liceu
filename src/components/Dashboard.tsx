@@ -3,6 +3,9 @@ import Mascota from "@/components/Mascota";
 import SidebarDashboard from "@/components/SidebarDashboard";
 import PasiDrum from "@/components/PasiDrum";
 import DrumInvatare from "@/components/DrumInvatare";
+import IconStreak from "@/components/icons/IconStreak";
+import IconXp from "@/components/icons/IconXp";
+import IconNivel from "@/components/icons/IconNivel";
 import {
   CardCitat,
   CardClasament,
@@ -79,15 +82,26 @@ export default function Dashboard({
           <div className="flex items-center gap-4">
             <div className="text-center">
               <p className="text-[11px] font-semibold uppercase text-muted">Streak</p>
-              <p className="text-lg font-bold text-foreground">🔥 {progres.streakZile}</p>
+              <p className="flex items-center justify-center gap-1 text-lg font-bold text-foreground">
+                <IconStreak
+                  className={`h-4 w-4 ${progres.streakZile > 0 ? "text-amber-500 animate-streakPulse" : "text-slate-300"}`}
+                />
+                {progres.streakZile}
+              </p>
             </div>
             <div className="text-center">
               <p className="text-[11px] font-semibold uppercase text-muted">XP</p>
-              <p className="text-lg font-bold text-foreground">💎 {progres.xpTotal}</p>
+              <p className="flex items-center justify-center gap-1 text-lg font-bold text-foreground">
+                <IconXp className="h-4 w-4 text-indigo-500" />
+                {progres.xpTotal}
+              </p>
             </div>
             <div className="text-center">
               <p className="text-[11px] font-semibold uppercase text-muted">Nivel</p>
-              <p className="text-lg font-bold text-foreground">🔷 {nivel}</p>
+              <p className="flex items-center justify-center gap-1 text-lg font-bold text-foreground">
+                <IconNivel className="h-4 w-4 text-brand" />
+                {nivel}
+              </p>
             </div>
           </div>
         </header>

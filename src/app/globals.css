@@ -102,6 +102,26 @@ body {
   background-image: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.12) 0%, rgba(253, 251, 247, 0) 70%);
 }
 
+/* Scală de umbre "de profunzime", separată de utilitarele shadow-* Tailwind
+   (acelea rămân neschimbate pe cardurile de conținut din grile). */
+:root {
+  --shadow-depth-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-depth-md: 0 8px 24px rgba(15, 23, 42, 0.10);
+  --shadow-depth-lg: 0 16px 40px rgba(15, 23, 42, 0.16);
+}
+
+.shadow-depth-sm {
+  box-shadow: var(--shadow-depth-sm);
+}
+
+.shadow-depth-md {
+  box-shadow: var(--shadow-depth-md);
+}
+
+.shadow-depth-lg {
+  box-shadow: var(--shadow-depth-lg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fadeIn,
   .animate-streakPulse,
