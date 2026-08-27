@@ -249,7 +249,7 @@ export function CardRecapitulareSpatiata({
 
     try {
       const { valideazaRecapitulareSpatiata } = await import("@/app/actions/gamification");
-      const res = await valideazaRecapitulareSpatiata(sublectieSlug, index, corect);
+      const res = await valideazaRecapitulareSpatiata(sublectieSlug, index);
       setFeedback({ ok: res.ok, text: res.mesaj });
       if (res.ok) setRezolvata(true);
     } catch (e) {

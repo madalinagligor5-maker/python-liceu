@@ -79,7 +79,8 @@ Separă features de target într-o listă de tupluri `(features, eticheta)`.
 
 ### ✅ 4.13.6 Verifică-ți înțelegerea
 
-Care e diferența între învățarea supervizată și cea nesupervizată, printr-un exemplu?
+1. Un magazin online vrea să grupeze automat clienții după comportamentul de cumpărare, fără să aibă etichete predefinite pentru fiecare client. Ce tip de învățare este potrivit, și de ce?
+   a) Supervizată, pentru că avem coloana "target" cu grupul fiecărui client  b) **Nesupervizată, pentru că nu avem etichete și căutăm structură (grupuri) în date**  c) Supervizată, pentru că orice problemă cu multe caracteristici necesită etichete  d) Nesupervizată, pentru că datele nu conțin coloana "venit"
 
 ---
 
@@ -155,7 +156,8 @@ Scrie normalizarea min-max pentru o listă de numere.
 
 ### ✅ 4.14.6 Verifică-ți înțelegerea
 
-De ce normalizarea e importantă când unele features au valori de ordinul miilor, altele de ordinul unităților?
+1. Un set de date are `venit` (mii de lei) și `numar_copii` (0-5). Ce se întâmplă dacă antrenezi un model fără să normalizezi aceste caracteristici?
+   a) **Modelul va fi dominat de `venit`, pentru că diferențele mari de scală cântăresc mai mult în calculele de distanță/optimizare**  b) Nimic, pentru că algoritmii de ML ignoră automat scala fiecărei caracteristici  c) Modelul va ignora complet `venit`, pentru că valorile prea mari sunt eliminate automat  d) Antrenarea va eșua cu eroare, pentru că `venit` și `numar_copii` trebuie să aibă aceeași unitate de măsură
 
 ---
 
@@ -231,7 +233,8 @@ Calculează manual (fără sklearn) un pas de K-means pe 4 puncte cu 2 centroizi
 
 ### ✅ 4.15.6 Verifică-ți înțelegerea
 
-De ce K-means are nevoie de `k` dat, și cum alegem `k` în practică?
+1. Rulezi K-means pe un set de date fără să știi câte grupuri există cu adevărat. Cum procedezi corect pentru a alege `k`?
+   a) Alegi `k=2` implicit, pentru că e valoarea recomandată în majoritatea cazurilor  b) **Încerci mai multe valori pentru `k`, compari rezultatele (ex. metoda "cotului") și alegi valoarea care separă cel mai bine datele**  c) Lași algoritmul să determine automat numărul optim de clustere din date  d) Alegi `k` egal cu numărul de caracteristici (coloane) din setul de date
 
 ---
 
@@ -304,7 +307,8 @@ Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
 
 ### ✅ 4.16.6 Verifică-ți înțelegerea
 
-Când folosești regresie liniară în loc de clasificare?
+1. Vrei să prezici prețul de vânzare al unei case pe baza suprafeței și a numărului de camere. Ce tip de model alegi și de ce?
+   a) Clasificare, pentru că prețul poate fi împărțit în categorii de tip "ieftin"/"scump"  b) **Regresie, pentru că prețul este o valoare numerică continuă, nu o categorie**  c) Regresie, pentru că regresia se folosește mereu când avem mai mult de o caracteristică (feature)  d) Clasificare, pentru că modelul trebuie să decidă "Da" sau "Nu" pentru vânzare
 
 ---
 
@@ -380,7 +384,8 @@ Antrenează un arbore de decizie și afișează structura (sau importanța featu
 
 ### ✅ 4.17.6 Verifică-ți înțelegerea
 
-De ce arborele de decizie e mai explicabil decât KNN pentru un non-tehnician?
+1. Trebuie să explici unui manager, care nu știe programare, de ce un client a fost respins pentru credit. Ce model folosești ca să poți explica ușor decizia, și de ce?
+   a) KNN, pentru că poți arăta exact care sunt cei mai apropiați `k` vecini folosiți la vot  b) **Arbore de decizie, pentru că poți urmări întrebările succesive (ex. "venit > 5000?") care au dus la decizia finală**  c) KNN, pentru că se antrenează mai repede și deci e mai ușor de înțeles  d) Arbore de decizie, pentru că găsește automat cei mai apropiați vecini ai fiecărui exemplu
 
 
 :::verifica-cod

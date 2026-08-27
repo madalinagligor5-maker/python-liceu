@@ -70,19 +70,20 @@ Detectează dacă un graf neorientat conține un ciclu, folosind DFS.
 
 ### ✅ 3.11.6 Verifică-ți înțelegerea
 
-De ce DFS recursează natural, în timp ce BFS are nevoie de o coadă?
+1. De ce DFS recursează natural, în timp ce BFS are nevoie de o coadă explicită?
+   a) DFS e mai rapidă decât BFS, deci nu are nevoie deloc de o structură de date  b) **Recursivitatea folosește stiva de apeluri, care e LIFO — exact ordinea în care DFS coboară și se întoarce; BFS are nevoie de ordine FIFO, pe care stiva de apeluri n-o oferă**  c) DFS nu vizitează toate vârfurile grafului, deci nu are nevoie de structuri auxiliare  d) BFS are nevoie de coadă doar pe grafuri ponderate, DFS funcționează pe orice tip de graf fără nicio structură auxiliară
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `viziteaza(adiacenta, start)` care returnează câte vârfuri sunt accesibile din `start` folosind DFS (inclusiv `start`). Demo: `viziteaza({1:[2,3],2:[4],3:[4],4:[]}, 1)` -> `4`
+template: def viziteaza(adiacenta, start):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(viziteaza({1:[2,3],2:[4],3:[4],4:[]}, 1))
+output: 4
 :::
 
 # Modulul 3.12 — Matricea drumurilor — algoritmul Roy-Warshall
@@ -160,19 +161,20 @@ Folosește rezultatul pentru a număra perechile de vârfuri între care există
 
 ### ✅ 3.12.6 Verifică-ți înțelegerea
 
-De ce bucla `k` (vârful intermediar) e cea din exterior, nu una din interioare?
+1. De ce bucla `k` (vârful intermediar) trebuie să fie cea mai exterioară, nu una dintre celelalte două?
+   a) Pentru că altfel complexitatea ar crește la O(n⁴) în loc de O(n³)  b) **La pasul `k`, matricea `d` trebuie să conțină deja drumurile găsite prin vârfurile intermediare 0..k-1, ca verificarea `d[i][k] and d[k][j]` să folosească informație completă și corectă**  c) Pentru că Python parcurge buclele `for` imbricate în ordine inversă dacă `k` nu e prima  d) Nu contează ordinea buclelor — rezultatul final e identic oricum le-am aranja
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `numara_drumuri(a)` care aplică Roy-Warshall pe matricea de adiacență `a` și returnează câte perechi ordonate (i, j), cu i diferit de j, au drum de la i la j. Demo: `numara_drumuri([[0,1,0],[0,0,1],[1,0,0]])` -> `6`
+template: def numara_drumuri(a):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(numara_drumuri([[0,1,0],[0,0,1],[1,0,0]]))
+output: 6
 :::
 
 # Modulul 3.13 — Drumuri de cost minim — algoritmul lui Dijkstra
@@ -249,19 +251,20 @@ Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul f
 
 ### ✅ 3.13.6 Verifică-ți înțelegerea
 
-De ce Dijkstra e corect când toate costurile sunt pozitive, dar eșuează cu costuri negative?
+1. De ce Dijkstra e corect când toate costurile sunt pozitive, dar eșuează cu costuri negative?
+   a) Pentru că `heapq` din Python nu poate stoca numere negative în coadă  b) **Algoritmul presupune că, odată extras vârful cu distanța minimă cunoscută, aceasta nu mai poate scădea — adevărat doar dacă toate muchiile au cost pozitiv; o muchie negativă poate reduce ulterior o distanță deja considerată finală**  c) Pentru că, cu costuri negative, distanțele devin infinite și bucla `while` nu se mai termină  d) Pentru că Dijkstra folosește DFS pe sub-graf, iar DFS eșuează pe grafuri cu cicluri
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `distanta_minima(graf, start, destinatie)` care returnează, folosind Dijkstra, costul minim de la `start` la `destinatie`. Demo: `distanta_minima({1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}, 1, 2)` -> `3`
+template: def distanta_minima(graf, start, destinatie):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(distanta_minima({1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}, 1, 2))
+output: 3
 :::
 
 # Modulul 3.14 — Drumuri de cost minim — algoritmul Roy-Floyd
@@ -331,19 +334,20 @@ Detectează dacă graful are un ciclu de cost negativ (verifică dacă vreo diag
 
 ### ✅ 3.14.6 Verifică-ți înțelegerea
 
-De ce Roy-Floyd e O(n³) deși pare să calculeze n² distanțe independente?
+1. De ce Roy-Floyd are complexitate O(n³) deși matricea distanțelor are doar n² celule?
+   a) **Pentru fiecare din cele n² perechi (i, j) se testează pe rând toate cele n vârfuri posibile ca intermediar `k`, deci munca totală e n² × n = n³**  b) Pentru că algoritmul recalculează de n ori întreaga matrice din cauza erorilor de rotunjire la numere reale  c) Pentru că, de fapt, Roy-Floyd rulează Dijkstra din fiecare vârf, iar Dijkstra costă O(n) pe grafuri mici  d) Pentru că bucla `while` internă mai adaugă un factor n peste cele două bucle `for` vizibile
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `cost_minim(d, i, j)` care aplică Roy-Floyd pe matricea de costuri `d` și returnează costul minim de la vârful `i` la vârful `j`. Demo: `cost_minim([[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]], 0, 2)` -> `4`
+template: def cost_minim(d, i, j):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(cost_minim([[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]], 0, 2))
+output: 4
 :::
 
 # Modulul 3.15 — Arbore de acoperire minim — algoritmul lui Prim
@@ -427,15 +431,16 @@ Modifică să returneze și lista muchiilor alese (nu doar costul).
 
 ### ✅ 3.15.6 Verifică-ți înțelegerea
 
-De ce Prim și Kruskal dau același cost total pentru MST, deși aleg muchiile în ordine diferită?
+1. De ce Prim și Kruskal dau același cost total pentru MST, deși aleg muchiile în ordine diferită?
+   a) **Ambele respectă proprietatea tăieturii (cut property): la fiecare pas aleg muchia de cost minim care traversează o tăietură a grafului, ceea ce garantează optimul indiferent de ordinea în care sunt alese muchiile**  b) Pentru că, de fapt, ambele sortează toate muchiile la început; Prim doar le procesează pe rând, în timp ce Kruskal le procesează pe toate deodată  c) Pentru că setul de muchii al MST-ului e mereu unic, deci orice algoritm corect trebuie să aleagă exact aceleași muchii, în orice ordine  d) E o coincidență valabilă doar pe grafuri mici; pe grafuri mari costurile pot să difere ușor între cei doi algoritmi
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `numara_muchii_mst(graf, start)` care construiește MST-ul cu algoritmul lui Prim, pornind din `start`, și returnează numărul de muchii incluse în arbore. Demo: `numara_muchii_mst({1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}, 1)` -> `2`
+template: def numara_muchii_mst(graf, start):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
+print(numara_muchii_mst({1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}, 1))
 output: 2
 :::

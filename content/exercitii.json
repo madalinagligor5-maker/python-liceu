@@ -7,8 +7,8 @@
       "enunt": "Completează codul ca să calculezi aria unui dreptunghi (lungime = 6, lățime = 3).",
       "template": "lungime = 6\nlatime = 3\naria = lungime * latime\nprint(\"Aria este:\", aria)",
       "expectedOutput": "Aria este: 18",
-      "hint": "aria = lungime * latime",
-      "hint2": "Gândește-te la pașii pe care i-ai face tu de mână: deschizi editorul, scrii codul, rulezi, verifici rezultatul.",
+      "hint": "Gândește-te ce operație matematică leagă lungimea de lățime pentru a obține o suprafață.",
+      "hint2": "Este o înmulțire între cele două variabile deja definite; rezultatul se salvează într-o variabilă nouă numită aria.",
       "extindere": "Scrie și un mesaj de bun-venit care folosește și numele tău în loc de 'lume'."
     },
     {
@@ -27,7 +27,9 @@
         "Proiectare — alegem algoritmul",
         "Implementare — scriem codul",
         "Testare — rulăm cu mai multe exemple"
-      ]
+      ],
+      "hint": "Gândește-te la ordinea logică: mai întâi trebuie să înțelegi problema înainte să alegi o metodă de rezolvare, iar rezultatul poate fi verificat abia după ce există un program scris.",
+      "hint2": "Etapele urmează fluxul: înțelegere → planificare → scriere de cod → verificare a rezultatelor."
     },
     {
       "id": "1.1.4.ex3",
@@ -45,7 +47,8 @@
       "enunt": "Scrie un program Python care calculează și afișează media a trei note: 7, 9 și 10.",
       "template": "n1, n2, n3 = 7, 9, 10\n# scrie aici calculul mediei și afișează-o",
       "expectedOutput": "8.67",
-      "hint": "media = (n1 + n2 + n3) / 3"
+      "hint": "Cum calculezi media aritmetică a unor numere? Gândește-te la operația de adunare urmată de împărțire.",
+      "hint2": "Adună cele trei variabile n1, n2, n3 și împarte suma la 3."
     },
     {
       "id": "1.1.5.ex2",
@@ -54,7 +57,8 @@
       "enunt": "Scrie un program care calculează perimetrul unui pătrat, știind latura acestuia (alege tu o valoare pentru latură).",
       "template": "latura = 5\n# scrie aici calculul perimetrului și afișează-l",
       "expectedOutput": "20",
-      "hint": "perimetru = 4 * latura"
+      "hint": "Câte laturi are un pătrat și cum se leagă asta de perimetru?",
+      "hint2": "Perimetrul unui pătrat se obține înmulțind lungimea unei laturi cu numărul de laturi (4)."
     }
   ],
   "1.2.4": [
@@ -65,8 +69,8 @@
       "enunt": "Transformă pseudocodul în cod Python: dacă temperatura > 30 afișează „zi caniculară\", altfel „temperatură normală\". (temperatura = 33)",
       "template": "temperatura = 33\n\n# completează aici codul Python echivalent",
       "expectedOutput": "zi caniculară",
-      "hint": "if temperatura > 30: print(\"zi caniculară\") else: print(\"temperatură normală\")",
-      "hint2": "Un algoritm trebuie să se oprească și să dea același rezultat pentru aceeași intrare.",
+      "hint": "Gândește-te la structura de decizie condiționată: ce cuvinte cheie din Python testează o condiție și execută cod diferit în funcție de rezultat?",
+      "hint2": "Ai nevoie de o structură if/else care compară variabila temperatura cu 30 și afișează mesajul corespunzător pe fiecare ramură.",
       "extindere": "Scrie algoritmul pentru a verifica dacă un număr e prim, nu doar descrierea."
     },
     {
@@ -85,7 +89,8 @@
       "enunt": "Scrie codul Python pentru: citește un număr; dacă e mai mare decât 100, afișează 'mare', altfel afișează 'mic'. ( Folosește n = 250 )",
       "template": "n = 250\n\n# scrie aici codul",
       "expectedOutput": "mare",
-      "hint": "if n > 100: print(\"mare\") else: print(\"mic\")"
+      "hint": "Ce structură din Python te ajută să alegi între două variante posibile în funcție de o condiție?",
+      "hint2": "Compară n cu 100 folosind if/else și afișează mesajul potrivit pe fiecare ramură."
     },
     {
       "id": "1.2.5.ex2",
@@ -103,7 +108,8 @@
       "enunt": "Completează a doua variantă, mult mai eficientă (formula lui Gauss: n*(n+1)/2) ca să calculezi suma primelor n numere.",
       "template": "n = 100\n# varianta 2: folosește formula lui Gauss\n# scrie aici",
       "expectedOutput": "5050",
-      "hint": "suma = n * (n + 1) // 2"
+      "hint": "Formula lui Gauss e menționată explicit în enunț — gândește-te cum se traduce n*(n+1)/2 direct în Python, fără buclă.",
+      "hint2": "Scrie o singură expresie care înmulțește n cu (n+1) și împarte rezultatul la 2, folosind împărțire întreagă."
     }
   ],
   "1.3.5": [
@@ -123,7 +129,8 @@
       "enunt": "Completează funcția care calculează aria unui cerc (formula: 3.14 * raza * raza), apoi apeleaz-o pentru raza = 7 și afișează rezultatul.",
       "template": "def aria_cerc(raza):\n    # completează aici\n    return aria\n\nprint(aria_cerc(7))",
       "expectedOutput": "153.86",
-      "hint": "aria = 3.14 * raza * raza"
+      "hint": "Formula ariei cercului e dată în enunț — cum transformi acea formulă matematică într-o linie de cod care calculează o valoare pe baza parametrului raza?",
+      "hint2": "Înmulțește 3.14 cu raza de două ori (adică raza la puterea a doua) și salvează rezultatul într-o variabilă înainte de return."
     }
   ],
   "1.4.5": [
@@ -134,7 +141,8 @@
       "enunt": "Scrie o funcție converteste_in_celsius(fahrenheit) care primește o temperatură în grade Fahrenheit și întoarce echivalentul în grade Celsius ((F - 32) * 5 / 9). Apeleaz-o pentru valoarea 98.",
       "template": "def converteste_in_celsius(fahrenheit):\n    # scrie aici\n    return celsius\n\nprint(converteste_in_celsius(98))",
       "expectedOutput": "36.666666666666664",
-      "hint": "celsius = (fahrenheit - 32) * 5 / 9"
+      "hint": "Formula de conversie e dată explicit în enunț — cum o transformi într-o expresie Python care folosește parametrul fahrenheit?",
+      "hint2": "Scade 32 din fahrenheit, apoi înmulțește cu 5 și împarte la 9, respectând ordinea operațiilor (eventual cu paranteze)."
     },
     {
       "id": "1.4.5.ex2",
@@ -143,7 +151,8 @@
       "enunt": "Scrie o funcție perimetru_dreptunghi(lungime, latime) care întoarce perimetrul unui dreptunghi, apoi apeleaz-o pentru două perechi de valori.",
       "template": "def perimetru_dreptunghi(lungime, latime):\n    # scrie aici\n    return p\n\nprint(perimetru_dreptunghi(4, 5))\nprint(perimetru_dreptunghi(10, 2))",
       "expectedOutput": "18\n24",
-      "hint": "p = 2 * (lungime + latime)"
+      "hint": "Cum se calculează perimetrul unui dreptunghi pornind de la cele două laturi diferite?",
+      "hint2": "Adună lungimea cu lățimea, apoi înmulțește suma cu 2."
     }
   ],
   "1.5.4": [
@@ -154,7 +163,8 @@
       "enunt": "Completează funcția, având grijă ca variabila dublu să rămână locală.",
       "template": "def dubleaza(x):\n    # completează aici\n    return dublu\n\nprint(dubleaza(8))",
       "expectedOutput": "16",
-      "hint": "dublu = x * 2"
+      "hint": "Ce operație matematică simplă transformă un număr în dublul lui?",
+      "hint2": "Înmulțește parametrul x cu 2 și salvează rezultatul în variabila locală dublu."
     }
   ],
   "1.5.5": [
@@ -165,7 +175,8 @@
       "enunt": "Scrie o funcție calculeaza_tva(pret) care calculează TVA-ul (19% din preț) într-o variabilă locală și îl întoarce cu return. Apeleaz-o pentru 100.",
       "template": "def calculeaza_tva(pret):\n    # scrie aici\n    return tva\n\ntva_produs = calculeaza_tva(100)\nprint(tva_produs)",
       "expectedOutput": "19.0",
-      "hint": "tva = pret * 19 / 100"
+      "hint": "Cum calculezi un procent dintr-o valoare? Gândește-te la relația dintre procent și împărțire la 100.",
+      "hint2": "Înmulțește pret cu 19, apoi împarte rezultatul la 100."
     }
   ],
   "1.6.4": [
@@ -176,7 +187,8 @@
       "enunt": "Completează, folosind funcțiile predefinite potrivite (ex. len, min, max, sum).",
       "template": "note = [8, 9, 10, 7]\n# calculează numărul de note, minimul, maximul și suma\n# scrie aici",
       "expectedOutput": "4\n7\n10\n34",
-      "hint": "print(len(note)); print(min(note)); print(max(note)); print(sum(note))"
+      "hint": "Python are funcții predefinite care lucrează direct pe liste — gândește-te la ce fac funcțiile len, min, max și sum.",
+      "hint2": "Apelează pe rând len(note), min(note), max(note) și sum(note), afișând fiecare rezultat."
     }
   ],
   "1.6.5": [
@@ -187,7 +199,8 @@
       "enunt": "Scrie un program care citește (declari direct) trei numere negative într-o listă și afișează suma valorilor lor absolute, folosind abs() și sum().",
       "template": "numere = [-3, -7, -2]\n# scrie aici",
       "expectedOutput": "12",
-      "hint": "print(sum(abs(x) for x in numere))"
+      "hint": "Cum obții valoarea absolută a unui număr negativ în Python, și cum aduni toate aceste valori dintr-o listă?",
+      "hint2": "Combină funcția abs() aplicată fiecărui element cu funcția sum(), fie într-o buclă, fie într-o expresie generator."
     },
     {
       "id": "1.6.5.ex2",
@@ -205,7 +218,8 @@
       "enunt": "Completează programul care numără câte cifre are un număr.",
       "template": "n = 4839\ncontor = 0\n# scrie bucla care numără cifrele\nprint(contor)",
       "expectedOutput": "4",
-      "hint": "while n > 0: contor += 1; n = n // 10"
+      "hint": "Cum poți extrage și elimina cifrele unui număr, una câte una, folosind operații întregi?",
+      "hint2": "Într-o buclă while cât timp n e mai mare decât 0, incrementează un contor și micșorează n prin împărțire întreagă la 10."
     }
   ],
   "1.7.5": [
@@ -216,7 +230,8 @@
       "enunt": "Scrie un program care determină cea mai mare cifră dintr-un număr dat (ex. pentru 4839, răspunsul e 9).",
       "template": "n = 4839\nmax_cifra = 0\n# scrie aici\nprint(max_cifra)",
       "expectedOutput": "9",
-      "hint": "while n > 0: cifra = n % 10; if cifra > max_cifra: max_cifra = cifra; n = n // 10"
+      "hint": "Cum extragi ultima cifră a unui număr și cum o compari cu cea mai mare cifră găsită până acum?",
+      "hint2": "La fiecare pas ia restul împărțirii lui n la 10 pentru a obține cifra curentă, compar-o cu max_cifra, apoi elimină cifra din n prin împărțire întreagă la 10."
     },
     {
       "id": "1.7.5.ex2",
@@ -234,7 +249,8 @@
       "enunt": "Completează programul care numără câți divizori are un număr.",
       "template": "n = 12\ncontor = 0\n# scrie bucla care numără divizorii\nprint(contor)",
       "expectedOutput": "6",
-      "hint": "for i in range(1, n + 1): if n % i == 0: contor += 1"
+      "hint": "Cum verifici dacă un număr i este divizor al lui n, folosind operatorul de rest?",
+      "hint2": "Parcurge toate numerele de la 1 la n și numără-le pe cele pentru care restul împărțirii lui n la acel număr este 0."
     }
   ],
   "1.8.5": [
@@ -245,7 +261,8 @@
       "enunt": "Scrie un program care verifică dacă un număr este perfect (suma divizorilor săi, exceptând numărul însuși, e egală cu numărul — ex. 6 = 1+2+3). Folosește n = 6.",
       "template": "n = 6\nsuma = 0\n# scrie aici\nprint(suma == n)",
       "expectedOutput": "True",
-      "hint": "for i in range(1, n): if n % i == 0: suma += i"
+      "hint": "Cum aduni divizorii proprii ai unui număr (fără a-l include pe el însuși)?",
+      "hint2": "Parcurge numerele de la 1 până la n-1 și adaugă la sumă acele numere care sunt divizori ai lui n."
     },
     {
       "id": "1.8.5.ex2",
@@ -263,8 +280,8 @@
       "enunt": "Completează funcția care convertește un număr zecimal în binar folosind împărțirile repetate.",
       "template": "def in_binar(n):\n    sir = \"\"\n    while n > 0:\n        sir = str(n % 2) + sir\n        n = n // ___\n    return sir\n\nprint(in_binar(10))  # 1010",
       "expectedOutput": "1010",
-      "hint": "n = n // 2",
-      "hint2": "Parcurgi cifrele de la dreapta la stânga și construiești puterile lui 2 (1, 2, 4, 8...).",
+      "hint": "Ce operație folosești ca să elimini ultima cifră binară extrasă și să treci la următoarea? Gândește-te la baza numerică folosită (2).",
+      "hint2": "La fel ca la împărțirea repetată în orice bază, împarte întreg n la baza respectivă pentru a avansa spre cifra următoare.",
       "extindere": "Extinde pentru baze 3, 8 și 16 (hexazecimal) cu litere A–F."
     },
     {
@@ -274,7 +291,8 @@
       "enunt": "Scrie o funcție care convertește un șir binar în zecimal.",
       "template": "def bin_in_dec(sir):\n    total = 0\n    for i, c in enumerate(reversed(sir)):\n        total += int(c) * (2 ** ___)\n    return total\n\nprint(bin_in_dec(\"101\"))  # 5",
       "expectedOutput": "5",
-      "hint": "folosește 2 ** i ca ponder"
+      "hint": "Fiecare cifră binară are o pondere care depinde de poziția ei — cum se leagă indexul i din enumerate de puterea lui 2 corespunzătoare?",
+      "hint2": "Ponderea cifrei aflate la distanța i de la capătul din dreapta (după inversare) este 2 ridicat la puterea i."
     }
   ],
   "1.9.5": [
@@ -285,7 +303,8 @@
       "enunt": "Scrie un program care convertește un număr zecimal în hexadecimal (bază 16, cu cifre 0-9 și A-F).",
       "template": "def in_hex(n):\n    simboluri = \"0123456789ABCDEF\"\n    sir = \"\"\n    while n > 0:\n        sir = simboluri[n % 16] + sir\n        n = n // 16\n    return sir if sir else \"0\"\n\nprint(in_hex(255))  # FF",
       "expectedOutput": "FF",
-      "hint": "n % 16 dă restul, n // 16 câtul"
+      "hint": "Gândește-te la relația dintre operatorul % (rest) și operatorul // (cât întreg) atunci când extragi cifre într-o bază numerică diferită de 10.",
+      "hint2": "La fiecare pas, restul împărțirii la 16 îți dă indexul cifrei hexazecimale curente din șirul de simboluri, iar câtul întreg te ajută să avansezi la cifra următoare."
     },
     {
       "id": "1.9.5.ex2",
@@ -303,7 +322,8 @@
       "enunt": "Completează condiția care verifică dacă x este prim (testează divizorii de la 2 la √x).",
       "template": "def este_prim(x):\n    if x < 2:\n        return False\n    for d in range(2, int(x ** 0.5) + 1):\n        if x % ___ == 0:\n            return False\n    return True\n\nprint(este_prim(17))  # True",
       "expectedOutput": "True",
-      "hint": "x % d == 0 înseamnă că d divide x"
+      "hint": "Ce variabilă din bucla for reprezintă candidatul curent la a fi divizor al lui x?",
+      "hint2": "Folosește operatorul % între x și variabila de buclă d pentru a verifica dacă d divide x fără rest."
     },
     {
       "id": "1.10.4.ex2",
@@ -312,7 +332,8 @@
       "enunt": "Calculează 3^13 folosind exponențierea rapidă.",
       "template": "def putere_rapida(b, e):\n    rez = 1\n    while e > 0:\n        if e % 2 == 1:\n            rez *= b\n        b *= b\n        e //= 2\n    return rez\n\nprint(putere_rapida(3, 13))",
       "expectedOutput": "1594323",
-      "hint": "algoritmul înmulțește doar când bit-ul curent e 1"
+      "hint": "Gândește-te la reprezentarea binară a exponentului: de ce contează dacă bitul curent al lui e este 1 sau 0?",
+      "hint2": "La fiecare pas, dacă exponentul rămas e impar, înmulțești rezultatul cu baza curentă; apoi ridici baza la pătrat și înjumătățești exponentul (împărțire întreagă)."
     }
   ],
   "1.10.5": [
@@ -323,7 +344,8 @@
       "enunt": "Afișează toate perechile de numere prime gemene (p, p+2) până la 100.",
       "template": "def este_prim(x):\n    if x < 2: return False\n    for d in range(2, int(x**0.5)+1):\n        if x % d == 0: return False\n    return True\n\nfor p in range(2, 99):\n    if este_prim(p) and este_prim(p+2):\n        print(p, p+2)",
       "expectedOutput": "3 5\n5 7\n11 13\n17 19\n29 31\n41 43\n59 61\n71 73",
-      "hint": "verifică ambele numere cu este_prim"
+      "hint": "Cum verifici dacă atât un număr cât și cel cu 2 mai mare sunt ambele prime?",
+      "hint2": "Apelează funcția este_prim de două ori, o dată pentru p și o dată pentru p+2, și afișează perechea doar dacă ambele apeluri întorc True."
     },
     {
       "id": "1.10.5.ex2",
@@ -341,7 +363,8 @@
       "enunt": "Completează clasa Cerc care are atributul raza și metoda arie().",
       "template": "import math\n\nclass Cerc:\n    def __init__(self, raza):\n        self.___ = raza\n\n    def arie(self):\n        return math.pi * self.raza ** 2\n\nc = Cerc(2)\nprint(round(c.arie(), 2))  # 12.57",
       "expectedOutput": "12.57",
-      "hint": "self.raza = raza"
+      "hint": "Într-un constructor de clasă, cum salvezi valoarea unui parametru astfel încât să fie accesibilă și în alte metode ale obiectului?",
+      "hint2": "Atributele unui obiect se stochează folosind self urmat de un punct și numele atributului, care trebuie să corespundă cu cel folosit în metoda arie()."
     },
     {
       "id": "1.11.4.ex2",
@@ -350,7 +373,8 @@
       "enunt": "Adaugă metoda perimetru() la clasa Cerc (2·π·raza).",
       "template": "import math\n\nclass Cerc:\n    def __init__(self, raza):\n        self.raza = raza\n    def perimetru(self):\n        return 2 * math.pi * self.raza\n\nc = Cerc(3)\nprint(round(c.perimetru(), 2))",
       "expectedOutput": "18.85",
-      "hint": "perimetrul = 2·π·r"
+      "hint": "Ce formulă geometrică leagă perimetrul unui cerc de raza sa și de constanta π?",
+      "hint2": "Înmulțește 2 cu math.pi și cu self.raza pentru a obține perimetrul."
     }
   ],
   "1.11.5": [
@@ -377,7 +401,8 @@
       "enunt": "Completează ca să creezi o fereastră cu un buton care schimbă textul etichetei.",
       "template": "import tkinter as tk\n\nf = tk.Tk()\neticheta = tk.Label(f, text=\"Început\")\neticheta.pack()\n\ndef schimba():\n    eticheta.config(text=\"___\")\n\ntk.Button(f, text=\"Schimbă\", command=___).pack()\nf.mainloop()",
       "expectedOutput": "",
-      "hint": "completează textul nou și command=schimba"
+      "hint": "Cum schimbi textul afișat de o etichetă Tkinter după ce fereastra e deja creată, și cum legi un buton de o funcție care face asta?",
+      "hint2": "Parametrul command al butonului trebuie să primească numele funcției (fără paranteze), iar în interiorul funcției apelezi metoda config cu un text nou pentru etichetă."
     },
     {
       "id": "1.12.4.ex2",
@@ -411,7 +436,8 @@
       "enunt": "Completează plasarea cu grid pentru un formular (nume pe rândul 0, vârstă pe rândul 1).",
       "template": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"Nume:\").___(row=0, column=0)\ntk.Entry(f).___(row=0, column=1)\ntk.Label(f, text=\"Vârsta:\").grid(row=1, column=0)\ntk.Entry(f).grid(row=1, column=1)\nf.mainloop()",
       "expectedOutput": "",
-      "hint": "folosește .grid(row=, column=)"
+      "hint": "Ce metodă Tkinter folosești pentru a poziționa widget-uri într-un formular cu rânduri și coloane, în loc de pack()?",
+      "hint2": "Metoda se numește grid și primește parametrii row și column pentru a stabili poziția fiecărui widget."
     },
     {
       "id": "1.13.4.ex2",
@@ -445,7 +471,8 @@
       "enunt": "Completează ca să scrii numele într-un fișier și să-l citești înapoi.",
       "template": "with open(\"nume.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"___Mihai\")\n\nwith open(\"nume.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.___())",
       "expectedOutput": "Mihai",
-      "hint": "scrie numele tău și folosește f.read()"
+      "hint": "Ce trebuie completat înainte de numele Mihai în șirul scris în fișier, și ce metodă citește tot conținutul unui fișier deschis?",
+      "hint2": "Poți adăuga orice text înainte de Mihai (de exemplu un prenume propriu), iar metoda care citește tot conținutul fișierului se numește read()."
     },
     {
       "id": "1.14.4.ex2",
@@ -454,7 +481,8 @@
       "enunt": "Scrie un program care citește un fișier linie cu linie și numără câte linii are.",
       "template": "with open(\"date.txt\", \"r\", encoding=\"utf-8\") as f:\n    contor = 0\n    for linie in f:\n        contor += 1\n    print(contor)",
       "expectedOutput": "",
-      "hint": "fiecare iterație e o linie"
+      "hint": "Ce se întâmplă cu variabila contor la fiecare trecere prin bucla for care parcurge fișierul linie cu linie?",
+      "hint2": "Fiecare iterație a buclei corespunde exact unei linii citite din fișier, deci contorul trebuie incrementat o dată la fiecare iterație."
     }
   ],
   "1.14.5": [
@@ -465,7 +493,8 @@
       "enunt": "Scrie un program care copiază conținutul unui fișier a.txt în b.txt.",
       "template": "with open(\"a.txt\", \"r\", encoding=\"utf-8\") as src:\n    continut = src.read()\nwith open(\"b.txt\", \"w\", encoding=\"utf-8\") as dst:\n    dst.write(continut)\nprint(\"Copiat\")",
       "expectedOutput": "Copiat",
-      "hint": "citește tot, apoi scrie tot"
+      "hint": "Cum citești tot conținutul unui fișier sursă și cum îl scrii apoi într-un fișier destinație?",
+      "hint2": "Folosește metoda read() pentru a citi tot conținutul lui a.txt într-o variabilă, apoi metoda write() pentru a scrie acea variabilă în b.txt."
     },
     {
       "id": "1.14.5.ex2",
@@ -483,7 +512,8 @@
       "enunt": "Completează o coadă folosind deque și afișează elementele în ordinea ieșirii.",
       "template": "from collections import deque\nc = deque()\nc.append(\"X\")\nc.append(\"Y\")\nc.append(\"Z\")\nprint(c.___())  # primul care iese\nprint(c.___())",
       "expectedOutput": "X\nY",
-      "hint": "coada folosește popleft()"
+      "hint": "Într-o coadă (FIFO), primul element intrat este și primul care iese — ce metodă a obiectului deque scoate elementul din capătul din stânga?",
+      "hint2": "Metoda care elimină și întoarce elementul din stânga structurii deque se numește popleft()."
     },
     {
       "id": "1.15.4.ex2",
@@ -517,7 +547,8 @@
       "enunt": "Completează pentru a adăuga 99 la începutul listei și a șterge ultimul element.",
       "template": "L = [1, 2, 3]\nL.___(0, 99)   # inserează 99 pe poziția 0\nL.___()        # șterge ultimul\nprint(L)",
       "expectedOutput": "[99, 1, 2]",
-      "hint": "folosește insert(0, 99) și pop()"
+      "hint": "Ce metodă de listă adaugă un element pe o poziție specifică, și ce metodă elimină ultimul element?",
+      "hint2": "Prima metodă primește poziția și valoarea ca argumente, iar a doua nu are nevoie de niciun argument pentru a elimina ultimul element."
     },
     {
       "id": "1.16.4.ex2",
@@ -526,7 +557,8 @@
       "enunt": "Folosind L.count(x), numără câte apariții are valoarea 5 într-o listă.",
       "template": "L = [5, 2, 5, 8, 5]\nprint(L.count(___))",
       "expectedOutput": "3",
-      "hint": "count() numără aparițiile"
+      "hint": "Ce valoare trebuie să cauți cu metoda count() ca să numeri de câte ori apare 5 în listă?",
+      "hint2": "Argumentul metodei count() este chiar valoarea 5, cea pe care vrei să o numeri."
     }
   ],
   "1.16.5": [
@@ -537,7 +569,8 @@
       "enunt": "Scrie un program care primește o listă și o afișează inversată (fără reversed, folosind slice-uri).",
       "template": "L = [1, 2, 3, 4, 5]\nprint(L[___:___:-1])",
       "expectedOutput": "[5, 4, 3, 2, 1]",
-      "hint": "slice cu pas negativ: L[::-1]"
+      "hint": "Cum inversezi o listă folosind slicing, fără a specifica limite explicite pentru început și sfârșit?",
+      "hint2": "Când start și stop lipsesc dintr-un slice cu pas -1, Python parcurge întreaga listă de la coadă la cap."
     },
     {
       "id": "1.16.5.ex2",
@@ -555,7 +588,8 @@
       "enunt": "Completează o căutare care întoarce toate pozițiile unei valori.",
       "template": "def pozitii(L, x):\n    rez = []\n    for i in range(len(L)):\n        if L[i] == ___:\n            rez.append(___)\n    return rez\n\nprint(pozitii([1, 5, 1, 5], 5))  # [1, 3]",
       "expectedOutput": "[1, 3]",
-      "hint": "compară L[i] cu x și adaugă i"
+      "hint": "Ce compari cu elementul de pe poziția i din listă, și ce valoare adaugi în lista de rezultate atunci când găsești o potrivire?",
+      "hint2": "Compară L[i] cu parametrul x primit de funcție, iar atunci când sunt egale, adaugă indexul i (nu valoarea) în lista rez."
     },
     {
       "id": "1.17.4.ex2",
@@ -564,7 +598,8 @@
       "enunt": "Sortează o listă descrescător folosind sort(reverse=True).",
       "template": "L = [3, 1, 4, 1, 5]\nL.sort(___)\nprint(L)",
       "expectedOutput": "[5, 4, 3, 1, 1]",
-      "hint": "reverse=True"
+      "hint": "Ce parametru al metodei sort() controlează dacă sortarea se face crescător sau descrescător?",
+      "hint2": "Metoda sort() acceptă un parametru boolean numit reverse, care atunci când e adevărat inversează ordinea sortării."
     }
   ],
   "1.17.5": [
@@ -591,7 +626,8 @@
       "enunt": "Completează pentru a afișa toate perechile (a, b) cu a < b, a,b ∈ {1,2,3,4}.",
       "template": "for a in range(1, 5):\n    for b in range(___, 5):\n        print(a, b)",
       "expectedOutput": "1 2\n1 3\n1 4\n2 3\n2 4\n3 4",
-      "hint": "b pornește de la a+1"
+      "hint": "Ca să obții doar perechile cu a mai mic decât b, de unde ar trebui să pornească bucla interioară în funcție de valoarea curentă a lui a?",
+      "hint2": "Bucla pentru b trebuie să înceapă imediat după valoarea curentă a lui a, deci limita inferioară depinde de a."
     },
     {
       "id": "1.18.4.ex2",
@@ -600,7 +636,8 @@
       "enunt": "Generează toate numerele de 2 cifre (10-99) care sunt pare.",
       "template": "for n in range(10, 100):\n    if n % ___ == 0:\n        print(n)",
       "expectedOutput": "10\n12\n14\n...continuă...",
-      "hint": "n % 2 == 0"
+      "hint": "Ce număr folosești ca să testezi dacă un număr este par, folosind operatorul de rest?",
+      "hint2": "Un număr e par atunci când restul împărțirii lui la 2 este 0."
     }
   ],
   "1.18.5": [
@@ -627,7 +664,8 @@
       "enunt": "Completează bucla interioară care găsește poziția minimului.",
       "template": "def selectie_minim(L):\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(___, n):\n            if L[j] < L[minim]:\n                minim = ___\n        L[i], L[minim] = L[minim], L[i]\n    return L",
       "expectedOutput": "",
-      "hint": "j pornește de la i+1, actualizează minim"
+      "hint": "În algoritmul de selecție, de la ce poziție ar trebui să înceapă căutarea minimului în bucla interioară, față de poziția i din bucla exterioară? Și ce trebuie actualizat atunci când găsești un element mai mic?",
+      "hint2": "Bucla interioară pornește de la poziția imediat următoare lui i (adică i+1), iar variabila minim trebuie să rețină indexul j al noului element minim găsit, nu valoarea lui."
     },
     {
       "id": "1.19.4.ex2",
@@ -636,7 +674,8 @@
       "enunt": "Numără câte comparări face selecția minimului pentru o listă de 5 elemente.",
       "template": "L = [5, 2, 9, 1, 5, 6]\ncomparari = 0\nn = len(L)\nfor i in range(n):\n    minim = i\n    for j in range(i+1, n):\n        comparari += 1\n        if L[j] < L[minim]:\n            minim = j\n    L[i], L[minim] = L[minim], L[i]\nprint(comparari)",
       "expectedOutput": "15",
-      "hint": "pentru n=5: 4+3+2+1 = 10, dar aici n=6 → 5+4+3+2+1 = 15"
+      "hint": "Câte comparații face bucla interioară pentru fiecare valoare a lui i, în funcție de câte elemente rămân neverificate după poziția i?",
+      "hint2": "Pentru o listă cu n elemente, numărul total de comparații este suma (n-1) + (n-2) + ... + 1, adică suma primelor n-1 numere naturale."
     }
   ],
   "1.19.5": [
@@ -663,7 +702,8 @@
       "enunt": "Completează condiția de interschimbare din bubble sort.",
       "template": "def bubble(L):\n    n = len(L)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if L[j] ___ L[j + 1]:   # interschimbă dacă sunt în ordine greșită\n                L[j], L[j + 1] = L[j + 1], L[j]\n    return L",
       "expectedOutput": "",
-      "hint": "folosește > pentru sortare crescătoare"
+      "hint": "În bubble sort, interschimbarea are loc atunci când două elemente vecine sunt în ordine greșită — ce relație trebuie să existe între L[j] și L[j+1] pentru o sortare crescătoare?",
+      "hint2": "Pentru ca lista să ajungă în ordine crescătoare, interschimbă elementele atunci când cel din stânga este mai mare decât cel din dreapta."
     },
     {
       "id": "1.20.4.ex2",
@@ -672,7 +712,8 @@
       "enunt": "Scrie counting_sort pentru o listă de note (valori 1-10).",
       "template": "def counting_sort(lista, max_val):\n    freq = [0] * (max_val + 1)\n    for x in lista:\n        freq[x] += 1\n    rez = []\n    for val in range(max_val + 1):\n        rez.extend([val] * freq[val])\n    return rez\n\nprint(counting_sort([2, 3, 2, 1, 3], 3))",
       "expectedOutput": "[1, 2, 2, 3, 3]",
-      "hint": "freq[număr] numără aparițiile"
+      "hint": "Cum poți folosi un tablou de frecvențe pentru a număra de câte ori apare fiecare valoare posibilă înainte de a reconstrui lista sortată?",
+      "hint2": "Parcurge lista inițială și incrementează freq[x] pentru fiecare element x, apoi reconstruiește lista sortată parcurgând valorile posibile în ordine și repetând fiecare de atâtea ori cât arată frecvența ei."
     }
   ],
   "1.20.5": [
@@ -697,8 +738,8 @@
       "enunt": "Completează condiția care actualizează `dreapta` când elementul de la mijloc e mai mare decât x.",
       "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1",
       "expectedOutput": "",
-      "hint": "Când valoarea de la mijloc e mai mare, căutăm în jumătatea stângă → mutăm capătul dreapta.",
-      "hint2": "Calculează mereu mijlocul și compară cu x — dacă e mai mare, caută în jumătatea stângă.",
+      "hint": "Gândește-te ce capăt al intervalului de căutare trebuie mutat atunci când elementul din mijloc e prea mare pentru x.",
+      "hint2": "Trebuie să restrângi intervalul de căutare la jumătatea stângă — asta înseamnă să schimbi valoarea capătului corespunzător, folosind poziția de mijloc.",
       "extindere": "Modifică funcția să returneze poziția (indexul) unde a fost găsit x, sau -1."
     }
   ],
@@ -708,7 +749,8 @@
       "enunt": "Scrie o funcție care returnează poziția unde ar trebui inserat elementul (dacă nu există), în loc de -1.",
       "template": "def pozitie_inserare(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    # completează logica\n    return ___",
       "expectedOutput": "",
-      "hint": "Când intervalul devine vid (stanga > dreapta), stanga e poziția de inserare."
+      "hint": "Adaptează căutarea binară: dacă lista[mijloc] < x, valoarea ar trebui inserată mai la dreapta; altfel, mai la stânga sau chiar la mijloc.",
+      "hint2": "Rulează bucla while stanga <= dreapta ca la căutarea binară obișnuită, dar când nu găsești x, capătul stanga ajunge exact pe poziția unde trebuie inserat elementul."
     }
   ],
   "2.3.4": [
@@ -717,7 +759,8 @@
       "enunt": "Creează mulțimea {5, 10, 15} și verifică apartenența lui 10.",
       "template": "m = ___\nprint(10 ___ m)",
       "expectedOutput": "True",
-      "hint": "Mulțimea se creează cu acolade. Operatorul de apartenență e `in`."
+      "hint": "Ce structură de date Python reține elemente unice, fără ordine? Cum verifici dacă un element se află într-o colecție?",
+      "hint2": "O mulțime se scrie cu o pereche de paranteze speciale ce conțin elementele separate prin virgulă; verificarea apartenenței folosește un cuvânt cheie scurt, de doar două litere, plasat între element și colecție."
     }
   ],
   "2.3.5": [
@@ -726,7 +769,8 @@
       "enunt": "Scrie un program care citește un text și afișează mulțimea cuvintelor distincte.",
       "template": "text = input('Text: ')\ncuvinte = text.split()\nmultime = ___\nprint(multime)",
       "expectedOutput": "",
-      "hint": "Transformă lista de cuvinte într-o mulțime cu set(lista)."
+      "hint": "Ce tip de colecție din Python elimină automat duplicatele atunci când o construiești dintr-o listă?",
+      "hint2": "Există o funcție predefinită care primește o listă (sau orice iterabil) și întoarce o colecție fără elemente repetate — aplic-o pe lista de cuvinte."
     }
   ],
   "2.2.4": [
@@ -735,7 +779,8 @@
       "enunt": "Completează linia lipsă din interclaseaza (unde adaugi elementul din b când e mai mic).",
       "template": "def interclaseaza(a, b):\n    rez = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            rez.append(a[i]); i += 1\n        else:\n            ___ ; j += 1\n    rez.extend(a[i:]); rez.extend(b[j:])\n    return rez",
       "expectedOutput": "",
-      "hint": "Trebuie să adaugi b[j] în rezultat."
+      "hint": "În ramura else, elementul curent din lista b este cel mai mic dintre cei doi comparați — trebuie tratat la fel cum ai tratat elementul din a pe ramura if.",
+      "hint2": "Adaugă elementul curent din b (indexat cu j) la lista rezultat, folosind aceeași metodă de listă folosită mai sus pentru a[i]."
     }
   ],
   "2.2.5": [
@@ -744,7 +789,8 @@
       "enunt": "Scrie o funcție care interclasează două liste sortate și elimină duplicatele.",
       "template": "def interclaseaza_fara_dubluri(a, b):\n    # completează\n    return ___",
       "expectedOutput": "",
-      "hint": "Folosește un set sau verifică dacă ultimul adăugat e identic."
+      "hint": "Ai nevoie de o interclasare obișnuită (ca la exercițiul anterior), plus un mecanism care să nu adauge de două ori aceeași valoare consecutivă.",
+      "hint2": "O variantă simplă: la fiecare pas, adaugă elementul minim doar dacă diferă de ultimul element deja pus în lista rezultat."
     }
   ],
   "2.4.4": [
@@ -753,8 +799,8 @@
       "enunt": "Completează pentru a adăuga 7 în mulțimea m.",
       "template": "m = {1, 2, 3}\n___  # adaugă 7\nprint(m)",
       "expectedOutput": "{1, 2, 3, 7}",
-      "hint": "Folosește m.add(7).",
-      "hint2": "Folosește o mulțime (set) pentru a verifica apartenența în O(1).",
+      "hint": "Mulțimile (set) au o metodă specifică pentru a introduce un singur element nou în colecție.",
+      "hint2": "Metoda se aplică direct pe obiectul mulțime și primește ca argument valoarea de adăugat — numele ei sugerează chiar acțiunea de a adăuga.",
       "extindere": "Implementează și o metodă de diferență între două mulțimi."
     }
   ],
@@ -764,7 +810,8 @@
       "enunt": "Determină elevii înscriși la exact un curs (nu la ambele), folosind mulțimi.",
       "template": "curs1 = {\"Ana\", \"Bogdan\", \"Cristi\"}\ncurs2 = {\"Bogdan\", \"Dana\"}\n# completează\nrez = ___",
       "expectedOutput": "",
-      "hint": "Diferența simetrică: curs1 ^ curs2."
+      "hint": "Ce operație pe mulțimi păstrează doar elementele care apar într-una singură dintre cele două mulțimi, dar nu în ambele?",
+      "hint2": "Python oferă un operator dedicat pentru diferența simetrică între două mulțimi — e un operator pe biți aplicat mulțimilor, diferit de reuniune (|) sau intersecție (&)."
     }
   ],
   "2.5.4": [
@@ -773,7 +820,8 @@
       "enunt": "Completează pentru a extrage ultimul caracter cu index negativ.",
       "template": "s = \"python\"\nultim = ___  # index negativ\nprint(ultim)",
       "expectedOutput": "n",
-      "hint": "Ultimul caracter e s[-1]."
+      "hint": "Python permite indexare cu numere negative, pornind de la finalul șirului.",
+      "hint2": "Indexul -1 are o semnificație specială pentru orice secvență (listă, șir) — încearcă să-l folosești pentru a accesa poziția dorită."
     }
   ],
   "2.5.5": [
@@ -782,7 +830,8 @@
       "enunt": "Scrie o funcție care verifică dacă un șir e palindrom.",
       "template": "def palindrom(s):\n    # completează\n    return ___",
       "expectedOutput": "",
-      "hint": "Compară s cu s[::-1]."
+      "hint": "Un șir e palindrom dacă arată identic citit de la coadă la cap. Există o formă de slicing care inversează un șir.",
+      "hint2": "Slicing-ul cu pas -1 (fără capete specificate) parcurge șirul invers; compară rezultatul acestuia cu șirul original."
     }
   ],
   "2.6.4": [
@@ -791,7 +840,8 @@
       "enunt": "Completează pentru a număra aparițiile lui 'ana' într-un text.",
       "template": "text = \"ana are ana\"\n___  # metoda care numără aparițiile",
       "expectedOutput": "2",
-      "hint": "Folosește text.count('ana')."
+      "hint": "Șirurile au o metodă care numără de câte ori apare o subsecvență dată.",
+      "hint2": "Metoda se aplică pe obiectul text și primește ca argument subșirul căutat, întorcând direct numărul de apariții."
     }
   ],
   "2.6.5": [
@@ -800,7 +850,8 @@
       "enunt": "Numără cuvintele distincte dintr-un text folosind split() și o mulțime.",
       "template": "text = \"ana ana bogdan\"\ncuvinte = text.split()\ndistincte = ___\nprint(distincte)",
       "expectedOutput": "{'ana', 'bogdan'}",
-      "hint": "Transformă lista în set."
+      "hint": "Ce structură din Python reține automat doar elementele unice dintr-o listă?",
+      "hint2": "Aplică o funcție de conversie predefinită pe lista de cuvinte pentru a obține o colecție fără duplicate."
     }
   ],
   "2.7.4": [
@@ -809,7 +860,8 @@
       "enunt": "Completează pentru a extrage literele de pe poziții pare (slicing cu pas 2).",
       "template": "s = \"abcdef\"\n___  # slicing pas 2",
       "expectedOutput": "ace",
-      "hint": "s[::2] ia fiecare a doua literă."
+      "hint": "Slicing-ul din Python acceptă un al treilea parametru, pasul, care controlează câte poziții sari la fiecare element luat.",
+      "hint2": "Folosește forma s[start:stop:pas] fără start și stop (adică tot șirul), dar cu pasul ales astfel încât să selectezi doar pozițiile pare."
     }
   ],
   "2.7.5": [
@@ -818,7 +870,8 @@
       "enunt": "Scrie o funcție care returnează șirul inversat (fără reversed).",
       "template": "def inversat(s):\n    # completează\n    return ___",
       "expectedOutput": "",
-      "hint": "s[::-1]."
+      "hint": "Fără să folosești funcția reversed(), amintește-ți altă tehnică de slicing care poate parcurge un șir de la coadă spre cap.",
+      "hint2": "Slicing-ul cu pas negativ inversează sensul de parcurgere — aplică-l pe întregul șir, fără să specifici start și stop."
     }
   ],
   "2.8.4": [
@@ -827,7 +880,8 @@
       "enunt": "Scrie funcția de decriptare Cezar (refolosește cezar cu deplasare opusă).",
       "template": "def decriptare_cezar(text, deplasare):\n    return cezar(text, ___)  # deplasare opusă",
       "expectedOutput": "",
-      "hint": "Cezar cu -deplasare."
+      "hint": "Decriptarea Cezar înseamnă să aplici deplasarea inversă față de criptare.",
+      "hint2": "Apelează aceeași funcție cezar(), dar dă-i ca al doilea argument opusul valorii deplasare (adică deplasare cu semn schimbat)."
     }
   ],
   "2.8.5": [
@@ -836,7 +890,8 @@
       "enunt": "Implementează cifrul cu substituție monoalfabetică (dicționar literă→literă).",
       "template": "cheie = {'a':'x', 'b':'y', 'c':'z'}\ndef substitutie(text):\n    # completează\n    return ___",
       "expectedOutput": "",
-      "hint": "Pentru fiecare literă, înlocuiește cu cheie.get(litera, litera)."
+      "hint": "Parcurge fiecare caracter al textului și caută-l în dicționarul cheie; dacă nu există acolo (ex. spații, punctuație), păstrează caracterul original.",
+      "hint2": "Construiește rezultatul concatenând, pentru fiecare literă, fie substituția din dicționar, fie litera nemodificată dacă lipsește din dicționar — metodele dicționarelor permit o valoare implicită pentru chei absente."
     }
   ],
   "2.9.4": [
@@ -845,7 +900,8 @@
       "enunt": "Testează că decriptare_vigenere(vigenere(t, k), k) == t.",
       "template": "t = \"secret\"\nk = \"cheie\"\nassert decriptare_vigenere(vigenere(t, k), k) == ___\nprint('OK')",
       "expectedOutput": "OK",
-      "hint": "Ar trebui să dea t."
+      "hint": "Ce proprietate ar trebui să aibă orice pereche criptare/decriptare corectă, aplicată una după alta pe același text?",
+      "hint2": "Decriptarea textului criptat cu aceeași cheie trebuie să reproducă exact textul de pornire — gândește-te la ce variabilă din cod reprezintă acel text original."
     }
   ],
   "2.9.5": [
@@ -854,7 +910,8 @@
       "enunt": "Implementează Vigenère folosind cezar() din 2.8 ca piesă reutilizabilă.",
       "template": "def vigenere_din_cezar(text, cheie):\n    # completează (apelează cezar per literă)\n    return ___",
       "expectedOutput": "",
-      "hint": "Aplică cezar(text, deplasare) per caracter cu deplasarea din cheie."
+      "hint": "Vigenère e ca un Cezar diferit pentru fiecare literă, unde deplasarea vine din litera corespunzătoare a cheii (repetată ciclic).",
+      "hint2": "Pentru fiecare literă din text, calculează o deplasare pe baza literei corespunzătoare din cheie, apoi criptează acea literă separat folosind funcția cezar deja scrisă, și concatenează rezultatele."
     }
   ],
   "2.10.4": [
@@ -863,7 +920,8 @@
       "enunt": "Completează pentru a verifica dacă două seturi au aceeași sumă Fletcher.",
       "template": "def verifica(a, b):\n    return ___ == fletcher(b)",
       "expectedOutput": "",
-      "hint": "Compară fletcher(a) cu fletcher(b)."
+      "hint": "Funcția trebuie să compare suma de control a primului set de date cu cea a celui de-al doilea.",
+      "hint2": "Aplică funcția fletcher pe parametrul a, la fel cum e deja aplicată pe b în partea dreaptă a egalității."
     }
   ],
   "2.10.5": [
@@ -872,7 +930,8 @@
       "enunt": "Implementează un checksum simplu pentru un șir (folosește ord()).",
       "template": "def checksum(s):\n    suma = 0\n    for c in s:\n        suma = (suma + ord(c)) % 255\n    return ___",
       "expectedOutput": "",
-      "hint": "Returnează suma."
+      "hint": "Funcția a acumulat deja o valoare pe parcursul buclei — ce ar trebui să întoarcă la final?",
+      "hint2": "Variabila calculată în buclă (care ține suma codurilor ASCII modulo 255) este exact rezultatul pe care funcția trebuie să-l returneze."
     }
   ],
   "2.11.4": [
@@ -881,7 +940,8 @@
       "enunt": "Completează pentru a adăuga o pereche cheie-valoare.",
       "template": "d = {\"x\": 10}\n___ = 20  # adaugă \"y\" -> 20\nprint(d)",
       "expectedOutput": "{'x': 10, 'y': 20}",
-      "hint": "d['y'] = 20."
+      "hint": "Dicționarele permit adăugarea unei perechi cheie-valoare noi prin atribuire directă folosind indexare.",
+      "hint2": "Scrie numele dicționarului urmat de cheia nouă între paranteze pătrate, apoi atribuie-i valoarea dorită, la fel cum ai actualiza un element existent."
     }
   ],
   "2.11.5": [
@@ -890,7 +950,8 @@
       "enunt": "Construiește un dicționar care asociază fiecărei litere frecvența ei într-un text.",
       "template": "text = \"ana\"\nfreq = {}\nfor c in text:\n    freq[c] = ___\nprint(freq)",
       "expectedOutput": "{'a': 2, 'n': 1}",
-      "hint": "freq.get(c, 0) + 1."
+      "hint": "Trebuie să incrementezi contorul pentru litera curentă, dar ai grijă la cazul în care litera nu a mai apărut încă în dicționar.",
+      "hint2": "Dicționarele au o metodă care permite citirea unei chei cu o valoare implicită atunci când cheia lipsește — folosește-o ca să eviți o eroare la prima apariție a literei, apoi adaugă 1."
     }
   ],
   "2.12.4": [
@@ -899,7 +960,8 @@
       "enunt": "Completează pentru a accesa sigur o cheie cu valoare implicită 0.",
       "template": "d = {\"x\": 5}\nval = ___  # folosește .get() cu implicit 0",
       "expectedOutput": "5",
-      "hint": "d.get('x', 0)."
+      "hint": "Dicționarele oferă o metodă de acces care nu produce eroare dacă cheia lipsește, ci întoarce o valoare implicită specificată de tine.",
+      "hint2": "Folosește metoda respectivă pe dicționarul d, cu cheia 'x' și valoarea implicită 0 ca al doilea argument."
     }
   ],
   "2.12.5": [
@@ -908,7 +970,8 @@
       "enunt": "Construiește cuvânt→număr de apariții pentru un text folosind .get(cuvant, 0) + 1.",
       "template": "text = \"ana ana\"\ncontor = {}\nfor cuvant in text.split():\n    contor[cuvant] = ___\nprint(contor)",
       "expectedOutput": "{'ana': 2}",
-      "hint": "contor.get(cuvant, 0) + 1."
+      "hint": "La fel ca la frecvența literelor, trebuie să incrementezi un contor pentru fiecare cuvânt, având grijă la prima apariție.",
+      "hint2": "Folosește metoda de acces sigur a dicționarului, cu o valoare implicită de 0 pentru cuvintele neîntâlnite încă, apoi adaugă 1 la rezultat."
     }
   ],
   "2.13.4": [
@@ -917,7 +980,8 @@
       "enunt": "Completează pentru a extrage x și y dintr-un tuplu.",
       "template": "punct = (10, 20)\n___ = punct  # despachetare\nprint(x, y)",
       "expectedOutput": "10 20",
-      "hint": "x, y = punct."
+      "hint": "Python permite despachetarea automată a unui tuplu în mai multe variabile simultan.",
+      "hint2": "Scrie de o parte a egalității cele două nume de variabile separate prin virgulă (x și y), iar de cealaltă parte tuplul punct."
     }
   ],
   "2.13.5": [
@@ -926,7 +990,8 @@
       "enunt": "Reprezintă o listă de puncte 2D ca listă de tupluri și calculează distanța între primele două.",
       "template": "puncte = [(0, 0), (3, 4)]\n# completează calculul distanței\nimport math\ndist = ___",
       "expectedOutput": "",
-      "hint": "math.dist(puncte[0], puncte[1])."
+      "hint": "Modulul math importat oferă o funcție care calculează direct distanța euclidiană între două puncte date ca secvențe de coordonate.",
+      "hint2": "Caută în modulul math o funcție al cărei nume sugerează 'distanță' și dă-i ca argumente primele două puncte din listă."
     }
   ],
   "2.14.4": [
@@ -935,7 +1000,8 @@
       "enunt": "Completează pentru a crea un tuplu cu un singur element.",
       "template": "singur = ___  # tuplu cu valoarea 5",
       "expectedOutput": "(5,)",
-      "hint": "Trebuie virgulă: (5,)."
+      "hint": "Un tuplu cu un singur element nu se scrie doar cu paranteze — Python are nevoie de un semn suplimentar ca să nu-l confunde cu o simplă expresie parantezată.",
+      "hint2": "Pune valoarea 5 între paranteze, dar adaugă și caracterul care marchează separarea elementelor unui tuplu, chiar dacă există un singur element."
     }
   ],
   "2.14.5": [
@@ -944,7 +1010,8 @@
       "enunt": "Scrie o funcție care returnează tuplul (min, max) dintr-o listă.",
       "template": "def min_max(lista):\n    return ___\nprint(min_max([3, 1, 4, 1, 5]))",
       "expectedOutput": "(1, 5)",
-      "hint": "(min(lista), max(lista))."
+      "hint": "Funcția trebuie să întoarcă simultan cea mai mică și cea mai mare valoare din listă, împachetate împreună.",
+      "hint2": "Folosește funcțiile predefinite pentru minim și maxim aplicate pe listă, iar rezultatele pune-le într-un tuplu, în ordinea (minim, maxim)."
     }
   ],
   "2.15.4": [
@@ -953,7 +1020,8 @@
       "enunt": "Completează pentru a accesa nota primului elev.",
       "template": "date = [{\"nume\": \"Ana\", \"nota\": 10}]\n___  # accesează \"nota\" din primul element",
       "expectedOutput": "10",
-      "hint": "date[0]['nota']."
+      "hint": "Ai o listă ce conține dicționare — trebuie mai întâi să ajungi la primul element al listei, apoi să extragi o valoare din acel dicționar.",
+      "hint2": "Combină indexarea de listă (pentru primul element) cu indexarea de dicționar (pentru cheia 'nota'), una după cealaltă."
     }
   ],
   "2.15.5": [
@@ -962,7 +1030,8 @@
       "enunt": "Calculează media generală a clasei dintr-o listă de dicționare.",
       "template": "elevi = [{\"nume\": \"Ana\", \"note\": [9, 10]}, {\"nume\": \"Bogdan\", \"note\": [7, 8]}]\ntotal = 0\ncnt = 0\nfor e in elevi:\n    for n in e[\"note\"]:\n        total += n\n        cnt += 1\nmedia = ___",
       "expectedOutput": "",
-      "hint": "total / cnt."
+      "hint": "Media generală înseamnă suma tuturor notelor împărțită la câte note există în total.",
+      "hint2": "Folosește cele două variabile deja calculate în buclă (suma notelor și numărul lor) și aplică operația de împărțire între ele."
     }
   ],
   "2.16.4": [
@@ -971,7 +1040,8 @@
       "enunt": "Completează pentru a accesa linia 2, coloana 3 dintr-o matrice.",
       "template": "m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n___  # linia 2 (index 2), coloana 3 (index 2)",
       "expectedOutput": "9",
-      "hint": "m[2][2]."
+      "hint": "O matrice în Python e o listă de liste — accesarea unui element necesită două indexări succesive: una pentru linie, una pentru coloană.",
+      "hint2": "Folosește indexul liniei dorite (numerotarea începe de la 0) urmat imediat de indexul coloanei dorite."
     }
   ],
   "2.16.5": [
@@ -980,7 +1050,8 @@
       "enunt": "Calculează media pe fiecare linie a unei matrici.",
       "template": "m = [[1, 2, 3], [4, 5, 6]]\nfor linie in m:\n    print(___)",
       "expectedOutput": "",
-      "hint": "sum(linie)/len(linie)."
+      "hint": "Media unei linii se calculează la fel ca media oricărei liste de numere: suma elementelor împărțită la câte sunt.",
+      "hint2": "Folosește funcțiile predefinite pentru sumă și pentru lungime aplicate pe variabila linie, apoi împarte rezultatele."
     }
   ],
   "2.17.4": [
@@ -989,7 +1060,8 @@
       "enunt": "Completează cazul de bază pentru suma cifrelor.",
       "template": "def suma_cifre(n):\n    if n == 0:\n        return 0\n    return ___ + suma_cifre(n // 10)",
       "expectedOutput": "",
-      "hint": "n % 10 + restul."
+      "hint": "Ultima cifră a unui număr se poate obține printr-o operație aritmetică specifică; restul cifrelor se obține deja prin apelul recursiv.",
+      "hint2": "Adună la rezultatul apelului recursiv cifra unităților lui n, obținută cu operatorul de rest al împărțirii la 10."
     }
   ],
   "2.17.5": [
@@ -998,7 +1070,8 @@
       "enunt": "Scrie putere(a, n) recursiv.",
       "template": "def putere(a, n):\n    if n == 0:\n        return 1\n    return ___",
       "expectedOutput": "",
-      "hint": "a * putere(a, n-1)."
+      "hint": "a la puterea n înseamnă a înmulțit cu a la puterea (n-1) — cazul recursiv trebuie să reflecte exact această relație matematică.",
+      "hint2": "Înmulțește a cu rezultatul apelului recursiv al funcției pentru exponentul n-1."
     }
   ],
   "2.18.4": [
@@ -1007,7 +1080,8 @@
       "enunt": "Completează cazul de bază pentru quicksort.",
       "template": "def quicksort(lista):\n    if ___:   # condiție de oprire\n        return lista",
       "expectedOutput": "",
-      "hint": "if len(lista) <= 1:"
+      "hint": "Cazul de bază al oricărei sortări recursive e o listă deja considerată sortată — care sunt cele mai mici liste posibile ce nu mai au nevoie de sortare?",
+      "hint2": "O listă cu 0 sau 1 elemente este mereu sortată; verifică lungimea listei față de acest prag."
     }
   ],
   "2.18.5": [
@@ -1016,7 +1090,8 @@
       "enunt": "Desenează arborele de apeluri pentru merge_sort([5, 2, 8, 1]) (scrie ordinea divizărilor).",
       "template": "# Exercițiu de desen - scrie aici observațiile tale\ndef merge_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    m = len(lista)//2\n    return merge_sort(lista[:m]) + merge_sort(lista[m:])\n\nprint('Apeluri:', merge_sort([5, 2, 8, 1]))",
       "expectedOutput": "[5, 2, 8, 1]",
-      "hint": "Divide până la liste de 1 element."
+      "hint": "Merge sort împarte recursiv lista în jumătate până obține liste de un singur element, apoi le recombină interclasate.",
+      "hint2": "Urmărește apelurile: [5,2,8,1] se împarte în [5,2] și [8,1], care la rândul lor se împart în liste de un element — desenează acest arbore de divizări și apoi arată cum se interclasează înapoi."
     }
   ],
   "2.19.4": [
@@ -1025,7 +1100,8 @@
       "enunt": "Completează pentru a alege pivotul ca ultimul element.",
       "template": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = ___  # ultimul element\n    stanga = [x for x in lista[:-1] if x < pivot]\n    dreapta = [x for x in lista[:-1] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)",
       "expectedOutput": "",
-      "hint": "pivot = lista[-1]."
+      "hint": "Comentariul spune explicit ce element trebuie ales ca pivot — cum accesezi ultimul element al unei liste în Python?",
+      "hint2": "Folosește indexarea negativă pentru a lua ultimul element din listă, la fel cum ai accesat ultimul caracter al unui șir."
     }
   ],
   "2.19.5": [
@@ -1034,7 +1110,8 @@
       "enunt": "Implementează quicksort in-place (cu swap).",
       "template": "def quicksort_inplace(lista, stanga=0, dreapta=None):\n    if dreapta is None:\n        dreapta = len(lista) - 1\n    # completează (partition + recursivitate)\n    return ___",
       "expectedOutput": "",
-      "hint": "Vezi implementarea standard Lomuto."
+      "hint": "Implementarea in-place alege un pivot (de obicei ultimul element din interval), mută elementele mai mici înaintea lui prin interschimbări, apoi apelează recursiv funcția pe cele două sub-intervale rezultate.",
+      "hint2": "Scrie o etapă de partiționare care parcurge indicii intervalului, ține un indice separat pentru poziția unde ar trebui plasat următorul element mic, interschimbă elementele mai mici decât pivotul spre stânga, apoi plasează pivotul pe poziția corectă și apelează recursiv funcția pe cele două jumătăți rezultate."
     }
   ],
   "2.20.4": [
@@ -1043,7 +1120,8 @@
       "enunt": "Completează verificarea marginilor în Flood Fill.",
       "template": "def flood_fill(grila, i, j, veche, noua):\n    if ___:   # i sau j în afara grilei\n        return\n    if grila[i][j] != veche:\n        return\n    grila[i][j] = noua\n    # apeluri recursively...",
       "expectedOutput": "",
-      "hint": "if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):"
+      "hint": "Trebuie să verifici dacă indicii i sau j ies din limitele grilei, atât pe partea negativă cât și dincolo de ultima linie/coloană.",
+      "hint2": "Compară i cu 0 și cu numărul de linii, apoi j cu 0 și cu numărul de coloane; dacă oricare condiție de depășire e adevărată, funcția trebuie să se oprească."
     }
   ],
   "2.20.5": [
@@ -1052,7 +1130,8 @@
       "enunt": "Modifică Flood Fill să numere celulele colorate (returnează numărul).",
       "template": "def flood_fill_numara(grila, i, j, veche, noua):\n    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):\n        return 0\n    if grila[i][j] != veche:\n        return 0\n    grila[i][j] = noua\n    # completează: sumă 1 + cele 4 vecini\n    return ___",
       "expectedOutput": "",
-      "hint": "1 + apelurile pentru cele 4 vecini."
+      "hint": "Fiecare celulă colorată contribuie cu 1 la total, plus tot ce se colorează pornind din cei patru vecini direcți (sus, jos, stânga, dreapta).",
+      "hint2": "Returnează 1 pentru celula curentă plus suma celor patru apeluri recursive ale funcției pentru vecinii de sus, jos, stânga și dreapta ai poziției (i, j)."
     }
   ],
   "2.21.4": [
@@ -1061,7 +1140,8 @@
       "enunt": "Completează pentru a returna rezultatul dacă restul s-a dat complet.",
       "template": "def rest_greedy(suma, monede):\n    monede = sorted(monede, reverse=True)\n    rez = []\n    for m in monede:\n        while suma >= m:\n            rez.append(m); suma -= m\n    return ___ if suma == 0 else None",
       "expectedOutput": "",
-      "hint": "return rez if suma == 0 else None."
+      "hint": "Funcția trebuie să întoarcă lista de monede folosite doar dacă restul a fost dat exact (suma a ajuns la 0); altfel, trebuie să indice eșecul.",
+      "hint2": "Folosește o expresie condițională: dacă suma a ajuns la 0, întoarce lista rez construită în buclă; în caz contrar, întoarce None."
     }
   ],
   "2.21.5": [
@@ -1070,7 +1150,8 @@
       "enunt": "Găsește un set de monede (diferit de [1,3,4]) unde Greedy e suboptimal pentru o sumă dată.",
       "template": "monede = [1, 4, 5]  # exemplu\n# demonstrează că pentru suma 8, Greedy (5+1+1+1) e mai slab decât (4+4)\nsuma = 8\nrez_greedy = rest_greedy(suma, monede)\nprint(rez_greedy)  # arată că e suboptimal",
       "expectedOutput": "",
-      "hint": "Pentru [1,4,5] și suma 8, Greedy dă 5+1+1+1 (4 monede), dar 4+4 (2 monede)."
+      "hint": "Testează manual: care e diferența între alegerea greedy (mereu cea mai mare monedă posibilă) și o combinație care folosește mai puține monede pentru aceeași sumă?",
+      "hint2": "Pentru suma 8, calculează câte monede folosește strategia greedy cu setul [1,4,5], apoi caută o combinație alternativă care obține tot suma 8 dar cu mai puține monede — compară numărul de monede din cele două soluții."
     }
   ],
   "3.1.4": [
@@ -1078,8 +1159,8 @@
       "tip": "cod",
       "enunt": "Completează clasa Nod și funcția de parcurgere care afișează valorile unei liste înlănțuite de la cap la sfârșit (câte unul pe linie).",
       "expectedOutput": "5\n8\n12",
-      "hint": " Folosește un `curent = cap` și avansează cu `curent = curent.urmator` cât timp nu e None.",
-      "hint2": "Pentru fiecare nod, ține referința către următorul; la capăt, adaugă None.",
+      "hint": "Gândește-te cum poți ajunge de la un nod la următorul, fără să pierzi controlul asupra listei — ce condiție arată că ai ajuns la capătul ei?",
+      "hint2": "Ai nevoie de o variabilă care 'se mută' de la un nod la altul într-o buclă, afișând valoarea curentă la fiecare pas, până când variabila devine None.",
       "extindere": "Adaugă o funcție care verifică dacă o valoare există deja în listă înainte de inserare."
     }
   ],
@@ -1088,7 +1169,8 @@
       "tip": "cod",
       "enunt": "Scrie funcția `lungime(cap)` care returnează numărul de noduri dintr-o listă înlănțuită.",
       "expectedOutput": "3",
-      "hint": " Parcurge lista și numără nodurile."
+      "hint": "Problema seamănă cu parcurgerea de la exercițiul anterior, dar în loc să afișezi valorile, trebuie să ții evidența câte noduri ai vizitat.",
+      "hint2": "Inițializează un contor la 0 înainte de buclă și incrementează-l de fiecare dată când avansezi la nodul următor; returnează contorul când ajungi la None."
     }
   ],
   "3.2.4": [
@@ -1096,7 +1178,8 @@
       "tip": "cod",
       "enunt": "Completează `elimina_valoare(cap, x)` care elimină primul nod cu valoarea x dintr-o listă simplu înlănțuită și returnează noul cap.",
       "expectedOutput": "1 3",
-      "hint": " Ține minte nodul anterior pentru a reface legătura."
+      "hint": "Gândește separat cazul în care nodul de șters e chiar capul listei, de cazul în care e undeva mai în interior.",
+      "hint2": "Parcurge lista ținând o referință către nodul anterior; când găsești nodul cu valoarea x, leagă anteriorul direct de nodul care urmează după cel șters (sau mută capul, dacă e primul)."
     }
   ],
   "3.2.5": [
@@ -1104,7 +1187,8 @@
       "tip": "cod",
       "enunt": "Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea y imediat după primul nod cu valoarea x.",
       "expectedOutput": "1 2 9 3",
-      "hint": " Creează un nod nou și refă legăturile."
+      "hint": "Găsește mai întâi nodul care conține x, apoi gândește-te în ce ordine trebuie făcute legăturile ca să nu pierzi restul listei.",
+      "hint2": "Noul nod trebuie să preia legătura pe care o avea nodul cu x către nodul următor, iar apoi nodul cu x trebuie să pointeze spre noul nod."
     }
   ],
   "3.3.4": [
@@ -1112,7 +1196,8 @@
       "tip": "cod",
       "enunt": "Scrie un backtracking care generează și afișează toate șirurile de lungime n formate doar din 'A' și 'B'.",
       "expectedOutput": "AA\nAB\nBA\nBB",
-      "hint": " La fiecare pas alegi 'A' sau 'B'."
+      "hint": "E o generare completă a tuturor combinațiilor posibile — gândește-te la ea ca la un arbore binar de decizii, cu două ramuri la fiecare nivel.",
+      "hint2": "Construiește șirul progresiv printr-un parametru acumulator; când lungimea acumulată ajunge la n, afișează-l, altfel apelează recursiv de două ori, o dată adăugând 'A' și o dată 'B'."
     }
   ],
   "3.3.5": [
@@ -1120,7 +1205,8 @@
       "tip": "cod",
       "enunt": "Modifică generatorul să nu permită două 'A' alăturate în șir.",
       "expectedOutput": "AB\nBA\nBB",
-      "hint": " Verifică dacă ultimul caracter adăugat e deja 'A'."
+      "hint": "Aceeași generare ca la exercițiul anterior, dar acum unele ramuri ale arborelui de decizii trebuie tăiate complet, nu doar filtrate la final.",
+      "hint2": "Înainte de a adăuga 'A' la șirul curent, verifică ultimul caracter deja pus; dacă e tot 'A', sari peste această alegere și încearcă doar 'B'."
     }
   ],
   "3.4.4": [
@@ -1128,7 +1214,8 @@
       "tip": "cod",
       "enunt": "Scrie un program care afișează toate permutările listei [1, 2, 3].",
       "expectedOutput": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1",
-      "hint": " Folosește backtracking: la fiecare poziție încearcă fiecare element nefolosit."
+      "hint": "Backtracking clasic: la fiecare poziție din permutare poți pune orice element care nu a fost deja folosit în acea ramură.",
+      "hint2": "Ține o listă/set cu elementele deja folosite; la fiecare pas încearcă pe rând fiecare element neutilizat, adaugă-l, recurează, apoi scoate-l înapoi înainte de a încerca următorul."
     }
   ],
   "3.4.5": [
@@ -1136,7 +1223,8 @@
       "tip": "cod",
       "enunt": "Modifică problema reginelor să returneze numărul de soluții pentru n dat, nu să le afișeze.",
       "expectedOutput": "2",
-      "hint": " În loc de print, incrementează un contor."
+      "hint": "Nu mai ai nevoie să afișezi nimic — gândește-te ce structură simplă poate 'aduna' câte soluții valide găsești pe parcursul recursiei.",
+      "hint2": "Folosește o variabilă (globală sau transmisă prin listă/referință) care se modifică exact în locul din recursie unde algoritmul recunoaște o soluție completă și validă."
     }
   ],
   "3.5.4": [
@@ -1144,7 +1232,8 @@
       "tip": "cod",
       "enunt": "Scrie un backtracking care generează toate combinațiile de k elemente dintr-o listă de n (fără repetare).",
       "expectedOutput": "1 2\n1 3\n2 3",
-      "hint": " Păstrează indexul de unde poți alege în continuare."
+      "hint": "Pentru a nu genera aceeași combinație de mai multe ori (ex. 1,2 și 2,1), gândește-te cum poți impune o ordine de alegere.",
+      "hint2": "La fiecare apel recursiv, pornește căutarea doar de la indexul următor față de ultimul element ales, nu de la început, și oprește-te când combinația curentă are k elemente."
     }
   ],
   "3.5.5": [
@@ -1152,7 +1241,8 @@
       "tip": "cod",
       "enunt": "Scrie un backtracking care găsește o submulțime cu suma exact t dintr-o listă de numere (returnează prima găsită).",
       "expectedOutput": "2 3",
-      "hint": " La fiecare pas decizi: incluzi elementul sau nu."
+      "hint": "Fiecare element din listă are exact două soarte posibile la fiecare pas al recursiei — gândește-te care sunt acestea.",
+      "hint2": "La fiecare element, ramifică în doi apeluri recursivi: unul în care elementul e inclus în submulțime (scade din suma rămasă) și unul în care nu e; oprește-te când suma rămasă ajunge la 0."
     }
   ],
   "3.6.4": [
@@ -1160,8 +1250,8 @@
       "tip": "cod",
       "enunt": "Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o grilă m×n (doar dreapta/jos) folosind programare dinamică.",
       "expectedOutput": "6",
-      "hint": " dp[i][j] = dp[i-1][j] + dp[i][j-1].",
-      "hint2": "dp[i][j] = numărul de căi de a ajunge în (i,j) = suma căilor din stânga și de sus.",
+      "hint": "Numărul de căi către o celulă depinde doar de câte căi există către cele două celule din care poți ajunge direct în ea.",
+      "hint2": "Construiește un tabel 2D unde valoarea fiecărei celule se calculează din valorile celulei de deasupra și celei din stânga; prima linie și prima coloană au o singură cale posibilă.",
       "extindere": "Generalizează pentru o grilă cu obstacole (anumite celule blocate)."
     }
   ],
@@ -1170,7 +1260,8 @@
       "tip": "cod",
       "enunt": "Scrie PD pentru numărul de moduri de a face suma s cu monede dintr-o listă.",
       "expectedOutput": "3",
-      "hint": " Pentru fiecare monedă, adună modurile de a face suma rămasă."
+      "hint": "Gândește-te la problemă astfel: pentru fiecare monedă, cu câte moduri diferite poți completa restul de sumă folosind monedele rămase?",
+      "hint2": "Construiește un tabel dp unde dp[s] = numărul de moduri de a obține suma s; parcurge monedele una câte una și actualizează dp pentru sumele care pot fi atinse, pornind de la dp[0]=1."
     }
   ],
   "3.7.4": [
@@ -1178,7 +1269,8 @@
       "tip": "cod",
       "enunt": "Calculează gradul fiecărui vârf pentru graful cu muchiile (1,2),(2,3),(3,4),(1,4).",
       "expectedOutput": "2 2 2 2",
-      "hint": " Gradul = numărul de muchii incidente."
+      "hint": "Gândește-te ce înseamnă, pentru fiecare vârf, să numeri de câte ori apare acesta în lista de muchii.",
+      "hint2": "Inițializează un contor (dicționar) cu 0 pentru fiecare vârf, apoi parcurge lista de muchii și incrementează contorul ambelor capete ale fiecărei muchii."
     }
   ],
   "3.7.5": [
@@ -1186,7 +1278,8 @@
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un graf neorientat e complet.",
       "expectedOutput": "False",
-      "hint": " Verifică dacă orice pereche de vârfuri distincte e legată."
+      "hint": "Un graf complet are o proprietate specifică: fiecare vârf trebuie să fie vecin cu absolut toate celelalte vârfuri.",
+      "hint2": "Parcurge toate perechile distincte de vârfuri și verifică pentru fiecare pereche dacă există muchie între ele; dacă găsești o pereche fără muchie, graful nu e complet."
     }
   ],
   "3.8.4": [
@@ -1194,7 +1287,8 @@
       "tip": "cod",
       "enunt": "Convertește o listă de muchii într-o listă de adiacență.",
       "expectedOutput": "{1: [2], 2: [1, 3], 3: [2]}",
-      "hint": " Pentru fiecare muchie (a,b), adaugă b la a și a la b."
+      "hint": "Fiecare muchie neorientată leagă două vârfuri în ambele sensuri — gândește-te ce înseamnă asta pentru structura de date rezultată.",
+      "hint2": "Pornește cu un dicționar gol; parcurge lista de muchii și, pentru fiecare pereche, adaugă un capăt în lista de vecini a celuilalt (creează listele dacă nu există deja)."
     }
   ],
   "3.8.5": [
@@ -1202,7 +1296,8 @@
       "tip": "cod",
       "enunt": "Verifică dacă există muchie între două vârfuri date, folosind lista de adiacență.",
       "expectedOutput": "True",
-      "hint": " Caută vecinul în lista de adiacență a primului vârf."
+      "hint": "Lista de adiacență îți spune direct, pentru un vârf, cu cine este conectat — nu ai nevoie să parcurgi tot graful.",
+      "hint2": "Accesează lista de vecini a primului vârf din dicționarul de adiacență și verifică dacă al doilea vârf se află în acea listă."
     }
   ],
   "3.9.4": [
@@ -1210,7 +1305,8 @@
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un graf neorientat e conex (parcurge din orice vârf).",
       "expectedOutput": "True",
-      "hint": " Folosește BFS/DFS și vezi dacă ajungi la toate vârfurile."
+      "hint": "Gândește-te ce înseamnă 'conex': pornind dintr-un singur vârf, trebuie să poți ajunge, urmând muchiile, la toate celelalte vârfuri.",
+      "hint2": "Fă un BFS sau DFS pornind dintr-un vârf oarecare, ținând o mulțime de vârfuri vizitate; la final, compară dimensiunea acelei mulțimi cu numărul total de vârfuri din graf."
     }
   ],
   "3.9.5": [
@@ -1218,7 +1314,8 @@
       "tip": "cod",
       "enunt": "Verifică dacă un graf are toate gradele pare (condiție circuit eulerian).",
       "expectedOutput": "True",
-      "hint": " Calculează gradul fiecărui vârf și verifică paritatea."
+      "hint": "Amintește-ți cum se calculează gradul unui vârf — acum trebuie doar să verifici o proprietate matematică simplă a fiecărei valori obținute.",
+      "hint2": "Calculează gradul fiecărui vârf într-un dicționar, apoi parcurge toate valorile și verifică dacă restul la împărțirea cu 2 e 0 pentru fiecare; un grad impar înseamnă că nu e satisfăcută condiția."
     }
   ],
   "3.10.4": [
@@ -1226,7 +1323,8 @@
       "tip": "cod",
       "enunt": "Scrie BFS care returnează drumul cel mai scurt (lista de vârfuri) de la start la țintă.",
       "expectedOutput": "[1, 2, 4]",
-      "hint": " Ține minte predecesorul fiecărui vârf."
+      "hint": "BFS-ul obișnuit găsește distanța minimă, dar aici ai nevoie și de drumul propriu-zis — ce informație suplimentară trebuie reținută la fiecare pas?",
+      "hint2": "În timpul BFS, când vizitezi un vecin nou, salvează într-un dicționar din ce vârf ai ajuns la el; la final, pornind din țintă, urmează înapoi acest dicționar de predecesori până la start și inversează lista obținută."
     }
   ],
   "3.10.5": [
@@ -1234,7 +1332,8 @@
       "tip": "cod",
       "enunt": "Numără componentele conexe ale unui graf folosind BFS repetat.",
       "expectedOutput": "1",
-      "hint": " Pentru fiecare vârf nevizitat, pornește un BFS nou."
+      "hint": "O componentă conexă este un grup de vârfuri complet separat de restul — gândește-te cum poți 'descoperi' aceste grupuri unul câte unul.",
+      "hint2": "Parcurge toate vârfurile; de fiecare dată când găsești unul nevizitat, pornește un BFS/DFS de la el (marcând tot ce descoperi ca vizitat) și incrementează un contor de componente."
     }
   ],
   "3.11.4": [
@@ -1242,7 +1341,8 @@
       "tip": "cod",
       "enunt": "Scrie DFS iterativ (cu stivă explicită) care afișează ordinea vizitării.",
       "expectedOutput": "1 2 4 3",
-      "hint": " Folosește o listă ca stivă și explorează vecinii în ordine inversă."
+      "hint": "DFS recursiv folosește implicit stiva de apeluri a limbajului — gândește-te cum poți simula manual acest comportament cu o structură de date explicită.",
+      "hint2": "Folosește o listă ca stivă: pune la început vârful de start; la fiecare pas scoate un vârf de sus, marchează-l ca vizitat dacă nu e deja, și adaugă vecinii lui nevizitați pe stivă."
     }
   ],
   "3.11.5": [
@@ -1250,7 +1350,8 @@
       "tip": "cod",
       "enunt": "Detectează dacă un graf neorientat conține un ciclu folosind DFS.",
       "expectedOutput": "True",
-      "hint": " Dacă găsești un vecin deja vizitat care nu e părintele, e ciclu."
+      "hint": "Într-un graf neorientat, fiecare muchie e văzută din ambele direcții în DFS — gândește-te cum diferă 'a reveni normal la părinte' de 'a găsi cu adevărat un ciclu'.",
+      "hint2": "În DFS, ține minte pentru fiecare vârf de la cine ai venit (părintele); dacă întâlnești un vecin deja vizitat care NU este părintele curent, ai găsit un ciclu."
     }
   ],
   "3.12.4": [
@@ -1258,7 +1359,8 @@
       "tip": "cod",
       "enunt": "Implementează Roy-Warshall pe o matrice de adiacență (0/1).",
       "expectedOutput": "[[1,1,1],[1,1,1],[1,1,1]]",
-      "hint": " d[i][j] = d[i][j] or (d[i][k] and d[k][j])."
+      "hint": "Roy-Warshall răspunde la întrebarea: pot ajunge de la i la j, eventual trecând printr-un vârf intermediar k? Gândește-te cum se combină accesibilitatea deja cunoscută cu una nouă, prin k.",
+      "hint2": "Folosește trei bucle imbricate (k, apoi i, apoi j); pentru fiecare pereche (i,j), actualizează matricea considerând că i poate ajunge la j dacă poate ajunge la k ȘI k poate ajunge la j."
     }
   ],
   "3.12.5": [
@@ -1266,7 +1368,8 @@
       "tip": "cod",
       "enunt": "Numără perechile de vârfuri între care există drum (folosind Roy-Warshall).",
       "expectedOutput": "6",
-      "hint": " Contorizează valorile 1 din matricea rezultată."
+      "hint": "După ce ai matricea de accesibilitate completă, întrebarea se reduce la a număra ceva simplu în acea matrice.",
+      "hint2": "Aplică mai întâi algoritmul de accesibilitate pentru a obține matricea completă, apoi parcurge toate perechile (i,j) și numără de câte ori valoarea din matrice indică drum existent."
     }
   ],
   "3.13.4": [
@@ -1274,7 +1377,8 @@
       "tip": "cod",
       "enunt": "Implementează Dijkstra și afișează distanța minimă de la sursă la fiecare vârf.",
       "expectedOutput": "{1: 0, 2: 3, 3: 1}",
-      "hint": " Relaxează vecinii folosind o coadă de priorități."
+      "hint": "Algoritmul lucrează 'lacom': alege mereu vârful neprocesat cu cea mai mică distanță cunoscută și încearcă să îmbunătățească distanțele vecinilor lui prin el.",
+      "hint2": "Folosește heapq ca structură de prioritate, cu distanța 0 pentru sursă și infinit pentru restul; la fiecare extragere, verifică dacă drumul prin vârful curent oferă o distanță mai mică pentru fiecare vecin și actualizează dacă da."
     }
   ],
   "3.13.5": [
@@ -1282,7 +1386,8 @@
       "tip": "cod",
       "enunt": "Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul.",
       "expectedOutput": "[1, 3, 2]",
-      "hint": " Mergi înapoi de la țintă la sursă prin predecesori."
+      "hint": "Distanța minimă nu-ți spune și drumul — ai nevoie să reții, pentru fiecare vârf, prin cine ai ajuns la cea mai bună distanță a lui.",
+      "hint2": "În timpul algoritmului, de fiecare dată când îmbunătățești distanța unui vecin, salvează și vârful din care a venit actualizarea; la final, pornește din țintă și urmează înapoi acești predecesori până la sursă."
     }
   ],
   "3.14.4": [
@@ -1290,7 +1395,8 @@
       "tip": "cod",
       "enunt": "Implementează Roy-Floyd pe o matrice de costuri cu infinit pentru muchii lipsă.",
       "expectedOutput": "[[0, 3, 4], [inf, 0, 1], [inf, inf, 0]]",
-      "hint": " d[i][j] = min(d[i][j], d[i][k] + d[k][j])."
+      "hint": "La fel ca la accesibilitate, dar acum nu contează doar dacă se poate ajunge, ci și cu ce cost minim, eventual trecând printr-un vârf intermediar.",
+      "hint2": "Cu trei bucle imbricate (k, i, j), compară costul actual dintre două vârfuri cu suma costurilor pe drumul care trece prin al treilea vârf, și păstrează valoarea mai mică."
     }
   ],
   "3.14.5": [
@@ -1298,7 +1404,8 @@
       "tip": "cod",
       "enunt": "Detectează ciclu de cost negativ verificând dacă vreo diagonală devine negativă.",
       "expectedOutput": "False",
-      "hint": " După Roy-Floyd, d[i][i] < 0 indică ciclu negativ."
+      "hint": "Gândește-te ce ar însemna, logic, ca 'drumul' de la un vârf înapoi la el însuși să aibă cost negativ.",
+      "hint2": "Rulează algoritmul de costuri minime ca la exercițiul anterior, apoi verifică elementele de pe diagonala principală a matricei; dacă vreunul e negativ, există un ciclu de cost negativ."
     }
   ],
   "3.15.4": [
@@ -1306,7 +1413,8 @@
       "tip": "cod",
       "enunt": "Implementează Prim și returnează costul total al MST-ului.",
       "expectedOutput": "3",
-      "hint": " Alege mereu muchia minimă către un vârf neatins."
+      "hint": "Algoritmul crește arborele parțial construit un pas o dată, alegând mereu cea mai ieftină 'punte' către o zonă neexplorată încă a grafului.",
+      "hint2": "Pornește cu un set de vârfuri incluse (inițial doar sursa); la fiecare pas caută, dintre muchiile care leagă un vârf inclus de unul neinclus, pe cea cu cost minim, adaug-o la total și adaugă noul vârf în set."
     }
   ],
   "3.15.5": [
@@ -1314,7 +1422,8 @@
       "tip": "cod",
       "enunt": "Modifică Prim să returneze și lista muchiilor alese.",
       "expectedOutput": "[(1,2),(2,3)]",
-      "hint": " Salvează muchia la fiecare adăugare."
+      "hint": "Nu mai e suficient să aduni doar costul — ai nevoie și de o structură care 'ține minte' fiecare alegere făcută pe parcurs.",
+      "hint2": "Pe lângă costul total, menține o listă separată în care adaugi perechea de vârfuri de fiecare dată când algoritmul selectează o muchie nouă pentru arbore."
     }
   ],
   "3.16.4": [
@@ -1322,7 +1431,8 @@
       "tip": "cod",
       "enunt": "Implementează Kruskal cu Union-Find și returnează costul MST.",
       "expectedOutput": "3",
-      "hint": " Sortează muchiile și adaugă dacă nu formează ciclu."
+      "hint": "Spre deosebire de algoritmul care crește dintr-un singur punct, aici alegi mereu cea mai ieftină muchie disponibilă din tot graful, atâta timp cât nu creează un ciclu.",
+      "hint2": "Sortează toate muchiile după cost crescător; folosește o structură Union-Find pentru componente, și adaugă o muchie doar dacă cele două capete sunt încă în componente diferite (apoi unește componentele)."
     }
   ],
   "3.16.5": [
@@ -1330,7 +1440,8 @@
       "tip": "cod",
       "enunt": "Returnează lista muchiilor alese de Kruskal.",
       "expectedOutput": "[(1,2,1),(2,3,2)]",
-      "hint": " Salvează muchia la fiecare union reușit."
+      "hint": "La fel ca la exercițiul cu Prim, dar acum pentru acest algoritm — ai nevoie de o listă separată pentru muchiile efectiv folosite.",
+      "hint2": "De fiecare dată când o muchie trece testul Union-Find și e adăugată la cost, adaug-o și într-o listă separată (sursă, destinație, cost) pe care o returnezi la final."
     }
   ],
   "3.17.4": [
@@ -1338,7 +1449,8 @@
       "tip": "cod",
       "enunt": "Calculează înălțimea unui arbore reprezentat prin parinte[v].",
       "expectedOutput": "2",
-      "hint": " Înălțimea = max(adâncime de la rădăcină la frunză)."
+      "hint": "Structura parinte[v] îți spune, pentru fiecare vârf, cine e deasupra lui — gândește-te cum poți transforma asta în 'cât de adânc' e fiecare vârf față de rădăcină.",
+      "hint2": "Pentru fiecare vârf, calculează adâncimea urcând prin părinți până la rădăcină (numărând pașii); înălțimea arborelui e adâncimea maximă găsită printre toate vârfurile."
     }
   ],
   "3.17.5": [
@@ -1346,7 +1458,8 @@
       "tip": "cod",
       "enunt": "Numără frunzele unui arbore (nodurile care nu apar ca părinte).",
       "expectedOutput": "3",
-      "hint": " O frunză nu e cheie în dicționarul de părinți."
+      "hint": "O frunză se recunoaște printr-o proprietate 'negativă': ce NU are, mai degrabă decât ce are.",
+      "hint2": "Construiește mulțimea tuturor vârfurilor care apar ca valoare în dicționarul parinte (adică au cel puțin un copil); frunzele sunt vârfurile care nu apar deloc acolo."
     }
   ],
   "3.18.4": [
@@ -1354,7 +1467,8 @@
       "tip": "cod",
       "enunt": "Scrie inserare și o funcție care verifică dacă un arbore e BST valid.",
       "expectedOutput": "True",
-      "hint": " Pentru fiecare nod, stânga < nod < dreapta (recursiv cu limite)."
+      "hint": "Nu e suficient să compari doar un nod cu copiii lui direcți — proprietatea de BST trebuie să fie adevărată față de toți strămoșii, nu doar față de părinte.",
+      "hint2": "Scrie o funcție recursivă care primește și un interval permis pentru valoarea nodului curent; îngustează intervalul pentru subarborele stâng și pentru cel drept pe măsură ce cobori."
     }
   ],
   "3.18.5": [
@@ -1362,7 +1476,8 @@
       "tip": "cod",
       "enunt": "Scrie minim_bst(rad) care returnează cea mai mică valoare dintr-un BST.",
       "expectedOutput": "1",
-      "hint": " Mergi tot timpul la fiul stâng."
+      "hint": "Gândește-te la ordinea valorilor într-un BST: unde s-ar afla mereu cea mai mică valoare posibilă, indiferent de forma arborelui?",
+      "hint2": "Pornind de la rădăcină, avansează repetat către copilul stâng cât timp acesta există; valoarea nodului la care ajungi când nu mai există copil stâng este minimul."
     }
   ],
   "3.19.4": [
@@ -1370,7 +1485,8 @@
       "tip": "cod",
       "enunt": "Folosește heapq pentru a sorta o listă în ordine crescătoare.",
       "expectedOutput": "[1, 2, 3, 5]",
-      "hint": " Push toate, apoi pop până e gol."
+      "hint": "Un min-heap scoate mereu cel mai mic element rămas — gândește-te cum poți folosi asta pentru a construi treptat o listă sortată.",
+      "hint2": "Construiește heap-ul din listă, apoi extrage elementele unul câte unul, adăugându-le într-o listă rezultat, până când heap-ul e gol."
     }
   ],
   "3.19.5": [
@@ -1378,7 +1494,8 @@
       "tip": "cod",
       "enunt": "Implementează manual push într-un min-heap reprezentat ca listă.",
       "expectedOutput": "[1, 3, 2]",
-      "hint": " Adaugă la sfârșit, apoi 'percolează' în sus comparând cu părintele."
+      "hint": "Un heap reprezentat ca listă păstrează o relație matematică simplă între poziția unui nod și poziția părintelui său — gândește-te care e formula de indexare.",
+      "hint2": "Adaugă noul element la finalul listei; apoi, cât timp elementul e mai mic decât părintele lui și nu a ajuns la rădăcină, interschimbă-l cu părintele și actualizează indexul curent."
     }
   ],
   "3.20.4": [
@@ -1386,7 +1503,8 @@
       "tip": "cod",
       "enunt": "Scrie preordine, inordine, postordine pentru un arbore binar.",
       "expectedOutput": "5 3 1 4 8",
-      "hint": " Alege ordinea: nod-st-dr / st-nod-dr / st-dr-nod."
+      "hint": "Cele trei parcurgeri diferă doar prin momentul în care 'vizitezi' (afișezi) nodul curent față de apelurile recursive pe cei doi copii.",
+      "hint2": "Scrie trei funcții recursive similare, care diferă doar prin poziția instrucțiunii de afișare a nodului față de cele două apeluri recursive pe stânga și dreapta."
     }
   ],
   "3.20.5": [
@@ -1394,7 +1512,8 @@
       "tip": "cod",
       "enunt": "Calculează înălțimea unui arbore binar folosind postordinea.",
       "expectedOutput": "2",
-      "hint": " Înălțimea = 1 + max(înălțime stânga, înălțime dreapta)."
+      "hint": "Gândește-te recursiv: dacă ai ști deja înălțimea fiecăruia dintre cei doi subarbori ai unui nod, cum ai combina acele informații pentru a afla înălțimea întregului subarbore?",
+      "hint2": "Scrie o funcție recursivă care calculează mai întâi înălțimea subarborelui stâng și a celui drept, apoi combină cele două valori obținute; cazul de bază este nodul None."
     }
   ],
   "3.21.4": [
@@ -1402,7 +1521,8 @@
       "tip": "cod",
       "enunt": "Scrie cauta și inserare iterativ pentru un BST.",
       "expectedOutput": "True",
-      "hint": " Coboară comparând cu v; la oprire agață noul nod."
+      "hint": "Fără recursivitate, ai nevoie de o buclă care 'coboară' în arbore pas cu pas, alegând la fiecare nod dacă mergi stânga sau dreapta.",
+      "hint2": "Pornește de la rădăcină cu o variabilă curent; într-o buclă, compară v cu valoarea curentă și mergi la stânga sau dreapta după caz, ținând minte și nodul anterior pentru a putea agăța noul nod acolo unde bucla se oprește."
     }
   ],
   "3.21.5": [
@@ -1410,7 +1530,8 @@
       "tip": "cod",
       "enunt": "Scrie sterge(rad, v) care elimină un nod dintr-un BST păstrând proprietatea.",
       "expectedOutput": "True",
-      "hint": " Cazuri: 0 copii, 1 copil, 2 copii (înlocuiește cu succesorul)."
+      "hint": "Ștergerea dintr-un BST nu e la fel de simplă ca inserarea — gândește-te ce se întâmplă cu copiii nodului șters în fiecare situație posibilă.",
+      "hint2": "Tratează separat cazurile: nodul fără copii se elimină direct; nodul cu un singur copil se înlocuiește cu acel copil; nodul cu doi copii se înlocuiește cu cea mai mică valoare din subarborele drept, care apoi se șterge de acolo."
     }
   ],
   "3.22.4": [
@@ -1418,7 +1539,8 @@
       "tip": "cod",
       "enunt": "Creează clasa Forma cu atribut culoare și Cerc/Patrat care moștenesc Forma.",
       "expectedOutput": "rosu",
-      "hint": " Clasele derivate apelează super().__init__."
+      "hint": "Clasele Cerc și Patrat au nevoie de atributul culoare, dar nu ar trebui să repete codul care îl inițializează — gândește-te cum poate o clasă derivată să reutilizeze constructorul clasei de bază.",
+      "hint2": "În constructorul fiecărei clase derivate, apelează constructorul clasei părinte transmițându-i culoarea primită, în loc să inițializezi din nou atributul direct."
     }
   ],
   "3.22.5": [
@@ -1426,7 +1548,8 @@
       "tip": "cod",
       "enunt": "Adaugă metoda descriere() în Forma și suprascrie-o în derivate.",
       "expectedOutput": "Cerc rosu",
-      "hint": " Derivatele redefinește metoda."
+      "hint": "Fiecare formă ar trebui să-și descrie propriul tip, deși toate 'promit' aceeași metodă — gândește-te la ce înseamnă polimorfism aici.",
+      "hint2": "Definește metoda cu o implementare generică în clasa de bază, apoi definește câte o versiune cu același nume, dar cod diferit, în fiecare clasă derivată, returnând un text specific tipului ei."
     }
   ],
   "3.23.4": [
@@ -1434,7 +1557,8 @@
       "tip": "cod",
       "enunt": "Creează clasa Produs cu nume, pret, stoc și metoda vinde(n) care scade stocul.",
       "expectedOutput": "7",
-      "hint": " self.stoc -= n în metodă."
+      "hint": "Metoda trebuie să modifice starea internă a obiectului, nu doar să returneze un rezultat calculat — gândește-te ce atribut se schimbă.",
+      "hint2": "În metodă, scade cantitatea primită ca parametru din valoarea curentă a atributului care ține stocul, actualizând direct starea obiectului."
     }
   ],
   "3.23.5": [
@@ -1442,7 +1566,8 @@
       "tip": "cod",
       "enunt": "Adaugă metoda total() care returnează pret * stoc.",
       "expectedOutput": "80",
-      "hint": " return self.pret * self.stoc."
+      "hint": "Metoda nu are nevoie de parametri suplimentari — tot ce-i trebuie e deja stocat în obiect.",
+      "hint2": "Definește o metodă care înmulțește cele două atribute relevante ale obiectului (prețul unitar și cantitatea din stoc) și returnează rezultatul."
     }
   ],
   "3.24.4": [
@@ -1450,7 +1575,8 @@
       "tip": "cod",
       "enunt": "Creează Vehicul (cu __viteza) și Bicicleta/Masina care moștenesc, folosind super().",
       "expectedOutput": "0",
-      "hint": " super().__init__ în constructorul derivat."
+      "hint": "Atributul privat al clasei de bază tot trebuie inițializat de clasele derivate — gândește-te cum pot face asta fără să-l acceseze direct.",
+      "hint2": "În constructorul clasei de bază, inițializează atributul privat; în constructoarele claselor derivate, apelează constructorul clasei părinte pentru a lăsa clasa de bază să-l inițializeze."
     }
   ],
   "3.24.5": [
@@ -1458,7 +1584,8 @@
       "tip": "cod",
       "enunt": "Demonstrează name mangling: accesează atributul privat din exterior ca _Clasa__atribut.",
       "expectedOutput": "0",
-      "hint": " Python redenumește __viteza în _Vehicul__viteza."
+      "hint": "Un atribut care începe cu două underscore-uri nu e complet ascuns — Python doar îi schimbă numele într-un mod previzibil, ca să evite coliziuni accidentale între clase.",
+      "hint2": "Pentru a accesa din exteriorul clasei un atribut privat declarat cu dublu underscore, folosește forma redenumită automat de Python, care include numele clasei în care a fost definit."
     }
   ],
   "3.25.4": [
@@ -1466,7 +1593,8 @@
       "tip": "cod",
       "enunt": "Scrie același program (filtrat numere pare) în stil procedural și funcțional (filter).",
       "expectedOutput": "[2, 4]",
-      "hint": " filter(lambda x: x%2==0, l) în stil funcțional."
+      "hint": "Stilul procedural verifică fiecare element explicit printr-o buclă și o condiție; stilul funcțional exprimă aceeași idee ca o 'transformare' aplicată întregii colecții dintr-o dată.",
+      "hint2": "Pentru varianta procedurală, folosește o buclă cu o condiție care testează paritatea; pentru varianta funcțională, folosește o funcție de ordin superior care primește o funcție condiție și lista."
     }
   ],
   "3.25.5": [
@@ -1474,7 +1602,8 @@
       "tip": "cod",
       "enunt": "Scrie o clasă Calculator (POO) care expune operații ca metode.",
       "expectedOutput": "8",
-      "hint": " Metodele adună/scad/înmulțesc self.valoare."
+      "hint": "În loc de funcții separate care primesc și returnează un număr, gândește-te cum poate un obiect să-și țină singur 'rezultatul curent' și să-l modifice prin metode succesive.",
+      "hint2": "Clasa păstrează un atribut care reprezintă valoarea curentă; metodele pentru fiecare operație modifică direct acest atribut și pot returna obiectul însuși, pentru a permite înlănțuirea apelurilor."
     }
   ],
   "4.18.5": [
@@ -1554,8 +1683,8 @@
       "tip": "cod",
       "enunt": "Definește în Python (dicționar) entitatea Carte cu atributele isbn, titlu, autor, an.",
       "expectedOutput": "{'isbn': 'X', 'titlu': 'Y', 'autor': 'Z', 'an': 2000}",
-      "hint": " Un dicționar cu 4 chei.",
-      "hint2": "Un dicționar e echivalentul unei înregistrări: cheia e atributul, valoarea e datele.",
+      "hint": "Gândește-te la entitatea Carte ca la un tabel cu o singură linie: fiecare atribut (isbn, titlu, autor, an) devine o pereche cheie-valoare.",
+      "hint2": "Structura are forma {atribut: valoare, ...} — include toate cele 4 atribute cerute, cu tipuri de date potrivite (șiruri pentru text, număr întreg pentru an).",
       "extindere": "Adaugă un câmp 'an' și filtrează cărțile publicate după 2010."
     }
   ],
@@ -1564,7 +1693,8 @@
       "tip": "cod",
       "enunt": "Scrie o listă de 3 cărți (dicționare), fiecare cu cele 4 atribute.",
       "expectedOutput": "3 carti",
-      "hint": " Listă de 3 dicționare."
+      "hint": "O colecție de entități de același tip se modelează ca o listă ce conține mai multe dicționare similare structural.",
+      "hint2": "Ai nevoie de o listă cu exact 3 elemente, fiecare element fiind un dicționar Carte complet, cu aceleași 4 chei ca la exercițiul anterior."
     }
   ],
   "4.2.4": [
@@ -1572,7 +1702,8 @@
       "tip": "cod",
       "enunt": "Modelați relația 1:N 'Un autor scrie multe cărți' cu Autor și Carte (cheie externă).",
       "expectedOutput": "carte_id in Carte",
-      "hint": " Cheia externă e în partea 'N'."
+      "hint": "Într-o relație 1:N, cheia externă se adaugă întotdeauna pe partea care reprezintă 'multe' — gândește-te care dintre cele două entități este partea N aici.",
+      "hint2": "Autor rămâne independent (id, nume...), iar Carte primește un câmp suplimentar care reține la ce autor aparține, referind cheia primară din Autor."
     }
   ],
   "4.2.5": [
@@ -1580,7 +1711,8 @@
       "tip": "cod",
       "enunt": "Modelați relația M:N Studenți-Proiecte cu tabelă asociativă.",
       "expectedOutput": "Inscriere(student_id, proiect_id)",
-      "hint": " Tabela asociativă are ambele chei."
+      "hint": "O relație M:N nu poate fi reprezentată direct printr-o singură cheie externă; e nevoie de o entitate intermediară care leagă cele două părți.",
+      "hint2": "Tabela asociativă conține cel puțin două chei externe, câte una spre fiecare dintre entitățile Student și Proiect, formând împreună o pereche unică pentru fiecare înscriere."
     }
   ],
   "4.3.4": [
@@ -1588,7 +1720,8 @@
       "tip": "cod",
       "enunt": "Scrie CREATE TABLE pentru Student și Curs cu relația 1:N.",
       "expectedOutput": "curs_id REFERENCES Curs(id)",
-      "hint": " Cheia externă în Student."
+      "hint": "Pentru relația 1:N, tabela Student trebuie să conțină o coloană suplimentară care indică cursul principal, definită ca cheie externă.",
+      "hint2": "Folosește clauza REFERENCES în definiția coloanei din CREATE TABLE Student, legând-o de coloana cheie primară din tabela Curs."
     }
   ],
   "4.3.5": [
@@ -1596,7 +1729,8 @@
       "tip": "cod",
       "enunt": "Scrie CREATE TABLE pentru M:N cu tabelă asociativă Inscriere.",
       "expectedOutput": "Inscriere(id_student, id_curs)",
-      "hint": " Ambele chei externe."
+      "hint": "Creează un al treilea tabel dedicat relației, separat de Student și Curs, care nu are sens de sine stătător fără cele două chei externe.",
+      "hint2": "Tabela Inscriere are ca structură minimă cele două coloane cheie externă (spre Student și spre Curs), fiecare definită cu REFERENCES."
     }
   ],
   "4.4.4": [
@@ -1604,7 +1738,8 @@
       "tip": "cod",
       "enunt": "CREATE TABLE Comanda(id, data, client_id REFERENCES Client(id)) cu constrângeri.",
       "expectedOutput": "client_id REFERENCES Client(id)",
-      "hint": " FOREIGN KEY."
+      "hint": "Constrângerea de integritate referențială se declară cu o clauză specifică pe coloana care leagă Comanda de Client.",
+      "hint2": "În definiția coloanei client_id, adaugă FOREIGN KEY / REFERENCES urmat de numele tabelei părinte și coloana ei cheie primară."
     }
   ],
   "4.4.5": [
@@ -1612,7 +1747,8 @@
       "tip": "cod",
       "enunt": "Adaugă CHECK care nu permite vârsta negativă la Student.",
       "expectedOutput": "CHECK (varsta >= 0)",
-      "hint": " CHECK (condiție)."
+      "hint": "SQL are o constrângere dedicată validării valorilor unei coloane la nivelul bazei de date, nu doar în cod Python.",
+      "hint2": "Adaugă în definiția coloanei varsta o clauză CHECK urmată de o condiție logică ce exclude valorile negative."
     }
   ],
   "4.5.4": [
@@ -1620,7 +1756,8 @@
       "tip": "cod",
       "enunt": "Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane într-o celulă.",
       "expectedOutput": "telefoane intr-o singura celula",
-      "hint": " FN1 cere valori atomice."
+      "hint": "FN1 impune ca fiecare celulă a unui tabel să conțină o singură valoare atomică, nu o colecție de valori.",
+      "hint2": "Caută coloana care stochează mai multe numere de telefon deodată, separate prin virgulă sau spațiu, în loc de a fi despărțite pe rânduri/tabele separate."
     }
   ],
   "4.5.5": [
@@ -1628,7 +1765,8 @@
       "tip": "cod",
       "enunt": "Normalizează la FN3: Angajat(id, nume, dept, locatie_dept).",
       "expectedOutput": "Dept(id, nume, locatie)",
-      "hint": " Separă dept și locația."
+      "hint": "FN3 elimină dependențele tranzitive: dacă locatie_dept depinde de dept, iar dept depinde de id, atunci locatie_dept depinde indirect de id.",
+      "hint2": "Scoate dept și locatie_dept într-un tabel separat Dept, iar în Angajat păstrează doar o cheie externă spre acest nou tabel."
     }
   ],
   "4.6.4": [
@@ -1636,8 +1774,8 @@
       "tip": "cod",
       "enunt": "Creează agenda.db cu Persoana(id, nume, telefon) folosind sqlite3.",
       "expectedOutput": "CREATE TABLE Persoana",
-      "hint": " sqlite3.connect + execute.",
-      "hint2": "sqlite3.connect crează fișierul dacă nu există; cursorul execută SQL-ul.",
+      "hint": "Ai nevoie de o conexiune la baza de date SQLite și de un obiect cursor prin care rulezi comenzile SQL.",
+      "hint2": "Pașii sunt: deschide/creează conexiunea către fișierul agenda.db, obține un cursor, execută o instrucțiune CREATE TABLE cu cele 3 coloane.",
       "extindere": "Creează două tabele legate prin cheie externă și fă un JOIN între ele."
     }
   ],
@@ -1646,7 +1784,8 @@
       "tip": "cod",
       "enunt": "Scrie adauga(conn, nume, telefon) care inserează și face commit.",
       "expectedOutput": "commit()",
-      "hint": " Nu uita commit."
+      "hint": "O funcție care primește conexiunea ca parametru trebuie să obțină propriul cursor pentru a executa comanda de inserare.",
+      "hint2": "În interiorul funcției: execută o comandă INSERT cu valorile primite ca parametri, apoi salvează modificările apelând metoda de confirmare a tranzacției pe conexiune."
     }
   ],
   "4.7.4": [
@@ -1654,7 +1793,8 @@
       "tip": "cod",
       "enunt": "SELECT numele studenților >18 ani, ordonați alfabetic.",
       "expectedOutput": "ORDER BY nume",
-      "hint": " WHERE varsta>18 ORDER BY nume."
+      "hint": "Interogarea are nevoie de o clauză de filtrare pentru condiția pe vârstă și de o clauză separată pentru ordonarea rezultatelor.",
+      "hint2": "Structura este SELECT coloana FROM tabel WHERE condiție, urmat de o clauză care sortează alfabetic după numele coloanei."
     }
   ],
   "4.7.5": [
@@ -1662,7 +1802,8 @@
       "tip": "cod",
       "enunt": "Creează tabela, inserează 3 rânduri, afișează ordonate (Python + sqlite3).",
       "expectedOutput": "3 randuri ordonate",
-      "hint": " fetchall după SELECT ORDER BY."
+      "hint": "După ce execuți un SELECT cu ordonare, rezultatele nu sunt disponibile automat — trebuie extrase explicit din cursor.",
+      "hint2": "Urmează secvența: CREATE TABLE, trei comenzi INSERT (cu commit), apoi un SELECT cu ORDER BY, ale cărui rezultate le aduci printr-o metodă de extragere a tuturor rândurilor."
     }
   ],
   "4.8.4": [
@@ -1670,7 +1811,8 @@
       "tip": "cod",
       "enunt": "Numără studenții pe fiecare oraș (GROUP BY).",
       "expectedOutput": "GROUP BY oras",
-      "hint": " COUNT(*) GROUP BY."
+      "hint": "Pentru a obține câte un rezultat per grup (oraș), interogarea trebuie să grupeze rândurile înainte de a le număra.",
+      "hint2": "Selectează coloana oras împreună cu o funcție de agregare care numără rândurile, apoi grupează rezultatul după oras."
     }
   ],
   "4.8.5": [
@@ -1678,7 +1820,8 @@
       "tip": "cod",
       "enunt": "Media vârstei per oraș, doar orașe cu >=2 studenți (HAVING).",
       "expectedOutput": "HAVING COUNT(*)>=2",
-      "hint": " HAVING după GROUP BY."
+      "hint": "Filtrarea pe rezultatul unei agregări (nu pe rândurile brute) se face cu o clauză diferită de WHERE.",
+      "hint2": "Grupează după oraș, calculează media vârstei cu o funcție de agregare, apoi restricționează grupurile afișate folosind o clauză care acceptă condiții pe rezultatul agregării."
     }
   ],
   "4.9.4": [
@@ -1686,7 +1829,8 @@
       "tip": "cod",
       "enunt": "JOIN care afișează numele studenților și denumirea cursurilor.",
       "expectedOutput": "JOIN Inscriere ON ... JOIN Curs ON ...",
-      "hint": " Două JOIN-uri."
+      "hint": "Studentul și cursul nu sunt legate direct, ci printr-un tabel intermediar — vei avea nevoie de două legături succesive.",
+      "hint2": "Pornește de la Student, leagă-l de tabela de înscrieri prin cheia comună, apoi leagă rezultatul de tabela Curs prin cealaltă cheie, folosind câte o clauză de alăturare pentru fiecare legătură."
     }
   ],
   "4.9.5": [
@@ -1694,7 +1838,8 @@
       "tip": "cod",
       "enunt": "Subinterogare care returnează studenții înscriși la un curs dat.",
       "expectedOutput": "WHERE id IN (SELECT ...)",
-      "hint": " IN (subinterogare)."
+      "hint": "Poți obține mai întâi mulțimea de id-uri de studenți dintr-o interogare separată, apoi folosi acea mulțime ca filtru pentru interogarea principală.",
+      "hint2": "Structura este SELECT ... FROM Student WHERE id [operator de apartenență] (o interogare internă care selectează id-urile din Inscriere pentru cursul respectiv)."
     }
   ],
   "4.10.4": [
@@ -1702,7 +1847,8 @@
       "tip": "cod",
       "enunt": "Inserează 3 studenți apoi actualizează vârsta unuia (Python).",
       "expectedOutput": "UPDATE ... commit",
-      "hint": " execute + commit."
+      "hint": "Modificarea unei valori existente într-un tabel se face cu o comandă SQL diferită de cea de inserare, însoțită de o condiție care identifică rândul vizat.",
+      "hint2": "După cele 3 INSERT-uri cu commit, execută o comandă UPDATE pe coloana vârstă, cu o clauză WHERE care selectează exact studentul dorit, apoi confirmă tranzacția."
     }
   ],
   "4.10.5": [
@@ -1710,7 +1856,8 @@
       "tip": "cod",
       "enunt": "Șterge rândurile cu vârsta < 16 (execute + commit).",
       "expectedOutput": "DELETE WHERE varsta<16",
-      "hint": " DELETE FROM ... WHERE."
+      "hint": "Eliminarea definitivă de rânduri dintr-un tabel se face cu o comandă SQL dedicată, nu prin filtrare în Python.",
+      "hint2": "Execută o comandă DELETE FROM pe tabelul respectiv, cu o clauză WHERE care selectează rândurile cu vârsta sub pragul cerut, apoi confirmă tranzacția."
     }
   ],
   "4.11.4": [
@@ -1718,7 +1865,8 @@
       "tip": "cod",
       "enunt": "CREATE TABLE Produs(id,nume,pret) apoi ALTER ADD stoc.",
       "expectedOutput": "ALTER TABLE Produs ADD COLUMN stoc",
-      "hint": " ALTER TABLE ADD COLUMN."
+      "hint": "Modificarea structurii unui tabel deja creat (adăugarea unei coloane noi) se face cu o comandă SQL diferită de CREATE TABLE.",
+      "hint2": "După CREATE TABLE Produs cu cele 3 coloane inițiale, rulează o a doua comandă care alterează tabela existentă, adăugând coloana stoc cu un tip numeric."
     }
   ],
   "4.11.5": [
@@ -1726,7 +1874,8 @@
       "tip": "cod",
       "enunt": "Modifică tipul unei coloane sau șterge o coloană.",
       "expectedOutput": "ALTER/DROP COLUMN",
-      "hint": " Depinde de sistem."
+      "hint": "SQLite are limitări la modificarea directă a tipului unei coloane; verifică ce operații de alterare sunt permise nativ înainte de a alege abordarea.",
+      "hint2": "Pentru ștergere, folosește comanda de alterare a tabelei cu clauza specifică pentru eliminarea unei coloane; pentru schimbarea tipului, în multe sisteme e nevoie de un tabel nou și migrarea datelor."
     }
   ],
   "4.12.4": [
@@ -1734,7 +1883,8 @@
       "tip": "cod",
       "enunt": "Scrie un transfer bancar cu try/except și commit/rollback.",
       "expectedOutput": "rollback()",
-      "hint": " În except: rollback."
+      "hint": "Un transfer implică două operații care trebuie să reușească împreună sau să eșueze împreună — dacă a doua eșuează, prima trebuie anulată.",
+      "hint2": "Încadrează cele două UPDATE-uri (scădere dintr-un cont, adăugare în celălalt) într-un bloc try; la succes confirmă tranzacția, iar în blocul except anulează toate modificările făcute până atunci."
     }
   ],
   "4.12.5": [
@@ -1742,7 +1892,8 @@
       "tip": "cod",
       "enunt": "SAVEPOINT înainte de ștergere, apoi ROLLBACK TO SAVEPOINT.",
       "expectedOutput": "ROLLBACK TO SAVEPOINT",
-      "hint": " Salvăm punctul."
+      "hint": "Un punct de salvare intermediar permite anularea doar a unei părți dintr-o tranzacție, nu a întregii tranzacții.",
+      "hint2": "Creează un punct de salvare cu nume înainte de comanda DELETE, execută ștergerea, apoi revino la acel punct printr-o comandă de revenire care indică numele punctului de salvare."
     }
   ],
   "4.13.4": [
@@ -1750,7 +1901,8 @@
       "tip": "cod",
       "enunt": "Creează dicționar cu 5 exemple supervizate (features + target).",
       "expectedOutput": "5 exemple",
-      "hint": " Listă de dicționare."
+      "hint": "Învățarea supervizată are nevoie de perechi date de intrare - etichetă cunoscută; gândește-te cum structurezi fiecare exemplu ca să conțină ambele părți.",
+      "hint2": "Construiește o structură (de exemplu o listă) cu 5 elemente, fiecare element conținând atât valorile caracteristicilor (features), cât și eticheta țintă asociată."
     }
   ],
   "4.13.5": [
@@ -1758,7 +1910,8 @@
       "tip": "cod",
       "enunt": "Separă features de target în tupluri (features, eticheta).",
       "expectedOutput": "(features, eticheta)",
-      "hint": " Tupluri."
+      "hint": "Pentru fiecare exemplu, valorile de intrare și eticheta trebuie separate în două componente distincte, dar păstrate împreună într-o structură pereche.",
+      "hint2": "Pentru fiecare exemplu din setul de date, formează un tuplu cu exact două elemente: primul cu valorile caracteristicilor, al doilea cu eticheta corespunzătoare."
     }
   ],
   "4.14.4": [
@@ -1766,7 +1919,8 @@
       "tip": "cod",
       "enunt": "Înlocuiește valorile lipsă (None) dintr-o listă cu media.",
       "expectedOutput": "media fara None",
-      "hint": " Calculează media pe cele valide."
+      "hint": "Media trebuie calculată doar din valorile valide, nu din toată lista — altfel valorile lipsă ar denatura rezultatul.",
+      "hint2": "Parcurge lista, filtrează elementele care nu sunt None pentru a calcula media, apoi parcurge din nou lista înlocuind fiecare None cu acea medie."
     }
   ],
   "4.14.5": [
@@ -1774,7 +1928,8 @@
       "tip": "cod",
       "enunt": "Normalizare min-max pentru o listă de numere.",
       "expectedOutput": "(x-min)/(max-min)",
-      "hint": " Formulă min-max."
+      "hint": "Normalizarea min-max aduce toate valorile într-un interval fix, raportând fiecare valoare la distanța dintre minim și maxim.",
+      "hint2": "Determină mai întâi valoarea minimă și maximă din listă, apoi transformă fiecare element scăzând minimul și împărțind la diferența dintre maxim și minim."
     }
   ],
   "4.15.4": [
@@ -1782,7 +1937,8 @@
       "tip": "cod",
       "enunt": "Folosește KMeans pe puncte 2D și afișează labels_.",
       "expectedOutput": "km.labels_",
-      "hint": " KMeans(n_clusters=2).fit(X)."
+      "hint": "Algoritmul de clustering din scikit-learn se instanțiază cu numărul de clustere dorit, apoi se antrenează direct pe datele de intrare.",
+      "hint2": "Creează un obiect al clasei de clustering specificând numărul de clustere, apelează metoda de antrenare pe matricea de puncte, apoi accesează atributul care conține eticheta de cluster asociată fiecărui punct."
     }
   ],
   "4.15.5": [
@@ -1790,7 +1946,8 @@
       "tip": "cod",
       "enunt": "Un pas manual K-means pe 4 puncte cu 2 centroizi.",
       "expectedOutput": "atribuiri noi",
-      "hint": " Atribuie cel mai apropiat centru."
+      "hint": "Un pas de K-means presupune calcularea distanței de la fiecare punct la fiecare centroid și alegerea celui mai apropiat.",
+      "hint2": "Pentru fiecare din cele 4 puncte, calculează distanța (de exemplu euclidiană) față de cei 2 centroizi și atribuie punctul centroidului cu distanța minimă."
     }
   ],
   "4.16.4": [
@@ -1798,7 +1955,8 @@
       "tip": "cod",
       "enunt": "Antrenează regresie liniară pe (1,3),(2,5),(3,7), prezice x=4.",
       "expectedOutput": "9",
-      "hint": " y=2x+1."
+      "hint": "Modelul de regresie liniară din scikit-learn are nevoie de datele de intrare organizate ca o matrice de eșantioane, nu ca o listă simplă de numere.",
+      "hint2": "Instanțiază modelul de regresie, antrenează-l pe perechile (x, y) date, apoi folosește metoda de predicție pe valoarea x=4 pentru a obține rezultatul."
     }
   ],
   "4.16.5": [
@@ -1806,7 +1964,8 @@
       "tip": "cod",
       "enunt": "Calculează manual panta a pentru 2 puncte și prezice.",
       "expectedOutput": "panta*a",
-      "hint": " a = (y2-y1)/(x2-x1)."
+      "hint": "Panta unei drepte care trece prin două puncte se calculează din diferența ordonatelor raportată la diferența abciselor.",
+      "hint2": "Calculează panta a ca diferența y2-y1 împărțită la x2-x1, determină și ordonata la origine b, apoi folosește formula y = a*x + b pentru predicție."
     }
   ],
   "4.17.4": [
@@ -1814,7 +1973,8 @@
       "tip": "cod",
       "enunt": "Antrenează KNN pe un set mic și prezice un punct nou.",
       "expectedOutput": "eticheta prezisa",
-      "hint": " KNeighborsClassifier.fit/predict."
+      "hint": "Algoritmul celor mai apropiați vecini clasifică un punct nou în funcție de etichetele majoritare ale celor mai apropiate puncte cunoscute.",
+      "hint2": "Instanțiază clasificatorul KNN cu un număr de vecini, antrenează-l pe datele și etichetele cunoscute, apoi apelează metoda de predicție pe punctul nou."
     }
   ],
   "4.17.5": [
@@ -1822,7 +1982,8 @@
       "tip": "cod",
       "enunt": "Antrenează arbore de decizie și afișează importanța features.",
       "expectedOutput": "feature_importances_",
-      "hint": " DecisionTreeClassifier."
+      "hint": "Arborii de decizie oferă, după antrenare, o măsură internă a cât de mult contribuie fiecare caracteristică la deciziile luate.",
+      "hint2": "Instanțiază și antrenează un clasificator de tip arbore de decizie pe date, apoi accesează atributul modelului care conține scorurile de importanță pentru fiecare caracteristică."
     }
   ],
   "4.18.4": [
@@ -1841,7 +2002,8 @@
       "enunt": "Completează programul pentru a afișa numele micului robot: Pippy!",
       "template": "# Scrie codul mai jos:\nprint(\"...\")",
       "expectedOutput": "Pippy",
-      "hint": "Scrie exact Pippy între ghilimele."
+      "hint": "Uită-te cu atenție la enunț - acolo scrie chiar numele robotului nostru. Scrie-l între ghilimele, cu litera mare la început.",
+      "hint2": "Forma corectă este print(\"NumeRobot\") - tu trebuie să pui în locul punctelor numele robotului nostru, exact cum e scris în enunț."
     },
     {
       "id": "P7.1.4.ex2",
@@ -1850,7 +2012,8 @@
       "enunt": "Afișează textul 'Salut!' pe prima linie și 'Eu sunt Pippy!' pe a doua linie.",
       "template": "print(\"Salut!\")\nprint(\"...\")",
       "expectedOutput": "Salut!\nEu sunt Pippy!",
-      "hint": "Completează a doua funcție print."
+      "hint": "Prima linie e deja gata. Pe linia a doua trebuie să scrii propoziția prin care robotul se prezintă.",
+      "hint2": "A doua propoziție începe cu 'Eu sunt' și continuă cu numele robotului nostru, totul între ghilimele, la fel ca prima linie."
     }
   ],
   "P7.1.5": [
@@ -1860,7 +2023,9 @@
       "tip": "cod",
       "enunt": "Afișează numărul 7 pe ecran.",
       "template": "print(...)",
-      "expectedOutput": "7"
+      "expectedOutput": "7",
+      "hint": "Gândește-te ce trebuie să pui în paranteză ca să apară cifra cerută pe ecran.",
+      "hint2": "În paranteza lui print poți scrie direct un număr, fără ghilimele - scrie numărul din enunț."
     },
     {
       "id": "P7.1.5.ex2",
@@ -1868,7 +2033,9 @@
       "tip": "cod",
       "enunt": "Afișează rezultatul adunării 3 + 4.",
       "template": "print(3 + ...)",
-      "expectedOutput": "7"
+      "expectedOutput": "7",
+      "hint": "Ce număr trebuie adunat la 3 ca să obții 7?",
+      "hint2": "Forma este print(3 + un_numar) - completează cu numărul care, adunat la 3, dă rezultatul cerut."
     }
   ],
   "P7.2.4": [
@@ -1878,7 +2045,9 @@
       "tip": "cod",
       "enunt": "Afișează cuvântul 'turtle' pe ecran.",
       "template": "print(\"...\")",
-      "expectedOutput": "turtle"
+      "expectedOutput": "turtle",
+      "hint": "Enunțul îți spune exact ce cuvânt trebuie afișat - caută-l acolo.",
+      "hint2": "Scrie cuvântul din enunț exact cum e scris, cu litere mici, între ghilimele duble."
     }
   ],
   "P7.2.5": [
@@ -1888,7 +2057,9 @@
       "tip": "cod",
       "enunt": "Afișează culoarea preferată a lui Pippy: 'verde'.",
       "template": "print(\"...\")",
-      "expectedOutput": "verde"
+      "expectedOutput": "verde",
+      "hint": "Culoarea preferată a lui Pippy este scrisă chiar în enunț - găsește cuvântul acolo.",
+      "hint2": "Scrie cuvântul cu litere mici, exact cum apare în enunț, între cele două ghilimele."
     }
   ],
   "P7.3.4": [
@@ -1898,7 +2069,9 @@
       "tip": "cod",
       "enunt": "Afișează numărul de laturi ale unui pătrat (4).",
       "template": "print(...)",
-      "expectedOutput": "4"
+      "expectedOutput": "4",
+      "hint": "Câte laturi are un pătrat? Numără-le cu mintea sau desenează unul.",
+      "hint2": "Scrie direct numărul de laturi (o singură cifră) în paranteza lui print, fără ghilimele."
     }
   ],
   "P7.3.5": [
@@ -1908,7 +2081,9 @@
       "tip": "cod",
       "enunt": "Afișează unghiul de rotație pentru un pătrat (90).",
       "template": "print(...)",
-      "expectedOutput": "90"
+      "expectedOutput": "90",
+      "hint": "Când o țestoasă desenează un pătrat, cu ce unghi se rotește la fiecare colț?",
+      "hint2": "Scrie numărul de grade (fără ghilimele, e un număr întreg) direct în paranteza lui print."
     }
   ],
   "P8.1.4": [
@@ -1918,7 +2093,9 @@
       "tip": "cod",
       "enunt": "Convertește textul '10' într-un număr întreg și afișează-l înmulțit cu 2.",
       "template": "text_numar = \"10\"\nnumar = int(text_numar)\nprint(numar * ...)",
-      "expectedOutput": "20"
+      "expectedOutput": "20",
+      "hint": "Cu ce număr trebuie înmulțit 'numar' ca rezultatul afișat să fie 20?",
+      "hint2": "Forma este numar * un_numar - gândește-te ce număr, înmulțit cu 10, dă 20."
     }
   ],
   "P8.1.5": [
@@ -1928,7 +2105,9 @@
       "tip": "cod",
       "enunt": "Convertește textul '3.14' într-un număr cu virgulă (float) și afișează-l.",
       "template": "text = \"3.14\"\nnumar = float(...)\nprint(numar)",
-      "expectedOutput": "3.14"
+      "expectedOutput": "3.14",
+      "hint": "Funcția float() are nevoie să știe ce text vrei să transformi într-un număr cu virgulă.",
+      "hint2": "În paranteza lui float() pune numele variabilei care ține textul '3.14', nu textul scris direct."
     }
   ],
   "P8.2.4": [
@@ -1938,7 +2117,9 @@
       "tip": "cod",
       "enunt": "Afișează lungimea textului 'Pippy'.",
       "template": "nume = \"Pippy\"\nprint(len(...))",
-      "expectedOutput": "5"
+      "expectedOutput": "5",
+      "hint": "Funcția len() îți spune câte litere are un cuvânt. Ce variabilă ține numele robotului?",
+      "hint2": "În paranteza lui len() pune numele variabilei care ține cuvântul 'Pippy', nu cuvântul scris direct."
     }
   ],
   "P8.2.5": [
@@ -1948,7 +2129,9 @@
       "tip": "cod",
       "enunt": "Convertește textul 'pippy' în litere mari (UPPERCASE) și afișează-l.",
       "template": "text = \"pippy\"\nprint(text.upper())",
-      "expectedOutput": "PIPPY"
+      "expectedOutput": "PIPPY",
+      "hint": "Codul este deja complet - gândește-te ce face metoda .upper() atunci când e aplicată pe un text.",
+      "hint2": "Metoda .upper() transformă toate literele mici ale variabilei text în litere mari; poți rula codul așa cum este."
     }
   ],
   "P8.3.4": [
@@ -1958,7 +2141,9 @@
       "tip": "cod",
       "enunt": "Afișează prima culoare din listă: rosu, verde, albastru.",
       "template": "culori = [\"rosu\", \"verde\", \"albastru\"]\nprint(culori[...])",
-      "expectedOutput": "rosu"
+      "expectedOutput": "rosu",
+      "hint": "În Python, primul element al unei liste are un anumit număr de poziție. Care crezi că este?",
+      "hint2": "Pozițiile într-o listă încep de la un anumit număr, nu de la 1. Pune acel număr între paranteze pătrate."
     }
   ],
   "P8.3.5": [
@@ -1968,7 +2153,9 @@
       "tip": "cod",
       "enunt": "Adaugă culoarea 'galben' în listă folosind append și afișează lungimea noii liste.",
       "template": "culori = [\"rosu\", \"verde\"]\nculori.append(\"galben\")\nprint(len(culori))",
-      "expectedOutput": "3"
+      "expectedOutput": "3",
+      "hint": "Codul e deja scris - gândește-te câte culori vor fi în listă după ce adaugi una nouă cu append.",
+      "hint2": "Lista pornește cu 2 culori, iar append adaugă una în plus; len() va număra toate culorile din listă."
     }
   ],
   "P9.1.4": [
@@ -1978,7 +2165,9 @@
       "tip": "cod",
       "enunt": "Folosește range pentru a afișa numerele de la 0 la 2.",
       "template": "for i in range(3):\n    print(i)",
-      "expectedOutput": "0\n1\n2"
+      "expectedOutput": "0\n1\n2",
+      "hint": "Codul e complet - gândește-te de la ce număr pornește range() și până unde ajunge (fără să includă ultimul).",
+      "hint2": "range(3) generează numerele 0, 1 și 2 - adică pornește de la 0 și se oprește chiar înainte de 3."
     }
   ],
   "P9.1.5": [
@@ -1988,7 +2177,9 @@
       "tip": "cod",
       "enunt": "Afișează indexul și valoarea din listă folosind enumerate.",
       "template": "culori = [\"rosu\", \"verde\"]\nfor idx, culoare in enumerate(culori):\n    print(f\"{idx}: {culoare}\")",
-      "expectedOutput": "0: rosu\n1: verde"
+      "expectedOutput": "0: rosu\n1: verde",
+      "hint": "Codul e deja scris - gândește-te ce pereche de informații îți dă enumerate() pentru fiecare element din listă.",
+      "hint2": "enumerate() îți dă atât poziția (indexul), cât și valoarea din listă, în această ordine, pentru fiecare element."
     }
   ],
   "P9.2.4": [
@@ -1998,7 +2189,9 @@
       "tip": "cod",
       "enunt": "Adună 5 la variabila scor folosind operatorul += și afișează scorul.",
       "template": "scor = 10\nscor += ...\nprint(scor)",
-      "expectedOutput": "15"
+      "expectedOutput": "15",
+      "hint": "Cu cât trebuie mărit scorul ca de la 10 să ajungă la 15?",
+      "hint2": "Forma este scor += un_numar - completează cu numărul care, adunat la 10, dă 15."
     }
   ],
   "P9.2.5": [
@@ -2008,7 +2201,9 @@
       "tip": "cod",
       "enunt": "Folosește un f-string pentru a afișa 'Scor: 20' din variabila scor = 20.",
       "template": "scor = 20\nprint(f\"Scor: {scor}\")",
-      "expectedOutput": "Scor: 20"
+      "expectedOutput": "Scor: 20",
+      "hint": "Codul e deja complet - gândește-te ce face un f-string atunci când pui o variabilă între acolade {}.",
+      "hint2": "Un f-string pus înaintea ghilimelelor (f\"...\") înlocuiește automat {scor} cu valoarea variabilei scor."
     }
   ],
   "P9.3.4": [
@@ -2018,7 +2213,9 @@
       "tip": "cod",
       "enunt": "Definește o funcție numită saluta care returnează 'Salut!' și apeleaz-o.",
       "template": "def saluta():\n    return \"Salut!\"\n\nprint(saluta())",
-      "expectedOutput": "Salut!"
+      "expectedOutput": "Salut!",
+      "hint": "Codul e deja scris - gândește-te ce face o funcție atunci când e apelată cu numele ei urmat de paranteze.",
+      "hint2": "Funcția saluta() returnează un text; când o apelezi în print(), acel text apare pe ecran."
     }
   ],
   "P9.3.5": [
@@ -2028,7 +2225,9 @@
       "tip": "cod",
       "enunt": "Definește o funcție numită adunare(a, b) care returnează suma lor.",
       "template": "def adunare(a, b):\n    return ...\n\nprint(adunare(5, 5))",
-      "expectedOutput": "10"
+      "expectedOutput": "10",
+      "hint": "Ce trebuie să faci cu cele două numere a și b ca să obții suma lor?",
+      "hint2": "Folosește operatorul de adunare (+) între cele două variabile a și b, apoi returnează rezultatul cu return."
     }
   ],
   "P10.1.4": [
@@ -2038,7 +2237,9 @@
       "tip": "cod",
       "enunt": "Completează condiția pentru a verifica dacă numărul este par.",
       "template": "numar = 4\nif numar % 2 == 0:\n    print(\"par\")\nelse:\n    print(\"impar\")",
-      "expectedOutput": "par"
+      "expectedOutput": "par",
+      "hint": "Gândește-te cum verifici dacă un număr e par: un număr par nu are rest când îl împarți la 2. Python are un operator special care îți dă restul unei împărțiri - încearcă să-l folosești ca să compari restul cu 0.",
+      "hint2": "Operatorul pentru rest este simbolul %. Scrie o expresie care calculează restul lui numar la împărțirea cu 2, apoi folosește semnul == pentru a verifica dacă acel rest e egal cu 0."
     }
   ],
   "P10.1.5": [
@@ -2048,7 +2249,9 @@
       "tip": "cod",
       "enunt": "Verifică dacă culoarea 'rosu' se află în listă.",
       "template": "culori = [\"rosu\", \"verde\"]\nif \"rosu\" in culori:\n    print(\"da\")",
-      "expectedOutput": "da"
+      "expectedOutput": "da",
+      "hint": "Python are un cuvânt magic care te ajută să verifici dacă un element se găsește într-o listă, fără să parcurgi tu fiecare element pe rând. Gândește-te la cuvântul 'in' din limba engleză.",
+      "hint2": "Folosește cuvântul cheie `in` direct în condiția if, ca să întrebi Python dacă valoarea \"rosu\" există în lista culori."
     }
   ],
   "P10.2.4": [
@@ -2058,7 +2261,9 @@
       "tip": "cod",
       "enunt": "Folosește break pentru a opri bucla când i ajunge la 2.",
       "template": "for i in range(5):\n    if i == 2:\n        break\n    print(i)",
-      "expectedOutput": "0\n1"
+      "expectedOutput": "0\n1",
+      "hint": "Când vrei să oprești complet o buclă înainte să ajungă la final, Python are o comandă specială care 'sparge' bucla imediat. Gândește-te ce cuvânt cheie oprește execuția unei bucle for.",
+      "hint2": "Cuvântul cheie este `break`. Pune-l în interiorul condiției if, exact în momentul în care i devine egal cu 2, ca bucla să se oprească acolo."
     }
   ],
   "P10.2.5": [
@@ -2068,7 +2273,9 @@
       "tip": "cod",
       "enunt": "Folosește continue pentru a sări peste afișarea numărului 2.",
       "template": "for i in range(4):\n    if i == 2:\n        continue\n    print(i)",
-      "expectedOutput": "0\n1\n3"
+      "expectedOutput": "0\n1\n3",
+      "hint": "Nu vrei să oprești toată bucla, ci doar să sari peste un singur pas și să continui cu următorul. Python are o comandă specială pentru asta.",
+      "hint2": "Cuvântul cheie este `continue`. Pune-l în if, când i este 2, ca acel pas să fie sărit, iar bucla să treacă mai departe la următoarea valoare."
     }
   ],
   "P10.3.4": [
@@ -2078,7 +2285,9 @@
       "tip": "cod",
       "enunt": "Definește o funcție care saluta cu valoare implicită 'Pippy'.",
       "template": "def saluta(nume=\"Pippy\"):\n    print(f\"Salut, {nume}!\")\n\nsaluta()",
-      "expectedOutput": "Salut, Pippy!"
+      "expectedOutput": "Salut, Pippy!",
+      "hint": "O funcție poate avea un parametru cu o valoare 'de rezervă', pe care Python o folosește automat dacă nu îi dai tu alta. Gândește-te cum se scrie asta lângă numele parametrului, în paranteze.",
+      "hint2": "În paranteza funcției, după numele parametrului pune semnul egal și apoi o valoare implicită între ghilimele - aceea va fi folosită automat dacă nu specifici alt nume la apel."
     }
   ],
   "P10.3.5": [
@@ -2088,7 +2297,9 @@
       "tip": "cod",
       "enunt": "Creează o funcție putere(baza, exponent=2) care returnează baza ridicată la exponent.",
       "template": "def putere(baza, exponent=2):\n    return baza ** exponent\n\nprint(putere(3))",
-      "expectedOutput": "9"
+      "expectedOutput": "9",
+      "hint": "Funcția are nevoie de doi parametri, iar al doilea ar trebui să aibă o valoare implicită, ca să poți apela funcția și cu un singur argument. Gândește-te și la operatorul din Python care ridică un număr la putere.",
+      "hint2": "Parametrul exponent poate primi o valoare implicită scriind semnul egal urmat de un număr, direct în paranteza funcției. Pentru ridicare la putere, Python folosește operatorul dublu **, nu simbolul ^."
     }
   ],
   "P11.1.4": [
@@ -2098,7 +2309,9 @@
       "tip": "cod",
       "enunt": "Completează clasa Robot pentru a afișa numele robotului.",
       "template": "class Robot:\n    def __init__(self, nume):\n        self.nume = nume\n\nr = Robot(\"Pippy\")\nprint(r.nume)",
-      "expectedOutput": "Pippy"
+      "expectedOutput": "Pippy",
+      "hint": "O clasă are nevoie de o metodă specială care rulează automat când creezi un obiect nou - acolo salvezi datele primite, cum ar fi numele. Gândește-te la cuvântul 'self' care reprezintă chiar obiectul creat.",
+      "hint2": "În metoda __init__, salvează parametrul nume ca o proprietate a obiectului, scriind self urmat de punct, de numele proprietății și de semnul egal, apoi parametrul primit."
     }
   ],
   "P11.1.5": [
@@ -2108,7 +2321,9 @@
       "tip": "cod",
       "enunt": "Adaugă o metodă saluta în clasa Robot care returnează 'Salut din clasa Robot!'.",
       "template": "class Robot:\n    def saluta(self):\n        return \"Salut din clasa Robot!\"\n\nr = Robot()\nprint(r.saluta())",
-      "expectedOutput": "Salut din clasa Robot!"
+      "expectedOutput": "Salut din clasa Robot!",
+      "hint": "O metodă dintr-o clasă este ca o funcție, dar trebuie să primească mereu self ca prim parametru. Gândește-te la cuvântul cheie care trimite înapoi un rezultat dintr-o funcție.",
+      "hint2": "Definește o metodă în interiorul clasei care primește self ca parametru, apoi în corpul ei folosește return urmat de mesajul cerut, scris între ghilimele."
     }
   ],
   "P11.2.4": [
@@ -2118,7 +2333,9 @@
       "tip": "cod",
       "enunt": "Afișează viteza inițială a mingii pe axa X (3).",
       "template": "viteza_x = 3\nprint(viteza_x)",
-      "expectedOutput": "3"
+      "expectedOutput": "3",
+      "hint": "E un pas simplu: trebuie doar să afișezi pe ecran valoarea unei variabile deja existente. Gândește-te la funcția din Python care scrie ceva pe ecran.",
+      "hint2": "Folosește funcția print și pune în paranteze numele variabilei viteza_x, ca să afișezi valoarea ei."
     }
   ],
   "P11.2.5": [
@@ -2128,7 +2345,9 @@
       "tip": "cod",
       "enunt": "Simulează lovirea peretelui stâng: inversează viteza_x.",
       "template": "viteza_x = -3\nif True:\n    viteza_x = -viteza_x\nprint(viteza_x)",
-      "expectedOutput": "3"
+      "expectedOutput": "3",
+      "hint": "Ca să inversezi o viteză, trebuie să-i schimbi semnul - dacă e negativă devine pozitivă și invers. Gândește-te la semnul minus pus în fața unei variabile.",
+      "hint2": "În interiorul condiției, atribuie variabilei viteza_x propria ei valoare, dar cu semnul schimbat, punând un minus chiar înaintea ei în partea dreaptă a egalului."
     }
   ],
   "P11.3.4": [
@@ -2138,7 +2357,9 @@
       "tip": "cod",
       "enunt": "Găsește elementul maxim dintr-o listă.",
       "template": "note = [7, 9, 10]\nprint(max(note))",
-      "expectedOutput": "10"
+      "expectedOutput": "10",
+      "hint": "Python are o funcție gata făcută care găsește cel mai mare număr dintr-o listă, fără să fie nevoie să compari tu fiecare element. Gândește-te la cuvântul în engleză pentru 'maxim'.",
+      "hint2": "Folosește funcția max și pune lista note în paranteze, apoi afișeaz-o cu print, ca să vezi cea mai mare notă."
     }
   ],
   "P11.3.5": [
@@ -2148,7 +2369,9 @@
       "tip": "cod",
       "enunt": "Calculează suma notelor dintr-o listă.",
       "template": "note = [8, 9, 10]\nprint(sum(note))",
-      "expectedOutput": "27"
+      "expectedOutput": "27",
+      "hint": "Python are o funcție gata făcută care adună toate numerele dintr-o listă, fără să faci tu calculul manual. Gândește-te la cuvântul în engleză pentru 'sumă'.",
+      "hint2": "Folosește funcția sum și pune lista note în paranteze, apoi afișeaz-o cu print, ca să vezi totalul notelor."
     }
   ]
 }

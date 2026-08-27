@@ -66,19 +66,20 @@ Scrie PD pentru "numărul de moduri de a face suma `s` cu monede dintr-o listă 
 
 ### ✅ 3.6.6 Verifică-ți înțelegerea
 
-De ce Fibonacci recursiv naiv e O(2ⁿ), iar cu memoizare devine O(n)?
+1. De ce complexitatea lui Fibonacci recursiv naiv este O(2ⁿ), iar cu memoizare devine O(n)?
+   a) pentru că memoizarea rulează codul pe mai multe fire de execuție în paralel  b) **pentru că fără memoizare aceleași subprobleme (aceleași valori ale lui n) sunt recalculate de nenumărate ori, iar memoizarea le calculează o singură dată**  c) pentru că memoizarea înlocuiește complet recursivitatea cu o singură buclă `for`  d) pentru că varianta naivă folosește liste, iar cea memoizată folosește dicționare, care sunt mai rapide
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `numar_moduri(n)` care calculează, folosind programare dinamică, în câte moduri poți urca o scară cu `n` trepte, dacă la fiecare pas urci 1 sau 2 trepte. Demo: `numar_moduri(4)` -> `5`
+template: def numar_moduri(n):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(numar_moduri(4))
+output: 5
 :::
 
 # Modulul 3.7 — Modelul conceptual graf: concepte de bază
@@ -158,19 +159,20 @@ Scrie o funcție care verifică dacă un graf neorientat e **complet** (orice pe
 
 ### ✅ 3.7.6 Verifică-ți înțelegerea
 
-De ce în orice graf neorientat, suma gradelor tuturor vârfurilor e egală cu 2 × numărul de muchii?
+1. De ce suma gradelor tuturor vârfurilor unui graf neorientat este egală cu 2 × numărul de muchii?
+   a) pentru că fiecare vârf are, în medie, gradul egal cu numărul total de muchii din graf  b) pentru că fiecare muchie leagă întotdeauna două vârfuri care au același grad  c) **pentru că fiecare muchie contribuie cu 1 la gradul fiecăruia din cele două vârfuri pe care le leagă, deci e numărată de două ori în suma gradelor**  d) pentru că un graf neorientat are întotdeauna un număr par de muchii
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `vecini_comuni(graf, a, b)` care returnează lista vârfurilor care sunt vecini atât pentru `a`, cât și pentru `b`, într-un graf reprezentat ca dicționar de liste de adiacență. Demo: `vecini_comuni({1:[2,3],2:[1,3],3:[1,2]}, 1, 2)` -> `[3]`
+template: def vecini_comuni(graf, a, b):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(vecini_comuni({1:[2,3],2:[1,3],3:[1,2]}, 1, 2))
+output: [3]
 :::
 
 # Modulul 3.8 — Reprezentarea grafurilor (matrice, liste de adiacență)
@@ -247,19 +249,20 @@ Scrie o funcție care verifică dacă există muchie între două vârfuri date,
 
 ### ✅ 3.8.6 Verifică-ți înțelegerea
 
-Când preferi matricea de adiacență în detrimentul listei?
+1. În ce situație este mai potrivită matricea de adiacență decât lista de adiacență?
+   a) când graful are foarte multe vârfuri și foarte puține muchii (graf rar)  b) când parcurgi frecvent toți vecinii unui vârf, ca la BFS sau DFS  c) **când graful e dens și ai nevoie frecvent să verifici rapid, în O(1), dacă există muchie între două vârfuri date**  d) când vrei să economisești cât mai multă memorie la un graf cu mii de vârfuri
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `la_matrice(adiacenta, n)` care convertește un graf cu vârfurile `1..n`, dat ca listă de adiacență, într-o matrice de adiacență (listă de liste cu 0/1). Demo: `la_matrice({1:[2],2:[1,3],3:[2]}, 3)` -> `[[0, 1, 0], [1, 0, 1], [0, 1, 0]]`
+template: def la_matrice(adiacenta, n):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(la_matrice({1:[2],2:[1,3],3:[2]}, 3))
+output: [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
 :::
 
 # Modulul 3.9 — Tipuri de grafuri (complet, conex, ponderat, hamiltonian, eulerian)
@@ -336,19 +339,20 @@ Scrie o funcție care verifică dacă un graf are toate gradele pare (condiție 
 
 ### ✅ 3.9.6 Verifică-ți înțelegerea
 
-De ce găsirea unui ciclu hamiltonian e mult mai grea (NP-completă) decât verificarea unui circuit eulerian?
+1. De ce a găsi un ciclu hamiltonian este mult mai greu (problemă NP-completă) decât a verifica existența unui circuit eulerian?
+   a) pentru că ciclul hamiltonian trebuie să treacă prin fiecare muchie a grafului, nu doar prin fiecare vârf, ceea ce implică mult mai multe verificări  b) **pentru că circuitul eulerian are o condiție simplă și rapid verificabilă (toate gradele pare), pe când pentru hamiltonian nu există o condiție similară și trebuie explorate combinatorial ordinile posibile ale vârfurilor**  c) pentru că un ciclu hamiltonian există doar în grafurile orientate, iar circuitul eulerian doar în cele neorientate  d) pentru că verificarea circuitului eulerian se face cu BFS, în timp ce ciclul hamiltonian necesită obligatoriu programare dinamică
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `suma_ponderi(graf)` care primește un graf ponderat neorientat, reprezentat ca dicționar vârf -> listă de tupluri `(vecin, pondere)`, și returnează suma ponderilor tuturor muchiilor, numărând fiecare muchie o singură dată. Demo: `suma_ponderi({1:[(2,5),(3,2)], 2:[(1,5)], 3:[(1,2)]})` -> `7`
+template: def suma_ponderi(graf):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(suma_ponderi({1:[(2,5),(3,2)], 2:[(1,5)], 3:[(1,2)]}))
+output: 7
 :::
 
 # Modulul 3.10 — Parcurgerea grafurilor: BFS
@@ -432,15 +436,16 @@ Numără componentele conexe ale unui graf folosind BFS repetat.
 
 ### ✅ 3.10.6 Verifică-ți înțelegerea
 
-De ce BFS găsește întotdeauna drumul cu număr minim de muchii între două vârfuri?
+1. De ce BFS găsește întotdeauna drumul cu numărul minim de muchii între două vârfuri (în graf neponderat)?
+   a) pentru că BFS folosește o stivă care garantează explorarea celui mai scurt drum mai întâi  b) **pentru că BFS explorează vârfurile în ordinea distanței față de start, nivel cu nivel, folosind o coadă FIFO, deci primul drum găsit către țintă este cel mai scurt**  c) pentru că BFS marchează fiecare vârf ca vizitat înainte de a-l pune în coadă, ceea ce elimină automat drumurile mai lungi  d) pentru că BFS repetă parcurgerea grafului de mai multe ori, până găsește cea mai scurtă cale
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `distanta_bfs(adiacenta, start, tinta)` care calculează, folosind BFS, numărul minim de muchii de la `start` la `tinta` (sau `-1` dacă `tinta` nu e accesibilă). Demo: `distanta_bfs({1:[2,3],2:[4],3:[4],4:[]}, 1, 4)` -> `2`
+template: def distanta_bfs(adiacenta, start, tinta):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
+print(distanta_bfs({1:[2,3],2:[4],3:[4],4:[]}, 1, 4))
 output: 2
 :::

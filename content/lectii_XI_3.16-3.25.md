@@ -71,19 +71,20 @@ Returnează lista muchiilor alese de Kruskal (nu doar costul).
 
 ### ✅ 3.16.6 Verifică-ți înțelegerea
 
-De ce ai nevoie de Union-Find (și nu doar de un set de vârfuri vizitate) ca să detectezi cicluri?
+1. De ce Kruskal are nevoie de Union-Find, și nu doar de un set de noduri vizitate, ca să detecteze ciclurile?
+   a) pentru că Union-Find sortează automat muchiile după cost, eliminând acel pas  b) **pentru că muchiile nu pornesc dintr-un singur arbore în creștere, ca la Prim/BFS, ci vin din orice parte a grafului, iar Union-Find spune rapid dacă cele două capete sunt deja în aceeași componentă**  c) pentru că un set de vizitate ar ocupa mai multă memorie decât o structură Union-Find  d) pentru că Union-Find garantează singur costul minim al arborelui, indiferent de ordinea muchiilor
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+În Kruskal, Union-Find găsește rădăcina unei componente urcând prin `parinte[]` până la un nod care e propriul părinte. Scrie o funcție `radacina(parinte, x)` care urcă din `x` până găsește un nod cu `parinte[nod] == nod`, apoi îl returnează. Demo: `radacina([0,0,1,2], 3)` -> `0`
+template: def radacina(parinte, x):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(radacina([0, 0, 1, 2], 3))
+output: 0
 :::
 
 # Modulul 3.17 — Modelul conceptual arbore: concepte de bază
@@ -160,19 +161,21 @@ Numără frunzele unui arbore (nodurile care nu apar ca părinte al nimănui).
 
 ### ✅ 3.17.6 Verifică-ți înțelegerea
 
-De ce nu poate exista un arbore cu cicluri sau deconectat, având în același timp n vârfuri și n−1 muchii?
+1. Dacă un graf cu n vârfuri și n−1 muchii ar conține totuși un ciclu, ce s-ar întâmpla obligatoriu?
+   a) ar rămâne perfect valid ca arbore, pentru că numărul de muchii e cel care contează, nu forma lor  b) **ar exista cu siguranță o componentă deconectată, pentru că muchia „irosită” în ciclu nu mai poate lega restul vârfurilor cu bugetul rămas de muchii**  c) numărul de vârfuri ar trebui să scadă automat pentru ca egalitatea n−1 să rămână adevărată  d) graful ar avea nevoie de exact o muchie în plus ca să fie catalogat drept ciclic
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Folosind reprezentarea `copii` din lecție (`copii = {1: [2, 3], 2: [4, 5], 3: [], 4: [], 5: []}`), scrie o funcție `total_noduri(copii, nod)` care numără recursiv câte noduri are subarborele cu rădăcina `nod` (inclusiv `nod` însuși). Demo: `total_noduri(copii, 1)` -> `5`
+template: def total_noduri(copii, nod):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+copii = {1: [2, 3], 2: [4, 5], 3: [], 4: [], 5: []}
+print(total_noduri(copii, 1))
+output: 5
 :::
 
 # Modulul 3.18 — Arbori binari și arbori binari de căutare
@@ -259,19 +262,21 @@ Scrie `minim_bst(rad)` care returnează cea mai mică valoare dintr-un BST.
 
 ### ✅ 3.18.6 Verifică-ți înțelegerea
 
-De ce căutarea într-un BST echilibrat e O(log n), nu O(n)?
+1. De ce căutarea într-un BST echilibrat este O(log n) și nu O(n), ca la parcurgerea unei liste?
+   a) pentru că Python optimizează automat clasele definite de utilizator cu atribute `st` și `dr`  b) **pentru că la fiecare pas compari cu un singur nod și elimini dintr-o dată tot subarborele opus, înjumătățind spațiul de căutare, iar un arbore echilibrat are înălțime proporțională cu log n**  c) pentru că BST parcurge mereu doar subarborele stâng, ignorând jumătate din date  d) pentru că valorile dintr-un BST sunt automat sortate într-o listă ascunsă, deci se aplică binary search clasic
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Reprezintă un BST ca tuplu `(valoare, stanga, dreapta)` (sau `None` pentru arbore vid). Scrie o funcție `cauta_bst(rad, v)` care caută `v` folosind proprietatea BST (stânga < nod < dreapta) și returnează `True`/`False`. Demo: `cauta_bst((5, (3, None, None), (8, None, None)), 8)` -> `True`
+template: def cauta_bst(rad, v):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+rad = (5, (3, None, None), (8, None, None))
+print(cauta_bst(rad, 8))
+output: True
 :::
 
 # Modulul 3.19 — Heap (ansamblu)
@@ -344,19 +349,20 @@ Implementează manual (fără `heapq`) operația `push` într-un min-heap reprez
 
 ### ✅ 3.19.6 Verifică-ți înțelegerea
 
-De ce un heap bazat pe listă e mai eficient decât re-sortarea listei la fiecare extragere a minimului?
+1. De ce un heap reprezentat ca listă e mai eficient decât a resorta lista completă de fiecare dată când extragi minimul?
+   a) pentru că `heapq` folosește memorie partajată, deci nu mai copiază lista deloc  b) **pentru că push/pop într-un heap costă doar O(log n) — o singură ramificație de sift-up/sift-down — în timp ce resortarea întregii liste costă O(n log n) la fiecare extragere**  c) pentru că un heap ține mereu toată lista complet sortată, deci resortarea ar fi redundantă  d) pentru că heap-ul elimină nevoia de a compara elementele între ele la fiecare pas
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Într-un heap reprezentat ca listă, părintele nodului de la indexul `i` se află la indexul `(i - 1) // 2`. Scrie o funcție `parinte_index(i)` care returnează acest indice (pentru `i > 0`). Demo: `parinte_index(4)` -> `1`
+template: def parinte_index(i):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(parinte_index(4))
+output: 1
 :::
 
 # Modulul 3.20 — Parcurgerea arborilor: preordine, inordine, postordine
@@ -420,26 +426,28 @@ def postordine(rad):
 Calculează înălțimea unui arbore binar folosind postordinea.
 
 
-**Exercițiul 1.** Scrie `numara_noduri(rad)` care folosește o parcurgere (preordine, inordine sau postordine, la alegere) pentru a număra recursiv toate nodurile arborelui.
+**Exercițiul 1.** Scrie `total_noduri(rad)` care folosește o parcurgere (preordine, inordine sau postordine, la alegere) pentru a număra recursiv toate nodurile arborelui.
 
 **Exercițiul 2.** Scrie `suma_valori(rad)` care parcurge arborele în inordine și adună valorile tuturor nodurilor într-un total, returnat la final.
 
 
 ### ✅ 3.20.6 Verifică-ți înțelegerea
 
-De ce inordinea unui BST dă mereu valorile sortate crescător?
+1. De ce parcurgerea inordine a unui BST produce mereu valorile în ordine crescătoare?
+   a) pentru că inordinea vizitează întotdeauna rădăcina prima, iar restul valorilor sunt deja sortate în listele `st` și `dr`  b) **pentru că la fiecare nod, proprietatea BST garantează că tot subarborele stâng conține valori mai mici și tot subarborele drept valori mai mari, iar inordinea respectă exact ordinea stânga → nod → dreapta la orice nivel al recursiei**  c) pentru că Python sortează automat lista rezultată din orice parcurgere recursivă a unui arbore  d) pentru că inordinea e echivalentă cu postordinea pentru arbori binari de căutare
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Folosind reprezentarea `(valoare, stanga, dreapta)` pentru un arbore binar, scrie o funcție `inordine_lista(rad)` care returnează o listă cu valorile arborelui în ordinea inordine (stânga, nod, dreapta). Demo: `inordine_lista((5, (3, None, None), (8, None, None)))` -> `[3, 5, 8]`
+template: def inordine_lista(rad):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+rad = (5, (3, None, None), (8, None, None))
+print(inordine_lista(rad))
+output: [3, 5, 8]
 :::
 
 # Modulul 3.21 — Căutare și inserare într-un arbore binar de căutare
@@ -522,18 +530,20 @@ Scrie `sterge(rad, v)` care elimină un nod dintr-un BST păstrând proprietatea
 
 ### ✅ 3.21.6 Verifică-ți înțelegerea
 
-De ce ștergerea unui nod cu doi copii e mai complicată decât a unui nod cu cel mult un copil?
+1. De ce ștergerea unui nod cu doi copii dintr-un BST e mai complicată decât ștergerea unui nod cu cel mult un copil?
+   a) pentru că Python nu permite eliminarea unui obiect care are mai multe referințe către el  b) **pentru că nu poți doar să legi părintele direct de un singur copil, ca la celelalte cazuri — trebuie să găsești un succesor (sau predecesor) potrivit care să ia locul nodului șters, fără să strici proprietatea BST**  c) pentru că un nod cu doi copii are întotdeauna o înălțime mai mare, deci recursivitatea durează mai mult  d) pentru că ștergerea trebuie repetată o dată pentru fiecare copil, deci se dublează timpul de execuție
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție iterativă `adancime_cautare(rad, v)` care caută `v` într-un BST reprezentat ca tuplu `(valoare, stanga, dreapta)` și returnează câți pași (muchii) a parcurs până l-a găsit, pornind de la 0 la rădăcină. Demo: `adancime_cautare((50, (30, (20, None, None), (40, None, None)), (70, None, None)), 40)` -> `2`
+template: def adancime_cautare(rad, v):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
+rad = (50, (30, (20, None, None), (40, None, None)), (70, None, None))
+print(adancime_cautare(rad, 40))
 output: 2
 :::
 
@@ -610,19 +620,31 @@ Adaugă metoda `descriere()` în `Forma` și suprascrie-o în derivate.
 
 ### ✅ 3.22.6 Verifică-ți înțelegerea
 
-Ce înseamnă "polimorfismul" când apelezi `sunet()` pe un `Animal` care e de fapt un `Caine`?
+1. Ce înseamnă exact „polimorfism” când ai o variabilă tratată ca `Animal`, dar apelezi `sunet()` și obții `"Ham!"` pentru că obiectul e de fapt un `Caine`?
+   a) faptul că `Caine` și `Animal` au metode cu nume identic, dar complet independente, fără nicio legătură între ele  b) **faptul că Python alege la rulare metoda din clasa reală a obiectului (aici `Caine`), nu din clasa declarată sau presupusă (`Animal`), deci fiecare obiect „știe” cum să răspundă la același apel**  c) faptul că `Animal` transformă automat orice apel de metodă în apelul echivalent din clasa copil, prin `super()`  d) faptul că `sunet()` există o singură dată, în `Animal`, iar `Caine` doar afișează alt text hardcodat
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `descrie_animal(a)` care primește un obiect cu atributul `nume` și metoda `sunet()` și returnează un string de forma `"nume: sunet"`. Demo: pentru un `Caine("Rex")` care moștenește `Animal` și suprascrie `sunet()` cu `"Ham!"`, rezultatul e `"Rex: Ham!"`
+template: def descrie_animal(a):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+class Animal:
+    def __init__(self, nume):
+        self.nume = nume
+    def sunet(self):
+        return "..."
+
+class Caine(Animal):
+    def sunet(self):
+        return "Ham!"
+
+c = Caine("Rex")
+print(descrie_animal(c))
+output: Rex: Ham!
 :::
 
 # Modulul 3.23 — POO în Python: sintaxa `class` și constructorul
@@ -713,19 +735,31 @@ Adaugă metoda `total()` care returnează `pret * stoc`.
 
 ### ✅ 3.23.6 Verifică-ți înțelegerea
 
-De ce `self` trebuie să fie primul parametru al metodei, deși nu îl scrii la apel?
+1. De ce `self` trebuie declarat ca prim parametru al oricărei metode, deși nu-l scrii explicit când apelezi `c.depune(50)`?
+   a) pentru că `self` e doar o convenție de denumire fără niciun efect real, ca un comentariu  b) **pentru că Python transformă automat apelul `c.depune(50)` în `ContBancar.depune(c, 50)`, deci metoda are nevoie de un parametru care să primească acel obiect (`c`) ca să-i poată accesa sau modifica atributele**  c) pentru că `self` trebuie mereu inițializat manual în interiorul metodei, înainte de a fi folosit  d) pentru că fără `self`, Python nu ar putea diferenția metodele de funcțiile obișnuite la nivel de fișier
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Folosind clasa `ContBancar` din lecție (cu metodele `depune` și `retrage`), scrie o funcție `sold_final(cont, sume)` care aplică pe rând o listă de sume: o valoare pozitivă înseamnă `depune`, o valoare negativă înseamnă `retrage` cu suma absolută. Returnează soldul final. Demo: pornind de la sold `100`, aplicând `[50, -30]`, rezultatul e `120`
+template: def sold_final(cont, sume):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+class ContBancar:
+    def __init__(self, titular, sold=0):
+        self.titular = titular
+        self.sold = sold
+    def depune(self, suma):
+        self.sold += suma
+    def retrage(self, suma):
+        if suma <= self.sold:
+            self.sold -= suma
+
+c = ContBancar("Ana", 100)
+print(sold_final(c, [50, -30]))
+output: 120
 :::
 
 # Modulul 3.24 — POO în Python: niveluri de acces și clase derivate
@@ -803,19 +837,31 @@ Demonstră name mangling: accesează atributul privat din exterior ca `_Clasa__a
 
 ### ✅ 3.24.6 Verifică-ți înțelegerea
 
-De ce Python folosește convenții (`_`, `__`) în loc de cuvinte cheie `private`/`public`?
+1. De ce Python se bazează pe convenții de denumire (`_`, `__`) în loc de cuvinte cheie stricte `private`/`public`, ca alte limbaje?
+   a) pentru că interpretorul Python nu poate face verificări de acces la rulare, din motive tehnice legate de memorie  b) **pentru că filozofia Python e „suntem toți adulți”: accesul e o convenție de comunicare între dezvoltatori, nu o restricție impusă forțat de limbaj — `__atribut` doar descurajează accesul accidental prin name mangling, dar tot poate fi accesat**  c) pentru că `_` și `__` sunt de fapt cuvinte cheie speciale, echivalente funcțional cu `private`/`public` din alte limbaje  d) pentru că orice atribut care începe cu `_` devine automat needitabil după ce obiectul e creat
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Folosind clasele `Vehicul` și `Masina(Vehicul)` din lecție (unde `Masina` apelează `super().__init__()` și adaugă atributul `nr_usi`), scrie o funcție `info_masina(m)` care returnează un string de forma `"marca are nr_usi usi"`. Demo: pentru `Masina("Dacia", 180, 4)`, rezultatul e `"Dacia are 4 usi"`
+template: def info_masina(m):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+class Vehicul:
+    def __init__(self, marca, viteza_maxima):
+        self.marca = marca
+        self.__viteza = viteza_maxima
+
+class Masina(Vehicul):
+    def __init__(self, marca, viteza_maxima, nr_usi):
+        super().__init__(marca, viteza_maxima)
+        self.nr_usi = nr_usi
+
+m = Masina("Dacia", 180, 4)
+print(info_masina(m))
+output: Dacia are 4 usi
 :::
 
 # Modulul 3.25 — Paradigme de programare
@@ -896,15 +942,16 @@ Scrie o clasă `Calculator` (POO) care expune operații ca metode, demonstrând 
 
 ### ✅ 3.25.6 Verifică-ți înțelegerea
 
-În ce situații ai alege paradigma funcțională în loc de cea procedurală?
+1. În ce situație e mai potrivit stilul funcțional (`map`/`filter`/`lambda`) decât cel procedural (bucle `for` cu variabile mutabile)?
+   a) când vrei să modifici direct o bază de date externă, pas cu pas, în ordine strict controlată  b) **când transformi date dintr-o formă în alta (filtrare, mapare) fără să ai nevoie de stare mutabilă intermediară, iar codul câștigă în claritate și se poate compune ușor din funcții mici**  c) când programul are nevoie de mai puține linii de cod, indiferent de ce face acel cod  d) când vrei să eviți complet definirea oricăror funcții în program
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie, în stil funcțional (folosind `map` și `lambda`, nu buclă `for`), o funcție `dubleaza_functional(lst)` care returnează o listă nouă cu toate elementele din `lst` înmulțite cu 2. Demo: `dubleaza_functional([1,2,3])` -> `[2, 4, 6]`
+template: def dubleaza_functional(lst):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(dubleaza_functional([1, 2, 3]))
+output: [2, 4, 6]
 :::

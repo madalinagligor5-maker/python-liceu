@@ -2,6 +2,7 @@
 
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { toateLectiile } from "@/lib/content";
 
 import { provocareaZilei, getProgresUtilizator } from "@/lib/progres";
 
@@ -114,12 +115,23 @@ export async function valideazaProvocareZilnica(
 
 export async function valideazaRecapitulareSpatiata(
   sublectieSlug: string,
-  opțiuneSelectată: number,
-  răspunsCorect: number
+  opțiuneSelectată: number
 ): Promise<{ ok: boolean; mesaj: string; xpAdăugat?: number }> {
   const { user } = await getUtilizatorCurent();
   if (!user) {
     return { ok: false, mesaj: "Trebuie să fii autentificat pentru a efectua recapitularea." };
+  }
+
+  // Nu ne bazăm pe client să ne zică ce e corect — determinăm răspunsul corect
+  // pe server, din aceeași sursă folosită de getRecapitulareSpatiata pentru a
+  // construi întrebarea (altfel oricine poate forța XP din consolă).
+  const lectieGasita = toateLectiile.find(
+    (l) => l.lectie_slug === sublectieSlug && l.quiz?.length
+  );
+  const răspunsCorect = lectieGasita?.quiz?.[0]?.corect;
+
+  if (răspunsCorect === undefined) {
+    return { ok: false, mesaj: "Această recapitulare nu mai este disponibilă." };
   }
 
   const esteCorect = opțiuneSelectată === răspunsCorect;

@@ -79,13 +79,13 @@ def quicksort(lista):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_elemente(lista)` care numără elementele dintr-o listă folosind divide et impera (împarte lista în jumătate, recursează, combină rezultatele). Demo: `numara_elemente([1, 2, 3, 4, 5])` -> `5`
+template: def numara_elemente(lista):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_elemente([1, 2, 3, 4, 5]))
+output: 5
 :::
 
 # Modulul 2.19 — Sortare prin interclasare și quicksort
@@ -172,12 +172,12 @@ def quicksort(lista):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `este_sortata(lista)` care returnează True dacă lista e sortată crescător (utilă pentru a verifica rezultatul lui merge_sort sau quicksort). Demo: `este_sortata([1, 2, 3])` -> `True`
+template: def este_sortata(lista):
     # completeaza
     pass
 
-print(este_par(4))
+print(este_sortata([1, 2, 3]))
 output: True
 :::
 
@@ -259,13 +259,13 @@ def flood_fill(grila, i, j, veche, noua):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_culoare(grila, culoare)` care numără câte celule dintr-o grilă au o anumită culoare (util pentru a verifica rezultatul unui Flood Fill). Demo: `numara_culoare([[9, 0], [0, 9]], 9)` -> `2`
+template: def numara_culoare(grila, culoare):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_culoare([[9, 0], [0, 9]], 9))
+output: 2
 :::
 
 # Modulul 2.21 — Metoda Greedy
@@ -354,11 +354,11 @@ def rest_greedy(suma, monede):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_monede_greedy(suma, monede)` care returnează numărul minim de monede folosite de strategia Greedy pentru a forma o sumă. Demo: `numara_monede_greedy(6, [1, 2, 5])` -> `2`
+template: def numara_monede_greedy(suma, monede):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_monede_greedy(6, [1, 2, 5]))
+output: 2
 :::

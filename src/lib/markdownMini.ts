@@ -110,31 +110,30 @@ function parseazaBlocuri(lines: string[]): Bloc[] {
       }
       i++; // sară ::: de închidere
       const liniiInner = inner.join("\n").split("\n");
-      let enunt = "";
-      let template: string | undefined;
-      let expectedOutput: string | undefined;
-      let buf: string[] = [];
-      const flushBuf = (label: "template" | "output") => {
-        const text = buf.join("\n").trim();
-        if (label === "template") template = text || undefined;
-        else expectedOutput = text || undefined;
-        buf = [];
-      };
+      const enuntBuf: string[] = [];
+      let templateBuf: string[] | null = null;
+      let outputBuf: string[] | null = null;
+      let sectiune: "enunt" | "template" | "output" = "enunt";
       for (const l of liniiInner) {
         const tm = l.match(/^template:\s*(.*)$/);
         const om = l.match(/^output:\s*(.*)$/);
         if (tm) {
-          flushBuf("output");
-          buf = [tm[1]];
+          templateBuf = [tm[1]];
+          sectiune = "template";
         } else if (om) {
-          flushBuf("template");
-          buf = [om[1]];
+          outputBuf = [om[1]];
+          sectiune = "output";
+        } else if (sectiune === "enunt") {
+          enuntBuf.push(l);
+        } else if (sectiune === "template") {
+          templateBuf!.push(l);
         } else {
-          buf.push(l);
+          outputBuf!.push(l);
         }
       }
-      flushBuf("output");
-      enunt = buf.join("\n").trim() || "Scrie codul care rezolvă cerința de mai sus.";
+      const enunt = enuntBuf.join("\n").trim() || "Scrie codul care rezolvă cerința de mai sus.";
+      const template = templateBuf ? templateBuf.join("\n").trim() || undefined : undefined;
+      const expectedOutput = outputBuf ? outputBuf.join("\n").trim() || undefined : undefined;
       blocuri.push({ tip: "verifica-cod", enunt, template, expectedOutput });
       continue;
     }

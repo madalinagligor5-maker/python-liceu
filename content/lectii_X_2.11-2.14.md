@@ -65,12 +65,12 @@ print(d)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `contine_cheia(d, cheie)` care returnează True dacă `cheie` există în dicționarul `d`. Demo: `contine_cheia({"Ana": 9}, "Ana")` -> `True`
+template: def contine_cheia(d, cheie):
     # completeaza
     pass
 
-print(este_par(4))
+print(contine_cheia({"Ana": 9}, "Ana"))
 output: True
 :::
 
@@ -141,13 +141,13 @@ val = ___  # folosește .get() cu implicit 0
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `suma_valori(d)` care returnează suma tuturor valorilor dintr-un dicționar, folosind `.values()`. Demo: `suma_valori({"a": 2, "b": 3})` -> `5`
+template: def suma_valori(d):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(suma_valori({"a": 2, "b": 3}))
+output: 5
 :::
 
 # Modulul 2.13 — Modelul conceptual: tuplu
@@ -219,13 +219,13 @@ print(x, y)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `suma_coordonate(punct)` care despachetează un tuplu `(x, y)` și returnează suma `x + y`. Demo: `suma_coordonate((3, 5))` -> `8`
+template: def suma_coordonate(punct):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(suma_coordonate((3, 5)))
+output: 8
 :::
 
 # Modulul 2.14 — Clasa tuple: operatori și metode
@@ -295,11 +295,11 @@ singur = ___  # tuplu cu valoarea 5
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_aparitii(t, x)` care returnează de câte ori apare `x` în tuplul `t`, folosind `.count()`. Demo: `numara_aparitii((1, 2, 2, 3), 2)` -> `2`
+template: def numara_aparitii(t, x):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_aparitii((1, 2, 2, 3), 2))
+output: 2
 :::

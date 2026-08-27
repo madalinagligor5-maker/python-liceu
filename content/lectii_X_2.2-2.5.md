@@ -91,13 +91,13 @@ def interclaseaza(a, b):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `interclaseaza(a, b)` care interclasează două liste deja sortate într-o singură listă sortată. Demo: `interclaseaza([1, 4], [2, 3])` -> `[1, 2, 3, 4]`
+template: def interclaseaza(a, b):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(interclaseaza([1, 4], [2, 3]))
+output: [1, 2, 3, 4]
 :::
 
 # Modulul 2.4 — Clasa set: operatori și metode
@@ -172,12 +172,12 @@ print(m)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `este_submultime(a, b)` care returnează True dacă mulțimea `a` e submulțime a mulțimii `b`. Demo: `este_submultime({1, 2}, {1, 2, 3})` -> `True`
+template: def este_submultime(a, b):
     # completeaza
     pass
 
-print(este_par(4))
+print(este_submultime({1, 2}, {1, 2, 3}))
 output: True
 :::
 
@@ -248,11 +248,11 @@ print(ultim)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `inverseaza(s)` care returnează șirul `s` inversat, fără a modifica șirul original. Demo: `inverseaza("python")` -> `"nohtyp"`
+template: def inverseaza(s):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(inverseaza("python"))
+output: nohtyp
 :::

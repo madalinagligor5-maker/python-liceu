@@ -20,6 +20,25 @@ Toate sunt succesiuni de pași clari, executați în ordine — adică algoritmi
 
 ### 💡 1.1.2 Concept nou și exemplu
 
+Înainte de algoritmi, ai nevoie de două „cărămizi" de bază, pe care le vei folosi în fiecare exemplu de-acum înainte: **variabilele** și `print()`.
+
+O **variabilă** e un nume care ține minte o valoare, ca o cutie etichetată. O creezi printr-o **atribuire**: scrii numele variabilei, semnul `=`, apoi valoarea. **`print()`** afișează pe ecran ce îi dai ca argument între paranteze.
+
+```python
+varsta = 15      # atribuire: variabila "varsta" ține minte valoarea 15
+nume = "Ana"      # atribuire: variabila "nume" ține minte textul "Ana"
+
+print(varsta)     # afișează: 15
+print(nume)       # afișează: Ana
+```
+
+:::atentie
+## Semnul `=` nu înseamnă „egal", ci „atribuie"
+`varsta = 15` nu e o ecuație matematică — înseamnă „pune valoarea 15 în cutia numită varsta". De asta poți scrie și `varsta = varsta + 1` (ia valoarea curentă, adaugă 1, pune rezultatul înapoi în aceeași cutie) — sau, mai scurt, `varsta += 1` (fac exact același lucru).
+:::
+
+Cu aceste două unelte — variabile și `print()` — poți urmări exemplul de mai jos, care arată cele 4 etape ale elaborării unui program.
+
 Un **algoritm** este o succesiune finită de pași, clari și fără ambiguitate, care rezolvă o problemă. Un **program** este un algoritm scris într-un limbaj pe care îl înțelege calculatorul — la noi, **Python**.
 
 Orice program trece prin patru etape de elaborare:
@@ -147,6 +166,38 @@ Un algoritm poate fi reprezentat în trei moduri, de la cel mai vizual la cel ma
 - **Schemă logică** — un desen cu forme (dreptunghi = acțiune, romb = decizie) legate prin săgeți, care arată fluxul pașilor.
 - **Pseudocod** — pașii scriși în limbaj natural, dar structurat, apropiat de sintaxa unui limbaj de programare, fără reguli stricte.
 - **Cod** — algoritmul scris exact, într-un limbaj de programare (Python), pe care calculatorul îl poate rula.
+
+Înainte de exemplu, iată sintaxa exactă a celor mai folosite structuri de control în Python — le vei recunoaște de-acum în orice modul.
+
+**Decizie (`if` / `elif` / `else`)** — execută un bloc de cod doar dacă o condiție e adevărată:
+```python
+if conditie:
+    # cod dacă e adevărată
+elif alta_conditie:
+    # cod dacă prima e falsă, dar asta e adevărată (opțional, poți avea mai multe elif)
+else:
+    # cod dacă niciuna nu e adevărată (opțional)
+```
+Observă: după `if`/`elif`/`else` pui întotdeauna două puncte `:`, iar codul de dedesubt e **indentat** (mutat la dreapta cu spații) — indentarea, nu acoladele, marchează ce aparține blocului respectiv.
+
+**Buclă `for`** — repetă un bloc de cod de un număr cunoscut de ori (de obicei cu `range`):
+```python
+for i in range(5):   # i ia pe rând valorile 0, 1, 2, 3, 4
+    print(i)
+```
+
+**Buclă `while`** — repetă un bloc de cod cât timp o condiție rămâne adevărată:
+```python
+contor = 0
+while contor < 5:
+    print(contor)
+    contor += 1   # fără linia asta, bucla nu s-ar mai opri niciodată
+```
+
+:::tip
+## Recunoști tiparul?
+Toate cele trei (`if`, `for`, `while`) urmează aceeași regulă: cuvântul cheie, apoi condiția sau intervalul, apoi două puncte `:`, apoi codul indentat dedesubt.
+:::
 
 Aceeași problemă („e numărul par sau impar?"), în cele trei forme:
 
@@ -447,10 +498,10 @@ print(aria_cerc(5))
 
 **Exercițiul 2.** Ai această funcție:
 ```python
-def este_par(numar):
-    return numar % 2 == 0
+def cub(numar):
+    return numar ** 3
 ```
-Scrie codul care apelează funcția pentru numărul 17 și afișează rezultatul.
+Scrie codul care apelează funcția pentru numărul 4 și afișează rezultatul.
 
 ### 🎯 1.4.5 Exerciții independente
 

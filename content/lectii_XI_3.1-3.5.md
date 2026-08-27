@@ -73,19 +73,20 @@ Scrie o funcție `lungime(nod_inceput)` care returnează numărul de noduri dint
 
 ### ✅ 3.1.6 Verifică-ți înțelegerea
 
-Poți explica de ce într-o listă înlănțuită nu putem accesa elementul de pe poziția i direct, ci trebuie să parcurgem de la început?
+1. De ce, într-o listă înlănțuită, nu putem accesa elementul de pe poziția i direct (ca la `lista[i]`), ci trebuie să parcurgem de la început?
+   a) pentru că fiecare nod reține câți pași mai sunt până la final, dar nu și distanța până la cap, deci trebuie pornit mereu din capăt  b) **pentru că nodurile nu ocupă poziții succesive în memorie, iar singura cale spre nodul i este să urmăm legăturile `urmator` una câte una, de la cap**  c) pentru că Python nu permite deloc paranteze pătrate `[]` pe obiecte definite de utilizator, cum e clasa `Nod`  d) pentru că accesul pe poziții e posibil doar dacă lista conține numere, nu și alte tipuri de date
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `lungime_lant(lant)` care numără câte noduri are un lanț reprezentat ca tuplu imbricat `(valoare, urmator)`, unde ultimul nod are `urmator` egal cu `None`. Demo: `lungime_lant((5, (8, (12, None))))` -> `3`
+template: def lungime_lant(lant):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(lungime_lant((5, (8, (12, None)))))
+output: 3
 :::
 
 # Modulul 3.2 — Liste înlănțuite: operații de bază (adăugare, eliminare)
@@ -177,19 +178,20 @@ Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea `y` imediat după pri
 
 ### ✅ 3.2.6 Verifică-ți înțelegerea
 
-De ce adăugarea la sfârșit într-o listă simplu înlănțuită necesită parcurgerea întregii liste (O(n)), în timp ce la început e O(1)?
+1. De ce adăugarea la sfârșit într-o listă simplu înlănțuită necesită parcurgerea întregii liste (O(n)), în timp ce la început e O(1)?
+   a) pentru că adăugarea la sfârșit trebuie să recalculeze valorile tuturor nodurilor anterioare, în timp ce la început doar valoarea primului nod se schimbă  b) pentru că fiecare nod își ține minte poziția din listă, iar actualizarea acestei poziții la fiecare adăugare la sfârșit necesită o parcurgere completă  c) **pentru că la început noul nod devine direct capul listei (`nou.urmator = cap`), fără nicio parcurgere, dar la sfârșit trebuie găsit nodul al cărui `urmator` este `None`, ceea ce cere parcurgerea de la cap până la capăt**  d) pentru că Python limitează adăugarea la început la liste cu mai puțin de n elemente
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `elimina_prima_aparitie(lst, x)` care elimină prima apariție a valorii `x` din lista `lst` și returnează lista rezultată. Demo: `elimina_prima_aparitie([3,7,3,9],3)` -> `[7,3,9]`
+template: def elimina_prima_aparitie(lst, x):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(elimina_prima_aparitie([3,7,3,9],3))
+output: [7,3,9]
 :::
 
 # Modulul 3.3 — Backtracking: principiu și condiții
@@ -269,19 +271,20 @@ Modifică generatorul de mai sus să nu permită două 'A' alăturate.
 
 ### ✅ 3.3.6 Verifică-ți înțelegerea
 
-În ce se diferențiază backtracking-ul de o simplă parcurgere recursivă a unui arbore deja dat?
+1. În ce se diferențiază backtracking-ul de o simplă parcurgere recursivă a unui arbore deja dat?
+   a) **în backtracking, arborele de alegeri nu există dinainte — e generat pas cu pas, iar ramurile invalide sunt abandonate imediat ce se detectează, fără a fi explorate complet**  b) backtracking-ul vizitează fiecare nod al arborelui exact o dată, la fel ca o parcurgere în adâncime (DFS), deci practic nu există nicio diferență reală  c) backtracking-ul memorează toate soluțiile posibile într-o listă înainte de a începe explorarea, spre deosebire de parcurgerea simplă  d) backtracking-ul folosește bucle `while`, în timp ce parcurgerea unui arbore dat folosește exclusiv recursivitate
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `total_siruri(n)` care numără, folosind backtracking, câte șiruri de lungime `n` se pot forma din literele 'A' și 'B'. Demo: `total_siruri(3)` -> `8`
+template: def total_siruri(n):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(total_siruri(3))
+output: 8
 :::
 
 # Modulul 3.4 — Backtracking: probleme clasice (permutări, regine)
@@ -367,19 +370,20 @@ Modifică problema reginelor să returneze numărul de soluții, nu să le afiș
 
 ### ✅ 3.4.6 Verifică-ți înțelegerea
 
-De ce condiția `abs(sol[i] - col) == lin - i` verifică atacul pe diagonală?
+1. De ce condiția `abs(sol[i] - col) == lin - i` verifică atacul pe diagonală?
+   a) pentru că `abs` transformă orice coordonate negative în pozitive, iar tabla de șah nu permite coordonate negative  b) pentru că două regine se atacă pe diagonală doar dacă produsul coloanelor lor este egal cu produsul liniilor lor, iar expresia calculează acest produs  c) pentru că `lin - i` reprezintă numărul de regine plasate deja, iar condiția verifică dacă acest număr depășește dimensiunea tablei `n`  d) **pentru că două poziții se află pe aceeași diagonală exact atunci când diferența dintre coloanele lor este egală, în valoare absolută, cu diferența dintre liniile lor, iar `lin - i` este chiar acea diferență de linii**
 
 ---
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `total_permutari(lst)` care numără, folosind backtracking, câte permutări distincte are lista `lst`. Demo: `total_permutari([1,2,3])` -> `6`
+template: def total_permutari(lst):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
-output: 2
+print(total_permutari([1,2,3]))
+output: 6
 :::
 
 # Modulul 3.5 — Backtracking generalizat
@@ -448,15 +452,16 @@ Scrie un backtracking care găsește o submulțime cu suma exact `t` dintr-o lis
 
 ### ✅ 3.5.6 Verifică-ți înțelegerea
 
-Când este mai eficient backtracking-ul decât a genera toate soluțiile și a le filtra pe cele valide?
+1. Când este mai eficient backtracking-ul decât a genera toate soluțiile și a le filtra pe cele valide?
+   a) întotdeauna, indiferent de problemă, pentru că backtracking-ul are complexitate mai mică decât generarea completă în orice situație  b) **atunci când o soluție parțială invalidă poate fi detectată devreme, permițând abandonarea ramurii respective înainte de a genera toate combinațiile care pornesc din ea**  c) doar atunci când numărul total de soluții valide este foarte mare, apropiat de numărul total de combinații posibile  d) doar atunci când problema poate fi rezolvată fără recursivitate, folosind exclusiv bucle `for`
 
 
 :::verifica-cod
-Scrie o funcție `numara(el, lst)` care returnează de câte ori apare `el` în lista `lst`. Demo: `numara(2,[1,2,2,3])` -> `2`
-template: def numara(el, lst):
+Scrie o funcție `cate_submultimi_suma(elemente, t)` care numără, folosind backtracking, câte submulțimi ale listei `elemente` au suma exact `t`. Demo: `cate_submultimi_suma([1,2,3,4],5)` -> `2`
+template: def cate_submultimi_suma(elemente, t):
     # completeaza
     pass
 
-print(numara(2,[1,2,2,3]))
+print(cate_submultimi_suma([1,2,3,4],5))
 output: 2
 :::

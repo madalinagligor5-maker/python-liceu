@@ -64,13 +64,13 @@ ___  # metoda care numără aparițiile unui subșir
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_aparitii(text, sub)` care returnează de câte ori apare `sub` în `text`. Demo: `numara_aparitii("ana are ana", "ana")` -> `2`
+template: def numara_aparitii(text, sub):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_aparitii("ana are ana", "ana"))
+output: 2
 :::
 
 # Modulul 2.7 — Clasa str: indexare, slicing, concatenare, comparare
@@ -137,12 +137,12 @@ ___  # slicing cu pas 2
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `este_palindrom(s)` care returnează True dacă șirul `s` citit invers (cu slicing) este identic cu originalul. Demo: `este_palindrom("abcba")` -> `True`
+template: def este_palindrom(s):
     # completeaza
     pass
 
-print(este_par(4))
+print(este_palindrom("abcba"))
 output: True
 :::
 
@@ -228,13 +228,13 @@ def decriptare_cezar(text, deplasare):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `deplaseaza_litera(c, deplasare)` care deplasează ciclic o literă mică din alfabet cu `deplasare` poziții (folosește % 26). Demo: `deplaseaza_litera('a', 3)` -> `d`
+template: def deplaseaza_litera(c, deplasare):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(deplaseaza_litera('a', 3))
+output: d
 :::
 
 # Modulul 2.9 — Cifrul Vigenère
@@ -348,13 +348,13 @@ print("Decriptare corectă:", decriptat == ___)  # trebuie să fie True
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `deplasare_din_litera(litera)` care returnează deplasarea numerică asociată unei litere de cheie Vigenère (ex: 'a' -> 0, 'b' -> 1). Demo: `deplasare_din_litera('c')` -> `2`
+template: def deplasare_din_litera(litera):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(deplasare_din_litera('c'))
+output: 2
 :::
 
 # Modulul 2.10 — Suma de control (algoritmul lui Fletcher)
@@ -432,11 +432,11 @@ def verifica(a, b):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `suma_octeti(data)` care calculează `sum1` din algoritmul Fletcher: suma tuturor octeților, modulo 255. Demo: `suma_octeti([10, 20, 30])` -> `60`
+template: def suma_octeti(data):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(suma_octeti([10, 20, 30]))
+output: 60
 :::

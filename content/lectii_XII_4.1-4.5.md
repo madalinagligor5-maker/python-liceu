@@ -81,7 +81,8 @@ Scrie o listă de dicționare care să reprezinte 3 cărți, fiecare cu cele 4 a
 
 ### ✅ 4.1.6 Verifică-ți înțelegerea
 
-De ce fiecare entitate are nevoie de o cheie (atribut care identifică unic)?
+1. Într-un tabel `Student` fără nicio coloană-cheie, pot exista două rânduri identice (Ana, 17). De ce este asta o problemă reală, nu doar o chestiune de stil?
+   a) pentru că bazele de date interzic prin proiectare rândurile identice  b) **pentru că, fără o valoare unică pe rând, nu poți referi/actualiza/șterge o singură entitate fără ambiguitate**  c) pentru că duplicatele ocupă prea mult spațiu de stocare  d) pentru că interogările SQL devin mai lente, dar rezultatul rămâne corect
 
 ---
 
@@ -171,7 +172,8 @@ Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
 
 ### ✅ 4.2.6 Verifică-ți înțelegerea
 
-De ce o relație M:N nu poate fi reprezentată doar prin chei externe într-una din tabele?
+1. Vrei să modelezi relația M:N Student–Curs punând o coloană `curs_id` direct în tabela `Student`. De ce eșuează abordarea asta când un student urmează mai multe cursuri?
+   a) **pentru că o coloană poate ține o singură valoare pe rând, deci nu poți stoca simultan mai multe `curs_id` pentru același student fără să încalci atomicitatea datelor**  b) pentru că SQL limitează o tabelă la o singură cheie externă  c) pentru că ar trebui adăugat și `student_id` în `Curs`, iar cele două chei externe s-ar contrazice reciproc  d) pentru că interogările ar deveni mai lente, dar structura ar rămâne corectă
 
 ---
 
@@ -260,7 +262,8 @@ Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
 
 ### ✅ 4.3.6 Verifică-ți înțelegerea
 
-De ce la maparea M:N rezultă o tabelă suplimentară față de cele două entități?
+1. La maparea unei relații M:N Student–Curs la SQL apare o a treia tabelă (ex. `Inscriere`), pe lângă `Student` și `Curs`. Ce rol joacă exact această tabelă suplimentară?
+   a) **ține câte o pereche (`student_id`, `curs_id`) pentru fiecare combinație reală care există, transformând relația M:N în două relații 1:N prin chei externe**  b) stochează o copie completă a datelor din `Student` și `Curs`, pentru viteză  c) înlocuiește tabela `Curs`, care devine redundantă odată creată tabela asociativă  d) există doar din motive de audit/logging și nu are rol structural în relație
 
 ---
 
@@ -376,7 +379,8 @@ Adaugă o constrângere `CHECK` care să nu permită vârsta negativă la `Stude
 
 ### ✅ 4.4.6 Verifică-ți înțelegerea
 
-De ce e utilă integritatea referențială și ce se întâmplă dacă e încălcată?
+1. O comandă are `client_id=99`, dar în tabela `Client` nu există niciun rând cu `id=99`. Ce spune integritatea referențială despre această situație și cum reacționează, de regulă, o bază de date relațională?
+   a) **este o încălcare a constrângerii FOREIGN KEY — inserarea este refuzată (sau se aplică regula ON DELETE/UPDATE definită), pentru că un FK trebuie să indice mereu spre un rând existent**  b) nu este o problemă — coloanele FK pot conține orice valoare, indiferent dacă există sau nu în tabela referită  c) este permis temporar, atâta timp cât clientul 99 este adăugat până la sfârșitul zilei  d) este o eroare de sintaxă SQL, nu una legată de integritatea datelor
 
 ---
 
@@ -470,7 +474,8 @@ Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
 
 ### ✅ 4.5.6 Verifică-ți înțelegerea
 
-De ce normalizarea previne anomalii la actualizare (ex. schimbi orașul unui client în 5 rânduri)?
+1. Într-un tabel nenormalizat, orașul unui client apare repetat în 5 rânduri diferite (câte unul pentru fiecare comandă a lui). De ce previne normalizarea (separarea într-o tabelă `Client` aparte) anomalia de actualizare din acest exemplu?
+   a) **pentru că, odată extrasă informația redundantă într-un singur loc, orașul se modifică o singură dată — nu mai există copii multiple care pot rămâne, din greșeală, neactualizate și inconsistente între ele**  b) pentru că normalizarea șterge automat rândurile vechi la fiecare UPDATE  c) pentru că tabelele normalizate rulează interogările SELECT mai rapid, indiferent de UPDATE  d) pentru că normalizarea previne complet posibilitatea oricărei erori de introducere a datelor (typos)
 
 
 :::verifica-cod

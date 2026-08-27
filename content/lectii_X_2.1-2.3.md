@@ -113,13 +113,13 @@ def cautare_binara(lista, x):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `numara_pasi(lista, x)` care returnează câți pași (comparații) face căutarea binară până găsește elementul `x`. Demo: `numara_pasi([1, 2, 3, 4, 5, 6, 7, 8], 1)` -> `3`
+template: def numara_pasi(lista, x):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_pasi([1, 2, 3, 4, 5, 6, 7, 8], 1))
+output: 3
 :::
 
 # Modulul 2.3 — Modelul conceptual mulțime
@@ -197,11 +197,11 @@ print(10 ___ m)  # True (completează operatorul de apartenență)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `are_duplicate(lista)` care returnează True dacă lista conține cel puțin un element duplicat (folosind o mulțime). Demo: `are_duplicate([1, 2, 3, 2])` -> `True`
+template: def are_duplicate(lista):
     # completeaza
     pass
 
-print(este_par(4))
+print(are_duplicate([1, 2, 3, 2]))
 output: True
 :::

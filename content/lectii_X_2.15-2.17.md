@@ -69,13 +69,13 @@ ___  # accesează "nota" din primul element
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `media_elev(elev)` care primește un dicționar cu cheile "nume" și "note" (listă) și returnează media notelor. Demo: `media_elev({"nume": "Ana", "note": [9, 10, 8]})` -> `9.0`
+template: def media_elev(elev):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(media_elev({"nume": "Ana", "note": [9, 10, 8]}))
+output: 9.0
 :::
 
 # Modulul 2.16 — Elemente de limbaj pentru modele mixte
@@ -146,13 +146,13 @@ ___  # linia 2 (index 2), coloana 3 (index 2)
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție `element_matrice(m, i, j)` care returnează elementul de pe linia `i` și coloana `j` dintr-o listă de liste. Demo: `element_matrice([[1, 2, 3], [4, 5, 6]], 1, 2)` -> `6`
+template: def element_matrice(m, i, j):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(element_matrice([[1, 2, 3], [4, 5, 6]], 1, 2))
+output: 6
 :::
 
 # Modulul 2.17 — Subprograme recursive
@@ -228,11 +228,11 @@ def suma_cifre(n):
 
 
 :::verifica-cod
-Scrie o funcție `este_par(x)` care returnează True dacă x e par. Demo: `este_par(4)` -> `True`
-template: def este_par(x):
+Scrie o funcție recursivă `numara_cifre(n)` care returnează numărul de cifre al lui `n`. Demo: `numara_cifre(1234)` -> `4`
+template: def numara_cifre(n):
     # completeaza
     pass
 
-print(este_par(4))
-output: True
+print(numara_cifre(1234))
+output: 4
 :::
