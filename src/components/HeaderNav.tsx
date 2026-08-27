@@ -14,6 +14,7 @@ const linkuriLiceu = [
   { href: "/curriculum", label: "📚 Curriculum & Cursuri", sub: "Clasele IX–XII" },
   { href: "/lectii", label: "📖 Lecții Interactive", sub: "Învățare pas cu pas" },
   { href: "/exercitii", label: "💻 Exerciții & Algoritmi", sub: "Feedback instant" },
+  { href: "/lab", label: "🔬 Lab (Cod online)", sub: "Sandbox Python liber" },
   { href: "/resurse", label: "📥 Resurse & Fișe PDF", sub: "Materiale didactice" },
   { href: "/preturi", label: "🏷️ Prețuri & Abonamente", sub: "Planuri transparente" },
   { href: "/despre", label: "ℹ️ Despre Platformă", sub: "Misiune și echipa" },

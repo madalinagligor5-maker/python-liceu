@@ -38,16 +38,26 @@ export async function incarcaPyodide(): Promise<PyodideApi> {
       const originalOnerror = s.onerror;
       s.onerror = (e) => {
         if (originalOnerror) (originalOnerror as (...args: unknown[]) => void)(e);
+        s.remove();
         rej(new Error("Nu s-a putut încărca interpretorul Python."));
       };
     });
   }
 
-  await pyodidePromise;
-  if (!window.loadPyodide) {
-    throw new Error("Scriptul Pyodide nu a expus loadPyodide.");
+  try {
+    await pyodidePromise;
+    if (!window.loadPyodide) {
+      throw new Error("Scriptul Pyodide nu a expus loadPyodide.");
+    }
+    const py = await window.loadPyodide({ indexURL: "/pyodide/" });
+    window.__pyodideInstance = py;
+    return py;
+  } catch (e) {
+    // Resetăm promisiunea memorată — altfel orice reîncercare (ex. elevul
+    // apasă din nou "Rulează codul" după o problemă de rețea trecătoare pe
+    // mobil) ar relua la infinit exact același eșec inițial, fără să mai
+    // încerce vreodată o încărcare nouă.
+    pyodidePromise = null;
+    throw e;
   }
-  const py = await window.loadPyodide({ indexURL: "/pyodide/" });
-  window.__pyodideInstance = py;
-  return py;
 }

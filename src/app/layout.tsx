@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderConditional from "@/components/HeaderConditional";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import { getUtilizatorCurent } from "@/lib/subscription";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -111,7 +112,10 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const { user } = await getUtilizatorCurent();
+  const esteAutentificat = Boolean(user);
+
   return (
     <html
       lang="ro"
@@ -124,11 +128,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-background">
-        <HeaderConditional>
+        <HeaderConditional esteAutentificat={esteAutentificat}>
           <Header />
         </HeaderConditional>
         <main className="flex-1">{children}</main>
-        <HeaderConditional>
+        <HeaderConditional esteAutentificat={esteAutentificat}>
           <Footer />
         </HeaderConditional>
         <NewsletterPopup />

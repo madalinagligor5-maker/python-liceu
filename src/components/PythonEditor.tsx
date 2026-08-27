@@ -43,6 +43,7 @@ export default function PythonEditor({
     setEroare("");
     setVerdict(null);
     setOutput("");
+    setFolosestePy(true);
     try {
       const py = await incarcaPyodide();
       let capturat = "";
@@ -140,9 +141,10 @@ export default function PythonEditor({
 
       {!folosestePy && (
         <p className="mt-2 text-xs text-amber-600">
-          Interpretorul Python nu a putut fi încărcat (necesită conexiune la
-          CDN și cross-origin isolation). Verificarea automată a output-ului e
-          suspendată.
+          Interpretorul Python (~15 MB) nu a putut fi încărcat — verifică
+          conexiunea la internet (poate fi lentă sau instabilă, mai ales pe
+          date mobile) și apasă din nou „▶ Rulează codul&rdquo;. Verificarea
+          automată a output-ului e suspendată până atunci.
         </p>
       )}
     </div>
