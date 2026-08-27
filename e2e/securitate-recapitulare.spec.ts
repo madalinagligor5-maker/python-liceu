@@ -13,12 +13,19 @@ import { creeazaUtilizatorTest, stergeUtilizatorTest } from "./helpers/auth";
  * oricine deschide devtools pe site), autentificat cu o sesiune reală de
  * utilizator — nu prin acțiunea Next.js.
  *
- * Criteriul de acceptare: apelul RPC direct trebuie respins (funcția nu mai
- * e apelabilă cu semnătura veche / EXECUTE e revocat pentru "authenticated"),
- * iar XP-ul utilizatorului rămâne neschimbat.
+ * Semnătura curentă a funcției (după migrare-securizare-recapitulare.sql) e
+ * (p_user_id uuid, p_sublectie_slug text, p_corect boolean) — testăm exact
+ * cu ASTA, transmițând chiar id-ul real al atacatorului (nu unul inventat),
+ * ca testul să prindă o regresie reală de GRANT (dacă cineva ar re-adăuga
+ * accidental `grant execute ... to authenticated`), nu doar o nepotrivire de
+ * semnătură cu o funcție veche care oricum nu mai există.
+ *
+ * Criteriul de acceptare: apelul RPC direct trebuie respins (EXECUTE e
+ * revocat pentru "authenticated"/"anon" — doar service_role poate apela
+ * funcția), iar XP-ul utilizatorului rămâne neschimbat.
  */
 test.describe("Securitate: salveaza_recapitulare_spatiata nu e apelabil direct din browser", () => {
-  test("apel RPC direct (p_corect: true, slug arbitrar) e respins — niciun XP nemeritat", async () => {
+  test("apel RPC direct, semnătura curentă (p_user_id, p_sublectie_slug, p_corect: true) e respins — niciun XP nemeritat", async () => {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -52,14 +59,21 @@ test.describe("Securitate: salveaza_recapitulare_spatiata nu e apelabil direct d
       });
       expect(loginErr).toBeNull();
 
-      // Atacul exact: apel RPC direct, fără să treacă prin acțiunea Next.js.
+      // Atacul exact: apel RPC direct, fără să treacă prin acțiunea Next.js —
+      // cu semnătura curentă, transmițând chiar id-ul real al atacatorului
+      // (ca să nu poată fi respins doar pentru un p_user_id "greșit").
       const { error: rpcErr } = await clientAtacator.rpc("salveaza_recapitulare_spatiata", {
+        p_user_id: utilizator.id,
         p_sublectie_slug: "slug-inventat-de-atacator-" + Date.now(),
         p_corect: true,
       });
 
-      // Un rpc() reușit ar întoarce error === null. Trebuie respins.
+      // Un rpc() reușit ar întoarce error === null. Trebuie respins — și
+      // specific pentru lipsă de privilegiu (cod Postgres 42501), nu pentru
+      // vreun alt motiv întâmplător (ex. coloană lipsă), ca testul chiar să
+      // verifice STRATUL 1 (GRANT revocat), nu doar "a dat o eroare oarecare".
       expect(rpcErr).not.toBeNull();
+      expect(rpcErr?.code).toBe("42501");
 
       const dupa = await admin
         .from("users_meta")

@@ -9,8 +9,10 @@ import path from "path";
  *
  * Reproduce EXACT logica de extragere din quizSublectii.ts (extrageDinCorp),
  * ca lista de goluri să fie garantat identică cu ce randează aplicația.
- * EXCLUDE explicit modulele 4.18-4.22 (Machine Learning, clasa XII) — nu se
- * ating conform cerinței.
+ *
+ * Modulele 4.18-4.22 (Machine Learning, clasa XII) au fost rescrise la
+ * standardul restului platformei și NU mai sunt excluse — se verifică la
+ * fel ca oricare alt modul.
  */
 
 const contentDir = path.join(process.cwd(), "content");
@@ -49,12 +51,6 @@ function extrageDinCorp(corp) {
   return quiz;
 }
 
-function esteModulML(cod) {
-  const m = cod.match(/^4\.(\d+)\.\d+$/);
-  if (!m) return false;
-  return parseInt(m[1], 10) >= 18;
-}
-
 const fisiere = fs.readdirSync(contentDir).filter((f) => f.startsWith("lectii_") && f.endsWith(".md"));
 
 let totalSectiuni = 0;
@@ -74,7 +70,6 @@ for (const f of fisiere) {
 
   for (const { cod, corp, header } of seg) {
     if (!/\.6$/.test(cod)) continue;
-    if (esteModulML(cod)) continue; // 4.18-4.22: neatins, conform cerinței
     totalSectiuni++;
     const intrebari = extrageDinCorp(corp);
     const areIncomplete = intrebari.some(
@@ -88,7 +83,7 @@ for (const f of fisiere) {
 
 console.log("==================================================");
 console.log("📊 AUDIT GOLURI QUIZ (secțiuni ✅ Verifică-ți înțelegerea)");
-console.log(`Total secțiuni .6 verificate (exclus ML 4.18-4.22): ${totalSectiuni}`);
+console.log(`Total secțiuni .6 verificate: ${totalSectiuni}`);
 console.log(`Secțiuni fără quiz valid: ${goluri.length}`);
 console.log("==================================================");
 
@@ -99,6 +94,6 @@ if (goluri.length > 0) {
   }
   process.exit(1);
 } else {
-  console.log("\n✅ Toate secțiunile .6 (exclus ML) au quiz valid extras de parser.");
+  console.log("\n✅ Toate secțiunile .6 au quiz valid extras de parser.");
   process.exit(0);
 }

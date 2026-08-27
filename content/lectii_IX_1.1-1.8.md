@@ -144,13 +144,13 @@ print("Aria este:", ___)  # completează aici
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Scrie un mic program care calculează și afișează prețul total pentru 2 produse, cunoscând prețul fiecăruia. Demo: preț 12 și preț 15 -> total 27.
+template: pret1 = 12
+pret2 = 15
+total = ___
 
-salut('Ana')
-output: Salut, Ana!
+print("Total:", total)
+output: Total: 27
 :::
 
 # Modulul 1.2 — Reprezentarea algoritmilor: scheme logice, pseudocod, cod
@@ -313,13 +313,14 @@ print("Cost total:", cost_total)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Scrie un mic program care verifică dacă o notă este de trecere (mai mare sau egală cu 5) și afișează mesajul corespunzător. Demo: nota 6 -> „Promovat".
+template: nota = 6
 
-salut('Ana')
-output: Salut, Ana!
+if nota >= 5:
+    print(___)
+else:
+    print("Corigent")
+output: Promovat
 :::
 
 # Modulul 1.3 — Eficiența unui algoritm — noțiuni de bază

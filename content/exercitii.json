@@ -1609,82 +1609,91 @@
   "4.18.5": [
     {
       "tip": "cod",
-      "enunt": "Antrenează un MLPClassifier pe un set mic și raportează acuratețea.",
-      "expectedOutput": "score>0.5",
-      "hint": "scikit-learn separă antrenarea modelului de evaluarea lui — sunt două metode diferite, apelate una după alta pe același model.",
-      "hint2": "Apelează întâi metoda care antrenează modelul pe X și y, apoi apelează o a doua metodă pe același model, tot cu X și y, ca să obții scorul de acuratețe."
+      "enunt": "Scrie o funcție neuron(intrari, greutati, bias) care calculează suma ponderată și aplică peste ea funcția sigmoid (folosește math.exp).",
+      "expectedOutput": "0.786",
+      "hint": "Combină cele două lucruri din lecție: mai întâi calculează suma ponderată (produs scalar între intrări și greutăți, plus bias), apoi trece rezultatul prin formula sigmoid.",
+      "hint2": "Suma se calculează cu o buclă (sau zip) ca la exemplul din lecție; rezultatul final e 1 / (1 + math.exp(-suma)).",
+      "template": "import math\n\ndef neuron(intrari, greutati, bias):\n    # completeaza\n    pass\n\nprint(round(neuron([1, 2, 3], [0.2, -0.1, 0.4], 0.1), 3))"
     }
   ],
   "4.19.4": [
     {
       "tip": "cod",
-      "enunt": "Desenează un grafic cu linie pentru vânzările a 5 luni.",
-      "expectedOutput": "plt.plot(...)",
-      "hint": "Matplotlib are o funcție dedicată graficelor de tip linie, care primește două liste de aceeași lungime: una pentru axa X, una pentru axa Y.",
-      "hint2": "Funcția respectivă primește ca prime două argumente lista lunilor și lista vânzărilor, în această ordine."
+      "enunt": "Completează codul care desenează un grafic de bare în text pentru orele de somn din 4 nopți.",
+      "expectedOutput": "███████████ 6\n███████████████ 8\n█████████████ 7\n█████████ 5",
+      "hint": "Ambele spații goale se referă la aceeași idee: scalarea proporțională față de cea mai mare valoare din listă.",
+      "hint2": "Primul spațiu gol e variabila care ține deja maximul listei; al doilea e chiar lungimea calculată cu o linie mai sus (variabila `lungime`).",
+      "template": "ore_somn = [6, 8, 7, 5]\nmaxim = max(ore_somn)\n\nfor ore in ore_somn:\n    lungime = round(ore / ___ * 15)\n    print(\"█\" * ___, ore)"
     }
   ],
   "4.19.5": [
     {
       "tip": "cod",
-      "enunt": "Folosește scatter pentru a vizualiza 2 features ale unui set.",
-      "expectedOutput": "plt.scatter(...)",
-      "hint": "Pentru un grafic cu puncte individuale (nu linii continue), Matplotlib are o funcție diferită de cea pentru grafice de linie.",
-      "hint2": "Funcția respectivă primește cele două liste de valori (câte una pentru fiecare feature) ca prime două argumente."
+      "enunt": "Extinde funcția grafic_bare astfel încât să primească și o listă de etichete și să afișeze fiecare etichetă înaintea barei ei corespunzătoare.",
+      "expectedOutput": "Lun ███████████ 6\nMar ███████████████ 8\nMie █████████████ 7\nJoi █████████ 5",
+      "hint": "Parcurge simultan valorile și etichetele (gândește-te la o funcție care combină două liste element cu element) și afișează eticheta înainte de bară.",
+      "hint2": "Folosește zip(etichete, valori) într-o buclă for, calculează lungimea barei ca în exemplul din lecție, apoi print(eticheta, \"█\" * lungime, valoare).",
+      "template": "def grafic_bare(valori, etichete, scala=15):\n    # completeaza\n    pass\n\ngrafic_bare([6, 8, 7, 5], [\"Lun\", \"Mar\", \"Mie\", \"Joi\"])"
     }
   ],
   "4.20.4": [
     {
       "tip": "cod",
-      "enunt": "Creează un DataFrame cu 3 coloane și afișează describe().",
-      "expectedOutput": "df.describe()",
-      "hint": "Pandas construiește un DataFrame dintr-o structură care asociază fiecare nume de coloană cu lista ei de valori.",
-      "hint2": "Creează structura respectivă cu cele 3 perechi nume-coloană → listă de valori, apoi apelează metoda describe() direct pe rezultat."
+      "enunt": "Completează codul care calculează media și maximul unei coloane dintr-un tabel reprezentat ca dicționar.",
+      "expectedOutput": "Media: 8.25 | Maxim: 10",
+      "hint": "Media are nevoie de câte valori sunt în coloană; maximul are o funcție predefinită în Python care nu trebuie scrisă de mână.",
+      "hint2": "Primul spațiu gol e len(coloana); al doilea e funcția max, aplicată direct pe coloana.",
+      "template": "tabel = {\"nota\": [8, 10, 6, 9]}\n\ncoloana = tabel[\"nota\"]\nmedie = sum(coloana) / ___\nmaxim = ___(coloana)\n\nprint(\"Media:\", medie, \"| Maxim:\", maxim)"
     }
   ],
   "4.20.5": [
     {
       "tip": "cod",
-      "enunt": "Încarcă un CSV (pd.read_csv) și calculează media pe o coloană.",
-      "expectedOutput": "df['col'].mean()",
-      "hint": "Pandas are o funcție dedicată pentru a citi direct un fișier CSV într-un DataFrame, fără să-l parsezi tu manual.",
-      "hint2": "După ce citești fișierul cu funcția respectivă, selectează coloana dorită (ca la un dicționar) și aplică-i metoda care calculează media."
+      "enunt": "Extinde funcția descrie(coloana) să întoarcă și cheia \"std\" (abaterea standard), calculată cu formula din lecție.",
+      "expectedOutput": "8 5.0 2 9 2.0",
+      "hint": "Std cere media (deja calculată pentru \"mean\"), apoi diferența fiecărei valori față de medie, ridicată la pătrat, apoi media acelor pătrate, apoi rădăcina pătrată.",
+      "hint2": "Import math pentru math.sqrt(); std = math.sqrt(sum((v - medie) ** 2 for v in coloana) / len(coloana)).",
+      "template": "def descrie(coloana):\n    # completeaza\n    pass\n\nrezultat = descrie([2, 4, 4, 4, 5, 5, 7, 9])\nprint(rezultat[\"count\"], rezultat[\"mean\"], rezultat[\"min\"], rezultat[\"max\"], round(rezultat[\"std\"], 2))"
     }
   ],
   "4.21.4": [
     {
       "tip": "cod",
-      "enunt": "Împarte un set în train/test, antrenează, raportează acuratețea.",
-      "expectedOutput": "accuracy_score",
-      "hint": "Un model corect evaluat nu se testează pe aceleași date pe care a fost antrenat — scikit-learn are o funcție care împarte automat datele în două seturi separate.",
-      "hint2": "Împarte X și y cu funcția de separare train/test, antrenează modelul doar pe partea de train, apoi compară predicțiile pe partea de test cu valorile reale folosind funcția de acuratețe."
+      "enunt": "Completează codul care calculează acuratețea unui set de predicții față de etichetele reale.",
+      "expectedOutput": "Acuratete: 0.75",
+      "hint": "Primul spațiu gol compară predicția curentă cu ce anume din pereche? Al doilea gol e numărul total de predicții.",
+      "hint2": "Primul spațiu gol e r (varianta din listă reale, la fel ca p); al doilea e len(reale) (sau len(predictii), sunt egale).",
+      "template": "predictii = [\"Da\", \"Nu\", \"Da\", \"Da\"]\nreale =     [\"Da\", \"Nu\", \"Nu\", \"Da\"]\n\ncorecte = 0\nfor p, r in zip(predictii, reale):\n    if p == ___:\n        corecte += 1\n\nacuratete = corecte / ___\nprint(\"Acuratete:\", acuratete)"
     }
   ],
   "4.21.5": [
     {
       "tip": "cod",
-      "enunt": "Folosește cross_val_score pentru evaluare robustă.",
-      "expectedOutput": "cross_val_score",
-      "hint": "În loc de o singură împărțire train/test, poți repeta evaluarea de mai multe ori, pe porțiuni diferite ale datelor, și să faci media rezultatelor.",
-      "hint2": "Funcția respectivă primește modelul, X, y și un parametru care spune în câte porțiuni (fold-uri) se împart datele."
+      "enunt": "Scrie funcția prezice(exemplu, X_train, y_train) care întoarce eticheta celui mai apropiat vecin (1-NN), folosind funcția distanta deja definită.",
+      "expectedOutput": "A\nB",
+      "hint": "Trebuie să găsești, dintre toate punctele din X_train, indexul celui cu distanța cea mai mică față de exemplu, apoi să întorci eticheta de pe acel index din y_train.",
+      "hint2": "Folosește min(range(len(X_train)), key=lambda i: distanta(exemplu, X_train[i])) ca să obții indexul celui mai apropiat, apoi indexează y_train cu el.",
+      "template": "def distanta(a, b):\n    return sum((ai - bi) ** 2 for ai, bi in zip(a, b)) ** 0.5\n\ndef prezice(exemplu, X_train, y_train):\n    # completeaza\n    pass\n\nX_train = [[1, 1], [2, 2], [8, 8], [9, 9]]\ny_train = [\"A\", \"A\", \"B\", \"B\"]\nprint(prezice([1.5, 1.5], X_train, y_train))\nprint(prezice([8.5, 8.5], X_train, y_train))"
     }
   ],
   "4.22.4": [
     {
       "tip": "cod",
-      "enunt": "Creează o matrice 2x2 și calculează suma pe linii și coloane.",
-      "expectedOutput": "sum(axis=...)",
-      "hint": "NumPy calculează sume pe o singură direcție a unei matrici (linii sau coloane) folosind un parametru care alege direcția, nu o buclă scrisă de tine.",
-      "hint2": "Metoda de sumă a matricei primește un parametru care indică axa: o valoare pentru sumă pe linii, alta pentru sumă pe coloane."
+      "enunt": "Completează codul care calculează suma pe linii a unei matrici 2×3.",
+      "expectedOutput": "Suma pe linii: [6, 15]",
+      "hint": "Vrei să parcurgi fiecare linie din matrice, pe rând — ce variabilă conține deja toate liniile?",
+      "hint2": "Spațiul gol e chiar m — matricea completă, parcursă linie cu linie.",
+      "template": "m = [[1, 2, 3], [4, 5, 6]]\n\nsume_linii = [sum(linie) for linie in ___]\n\nprint(\"Suma pe linii:\", sume_linii)"
     }
   ],
   "4.22.5": [
     {
       "tip": "cod",
-      "enunt": "Înmulțește două matrici cu np.dot și verifică rezultatul.",
-      "expectedOutput": "np.dot(a,b)",
-      "hint": "Înmulțirea de matrici NU e element cu element (asta ar fi doar *) — NumPy are o funcție dedicată exact pentru produsul matricial.",
-      "hint2": "Funcția respectivă primește cele două matrici ca argumente și calculează produsul lor conform regulilor de înmulțire matricială, nu înmulțire element cu element."
+      "enunt": "Scrie funcția inmulteste_matrici(a, b) care implementează înmulțirea de matrici (produsul scalar dintre fiecare linie a lui a și fiecare coloană a lui b), ca în exemplul din lecție.",
+      "expectedOutput": "[[19, 22], [43, 50]]",
+      "hint": "Pentru fiecare linie din a și fiecare coloană din b, rezultatul e produsul scalar dintre ele — la fel ca exemplul inmultire_matrici din lecție.",
+      "hint2": "Pentru fiecare linie din a, construiește o listă nouă cu câte un element per coloană din b, calculat ca sum(x*y for x,y in zip(linie, coloana)).",
+      "template": "def inmulteste_matrici(a, b):\n    # completeaza\n    pass\n\na = [[1, 2], [3, 4]]\nb = [[5, 6], [7, 8]]\nprint(inmulteste_matrici(a, b))"
     }
   ],
   "4.1.4": [
@@ -1998,10 +2007,11 @@
   "4.18.4": [
     {
       "tip": "cod",
-      "enunt": "Calculează ieșirea unui neuron cu 2 intrări, 2 greutăți, bias.",
-      "expectedOutput": "w1*x1+w2*x2+b",
-      "hint": "Gândește-te cum combini fiecare intrare cu greutatea ei corespunzătoare înainte să aduni totul — e o formă de înmulțire, nu de adunare simplă.",
-      "hint2": "Înmulțește fiecare intrare cu greutatea ei, adună cele două produse, apoi adaugă separat bias-ul la final."
+      "enunt": "Completează codul care calculează suma ponderată (produs scalar + bias) a unui neuron cu 2 intrări.",
+      "expectedOutput": "Suma ponderata: 4.9",
+      "hint": "Suma ponderată înseamnă: înmulțești fiecare intrare cu greutatea ei corespunzătoare, aduni cele două produse, apoi adaugi bias-ul.",
+      "hint2": "Completează cu x1*w1 + x2*w2 + bias.",
+      "template": "x1, x2 = 3, 5\nw1, w2 = -0.5, 1.2\nbias = 0.4\n\nsuma = ___\n\nprint(\"Suma ponderata:\", suma)"
     }
   ],
   "P7.1.4": [
