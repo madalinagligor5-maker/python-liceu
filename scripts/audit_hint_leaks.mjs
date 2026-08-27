@@ -10,8 +10,12 @@ import path from "path";
  *   1. hint sau hint2 IDENTIC (normalizat) cu o linie întreagă din `template`
  *      — semn clar că indiciul e copiat direct din soluție;
  *   2. hint === hint2 (al doilea indiciu nu aduce nimic în plus);
- *   3. exerciții de tip "cod"/"ordonare" (exclus ML 4.18-4.22) fără hint
- *      sau fără hint2.
+ *   3. exerciții de tip "cod"/"ordonare" fără hint sau fără hint2.
+ *
+ * Include și cele 10 exerciții din intervalul 4.18-4.22 (module de Machine
+ * Learning): excepția ML dintr-un audit anterior a vizat doar conținutul de
+ * lecție și quiz-urile, NU indiciile din exercitii.json — lipsa lor acolo a
+ * fost o omisiune, nu o decizie, deci sunt verificate ca oricare altele.
  *
  * Nu e o dovadă matematică de "niciun indiciu nu dă răspunsul" (asta ține de
  * judecată editorială), dar prinde exact tiparul găsit în audit: indicii care
@@ -20,11 +24,6 @@ import path from "path";
 
 const contentPath = path.join(process.cwd(), "content", "exercitii.json");
 const data = JSON.parse(fs.readFileSync(contentPath, "utf-8"));
-
-const ML_KEYS = new Set([
-  "4.18.4", "4.18.5", "4.19.4", "4.19.5", "4.20.4", "4.20.5",
-  "4.21.4", "4.21.5", "4.22.4", "4.22.5",
-]);
 
 function normalizeaza(s) {
   return (s || "")
@@ -38,8 +37,6 @@ let totalVerificate = 0;
 const problematice = [];
 
 for (const cheie of Object.keys(data)) {
-  if (ML_KEYS.has(cheie)) continue; // 4.18-4.22: neatins
-
   for (const ex of data[cheie]) {
     if (ex.tip === "text") continue; // hint-ul nu se afișează niciodată pentru tip "text"
     totalVerificate++;
@@ -73,14 +70,14 @@ for (const cheie of Object.keys(data)) {
     }
 
     if (probleme.length) {
-      problematice.push({ id: ex.id, cheie, probleme });
+      problematice.push({ id: ex.id || cheie, cheie, probleme });
     }
   }
 }
 
 console.log("==================================================");
 console.log("📊 AUDIT INDICII (content/exercitii.json)");
-console.log(`Exerciții verificate (tip cod/ordonare, exclus ML): ${totalVerificate}`);
+console.log(`Exerciții verificate (tip cod/ordonare): ${totalVerificate}`);
 console.log(`Exerciții cu probleme: ${problematice.length}`);
 console.log("==================================================");
 
@@ -91,6 +88,6 @@ if (problematice.length > 0) {
   }
   process.exit(1);
 } else {
-  console.log("\n✅ Toate exercițiile (cod/ordonare, exclus ML) au hint + hint2, fără copieri identice.");
+  console.log("\n✅ Toate exercițiile (cod/ordonare) au hint + hint2, fără copieri identice.");
   process.exit(0);
 }

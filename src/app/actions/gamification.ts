@@ -1,6 +1,7 @@
 "use server";
 
 import { creeazaClientServer } from "@/lib/supabase/server";
+import { creeazaClientAdmin } from "@/lib/supabase/admin";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { toateLectiile } from "@/lib/content";
 
@@ -134,24 +135,67 @@ export async function valideazaRecapitulareSpatiata(
     return { ok: false, mesaj: "Această recapitulare nu mai este disponibilă." };
   }
 
-  const esteCorect = opțiuneSelectată === răspunsCorect;
+  // Strat 3: verificăm, pe server, că sublecția cerută e chiar una scadentă
+  // AZI pentru utilizatorul curent — aceeași sursă de adevăr (aceeași
+  // interogare) ca getRecapitulareSpatiata din src/lib/progres.ts. Fără
+  // asta, un utilizator ar putea "recapitula" (și lua XP pentru) orice
+  // sublecție cu quiz, nu doar cea programată azi. Respingem silențios, cu
+  // același mesaj generic ca la un răspuns greșit — nu dăm detalii care ar
+  // confirma unui atacator că structura verificării există.
   const supabase = await creeazaClientServer();
+  const azi = new Date().toISOString().split("T")[0];
 
-  // Apelăm RPC-ul salveaza_recapitulare_spatiata din Supabase
-  const { data, error } = await supabase.rpc("salveaza_recapitulare_spatiata", {
+  const { data: lectiiScadente } = await supabase
+    .from("progres_lectii")
+    .select("lectie_slug")
+    .eq("user_id", user.id)
+    .lte("urmatoarea_recapitulare", new Date().toISOString())
+    .order("urmatoarea_recapitulare", { ascending: true })
+    .limit(5);
+
+  const { data: recAzi } = await supabase
+    .from("recapitulari_zilnice")
+    .select("sublectie_slug")
+    .eq("user_id", user.id)
+    .eq("data", azi);
+
+  const rezolvateAzi = new Set((recAzi ?? []).map((r) => r.sublectie_slug));
+  const scadenteAzi = new Set(
+    (lectiiScadente ?? [])
+      .map((l) => l.lectie_slug)
+      .filter((slug) => !rezolvateAzi.has(slug))
+  );
+
+  const mesajRespingere =
+    "Răspuns greșit! Lecția a fost reprogramată mai devreme pentru a o fixa mai bine.";
+
+  if (!scadenteAzi.has(sublectieSlug)) {
+    return { ok: false, mesaj: mesajRespingere };
+  }
+
+  const esteCorect = opțiuneSelectată === răspunsCorect;
+
+  // Strat 1: RPC-ul care scrie XP se apelează EXCLUSIV cu service role,
+  // dintr-un context strict server-side — niciodată din browser. Funcția SQL
+  // are acum EXECUTE revocat pentru authenticated/anon (vezi
+  // supabase/migrare-securizare-recapitulare.sql), deci nu mai poate fi
+  // apelată direct din consola browserului, indiferent de sesiunea
+  // utilizatorului. Identitatea utilizatorului se transmite explicit ca
+  // parametru, pentru că service role nu are auth.uid() (nu are sesiune).
+  const admin = creeazaClientAdmin();
+  const { error } = await admin.rpc("salveaza_recapitulare_spatiata", {
+    p_user_id: user.id,
     p_sublectie_slug: sublectieSlug,
     p_corect: esteCorect,
   });
 
   if (error) {
     console.error("Eroare la salvarea recapitulării spațiate:", error);
+    return { ok: false, mesaj: "A apărut o eroare la salvarea progresului." };
   }
 
   if (!esteCorect) {
-    return {
-      ok: false,
-      mesaj: "Răspuns greșit! Lecția a fost reprogramată mai devreme pentru a o fixa mai bine.",
-    };
+    return { ok: false, mesaj: mesajRespingere };
   }
 
   return {

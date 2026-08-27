@@ -121,6 +121,8 @@ export default function QuizSublectie({
                           "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-bold",
                           arataBine
                             ? "border-success text-success"
+                            : arataRau
+                              ? "border-red-500 bg-red-500 text-white font-black"
                               : eSelectat
                                 ? "border-amber-400 bg-amber-400 text-slate-950 font-black"
                                 : "border-black/20 text-foreground/70",

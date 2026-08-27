@@ -228,9 +228,9 @@
     "explicatie_scurta": "Instrucțiunea return trimite o valoare înapoi din funcție către locul din care a fost apelată, astfel încât rezultatul poate fi reținut într-o variabilă și folosit ulterior, spre deosebire de print() care doar afișează valoarea pe ecran.",
     "exemplu_cod": "def suma(a, b):\n    return a + b\n\nrezultat = suma(4, 7)\nprint(\"Suma este:\", rezultat)",
     "exercitiu_interactiv": {
-      "enunt": "Scrie o funcție este_par(numar) care returnează True dacă numărul este par.",
-      "cod_schelet": "def este_par(numar):\n    pass\n\nprint(este_par(6))",
-      "solutie": "def este_par(numar):\n    return numar % 2 == 0\n\nprint(este_par(6))"
+      "enunt": "Scrie o funcție cel_mai_mare(a, b) care RETURNEAZĂ (nu afișează) cel mai mare dintre cele două numere primite.",
+      "cod_schelet": "def cel_mai_mare(a, b):\n    pass\n\nrezultat = cel_mai_mare(3, 9)\nprint(\"Cel mai mare este:\", rezultat)",
+      "solutie": "def cel_mai_mare(a, b):\n    if a > b:\n        return a\n    return b\n\nrezultat = cel_mai_mare(3, 9)\nprint(\"Cel mai mare este:\", rezultat)"
     },
     "quiz": [
       {

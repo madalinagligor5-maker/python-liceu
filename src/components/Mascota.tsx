@@ -7,7 +7,8 @@ type Props = {
 };
 
 /**
- * Mascota platformei: „Py”, un șarpe verde cu ochelari.
+ * Mascota platformei: „Py”, un șarpe albastru cu ochelari (paleta oficială
+ * Python: galben + albastru, fără verde).
  * SVG inline (nu fișier extern) ca să moștenească culorile din temă și să nu
  * adauge un request de rețea pe fiecare pagină.
  */
@@ -26,7 +27,7 @@ export default function Mascota({ className, size = 96, eticheta }: Props) {
       <path
         d="M34 96c0-16 12-24 26-24s24-6 24-18-10-18-22-18H36"
         fill="none"
-        stroke="var(--python-green)"
+        stroke="var(--python-blue)"
         strokeWidth="15"
         strokeLinecap="round"
       />
@@ -40,7 +41,7 @@ export default function Mascota({ className, size = 96, eticheta }: Props) {
       />
 
       {/* cap */}
-      <circle cx="36" cy="36" r="21" fill="var(--python-green)" />
+      <circle cx="36" cy="36" r="21" fill="var(--python-blue)" />
       <ellipse cx="33" cy="45" rx="12" ry="8" fill="var(--python-yellow)" opacity="0.85" />
 
       {/* ochelari */}
