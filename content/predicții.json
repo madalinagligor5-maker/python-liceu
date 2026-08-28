@@ -34,7 +34,7 @@
     "enunt": "Ce se afișează? (b folosește rezultatul lui a)",
     "variante": [
       "5 5",
-      "5 10",
+      "10 20",
       "10 10"
     ],
     "corect": 1
@@ -110,7 +110,7 @@
     "corect": 0
   },
   "1.12.3": {
-    "cod": "import tkinter as tk\n\nf = tk.Tk()\nl = tk.Label(f, text=\"Salut\")\nl.pack()\nf.mainloop()",
+    "cod": "class FereastraSimulata:\n    def __init__(self):\n        self.widgeturi = []\n    def eticheta(self, text):\n        self.widgeturi.append(text)\n        return text\n\nfereastra = FereastraSimulata()\ntext_afisat = fereastra.eticheta(\"Salut\")\nprint(\"Fereastra arata textul:\", text_afisat)",
     "enunt": "Ce apare pe ecran când rulezi acest cod cu tkinter?",
     "variante": [
       "O fereastră cu textul „Salut\"",
@@ -120,7 +120,7 @@
     "corect": 0
   },
   "1.13.3": {
-    "cod": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"A\").grid(row=0, column=0)\ntk.Label(f, text=\"B\").grid(row=0, column=1)\ntk.Label(f, text=\"C\").grid(row=1, column=0)\nf.mainloop()",
+    "cod": "class FereastraSimulata:\n    def __init__(self):\n        self.pozitii = {}\n    def eticheta_grid(self, text, rand, coloana):\n        self.pozitii[text] = (rand, coloana)\n\nfereastra = FereastraSimulata()\nfereastra.eticheta_grid(\"A\", 0, 0)\nfereastra.eticheta_grid(\"B\", 0, 1)\nfereastra.eticheta_grid(\"C\", 1, 0)\nprint(\"Pozitia lui C:\", fereastra.pozitii[\"C\"])",
     "enunt": "Unde apare textul „C\" în fereastră?",
     "variante": [
       "Rândul 0, coloana 1",
@@ -377,7 +377,7 @@
       "[3, 1, 2]",
       "[2, 1, 3]"
     ],
-    "corect": 0
+    "corect": 1
   },
   "2.19.3": {
     "cod": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = lista[0]\n    stanga = [x for x in lista[1:] if x < pivot]\n    dreapta = [x for x in lista[1:] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)\n\nprint(quicksort([3, 1, 2]))",
@@ -410,24 +410,24 @@
     "corect": 0
   },
   "3.1.3": {
-    "cod": "n1 = Nod(10)\nn2 = Nod(20)\nn3 = Nod(30)\nn1.urmator = n2\nn2.urmator = n3\nprint(n1.urmator.urmator.valoare)",
+    "cod": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\nn1 = Nod(10)\nn2 = Nod(20)\nn3 = Nod(30)\nn1.urmator = n2\nn2.urmator = n3\nprint(n1.urmator.urmator.valoare)",
     "variante": [
       "10",
       "20",
       "30",
       "None"
     ],
-    "corect": "30"
+    "corect": 2
   },
   "3.2.3": {
-    "cod": "cap = None\ncap = adauga_sfarsit(cap, 1)\ncap = adauga_sfarsit(cap, 2)\ncap = adauga_inceput(cap, 0)\n# Afiseaza valorile la parcurgere",
+    "cod": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef adauga_inceput(cap, valoare):\n    nou = Nod(valoare)\n    nou.urmator = cap\n    return nou\n\ndef adauga_sfarsit(cap, valoare):\n    nou = Nod(valoare)\n    if cap is None:\n        return nou\n    curent = cap\n    while curent.urmator is not None:\n        curent = curent.urmator\n    curent.urmator = nou\n    return cap\n\ncap = None\ncap = adauga_sfarsit(cap, 1)\ncap = adauga_sfarsit(cap, 2)\ncap = adauga_inceput(cap, 0)\n\ncurent = cap\nvalori = []\nwhile curent is not None:\n    valori.append(curent.valoare)\n    curent = curent.urmator\nprint(*valori)",
     "variante": [
       "0 1 2",
       "1 2 0",
       "2 1 0",
       "0 2 1"
     ],
-    "corect": "0 1 2"
+    "corect": 0
   },
   "3.3.3": {
     "cod": "def f(n):\n    if n == 0:\n        return 1\n    total = 0\n    for i in range(2):\n        total += f(n - 1)\n    return total\nprint(f(3))",
@@ -437,27 +437,27 @@
       "8",
       "16"
     ],
-    "corect": "8"
+    "corect": 2
   },
   "3.4.3": {
-    "cod": "# Problema reginelor pentru n=4\n# Cate solutii de plasare exista?",
+    "cod": "def regine(n):\n    solutii = []\n    sol = []\n    def valid(lin, col):\n        for i in range(lin):\n            if sol[i] == col or abs(sol[i] - col) == lin - i:\n                return False\n        return True\n    def bk(lin):\n        if lin == n:\n            solutii.append(sol[:])\n            return\n        for col in range(n):\n            if valid(lin, col):\n                sol.append(col)\n                bk(lin + 1)\n                sol.pop()\n    bk(0)\n    return len(solutii)\n\nprint(regine(4))",
     "variante": [
       "0",
       "1",
       "2",
       "4"
     ],
-    "corect": "2"
+    "corect": 2
   },
   "3.5.3": {
-    "cod": "# Submultimile multimii {1,2,3,4}\n# Cate submultimi are?",
+    "cod": "def submultimi(elements):\n    rez = [[]]\n    for x in elements:\n        rez += [s + [x] for s in rez]\n    return rez\n\nprint(len(submultimi([1, 2, 3, 4])))",
     "variante": [
       "8",
       "12",
       "16",
       "24"
     ],
-    "corect": "16"
+    "corect": 2
   },
   "3.6.3": {
     "cod": "from functools import lru_cache\n@lru_cache(None)\ndef fib(n):\n    if n < 2: return n\n    return fib(n-1) + fib(n-2)\nprint(fib(10))",
@@ -467,127 +467,127 @@
       "55",
       "89"
     ],
-    "corect": "55"
+    "corect": 2
   },
   "3.7.3": {
-    "cod": "# Graful are 5 varfuri si 7 muchii neorientate.\n# Care e suma gradelor tuturor varfurilor?",
+    "cod": "noduri = 5\nmuchii = 7\nsuma_grade = 2 * muchii\nprint(suma_grade)",
     "variante": [
       "7",
       "10",
       "14",
       "35"
     ],
-    "corect": "14"
+    "corect": 2
   },
   "3.8.3": {
-    "cod": "adiacenta = {1:[2,3], 2:[1], 3:[1,2]}\n# Cat are gradul varfului 1?",
+    "cod": "adiacenta = {1: [2, 3], 2: [1], 3: [1, 2]}\nprint(len(adiacenta[1]))",
     "variante": [
       "1",
       "2",
       "3",
       "4"
     ],
-    "corect": "2"
+    "corect": 1
   },
   "3.9.3": {
-    "cod": "# Graful complet K4 are 4 varfuri. Cate muchii are?",
+    "cod": "n = 4\nmuchii_complet = n * (n - 1) // 2\nprint(muchii_complet)",
     "variante": [
       "4",
       "6",
       "8",
       "12"
     ],
-    "corect": "6"
+    "corect": 1
   },
   "3.10.3": {
-    "cod": "adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}\n# In ce ordine viziteaza BFS din 1 (vecini in ordine)?",
+    "cod": "from collections import deque\n\ndef bfs(adiacenta, start):\n    viz = {start}\n    coada = deque([start])\n    ordine = []\n    while coada:\n        v = coada.popleft()\n        ordine.append(v)\n        for u in adiacenta[v]:\n            if u not in viz:\n                viz.add(u)\n                coada.append(u)\n    return ordine\n\nadiacenta = {1: [2, 3], 2: [4], 3: [4], 4: []}\nprint(*bfs(adiacenta, 1))",
     "variante": [
       "1 2 3 4",
       "1 3 2 4",
       "1 4 2 3",
       "1 2 4 3"
     ],
-    "corect": "1 2 3 4"
+    "corect": 0
   },
   "3.11.3": {
-    "cod": "adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}\n# In ce ordine viziteaza DFS din 1 (vecini in ordine)?",
+    "cod": "def dfs(adiacenta, v, viz=None, ordine=None):\n    if viz is None:\n        viz = set()\n        ordine = []\n    viz.add(v)\n    ordine.append(v)\n    for u in adiacenta[v]:\n        if u not in viz:\n            dfs(adiacenta, u, viz, ordine)\n    return ordine\n\nadiacenta = {1: [2, 3], 2: [4], 3: [4], 4: []}\nprint(*dfs(adiacenta, 1))",
     "variante": [
       "1 2 4 3",
       "1 3 4 2",
       "1 2 3 4",
       "1 4 2 3"
     ],
-    "corect": "1 2 4 3"
+    "corect": 0
   },
   "3.12.3": {
-    "cod": "a = [[0,1,0],[0,0,1],[1,0,0]]\n# Dupa Roy-Warshall, exista drum de la 1 la 3 (a[0][2])?",
+    "cod": "def roy_warshall(a):\n    n = len(a)\n    d = [row[:] for row in a]\n    for k in range(n):\n        for i in range(n):\n            for j in range(n):\n                d[i][j] = d[i][j] or (d[i][k] and d[k][j])\n    return d\n\na = [[0, 1, 0], [0, 0, 1], [1, 0, 0]]\nd = roy_warshall(a)\nprint(\"Da (1)\" if d[0][2] else \"Nu (0)\")",
     "variante": [
       "Da (1)",
       "Nu (0)",
       "Depinde",
       "Eroare"
     ],
-    "corect": "Da (1)"
+    "corect": 0
   },
   "3.13.3": {
-    "cod": "graf = {1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}\n# Distanta minima de la 1 la 2?",
+    "cod": "import heapq\n\ndef dijkstra(graf, start):\n    dist = {start: 0}\n    coada = [(0, start)]\n    while coada:\n        d, v = heapq.heappop(coada)\n        for u, w in graf.get(v, []):\n            if u not in dist or d + w < dist[u]:\n                dist[u] = d + w\n                heapq.heappush(coada, (dist[u], u))\n    return dist\n\ngraf = {1: [(2, 4), (3, 1)], 3: [(2, 2)], 2: []}\ndist = dijkstra(graf, 1)\nprint(dist[2])",
     "variante": [
       "3",
       "4",
       "5",
       "6"
     ],
-    "corect": "3"
+    "corect": 0
   },
   "3.14.3": {
-    "cod": "d = [[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]]\n# Distanta minima de la 1 la 3 dupa Roy-Floyd?",
+    "cod": "def roy_floyd(d):\n    n = len(d)\n    for k in range(n):\n        for i in range(n):\n            for j in range(n):\n                d[i][j] = min(d[i][j], d[i][k] + d[k][j])\n    return d\n\nd = [[0, 3, float(\"inf\")], [float(\"inf\"), 0, 1], [float(\"inf\"), float(\"inf\"), 0]]\nd = roy_floyd(d)\nprint(d[0][2])",
     "variante": [
       "3",
       "4",
       "infinit",
       "1"
     ],
-    "corect": "4"
+    "corect": 1
   },
   "3.15.3": {
-    "cod": "graf = {1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}\n# Costul MST (Prim din 1)?",
+    "cod": "import heapq\n\ndef prim(graf, start):\n    viz = {start}\n    muchii = [(w, start, u) for u, w in graf[start]]\n    heapq.heapify(muchii)\n    total = 0\n    while muchii:\n        w, a, b = heapq.heappop(muchii)\n        if b in viz:\n            continue\n        viz.add(b)\n        total += w\n        for u, w2 in graf[b]:\n            if u not in viz:\n                heapq.heappush(muchii, (w2, b, u))\n    return total\n\ngraf = {1: [(2, 1), (3, 4)], 2: [(1, 1), (3, 2)], 3: [(1, 4), (2, 2)]}\nprint(prim(graf, 1))",
     "variante": [
       "3",
       "5",
       "6",
       "7"
     ],
-    "corect": "3"
+    "corect": 0
   },
   "3.16.3": {
-    "cod": "muchii = [(1,2,1),(2,3,2),(1,3,4)]\n# Costul MST (Kruskal)?",
+    "cod": "def gaseste(parinte, x):\n    while parinte[x] != x:\n        parinte[x] = parinte[parinte[x]]\n        x = parinte[x]\n    return x\n\ndef kruskal(muchii, n):\n    parinte = list(range(n + 1))\n    muchii = sorted(muchii, key=lambda m: m[2])\n    total = 0\n    for a, b, w in muchii:\n        ra, rb = gaseste(parinte, a), gaseste(parinte, b)\n        if ra != rb:\n            parinte[ra] = rb\n            total += w\n    return total\n\nmuchii = [(1, 2, 1), (2, 3, 2), (1, 3, 4)]\nprint(kruskal(muchii, 3))",
     "variante": [
       "3",
       "4",
       "5",
       "7"
     ],
-    "corect": "3"
+    "corect": 0
   },
   "3.17.3": {
-    "cod": "# Un arbore are 10 varfuri. Cate muchii are?",
+    "cod": "noduri = 10\nmuchii = noduri - 1\nprint(muchii)",
     "variante": [
       "9",
       "10",
       "11",
       "20"
     ],
-    "corect": "9"
+    "corect": 0
   },
   "3.18.3": {
-    "cod": "rad = None\nfor x in [5, 3, 8, 1, 4]:\n    rad = inserare(rad, x)\n# Fiul stang al radacinii (rad.v=5)?",
+    "cod": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [5, 3, 8, 1, 4]:\n    rad = inserare(rad, x)\nprint(rad.st.v)",
     "variante": [
       "3",
       "8",
       "1",
       "4"
     ],
-    "corect": "3"
+    "corect": 0
   },
   "3.19.3": {
     "cod": "import heapq\nh = []\nfor x in [3, 1, 2]:\n    heapq.heappush(h, x)\nprint(heapq.heappop(h), heapq.heappop(h))",
@@ -597,57 +597,57 @@
       "2 1",
       "1 3"
     ],
-    "corect": "1 2"
+    "corect": 0
   },
   "3.20.3": {
-    "cod": "# BST cu 5,3,8,1,4 (rad=5)\n# Ce afiseaza inordinea?",
+    "cod": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef inordine(rad, rezultat):\n    if rad:\n        inordine(rad.st, rezultat)\n        rezultat.append(rad.v)\n        inordine(rad.dr, rezultat)\n    return rezultat\n\nrad = None\nfor x in [5, 3, 8, 1, 4]:\n    rad = inserare(rad, x)\nprint(*inordine(rad, []))",
     "variante": [
       "1 3 4 5 8",
       "5 3 1 4 8",
       "1 4 3 8 5",
       "8 5 4 3 1"
     ],
-    "corect": "1 3 4 5 8"
+    "corect": 0
   },
   "3.21.3": {
-    "cod": "rad = None\nfor x in [50, 30, 70, 20, 40]:\n    rad = inserare(rad, x)\n# Exista 40 in arbore?",
+    "cod": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef cauta(rad, v):\n    if rad is None:\n        return False\n    if rad.v == v:\n        return True\n    if v < rad.v:\n        return cauta(rad.st, v)\n    return cauta(rad.dr, v)\n\nrad = None\nfor x in [50, 30, 70, 20, 40]:\n    rad = inserare(rad, x)\nprint(\"Da\" if cauta(rad, 40) else \"Nu\")",
     "variante": [
       "Da",
       "Nu",
       "Eroare",
       "Doar 20"
     ],
-    "corect": "Da"
+    "corect": 0
   },
   "3.22.3": {
-    "cod": "c = Caine('Rex')\nprint(c.nume, c.sunet())",
+    "cod": "class Animal:\n    def __init__(self, nume):\n        self.nume = nume\n    def sunet(self):\n        return \"...\"\n\nclass Caine(Animal):\n    def sunet(self):\n        return \"Ham!\"\n\nc = Caine(\"Rex\")\nprint(c.nume, c.sunet())",
     "variante": [
       "Rex Ham!",
       "Rex ...",
       "Caine Ham!",
       "Rex Rex"
     ],
-    "corect": "Rex Ham!"
+    "corect": 0
   },
   "3.23.3": {
-    "cod": "c = ContBancar('Ana', 100)\nc.retrage(30)\nprint(c.sold)",
+    "cod": "class ContBancar:\n    def __init__(self, titular, sold=0):\n        self.titular = titular\n        self.sold = sold\n    def depune(self, suma):\n        self.sold += suma\n    def retrage(self, suma):\n        if suma <= self.sold:\n            self.sold -= suma\n        else:\n            print(\"Fonduri insuficiente\")\n\nc = ContBancar(\"Ana\", 100)\nc.retrage(30)\nprint(c.sold)",
     "variante": [
       "70",
       "100",
       "30",
       "130"
     ],
-    "corect": "70"
+    "corect": 0
   },
   "3.24.3": {
-    "cod": "a = Angajat('Ion', 'dev')\nprint(a.nume, a.post)",
+    "cod": "class Persoana:\n    def __init__(self, nume):\n        self.nume = nume\n        self.__salariu = 0\n\nclass Angajat(Persoana):\n    def __init__(self, nume, post):\n        super().__init__(nume)\n        self.post = post\n\na = Angajat(\"Ion\", \"dev\")\nprint(a.nume, a.post)",
     "variante": [
       "Ion dev",
       "Ion Angajat",
       "dev Ion",
       "Eroare"
     ],
-    "corect": "Ion dev"
+    "corect": 0
   },
   "3.25.3": {
     "cod": "l = [1, 2, 3, 4]\nprint(list(map(lambda x: x**2, l)))",
@@ -657,187 +657,187 @@
       "[1, 2, 3, 4]",
       "[1, 4, 9, 16, 25]"
     ],
-    "corect": "[1, 4, 9, 16]"
+    "corect": 0
   },
   "4.1.3": {
-    "cod": "# Student(id, nume, varsta) = (1, 'Ana', 17)\n# Care e valoarea atributului 'nume'?",
+    "cod": "student = {\"id\": 1, \"nume\": \"Ana\", \"varsta\": 17}\nprint(student[\"nume\"])",
     "variante": [
       "Ana",
       "1",
       "17",
       "Student"
     ],
-    "corect": "Ana"
+    "corect": 0
   },
   "4.2.3": {
-    "cod": "# Student-Curs e relatie M:N.\n# Cate tabele rezulta din mapare?\n# (Student, Curs, si ?)",
+    "cod": "entitati_relatie_mn = [\"Student\", \"Curs\", \"Inscriere\"]\nprint(len(entitati_relatie_mn))",
     "variante": [
       "2",
       "3",
       "1",
       "4"
     ],
-    "corect": "3"
+    "corect": 1
   },
   "4.3.3": {
-    "cod": "# Student(id,nume) si Curs(cod,denumire), relatie 1:N\n# (un curs are multi studenti)\n# In ce tabel se pune cheia externa curs_id?",
+    "cod": "def tabela_cu_cheie_externa(tabela_n, coloana_fk, tabel_referit):\n    return tabela_n\n\nprint(tabela_cu_cheie_externa(\"Student\", \"curs_id\", \"Curs\"))",
     "variante": [
       "Student",
       "Curs",
       "Ambele",
       "Niciunul"
     ],
-    "corect": "Student"
+    "corect": 0
   },
   "4.4.3": {
-    "cod": "# Student(curs_id REFERENCES Curs(id))\n# Inserare Student cu curs_id=99 dar Curs(99) nu exista?",
+    "cod": "def valideaza_fk(curs_id, cursuri_existente):\n    if curs_id not in cursuri_existente:\n        return \"Eroare (integritate referențială)\"\n    return \"OK\"\n\nprint(valideaza_fk(99, {1, 2, 3}))",
     "variante": [
       "Eroare (integritate referențială)",
       "Merge",
       "Sterge Cursul",
       "Ignoră"
     ],
-    "corect": "Eroare (integritate referențială)"
+    "corect": 0
   },
   "4.5.3": {
-    "cod": "# Comanda(id, produs, pret, client, adresa_client)\n# client determina adresa_client (tranzitiv)\n# In ce forma normala e?",
+    "cod": "def verifica_fn3(are_dependenta_tranzitiva):\n    return \"FN3 incălcat\" if are_dependenta_tranzitiva else \"FN3 respectat\"\n\nprint(verifica_fn3(True))",
     "variante": [
       "FN3 incălcat",
       "FN1",
       "FN2",
       "FN3"
     ],
-    "corect": "FN3 incălcat"
+    "corect": 0
   },
   "4.6.3": {
-    "cod": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE T(x INTEGER)')\ncur.execute('INSERT INTO T VALUES (5)')\n# Cat are T inainte de commit? (count)",
+    "cod": "class CursorSimulat:\n    def __init__(self, tabel):\n        self.tabel = tabel\n    def insereaza(self, valoare):\n        self.tabel.append(valoare)  # vizibil imediat pe aceeasi conexiune, chiar fara commit\n\ntabel = []\ncursor = CursorSimulat(tabel)\ncursor.insereaza(5)\nprint(len(tabel))",
     "variante": [
       "1",
       "0",
       "Eroare",
       "Necunoscut"
     ],
-    "corect": "1"
+    "corect": 0
   },
   "4.7.3": {
-    "cod": "# Student(nume,varsta): ('Ana',17),('Bogdan',19),('Cris',17)\n# SELECT nume FROM Student ORDER BY varsta DESC, nume ASC\n# Primul rezultat?",
+    "cod": "studenti = [(\"Ana\", 17), (\"Bogdan\", 19), (\"Cris\", 17)]\nordonati = sorted(studenti, key=lambda s: (-s[1], s[0]))\nprint(ordonati[0][0])",
     "variante": [
       "Bogdan",
       "Ana",
       "Cris",
       "Bogdan,Ana"
     ],
-    "corect": "Bogdan"
+    "corect": 0
   },
   "4.8.3": {
-    "cod": "# Vanzari(oras,suma): ('A',100),('A',200),('B',50)\n# SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras\n# Suma pentru 'A'?",
+    "cod": "vanzari = [(\"A\", 100), (\"A\", 200), (\"B\", 50)]\nsuma_a = sum(suma for oras, suma in vanzari if oras == \"A\")\nprint(suma_a)",
     "variante": [
       "300",
       "100",
       "350",
       "200"
     ],
-    "corect": "300"
+    "corect": 0
   },
   "4.9.3": {
-    "cod": "# Student(1,'Ana'),(2,'Bogdan'); Inscriere(1,10),(2,10)\n# INNER JOIN Student-Inscriere: cate randuri?",
+    "cod": "student = [(1, \"Ana\"), (2, \"Bogdan\")]\ninscriere = [(1, 10), (2, 10)]\nrezultat = [(s, i) for s in student for i in inscriere if s[0] == i[0]]\nprint(len(rezultat))",
     "variante": [
       "2",
       "1",
       "0",
       "4"
     ],
-    "corect": "2"
+    "corect": 0
   },
   "4.10.3": {
-    "cod": "# Tabela: ('Ana',17),('Bogdan',19)\n# UPDATE Student SET varsta=varsta+1 WHERE nume='Ana'\n# Cat are Ana?",
+    "cod": "studenti = {\"Ana\": 17, \"Bogdan\": 19}\nstudenti[\"Ana\"] += 1\nprint(studenti[\"Ana\"])",
     "variante": [
       "18",
       "17",
       "19",
       "Eroare"
     ],
-    "corect": "18"
+    "corect": 0
   },
   "4.11.3": {
-    "cod": "# CREATE TABLE T(a INT); ALTER TABLE T ADD COLUMN b INT;\n# Cat coloane are T?",
+    "cod": "coloane = [\"a\"]\ncoloane.append(\"b\")\nprint(len(coloane))",
     "variante": [
       "2",
       "1",
       "3",
       "0"
     ],
-    "corect": "2"
+    "corect": 0
   },
   "4.12.3": {
-    "cod": "# Transfer 100 de la contul 1 la 2.\n# Daca a 2-a UPDATE da eroare, ce face ROLLBACK?",
+    "cod": "def simuleaza_rollback(a_reusit_primul_update, a_reusit_al_doilea_update):\n    if a_reusit_primul_update and not a_reusit_al_doilea_update:\n        return \"Anuleaza tot transferul\"\n    return \"Confirma transferul\"\n\nprint(simuleaza_rollback(True, False))",
     "variante": [
       "Anuleaza tot transferul",
       "Pastreaza prima",
       "Nu face nimic",
       "Sterge conturile"
     ],
-    "corect": "Anuleaza tot transferul"
+    "corect": 0
   },
   "4.13.3": {
-    "cod": "# Coloane: varsta, venit, aprobare(Da/Nu)\n# Care e caracteristica si care tinta?",
+    "cod": "coloane = [\"varsta\", \"venit\", \"aprobare\"]\ntinta = \"aprobare\"\nfeatures = [c for c in coloane if c != tinta]\nprint(\",\".join(features) + \"=features; \" + tinta + \"=target\")",
     "variante": [
       "varsta,venit=features; aprobare=target",
       "toate features",
       "aprobare=feature",
       "nimic"
     ],
-    "corect": "varsta,venit=features; aprobare=target"
+    "corect": 0
   },
   "4.14.3": {
-    "cod": "# Valori: [10,20,30]. Normalizare min-max pentru 20?",
+    "cod": "valori = [10, 20, 30]\nval_norm = (20 - min(valori)) / (max(valori) - min(valori))\nprint(val_norm)",
     "variante": [
       "0.5",
       "0",
       "1",
       "20"
     ],
-    "corect": "0.5"
+    "corect": 0
   },
   "4.15.3": {
-    "cod": "# Puncte: 1,2,9,10. k=2.\n# Cele 2 clustere probabil?",
+    "cod": "puncte = [1, 2, 9, 10]\ncentroizi = [min(puncte), max(puncte)]\nclustere = {0: [], 1: []}\nfor p in puncte:\n    idx = 0 if abs(p - centroizi[0]) <= abs(p - centroizi[1]) else 1\n    clustere[idx].append(p)\nprint(f\"[{','.join(map(str, clustere[0]))}] si [{','.join(map(str, clustere[1]))}]\")",
     "variante": [
       "[1,2] si [9,10]",
       "[1,9] si [2,10]",
       "[1] si [2,9,10]",
       "[1,2,9] si [10]"
     ],
-    "corect": "[1,2] si [9,10]"
+    "corect": 0
   },
   "4.16.3": {
-    "cod": "# model antrenat pe y = 2*x + 1\n# model.predict([[5]]) => ?",
+    "cod": "def model_predict(x):\n    return 2 * x + 1\n\nprint(model_predict(5))",
     "variante": [
       "11",
       "10",
       "5",
       "2"
     ],
-    "corect": "11"
+    "corect": 0
   },
   "4.17.3": {
-    "cod": "# 3 vecini: Da, Da, Nu. Ce prezice KNN (k=3)?",
+    "cod": "vecini = [\"Da\", \"Da\", \"Nu\"]\npredictie = max(set(vecini), key=vecini.count)\nprint(predictie)",
     "variante": [
       "Da",
       "Nu",
       "Eroare",
       "Ambele"
     ],
-    "corect": "Da"
+    "corect": 0
   },
   "4.18.3": {
-    "cod": "# Neuron: x=2, w=3, b=1, iesire = w*x + b\n# Care e iesirea?",
+    "cod": "x, w, b = 2, 3, 1\niesire = w * x + b\nprint(iesire)",
     "variante": [
       "7",
       "6",
       "5",
       "3"
     ],
-    "corect": "7"
+    "corect": 0
   },
   "4.19.3": {
     "cod": "temperaturi = [12, 24, 6, 18]\nmaxim = max(temperaturi)\n\nfor t in temperaturi:\n    lungime = round(t / maxim * 8)\n    print(\"█\" * lungime, t)",
@@ -860,14 +860,14 @@
     "corect": 0
   },
   "4.21.3": {
-    "cod": "# 100 exemple, test_size=0.2\n# Cate in setul de test?",
+    "cod": "n_exemple = 100\ntest_size = 0.2\nn_test = round(n_exemple * test_size)\nprint(n_test)",
     "variante": [
       "20",
       "80",
       "0.2",
       "100"
     ],
-    "corect": "20"
+    "corect": 0
   },
   "4.22.3": {
     "cod": "def inmultire_matrici(a, b):\n    rezultat = []\n    for linie in a:\n        linie_noua = []\n        for j in range(len(b[0])):\n            coloana = [rand[j] for rand in b]\n            produs_scalar = sum(x * y for x, y in zip(linie, coloana))\n            linie_noua.append(produs_scalar)\n        rezultat.append(linie_noua)\n    return rezultat\n\na = [[1, 0], [0, 1]]\nb = [[3, 4], [5, 6]]\nprint(inmultire_matrici(a, b))",
@@ -890,7 +890,7 @@
     "corect": 0
   },
   "P7.2.3": {
-    "cod": "import turtle\nt = turtle.Pen()\nt.forward(100)",
+    "cod": "class CreionSimulat:\n    def __init__(self):\n        self.pozitie = (0, 0)\n        self.directie_grade = 0\n    def forward(self, distanta):\n        import math\n        x, y = self.pozitie\n        rad = math.radians(self.directie_grade)\n        self.pozitie = (round(x + distanta * math.cos(rad), 2), round(y + distanta * math.sin(rad), 2))\n        return self.pozitie\n\nt = CreionSimulat()\nprint(\"Pozitia finala:\", t.forward(100))",
     "enunt": "Ce va face creionul din Python (turtle) când rulează acest cod?",
     "variante": [
       "Va desena o linie dreaptă de lungime 100",
@@ -900,7 +900,7 @@
     "corect": 0
   },
   "P7.3.3": {
-    "cod": "import turtle\nt = turtle.Pen()\nfor i in range(4):\n    t.forward(50)\n    t.left(90)",
+    "cod": "class CreionSimulat:\n    def __init__(self):\n        self.pozitie = (0, 0)\n        self.directie_grade = 0\n        self.traseu = [(0, 0)]\n    def forward(self, distanta):\n        import math\n        x, y = self.pozitie\n        rad = math.radians(self.directie_grade)\n        self.pozitie = (round(x + distanta * math.cos(rad), 2), round(y + distanta * math.sin(rad), 2))\n        self.traseu.append(self.pozitie)\n    def left(self, grade):\n        self.directie_grade += grade\n\nt = CreionSimulat()\nfor _ in range(4):\n    t.forward(50)\n    t.left(90)\nprint(\"Traseul creionului:\", t.traseu)",
     "enunt": "Ce figură geometrică va desena creionul nostru?",
     "variante": [
       "Un cerc",

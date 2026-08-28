@@ -9,6 +9,13 @@ import { useEffect, useRef, useState } from "react";
  * valoarea finală (nu numără de la 0 la încărcarea paginii); doar
  * SCHIMBĂRILE ulterioare ale valorii sunt animate.
  *
+ * O nouă animație pornește mereu de la valoarea curent AFIȘATĂ pe ecran
+ * (`afisatRef`), nu de la ultima valoare confirmată la finalul unei
+ * animații anterioare — altfel, dacă `valoare` se schimbă de două ori
+ * rapid (ex. XP la două răspunsuri corecte succesive), a doua animație
+ * repornea de la un punct vechi, iar numărul sărea vizibil înapoi înainte
+ * să reanime spre noua țintă.
+ *
  * Respectă prefers-reduced-motion: dacă utilizatorul a cerut mișcare
  * redusă, valoarea se actualizează direct, fără numărătoare.
  */
@@ -28,18 +35,25 @@ export default function AnimatedNumber({
   deLaZero?: boolean;
 }) {
   const [afisat, setAfisat] = useState(deLaZero ? 0 : valoare);
-  const anterior = useRef(deLaZero ? 0 : valoare);
+  // Oglindește `afisat`, dar e citibil sincron dintr-un efect nou, fără
+  // să declanșeze acel efect la fiecare cadru de animație (spre deosebire
+  // de `afisat` însuși, care nu poate fi dependință a efectului de mai jos).
+  const afisatRef = useRef(afisat);
   const primaRandare = useRef(true);
+
+  const actualizeazaAfisat = (nou: number) => {
+    afisatRef.current = nou;
+    setAfisat(nou);
+  };
 
   useEffect(() => {
     if (primaRandare.current) {
       primaRandare.current = false;
       if (!deLaZero) {
-        anterior.current = valoare;
         return;
       }
     }
-    if (valoare === anterior.current) return;
+    if (valoare === afisatRef.current) return;
 
     const reduceMotion =
       typeof window !== "undefined" &&
@@ -49,7 +63,7 @@ export default function AnimatedNumber({
     // `pas` să sară direct la valoarea finală — setState rămâne mereu în
     // interiorul callback-ului de requestAnimationFrame, niciodată direct
     // în corpul efectului.
-    const start = anterior.current;
+    const start = afisatRef.current;
     const capat = valoare;
     const startTime = performance.now();
     const durata = reduceMotion ? 0 : durataMs;
@@ -59,11 +73,9 @@ export default function AnimatedNumber({
       const progres = durata === 0 ? 1 : Math.min((acum - startTime) / durata, 1);
       // ease-out cubic — pornește repede, încetinește spre final.
       const usor = 1 - Math.pow(1 - progres, 3);
-      setAfisat(Math.round(start + (capat - start) * usor));
+      actualizeazaAfisat(Math.round(start + (capat - start) * usor));
       if (progres < 1) {
         frame = requestAnimationFrame(pas);
-      } else {
-        anterior.current = capat;
       }
     };
 
