@@ -3,6 +3,7 @@ import HeroCodeRunner from "@/components/HeroCodeRunner";
 import AiAssistantWidget from "@/components/AiAssistantWidget";
 import Dashboard from "@/components/Dashboard";
 import NewsletterForm from "@/components/NewsletterForm";
+import ScrollReveal from "@/components/ScrollReveal";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
@@ -128,8 +129,8 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
 
   return (
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen relative overflow-hidden font-sans">
-      {/* Soft ambient background glow */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
+      {/* Soft ambient background glow — plutire discretă, nu statică */}
+      <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
       {/* HERO SECTION */}
       <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 bg-hero-glow rounded-3xl">
@@ -154,7 +155,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         {/* Layout Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Coloana Stânga: Text & CTA */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="enter-slide-up lg:col-span-5 space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-none [font-family:var(--font-fraunces)]">
               Învață Python direct în browser. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700">
@@ -202,17 +203,17 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           </div>
 
           {/* Coloana Centru: IDE Editor (Păstrat Dark doar pentru cod) */}
-          <div className="lg:col-span-4">
+          <div className="enter-slide-up enter-delay-1 lg:col-span-4 shadow-depth-lg rounded-2xl">
             <HeroCodeRunner />
           </div>
 
           {/* Coloana Dreapta: Floating Widgets pe carduri albe */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="enter-slide-up enter-delay-2 lg:col-span-3 space-y-4">
             {/* Widget Asistent AI */}
             <AiAssistantWidget />
 
             {/* Widget Progres & Gamification */}
-            <div className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-sm text-[#1E2430]">
+            <div className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-depth-md text-[#1E2430]">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-extrabold text-[#525B6C] uppercase tracking-wider">
                   Progres & Gamification
@@ -239,106 +240,87 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       </section>
 
       {/* PILONI DE ÎNCREDERE (4 CARDE ALBE PE FILDEȘ) */}
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-xs flex items-center gap-4 hover:border-amber-300 transition">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-2xl border border-amber-200 shrink-0">
-              💻
-            </div>
-            <div>
-              <h3 className="font-extrabold text-[#1E2430] text-sm">Învățare în ritm propriu</h3>
-              <p className="text-xs text-[#525B6C]">Oriunde, oricând pe laptop sau tabletă</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-xs flex items-center gap-4 hover:border-emerald-300 transition">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-2xl border border-emerald-200 shrink-0">
-              📋
-            </div>
-            <div>
-              <h3 className="font-extrabold text-[#1E2430] text-sm">Exerciții interactive</h3>
-              <p className="text-xs text-[#525B6C]">Feedback instant la fiecare linie</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-xs flex items-center gap-4 hover:border-amber-300 transition">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-2xl border border-amber-200 shrink-0">
-              🎓
-            </div>
-            <div>
-              <h3 className="font-extrabold text-[#1E2430] text-sm">Pregătire Bac & Școală</h3>
-              <p className="text-xs text-[#525B6C]">Aliniat la programa oficială RO</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-xs flex items-center gap-4 hover:border-purple-300 transition">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-50 text-2xl border border-purple-200 shrink-0">
-              👥
-            </div>
-            <div>
-              <h3 className="font-extrabold text-[#1E2430] text-sm">Comunitate activă</h3>
-              <p className="text-xs text-[#525B6C]">Suport de la profesori și elevi</p>
-            </div>
-          </div>
+          {[
+            { icon: "💻", bg: "bg-amber-50 border-amber-200", hover: "hover:border-amber-300 hover-glow-brand", titlu: "Învățare în ritm propriu", text: "Oriunde, oricând pe laptop sau tabletă" },
+            { icon: "📋", bg: "bg-emerald-50 border-emerald-200", hover: "hover:border-emerald-300", titlu: "Exerciții interactive", text: "Feedback instant la fiecare linie" },
+            { icon: "🎓", bg: "bg-amber-50 border-amber-200", hover: "hover:border-amber-300 hover-glow-brand", titlu: "Pregătire Bac & Școală", text: "Aliniat la programa oficială RO" },
+            { icon: "👥", bg: "bg-purple-50 border-purple-200", hover: "hover:border-purple-300", titlu: "Comunitate activă", text: "Suport de la profesori și elevi" },
+          ].map((p, i) => (
+            <ScrollReveal key={p.titlu} index={i}>
+              <div className={`rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-depth-sm flex items-center gap-4 transition ${p.hover}`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl border shrink-0 ${p.bg}`}>
+                  {p.icon}
+                </div>
+                <div>
+                  <h3 className="font-extrabold text-[#1E2430] text-sm">{p.titlu}</h3>
+                  <p className="text-xs text-[#525B6C]">{p.text}</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
       {/* CLASE CURRICULUM */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
           <span className="inline-flex rounded-full bg-indigo-50 border border-indigo-200 px-3.5 py-1 text-xs font-bold text-indigo-900 uppercase tracking-widest mb-3">
             Programa Școlară
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#1E2430]">Ce înveți pe clase</h2>
-          <p className="mt-2 text-sm text-[#525B6C] font-medium">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">Ce înveți pe clase</h2>
+          <p className="mt-3 text-sm text-[#525B6C] font-medium">
             Parcurge modulele de la clasa a IX-a până la examenul de Bacalaureat.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CLASE.map((c) => (
-            <Link
-              key={c.clasa}
-              href={`/curriculum/${c.clasa}`}
-              className="rounded-3xl border border-[#EBE7DF] bg-white p-6 shadow-xs hover:shadow-md transition-all hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F5F2EA] font-black text-lg text-[#1E2430]">
-                  {c.clasa}
-                </span>
-                <span className="text-3xl">{c.icon}</span>
-              </div>
-              <h3 className="text-lg font-black text-[#1E2430]">{c.titlu}</h3>
-              <p className="mt-2 text-xs text-[#525B6C] leading-relaxed">{c.descriere}</p>
-            </Link>
+          {CLASE.map((c, i) => (
+            <ScrollReveal key={c.clasa} index={i}>
+              <Link
+                href={`/curriculum/${c.clasa}`}
+                className="hover-glow-brand block rounded-3xl border border-[#EBE7DF] bg-white p-6 shadow-depth-sm transition-all"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F5F2EA] font-black text-lg text-[#1E2430]">
+                    {c.clasa}
+                  </span>
+                  <span className="text-3xl">{c.icon}</span>
+                </div>
+                <h3 className="text-lg font-black text-[#1E2430]">{c.titlu}</h3>
+                <p className="mt-2 text-xs text-[#525B6C] leading-relaxed">{c.descriere}</p>
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
-        <h2 className="text-2xl font-black text-[#1E2430] text-center mb-8 sm:text-3xl">
+      <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+        <h2 className="text-2xl font-black text-[#1E2430] text-center mb-10 sm:text-3xl [font-family:var(--font-fraunces)]">
           Întrebări frecvente
         </h2>
         <div className="space-y-4">
-          {FAQ.map((f) => (
-            <details
-              key={f.intrebare}
-              className="group rounded-2xl border border-[#EBE7DF] bg-white p-5 font-sans shadow-xs"
-            >
-              <summary className="cursor-pointer font-bold text-[#1E2430] text-sm sm:text-base flex items-center justify-between">
-                <span>{f.intrebare}</span>
-                <span className="text-amber-500 text-xl group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="mt-3 text-xs sm:text-sm text-[#525B6C] leading-relaxed">{f.raspuns}</p>
-            </details>
+          {FAQ.map((f, i) => (
+            <ScrollReveal key={f.intrebare} index={i} delayMs={60}>
+              <details className="group rounded-2xl border border-[#EBE7DF] bg-white p-5 font-sans shadow-depth-sm open:shadow-depth-md transition-shadow">
+                <summary className="cursor-pointer font-bold text-[#1E2430] text-sm sm:text-base flex items-center justify-between">
+                  <span>{f.intrebare}</span>
+                  <span className="text-amber-500 text-xl group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p className="mt-3 text-xs sm:text-sm text-[#525B6C] leading-relaxed">{f.raspuns}</p>
+              </details>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* NEWSLETTER */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <NewsletterForm />
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <ScrollReveal>
+          <NewsletterForm />
+        </ScrollReveal>
       </section>
     </div>
   );

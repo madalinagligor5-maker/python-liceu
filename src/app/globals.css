@@ -60,6 +60,53 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Sistem de mișcare reutilizabil (homepage, dashboard, lecții) — vezi
+   ScrollReveal.tsx pentru componenta care adaugă .is-visible la intrarea
+   în viewport, via IntersectionObserver. */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-floatSubtle {
+  animation: floatSubtle 5s ease-in-out infinite;
+}
+
+/* Secvență de intrare pentru conținut deasupra fold-ului (hero) — spre
+   deosebire de .reveal (scroll-triggered), astea pornesc la montare, cu
+   decalaj fix, pentru că hero-ul e vizibil imediat, nu apare la scroll. */
+.enter-slide-up {
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.enter-delay-1 { animation-delay: 90ms; }
+.enter-delay-2 { animation-delay: 200ms; }
+.enter-delay-3 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .enter-slide-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @keyframes streakPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.12); }
@@ -108,6 +155,11 @@ body {
   --shadow-depth-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
   --shadow-depth-md: 0 8px 24px rgba(15, 23, 42, 0.10);
   --shadow-depth-lg: 0 16px 40px rgba(15, 23, 42, 0.16);
+  --shadow-depth-xl: 0 28px 64px rgba(15, 23, 42, 0.22);
+  /* Umbre "colorate", derivate din paletă (nu culori noi) — pentru accente
+     de hover/focus premium pe carduri, fără să adaugi vreun hex nou. */
+  --shadow-glow-brand: 0 12px 32px rgba(245, 158, 11, 0.22);
+  --shadow-glow-accent: 0 12px 32px rgba(37, 99, 235, 0.20);
 }
 
 .shadow-depth-sm {
@@ -122,12 +174,50 @@ body {
   box-shadow: var(--shadow-depth-lg);
 }
 
+.shadow-depth-xl {
+  box-shadow: var(--shadow-depth-xl);
+}
+
+.hover-glow-brand {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.hover-glow-brand:hover,
+.hover-glow-brand:focus-visible {
+  box-shadow: var(--shadow-glow-brand);
+  transform: translateY(-2px);
+}
+
+.hover-glow-accent {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.hover-glow-accent:hover,
+.hover-glow-accent:focus-visible {
+  box-shadow: var(--shadow-glow-accent);
+  transform: translateY(-2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fadeIn,
   .animate-streakPulse,
   .animate-popIn,
-  .animate-celebrateBurst {
+  .animate-celebrateBurst,
+  .animate-floatSubtle {
     animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hover-glow-brand,
+  .hover-glow-accent {
+    transition: none !important;
+  }
+  .hover-glow-brand:hover,
+  .hover-glow-brand:focus-visible,
+  .hover-glow-accent:hover,
+  .hover-glow-accent:focus-visible {
+    transform: none !important;
   }
 }
 
@@ -137,6 +227,7 @@ body {
   border-width: 1px;
   border-style: solid;
   padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-depth-sm);
 }
 
 .bloc-card--tip {
@@ -204,4 +295,12 @@ body {
 
 #lectie-articol.tema-dark .bloc-card--titlu {
   color: inherit;
+}
+
+/* Umbra "de profunzime" standard e gândită pentru fundal deschis — pe fundal
+   întunecat aproape nu se vede. Aici o înlocuim cu o umbră deschisă,
+   discretă, ca și chenarele de tip să aibă aceeași senzație de profunzime
+   ca în modul luminos, nu doar în el. */
+#lectie-articol.tema-dark .bloc-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }

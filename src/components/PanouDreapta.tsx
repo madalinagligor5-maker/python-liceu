@@ -21,7 +21,7 @@ export function CardStreakSaptamana({ zile }: { zile: number }) {
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-depth-md hover-glow-brand transition">
       <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
         <IconStreak className={`w-5 h-5 ${zile > 0 ? "text-amber-500 animate-streakPulse" : "text-slate-300"}`} /> Streak de Învățare
       </h3>
@@ -61,7 +61,7 @@ export function CardStreakSaptamana({ zile }: { zile: number }) {
 
 export function CardCitat() {
   return (
-    <blockquote className="rounded-xl border-l-4 border-accent bg-surface p-4 text-sm italic text-muted">
+    <blockquote className="rounded-xl border-l-4 border-accent bg-surface p-4 text-sm italic text-muted shadow-depth-sm">
       „Programarea este arta de a transforma cafeaua în cod. ☕💻”
     </blockquote>
   );
@@ -79,7 +79,7 @@ export type RandClasament = {
  */
 export function CardClasament({ randuri }: { randuri: RandClasament[] }) {
   return (
-    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-depth-md hover-glow-brand transition">
       <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
         <IconTrofeu className="w-5 h-5 text-amber-500" /> Clasament (Leaderboard)
       </h3>
@@ -161,7 +161,7 @@ export function CardProvocareZilei({
   };
 
   return (
-    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-depth-md hover-glow-brand transition">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-bold text-foreground">
           <span aria-hidden="true">🎯</span> Provocarea Zilei
@@ -261,7 +261,7 @@ export function CardRecapitulareSpatiata({
   };
 
   return (
-    <div className="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50/50 to-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50/50 to-white p-5 shadow-depth-md hover-glow-accent transition">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-bold text-indigo-950 flex items-center gap-1.5">
           <span>📌</span> Recapitulare de azi

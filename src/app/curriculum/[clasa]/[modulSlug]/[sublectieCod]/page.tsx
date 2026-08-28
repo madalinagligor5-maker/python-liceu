@@ -22,6 +22,7 @@ import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
+import ScrollReveal from "@/components/ScrollReveal";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -116,7 +117,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
           <p className="text-xs font-semibold uppercase tracking-wide text-brand">
             {modul.cod} {modul.titlu}
           </p>
-          <h1 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+          <h1 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl [font-family:var(--font-fraunces)]">
             {continut.titlu}
           </h1>
         </div>
@@ -126,11 +127,15 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         <BlocuriSublectie blocuri={continut.blocuri} esteVerificare={continut.esteVerificare} esteExercitii={continut.esteExercitii} />
       </LectieContainer>
 
-      {predic && <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />}
+      {predic && (
+        <ScrollReveal className="mt-8">
+          <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />
+        </ScrollReveal>
+      )}
 
       {itemsCod.length > 0 && (
-        <div className="mt-6 space-y-6">
-          <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
+        <div className="mt-10 space-y-6">
+          <h3 className="flex items-center gap-2 text-lg font-bold text-foreground [font-family:var(--font-fraunces)]">
             <span className="text-2xl" aria-hidden="true">
               ✍️
             </span>
@@ -142,38 +147,38 @@ export default async function SublectiePage({ params }: { params: Promise<Params
               { tip: "verifica-cod" }
             >;
             return (
-              <div
-                key={idx}
-                className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
-              >
-                <p className="text-sm font-medium text-foreground">{item.enunt}</p>
-                <div className="mt-3">
-                  <PythonEditor
-                    initialCode={item.template || "# Scrie aici codul tău Python\n"}
-                    expectedOutput={item.expectedOutput}
-                    titlu="Editor Python (rulează în browser)"
-                    height={item.template ? 180 : 140}
-                  />
+              <ScrollReveal key={idx} index={idx} delayMs={100}>
+                <div className="rounded-2xl border border-brand-border bg-white p-5 shadow-depth-sm">
+                  <p className="text-sm font-medium text-foreground">{item.enunt}</p>
+                  <div className="mt-3">
+                    <PythonEditor
+                      initialCode={item.template || "# Scrie aici codul tău Python\n"}
+                      expectedOutput={item.expectedOutput}
+                      titlu="Editor Python (rulează în browser)"
+                      height={item.template ? 180 : 140}
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-foreground/55">
+                    Rulește codul — dacă output-ul corespunde, ai demonstrat că
+                    stăpânești conceptul, nu doar l-ai recunoscut în grilă.
+                  </p>
                 </div>
-                <p className="mt-2 text-xs text-foreground/55">
-                  Rulește codul — dacă output-ul corespunde, ai demonstrat că
-                  stăpânești conceptul, nu doar l-ai recunoscut în grilă.
-                </p>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
       )}
 
-
-      <SublectieGate
-        exercitii={exercitii}
-        intrebari={intrebari}
-        clasa={clasa}
-        sublectieCod={sublectieCod}
-        autentificat={Boolean(user)}
-        exercitiiNecesare={exercitiiNecesare}
-      />
+      <ScrollReveal className="mt-10">
+        <SublectieGate
+          exercitii={exercitii}
+          intrebari={intrebari}
+          clasa={clasa}
+          sublectieCod={sublectieCod}
+          autentificat={Boolean(user)}
+          exercitiiNecesare={exercitiiNecesare}
+        />
+      </ScrollReveal>
 
       <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
         {anterior ? (

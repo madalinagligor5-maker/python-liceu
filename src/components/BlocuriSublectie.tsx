@@ -30,7 +30,7 @@ export default function BlocuriSublectie({
   if (esteVerificare || esteExercitii) return null;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {blocuri
         .filter(
           (b) =>
@@ -62,7 +62,7 @@ export default function BlocuriSublectie({
             return (
               <div
                 key={i}
-                className="text-[15px] leading-relaxed text-foreground/90"
+                className="max-w-[68ch] text-[15.5px] leading-[1.75] text-foreground/90 [&_p+p]:mt-4"
                 dangerouslySetInnerHTML={{ __html: b.html }}
               />
             );

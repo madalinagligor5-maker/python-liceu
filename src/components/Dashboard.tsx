@@ -6,6 +6,7 @@ import DrumInvatare from "@/components/DrumInvatare";
 import IconStreak from "@/components/icons/IconStreak";
 import IconXp from "@/components/icons/IconXp";
 import IconNivel from "@/components/icons/IconNivel";
+import AnimatedNumber from "@/components/AnimatedNumber";
 import {
   CardCitat,
   CardClasament,
@@ -86,21 +87,21 @@ export default function Dashboard({
                 <IconStreak
                   className={`h-4 w-4 ${progres.streakZile > 0 ? "text-amber-500 animate-streakPulse" : "text-slate-300"}`}
                 />
-                {progres.streakZile}
+                <AnimatedNumber valoare={progres.streakZile} />
               </p>
             </div>
             <div className="text-center">
               <p className="text-[11px] font-semibold uppercase text-muted">XP</p>
               <p className="flex items-center justify-center gap-1 text-lg font-bold text-foreground">
                 <IconXp className="h-4 w-4 text-indigo-500" />
-                {progres.xpTotal}
+                <AnimatedNumber valoare={progres.xpTotal} />
               </p>
             </div>
             <div className="text-center">
               <p className="text-[11px] font-semibold uppercase text-muted">Nivel</p>
               <p className="flex items-center justify-center gap-1 text-lg font-bold text-foreground">
                 <IconNivel className="h-4 w-4 text-brand" />
-                {nivel}
+                <AnimatedNumber valoare={nivel} />
               </p>
             </div>
           </div>
@@ -112,7 +113,7 @@ export default function Dashboard({
           {/* Coloana principală */}
           <div className="min-w-0">
             {/* Hero */}
-            <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#fdf6e3] to-[#f6efdc] p-6 sm:p-8">
+            <section className="relative overflow-hidden rounded-[20px] border border-brand-border bg-gradient-to-br from-[#fdf6e3] to-[#f6efdc] p-6 shadow-depth-lg sm:p-8">
               {/* Decoruri din referința vizuală: cod, cafea, plantă. */}
               <span aria-hidden="true" className="pointer-events-none absolute left-4 top-3 text-2xl opacity-30">{"{}"}</span>
               <span aria-hidden="true" className="pointer-events-none absolute right-40 top-2 text-2xl opacity-20">&lt;/&gt;</span>
@@ -187,7 +188,7 @@ export default function Dashboard({
             <p className="mt-1 text-sm text-muted">
               Verde = finalizată, evidențiat = pasul următor, lacăt = urmează.
             </p>
-            <div className="mt-4 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6">
+            <div className="mt-4 rounded-2xl border border-border bg-white p-5 shadow-depth-md sm:p-6">
               <DrumInvatare unitati={unitati} clasa={clasaSelectata} />
             </div>
           </div>
