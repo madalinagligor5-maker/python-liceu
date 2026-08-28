@@ -80,10 +80,17 @@ Scrie o funcție `adauga(conn, nume, telefon)` care inserează și face commit.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `executa_fara_commit(tabel, valoare)` care simulează o comandă necomisă: pornește de la o COPIE a tabelului, adaugă `valoare` la copie și o returnează — fără să modifice tabelul original (exact ce se întâmplă înainte de `conn.commit()`). Demo: pornind de la un tabel cu 3 elemente, arată câte elemente are tabelul original și câte are copia, după ce ai „inserat” un element în copie. Demo: `tabel = [1, 2, 3]
+rezultat = executa_fara_commit(tabel, 99)
+print(len(tabel), len(rezultat))` -> `3 4`
+template: def executa_fara_commit(tabel, valoare):
+    # completeaza
+    pass
 
-
+tabel = [1, 2, 3]
+rezultat = executa_fara_commit(tabel, 99)
+print(len(tabel), len(rezultat))
+output: 3 4
 :::
 
 # Modulul 4.7 — SQL: interogări SELECT, proiecție, ordonare
@@ -178,10 +185,13 @@ Folosind `sqlite3` în Python, creează tabela, inserează 3 rânduri și afișe
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `ordoneaza_dupa_varsta(studenti)` care primește o listă de studenți (dicționare cu `nume` și `varsta`) și returnează lista de nume ordonată ca în `ORDER BY varsta DESC, nume ASC` (cei mai în vârstă primii, iar la egalitate, ordine alfabetică). Demo: `ordoneaza_dupa_varsta([{"nume": "Ana", "varsta": 17}, {"nume": "Bogdan", "varsta": 19}, {"nume": "Cris", "varsta": 17}])` -> `['Bogdan', 'Ana', 'Cris']`
+template: def ordoneaza_dupa_varsta(studenti):
+    # completeaza
+    pass
 
-
+print(ordoneaza_dupa_varsta([{"nume": "Ana", "varsta": 17}, {"nume": "Bogdan", "varsta": 19}, {"nume": "Cris", "varsta": 17}]))
+output: ['Bogdan', 'Ana', 'Cris']
 :::
 
 # Modulul 4.8 — SQL: funcții agregate și grupare
@@ -280,10 +290,13 @@ Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studen
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `suma_pe_grup(tabel, coloana_grup, coloana_suma)` care primește un tabel (listă de dicționare) și simulează `SELECT coloana_grup, SUM(coloana_suma) FROM tabel GROUP BY coloana_grup`, returnând un dicționar grup -> sumă. Demo: `suma_pe_grup([{"oras": "A", "suma": 100}, {"oras": "A", "suma": 200}, {"oras": "B", "suma": 50}], "oras", "suma")` -> `{'A': 300, 'B': 50}`
+template: def suma_pe_grup(tabel, coloana_grup, coloana_suma):
+    # completeaza
+    pass
 
-
+print(suma_pe_grup([{"oras": "A", "suma": 100}, {"oras": "A", "suma": 200}, {"oras": "B", "suma": 50}], "oras", "suma"))
+output: {'A': 300, 'B': 50}
 :::
 
 # Modulul 4.9 — SQL: JOIN și subinterogări
@@ -393,10 +406,13 @@ Scrie o subinterogare care returnează studenții înscriși la un curs dat.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `inner_join_count(stanga, dreapta, cheie_stanga, cheie_dreapta)` care simulează un `INNER JOIN` între două tabele (liste de dicționare) și returnează câte rânduri din `stanga` au potrivire în `dreapta` (rândurile fără potrivire NU se numără, exact ca la INNER JOIN). Demo: `inner_join_count([{"id": 1, "nume": "Ana"}, {"id": 2, "nume": "Bogdan"}], [{"student_id": 1, "curs_id": 10}], "id", "student_id")` -> `1`
+template: def inner_join_count(stanga, dreapta, cheie_stanga, cheie_dreapta):
+    # completeaza
+    pass
 
-
+print(inner_join_count([{"id": 1, "nume": "Ana"}, {"id": 2, "nume": "Bogdan"}], [{"student_id": 1, "curs_id": 10}], "id", "student_id"))
+output: 1
 :::
 
 # Modulul 4.10 — SQL: DML — inserare, actualizare, ștergere
@@ -498,10 +514,13 @@ conn.___()
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `actualizeaza_varsta(tabel, nume, delta)` care simulează `UPDATE Student SET varsta = varsta + delta WHERE nume = nume`, modificând direct rândul cu numele dat din tabel (listă de dicționare) și întorcând tabelul. Demo: `actualizeaza_varsta([{"nume": "Ana", "varsta": 17}, {"nume": "Bogdan", "varsta": 19}], "Ana", 1)` -> `[{'nume': 'Ana', 'varsta': 18}, {'nume': 'Bogdan', 'varsta': 19}]`
+template: def actualizeaza_varsta(tabel, nume, delta):
+    # completeaza
+    pass
 
-
+print(actualizeaza_varsta([{"nume": "Ana", "varsta": 17}, {"nume": "Bogdan", "varsta": 19}], "Ana", 1))
+output: [{'nume': 'Ana', 'varsta': 18}, {'nume': 'Bogdan', 'varsta': 19}]
 :::
 
 # Modulul 4.11 — SQL: DDL — creare și modificare a structurii
@@ -594,10 +613,13 @@ Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `adauga_coloana(tabel, nume_coloana, valoare_implicita)` care simulează `ALTER TABLE ... ADD COLUMN`, adăugând o nouă cheie (cu valoarea implicită dată) la fiecare rând (dicționar) din tabel. Demo: `adauga_coloana([{"id": 1, "nume": "Ana"}, {"id": 2, "nume": "Bogdan"}], "stoc", 0)` -> `[{'id': 1, 'nume': 'Ana', 'stoc': 0}, {'id': 2, 'nume': 'Bogdan', 'stoc': 0}]`
+template: def adauga_coloana(tabel, nume_coloana, valoare_implicita):
+    # completeaza
+    pass
 
-
+print(adauga_coloana([{"id": 1, "nume": "Ana"}, {"id": 2, "nume": "Bogdan"}], "stoc", 0))
+output: [{'id': 1, 'nume': 'Ana', 'stoc': 0}, {'id': 2, 'nume': 'Bogdan', 'stoc': 0}]
 :::
 
 # Modulul 4.12 — SQL: DCL și TCL — drepturi și tranzacții
@@ -666,8 +688,15 @@ Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO
    a) Nimic grav — SQLite anulează automat primul `UPDATE` dacă al doilea eșuează, chiar și fără `rollback` explicit  b) `commit()` salvează automat doar operațiile reușite, deci primul cont rămâne neschimbat oricum, iar `try/except` e doar o măsură stilistică, nu una necesară  c) **Fără `try/except`, dacă al doilea `UPDATE` eșuează, execuția se oprește cu eroare înainte de `commit()`, dar primul `UPDATE` a fost deja aplicat în tranzacția curentă; fără `rollback()` explicit acea modificare parțială poate rămâne nesalvată dar "agățată", sau poate fi confirmată din greșeală la o reconectare — tranzacția trebuie închisă explicit cu commit sau rollback pentru a garanta "totul sau nimic"**  d) Diferența nu contează, pentru că `sqlite3` face automat rollback la orice eroare, indiferent dacă exista `try/except`
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `transfer(conturi, sursa, dest, suma)` care simulează un transfer bancar (dicționar id -> sold): dacă `sursa` nu are fonduri suficiente, tranzacția eșuează și `conturi` rămâne NESCHIMBAT (ca după un `ROLLBACK`); altfel scade suma din sursă și o adaugă la destinație. Demo: încearcă un transfer prea mare și arată că soldurile rămân neschimbate. Demo: `conturi = {1: 20, 2: 50}
+transfer(conturi, 1, 2, 100)
+print(conturi)` -> `{1: 20, 2: 50}`
+template: def transfer(conturi, sursa, dest, suma):
+    # completeaza
+    pass
 
-
+conturi = {1: 20, 2: 50}
+transfer(conturi, 1, 2, 100)
+print(conturi)
+output: {1: 20, 2: 50}
 :::

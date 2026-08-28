@@ -88,10 +88,13 @@ Scrie o listă de dicționare care să reprezinte 3 cărți, fiecare cu cele 4 a
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `este_cheie_unica(entitati, cheie)` care primește o listă de entități (dicționare) și numele câmpului-cheie, și returnează `True` dacă valoarea acelui câmp e unică pe fiecare entitate (nu se repetă), altfel `False`. Demo: `este_cheie_unica([{"id": 1, "nume": "Ana"}, {"id": 1, "nume": "Bogdan"}], "id")` -> `False`
+template: def este_cheie_unica(entitati, cheie):
+    # completeaza
+    pass
 
-
+print(este_cheie_unica([{"id": 1, "nume": "Ana"}, {"id": 1, "nume": "Bogdan"}], "id"))
+output: False
 :::
 
 # Modulul 4.2 — Modelul entitate-relație: relații și cardinalitate
@@ -179,10 +182,13 @@ Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `numara_pe_curs(inscrieri, curs)` care primește tabela asociativă (listă de perechi `(student_id, curs)`) și numele unui curs, și returnează câți studenți sunt înscriși la el. Demo: `numara_pe_curs([(1, "IA"), (1, "BD"), (2, "BD"), (3, "BD")], "BD")` -> `3`
+template: def numara_pe_curs(inscrieri, curs):
+    # completeaza
+    pass
 
-
+print(numara_pe_curs([(1, "IA"), (1, "BD"), (2, "BD"), (3, "BD")], "BD"))
+output: 3
 :::
 
 # Modulul 4.3 — Diagrama ERD și maparea la modelul fizic
@@ -269,10 +275,13 @@ Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `genereaza_fk(tabela_n, coloana_fk, tabel_referit, coloana_referita="id")` care generează textul unei instrucțiuni `ALTER TABLE` ce adaugă o cheie externă în tabela din partea „N” a unei relații 1:N. Demo: `genereaza_fk("Student", "curs_id", "Curs", "cod")` -> `ALTER TABLE Student ADD COLUMN curs_id REFERENCES Curs(cod)`
+template: def genereaza_fk(tabela_n, coloana_fk, tabel_referit, coloana_referita="id"):
+    # completeaza
+    pass
 
-
+print(genereaza_fk("Student", "curs_id", "Curs", "cod"))
+output: ALTER TABLE Student ADD COLUMN curs_id REFERENCES Curs(cod)
 :::
 
 # Modulul 4.4 — Chei primare, chei externe, constrângeri de integritate
@@ -386,10 +395,13 @@ Adaugă o constrângere `CHECK` care să nu permită vârsta negativă la `Stude
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `valideaza_insert(id_nou, curs_id, studenti_existenti, cursuri_existente)` care returnează `False` dacă `id_nou` există deja (încalcă PRIMARY KEY) sau dacă `curs_id` nu e în `cursuri_existente` (încalcă FOREIGN KEY), altfel `True`. Demo: `valideaza_insert(1, "BD", {1: "Ana", 2: "Radu"}, {"BD", "IA"})` -> `False`
+template: def valideaza_insert(id_nou, curs_id, studenti_existenti, cursuri_existente):
+    # completeaza
+    pass
 
-
+print(valideaza_insert(1, "BD", {1: "Ana", 2: "Radu"}, {"BD", "IA"}))
+output: False
 :::
 
 # Modulul 4.5 — Forme normale: FN1, FN2, FN3
@@ -479,8 +491,11 @@ Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `tabela_oras(studenti)` care primește o listă de studenți (dicționare cu `oras` și `tara`) și extrage dependența tranzitivă `oras -> tara` într-un dicționar separat, fără duplicate (aducerea la FN3 din exemplu). Demo: `tabela_oras([{"oras": "Cluj", "tara": "România"}, {"oras": "Cluj", "tara": "România"}, {"oras": "Iasi", "tara": "România"}])` -> `{'Cluj': 'România', 'Iasi': 'România'}`
+template: def tabela_oras(studenti):
+    # completeaza
+    pass
 
-
+print(tabela_oras([{"oras": "Cluj", "tara": "România"}, {"oras": "Cluj", "tara": "România"}, {"oras": "Iasi", "tara": "România"}]))
+output: {'Cluj': 'România', 'Iasi': 'România'}
 :::

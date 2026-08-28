@@ -840,24 +840,24 @@
     "corect": "7"
   },
   "4.19.3": {
-    "cod": "import matplotlib.pyplot as plt\nplt.plot([0,1,2], [3,1,4])\n# Forma graficului?",
+    "cod": "temperaturi = [12, 24, 6, 18]\nmaxim = max(temperaturi)\n\nfor t in temperaturi:\n    lungime = round(t / maxim * 8)\n    print(\"█\" * lungime, t)",
+    "enunt": "Fiecare bară e scalată proporțional cu maximul (24), la 8 caractere. Bara lui 24 are exact 8 caractere (e chiar maximul). Câte caractere „█” are bara lui 18?",
     "variante": [
-      "Mix (crescator apoi descrescator)",
-      "Crescator",
-      "Descrescator",
-      "Constant"
+      "6 caractere",
+      "8 caractere",
+      "4 caractere"
     ],
-    "corect": "Mix (crescator apoi descrescator)"
+    "corect": 0
   },
   "4.20.3": {
-    "cod": "import pandas as pd\ndf = pd.DataFrame({'x':[1,2,3,4]})\n# df['x'].mean()?",
+    "cod": "note = [6, 8, 10, 8]\nmedie = sum(note) / len(note)\nprint(round(medie, 2))\n\ndiferente_patrat = [(n - medie) ** 2 for n in note]\nabatere = (sum(diferente_patrat) / len(diferente_patrat)) ** 0.5\nprint(round(abatere, 2))",
+    "enunt": "Calculează manual media celor 4 note, apoi abaterea standard (formula din lecție: pătratul diferențelor față de medie, media lor, apoi rădăcina pătrată). Ce se afișează pe cele două linii?",
     "variante": [
-      "2.5",
-      "2",
-      "3",
-      "1"
+      "8.0 apoi 1.41",
+      "8.0 apoi 2.0",
+      "32 apoi 8.0"
     ],
-    "corect": "2.5"
+    "corect": 0
   },
   "4.21.3": {
     "cod": "# 100 exemple, test_size=0.2\n# Cate in setul de test?",
@@ -870,14 +870,14 @@
     "corect": "20"
   },
   "4.22.3": {
-    "cod": "import numpy as np\na = np.array([1,2,3])\nprint(a*a)",
+    "cod": "def inmultire_matrici(a, b):\n    rezultat = []\n    for linie in a:\n        linie_noua = []\n        for j in range(len(b[0])):\n            coloana = [rand[j] for rand in b]\n            produs_scalar = sum(x * y for x, y in zip(linie, coloana))\n            linie_noua.append(produs_scalar)\n        rezultat.append(linie_noua)\n    return rezultat\n\na = [[1, 0], [0, 1]]\nb = [[3, 4], [5, 6]]\nprint(inmultire_matrici(a, b))",
+    "enunt": "Matricea `a` e matricea identitate (1 pe diagonală, 0 în rest). Fără să rulezi, ce crezi că întoarce înmulțirea de matrici `a` × `b`, calculată cu produs scalar linie-coloană?",
     "variante": [
-      "[1 4 9]",
-      "[2 4 6]",
-      "[1 2 3]",
-      "[3 6 9]"
+      "[[3, 4], [5, 6]] — identică cu b",
+      "[[0, 0], [0, 0]]",
+      "[[1, 0], [0, 1]]"
     ],
-    "corect": "[1 4 9]"
+    "corect": 0
   },
   "P7.1.3": {
     "cod": "print(\"Salut Pippy!\")",

@@ -86,10 +86,13 @@ Separă features de target într-o listă de tupluri `(features, eticheta)`.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `separa_features_target(exemplu, coloana_tinta)` care primește un exemplu (dicționar) și numele coloanei-țintă, și returnează perechea `(features, target)` — `features` fiind un dicționar fără coloana-țintă, `target` fiind valoarea ei. Demo: `separa_features_target({"varsta": 30, "venit": 4200, "aprobare_credit": "Da"}, "aprobare_credit")` -> `({'varsta': 30, 'venit': 4200}, 'Da')`
+template: def separa_features_target(exemplu, coloana_tinta):
+    # completeaza
+    pass
 
-
+print(separa_features_target({"varsta": 30, "venit": 4200, "aprobare_credit": "Da"}, "aprobare_credit"))
+output: ({'varsta': 30, 'venit': 4200}, 'Da')
 :::
 
 # Modulul 4.14 — Pregătirea datelor (normalizare, valori lipsă)
@@ -163,10 +166,13 @@ Scrie normalizarea min-max pentru o listă de numere.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `normalizeaza_minmax(lista)` care aplică formula min-max (`(val - min) / (max - min)`) fiecărei valori din listă și returnează lista normalizată. Demo: `normalizeaza_minmax([10, 20, 30])` -> `[0.0, 0.5, 1.0]`
+template: def normalizeaza_minmax(lista):
+    # completeaza
+    pass
 
-
+print(normalizeaza_minmax([10, 20, 30]))
+output: [0.0, 0.5, 1.0]
 :::
 
 # Modulul 4.15 — Învățare nesupervizată: K-means
@@ -240,10 +246,13 @@ Calculează manual (fără sklearn) un pas de K-means pe 4 puncte cu 2 centroizi
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `atribuie_cluster(punct, centroizi)` care primește un punct (număr) și o listă de centroizi, și returnează indexul celui mai apropiat centroid (primul pas al unei iterații K-means: atribuirea la cel mai apropiat centru). Demo: `atribuie_cluster(3, [1, 9])` -> `0`
+template: def atribuie_cluster(punct, centroizi):
+    # completeaza
+    pass
 
-
+print(atribuie_cluster(3, [1, 9]))
+output: 0
 :::
 
 # Modulul 4.16 — Învățare supervizată: regresie liniară
@@ -314,10 +323,13 @@ Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `prezice_liniar(x, a, b)` care calculează predicția unei regresii liniare `y = a*x + b` (echivalentul lui `model.predict` dintr-un model deja antrenat). Demo: `prezice_liniar(5, 2, 1)` -> `11`
+template: def prezice_liniar(x, a, b):
+    # completeaza
+    pass
 
-
+print(prezice_liniar(5, 2, 1))
+output: 11
 :::
 
 # Modulul 4.17 — Învățare supervizată: KNN și arbore de decizie
@@ -389,8 +401,11 @@ Antrenează un arbore de decizie și afișează structura (sau importanța featu
 
 
 :::verifica-cod
-Scrie un script scurt care demonstrează conceptul din acest modul (ex: o funcție sau o interogare). Rulează-l și confirmă output-ul.
-template: # Scrie aici codul
+Scrie o funcție `vot_majoritar(etichete)` care primește etichetele celor mai apropiați `k` vecini și returnează eticheta majoritară (votul KNN). Demo: `vot_majoritar(["Da", "Da", "Nu"])` -> `Da`
+template: def vot_majoritar(etichete):
+    # completeaza
+    pass
 
-
+print(vot_majoritar(["Da", "Da", "Nu"]))
+output: Da
 :::
