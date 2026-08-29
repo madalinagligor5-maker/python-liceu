@@ -16,6 +16,7 @@ const linkuriLiceu = [
   { href: "/exercitii", label: "💻 Exerciții & Algoritmi", sub: "Feedback instant" },
   { href: "/lab", label: "🔬 Lab (Cod online)", sub: "Sandbox Python liber" },
   { href: "/resurse", label: "📥 Resurse & Fișe PDF", sub: "Materiale didactice" },
+  { href: "/blog", label: "✍️ Blog", sub: "Ghiduri și noutăți" },
   { href: "/preturi", label: "🏷️ Prețuri & Abonamente", sub: "Planuri transparente" },
   { href: "/despre", label: "ℹ️ Despre Platformă", sub: "Misiune și echipa" },
 ];
