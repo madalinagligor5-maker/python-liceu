@@ -108,6 +108,22 @@ function randeazaMarkdown(md: string): string {
       continue;
     }
 
+    // Citat: linii consecutive care încep cu ">"
+    if (linie.trim().startsWith(">")) {
+      const citat: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        citat.push(lines[i].trim().replace(/^>\s?/, ""));
+        i++;
+      }
+      out.push(
+        `<blockquote class="my-4 border-l-4 border-brand bg-brand-light/30 py-2 pl-4 italic text-foreground/80">${citat
+          .filter((l) => l.trim() !== "")
+          .map((l) => `<p>${inline(l)}</p>`)
+          .join("")}</blockquote>`
+      );
+      continue;
+    }
+
     // Heading # / ## / ###
     const hMatch = linie.match(/^(#{1,3})\s+(.+)$/);
     if (hMatch) {
