@@ -1,4 +1,5 @@
 import { creeazaClientServer } from "@/lib/supabase/server";
+import type { RolUtilizator } from "@/lib/roluri";
 
 export type UtilizatorMeta = {
   userId: string;
@@ -10,6 +11,9 @@ export type UtilizatorMeta = {
   streakZile: number;
   clasa: string | null;
   nivel: number;
+  rol: RolUtilizator;
+  scoala: string | null;
+  numeAfisat: string | null;
 };
 
 /**
@@ -34,7 +38,9 @@ export async function getUtilizatorCurent(): Promise<{
 
   const { data: meta } = await supabase
     .from("users_meta")
-    .select("subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa")
+    .select(
+      "subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa, rol, scoala, nume_afisat"
+    )
     .eq("user_id", user.id)
     .maybeSingle();
 
@@ -53,6 +59,9 @@ export async function getUtilizatorCurent(): Promise<{
       streakZile: meta?.streak_zile ?? 0,
       clasa: meta?.clasa ?? null,
       nivel,
+      rol: (meta?.rol as RolUtilizator) ?? "elev",
+      scoala: meta?.scoala ?? null,
+      numeAfisat: meta?.nume_afisat ?? null,
     },
   };
 }

@@ -1,0 +1,160 @@
+{
+  "_nota": "PLACEHOLDER generat automat: oreAlocate=2 pentru fiecare modul si o saptamana per modul, pornind de la structura curriculumului (nu exista alta sursa de \"numar de ore\" in cod la data generarii). Editeaza manual aceste valori (si campul competente, daca vrei coduri exacte din programa oficiala) - fisierul e citit direct, fara sa fie nevoie de cod nou.",
+  "clasa": "XII",
+  "unitati": [
+    {
+      "modulCod": "4.1",
+      "modulTitlu": "Modelul entitate-relatie: entitati si atribute",
+      "competente": "Modelul entitate-relatie: entitati si atribute",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 1
+    },
+    {
+      "modulCod": "4.2",
+      "modulTitlu": "Modelul entitate-relatie: relații si cardinalitate",
+      "competente": "Modelul entitate-relatie: relații si cardinalitate",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 2
+    },
+    {
+      "modulCod": "4.3",
+      "modulTitlu": "Diagrama ERD si maparea la modelul fizic",
+      "competente": "Diagrama ERD si maparea la modelul fizic",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 3
+    },
+    {
+      "modulCod": "4.4",
+      "modulTitlu": "Chei primare, chei externe, constrangeri de integritate",
+      "competente": "Chei primare, chei externe, constrangeri de integritate",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 4
+    },
+    {
+      "modulCod": "4.5",
+      "modulTitlu": "Forme normale: FN1, FN2, FN3",
+      "competente": "Forme normale: FN1, FN2, FN3",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 5
+    },
+    {
+      "modulCod": "4.6",
+      "modulTitlu": "Clasele Connection si Cursor din Python",
+      "competente": "Clasele Connection si Cursor din Python",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 6
+    },
+    {
+      "modulCod": "4.7",
+      "modulTitlu": "SQL: interogari SELECT, proiectie, ordonare",
+      "competente": "SQL: interogari SELECT, proiectie, ordonare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 7
+    },
+    {
+      "modulCod": "4.8",
+      "modulTitlu": "SQL: functii agregate si grupare",
+      "competente": "SQL: functii agregate si grupare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 8
+    },
+    {
+      "modulCod": "4.9",
+      "modulTitlu": "SQL: JOIN si subinterogari",
+      "competente": "SQL: JOIN si subinterogari",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 9
+    },
+    {
+      "modulCod": "4.10",
+      "modulTitlu": "SQL: DML - inserare, actualizare, ștergere",
+      "competente": "SQL: DML - inserare, actualizare, ștergere",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 10
+    },
+    {
+      "modulCod": "4.11",
+      "modulTitlu": "SQL: DDL - creare si modificare a structurii",
+      "competente": "SQL: DDL - creare si modificare a structurii",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 11
+    },
+    {
+      "modulCod": "4.12",
+      "modulTitlu": "SQL: DCL si TCL - drepturi si tranzactii",
+      "competente": "SQL: DCL si TCL - drepturi si tranzactii",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 12
+    },
+    {
+      "modulCod": "4.13",
+      "modulTitlu": "Modele de date pentru invatarea automata",
+      "competente": "Modele de date pentru invatarea automata",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 13
+    },
+    {
+      "modulCod": "4.14",
+      "modulTitlu": "Pregatirea datelor (normalizare, valori lipsa)",
+      "competente": "Pregatirea datelor (normalizare, valori lipsa)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 14
+    },
+    {
+      "modulCod": "4.15",
+      "modulTitlu": "Învățare nesupervizata: K-means",
+      "competente": "Învățare nesupervizata: K-means",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 15
+    },
+    {
+      "modulCod": "4.16",
+      "modulTitlu": "Învățare supervizata: regresie liniara",
+      "competente": "Învățare supervizata: regresie liniara",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 16
+    },
+    {
+      "modulCod": "4.17",
+      "modulTitlu": "Învățare supervizata: KNN si arbore de decizie",
+      "competente": "Învățare supervizata: KNN si arbore de decizie",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 17
+    },
+    {
+      "modulCod": "4.18",
+      "modulTitlu": "Introducere în retele neuronale",
+      "competente": "Introducere în retele neuronale",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 18
+    },
+    {
+      "modulCod": "4.19",
+      "modulTitlu": "Biblioteca Matplotlib: vizualizarea datelor",
+      "competente": "Biblioteca Matplotlib: vizualizarea datelor",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 19
+    },
+    {
+      "modulCod": "4.20",
+      "modulTitlu": "Biblioteca Pandas: DataFrame si statistici descriptive",
+      "competente": "Biblioteca Pandas: DataFrame si statistici descriptive",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 20
+    },
+    {
+      "modulCod": "4.21",
+      "modulTitlu": "Biblioteca Scikit-learn: antrenare, predictie, evaluare",
+      "competente": "Biblioteca Scikit-learn: antrenare, predictie, evaluare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 21
+    },
+    {
+      "modulCod": "4.22",
+      "modulTitlu": "Biblioteca NumPy: operatii cu matrici",
+      "competente": "Biblioteca NumPy: operatii cu matrici",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 22
+    }
+  ]
+}

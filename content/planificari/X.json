@@ -1,0 +1,153 @@
+{
+  "_nota": "PLACEHOLDER generat automat: oreAlocate=2 pentru fiecare modul si o saptamana per modul, pornind de la structura curriculumului (nu exista alta sursa de \"numar de ore\" in cod la data generarii). Editeaza manual aceste valori (si campul competente, daca vrei coduri exacte din programa oficiala) - fisierul e citit direct, fara sa fie nevoie de cod nou.",
+  "clasa": "X",
+  "unitati": [
+    {
+      "modulCod": "2.1",
+      "modulTitlu": "Căutarea binară",
+      "competente": "Căutarea binară",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 1
+    },
+    {
+      "modulCod": "2.2",
+      "modulTitlu": "Interclasarea a doua liste ordonate",
+      "competente": "Interclasarea a doua liste ordonate",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 2
+    },
+    {
+      "modulCod": "2.3",
+      "modulTitlu": "Modelul conceptual multime",
+      "competente": "Modelul conceptual multime",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 3
+    },
+    {
+      "modulCod": "2.4",
+      "modulTitlu": "Clasa set: operatori si metode",
+      "competente": "Clasa set: operatori si metode",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 4
+    },
+    {
+      "modulCod": "2.5",
+      "modulTitlu": "Modelul conceptual sir de caractere",
+      "competente": "Modelul conceptual sir de caractere",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 5
+    },
+    {
+      "modulCod": "2.6",
+      "modulTitlu": "Clasa str: indexare, slicing, concatenare, comparare",
+      "competente": "Clasa str: indexare, slicing, concatenare, comparare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 6
+    },
+    {
+      "modulCod": "2.7",
+      "modulTitlu": "Clasa str: metode de căutare, inlocuire, separare",
+      "competente": "Clasa str: metode de căutare, inlocuire, separare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 7
+    },
+    {
+      "modulCod": "2.8",
+      "modulTitlu": "Criptare simpla: substitutie si cifrul lui Cezar",
+      "competente": "Criptare simpla: substitutie si cifrul lui Cezar",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 8
+    },
+    {
+      "modulCod": "2.9",
+      "modulTitlu": "Cifrul Vigenere",
+      "competente": "Cifrul Vigenere",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 9
+    },
+    {
+      "modulCod": "2.10",
+      "modulTitlu": "Suma de control (algoritmul lui Fletcher)",
+      "competente": "Suma de control (algoritmul lui Fletcher)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 10
+    },
+    {
+      "modulCod": "2.11",
+      "modulTitlu": "Modelul conceptual dictionar",
+      "competente": "Modelul conceptual dictionar",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 11
+    },
+    {
+      "modulCod": "2.12",
+      "modulTitlu": "Clasa dict: acces si metode uzuale",
+      "competente": "Clasa dict: acces si metode uzuale",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 12
+    },
+    {
+      "modulCod": "2.13",
+      "modulTitlu": "Modelul conceptual tuplu",
+      "competente": "Modelul conceptual tuplu",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 13
+    },
+    {
+      "modulCod": "2.14",
+      "modulTitlu": "Clasa tuple: operatori si metode",
+      "competente": "Clasa tuple: operatori si metode",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 14
+    },
+    {
+      "modulCod": "2.15",
+      "modulTitlu": "Modelul conceptual mixt (liste de liste, liste de dictionare)",
+      "competente": "Modelul conceptual mixt (liste de liste, liste de dictionare)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 15
+    },
+    {
+      "modulCod": "2.16",
+      "modulTitlu": "Elemente de limbaj pentru modele mixte",
+      "competente": "Elemente de limbaj pentru modele mixte",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 16
+    },
+    {
+      "modulCod": "2.17",
+      "modulTitlu": "Subprograme recursive",
+      "competente": "Subprograme recursive",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 17
+    },
+    {
+      "modulCod": "2.18",
+      "modulTitlu": "Metoda Divide et impera",
+      "competente": "Metoda Divide et impera",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 18
+    },
+    {
+      "modulCod": "2.19",
+      "modulTitlu": "Sortare prin interclasare si sortare rapidă (quicksort)",
+      "competente": "Sortare prin interclasare si sortare rapidă (quicksort)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 19
+    },
+    {
+      "modulCod": "2.20",
+      "modulTitlu": "Algoritmi de umplere (Flood Fill)",
+      "competente": "Algoritmi de umplere (Flood Fill)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 20
+    },
+    {
+      "modulCod": "2.21",
+      "modulTitlu": "Metoda Greedy",
+      "competente": "Metoda Greedy",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 21
+    }
+  ]
+}

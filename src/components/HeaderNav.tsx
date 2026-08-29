@@ -27,10 +27,19 @@ const linkuriKids = [
   { href: "/kids/fise-print", label: "🖨️ Fișe de Printat", sub: "Activități pe hârtie" },
 ];
 
-export default function HeaderNav() {
+const linkuriProfesor = [
+  { href: "/profesor/planificari", label: "🗓️ Planificări", sub: "Calendar per clasă" },
+  { href: "/profesor/fise", label: "📄 Fișe de lucru", sub: "Printabile, cu/fără barem" },
+  { href: "/profesor/clase", label: "🏫 Clasele mele", sub: "Progres pe clasă" },
+  { href: "/profesor/teste/generator", label: "📝 Generator de teste", sub: "Din bancă de quiz-uri" },
+];
+
+export default function HeaderNav({ esteProfesor = false }: { esteProfesor?: boolean }) {
   const pathname = usePathname();
   const isKids = pathname?.startsWith("/kids");
   const [mobileMeniuDeschis, setMobileMeniuDeschis] = useState(false);
+
+  const linkuriActive = esteProfesor ? linkuriProfesor : isKids ? linkuriKids : linkuriLiceu;
 
   // Previne scroll-ul pe fundal când meniul mobil este deschis
   useEffect(() => {
@@ -47,7 +56,7 @@ export default function HeaderNav() {
   return (
     <>
       {/* Desktop Navigation */}
-      {isKids ? (
+      {isKids && !esteProfesor ? (
         <div className="hidden md:flex items-center gap-3">
           <nav className="flex items-center gap-2 text-xs font-bold text-slate-700">
             {linkuriKids.map((l) => (
@@ -64,7 +73,7 @@ export default function HeaderNav() {
         </div>
       ) : (
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
-          {linkuriLiceu.map((l) => (
+          {linkuriActive.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -102,7 +111,7 @@ export default function HeaderNav() {
                 </span>
               </Link>
 
-              <HeaderSwitch />
+              {!esteProfesor && <HeaderSwitch />}
 
               <button
                 onClick={() => setMobileMeniuDeschis(false)}
@@ -114,7 +123,7 @@ export default function HeaderNav() {
             </div>
 
             {/* Stele / Profil dacă e pe Kids */}
-            {isKids && (
+            {isKids && !esteProfesor && (
               <div className="p-3.5 bg-white rounded-2xl border border-[#EBE7DF] shadow-xs">
                 <KidsHeaderRight />
               </div>
@@ -123,16 +132,16 @@ export default function HeaderNav() {
             {/* Titlu meniu */}
             <div className="flex items-center justify-between pt-1">
               <span className="text-xs font-black uppercase tracking-widest text-blue-900">
-                Toate Cursurile & Opțiunile
+                {esteProfesor ? "Zona Profesor" : "Toate Cursurile & Opțiunile"}
               </span>
               <span className="text-xs text-[#525B6C] font-semibold">
-                {isKids ? "Ciclul Primar" : "Clasele IX–XII"}
+                {esteProfesor ? "Instrumente" : isKids ? "Ciclul Primar" : "Clasele IX–XII"}
               </span>
             </div>
 
             {/* TOATE LINK-URILE DIN MENIU VIZIBILE COMPLET */}
             <div className="flex flex-col gap-2.5 my-1">
-              {(isKids ? linkuriKids : linkuriLiceu).map((l) => (
+              {linkuriActive.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
@@ -153,23 +162,25 @@ export default function HeaderNav() {
             </div>
 
             {/* Butoane Acțiuni Rapide la Baza Meniului Mobil */}
-            <div className="pt-4 border-t border-[#EBE7DF] flex flex-col gap-3">
-              <Link
-                href="/kids"
-                onClick={() => setMobileMeniuDeschis(false)}
-                className="rounded-2xl border border-slate-200 bg-white p-3.5 text-xs font-bold text-slate-800 text-center flex items-center justify-center gap-2 shadow-xs"
-              >
-                <span>👥</span>
-                <span>Secțiunea pentru părinți</span>
-              </Link>
-              <Link
-                href="/curriculum"
-                onClick={() => setMobileMeniuDeschis(false)}
-                className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
-              >
-                🚀 Începe gratuit / Vezi Cursurile
-              </Link>
-            </div>
+            {!esteProfesor && (
+              <div className="pt-4 border-t border-[#EBE7DF] flex flex-col gap-3">
+                <Link
+                  href="/kids"
+                  onClick={() => setMobileMeniuDeschis(false)}
+                  className="rounded-2xl border border-slate-200 bg-white p-3.5 text-xs font-bold text-slate-800 text-center flex items-center justify-center gap-2 shadow-xs"
+                >
+                  <span>👥</span>
+                  <span>Secțiunea pentru părinți</span>
+                </Link>
+                <Link
+                  href="/curriculum"
+                  onClick={() => setMobileMeniuDeschis(false)}
+                  className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
+                >
+                  🚀 Începe gratuit / Vezi Cursurile
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

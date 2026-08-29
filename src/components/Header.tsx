@@ -14,8 +14,9 @@ function extrageAliasNume(email: string): string {
 }
 
 export default async function Header() {
-  const { user } = await getUtilizatorCurent();
-  const progres = user ? await getProgresUtilizator(user.id) : null;
+  const { user, meta } = await getUtilizatorCurent();
+  const esteProfesor = meta?.rol === "profesor_aprobat";
+  const progres = user && !esteProfesor ? await getProgresUtilizator(user.id) : null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#EBE7DF] bg-[#FDFBF7]/95 backdrop-blur-md text-[#1E2430] shadow-xs">
@@ -33,13 +34,15 @@ export default async function Header() {
           </span>
         </Link>
 
-        {/* Switch discret Kids/Liceu */}
-        <div className="shrink-0">
-          <HeaderSwitch />
-        </div>
+        {/* Switch discret Kids/Liceu — ascuns pentru profesori, nu are sens acolo */}
+        {!esteProfesor && (
+          <div className="shrink-0">
+            <HeaderSwitch />
+          </div>
+        )}
 
         {/* Nav central adaptiv + Meniu Mobil */}
-        <HeaderNav />
+        <HeaderNav esteProfesor={esteProfesor} />
 
         {/* Acțiuni Dreapta (Desktop) */}
         <div className="hidden sm:flex items-center gap-2.5 shrink-0">
@@ -63,18 +66,19 @@ export default async function Header() {
             </div>
           )}
 
-          {/* Buton Pentru Părinți */}
-          <Link
-            href="/kids"
-            className="hidden xl:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
-          >
-            <span>👥</span>
-            <span>Pentru părinți</span>
-          </Link>
+          {!esteProfesor && (
+            <Link
+              href="/kids"
+              className="hidden xl:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
+            >
+              <span>👥</span>
+              <span>Pentru părinți</span>
+            </Link>
+          )}
 
           {user ? (
             <Link
-              href="/cont"
+              href={esteProfesor ? "/profesor/clase" : "/cont"}
               className="hidden md:inline-block max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600"
             >
               {extrageAliasNume(user.email)}
@@ -89,10 +93,10 @@ export default async function Header() {
           )}
 
           <Link
-            href="/curriculum"
+            href={esteProfesor ? "/profesor/clase" : "/curriculum"}
             className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
           >
-            {user ? "Contul meu" : "Începe gratuit"}
+            {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}
           </Link>
         </div>
       </div>

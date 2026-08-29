@@ -1,0 +1,146 @@
+{
+  "_nota": "PLACEHOLDER generat automat: oreAlocate=2 pentru fiecare modul si o saptamana per modul, pornind de la structura curriculumului (nu exista alta sursa de \"numar de ore\" in cod la data generarii). Editeaza manual aceste valori (si campul competente, daca vrei coduri exacte din programa oficiala) - fisierul e citit direct, fara sa fie nevoie de cod nou.",
+  "clasa": "IX",
+  "unitati": [
+    {
+      "modulCod": "1.1",
+      "modulTitlu": "Ce este un algoritm? Etapele elaborării unui program",
+      "competente": "Ce este un algoritm? Etapele elaborării unui program",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 1
+    },
+    {
+      "modulCod": "1.2",
+      "modulTitlu": "Reprezentarea algoritmilor: scheme logice, pseudocod, cod",
+      "competente": "Reprezentarea algoritmilor: scheme logice, pseudocod, cod",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 2
+    },
+    {
+      "modulCod": "1.3",
+      "modulTitlu": "Eficienta unui algoritm - noțiuni de baza",
+      "competente": "Eficienta unui algoritm - noțiuni de baza",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 3
+    },
+    {
+      "modulCod": "1.4",
+      "modulTitlu": "Subprograme (functii): definire si apel",
+      "competente": "Subprograme (functii): definire si apel",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 4
+    },
+    {
+      "modulCod": "1.5",
+      "modulTitlu": "Variabile locale si globale, transmiterea prin parametri",
+      "competente": "Variabile locale si globale, transmiterea prin parametri",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 5
+    },
+    {
+      "modulCod": "1.6",
+      "modulTitlu": "Functii predefinite pentru calcule si pentru colecții",
+      "competente": "Functii predefinite pentru calcule si pentru colecții",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 6
+    },
+    {
+      "modulCod": "1.7",
+      "modulTitlu": "Prelucrarea cifrelor unui număr",
+      "competente": "Prelucrarea cifrelor unui număr",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 7
+    },
+    {
+      "modulCod": "1.8",
+      "modulTitlu": "Divizori, multipli, algoritmul lui Euclid",
+      "competente": "Divizori, multipli, algoritmul lui Euclid",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 8
+    },
+    {
+      "modulCod": "1.9",
+      "modulTitlu": "Conversia numerelor intre baze de numeratie",
+      "competente": "Conversia numerelor intre baze de numeratie",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 9
+    },
+    {
+      "modulCod": "1.10",
+      "modulTitlu": "Ciurul lui Eratostene si exponențiere rapidă",
+      "competente": "Ciurul lui Eratostene si exponențiere rapidă",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 10
+    },
+    {
+      "modulCod": "1.11",
+      "modulTitlu": "Introducere în programarea orientată pe obiecte",
+      "competente": "Introducere în programarea orientată pe obiecte",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 11
+    },
+    {
+      "modulCod": "1.12",
+      "modulTitlu": "tkinter: fereastră principală si widget-uri de baza",
+      "competente": "tkinter: fereastră principală si widget-uri de baza",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 12
+    },
+    {
+      "modulCod": "1.13",
+      "modulTitlu": "tkinter: gestionarea plasării si a evenimentelor",
+      "competente": "tkinter: gestionarea plasării si a evenimentelor",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 13
+    },
+    {
+      "modulCod": "1.14",
+      "modulTitlu": "Fisiere text: deschidere, citire, scriere, închidere",
+      "competente": "Fisiere text: deschidere, citire, scriere, închidere",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 14
+    },
+    {
+      "modulCod": "1.15",
+      "modulTitlu": "Modelul conceptual listă: stivă, coadă, acces direct/secvențial",
+      "competente": "Modelul conceptual listă: stivă, coadă, acces direct/secvențial",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 15
+    },
+    {
+      "modulCod": "1.16",
+      "modulTitlu": "Clasa list: operatori de baza",
+      "competente": "Clasa list: operatori de baza",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 16
+    },
+    {
+      "modulCod": "1.17",
+      "modulTitlu": "Clasa list: metode (căutare, inserare, ștergere, sortare)",
+      "competente": "Clasa list: metode (căutare, inserare, ștergere, sortare)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 17
+    },
+    {
+      "modulCod": "1.18",
+      "modulTitlu": "Generarea sistematică a secvențelor de valori",
+      "competente": "Generarea sistematică a secvențelor de valori",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 18
+    },
+    {
+      "modulCod": "1.19",
+      "modulTitlu": "Sortare: selectia minimului",
+      "competente": "Sortare: selectia minimului",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 19
+    },
+    {
+      "modulCod": "1.20",
+      "modulTitlu": "Sortare: metodă bulelor si listă de frecvențe",
+      "competente": "Sortare: metodă bulelor si listă de frecvențe",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 20
+    }
+  ]
+}

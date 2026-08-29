@@ -1,0 +1,181 @@
+{
+  "_nota": "PLACEHOLDER generat automat: oreAlocate=2 pentru fiecare modul si o saptamana per modul, pornind de la structura curriculumului (nu exista alta sursa de \"numar de ore\" in cod la data generarii). Editeaza manual aceste valori (si campul competente, daca vrei coduri exacte din programa oficiala) - fisierul e citit direct, fara sa fie nevoie de cod nou.",
+  "clasa": "XI",
+  "unitati": [
+    {
+      "modulCod": "3.1",
+      "modulTitlu": "Liste inlantuite: concept si tipuri",
+      "competente": "Liste inlantuite: concept si tipuri",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 1
+    },
+    {
+      "modulCod": "3.2",
+      "modulTitlu": "Liste inlantuite: operatii de baza (adaugare, eliminare)",
+      "competente": "Liste inlantuite: operatii de baza (adaugare, eliminare)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 2
+    },
+    {
+      "modulCod": "3.3",
+      "modulTitlu": "Backtracking: principiu si conditii",
+      "competente": "Backtracking: principiu si conditii",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 3
+    },
+    {
+      "modulCod": "3.4",
+      "modulTitlu": "Backtracking: probleme clasice (permutari, regine)",
+      "competente": "Backtracking: probleme clasice (permutari, regine)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 4
+    },
+    {
+      "modulCod": "3.5",
+      "modulTitlu": "Backtracking generalizat",
+      "competente": "Backtracking generalizat",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 5
+    },
+    {
+      "modulCod": "3.6",
+      "modulTitlu": "Programare dinamică",
+      "competente": "Programare dinamică",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 6
+    },
+    {
+      "modulCod": "3.7",
+      "modulTitlu": "Modelul conceptual graf: concepte de baza",
+      "competente": "Modelul conceptual graf: concepte de baza",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 7
+    },
+    {
+      "modulCod": "3.8",
+      "modulTitlu": "Reprezentarea grafurilor (matrice, liste de adiacenta)",
+      "competente": "Reprezentarea grafurilor (matrice, liste de adiacenta)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 8
+    },
+    {
+      "modulCod": "3.9",
+      "modulTitlu": "Tipuri de grafuri (complet, conex, ponderat, hamiltonian, eulerian)",
+      "competente": "Tipuri de grafuri (complet, conex, ponderat, hamiltonian, eulerian)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 9
+    },
+    {
+      "modulCod": "3.10",
+      "modulTitlu": "Parcurgerea grafurilor: BFS",
+      "competente": "Parcurgerea grafurilor: BFS",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 10
+    },
+    {
+      "modulCod": "3.11",
+      "modulTitlu": "Parcurgerea grafurilor: DFS",
+      "competente": "Parcurgerea grafurilor: DFS",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 11
+    },
+    {
+      "modulCod": "3.12",
+      "modulTitlu": "Matricea drumurilor - algoritmul Roy-Warshall",
+      "competente": "Matricea drumurilor - algoritmul Roy-Warshall",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 12
+    },
+    {
+      "modulCod": "3.13",
+      "modulTitlu": "Drumuri de cost minim - algoritmul lui Dijkstra",
+      "competente": "Drumuri de cost minim - algoritmul lui Dijkstra",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 13
+    },
+    {
+      "modulCod": "3.14",
+      "modulTitlu": "Drumuri de cost minim - algoritmul Roy-Floyd",
+      "competente": "Drumuri de cost minim - algoritmul Roy-Floyd",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 14
+    },
+    {
+      "modulCod": "3.15",
+      "modulTitlu": "Arbore de acoperire minim - algoritmul lui Prim",
+      "competente": "Arbore de acoperire minim - algoritmul lui Prim",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 15
+    },
+    {
+      "modulCod": "3.16",
+      "modulTitlu": "Arbore de acoperire minim - algoritmul lui Kruskal",
+      "competente": "Arbore de acoperire minim - algoritmul lui Kruskal",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 16
+    },
+    {
+      "modulCod": "3.17",
+      "modulTitlu": "Modelul conceptual arbore: concepte de baza",
+      "competente": "Modelul conceptual arbore: concepte de baza",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 17
+    },
+    {
+      "modulCod": "3.18",
+      "modulTitlu": "Arbori binari si arbori binari de căutare",
+      "competente": "Arbori binari si arbori binari de căutare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 18
+    },
+    {
+      "modulCod": "3.19",
+      "modulTitlu": "Heap (ansamblu)",
+      "competente": "Heap (ansamblu)",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 19
+    },
+    {
+      "modulCod": "3.20",
+      "modulTitlu": "Parcurgerea arborilor: preordine, inordine, postordine",
+      "competente": "Parcurgerea arborilor: preordine, inordine, postordine",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 20
+    },
+    {
+      "modulCod": "3.21",
+      "modulTitlu": "Cautare si inserare intr-un arbore binar de căutare",
+      "competente": "Cautare si inserare intr-un arbore binar de căutare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 21
+    },
+    {
+      "modulCod": "3.22",
+      "modulTitlu": "Modelul conceptual obiectual: clase, obiecte, mostenire",
+      "competente": "Modelul conceptual obiectual: clase, obiecte, mostenire",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 22
+    },
+    {
+      "modulCod": "3.23",
+      "modulTitlu": "POO în Python: sintaxa class si constructorul",
+      "competente": "POO în Python: sintaxa class si constructorul",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 23
+    },
+    {
+      "modulCod": "3.24",
+      "modulTitlu": "POO în Python: niveluri de acces si clase derivate",
+      "competente": "POO în Python: niveluri de acces si clase derivate",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 24
+    },
+    {
+      "modulCod": "3.25",
+      "modulTitlu": "Paradigme de programare",
+      "competente": "Paradigme de programare",
+      "oreAlocate": 2,
+      "saptamanaEstimata": 25
+    }
+  ]
+}

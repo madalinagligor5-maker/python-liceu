@@ -65,6 +65,7 @@ export async function seteazaStareUtilizatorTest(
     stripeCustomerId?: string;
     aiRequestsToday?: number;
     lastAiRequestDate?: string;
+    rol?: "elev" | "profesor_in_asteptare" | "profesor_aprobat" | "profesor_revocat";
   }
 ): Promise<void> {
   const admin = creeazaClientAdminTest();
@@ -73,6 +74,7 @@ export async function seteazaStareUtilizatorTest(
   if (campuri.stripeCustomerId !== undefined) update.stripe_customer_id = campuri.stripeCustomerId;
   if (campuri.aiRequestsToday !== undefined) update.ai_requests_today = campuri.aiRequestsToday;
   if (campuri.lastAiRequestDate !== undefined) update.last_ai_request_date = campuri.lastAiRequestDate;
+  if (campuri.rol !== undefined) update.rol = campuri.rol;
 
   const { error } = await admin.from("users_meta").update(update).eq("user_id", userId);
   if (error) {

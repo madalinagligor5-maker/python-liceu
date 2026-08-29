@@ -46,6 +46,11 @@ export default function Footer() {
                 Contul meu
               </Link>
             </li>
+            <li>
+              <Link href="/profesori" className="hover:text-brand">
+                Pentru profesori
+              </Link>
+            </li>
           </ul>
         </div>
 

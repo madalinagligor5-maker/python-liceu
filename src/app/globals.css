@@ -52,6 +52,12 @@ body {
   .print-hidden {
     display: none !important;
   }
+
+  /* Chenarul site-ului (header/footer) nu are ce cauta pe o fisa printata. */
+  body > header,
+  body > footer {
+    display: none !important;
+  }
 }
 
 /* Animații Didactice UI & Celebrare */

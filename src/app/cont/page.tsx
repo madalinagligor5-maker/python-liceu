@@ -6,6 +6,9 @@ import { creeazaClientServer } from "@/lib/supabase/server";
 import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
 import Mascota from "@/components/Mascota";
+import ClaseleMele from "@/components/cont/ClaseleMele";
+import NumeAfisatField from "@/components/cont/NumeAfisatField";
+import { listaClaselorMele } from "@/app/actions/clase-elev";
 
 export const metadata: Metadata = {
   title: "Contul meu — Academia Python",
@@ -52,7 +55,7 @@ export default async function ContPage() {
   }
 
   // Preluăm insigne din DB
-  let insigneDetinute: Set<string> = new Set();
+  const insigneDetinute: Set<string> = new Set();
   if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     try {
       const supabase = await creeazaClientServer();
@@ -68,6 +71,8 @@ export default async function ContPage() {
       console.error("Eroare incarcare insigne:", e);
     }
   }
+
+  const claseleMele = await listaClaselorMele();
 
   const status = STATUS_LABEL[meta.subscriptionStatus ?? "none"];
   
@@ -237,6 +242,9 @@ export default async function ContPage() {
           })}
         </div>
       </div>
+
+<NumeAfisatField numeInitial={meta.numeAfisat} />
+      <ClaseleMele claseInitiale={claseleMele} />
 
       {/* Butoane de Ieșire / Navigare */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 px-2">
