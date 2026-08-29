@@ -118,6 +118,17 @@ export function urmatoareaLectie(
     .find((l) => !finalizate.has(l.lectie_slug));
 }
 
+/** Sămânță deterministă dintr-un text (hash simplu, gen djb2) — folosită
+ *  pentru a alege "aleator" dar reproductibil o întrebare/lecție, fără să
+ *  aducem o dependință nouă doar pentru un hash. */
+function samantaDinText(text: string): number {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) {
+    h = (h * 31 + text.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
 /**
  * Provocarea zilei: un quiz scurt din conținut DEJA parcurs (recapitulare),
  * ales determinist după data curentă, ca să fie aceeași provocare toată ziua
@@ -189,7 +200,17 @@ export async function getRecapitulareSpatiata(userId: string) {
     return null;
   }
 
-  const intrebare = lectieGasita.quiz[0];
+  // Aceeași sublecție revine la recapitulare de mai multe ori, la date diferite
+  // (asta e chiar ideea recapitulării spațiate) — dacă am alege mereu quiz[0],
+  // elevul ar vedea de fiecare dată exact aceeași întrebare. Sămânța combină
+  // userId + sublecție + data curentă (același tipar determinist ca la
+  // provocareaZilei, care folosește data zilei), ca alegerea să varieze de la
+  // o recapitulare la alta, dar să rămână stabilă în cadrul aceleiași zile
+  // (nu "sare" la un refresh) și diferită între utilizatori diferiți.
+  const acum = new Date();
+  const zi = acum.getFullYear() * 10000 + (acum.getMonth() + 1) * 100 + acum.getDate();
+  const samanta = samantaDinText(`${userId}:${deRecapitulat.lectie_slug}:${zi}`);
+  const intrebare = lectieGasita.quiz[samanta % lectieGasita.quiz.length];
 
   return {
     lectie: lectieGasita,

@@ -85,12 +85,15 @@ ___ numar <= 5:
 
 1. Când rulează o buclă while?
    a) O singură dată  b) **Cât timp condiția ei este adevărată**  c) Până dă eroare
+      > Bucla while continuă să repete instrucțiunile atâta timp cât condiția ei rămâne adevărată, apoi se oprește.
 
 2. Ce face instrucțiunea break?
    a) Repornește calculatorul  b) **Oprește imediat execuția buclei**  c) Sare la următorul pas
+      > break îi spune buclei să se oprească imediat, chiar dacă mai erau pași de făcut.
 
 3. Cum evităm o buclă infinită?
    a) Folosind print  b) **Modificând condiția în interiorul buclei ca să devină falsă la un moment dat**  c) Închizând editorul
+      > Ca bucla while să nu ruleze la nesfârșit, trebuie să modifici în interiorul ei ceva care să facă, la un moment dat, condiția falsă.
 
 ---
 

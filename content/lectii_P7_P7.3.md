@@ -85,12 +85,15 @@ for i in range(___):
 
 1. Ce instrucțiune repetă acțiunile în Python?
    a) repeat  b) **for**  c) print
+      > Bucla for este cea care repetă aceleași comenzi de mai multe ori, ca să nu le scriem noi de fiecare dată.
 
 2. Cu ce unghi trebuie să rotim țestoasa ca să facem colțul unui pătrat?
    a) 45  b) **90**  c) 180
+      > Un pătrat are colțuri drepte, iar pentru fiecare colț rotim țestoasa exact 90 de grade, cum am văzut la desenarea pătratului.
 
 3. Ce înseamnă indentare?
    a) Ștergerea codului  b) **Lăsarea unui spațiu la începutul rândului**  c) Rularea programului
+      > Indentarea înseamnă să lași un mic spațiu la începutul rândului, ca Python să înțeleagă ce comenzi fac parte din repetiție.
 
 ---
 

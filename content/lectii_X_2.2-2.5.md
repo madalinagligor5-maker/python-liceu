@@ -79,15 +79,19 @@ def interclaseaza(a, b):
 
 1. Interclasarea necesită ca listele de intrare să fie:
    a) Oricum  b) **Sortate**  c) Egale ca lungime
+      > Interclasarea compară mereu elementele curente ale celor două liste și le adaugă în ordine crescătoare; dacă listele nu ar fi deja sortate, această comparație simplă nu ar mai garanta un rezultat sortat.
 
 2. Complexitatea interclasării a două liste de lungimi n și m este:
    a) O(n·m)  b) **O(n+m)**  c) O(n²)
+      > Fiecare element din cele două liste este vizitat exact o dată, cu un singur indice care avansează pentru fiecare listă, deci numărul total de pași este proporțional cu suma lungimilor n+m, nu cu produsul lor.
 
 3. La fiecare pas, interclasarea alege:
    a) Ultimul element  b) **Cea mai mică valoare disponibilă**  c) Un element aleator
+      > La fiecare pas se compară elementele curente a[i] și b[j] și se alege cel mai mic dintre ele pentru a păstra ordinea crescătoare în lista rezultat.
 
 4. Dacă una din liste se termină, ce se adaugă?
    a) Nimic  b) **Restul celeilalte liste**  c) Zero
+      > Când una din liste s-a epuizat, restul din cealaltă listă e deja sortat, așa că se copiază direct la final cu `extend`, fără a mai fi nevoie de comparații.
 
 
 :::verifica-cod
@@ -160,15 +164,19 @@ print(m)
 
 1. `a | b` reprezintă:
    a) Intersecția  b) **Reuniunea**  c) Diferența
+      > Operatorul `|` adună toate elementele din ambele mulțimi într-una singură, fără duplicate, ceea ce corespunde definiției matematice a reuniunii.
 
 2. `discard(x)` vs `remove(x)`:
    a) Sunt identice  b) **discard nu crapă dacă x lipsește**  c) remove nu crapă
+      > `discard(x)` a fost gândită să fie sigură de folosit chiar dacă nu ești sigur că x există în mulțime, pe când `remove(x)` aruncă eroare exact în acel caz.
 
 3. Pentru a crea o mulțime vidă folosești:
    a) `{}`  b) **`set()`**  c) `[]`
+      > La fel ca la modelul conceptual, `{}` produce un dicționar gol în Python, deci mulțimea vidă se obține doar apelând `set()`.
 
 4. `a <= b` verifică:
    a) **Dacă a e submulțime a lui b**  b) Dacă a e mai mare  c) Dacă sunt egale
+      > Operatorul `<=` pe mulțimi verifică incluziunea, adică dacă toate elementele lui a se regăsesc și în b, nu o comparație numerică de mărime.
 
 
 :::verifica-cod
@@ -236,15 +244,19 @@ print(ultim)
 
 1. Un șir de caractere în Python este:
    a) Mutable  b) **Imutabil**  c) O listă de numere
+      > În Python, `str` este un tip imutabil: odată creat, conținutul lui nu mai poate fi schimbat pe loc, ceea ce încercarea `text[0] = "H"` demonstrează prin eroare.
 
 2. Pentru a "modifica" un șir, trebuie să:
    a) Folosești `s[i] = x`  b) **Creezi un șir nou**  c) Apelezi `s.modify()`
+      > Fiindcă șirurile nu pot fi modificate pe loc, singura cale de a obține o versiune schimbată e să construiești un șir complet nou, ca în exemplul `"H" + text[1:]`.
 
 3. `s[1:4]` extrage:
    a) Caracterele 1, 2, 3  b) **Pozițiile 1, 2, 3 (exclusiv 4)**  c) Primul caracter
+      > Slicing-ul `s[1:4]` include pozițiile de la 1 până la 3, capătul din dreapta (4) fiind exclus, exact ca la liste.
 
 4. `s[-1]` accesează:
    a) Primul caracter  b) **Ultimul caracter**  c) Caracterul -1
+      > Indexarea negativă numără de la finalul șirului, iar -1 desemnează convențional ultimul caracter din secvență.
 
 
 :::verifica-cod

@@ -102,15 +102,19 @@ print(in_binar(10))  # 1010
 
 1. În ce bază lucrează calculatorul în mod natural?
    a) 10  b) **2**  c) 16
+      > Toată electronica digitală se bazează pe stări de tip întrerupător (curent/fără curent), care se reprezintă natural prin doar două valori, 0 și 1, deci baza 2.
 
 2. La conversia din zecimal în altă bază prin împărțiri repetate, cifrele se citesc:
    a) De sus în jos  b) **De jos în sus**  c) În ordine oarecare
+      > La împărțiri repetate, primul rest obținut este cifra cea mai puțin semnificativă, deci cifrele apar pe rând de la ultima spre prima poziție — adică se citesc de jos în sus, cum construiește și `in_baza` cu `cifre = str(n % b) + cifre`.
 
 3. Ce valoare are `din_baza("101", 2)`?
    a) 3  b) **5**  c) 101
+      > "101" în binar înseamnă 1×2² + 0×2¹ + 1×2⁰ = 4 + 0 + 1 = 5, exact calculul făcut de `din_baza` prin înmulțirea fiecărei cifre cu puterea bazei corespunzătoare.
 
 4. În baza 16, cifra care urmează după 9 este:
    a) 10  b) **A**  c) 0
+      > În hexazecimal cifrele merg de la 0 la 15, iar pentru valorile 10-15 se folosesc literele A-F, deci după cifra 9 urmează litera A (valoarea 10), conform șirului `simboluri = "0123456789ABCDEF"`.
 
 
 :::verifica-cod
@@ -215,15 +219,19 @@ print(este_prim(17))  # True
 
 1. Un număr prim are:
    a) Un singur divizor  b) **Exact doi divizori (1 și el însuși)**  c) Trei divizori
+      > Prin definiție, un număr prim se împarte exact doar la 1 și la el însuși, deci are întotdeauna exact doi divizori.
 
 2. În ciurul lui Eratostene, începem eliminarea multiplilor de la:
    a) `p`  b) **`p * p`**  c) `2 * p`
+      > Multiplii lui `p` mai mici decât `p*p` (adică `2p, 3p, ..., (p-1)p`) au deja fost eliminați de un divizor mai mic decât `p` la un pas anterior, așa că ciurul pornește eliminarea direct de la `p*p`, ca în bucla `range(p * p, n + 1, p)`.
 
 3. Exponențierea rapidă reduce timpul de la O(e) la:
    a) O(e²)  b) **O(log e)**  c) O(1)
+      > Fiindcă la fiecare pas exponentul se înjumătățește (`e //= 2`), numărul de pași necesari e proporțional cu logaritmul lui `e`, nu cu `e` însuși — de aici trecerea de la O(e) la O(log e).
 
 4. `putere_rapida(2, 10)` returnează:
    a) 100  b) **1024**  c) 20
+      > 2 ridicat la puterea 10 este 1024, iar `putere_rapida` calculează exact această valoare prin dublări succesive ale bazei, așa cum arată și exemplul din lecție.
 
 
 :::verifica-cod
@@ -316,15 +324,19 @@ print(round(c.arie(), 2))  # 12.57
 
 1. Ce este o clasă?
    a) Un obiect concret  b) **Un șablon pentru obiecte**  c) O funcție
+      > O clasă descrie doar structura (ce atribute și metode vor avea obiectele), fără să fie ea însăși un obiect concret — de aceea e numită șablon, iar instanțele sunt copiile concrete create după acel șablon.
 
 2. Ce face `__init__`?
    a) Șterge obiectul  b) **Se apelează la crearea obiectului**  c) Calculează ceva
+      > `__init__` este constructorul: Python îl apelează automat imediat ce scrii `Punct(3, 4)`, pentru a inițializa atributele noului obiect (`self.x`, `self.y`).
 
 3. Ce înseamnă `self`?
    a) Clasa  b) **Obiectul curent**  c) O variabilă globală
+      > În interiorul unei metode, `self` este parametrul prin care obiectul curent își accesează propriile atribute, de exemplu `self.x` din exemplul cu `Punct`, nu clasa în sine și nici o variabilă globală.
 
 4. `p = Punct(3, 4)` creează:
    a) O clasă  b) **O instanță (obiect)**  c) O funcție
+      > Apelul `Punct(3, 4)` invocă `__init__` și produce un obiect concret cu `x=3` și `y=4` — o instanță a clasei `Punct`, nu clasa în sine.
 
 
 :::verifica-cod
@@ -415,15 +427,19 @@ f.mainloop()
 
 1. Ce creează `tk.Tk()`?
    a) Un buton  b) **Fereastra principală**  c) O etichetă
+      > `tk.Tk()` construiește fereastra principală a aplicației, cea peste care apoi se adaugă widget-uri precum `Label` sau `Button`.
 
 2. Ce face `mainloop()`?
    a) Închide fereastra  b) **Ține fereastra deschisă și așteaptă evenimente**  c) Creează widget-uri
+      > `mainloop()` pornește bucla de evenimente a interfeței: fereastra rămâne deschisă și ascultă continuu click-uri, taste etc., altfel programul s-ar închide instant după crearea widget-urilor.
 
 3. Ce argument primește `Button` pentru a ști ce să execute la click?
    a) `text`  b) **`command`**  c) `pack`
+      > Parametrul `command` primit de `Button` indică funcția care trebuie apelată automat când se dă click pe el, exact ca `command=la_click` din exemplu.
 
 4. `pack()` servește la:
    a) **Aranjarea widget-ului în fereastră**  b) Închiderea ferestrei  c) Citirea input-ului
+      > `pack()` este metoda care poziționează efectiv widget-ul în interiorul ferestrei — fără ea, widget-ul e creat dar nu apare vizual pe ecran.
 
 
 :::verifica-cod
@@ -513,15 +529,19 @@ f.mainloop()
 
 1. Ce avantaj are `grid()` față de `pack()`?
    a) E mai rapid  b) **Permite aranjare pe rânduri și coloane**  c) Nu necesită `mainloop()`
+      > Spre deosebire de `pack()`, care doar înșiruie widget-urile, `grid()` te lasă să specifici explicit `row` și `column`, deci poți aranja widget-uri într-un tabel precis.
 
 2. Cu ce legi o funcție de o tastă?
    a) `command`  b) **`bind`**  c) `grid`
+      > `bind` asociază un eveniment (ca apăsarea unei taste, `"<Key>"`) cu o funcție care va fi apelată automat când acel eveniment are loc, ca în `f.bind("<Key>", la_tasta)`.
 
 3. În `grid(row=1, column=0)`, textul apare:
    a) Coloana 1, rândul 0  b) **Rândul 1, coloana 0**  c) Centrat
+      > În `grid(row=1, column=0)`, primul parametru numit e `row`, deci widget-ul se plasează pe rândul 1, coloana 0, nu invers.
 
 4. `f.bind("<Key>", func)` apelează `func`:
    a) La click  b) **La orice tastă**  c) La închiderea ferestrei
+      > Evenimentul `"<Key>"` din tkinter se declanșează la apăsarea oricărei taste de pe tastatură, nu doar la una anume, spre deosebire de `command`, care e legat de click pe buton.
 
 
 :::verifica-cod
@@ -605,15 +625,19 @@ with open("nume.txt", "r", encoding="utf-8") as f:
 
 1. Cu ce deschizi un fișier pentru citire?
    a) `open(f, "w")`  b) **`open(f, "r")`**  c) `open(f, "a")`
+      > Modul `"r"` (read) transmis lui `open()` deschide fișierul strict pentru citire, ca în exemplul `open("note.txt", "r", ...)`.
 
 2. Ce face modul `"w"`?
    a) Adaugă la sfârșit  b) **Șterge și scrie de la început**  c) Doar citește
+      > Modul `"w"` (write) golește conținutul existent al fișierului și începe scrierea de la zero, spre deosebire de `"a"` care adaugă la sfârșit fără să șteargă ce era deja acolo.
 
 3. De ce e recomandat `with open(...) as f`?
    a) E mai scurt  b) **Închide fișierul automat**  c) Permite citirea binară
+      > `with open(...) as f` garantează că fișierul se închide automat la ieșirea din blocul `with`, chiar dacă apare o eroare pe parcurs, eliminând riscul de a uita `.close()`.
 
 4. `f.read()` citește:
    a) O linie  b) **Tot conținutul**  c) Primul caracter
+      > `f.read()` citește dintr-o dată tot conținutul fișierului într-un singur șir de caractere, spre deosebire de parcurgerea linie cu linie din exemplul `for linie in f`.
 
 
 :::verifica-cod
@@ -699,15 +723,19 @@ print(c.___())
 
 1. Ce înseamnă LIFO (stivă)?
    a) Primul intră, primul iese  b) **Ultimul intră, primul iese**  c) Ordonat crescător
+      > LIFO înseamnă "Last In, First Out" — elementul adăugat ultimul este primul scos, exact comportamentul stivei ilustrat de `append`/`pop` pe aceeași parte a listei.
 
 2. Într-o coadă, primul servit este:
-   a) **Cel mai recent adăugat** (greșit — e invers)  b) **Cel mai vechi adăugat**  c) Cel mai mare
+   a) Cel mai recent adăugat  b) **Cel mai vechi adăugat**  c) Cel mai mare
+      > Coada respectă regula FIFO: clientul care a intrat primul este și primul care iese, comportament redat de `coada.append("A")` urmat de `coada.popleft()` care scoate exact acel "A".
 
 3. `stiva.pop()` returnează:
    a) Primul element  b) **Ultimul element adăugat**  c) Lista goală
+      > `pop()` fără argument scoate și întoarce ultimul element adăugat în listă, adică vârful stivei, exact ca în exemplul unde `stiva.pop()` întoarce 3 (ultimul introdus).
 
 4. Pentru coadă în Python folosim:
    a) `list` cu `pop()`  b) **`deque` cu `popleft()`**  c) `set`
+      > Pentru coadă se preferă `deque` cu `popleft()`, pentru că scoate eficient elementul din capătul opus adăugării, comportamentul FIFO cerut — spre deosebire de `list.pop()`, care ar scoate elementul greșit (ultimul, nu primul).
 
 
 :::verifica-cod
@@ -787,15 +815,19 @@ print(L)
 
 1. Ce returnează `L[-1]`?
    a) Primul element  b) **Ultimul element**  c) Lista întreagă
+      > Indicele `-1` numără pozițiile de la coadă spre început, deci `L[-1]` accesează întotdeauna ultimul element din listă.
 
 2. `L[1:3]` este un:
    a) Element  b) **Slice (sublistă)**  c) Index negativ
+      > `L[1:3]` extrage un fragment din listă (elementele de la indicele 1 până la 3 exclusiv), rezultatul fiind el însuși o listă, deci un slice, nu un singur element.
 
 3. Ce face `L.append(x)`?
    a) Inserează la început  b) **Adaugă la sfârșit**  c) Șterge x
+      > `append(x)` inserează valoarea `x` chiar la finalul listei existente, fără să modifice restul elementelor, spre deosebire de `insert(0, x)` care ar adăuga la început.
 
 4. `5 in L` returnează:
    a) Poziția lui 5  b) **True/False dacă 5 e în listă**  c) Numărul de apariții
+      > Operatorul `in` testează apartenența și întoarce o valoare logică — `True` dacă 5 se află printre elementele listei, `False` altfel — nu poziția și nici numărul de apariții.
 
 
 :::verifica-cod
@@ -881,15 +913,19 @@ print(pozitii([1, 5, 1, 5], 5))  # [1, 3]
 
 1. Ce face `L.sort()`?
    a) Creează listă nouă  b) **Sortează lista pe loc (în place)**  c) Inversează ordinea
+      > `L.sort()` rearanjează elementele direct în lista `L` ("în place"), fără să creeze o listă nouă — de aceea nu returnează nimic util, doar modifică lista originală.
 
 2. Diferența între `sort()` și `sorted()`:
    a) Nu există  b) **`sort()` modifică lista, `sorted()` întoarce listă nouă**  c) `sorted()` e mai rapid
+      > `sort()` modifică lista existentă și nu întoarce nimic, în timp ce `sorted()` lasă lista originală neatinsă și construiește o listă nouă sortată, ca în exemplul `sorted_L = sorted(L)`.
 
 3. `L.reverse()`:
    a) Sortează  b) **Inversează ordinea elementelor**  c) Șterge ultimul
+      > `reverse()` doar schimbă ordinea curentă a elementelor (le pune invers), fără a le sorta după valoare, spre deosebire de `sort()`.
 
 4. O căutare liniară are complexitate:
    a) O(1)  b) **O(n)**  c) O(log n)
+      > Căutarea liniară verifică elementele unul câte unul, deci în cel mai rău caz parcurge toate cele `n` elemente, ceea ce dă o complexitate O(n), la fel ca în funcția `cauta` din lecție.
 
 
 :::verifica-cod
@@ -967,15 +1003,19 @@ for a in range(1, 5):
 
 1. O buclă `for` în interiorul alteia generează:
    a) O singură valoare  b) **Toate combinațiile**  c) O listă sortată
+      > Fiecare valoare a buclei exterioare se combină pe rând cu fiecare valoare a buclei interioare, deci imbricarea generează toate combinațiile posibile de perechi (i, j), nu doar una singură.
 
 2. `for i in range(3): for j in range(3):` produce de câte ori corpul interior?
    a) 3  b) **9**  c) 6
+      > Bucla interioară `for j in range(3)` rulează complet (3 execuții) pentru fiecare din cele 3 valori ale lui `i`, deci corpul interior se execută de 3 × 3 = 9 ori.
 
 3. List comprehension-ul `[(x, y) for x in range(2) for y in range(2)]` are:
    a) 2 elemente  b) **4 elemente**  c) 1 element
+      > Fiecare din cele 2 valori posibile ale lui `x` se combină cu fiecare din cele 2 valori ale lui `y`, deci rezultă 2 × 2 = 4 perechi (x, y).
 
 4. Generarea sistematică e utilă pentru:
    a) Sortare  b) **A testa toate variantele posibile**  c) Citirea fișierelor
+      > Bucle imbricate generează sistematic fiecare combinație posibilă de valori, exact ceea ce e necesar la probleme unde trebuie verificate toate variantele posibile, nu doar câteva alese la întâmplare.
 
 
 :::verifica-cod
@@ -1067,15 +1107,19 @@ def selectie_minim(L):
 
 1. Ce face selecția minimului la fiecare pas?
    a) Schimbă primele două  b) **Pune minimul restului la poziția curentă**  c) Sortează recursiv
+      > La fiecare pas `i`, algoritmul caută cea mai mică valoare din porțiunea nesortată rămasă (de la `i` încolo) și o interschimbă la poziția `i`, așezând astfel minimul exact acolo unde trebuie să fie.
 
 2. Complexitatea selecției minimului e:
    a) O(n)  b) **O(n²)**  c) O(log n)
+      > Pentru fiecare din cele n poziții exterioare se parcurge din nou restul listei pentru a găsi minimul, deci numărul total de comparații crește proporțional cu n², adică O(n²).
 
 3. După primul pas pe `[5, 2, 9, 1]`, primul element devine:
    a) 5  b) **1**  c) 2
+      > Cel mai mic element din `[5, 2, 9, 1]` este 1, iar algoritmul îl interschimbă la poziția 0 chiar la primul pas, deci primul element devine 1.
 
 4. Interschimbarea `L[i], L[minim] = ...` se numește:
    a) Atribuire  b) **Swap**  c) Append
+      > Interschimbarea a două valori între ele, ca în `L[i], L[minim] = L[minim], L[i]`, poartă numele de swap — se schimbă locul, nu se face doar o simplă atribuire de la o singură sursă.
 
 
 :::verifica-cod
@@ -1174,15 +1218,19 @@ def bubble(L):
 
 1. Ce „plutește" la capăt în bubble sort?
    a) Minimul  b) **Maximul**  c) Elementul din mijloc
+      > La fiecare tură, comparațiile succesive între vecini împing progresiv cea mai mare valoare rămasă spre capătul din dreapta, motiv pentru care se spune că maximul "plutește" la capăt.
 
 2. Bubble sort are complexitate:
    a) O(n)  b) **O(n²)**  c) O(log n)
+      > Pentru fiecare din cele n ture se compară din nou aproape toate perechile alăturate, ceea ce înseamnă tot n operații repetate de n ori, deci O(n²), la fel ca la selecția minimului.
 
 3. Counting sort e eficient când:
    a) Valorile sunt mari și dispersate  b) **Valorile sunt mici și într-un interval cunoscut**  c) Lista e deja sortată
+      > Counting sort funcționează eficient doar când valorile sunt mici și încap într-un interval cunoscut, pentru că se construiește un tablou de frecvențe indexat direct de acele valori (`freq = [0] * (max_val + 1)`).
 
 4. `freq[x] += 1` în counting sort:
    a) Adaugă x la rezultat  b) **Numără o apariție a lui x**  c) Șterge x
+      > Linia `freq[x] += 1` incrementează contorul de la poziția `x`, numărând astfel o nouă apariție a valorii `x` în lista de intrare, fără să adauge nimic direct la rezultatul final.
 
 
 :::verifica-cod

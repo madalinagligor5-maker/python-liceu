@@ -44,6 +44,7 @@ export async function generateMetadata({
   return {
     title: `${sublectieCod} ${continut.titlu} — Academia Python`,
     description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}.`,
+    alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
   };
 }
 

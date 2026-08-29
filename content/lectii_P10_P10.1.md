@@ -88,12 +88,15 @@ ___:
 
 1. Ce operator verifică dacă două valori sunt egale?
    a) =  b) **==**  c) ===
+      > Semnul == compară două valori și ne spune dacă sunt egale, spre deosebire de semnul = care doar pune o valoare într-o variabilă.
 
 2. Când se execută instrucțiunea de pe ramura else?
    a) Când condiția if este adevărată  b) **Când toate condițiile anterioare sunt false**  c) Întotdeauna
+      > Ramura else se execută abia atunci când niciuna dintre condițiile de la if și elif nu a fost adevărată.
 
 3. Ce operator verifică dacă o valoare se află într-o listă?
    a) has  b) **in**  c) inside
+      > Cuvântul in verifică rapid dacă o valoare se găsește printre elementele unei liste, fără să o cauți tu manual.
 
 ---
 

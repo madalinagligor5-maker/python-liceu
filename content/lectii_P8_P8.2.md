@@ -80,12 +80,15 @@ print(lungime, prima_litera)
 
 1. Cum aflăm lungimea unui text în Python?
    a) size()  b) **len()**  c) count()
+      > Funcția len() numără câte caractere are un text, exact cum am aflat că 'Python' are 6 litere.
 
 2. De la ce număr începe indexarea caracterelor într-un text?
    a) 1  b) **0**  c) -1
+      > În Python numărătoarea literelor unui text începe mereu de la 0, nu de la 1, așa cum am reținut la atenție.
 
 3. Ce face metoda .upper()?
    a) Șterge textul  b) **Transformă textul în litere mari**  c) Pune textul la sfârșit
+      > Metoda .upper() transformă toate literele textului în litere mari, exact cum 'Python' devine 'PYTHON'.
 
 ---
 

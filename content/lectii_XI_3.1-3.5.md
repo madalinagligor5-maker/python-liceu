@@ -75,6 +75,7 @@ Scrie o funcție `lungime(nod_inceput)` care returnează numărul de noduri dint
 
 1. De ce, într-o listă înlănțuită, nu putem accesa elementul de pe poziția i direct (ca la `lista[i]`), ci trebuie să parcurgem de la început?
    a) pentru că fiecare nod reține câți pași mai sunt până la final, dar nu și distanța până la cap, deci trebuie pornit mereu din capăt  b) **pentru că nodurile nu ocupă poziții succesive în memorie, iar singura cale spre nodul i este să urmăm legăturile `urmator` una câte una, de la cap**  c) pentru că Python nu permite deloc paranteze pătrate `[]` pe obiecte definite de utilizator, cum e clasa `Nod`  d) pentru că accesul pe poziții e posibil doar dacă lista conține numere, nu și alte tipuri de date
+      > Nodurile unei liste înlănțuite nu stau în memorie una lângă alta, ci sunt legate prin referințe `urmator`; ca să ajungi la nodul de pe poziția i, trebuie să urmezi legăturile pas cu pas de la cap, nu ai cum să „sari” direct acolo ca la indexarea unei liste Python.
 
 ---
 
@@ -180,6 +181,7 @@ Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea `y` imediat după pri
 
 1. De ce adăugarea la sfârșit într-o listă simplu înlănțuită necesită parcurgerea întregii liste (O(n)), în timp ce la început e O(1)?
    a) pentru că adăugarea la sfârșit trebuie să recalculeze valorile tuturor nodurilor anterioare, în timp ce la început doar valoarea primului nod se schimbă  b) pentru că fiecare nod își ține minte poziția din listă, iar actualizarea acestei poziții la fiecare adăugare la sfârșit necesită o parcurgere completă  c) **pentru că la început noul nod devine direct capul listei (`nou.urmator = cap`), fără nicio parcurgere, dar la sfârșit trebuie găsit nodul al cărui `urmator` este `None`, ceea ce cere parcurgerea de la cap până la capăt**  d) pentru că Python limitează adăugarea la început la liste cu mai puțin de n elemente
+      > La `adauga_inceput`, noul nod devine cap doar prin `nou.urmator = cap`, deci e O(1); la `adauga_sfarsit` însă trebuie parcursă lista de la cap până găsești nodul al cărui `urmator` este `None`, ceea ce ia O(n) pași.
 
 ---
 
@@ -273,6 +275,7 @@ Modifică generatorul de mai sus să nu permită două 'A' alăturate.
 
 1. În ce se diferențiază backtracking-ul de o simplă parcurgere recursivă a unui arbore deja dat?
    a) **în backtracking, arborele de alegeri nu există dinainte — e generat pas cu pas, iar ramurile invalide sunt abandonate imediat ce se detectează, fără a fi explorate complet**  b) backtracking-ul vizitează fiecare nod al arborelui exact o dată, la fel ca o parcurgere în adâncime (DFS), deci practic nu există nicio diferență reală  c) backtracking-ul memorează toate soluțiile posibile într-o listă înainte de a începe explorarea, spre deosebire de parcurgerea simplă  d) backtracking-ul folosește bucle `while`, în timp ce parcurgerea unui arbore dat folosește exclusiv recursivitate
+      > La o parcurgere a unui arbore deja construit, structura există dinainte și e doar vizitată; în backtracking, arborele de alegeri se generează pe măsură ce avansezi, iar o ramură care duce la o soluție invalidă e abandonată imediat, fără să mai fie explorată complet, exact cum arată condiția `este_valida` din schema generală.
 
 ---
 
@@ -372,6 +375,7 @@ Modifică problema reginelor să returneze numărul de soluții, nu să le afiș
 
 1. De ce condiția `abs(sol[i] - col) == lin - i` verifică atacul pe diagonală?
    a) pentru că `abs` transformă orice coordonate negative în pozitive, iar tabla de șah nu permite coordonate negative  b) pentru că două regine se atacă pe diagonală doar dacă produsul coloanelor lor este egal cu produsul liniilor lor, iar expresia calculează acest produs  c) pentru că `lin - i` reprezintă numărul de regine plasate deja, iar condiția verifică dacă acest număr depășește dimensiunea tablei `n`  d) **pentru că două poziții se află pe aceeași diagonală exact atunci când diferența dintre coloanele lor este egală, în valoare absolută, cu diferența dintre liniile lor, iar `lin - i` este chiar acea diferență de linii**
+      > Două poziții de pe tablă sunt pe aceeași diagonală exact atunci când diferența dintre liniile lor e egală, în valoare absolută, cu diferența dintre coloanele lor; cum `lin - i` reprezintă diferența de linii dintre regina curentă și regina de pe linia `i`, comparația cu `abs(sol[i] - col)` verifică direct această condiție de diagonală.
 
 ---
 
@@ -454,6 +458,7 @@ Scrie un backtracking care găsește o submulțime cu suma exact `t` dintr-o lis
 
 1. Când este mai eficient backtracking-ul decât a genera toate soluțiile și a le filtra pe cele valide?
    a) întotdeauna, indiferent de problemă, pentru că backtracking-ul are complexitate mai mică decât generarea completă în orice situație  b) **atunci când o soluție parțială invalidă poate fi detectată devreme, permițând abandonarea ramurii respective înainte de a genera toate combinațiile care pornesc din ea**  c) doar atunci când numărul total de soluții valide este foarte mare, apropiat de numărul total de combinații posibile  d) doar atunci când problema poate fi rezolvată fără recursivitate, folosind exclusiv bucle `for`
+      > Backtracking-ul câștigă exact atunci când o alegere parțial construită se poate dovedi invalidă devreme, pentru că atunci ramura respectivă e abandonată și toate combinațiile care ar fi pornit din ea nu mai sunt generate deloc, spre deosebire de generarea completă urmată de filtrare, care le construiește pe toate oricum.
 
 
 :::verifica-cod

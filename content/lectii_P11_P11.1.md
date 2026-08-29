@@ -88,12 +88,15 @@ print(r.nume)
 
 1. Ce este o clasă?
    a) O funcție simplă  b) **O schiță/matriță pentru crearea de obiecte**  c) O listă de numere
+      > O clasă e ca schița unei case - descrie cum arată obiectele, dar nu e ea însăși o casă construită, ca în exemplul cu Jucarie din lecție.
 
 2. Cum se numește prima metodă apelată la crearea unui obiect?
    a) __start__  b) **__init__**  c) __new__
+      > Metoda __init__ e prima care rulează automat de îndată ce creezi un obiect nou, ea fiind cea care îi dă proprietățile inițiale (ca nume și culoare la robotul Pippy).
 
 3. Ce reprezintă self într-o clasă?
    a) Tipul clasei  b) **Instanța curentă a obiectului**  c) Un parametru opțional
+      > self reprezintă chiar obiectul pe care îl construim în acel moment, de aceea apare ca prim parametru la orice funcție din interiorul clasei.
 
 ---
 

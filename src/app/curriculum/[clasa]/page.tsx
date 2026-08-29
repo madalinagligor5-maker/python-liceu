@@ -21,6 +21,7 @@ export async function generateMetadata({
   return {
     title: `Clasa a ${clasa}-a: ${capitol.titlu} — Academia Python`,
     description: `${capitol.module.length} module pentru clasa a ${clasa}-a, conform programei oficiale de Informatică.`,
+    alternates: { canonical: `/curriculum/${clasa}` },
   };
 }
 

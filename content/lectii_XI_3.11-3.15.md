@@ -72,6 +72,7 @@ Detectează dacă un graf neorientat conține un ciclu, folosind DFS.
 
 1. De ce DFS recursează natural, în timp ce BFS are nevoie de o coadă explicită?
    a) DFS e mai rapidă decât BFS, deci nu are nevoie deloc de o structură de date  b) **Recursivitatea folosește stiva de apeluri, care e LIFO — exact ordinea în care DFS coboară și se întoarce; BFS are nevoie de ordine FIFO, pe care stiva de apeluri n-o oferă**  c) DFS nu vizitează toate vârfurile grafului, deci nu are nevoie de structuri auxiliare  d) BFS are nevoie de coadă doar pe grafuri ponderate, DFS funcționează pe orice tip de graf fără nicio structură auxiliară
+      > La fiecare apel recursiv, Python pune automat vârful curent pe stiva de execuție și îl scoate abia când s-a întors din toți vecinii — exact comportamentul LIFO cerut de DFS pentru a merge cât mai adânc pe o ramură înainte de a reveni. BFS are nevoie de ordine FIFO (primul vârf adăugat e primul procesat), pe care stiva de apeluri n-o poate oferi, de-asta se implementează cu o coadă explicită.
 
 ---
 
@@ -163,6 +164,7 @@ Folosește rezultatul pentru a număra perechile de vârfuri între care există
 
 1. De ce bucla `k` (vârful intermediar) trebuie să fie cea mai exterioară, nu una dintre celelalte două?
    a) Pentru că altfel complexitatea ar crește la O(n⁴) în loc de O(n³)  b) **La pasul `k`, matricea `d` trebuie să conțină deja drumurile găsite prin vârfurile intermediare 0..k-1, ca verificarea `d[i][k] and d[k][j]` să folosească informație completă și corectă**  c) Pentru că Python parcurge buclele `for` imbricate în ordine inversă dacă `k` nu e prima  d) Nu contează ordinea buclelor — rezultatul final e identic oricum le-am aranja
+      > d[i][k] and d[k][j] are sens doar dacă d deja reflectă toate drumurile prin intermediarii 0..k-1 pentru orice pereche (i,k) și (k,j), nu doar pentru perechea (i,j) curentă; asta se garantează doar dacă bucla k a terminat complet o valoare înainte să treacă la următoarea, ceea ce cere ca ea să învelească buclele i și j, nu invers.
 
 ---
 
@@ -253,6 +255,7 @@ Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul f
 
 1. De ce Dijkstra e corect când toate costurile sunt pozitive, dar eșuează cu costuri negative?
    a) Pentru că `heapq` din Python nu poate stoca numere negative în coadă  b) **Algoritmul presupune că, odată extras vârful cu distanța minimă cunoscută, aceasta nu mai poate scădea — adevărat doar dacă toate muchiile au cost pozitiv; o muchie negativă poate reduce ulterior o distanță deja considerată finală**  c) Pentru că, cu costuri negative, distanțele devin infinite și bucla `while` nu se mai termină  d) Pentru că Dijkstra folosește DFS pe sub-graf, iar DFS eșuează pe grafuri cu cicluri
+      > Dijkstra extrage mereu din coadă vârful cu cea mai mică distanță cunoscută și îl consideră definitiv rezolvat, presupunând că orice drum alternativ ar fi cel puțin la fel de lung — lucru adevărat doar când toate muchiile adaugă cost pozitiv. Dacă există o muchie negativă, ea poate micșora ulterior distanța unui vârf deja „închis”, iar algoritmul nu se mai întoarce să-l corecteze.
 
 ---
 
@@ -336,6 +339,7 @@ Detectează dacă graful are un ciclu de cost negativ (verifică dacă vreo diag
 
 1. De ce Roy-Floyd are complexitate O(n³) deși matricea distanțelor are doar n² celule?
    a) **Pentru fiecare din cele n² perechi (i, j) se testează pe rând toate cele n vârfuri posibile ca intermediar `k`, deci munca totală e n² × n = n³**  b) Pentru că algoritmul recalculează de n ori întreaga matrice din cauza erorilor de rotunjire la numere reale  c) Pentru că, de fapt, Roy-Floyd rulează Dijkstra din fiecare vârf, iar Dijkstra costă O(n) pe grafuri mici  d) Pentru că bucla `while` internă mai adaugă un factor n peste cele două bucle `for` vizibile
+      > Deși matricea are n² celule, pentru fiecare pereche (i, j) algoritmul verifică pe rând, la fiecare valoare a lui k, dacă trecerea prin vârful k oferă un drum mai scurt (d[i][k] + d[k][j]); înmulțind cele n² perechi cu cei n intermediari posibili rezultă exact n³ operații.
 
 ---
 
@@ -433,6 +437,7 @@ Modifică să returneze și lista muchiilor alese (nu doar costul).
 
 1. De ce Prim și Kruskal dau același cost total pentru MST, deși aleg muchiile în ordine diferită?
    a) **Ambele respectă proprietatea tăieturii (cut property): la fiecare pas aleg muchia de cost minim care traversează o tăietură a grafului, ceea ce garantează optimul indiferent de ordinea în care sunt alese muchiile**  b) Pentru că, de fapt, ambele sortează toate muchiile la început; Prim doar le procesează pe rând, în timp ce Kruskal le procesează pe toate deodată  c) Pentru că setul de muchii al MST-ului e mereu unic, deci orice algoritm corect trebuie să aleagă exact aceleași muchii, în orice ordine  d) E o coincidență valabilă doar pe grafuri mici; pe grafuri mari costurile pot să difere ușor între cei doi algoritmi
+      > Deși Prim crește arborele dintr-un singur vârf iar Kruskal alege muchii sortate din tot graful, ambele respectă proprietatea tăieturii: la orice separare a vârfurilor în două grupuri, muchia de cost minim care le leagă face parte obligatoriu dintr-un MST optim, indiferent de ordinea în care algoritmul o descoperă.
 
 
 :::verifica-cod

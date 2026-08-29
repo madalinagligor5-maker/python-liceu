@@ -18,6 +18,11 @@ export type IntrebareQuiz = {
   variante: string[];
   /** indexul (0-based) al variantei corecte, dedus din **bold**. */
   corect: number;
+  /** Explică de ce răspunsul marcat cu **bold** e corect — dedusă din
+   *  linia opțională "> ..." de imediat după linia cu variantele a)/b)/c)/d).
+   *  Opțională: o întrebare fără această linie rămâne validă, doar fără
+   *  explicație afișată la elev. */
+  explicatie?: string;
 };
 
 type IndexQuiz = Record<string, IntrebareQuiz[]>; // cod sublecție -> întrebări
@@ -53,6 +58,14 @@ function extrageDinCorp(corp: string): IntrebareQuiz[] {
         }
         cur.variante.push(opt);
       }
+      continue;
+    }
+
+    // Linie opțională de explicație, imediat după variantele a)/b)/c)/d):
+    //   > Stiva scoate mereu ultimul element adăugat — ...
+    if (cur && cur.variante.length > 0 && /^\s*>\s*(.+)$/.test(ln)) {
+      const em = ln.match(/^\s*>\s*(.+)$/);
+      if (em) cur.explicatie = em[1].trim();
     }
   }
   if (cur) quiz.push(cur);

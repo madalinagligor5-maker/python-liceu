@@ -81,6 +81,7 @@ Separă features de target într-o listă de tupluri `(features, eticheta)`.
 
 1. Un magazin online vrea să grupeze automat clienții după comportamentul de cumpărare, fără să aibă etichete predefinite pentru fiecare client. Ce tip de învățare este potrivit, și de ce?
    a) Supervizată, pentru că avem coloana "target" cu grupul fiecărui client  b) **Nesupervizată, pentru că nu avem etichete și căutăm structură (grupuri) în date**  c) Supervizată, pentru că orice problemă cu multe caracteristici necesită etichete  d) Nesupervizată, pentru că datele nu conțin coloana "venit"
+      > Fără o coloană de tip "target" care să arate grupul fiecărui client, algoritmul nu are ce eticheta să învețe — poate doar căuta tipare și structuri ascunse în date, ceea ce definește exact învățarea nesupervizată.
 
 ---
 
@@ -161,6 +162,7 @@ Scrie normalizarea min-max pentru o listă de numere.
 
 1. Un set de date are `venit` (mii de lei) și `numar_copii` (0-5). Ce se întâmplă dacă antrenezi un model fără să normalizezi aceste caracteristici?
    a) **Modelul va fi dominat de `venit`, pentru că diferențele mari de scală cântăresc mai mult în calculele de distanță/optimizare**  b) Nimic, pentru că algoritmii de ML ignoră automat scala fiecărei caracteristici  c) Modelul va ignora complet `venit`, pentru că valorile prea mari sunt eliminate automat  d) Antrenarea va eșua cu eroare, pentru că `venit` și `numar_copii` trebuie să aibă aceeași unitate de măsură
+      > La distanțe sau optimizare, o coloană cu valori de ordinul miilor (venitul) produce diferențe numerice mult mai mari decât una cu valori 0-5 (numărul de copii), așa că modelul acordă implicit mai multă greutate venitului doar din cauza scalei, nu pentru că ar fi realmente mai relevant.
 
 ---
 
@@ -241,6 +243,7 @@ Calculează manual (fără sklearn) un pas de K-means pe 4 puncte cu 2 centroizi
 
 1. Rulezi K-means pe un set de date fără să știi câte grupuri există cu adevărat. Cum procedezi corect pentru a alege `k`?
    a) Alegi `k=2` implicit, pentru că e valoarea recomandată în majoritatea cazurilor  b) **Încerci mai multe valori pentru `k`, compari rezultatele (ex. metoda "cotului") și alegi valoarea care separă cel mai bine datele**  c) Lași algoritmul să determine automat numărul optim de clustere din date  d) Alegi `k` egal cu numărul de caracteristici (coloane) din setul de date
+      > Numărul de clustere k nu e dat de algoritm, ci trebuie ales de tine dinainte, prin încercări repetate și comparație (de exemplu metoda cotului) — K-means doar împarte punctele odată ce i-ai spus câte grupuri să caute.
 
 ---
 
@@ -318,6 +321,7 @@ Calculează manual panta `a` pentru două puncte și folosește-o la predicție.
 
 1. Vrei să prezici prețul de vânzare al unei case pe baza suprafeței și a numărului de camere. Ce tip de model alegi și de ce?
    a) Clasificare, pentru că prețul poate fi împărțit în categorii de tip "ieftin"/"scump"  b) **Regresie, pentru că prețul este o valoare numerică continuă, nu o categorie**  c) Regresie, pentru că regresia se folosește mereu când avem mai mult de o caracteristică (feature)  d) Clasificare, pentru că modelul trebuie să decidă "Da" sau "Nu" pentru vânzare
+      > Prețul unei case poate lua orice valoare numerică pe o scală continuă, nu se încadrează în câteva categorii fixe, deci se potrivește cu regresia, care prezice exact astfel de valori numerice, spre deosebire de clasificare, care alege dintre categorii predefinite.
 
 ---
 
@@ -398,6 +402,7 @@ Antrenează un arbore de decizie și afișează structura (sau importanța featu
 
 1. Trebuie să explici unui manager, care nu știe programare, de ce un client a fost respins pentru credit. Ce model folosești ca să poți explica ușor decizia, și de ce?
    a) KNN, pentru că poți arăta exact care sunt cei mai apropiați `k` vecini folosiți la vot  b) **Arbore de decizie, pentru că poți urmări întrebările succesive (ex. "venit > 5000?") care au dus la decizia finală**  c) KNN, pentru că se antrenează mai repede și deci e mai ușor de înțeles  d) Arbore de decizie, pentru că găsește automat cei mai apropiați vecini ai fiecărui exemplu
+      > Arborele de decizie ia decizia printr-un lanț de întrebări explicite pe caracteristici (de exemplu "venit > 5000?"), pe care le poți urmări pas cu pas și explica în cuvinte, spre deosebire de KNN, unde decizia vine dintr-un vot al vecinilor apropiați, fără o regulă explicabilă de citit.
 
 
 :::verifica-cod

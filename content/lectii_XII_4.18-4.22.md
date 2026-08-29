@@ -114,6 +114,7 @@ print("Suma ponderata:", suma)
 
 1. Un neuron are o singură intrare `x`, greutate `w = 0`, bias `b = 5`. Ce se întâmplă cu suma ponderată, indiferent ce valoare are `x`?
    a) Suma ponderată e mereu 0, pentru că orice e înmulțit cu greutatea 0  b) **Suma ponderată e mereu 5 — bias-ul rămâne, dar contribuția lui `x` dispare complet, pentru că orice număr înmulțit cu 0 e 0**  c) Suma ponderată variază odată cu `x`, la fel ca la orice altă greutate  d) Neuronul aruncă o eroare, pentru că nu poți avea o greutate 0
+      > În suma ponderată, contribuția lui x se calculează ca x înmulțit cu greutatea w; cum w = 0, acel produs e mereu 0 indiferent de x, deci rămâne doar bias-ul b = 5 neschimbat, exact ideea din lecție că bias-ul e singurul termen care poate "porni" neuronul independent de intrări.
 
 ---
 
@@ -210,6 +211,7 @@ for ore in ore_somn:
 
 1. Vrei să afli dacă există o relație între orele de studiu și nota obținută la un test, pe baza a 30 de elevi. Ce tip de grafic alegi, și de ce?
    a) Grafic de linie, pentru că timpul trece de la un elev la altul  b) Grafic de bare, pentru că fiecare elev e o categorie separată  c) **Scatter (puncte), pentru că vrei să vezi dacă cele două caracteristici numerice (ore, notă) variază împreună**  d) Niciunul — relațiile între caracteristici nu se pot vizualiza, doar se calculează
+      > Orele de studiu și nota sunt ambele caracteristici numerice pentru fiecare din cei 30 de elevi, iar scatter-ul plasează fiecare elev ca punct pe cele două axe, permițându-ți să vezi dintr-o privire dacă cele două valori cresc împreună — exact rolul scatter-ului descris în lecție, diferit de linie (evoluție în timp) sau bare (comparație între categorii).
 
 ---
 
@@ -319,6 +321,7 @@ print("Media:", medie, "| Maxim:", maxim)
 
 1. O coloană cu notele `[10, 10, 10, 10]` și o coloană cu notele `[2, 10, 5, 15]` au aceeași medie (aproximativ). Ce le diferențiază, din punct de vedere statistic?
    a) Nimic — dacă media e la fel, coloanele sunt echivalente pentru orice analiză  b) **Abaterea standard: prima coloană are abatere 0 (toate valorile identice), a doua are abatere mare (valori foarte împrăștiate)**  c) Numărul de valori (`count`), care diferă mereu când mediile sunt apropiate  d) Maximul, care e mereu egal cu media înmulțită cu numărul de valori
+      > Media identică ascunde cât de împrăștiate sunt valorile: în prima coloană fiecare notă e exact egală cu media, deci diferențele față de medie sunt 0, iar în a doua notele variază mult față de medie, ceea ce abaterea standard, calculată din pătratele acestor diferențe, surprinde direct — media singură nu arată asta.
 
 ---
 
@@ -440,6 +443,7 @@ print("Acuratete:", acuratete)
 
 1. Antrenezi un model pe 100 de exemple și îl testezi tot pe acele 100 de exemple, obținând acuratețe 100%. Ce concluzie e corectă?
    a) Modelul e excelent și va avea performanță la fel de bună pe exemple noi  b) **Nu poți ști dacă modelul a învățat un tipar general sau doar a memorat exemplele — acuratețea trebuie măsurată pe date nefolosite la antrenare**  c) Acuratețea de 100% e imposibilă și indică o eroare în cod  d) Modelul e prea simplu, pentru că a obținut scor maxim
+      > Testat pe exact aceleași exemple pe care le-a văzut la antrenare, un model care doar a memorat datele (fără să învețe un tipar general) ar obține tot scor perfect, la fel ca unul care a învățat cu adevărat — abia performanța pe date noi, nefolosite la antrenare, arată dacă modelul generalizează sau doar a reținut exemplele.
 
 ---
 
@@ -560,6 +564,7 @@ print("Suma pe linii:", sume_linii)
 
 1. Ai două matrici pătratice m1 și m2. Ce diferență e între înmulțirea element cu element și înmulțirea de matrici (`np.dot`)?
    a) Sunt exact aceeași operație, doar scrise diferit  b) **Element cu element înmulțește valorile aflate pe aceeași poziție; `np.dot` calculează, pentru fiecare poziție din rezultat, produsul scalar dintre o linie din prima matrice și o coloană din a doua**  c) Înmulțirea element cu element funcționează doar pentru matrici pătratice, `np.dot` funcționează pentru orice formă  d) `np.dot` e doar o altă denumire pentru adunarea de matrici
+      > Înmulțirea element cu element combină doar valorile aflate pe aceeași poziție din cele două matrici, în timp ce np.dot calculează fiecare element din rezultat ca produs scalar între o linie întreagă din prima matrice și o coloană întreagă din a doua, deci cele două operații folosesc valori și reguli complet diferite, chiar dacă ambele matrici sunt pătratice.
 
 ---
 

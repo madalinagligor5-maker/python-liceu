@@ -79,12 +79,15 @@ print(f"Scorul este {___}")
 
 1. Ce face operatorul +=?
    a) Scade valoarea  b) **Adaugă o valoare la variabilă**  c) Șterge variabila
+      > Operatorul += este o prescurtare prin care Python adună o valoare la variabilă, ca și cum ai scrie scor = scor + 5.
 
 2. Cum marcăm un f-string în Python?
    a) Punem f la sfârșit  b) **Punem litera f la începutul ghilimelelor**  c) Îl scriem cu litere mari
+      > Ca Python să știe că vrei un f-string, trebuie să pui litera f exact înainte de ghilimele, altfel textul dintre acolade nu se mai calculează.
 
 3. Ce se pune între acolade {} într-un f-string?
    a) Comentarii  b) **Variabile sau expresii Python**  c) Litere mari
+      > Între acolade {} punem o variabilă sau o mică expresie Python, iar rezultatul ei apare direct în text.
 
 ---
 

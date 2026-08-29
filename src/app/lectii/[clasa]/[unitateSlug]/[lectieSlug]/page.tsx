@@ -30,6 +30,7 @@ export async function generateMetadata({
   return {
     title: `${lectie.lectie} — Academia Python`,
     description: lectie.explicatie_scurta.slice(0, 155),
+    alternates: { canonical: `/lectii/${clasa}/${unitateSlug}/${lectieSlug}` },
   };
 }
 

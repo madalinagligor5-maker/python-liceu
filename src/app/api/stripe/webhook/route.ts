@@ -10,7 +10,7 @@ function mapeazaStatus(statusStripe: Stripe.Subscription.Status): "active" | "pa
   return "none";
 }
 
-async function actualizeazaDinAbonament(subscription: Stripe.Subscription) {
+async function actualizeazaDinAbonament(subscription: Stripe.Subscription, eventType: string) {
   const supabaseAdmin = creeazaClientAdmin();
   const customerId =
     typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
@@ -19,7 +19,7 @@ async function actualizeazaDinAbonament(subscription: Stripe.Subscription) {
   const supabaseUserId = subscription.metadata?.supabase_user_id;
 
   if (supabaseUserId) {
-    await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from("users_meta")
       .update({
         stripe_customer_id: customerId,
@@ -27,14 +27,31 @@ async function actualizeazaDinAbonament(subscription: Stripe.Subscription) {
         subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
       })
       .eq("user_id", supabaseUserId);
+    if (error) {
+      console.error("[stripe-webhook] update users_meta (dupa user_id) a esuat", {
+        eventType,
+        supabaseUserId,
+        customerId,
+        mesaj: error.message,
+      });
+      throw new Error(`Supabase update users_meta failed: ${error.message}`);
+    }
   } else {
-    await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from("users_meta")
       .update({
         subscription_status: mapeazaStatus(subscription.status),
         subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
       })
       .eq("stripe_customer_id", customerId);
+    if (error) {
+      console.error("[stripe-webhook] update users_meta (dupa stripe_customer_id) a esuat", {
+        eventType,
+        customerId,
+        mesaj: error.message,
+      });
+      throw new Error(`Supabase update users_meta failed: ${error.message}`);
+    }
   }
 }
 
@@ -62,49 +79,68 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  switch (event.type) {
-    case "checkout.session.completed": {
-      const session = event.data.object as Stripe.Checkout.Session;
-      if (session.subscription && session.customer) {
-        const stripe = getStripe();
-        const subscriptionId =
-          typeof session.subscription === "string" ? session.subscription : session.subscription.id;
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        await actualizeazaDinAbonament(subscription);
+  try {
+    switch (event.type) {
+      case "checkout.session.completed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.subscription && session.customer) {
+          const stripe = getStripe();
+          const subscriptionId =
+            typeof session.subscription === "string" ? session.subscription : session.subscription.id;
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          await actualizeazaDinAbonament(subscription, event.type);
+        }
+        break;
       }
-      break;
-    }
-    case "invoice.paid":
-    case "invoice.payment_succeeded": {
-      const invoice = event.data.object as Stripe.Invoice;
-      const subscriptionId = (invoice as any).parent?.subscription_details?.subscription
-        || (invoice as any).subscription;
-      if (subscriptionId) {
-        const stripe = getStripe();
-        const subId = typeof subscriptionId === "string" ? subscriptionId : subscriptionId.id;
-        const subscription = await stripe.subscriptions.retrieve(subId);
-        await actualizeazaDinAbonament(subscription);
+      case "invoice.paid":
+      case "invoice.payment_succeeded": {
+        const invoice = event.data.object as Stripe.Invoice;
+        const subscriptionId = (invoice as any).parent?.subscription_details?.subscription
+          || (invoice as any).subscription;
+        if (subscriptionId) {
+          const stripe = getStripe();
+          const subId = typeof subscriptionId === "string" ? subscriptionId : subscriptionId.id;
+          const subscription = await stripe.subscriptions.retrieve(subId);
+          await actualizeazaDinAbonament(subscription, event.type);
+        }
+        break;
       }
-      break;
+      case "customer.subscription.updated":
+      case "customer.subscription.created": {
+        await actualizeazaDinAbonament(event.data.object as Stripe.Subscription, event.type);
+        break;
+      }
+      case "customer.subscription.deleted": {
+        const subscription = event.data.object as Stripe.Subscription;
+        const supabaseAdmin = creeazaClientAdmin();
+        const customerId =
+          typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
+        const { error } = await supabaseAdmin
+          .from("users_meta")
+          .update({ subscription_status: "canceled" })
+          .eq("stripe_customer_id", customerId);
+        if (error) {
+          console.error("[stripe-webhook] update users_meta (anulare abonament) a esuat", {
+            eventType: event.type,
+            customerId,
+            mesaj: error.message,
+          });
+          throw new Error(`Supabase update users_meta failed: ${error.message}`);
+        }
+        break;
+      }
+      default:
+        break;
     }
-    case "customer.subscription.updated":
-    case "customer.subscription.created": {
-      await actualizeazaDinAbonament(event.data.object as Stripe.Subscription);
-      break;
-    }
-    case "customer.subscription.deleted": {
-      const subscription = event.data.object as Stripe.Subscription;
-      const supabaseAdmin = creeazaClientAdmin();
-      const customerId =
-        typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
-      await supabaseAdmin
-        .from("users_meta")
-        .update({ subscription_status: "canceled" })
-        .eq("stripe_customer_id", customerId);
-      break;
-    }
-    default:
-      break;
+  } catch (err) {
+    console.error("[stripe-webhook] eroare la procesarea evenimentului", {
+      eventType: event.type,
+      mesaj: err instanceof Error ? err.message : String(err),
+    });
+    return NextResponse.json(
+      { error: "Eroare internă la procesarea evenimentului." },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ received: true });

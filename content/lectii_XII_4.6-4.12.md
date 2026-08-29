@@ -75,6 +75,7 @@ Scrie o funcție `adauga(conn, nume, telefon)` care inserează și face commit.
 
 1. Un coleg scrie `conn.execute("SELECT * FROM Student")` direct pe obiectul Connection și îi merge, așa că întreabă la ce mai folosește Cursor-ul. Care e explicația corectă a rolurilor celor două obiecte?
    a) Connection și Cursor fac exact același lucru, sunt redundante din motive istorice  b) **Connection administrează legătura cu fișierul bazei (deschidere, commit, close), iar Cursor execută interogările și ține poziția curentă în rezultate — unele driver-e oferă comod un `execute` direct pe conexiune, dar cursorul rămâne obiectul care parcurge datele**  c) Cursor administrează fișierul bazei, iar Connection doar execută interogările  d) Connection e necesar doar pentru `SELECT`, Cursor doar pentru `INSERT`/`UPDATE`
+      > Connection administrează legătura cu fișierul bazei (deschidere, commit, close), iar Cursor este obiectul care execută efectiv interogările și ține poziția curentă în rezultate; faptul că unele driver-e permit `conn.execute` direct nu schimbă faptul că, sub capotă, cursorul e cel care parcurge datele.
 
 ---
 
@@ -180,6 +181,7 @@ Folosind `sqlite3` în Python, creează tabela, inserează 3 rânduri și afișe
 
 1. Un elev scrie `SELECT nume, oras WHERE varsta > 18 FROM Student` și primește eroare de sintaxă. Ce confuzie a făcut între proiecție (`SELECT col1, col2`) și filtrare (`WHERE`)?
    a) A crezut că `WHERE` alege coloanele afișate, la fel ca proiecția, de-aia l-a scris lângă lista de coloane, deși `WHERE` filtrează rândurile și trebuie să vină după `FROM`  b) **A pus `WHERE` înaintea clauzei `FROM`, nerespectând ordinea obligatorie `SELECT ... FROM ... WHERE ...`; proiecția alege coloanele, `WHERE` alege rândurile**  c) Greșeala e doar virgula dintre `nume` și `oras` — SQL ar cere spațiu simplu între coloane  d) `WHERE` și proiecția sunt interschimbabile, ordinea clauzelor nu contează atât timp cât apar toate
+      > SQL impune ordinea fixă `SELECT ... FROM ... WHERE ...`: proiecția (`SELECT nume, oras`) alege coloanele afișate, iar `WHERE` filtrează rândurile și trebuie scris după `FROM`, nu lipit de lista de coloane ca și cum ar face parte din proiecție.
 
 ---
 
@@ -285,6 +287,7 @@ Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studen
 
 1. Un elev scrie `SELECT oras, COUNT(*) FROM Student WHERE COUNT(*) > 1 GROUP BY oras` și primește eroare. De ce trebuie folosit `HAVING COUNT(*) > 1` în loc de `WHERE COUNT(*) > 1`?
    a) `HAVING` și `WHERE` sunt sinonime în SQL, dar `HAVING` e sintaxa mai nouă și recomandată  b) **`WHERE` filtrează rândurile brute înainte ca `GROUP BY` să calculeze `COUNT(*)`, deci valoarea agregată încă nu există; `HAVING` filtrează grupurile după ce agregarea s-a făcut**  c) `COUNT(*)` nu poate apărea niciodată într-o condiție, indiferent de clauză  d) `WHERE` funcționează doar pe coloane text, iar `COUNT(*)` produce un număr
+      > `WHERE` filtrează rândurile brute înainte ca `GROUP BY` să calculeze agregatul, deci `COUNT(*)` încă nu există în acel moment; `HAVING` acționează după gruparea și agregarea rândurilor, când valoarea `COUNT(*)` per grup e deja calculată și poate fi comparată.
 
 ---
 
@@ -401,6 +404,7 @@ Scrie o subinterogare care returnează studenții înscriși la un curs dat.
 
 1. Vrei doar numele studenților înscriși la cursul cu `id=1`, fără să afișezi nimic din tabela `Curs`. Un coleg insistă că trebuie neapărat un `JOIN` între `Student` și `Inscriere`. Ce alegere e de fapt mai potrivită și de ce?
    a) `JOIN`-ul e obligatoriu oricând sunt implicate două tabele, altfel SQL nu poate compara datele  b) O subinterogare (`WHERE id IN (SELECT ...)`) e mai potrivită aici, pentru că ai nevoie de coloane din ambele tabele afișate simultan, ceea ce doar `JOIN` poate face  c) **O subinterogare (`WHERE id IN (SELECT ...)`) e mai potrivită aici, pentru că nu ai nevoie de coloane din tabela `Inscriere` în rezultat — `JOIN` ar aduce date suplimentare inutile și, dacă un student e înscris la mai multe cursuri care se potrivesc, ar duplica rândul de student**  d) Nu contează care variantă alegi, cele două produc mereu exact aceleași rânduri în orice situație
+      > Cum rezultatul cerut conține doar coloane din `Student`, un `JOIN` cu `Inscriere` ar aduce date suplimentare inutile și, dacă un student e înscris la mai multe cursuri potrivite, i-ar duplica rândul; o subinterogare cu `WHERE id IN (SELECT ...)` obține exact lista de id-uri fără să afecteze structura rezultatului final.
 
 ---
 
@@ -509,6 +513,7 @@ conn.___()
 
 1. Un elev rulează din greșeală `DELETE FROM Student` (fără `WHERE`) direct în consolă, apoi observă că tabela e goală. De ce s-a întâmplat asta și ce l-ar fi putut salva?
    a) Comanda e sigură implicit — SQLite ar fi trebuit să ceară confirmare automat înainte de a șterge toate rândurile  b) **Fără `WHERE`, condiția de filtrare lipsește și `DELETE` se aplică tuturor rândurilor din tabelă; singura șansă de recuperare e dacă nu s-a făcut încă `conn.commit()`, prin `conn.rollback()` — după commit, datele sunt pierdute definitiv**  c) `DELETE FROM Student` fără `WHERE` doar marchează rândurile ca șterse, dar `SELECT` tot le mai poate citi ulterior  d) Problema nu e lipsa lui `WHERE`, ci faptul că nu a folosit `DROP TABLE` în schimb
+      > Fără `WHERE`, condiția de filtrare lipsește, deci `DELETE` se aplică tuturor rândurilor din tabelă; singura șansă de recuperare era înainte de `conn.commit()`, prin `conn.rollback()` — după commit, modificarea e salvată definitiv și datele nu mai pot fi recuperate.
 
 ---
 
@@ -608,6 +613,7 @@ Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
 
 1. Un elev spune: "am rulat `ALTER TABLE Produs ADD COLUMN stoc INTEGER` și apoi `INSERT INTO Produs(...) VALUES(...)` — ambele modifică tabela `Produs`, deci DDL și DML sunt același lucru." Ce e greșit în afirmația lui?
    a) Are dreptate — DDL și DML sunt denumiri diferite pentru aceeași categorie de comenzi SQL  b) **DDL (`ALTER`) modifică structura tabelei — coloanele, tipurile, existența ei — în timp ce DML (`INSERT`) modifică doar conținutul (rândurile), fără să schimbe structura; de-aia schimbările DDL sunt rare, iar DML se rulează zilnic**  c) DDL modifică doar conținutul rândurilor, iar DML modifică structura tabelei — elevul a inversat cele două categorii  d) Diferența e doar că DDL necesită `conn.commit()`, iar DML nu
+      > DDL (`ALTER TABLE`) schimbă structura tabelei — coloane, tipuri, existența ei — în timp ce DML (`INSERT`) modifică doar conținutul, adăugând rânduri fără să atingă structura; de-aceea schimbările DDL sunt rare, iar comenzile DML rulează zilnic.
 
 ---
 
@@ -686,6 +692,7 @@ Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO
 
 1. Un elev scrie un transfer bancar fără `try/except`: rulează cele două `UPDATE`-uri și apoi un singur `conn.commit()` la final. Dacă al doilea `UPDATE` eșuează (de exemplu din cauza unei erori de rețea la interogare), ce se întâmplă cu banii, și de ce e nevoie de `try/except` cu `rollback` în plus față de simplul `commit`?
    a) Nimic grav — SQLite anulează automat primul `UPDATE` dacă al doilea eșuează, chiar și fără `rollback` explicit  b) `commit()` salvează automat doar operațiile reușite, deci primul cont rămâne neschimbat oricum, iar `try/except` e doar o măsură stilistică, nu una necesară  c) **Fără `try/except`, dacă al doilea `UPDATE` eșuează, execuția se oprește cu eroare înainte de `commit()`, dar primul `UPDATE` a fost deja aplicat în tranzacția curentă; fără `rollback()` explicit acea modificare parțială poate rămâne nesalvată dar "agățată", sau poate fi confirmată din greșeală la o reconectare — tranzacția trebuie închisă explicit cu commit sau rollback pentru a garanta "totul sau nimic"**  d) Diferența nu contează, pentru că `sqlite3` face automat rollback la orice eroare, indiferent dacă exista `try/except`
+      > Fără `try/except`, dacă al doilea `UPDATE` eșuează, execuția se oprește cu eroare înainte să ajungă la `conn.commit()`, dar primul `UPDATE` a fost deja aplicat în tranzacția curentă; fără un `rollback()` explicit, acea modificare parțială rămâne agățată în tranzacție, încălcând regula „totul sau nimic” pe care trebuie s-o garanteze un transfer bancar.
 
 :::verifica-cod
 Scrie o funcție `transfer(conturi, sursa, dest, suma)` care simulează un transfer bancar (dicționar id -> sold): dacă `sursa` nu are fonduri suficiente, tranzacția eșuează și `conturi` rămâne NESCHIMBAT (ca după un `ROLLBACK`); altfel scade suma din sursă și o adaugă la destinație. Demo: încearcă un transfer prea mare și arată că soldurile rămân neschimbate. Demo: `conturi = {1: 20, 2: 50}

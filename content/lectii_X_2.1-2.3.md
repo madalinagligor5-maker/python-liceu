@@ -101,15 +101,19 @@ def cautare_binara(lista, x):
 
 1. Căutarea binară funcționează pe:
    a) Orice listă  b) **O listă sortată**  c) Doar liste cu numere pare
+      > Căutarea binară decide în care jumătate să continue comparând x cu elementul din mijloc, iar asta are sens doar dacă lista e ordonată — pe o listă neordonată nu poți ști dacă restul elementelor mai mici sau mai mari se află la stânga sau la dreapta.
 
 2. La fiecare pas, căutarea binară elimină:
    a) Un element  b) **Jumătate din lista rămasă**  c) Primul element
+      > Prin compararea cu mijlocul, tot ce e de partea greșită a lui x (mai mic sau mai mare, după caz) e eliminat dintr-o singură mișcare, deci intervalul rămas se înjumătățește la fiecare pas.
 
 3. Complexitatea căutării binare este:
    a) O(n)  b) **O(log n)**  c) O(n²)
+      > Fiindcă la fiecare pas lista rămasă se înjumătățește, numărul de pași până rămâne un singur element este de câte ori poți împărți n la 2, adică log₂n.
 
 4. Dacă `lista[mijloc] < x`, ce facem?
    a) `dreapta = mijloc - 1`  b) **`stanga = mijloc + 1`**  c) Returnăm -1
+      > Dacă elementul din mijloc e mai mic decât x, înseamnă că x, dacă există, se află în jumătatea dreaptă, deci limita din stânga se mută imediat după mijloc cu `stanga = mijloc + 1`.
 
 
 :::verifica-cod
@@ -185,15 +189,19 @@ print(10 ___ m)  # True (completează operatorul de apartenență)
 
 1. O mulțime permite:
    a) Elemente ordonate  b) **Elemente fără duplicate și fără ordine**  c) Doar numere
+      > O mulțime (set) e definită tocmai prin absența ordinii și a repetițiilor — spre deosebire de listă, care păstrează atât ordinea, cât și duplicatele.
 
 2. Cum creezi o mulțime vidă?
    a) `{}`  b) **`set()`**  c) `[]`
+      > Scrierea `{}` este deja rezervată pentru dicționarul vid în Python, așa că mulțimea vidă trebuie creată explicit cu funcția `set()`.
 
 3. Operatorul pentru intersecție este:
    a) `|`  b) **`&`**  c) `-`
+      > Operatorul `&` întoarce doar elementele care apar în ambele mulțimi simultan, exact definiția intersecției, spre deosebire de `|` (reuniune) sau `-` (diferență).
 
 4. `3 in {1, 2, 3}` returnează:
    a) **True**  b) False  c) 3
+      > Operatorul `in` verifică apartenența la mulțime, iar 3 se află printre elementele {1, 2, 3}, deci rezultatul e True.
 
 
 :::verifica-cod

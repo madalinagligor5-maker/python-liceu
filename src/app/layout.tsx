@@ -126,6 +126,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Fără JavaScript, IntersectionObserver (ScrollReveal.tsx) nu rulează
+            niciodată, deci .is-visible nu se adaugă și conținutul .reveal ar
+            rămâne permanent la opacity: 0 — invizibil pentru cine navighează
+            cu JS dezactivat, deși nu a cerut explicit mișcare redusă. */}
+        <noscript>
+          <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-background">
         <HeaderConditional esteAutentificat={esteAutentificat}>

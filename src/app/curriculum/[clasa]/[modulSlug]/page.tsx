@@ -34,6 +34,7 @@ export async function generateMetadata({
   return {
     title: `${modul.cod} ${modul.titlu} — Academia Python`,
     description: `Modul pentru clasa a ${clasa}-a, structurat în 6 sublecții: recapitulare, concept nou, citește și prezice, exerciții ghidate, exerciții independente, verificare.`,
+    alternates: { canonical: `/curriculum/${clasa}/${modulSlug}` },
   };
 }
 

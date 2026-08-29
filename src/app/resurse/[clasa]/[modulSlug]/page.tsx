@@ -16,6 +16,7 @@ export async function generateMetadata({
   const modul = getModul(clasa, modulSlug);
   return {
     title: modul ? `Vizualizare Fișă: ${modul.titlu} — Academia Python` : "Resurse PDF",
+    alternates: { canonical: `/resurse/${clasa}/${modulSlug}` },
   };
 }
 

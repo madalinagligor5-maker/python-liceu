@@ -83,12 +83,15 @@ canvas.___()
 
 1. Ce modul din Python folosim pentru a crea interfața grafică a jocului Bounce!?
    a) turtle  b) **tkinter**  c) pygame
+      > Jocul Bounce! folosește tkinter pentru fereastra grafică, exact modulul importat cu 'from tkinter import *' în exemplul cu fereastra de joc.
 
 2. Ce obiect din tkinter ne permite să desenăm forme geometrice?
    a) Window  b) **Canvas**  c) Screen
+      > Canvas este spațiul de desenare din tkinter pe care se pot trasa cercuri și dreptunghiuri, ca cel creat cu 'canvas = Canvas(tk, width=500, height=400)' din lecție.
 
 3. Cum facem ca mingea să se miște în direcția opusă când atinge o margine?
    a) Oprim jocul  b) **Inversăm semnul vitezei (ex: viteza = -viteza)**  c) Schimbăm culoarea mingii
+      > Când mingea atinge un perete, îi schimbăm doar semnul vitezei (viteza = -viteza), la fel cum s-a întâmplat cu directie_x în exemplul cu atingerea peretelui din dreapta.
 
 ---
 

@@ -73,6 +73,7 @@ Returnează lista muchiilor alese de Kruskal (nu doar costul).
 
 1. De ce Kruskal are nevoie de Union-Find, și nu doar de un set de noduri vizitate, ca să detecteze ciclurile?
    a) pentru că Union-Find sortează automat muchiile după cost, eliminând acel pas  b) **pentru că muchiile nu pornesc dintr-un singur arbore în creștere, ca la Prim/BFS, ci vin din orice parte a grafului, iar Union-Find spune rapid dacă cele două capete sunt deja în aceeași componentă**  c) pentru că un set de vizitate ar ocupa mai multă memorie decât o structură Union-Find  d) pentru că Union-Find garantează singur costul minim al arborelui, indiferent de ordinea muchiilor
+      > La Kruskal muchiile vin din orice zonă a grafului, nu doar dintr-un arbore care crește dintr-un singur punct ca la Prim, așa că un simplu set de noduri vizitate nu poate spune dacă două capete aparțin deja aceleiași componente — Union-Find face exact asta rapid, prin gaseste(parinte, x), fără să refacă o parcurgere completă la fiecare muchie.
 
 ---
 
@@ -163,6 +164,7 @@ Numără frunzele unui arbore (nodurile care nu apar ca părinte al nimănui).
 
 1. Dacă un graf cu n vârfuri și n−1 muchii ar conține totuși un ciclu, ce s-ar întâmpla obligatoriu?
    a) ar rămâne perfect valid ca arbore, pentru că numărul de muchii e cel care contează, nu forma lor  b) **ar exista cu siguranță o componentă deconectată, pentru că muchia „irosită” în ciclu nu mai poate lega restul vârfurilor cu bugetul rămas de muchii**  c) numărul de vârfuri ar trebui să scadă automat pentru ca egalitatea n−1 să rămână adevărată  d) graful ar avea nevoie de exact o muchie în plus ca să fie catalogat drept ciclic
+      > Un arbore conex cu n vârfuri are exact n−1 muchii; dacă printre acele n−1 muchii apare un ciclu, înseamnă că cel puțin două muchii au fost „cheltuite” ca să lege aceleași două vârfuri deja conectate, deci restul vârfurilor rămân fără muchie disponibilă care să le lege de arbore — graful se rupe în componente separate.
 
 ---
 
@@ -264,6 +266,7 @@ Scrie `minim_bst(rad)` care returnează cea mai mică valoare dintr-un BST.
 
 1. De ce căutarea într-un BST echilibrat este O(log n) și nu O(n), ca la parcurgerea unei liste?
    a) pentru că Python optimizează automat clasele definite de utilizator cu atribute `st` și `dr`  b) **pentru că la fiecare pas compari cu un singur nod și elimini dintr-o dată tot subarborele opus, înjumătățind spațiul de căutare, iar un arbore echilibrat are înălțime proporțională cu log n**  c) pentru că BST parcurge mereu doar subarborele stâng, ignorând jumătate din date  d) pentru că valorile dintr-un BST sunt automat sortate într-o listă ascunsă, deci se aplică binary search clasic
+      > Proprietatea BST garantează că, la fiecare nod comparat, tot subarborele din partea opusă valorii căutate poate fi ignorat dintr-o dată, nu doar un element ca la parcurgerea unei liste — de aceea, într-un arbore echilibrat cu înălțime proporțională cu log n, căutarea face cel mult log n comparații în loc de n.
 
 ---
 
@@ -351,6 +354,7 @@ Implementează manual (fără `heapq`) operația `push` într-un min-heap reprez
 
 1. De ce un heap reprezentat ca listă e mai eficient decât a resorta lista completă de fiecare dată când extragi minimul?
    a) pentru că `heapq` folosește memorie partajată, deci nu mai copiază lista deloc  b) **pentru că push/pop într-un heap costă doar O(log n) — o singură ramificație de sift-up/sift-down — în timp ce resortarea întregii liste costă O(n log n) la fiecare extragere**  c) pentru că un heap ține mereu toată lista complet sortată, deci resortarea ar fi redundantă  d) pentru că heap-ul elimină nevoia de a compara elementele între ele la fiecare pas
+      > Push și pop într-un heap ating doar un singur drum de la un nod până la rădăcină sau invers (sift-up/sift-down), deci costă O(log n), pe când resortarea completă a listei la fiecare extragere ar costa O(n log n) — heap-ul păstrează doar rădăcina minimă, nu toată lista sortată, și tocmai asta îl face rapid.
 
 ---
 
@@ -435,6 +439,7 @@ Calculează înălțimea unui arbore binar folosind postordinea.
 
 1. De ce parcurgerea inordine a unui BST produce mereu valorile în ordine crescătoare?
    a) pentru că inordinea vizitează întotdeauna rădăcina prima, iar restul valorilor sunt deja sortate în listele `st` și `dr`  b) **pentru că la fiecare nod, proprietatea BST garantează că tot subarborele stâng conține valori mai mici și tot subarborele drept valori mai mari, iar inordinea respectă exact ordinea stânga → nod → dreapta la orice nivel al recursiei**  c) pentru că Python sortează automat lista rezultată din orice parcurgere recursivă a unui arbore  d) pentru că inordinea e echivalentă cu postordinea pentru arbori binari de căutare
+      > Proprietatea BST spune că la orice nod tot ce e în stânga e mai mic și tot ce e în dreapta e mai mare, iar inordinea vizitează exact stânga → nod → dreapta la fiecare nivel al recursiei — aplicată recursiv pe tot arborele, această ordine produce automat șirul crescător al valorilor.
 
 ---
 
@@ -532,6 +537,7 @@ Scrie `sterge(rad, v)` care elimină un nod dintr-un BST păstrând proprietatea
 
 1. De ce ștergerea unui nod cu doi copii dintr-un BST e mai complicată decât ștergerea unui nod cu cel mult un copil?
    a) pentru că Python nu permite eliminarea unui obiect care are mai multe referințe către el  b) **pentru că nu poți doar să legi părintele direct de un singur copil, ca la celelalte cazuri — trebuie să găsești un succesor (sau predecesor) potrivit care să ia locul nodului șters, fără să strici proprietatea BST**  c) pentru că un nod cu doi copii are întotdeauna o înălțime mai mare, deci recursivitatea durează mai mult  d) pentru că ștergerea trebuie repetată o dată pentru fiecare copil, deci se dublează timpul de execuție
+      > Când nodul șters are un singur copil (sau niciunul), părintele se poate lega direct de acel copil; dar cu doi copii nu există un „singur copil” de moștenit locul, așa că trebuie găsit un succesor (cea mai mică valoare din subarborele drept, de exemplu) care să ia locul nodului șters fără să încalce ordinea stânga < nod < dreapta.
 
 ---
 
@@ -622,6 +628,7 @@ Adaugă metoda `descriere()` în `Forma` și suprascrie-o în derivate.
 
 1. Ce înseamnă exact „polimorfism” când ai o variabilă tratată ca `Animal`, dar apelezi `sunet()` și obții `"Ham!"` pentru că obiectul e de fapt un `Caine`?
    a) faptul că `Caine` și `Animal` au metode cu nume identic, dar complet independente, fără nicio legătură între ele  b) **faptul că Python alege la rulare metoda din clasa reală a obiectului (aici `Caine`), nu din clasa declarată sau presupusă (`Animal`), deci fiecare obiect „știe” cum să răspundă la același apel**  c) faptul că `Animal` transformă automat orice apel de metodă în apelul echivalent din clasa copil, prin `super()`  d) faptul că `sunet()` există o singură dată, în `Animal`, iar `Caine` doar afișează alt text hardcodat
+      > Polimorfismul înseamnă că Python decide la rulare, nu la scrierea codului, ce versiune de sunet() se execută — folosește clasa reală a obiectului din memorie (Caine), indiferent cum e declarată sau tratată variabila (ca Animal), pentru că fiecare obiect „știe” care metodă suprascrisă îi aparține.
 
 ---
 
@@ -737,6 +744,7 @@ Adaugă metoda `total()` care returnează `pret * stoc`.
 
 1. De ce `self` trebuie declarat ca prim parametru al oricărei metode, deși nu-l scrii explicit când apelezi `c.depune(50)`?
    a) pentru că `self` e doar o convenție de denumire fără niciun efect real, ca un comentariu  b) **pentru că Python transformă automat apelul `c.depune(50)` în `ContBancar.depune(c, 50)`, deci metoda are nevoie de un parametru care să primească acel obiect (`c`) ca să-i poată accesa sau modifica atributele**  c) pentru că `self` trebuie mereu inițializat manual în interiorul metodei, înainte de a fi folosit  d) pentru că fără `self`, Python nu ar putea diferenția metodele de funcțiile obișnuite la nivel de fișier
+      > Când scrii c.depune(50), Python îl traduce automat în ContBancar.depune(c, 50), trimițând obiectul c ca prim argument — self trebuie declarat în definiție tocmai ca să primească acel obiect și să poată citi sau modifica atributele lui (self.sold), chiar dacă la apel nu-l scrii tu manual.
 
 ---
 
@@ -839,6 +847,7 @@ Demonstră name mangling: accesează atributul privat din exterior ca `_Clasa__a
 
 1. De ce Python se bazează pe convenții de denumire (`_`, `__`) în loc de cuvinte cheie stricte `private`/`public`, ca alte limbaje?
    a) pentru că interpretorul Python nu poate face verificări de acces la rulare, din motive tehnice legate de memorie  b) **pentru că filozofia Python e „suntem toți adulți”: accesul e o convenție de comunicare între dezvoltatori, nu o restricție impusă forțat de limbaj — `__atribut` doar descurajează accesul accidental prin name mangling, dar tot poate fi accesat**  c) pentru că `_` și `__` sunt de fapt cuvinte cheie speciale, echivalente funcțional cu `private`/`public` din alte limbaje  d) pentru că orice atribut care începe cu `_` devine automat needitabil după ce obiectul e creat
+      > Python urmează filozofia „suntem toți adulți”: nu impune blocarea accesului prin cuvinte cheie ca alte limbaje, ci doar semnalează intenția prin convenție — __atribut declanșează name mangling (devine _Clasa__atribut), ceea ce descurajează accesul accidental din exterior, dar nu îl interzice tehnic.
 
 ---
 
@@ -944,6 +953,7 @@ Scrie o clasă `Calculator` (POO) care expune operații ca metode, demonstrând 
 
 1. În ce situație e mai potrivit stilul funcțional (`map`/`filter`/`lambda`) decât cel procedural (bucle `for` cu variabile mutabile)?
    a) când vrei să modifici direct o bază de date externă, pas cu pas, în ordine strict controlată  b) **când transformi date dintr-o formă în alta (filtrare, mapare) fără să ai nevoie de stare mutabilă intermediară, iar codul câștigă în claritate și se poate compune ușor din funcții mici**  c) când programul are nevoie de mai puține linii de cod, indiferent de ce face acel cod  d) când vrei să eviți complet definirea oricăror funcții în program
+      > Stilul funcțional câștigă exact când transformi o colecție de date dintr-o formă în alta — filtrare sau mapare — fără să ai nevoie de o variabilă mutabilă care să acumuleze rezultatul pas cu pas, ca lista goală dintr-o buclă for; map/filter/lambda exprimă direct transformarea și se pot combina ușor din funcții mici.
 
 
 :::verifica-cod

@@ -80,12 +80,15 @@ ___(___)
 
 1. Ce este Python?
    a) Un joc video  b) **Un limbaj prin care vorbim cu calculatorul**  c) Un tip de robot
+      > Python este limbajul special cu care noi îi spunem calculatorului ce să facă, ca și cum i-am vorbi pe limba lui!
 
 2. Ce comandă folosim ca să scriem text pe ecran?
    a) write()  b) **print()**  c) show()
+      > Cuvântul magic print() este cel care îi spune calculatorului să scrie pe ecran exact ce vrem noi.
 
 3. De ce punem textul în ghilimele?
    a) Pentru a fi colorat  b) **Ca să știe calculatorul că este un text**  c) Nu este nevoie de ghilimele
+      > Ghilimelele sunt ca niște mânuțe care țin textul strâns, ca să știe calculatorul unde începe și unde se termină cuvântul tău.
 
 ---
 

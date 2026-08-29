@@ -130,15 +130,19 @@ print("Aria este:", ___)  # completează aici
 
 1. Care este prima etapă în elaborarea unui program?
    a) Scrierea codului  b) **Înțelegerea problemei (analiza)**  c) Testarea programului
+      > Fiecare program pornește de la etapa de analiză, în care înțelegi problema și stabilești ce date primești și ce rezultate vrei să obții — abia apoi urmează proiectarea, implementarea și testarea.
 
 2. Ce este un algoritm?
    a) Un limbaj de programare  b) **O succesiune de pași care rezolvă o problemă**  c) Un mesaj de eroare
+      > Un algoritm este definit ca o succesiune finită de pași, clari și fără ambiguitate, care rezolvă o problemă — nu ține de un limbaj anume, ci de logica pașilor în sine.
 
 3. La ce etapă verificăm dacă programul dă rezultate corecte pentru mai multe exemple?
    a) Analiză  b) Proiectare  c) **Testare**
+      > Verificarea rezultatelor pe mai multe seturi de date se face la etapa de testare, ultima din cele patru, unde rulezi codul scris ca să confirmi că răspunsurile sunt 100% corecte.
 
 4. Ce fac liniile care încep cu `#` într-un program Python?
    a) **Sunt comentarii, nu se execută**  b) Opresc programul  c) Afișează un mesaj de eroare
+      > Liniile care încep cu `#` sunt comentarii: Python le ignoră complet la execuție, ele existând doar ca să explice gândirea din spatele codului pentru cine citește programul.
 
 ---
 
@@ -299,15 +303,19 @@ print("Cost total:", cost_total)
 
 1. Care reprezentare a unui algoritm folosește forme geometrice și săgeți?
    a) **Schema logică**  b) Pseudocodul  c) Codul Python
+      > Schema logică este singura din cele trei reprezentări care folosește un desen cu forme geometrice (dreptunghi pentru acțiune, romb pentru decizie) legate prin săgeți.
 
 2. De ce e util pseudocodul înainte de a scrie cod?
    a) Pentru că e obligatoriu în Python  b) **Pentru că te lasă să gândești logica, fără reguli stricte de sintaxă**  c) Pentru că rulează mai repede
+      > Pseudocodul e util pentru că te lasă să gândești logica pașilor fără să te lupți încă cu sintaxa exactă a unui limbaj, fiind doar un plan apropiat de programare care nu rulează.
 
 3. Care dintre aceste trei este singura formă pe care o poate rula direct calculatorul?
    a) Schema logică  b) Pseudocodul  c) **Codul**
+      > Dintre cele trei forme, doar codul Python se execută efectiv pe calculator — schema logică se desenează, iar pseudocodul rămâne doar un plan în limbaj natural.
 
 4. Ce simbol reprezintă, de obicei, o decizie într-o schemă logică?
    a) Dreptunghi  b) **Romb**  c) Cerc
+      > În schema logică, rombul este simbolul folosit convențional pentru o decizie (o întrebare cu ramificație da/nu), spre deosebire de dreptunghi, care marchează o acțiune simplă.
 
 ---
 
@@ -415,15 +423,19 @@ print(suma1 == suma2)
 
 1. Din ce două puncte de vedere măsurăm eficiența unui algoritm?
    a) Culoare și mărime  b) **Timp și memorie**  c) Lungimea codului și numărul de comentarii
+      > Eficiența unui algoritm se măsoară prin timp (câte operații face până termină) și memorie (câte date reține pe parcurs) — nu prin aspecte precum lungimea codului sau stilul lui.
 
 2. Ce arată, informal, notația O?
    a) Numărul exact de secunde de execuție  b) **Cum crește timpul de execuție când cresc datele de intrare**  c) Numărul de erori din program
+      > Notația O arată, informal, cum crește timpul de execuție pe măsură ce cresc datele de intrare — de exemplu un algoritm O(n) devine de două ori mai lent dacă dublezi datele, nu îți dă un număr exact de secunde.
 
 3. Dintre doi algoritmi corecți care rezolvă aceeași problemă, care e de preferat, în general?
    a) Cel mai lung ca și cod  b) **Cel mai eficient (timp/memorie), dacă rezultatul e la fel de corect**  c) Nu contează, oricare
+      > Dacă rezultatul e la fel de corect, algoritmul mai eficient (care face mai puțini pași sau folosește mai puțină memorie) e de preferat, așa cum se vede în exemplul cu verificarea numărului prim până la n-1 față de până la radical din n.
 
 4. De ce varianta cu formulă directă e mai eficientă decât o buclă, pentru suma primelor n numere?
    a) Are mai multe linii de cod  b) **Face un singur calcul, indiferent cât de mare e n**  c) Folosește mai multă memorie
+      > Formula lui Gauss face un singur calcul, indiferent cât de mare e n, spre deosebire de o buclă care parcurge fiecare număr de la 1 la n și face n pași — de aceea rămâne rapidă chiar și pentru valori mari ale lui n.
 
 ---
 
@@ -514,15 +526,19 @@ Scrie codul care apelează funcția pentru numărul 4 și afișează rezultatul.
 
 1. Cum se numește o „bucată de cod cu nume, care poate fi apelată de mai multe ori"?
    a) Variabilă  b) **Funcție (subprogram)**  c) Comentariu
+      > O bucată de cod cu nume, scrisă o dată și apelabilă de câte ori ai nevoie, se numește funcție (sau subprogram) — exact rolul descris pentru `calculeaza_media` din exemplu.
 
 2. Ce cuvânt cheie folosim, în Python, pentru a defini o funcție?
    a) `function`  b) **`def`**  c) `func`
+      > În Python, o funcție se definește cu cuvântul cheie `def`, urmat de nume, paranteze cu parametri și două puncte, ca în `def calculeaza_media(nota1, nota2):`.
 
 3. Ce face instrucțiunea `return` într-o funcție?
    a) Oprește tot programul  b) **Întoarce o valoare, ca rezultat al funcției**  c) Șterge funcția
+      > Instrucțiunea `return` întoarce o valoare din funcție, ca rezultat al ei — de exemplu `return media` face ca apelul funcției să aibă valoarea calculată, folosibilă mai departe în program.
 
 4. În `def calculeaza_media(nota1, nota2):`, ce sunt `nota1` și `nota2`?
    a) Rezultate  b) **Parametri**  c) Comentarii
+      > `nota1` și `nota2` sunt parametrii funcției — locurile libere din antet care se completează cu valori reale (ca 8 și 10) în momentul apelului.
 
 ---
 
@@ -613,15 +629,19 @@ dubleaza_si_afiseaza(7)
 
 1. O variabilă definită în interiorul unei funcții este:
    a) Globală  b) **Locală**  c) Constantă
+      > O variabilă definită în interiorul unei funcții, cum e `bonus` din exemplu, este locală — există doar cât timp rulează funcția respectivă.
 
 2. Ce se întâmplă cu o variabilă locală după ce funcția se termină?
    a) Rămâne disponibilă peste tot  b) **Este eliberată din memorie, nu mai există**  c) Devine automat globală
+      > După ce funcția se termină, variabila ei locală este eliberată din memorie și nu mai există — de aceea încercarea de a o folosi în afara funcției dă eroare.
 
 3. O variabilă globală poate fi citită:
    a) Doar în funcția în care a fost creată  b) **De oriunde din program**  c) Niciodată
+      > O variabilă globală, definită în afara oricărei funcții, poate fi citită de oriunde din program, așa cum `scor_total` rămâne accesibilă și după ce funcția `calculeaza_bonus` s-a terminat.
 
 4. De ce apare eroare dacă încerci să folosești, în afara funcției, o variabilă creată în interiorul ei?
    a) Pentru că variabilele locale au nume interzise  b) **Pentru că variabila locală nu mai există în afara funcției**  c) Pentru că Python nu permite variabile în funcții
+      > Eroarea apare pentru că variabila locală nu supraviețuiește ieșirii din funcție — memoria ei se eliberează automat, deci numele ei pur și simplu nu mai există în restul programului.
 
 ---
 
@@ -711,15 +731,19 @@ print(cea_mai_mica, cea_mai_mare, numar_zile)
 
 1. Ce întoarce funcția `len(lista)`?
    a) Cea mai mare valoare  b) **Numărul de elemente din listă**  c) Suma elementelor
+      > `len(lista)` întoarce numărul de elemente din listă, ca în exemplul cu `note`, unde `len(note)` dă 5 pentru o listă cu cinci note.
 
 2. Ce face `abs(-12)`?
    a) Întoarce -12  b) **Întoarce 12**  c) Dă eroare
+      > `abs()` întoarce valoarea absolută a numărului, deci `abs(-12)` elimină semnul minus și dă 12, la fel cum `abs(-7)` dă 7 în exemplul din lecție.
 
 3. Ce trebuie să imporți ca să folosești `math.sqrt()`?
    a) Nimic, e implicit disponibilă  b) **Modulul `math`, cu `import math`**  c) Modulul `numbers`
+      > Pentru a folosi `math.sqrt()` trebuie mai întâi să imporți modulul `math` cu `import math`, spre deosebire de funcții ca `print` sau `len`, disponibile fără import.
 
 4. Care e cea mai rapidă cale de a calcula media unei liste de numere, folosind funcții predefinite?
    a) O buclă care adună manual  b) **`sum(lista) / len(lista)`**  c) `max(lista) - min(lista)`
+      > Cea mai rapidă cale de a calcula media, folosind funcții predefinite, este `sum(lista) / len(lista)` — adunarea directă a valorilor împărțită la numărul lor, fără să scrii tu o buclă care adună manual.
 
 ---
 
@@ -817,15 +841,19 @@ print("Numărul are", numar_cifre, "cifre")
 
 1. Ce operator obții ultima cifră a unui număr întreg?
    a) `//`  b) **`%`**  c) `*`
+      > Operatorul `%` (modulo) dă restul împărțirii la 10, iar restul împărțirii unui număr la 10 este exact ultima lui cifră, ca în exemplul `47 % 10` care dă 7.
 
 2. Ce face operatorul `//` aplicat unui număr și lui 10?
    a) Dă ultima cifră  b) **Elimină ultima cifră**  c) Dublează numărul
+      > Împărțirea întreagă `//` la 10 elimină ultima cifră a numărului, păstrând restul cifrelor — de exemplu `47 // 10` dă 4, adică numărul fără ultima cifră.
 
 3. Care e condiția potrivită într-o buclă `while` care parcurge toate cifrele unui număr pozitiv `n`?
    a) `while n == 0`  b) **`while n > 0`**  c) `while n < 10`
+      > Bucla trebuie să continue cât timp mai există cifre de extras, adică atâta timp cât `n` e strict pozitiv, deci `while n > 0` este condiția potrivită pentru un număr pozitiv `n`.
 
 4. La fiecare pas al buclei `n = n // 10`, ce se întâmplă cu numărul de cifre rămase?
    a) Crește  b) **Scade cu una**  c) Rămâne la fel
+      > La fiecare pas, `n = n // 10` elimină ultima cifră a numărului curent, deci numărul de cifre rămase scade cu una la fiecare iterație, până când `n` ajunge 0.
 
 ---
 
@@ -944,15 +972,19 @@ print(numar_divizori)
 
 1. Ce condiție verifică dacă `d` este divizor al lui `n`?
    a) `n // d == 0`  b) **`n % d == 0`**  c) `d % n == 0`
+      > Un număr `d` este divizor al lui `n` exact atunci când împărțirea nu lasă rest, adică `n % d == 0`, conform definiției date direct în lecție.
 
 2. Dacă 4 este divizor al lui 20, atunci putem spune că:
    a) 4 este multiplu al lui 20  b) **20 este multiplu al lui 4**  c) 20 este divizor al lui 4
+      > Dacă `d` este divizor al lui `n`, atunci `n` este multiplu al lui `d` — deci din „4 este divizor al lui 20” rezultă că 20 este multiplu al lui 4.
 
 3. Care variantă a algoritmului lui Euclid este mai eficientă pentru numere mari?
    a) **Prin împărțiri repetate**  b) Prin scăderi repetate  c) Sunt identice ca viteză
+      > Varianta prin împărțiri repetate e mult mai rapidă pentru numere mari, pentru că la fiecare pas reduce numerele prin restul împărțirii, în loc să le scadă unul din altul de multe ori, ca varianta prin scăderi.
 
 4. În algoritmul lui Euclid prin împărțiri, când se oprește bucla `while b != 0`?
    a) Când `a` devine 0  b) **Când `b` devine 0**  c) Când `a` și `b` sunt egale
+      > Bucla `while b != 0` se oprește când `b` devine 0, moment în care valoarea rămasă în `a` este chiar cel mai mare divizor comun, returnat de funcție.
 
 
 :::verifica-cod

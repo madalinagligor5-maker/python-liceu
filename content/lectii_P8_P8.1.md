@@ -78,12 +78,15 @@ print("Peste 5 ani vei avea:", varsta + 5)
 
 1. Ce funcție folosești pentru a citi text de la tastatură?
    a) read()  b) **input()**  c) print()
+      > Funcția input() este cea care pune o întrebare și așteaptă să scrii răspunsul de la tastatură.
 
 2. Ce funcție folosești pentru a transforma textul în număr întreg?
    a) str()  b) **int()**  c) float()
+      > Funcția int() ia un text și îl transformă în număr întreg, ca să putem face calcule cu el, așa cum am făcut cu vârsta.
 
 3. Ce returnează input() în mod implicit?
    a) Un număr  b) **Un text (string)**  c) Nimic
+      > Chiar dacă tastăm un număr, input() ni-l dă mereu ca text, de aceea avem nevoie de int() sau float() ca să-l transformăm.
 
 ---
 

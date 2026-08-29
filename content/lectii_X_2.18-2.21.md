@@ -67,15 +67,19 @@ def quicksort(lista):
 
 1. Divide et impera are 3 etape:
    a) **Divizare, Rezolvare, Combinare**  b) Citire, Scriere, Testare  c) Init, Loop, Exit
+      > Divide et impera descompune o problemă mare în subprobleme mai mici (divizare), le rezolvă recursiv pe fiecare (rezolvare), apoi unește rezultatele parțiale într-un rezultat final (combinare).
 
 2. merge_sort are complexitatea:
    a) O(n²)  b) **O(n log n)**  c) O(n)
+      > Lista se împarte în jumătăți la fiecare nivel de recursivitate (log n niveluri), iar la fiecare nivel interclasarea tuturor bucăților costă n operații, ceea ce dă în total O(n log n).
 
 3. Cazul de bază la merge_sort e:
    a) `len(lista) == 0`  b) **`len(lista) <= 1`**  c) `len(lista) == 10`
+      > O listă cu cel mult un element este deja sortată prin definiție, deci nu mai are sens s-o împarți în continuare — acesta e cazul în care recursivitatea se oprește și returnează lista neschimbată.
 
 4. Fără caz de bază, recursivitatea:
    a) Merge  b) **Eroare infinită**  c) Returnează lista
+      > Fără condiția `len(lista) <= 1` care oprește recursivitatea, funcția ar continua să apeleze merge_sort pe subliste tot mai mici la infinit, ceea ce duce la eroare, nu la un rezultat.
 
 
 :::verifica-cod
@@ -160,15 +164,19 @@ def quicksort(lista):
 
 1. Ambele metode au complexitate medie:
    a) O(n²)  b) **O(n log n)**  c) O(n)
+      > Atât merge sort, cât și quicksort împart problema în jumătăți la fiecare pas, ceea ce dă log n niveluri de recursivitate, iar munca de la fiecare nivel e proporțională cu n, deci ambele au O(n log n) în medie.
 
 2. Quicksort în caz nefavorabil e:
    a) O(n log n)  b) **O(n²)**  c) O(n)
+      > Dacă pivotul ales este mereu cel mai mic sau cel mai mare element (de exemplu pe o listă deja sortată), împărțirea devine complet dezechilibrată și quicksort degenerează la O(n²), la fel ca sortările simple.
 
 3. Pivotul la quicksort se alege de obicei:
    a) Aleator  b) **Primul/ultimul/mijlocul**  c) Mereu 0
+      > Alegerea pivotului contează pentru performanță, iar variantele comune și simplu de implementat sunt primul, ultimul sau elementul din mijloc al listei.
 
 4. Merge sort folosește:
    a) Pivot  b) **Interclasarea**  c) Bule
+      > Merge sort sortează combinând cele două jumătăți deja sortate prin interclasare (funcția din modulul 2.2), spre deosebire de quicksort care folosește un pivot.
 
 
 :::verifica-cod
@@ -247,15 +255,19 @@ def flood_fill(grila, i, j, veche, noua):
 
 1. Flood Fill pornește din:
    a) Toată grila  b) **O celulă dată**  c) Colțul din dreapta
+      > Flood Fill primește coordonatele unei singure celule de start și se extinde recursiv din ea către vecinii cu aceeași culoare, nu procesează întreaga grilă dintr-o dată.
 
 2. Verificarea marginilor previne:
    a) Culori greșite  b) **Eroare la acces în afara grilei**  c) Recursivitatea
+      > Condiția `i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0])` oprește recursivitatea înainte ca funcția să încerce să acceseze un index care nu există în listă, evitând eroarea de indexare.
 
 3. Fără verificarea culorii, algoritmul:
    a) Merge mai repede  b) **Recursează infinit**  c) Nu colorează nimic
+      > Fără verificarea `grila[i][j] != veche`, funcția ar continua să recheme flood_fill pe aceleași celule deja colorate, iar apelurile vecinilor s-ar rechema unul pe altul la nesfârșit.
 
 4. Flood Fill e folosit în:
    a) Sortare  b) **Editoare grafice (găleata de vopsea)**  c) Căutare binară
+      > Colorarea unei regiuni conexe pornind dintr-un punct și extinzându-se la vecinii de aceeași culoare este exact mecanismul din spatele găleții de vopsea din editoarele grafice.
 
 
 :::verifica-cod
@@ -342,15 +354,19 @@ def rest_greedy(suma, monede):
 
 1. Greedy alege la fiecare pas:
    a) Optimul global  b) **Optimul local (pe moment)**  c) Aleator
+      > La fiecare pas, funcția `rest_greedy` alege cea mai mare monedă care încă încape în suma rămasă, fără să ia în calcul cum influențează asta alegerile viitoare — asta înseamnă optim local, nu global.
 
 2. Greedy garantează optimul global:
    a) Mereu  b) **Doar pentru anumite probleme**  c) Niciodată
+      > Greedy funcționează corect doar pentru anumite probleme (unde optimul local duce la optimul global), iar contraexemplul cu monedele [1, 3, 4] arată clar că nu e o garanție universală.
 
 3. Contraexemplul cu [1, 3, 4] și suma 6 arată:
    a) Greedy e mereu optim  b) **Greedy poate fi suboptimal**  c) Eroare de cod
+      > Pentru suma 6 cu monedele [1, 3, 4], Greedy alege întâi 4, apoi rămâne cu 2 care se acoperă doar din monede de 1, deci 4+1+1 (3 monede), în timp ce soluția optimă 3+3 folosește doar 2 monede.
 
 4. Pentru rest la bani cu monede uzuale, Greedy:
    a) Eroare  b) **Este optim**  c) E suboptimal
+      > Pentru sistemele de monede uzuale (ca 1, 2, 5), alegerea greedy a celei mai mari monede posibile la fiecare pas produce chiar numărul minim de monede, deci strategia este optimă în acest caz.
 
 
 :::verifica-cod

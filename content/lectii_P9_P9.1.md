@@ -82,12 +82,15 @@ for index, fruct in ___(fructe):
 
 1. Ce numere generează range(4)?
    a) 1, 2, 3, 4  b) **0, 1, 2, 3**  c) 0, 1, 2, 3, 4
+      > range(4) pornește mereu de la 0 și se oprește chiar înainte de 4, așa că numerele sunt 0, 1, 2, 3.
 
 2. Ce returnează funcția enumerate()?
    a) Doar indexul  b) **Perechi de forma (index, valoare)**  c) Doar valoarea
+      > enumerate() te ajută să afli deodată și locul unde stă un fruct în listă, și fructul în sine, ca o pereche (index, valoare).
 
 3. Cum se termină range(5)?
    a) La 5  b) **La 4**  c) La 6
+      > range(5) se oprește exact înainte de numărul limită, deci ultimul număr afișat este 4, nu 5.
 
 ---
 

@@ -19,6 +19,7 @@ export async function generateMetadata({
   return {
     title: `Fișe de lucru Clasa a ${clasa}-a — Academia Python`,
     description: `Descărcare fișe de lucru PDF pentru clasa a ${clasa}-a, conform programei școlare.`,
+    alternates: { canonical: `/resurse/${clasa}` },
   };
 }
 

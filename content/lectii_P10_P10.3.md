@@ -81,12 +81,15 @@ print(calculeaza_pret(___))   # folosește reducerea implicită
 
 1. Ce se întâmplă dacă o funcție are un parametru cu valoare implicită și nu oferim acea valoare la apel?
    a) Dă eroare  b) **Folosește valoarea implicită**  c) Returnează None
+      > Dacă nu oferi o valoare la apel, Python folosește automat valoarea implicită scrisă în definiția funcției.
 
 2. Unde pot fi folosite variabilele definite în interiorul unei funcții?
    a) Oriunde în program  b) **Doar în interiorul acelei funcții**  c) În alte fișiere
+      > O variabilă creată în interiorul unei funcții este locală, adică trăiește doar acolo și dispare când funcția se termină.
 
 3. Cum definim o valoare implicită pentru un parametru?
    a) def f(x : 10)  b) **def f(x=10)**  c) def f(x == 10)
+      > O valoare implicită se scrie direct în paranteze, cu semnul =, ca în def f(x=10).
 
 ---
 

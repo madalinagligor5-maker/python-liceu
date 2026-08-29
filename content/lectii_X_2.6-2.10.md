@@ -52,15 +52,19 @@ ___  # metoda care numără aparițiile unui subșir
 
 1. `split(" ")` pe "a b c" returnează:
    a) "abc"  b) **['a', 'b', 'c']**  c) ['a b c']
+      > split(" ") taie textul la fiecare spațiu și întoarce o listă cu bucățile rezultate, deci "a b c" devine lista ['a', 'b', 'c'], nu un singur șir.
 
 2. `replace()` modifică șirul original?
    a) Da  b) **Nu, returnează un șir nou**  c) Doar dacă e atribuit
+      > replace(), ca toate metodele de șiruri, nu poate modifica șirul original pentru că șirurile sunt imutabile în Python — ea construiește și întoarce un șir nou, care trebuie reținut într-o variabilă ca să nu se piardă.
 
 3. `text.find("x")` când "x" lipsește returnează:
    a) 0  b) **-1**  c) None
+      > find() este gândită să nu arunce eroare când subșirul lipsește, așa că întoarce -1 ca semnal de "nu a fost găsit"; pentru o eroare explicită în acest caz s-ar folosi index().
 
 4. `",".join(["a","b"])` produce:
    a) "ab"  b) **"a,b"**  c) "[a,b]"
+      > join() lipește elementele listei folosind șirul din stânga ca separator între ele, deci ",".join(["a","b"]) pune o virgulă între "a" și "b", rezultând "a,b".
 
 
 :::verifica-cod
@@ -125,15 +129,19 @@ ___  # slicing cu pas 2
 
 1. `"a" * 3` produce:
    a) "a3"  b) **"aaa"**  c) Eroare
+      > Operatorul * repetă șirul de atâtea ori cât indică numărul din dreapta, deci "a" * 3 lipește litera "a" de trei ori consecutiv, producând "aaa".
 
 2. Slicing-ul `s[1:4]` este:
    a) Inclusiv la capăt  b) **Exclusiv la capăt**  c) Tot șirul
+      > La slicing, capătul din dreapta indicelui (aici 4) nu este inclus în rezultat — s[1:4] ia doar pozițiile 1, 2 și 3, exact ca la liste.
 
 3. `"abc" < "abd"` este:
    a) False  b) **True**  c) Eroare
+      > Comparațiile între șiruri sunt lexicografice: se compară litera cu litera până la prima diferență, iar acolo 'c' < 'd', deci "abc" este mai mic decât "abd" și rezultatul e True.
 
 4. `"x" in "examen"` este:
    a) **True**  b) False  c) None
+      > Operatorul in verifică apartenența unui subșir în alt șir, iar litera "x" chiar apare în cuvântul "examen" (prima literă), deci expresia e True.
 
 
 :::verifica-cod
@@ -216,15 +224,19 @@ def decriptare_cezar(text, deplasare):
 
 1. Cifrul lui Cezar cu deplasare 1 transformă "a" în:
    a) "a"  b) **"b"**  c) "z"
+      > Cu deplasare 1, fiecare literă avansează cu o poziție în alfabet, iar 'a' este prima literă, deci ea devine următoarea literă din alfabet, 'b'.
 
 2. Operatorul `% 26` servește la:
    a) A număra literele  b) **A menține rezultatul în alfabet (0-25)**  c) A șterge caractere
+      > Fără % 26 o literă care trece de 'z' după deplasare ar produce un cod ASCII din afara alfabetului; restul împărțirii la 26 aduce rezultatul înapoi ciclic în intervalul 0-25, echivalent cu a "reveni" la 'a' după 'z'.
 
 3. Decriptarea se face cu:
    a) **Deplasare negativă**  b) O altă literă  c) Fără cheie
+      > Cifrul lui Cezar se inversează aplicând aceeași funcție cu deplasarea opusă (negativă), pentru că a deplasa o literă înainte cu n și apoi cu -n o readuce exact la poziția inițială.
 
 4. Caracterele non-litere (spații, cifre):
    a) Se criptează și ele  b) **Rămân neschimbate**  c) Se șterg
+      > Ramura else din funcția cezar() copiază neschimbat orice caracter care nu trece testul c.isalpha(), deci spațiile, cifrele și semnele de punctuație ies identice din criptare.
 
 
 :::verifica-cod
@@ -336,15 +348,19 @@ print("Decriptare corectă:", decriptat == ___)  # trebuie să fie True
 
 1. Vigenère folosește:
    a) O singură deplasare  b) **O cheie de cuvânt (deplasări diferite)**  c) Numere aleatoare
+      > Spre deosebire de Cezar, care are o singură deplasare fixă, Vigenère folosește o cheie formată din mai multe litere, iar fiecare literă a cheii dă o deplasare diferită literei corespunzătoare din mesaj.
 
 2. Dacă cheia e mai scurtă decât mesajul:
    a) Eroare  b) **Se repetă ciclic**  c) Se trunchiază
+      > Indexarea cheie[i % len(cheie)] face ca, atunci când i depășește lungimea cheii, indexul să revină la început, deci cheia se repetă ciclic pe toată lungimea mesajului.
 
 3. Vigenère e mai sigur decât Cezar pentru că:
    a) E mai lung  b) **Aceeași literă se criptează diferit**  c) Folosește majuscule
+      > Pentru că deplasarea depinde de litera curentă din cheie, aceeași literă din mesaj poate fi criptată diferit de fiecare dată, spre deosebire de Cezar unde o literă dă mereu același rezultat — ceea ce face frecvența literelor mai greu de analizat.
 
 4. Decriptarea Vigenère folosește:
    a) **Deplasare negativă per literă**  b) O altă cheie  c) Forță brută
+      > Decriptarea Vigenère scade aceeași deplasare calculată din litera cheii, în loc s-o adune, exact cum decriptare_vigenere() folosește '- depl' acolo unde vigenere() folosește '+ depl'.
 
 
 :::verifica-cod
@@ -420,15 +436,19 @@ def verifica(a, b):
 
 1. O sumă de control servește la:
    a) Criptare  b) **Verificarea integrității datelor**  c) Compresie
+      > Fletcher recalculează o valoare care depinde de toți octeții datelor; dacă datele au fost alterate în transmisie, suma recalculată la destinație nu mai coincide cu cea originală, semnalând problema.
 
 2. Dacă un octet se schimbă, suma Fletcher:
    a) Rămâne aceeași  b) **Se schimbă**  c) Devine 0
+      > sum1 și sum2 se calculează cumulativ din fiecare octet parcurs, deci schimbarea unui singur octet modifică lanțul de calcule de la acel punct înainte, iar suma finală iese diferită.
 
 3. Fletcher folosește:
    a) O singură sumă  b) **Două sume (sum1, sum2)**  c) Trei sume
+      > Algoritmul ține două acumulatoare, sum1 (suma octeților) și sum2 (suma parțialelor lui sum1); a doua sumă face ca rezultatul să depindă și de ordinea octeților, nu doar de valorile lor, ceea ce o sumă simplă nu ar detecta.
 
 4. La destinație se:
    a) Calculează o nouă cheie  b) **Recalculează și compară suma**  c) Șterge datele
+      > La destinatar se rulează din nou fletcher() pe datele primite și se compară rezultatul cu suma transmisă odată cu datele — dacă nu coincid, înseamnă că ceva s-a alterat pe drum.
 
 
 :::verifica-cod

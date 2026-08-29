@@ -83,12 +83,15 @@ print(triplu(4))
 
 1. Cu ce cuvânt cheie definim o funcție în Python?
    a) function  b) **def**  c) create
+      > În Python, orice funcție nouă se pornește cu cuvântul def, urmat de numele ei și de paranteze.
 
 2. Ce comandă trimite rezultatul înapoi din funcție?
    a) send  b) **return**  c) print
+      > return este cel care scoate rezultatul din funcție și îl trimite înapoi acolo unde a fost apelată funcția.
 
 3. Cum se numesc variabilele din parantezele unei funcții?
    a) Valori  b) **Parametri**  c) Obiecte
+      > Variabilele scrise între paranteze, prin care trimitem date către funcție, se numesc parametri.
 
 ---
 

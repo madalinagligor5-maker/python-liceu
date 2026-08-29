@@ -68,6 +68,7 @@ Scrie PD pentru "numărul de moduri de a face suma `s` cu monede dintr-o listă 
 
 1. De ce complexitatea lui Fibonacci recursiv naiv este O(2ⁿ), iar cu memoizare devine O(n)?
    a) pentru că memoizarea rulează codul pe mai multe fire de execuție în paralel  b) **pentru că fără memoizare aceleași subprobleme (aceleași valori ale lui n) sunt recalculate de nenumărate ori, iar memoizarea le calculează o singură dată**  c) pentru că memoizarea înlocuiește complet recursivitatea cu o singură buclă `for`  d) pentru că varianta naivă folosește liste, iar cea memoizată folosește dicționare, care sunt mai rapide
+      > Fără memoizare, `fib(n-1)` și `fib(n-2)` recalculează de la zero aceleași valori mici de n de foarte multe ori, ceea ce duce la o explozie de apeluri; cu `lru_cache`, fiecare valoare a lui n e calculată o singură dată și refolosită la orice apel ulterior, deci munca totală crește liniar cu n.
 
 ---
 
@@ -161,6 +162,7 @@ Scrie o funcție care verifică dacă un graf neorientat e **complet** (orice pe
 
 1. De ce suma gradelor tuturor vârfurilor unui graf neorientat este egală cu 2 × numărul de muchii?
    a) pentru că fiecare vârf are, în medie, gradul egal cu numărul total de muchii din graf  b) pentru că fiecare muchie leagă întotdeauna două vârfuri care au același grad  c) **pentru că fiecare muchie contribuie cu 1 la gradul fiecăruia din cele două vârfuri pe care le leagă, deci e numărată de două ori în suma gradelor**  d) pentru că un graf neorientat are întotdeauna un număr par de muchii
+      > Fiecare muchie a grafului leagă exact două vârfuri, deci contribuie cu 1 la gradul fiecăruia dintre ele; când aduni gradele tuturor vârfurilor, fiecare muchie e numărată de două ori, o dată pentru fiecare capăt al ei, de unde factorul 2 din formulă.
 
 ---
 
@@ -251,6 +253,7 @@ Scrie o funcție care verifică dacă există muchie între două vârfuri date,
 
 1. În ce situație este mai potrivită matricea de adiacență decât lista de adiacență?
    a) când graful are foarte multe vârfuri și foarte puține muchii (graf rar)  b) când parcurgi frecvent toți vecinii unui vârf, ca la BFS sau DFS  c) **când graful e dens și ai nevoie frecvent să verifici rapid, în O(1), dacă există muchie între două vârfuri date**  d) când vrei să economisești cât mai multă memorie la un graf cu mii de vârfuri
+      > Matricea de adiacență ține direct valoarea `a[i][j]` pentru orice pereche de vârfuri, deci verificarea existenței unei muchii se face printr-un singur acces, în O(1); pe un graf dens, unde oricum aproape toate perechile sunt legate, această verificare rapidă contează mai mult decât spațiul suplimentar O(n²) ocupat.
 
 ---
 
@@ -341,6 +344,7 @@ Scrie o funcție care verifică dacă un graf are toate gradele pare (condiție 
 
 1. De ce a găsi un ciclu hamiltonian este mult mai greu (problemă NP-completă) decât a verifica existența unui circuit eulerian?
    a) pentru că ciclul hamiltonian trebuie să treacă prin fiecare muchie a grafului, nu doar prin fiecare vârf, ceea ce implică mult mai multe verificări  b) **pentru că circuitul eulerian are o condiție simplă și rapid verificabilă (toate gradele pare), pe când pentru hamiltonian nu există o condiție similară și trebuie explorate combinatorial ordinile posibile ale vârfurilor**  c) pentru că un ciclu hamiltonian există doar în grafurile orientate, iar circuitul eulerian doar în cele neorientate  d) pentru că verificarea circuitului eulerian se face cu BFS, în timp ce ciclul hamiltonian necesită obligatoriu programare dinamică
+      > Pentru circuitul eulerian există o condiție simplă și rapidă de verificat — toate gradele vârfurilor sunt pare —, în timp ce pentru ciclul hamiltonian nu există o astfel de regulă directă, așa că trebuie explorate combinatorial ordinile posibile de vizitare a vârfurilor, ceea ce face problema mult mai costisitoare.
 
 ---
 
@@ -438,6 +442,7 @@ Numără componentele conexe ale unui graf folosind BFS repetat.
 
 1. De ce BFS găsește întotdeauna drumul cu numărul minim de muchii între două vârfuri (în graf neponderat)?
    a) pentru că BFS folosește o stivă care garantează explorarea celui mai scurt drum mai întâi  b) **pentru că BFS explorează vârfurile în ordinea distanței față de start, nivel cu nivel, folosind o coadă FIFO, deci primul drum găsit către țintă este cel mai scurt**  c) pentru că BFS marchează fiecare vârf ca vizitat înainte de a-l pune în coadă, ceea ce elimină automat drumurile mai lungi  d) pentru că BFS repetă parcurgerea grafului de mai multe ori, până găsește cea mai scurtă cale
+      > BFS folosește o coadă FIFO și avansează nivel cu nivel, deci vizitează toate vârfurile aflate la distanță 1 înainte de cele la distanță 2 și așa mai departe; astfel, prima dată când ajunge la vârful țintă, acesta se află pe drumul cu cele mai puține muchii posibil.
 
 
 :::verifica-cod

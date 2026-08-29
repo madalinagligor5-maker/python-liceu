@@ -53,15 +53,19 @@ print(d)
 
 1. Un dicționar asociază:
    a) Poziție → valoare  b) **Cheie → valoare**  c) Valoare → cheie
+      > Structura de bază a unui dicționar leagă fiecare cheie de o valoare (nu de o poziție numerică precum la liste), iar accesul se face mereu prin cheie, ca în note["Ana"].
 
 2. Accesul la o cheie inexistentă (`d["x"]`) produce:
    a) None  b) **KeyError**  c) 0
+      > Când ceri o cheie care nu există în dicționar, Python nu întoarce o valoare implicită ci oprește execuția cu excepția KeyError, tocmai pentru a semnala clar că acea etichetă lipsește.
 
 3. `"ana" in dictionar` verifică:
    a) **Dacă "ana" e o cheie**  b) Dacă "ana" e o valoare  c) Lungimea
+      > Operatorul in aplicat unui dicționar caută valoarea în mulțimea cheilor, nu în valorile asociate, deci "ana" in dictionar întreabă dacă "ana" e o cheie existentă.
 
 4. Când alegi un dicționar în loc de listă?
    a) Mereu  b) **Când datele au o structură etichetă→info**  c) Niciodată
+      > Dicționarul este potrivit exact atunci când datele au natura etichetă→informație (ca nume→notă), pentru că oferă acces direct prin acea etichetă, spre deosebire de o listă unde ai avea nevoie de poziție.
 
 
 :::verifica-cod
@@ -129,15 +133,19 @@ val = ___  # folosește .get() cu implicit 0
 
 1. `dictionar.get("Ion", 0)` când "Ion" lipsește returnează:
    a) KeyError  b) **0**  c) None
+      > Metoda get() este construită să evite eroarea KeyError: dacă cheia lipsește, întoarce automat valoarea implicită dată ca al doilea argument, aici 0, în loc să oprească programul.
 
 2. `for k, v in d.items()` iterează peste:
    a) Doar chei  b) **Perechi (cheie, valoare)**  c) Doar valori
+      > items() întoarce fiecare intrare din dicționar ca o pereche (cheie, valoare), motiv pentru care bucla for k, v in d.items() poate despacheta simultan ambele variabile la fiecare pas.
 
 3. `in` pe un dicționar verifică:
    a) Valorile  b) **Cheile**  c) Lungimea
+      > La fel ca la accesarea directă cu paranteze pătrate, operatorul in verifică apartenența printre chei, nu printre valorile asociate lor.
 
 4. `.values()` returnează:
    a) Cheile  b) **Valorile**  c) Perechile
+      > values() este metoda dedicată extragerii doar a informațiilor asociate cheilor, fără chei; pentru chei există keys(), iar pentru perechi există items().
 
 
 :::verifica-cod
@@ -207,15 +215,19 @@ print(x, y)
 
 1. Un tuplu este:
    a) Mutable  b) **Imutabil**  c) O mulțime
+      > Un tuplu este definit explicit ca o secvență imutabilă — odată creat, elementele lui nu se mai pot schimba, așa cum arată și eroarea produsă de punct[0] = 1.
 
 2. `x, y = punct` se numește:
    a) Indexare  b) **Despachetare**  c) Concatenare
+      > Scrierea x, y = punct extrage simultan elementele tuplului în variabile separate, operație numită despachetare, spre deosebire de indexare care extrage un singur element.
 
 3. Un tuplu poate fi cheie de dicționar?
    a) **Da**  b) Nu  c) Doar dacă e gol
+      > Cheile unui dicționar trebuie să fie de tip imutabil, iar tuplul îndeplinește această condiție (spre deosebire de listă, care e mutabilă și deci nu poate fi cheie), motiv pentru care poate fi folosit direct ca cheie.
 
 4. `punct[0] = 1` produce:
    a) Modificare  b) **Eroare (imutabil)**  c) Nothing
+      > Pentru că tuplul este imutabil, orice încercare de a atribui o valoare unei poziții din el, ca punct[0] = 1, este respinsă de Python cu o eroare, nu executată.
 
 
 :::verifica-cod
@@ -283,15 +295,19 @@ singur = ___  # tuplu cu valoarea 5
 
 1. Un tuplu cu un element se scrie:
    a) `(5)`  b) **`(5,)`**  c) `[5]`
+      > Fără virgulă, (5) este doar numărul 5 între paranteze, nu un tuplu; virgula din (5,) este cea care îi spune lui Python că e vorba de o secvență cu un singur element.
 
 2. `t.count(x)` returnează:
    a) Poziția lui x  b) **Numărul de apariții ale lui x**  c) Lungimea
+      > Metoda count() parcurge tuplul și numără de câte ori apare exact valoarea căutată, exact cum punct.count(3) arată câte poziții conțin valoarea 3.
 
 3. `(1, 2) + (3,)` produce:
    a) `(1, 23)`  b) **`(1, 2, 3)`**  c) Eroare
+      > Operatorul + lipește cele două tupluri unul după altul, formând un tuplu nou care conține toate elementele din primul urmate de toate din al doilea: (1, 2) + (3,) devine (1, 2, 3).
 
 4. `t.index(x)` returnează:
    a) **Prima poziție a lui x**  b) Numărul de apariții  c) True/False
+      > index() este metoda care caută prima apariție a unei valori și întoarce poziția ei în tuplu, spre deosebire de count() care numără câte apariții există.
 
 
 :::verifica-cod

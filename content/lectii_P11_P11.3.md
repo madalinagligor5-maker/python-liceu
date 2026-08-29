@@ -78,12 +78,15 @@ print(f"Media elevului este: {media}")
 
 1. Ce face funcția sum() aplicată unei liste?
    a) Numără elementele  b) **Calculează suma tuturor elementelor**  c) Găsește cel mai mare element
+      > sum() adună toate valorile dintr-o listă, așa cum se vede în exemplul cu notele elevului, unde sum(note) calculează totalul notelor înainte de a-l împărți la numărul lor.
 
 2. Care dintre următoarele este un concept studiat și la copii și la liceu?
    a) Doar print  b) **Variabile, bucle for/while și structuri decizionale**  c) Doar desenele cu țestoase
+      > Variabilele, buclele for/while și structurile decizionale sunt exact acele baze învățate în anii de Python pentru copii pe care le vei regăsi și la algoritmii de liceu, cum spune lecția.
 
 3. De ce este important să comentăm codul?
    a) Ca să meargă mai repede  b) **Ca să fie mai ușor de înțeles și de corectat**  c) Nu este recomandat să comentăm
+      > Un cod comentat și organizat este mai ușor de citit, de înțeles și de corectat, fie la teme, fie la concursuri, exact cum recomandă lecția în caseta de atenție.
 
 ---
 

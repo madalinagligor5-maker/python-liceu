@@ -80,12 +80,15 @@ print(culoare_aleasa)
 
 1. Cum se scrie o listă în Python?
    a) {1, 2}  b) **[1, 2, 3]**  c) (1, 2)
+      > O listă se scrie cu paranteze pătrate, cu elementele despărțite prin virgulă, ca lista noastră de culori.
 
 2. Ce funcție folosești pentru a alege un element aleatoriu dintr-o listă?
    a) random.rand()  b) **random.choice()**  c) random.select()
+      > random.choice() este funcția care alege singură un element la întâmplare dintr-o listă, ca atunci când am ales o culoare norocoasă.
 
 3. Cum adaugi un element la sfârșitul unei liste?
    a) add()  b) **append()**  c) push()
+      > Metoda append() adaugă un element nou chiar la finalul listei, așa cum am adăugat culoarea galben.
 
 ---
 

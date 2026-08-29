@@ -79,12 +79,15 @@ t.___(50)
 
 1. Cum aducem modulul de desenat în Python?
    a) load turtle  b) **import turtle**  c) open turtle
+      > Scriem import turtle la începutul programului ca să aducem în cod micuța țestoasă care desenează pentru noi.
 
 2. Ce face t.forward(100)?
    a) Rotește țestoasa  b) **Mută țestoasa înainte cu 100 de pași**  c) Desenează un pătrat
+      > Comanda t.forward(100) spune țestoasei să meargă drept înainte, lăsând în urmă o linie de 100 de pași.
 
 3. Cum se numește creionul creat de noi în cod?
    a) Pen  b) **t**  c) turtle
+      > În exemplul nostru am scris t = turtle.Pen(), așa că am ales să-i spunem creionului nostru pe scurt t.
 
 ---
 

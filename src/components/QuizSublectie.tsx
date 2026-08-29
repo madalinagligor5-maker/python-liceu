@@ -143,6 +143,13 @@ export default function QuizSublectie({
                   N-ai selectat un răspuns pentru această întrebare.
                 </p>
               )}
+
+              {dezvaltat && intrebare.explicatie && (
+                <p className="mt-3 rounded-lg border border-brand-border bg-brand-light/50 px-3 py-2 text-xs leading-relaxed text-foreground/80">
+                  <span className="font-semibold text-brand-dark">De ce: </span>
+                  {intrebare.explicatie}
+                </p>
+              )}
             </fieldset>
           );
         })}
