@@ -1,27 +1,78 @@
 import { test, expect } from "@playwright/test";
 import { getStripe } from "../src/lib/stripe";
 import { areAbonamentActiv } from "../src/lib/subscription";
+import {
+  creeazaUtilizatorTest,
+  stergeUtilizatorTest,
+  seteazaStareUtilizatorTest,
+  autentificaInBrowser,
+} from "./helpers/auth";
 
 test.describe("Fluxuri Critice de Acces, Abonamente & Evaluare AI", () => {
-  // Test 1: Utilizator neautentificat accesând o sublecție plătită -> redirecționare la /login?redirect=...
-  test("1. Utilizator neautentificat accesând lecție plătită este redirecționat la /login", async ({ page }) => {
-    // Modulul 2.7 din clasa a X-a are modul.gratuit === false
-    await page.goto("/curriculum/X/clasa-str-metode-de-cautare-inlocuire-separare/2.7.1");
-    
-    // Verificăm că URL-ul conține redirecționarea spre login cu parametrul de redirect
-    await expect(page).toHaveURL(/\/login\?redirect=%2Fcurriculum%2FX%2Fclasa-str-metode-de-cautare-inlocuire-separare%2F2.7.1/);
-    
-    // Confirmăm că conținutul plătit al lecției (#lectie-articol) nu este afișat în DOM
-    const articolLectie = page.locator("#lectie-articol");
-    await expect(articolLectie).toHaveCount(0);
+  // Sublecția 2.7.1 (modul 2.7, clasa X, modul.gratuit === false) e folosită ca
+  // țintă pentru ambele teste de mai jos. Fragmentul din corpul real al lecției
+  // ("Revizuim rapid...") vine direct din content/lectii_X_2.6-2.10.md — dacă
+  // textul lecției se schimbă vreodată, actualizează și fragmentul de aici.
+  const SUBLECTIE_PREMIUM = "/curriculum/X/clasa-str-metode-de-cautare-inlocuire-separare/2.7.1";
+  const FRAGMENT_LECTIE_REALA = "Revizuim rapid operațiile de bază cu șiruri";
+
+  // Test 1: Utilizator neautentificat accesând o sublecție plătită -> vede un
+  // teaser randat server-side (titlu + descriere scurtă), FĂRĂ redirect și
+  // fără conținutul plătit în HTML — nu doar ascuns vizual (vezi
+  // src/app/curriculum/[clasa]/[modulSlug]/[sublectieCod]/page.tsx, unde
+  // getSublectieContinut/getQuizSublectie/getExercitiiSublectie/getPredicție
+  // nici nu sunt apelate pe ramura fără acces).
+  test("1. Utilizator neautentificat accesând lecție plătită vede un teaser, fără conținutul real", async ({ page }) => {
+    await page.goto(SUBLECTIE_PREMIUM);
+
+    // Nu s-a redirecționat nicăieri — rămânem pe URL-ul sublecției.
+    expect(page.url()).toContain(SUBLECTIE_PREMIUM);
+
+    // Titlul sublecției e vizibil (metadatele structurale sunt publice).
+    await expect(page.getByRole("heading", { name: "Recapitulare", exact: true })).toBeVisible();
+
+    // Conținutul real al lecției nu apare nicăieri în pagină.
+    await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
+
+    // Nici în HTML-ul brut (nu doar ascuns cu CSS pe client) — verificare
+    // suplimentară, direct pe sursa paginii, exact ce ar vedea Googlebot.
+    const html = await page.content();
+    expect(html).not.toContain(FRAGMENT_LECTIE_REALA);
+    expect(html).not.toContain("PythonEditor");
+
+    // Editorul Python și componenta de quiz/exerciții nu sunt randate deloc.
+    await expect(page.locator("#lectie-articol")).toHaveCount(0);
+
+    // CTA către /preturi e prezent.
+    await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
   });
 
-  // Test 2: Utilizator autentificat neabonat accesând o lecție plătită -> verificare pagină de prețuri
-  test("2. Utilizator autentificat neabonat vede pagina de prețuri la accesarea modulului plătit", async ({ page }) => {
-    await page.goto("/preturi");
-    await expect(page).toHaveURL(/\/preturi/);
-    const titluPreturi = await page.title();
-    expect(titluPreturi).toContain("Academia Python");
+  // Test 2: Utilizator autentificat, dar fără abonament activ, accesând aceeași
+  // sublecție plătită -> aceeași garanție: fără redirect, fără conținut real.
+  test("2. Utilizator autentificat neabonat vede un teaser pe lecția plătită, fără redirect", async ({ page }) => {
+    const utilizator = await creeazaUtilizatorTest("neabonat");
+    try {
+      await seteazaStareUtilizatorTest(utilizator.id, { subscriptionStatus: "none" });
+      await autentificaInBrowser(page, utilizator);
+      // Nu presupunem un redirect client-side determinist după login — așteptăm
+      // ca apelul asincron de autentificare să se stabilizeze (fără trafic activ),
+      // apoi navigăm noi explicit la sublecția premium. Sesiunea e deja în
+      // cookie-uri la acest punct, indiferent unde a ajuns pagina de login.
+      await page.waitForLoadState("networkidle");
+      await page.goto(SUBLECTIE_PREMIUM);
+
+      expect(page.url()).toContain(SUBLECTIE_PREMIUM);
+      await expect(page.getByRole("heading", { name: "Recapitulare", exact: true })).toBeVisible();
+      await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
+
+      const html = await page.content();
+      expect(html).not.toContain(FRAGMENT_LECTIE_REALA);
+
+      await expect(page.locator("#lectie-articol")).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+    } finally {
+      await stergeUtilizatorTest(utilizator.id);
+    }
   });
 
   // Test 3: Trimitere webhook Stripe real către /api/stripe/webhook (customer.subscription.deleted)

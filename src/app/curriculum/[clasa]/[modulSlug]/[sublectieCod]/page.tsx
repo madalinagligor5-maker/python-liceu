@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import {
   getCapitol,
   getModul,
@@ -13,7 +13,6 @@ import {
   sublectieUrmatoare,
 } from "@/lib/sublectii";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
-import LectieBadge from "@/components/LectieBadge";
 import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
 import PythonEditor from "@/components/PythonEditor";
@@ -55,19 +54,141 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   if (!modul || !capitol) notFound();
 
+  // Metadatele structurale ale sublecției (titlu, descriere scurtă, tip) vin
+  // din structura curriculară (curriculum.ts), NU din conținutul plătit al
+  // lecției — sunt aceleași date deja afișate public pe pagina de modul,
+  // pentru toată lumea, indiferent de abonament. Le folosim ca sursă pentru
+  // varianta „teaser", ca să nu fie nevoie să citim deloc conținutul plătit
+  // când vizitatorul nu are acces.
+  const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
+  if (!sublectieInfo) notFound();
+
+  const icon = ICOANE_SUBLECTIE[sublectieInfo.tip];
+
+  // Navigarea anterior/următor expune doar `cod` și `titlu` (identice cu ce
+  // arată deja, public, lista de sublecții de pe pagina de modul) — niciodată
+  // corpul lecției adiacente. Sigur de apelat pe ambele ramuri.
+  const anterior = await sublectieAnterioara(sublectieCod);
+  const urmatoarea = await sublectieUrmatoare(sublectieCod);
+
+  const breadcrumb = (
+    <nav className="text-sm text-muted">
+      <Link href="/curriculum" className="hover:text-brand">
+        Curriculum
+      </Link>
+      <span className="mx-2">/</span>
+      <Link href={`/curriculum/${clasa}`} className="hover:text-brand">
+        Clasa a {clasa}-a
+      </Link>
+      <span className="mx-2">/</span>
+      <Link href={hrefModul(modul)} className="hover:text-brand">
+        {modul.cod}
+      </Link>
+      <span className="mx-2">/</span>
+      <span>{sublectieCod}</span>
+    </nav>
+  );
+
+  const navigarePrevUrm = (
+    <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
+      {anterior ? (
+        <Link
+          href={`/curriculum/${clasa}/${modulSlug}/${anterior.cod}`}
+          className="max-w-[45%] text-sm font-semibold text-brand hover:text-brand-dark"
+        >
+          ← {anterior.cod} {anterior.titlu}
+        </Link>
+      ) : (
+        <span />
+      )}
+      {urmatoarea ? (
+        <Link
+          href={`/curriculum/${clasa}/${modulSlug}/${urmatoarea.cod}`}
+          className="max-w-[45%] text-right text-sm font-semibold text-brand hover:text-brand-dark"
+        >
+          {urmatoarea.cod} {urmatoarea.titlu} →
+        </Link>
+      ) : (
+        <Link
+          href={hrefModul(modul)}
+          className="text-sm font-semibold text-brand hover:text-brand-dark"
+        >
+          Înapoi la modul →
+        </Link>
+      )}
+    </nav>
+  );
+
   // Verificare acces premium:
   const { user, meta } = await getUtilizatorCurent();
   const esteGratuit = modul.gratuit || modul.numar <= 5;
   const areAcces = esteGratuit || areAbonamentActiv(meta);
 
   if (!areAcces) {
-    if (!user) {
-      redirect(`/login?redirect=${encodeURIComponent(`/curriculum/${clasa}/${modulSlug}/${sublectieCod}`)}`);
-    } else {
-      redirect("/preturi");
-    }
+    // Variantă „teaser", randată server-side pentru oricine (inclusiv
+    // Googlebot) — fără niciun redirect. Deliberat NU citim aici
+    // getSublectieContinut / getQuizSublectie / getExercitiiSublectie /
+    // getPredicție: conținutul plătit nu trebuie să existe deloc în arborele
+    // de randare al acestei ramuri, nu doar să fie ascuns vizual.
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+        {breadcrumb}
+
+        <div className="mt-4 flex items-center gap-3 mb-6">
+          <span aria-hidden="true" className="text-3xl">
+            {icon}
+          </span>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+              {modul.cod} {modul.titlu}
+            </p>
+            <h1 className="text-2xl font-extrabold leading-tight text-foreground sm:text-3xl [font-family:var(--font-fraunces)]">
+              {sublectieInfo.titlu}
+            </h1>
+          </div>
+        </div>
+
+        <p className="text-sm leading-relaxed text-foreground/70">{sublectieInfo.descriere}</p>
+
+        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 text-center">
+          <p className="font-semibold text-amber-900">
+            🔒 Acest modul necesită cont și abonament activ.
+          </p>
+          <p className="mt-1 text-sm text-amber-700">
+            Deblochează toate modulele, testele și exercițiile practice de programare cu un abonament activ.
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/preturi"
+              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+            >
+              Vezi planurile de abonament
+            </Link>
+            {!user ? (
+              <Link
+                href={`/login?redirect=${encodeURIComponent(`/curriculum/${clasa}/${modulSlug}/${sublectieCod}`)}`}
+                className="rounded-xl border border-black/10 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                Ai deja cont? Autentifică-te
+              </Link>
+            ) : (
+              <Link
+                href="/cont"
+                className="rounded-xl border border-black/10 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                Contul meu
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {navigarePrevUrm}
+      </div>
+    );
   }
 
+  // De aici încolo, doar pentru cine chiar are acces: aici (și nu mai
+  // devreme) citim conținutul plătit al lecției.
   const continut = await getSublectieContinut(sublectieCod);
   const intrebari = await getQuizSublectie(sublectieCod);
   const exercitii = await getExercitiiSublectie(sublectieCod);
@@ -85,30 +206,9 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   if (!continut) notFound();
 
-  const anterior = await sublectieAnterioara(sublectieCod);
-  const urmatoarea = await sublectieUrmatoare(sublectieCod);
-
-  // Tipul sublecției (pentru iconiță/culoare) îl luăm din structura JSON.
-  const tip = modul.sublectii.find((s) => s.cod === sublectieCod)?.tip ?? "concept";
-  const icon = ICOANE_SUBLECTIE[tip];
-
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-      <nav className="text-sm text-muted">
-        <Link href="/curriculum" className="hover:text-brand">
-          Curriculum
-        </Link>
-        <span className="mx-2">/</span>
-        <Link href={`/curriculum/${clasa}`} className="hover:text-brand">
-          Clasa a {clasa}-a
-        </Link>
-        <span className="mx-2">/</span>
-        <Link href={hrefModul(modul)} className="hover:text-brand">
-          {modul.cod}
-        </Link>
-        <span className="mx-2">/</span>
-        <span>{sublectieCod}</span>
-      </nav>
+      {breadcrumb}
 
       <div className="mt-4 flex items-center gap-3 mb-6">
         <span aria-hidden="true" className="text-3xl">
@@ -181,33 +281,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
         />
       </ScrollReveal>
 
-      <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
-        {anterior ? (
-          <Link
-            href={`/curriculum/${clasa}/${modulSlug}/${anterior.cod}`}
-            className="max-w-[45%] text-sm font-semibold text-brand hover:text-brand-dark"
-          >
-            ← {anterior.cod} {anterior.titlu}
-          </Link>
-        ) : (
-          <span />
-        )}
-        {urmatoarea ? (
-          <Link
-            href={`/curriculum/${clasa}/${modulSlug}/${urmatoarea.cod}`}
-            className="max-w-[45%] text-right text-sm font-semibold text-brand hover:text-brand-dark"
-          >
-            {urmatoarea.cod} {urmatoarea.titlu} →
-          </Link>
-        ) : (
-          <Link
-            href={hrefModul(modul)}
-            className="text-sm font-semibold text-brand hover:text-brand-dark"
-          >
-            Înapoi la modul →
-          </Link>
-        )}
-      </nav>
+      {navigarePrevUrm}
     </div>
   );
 }
