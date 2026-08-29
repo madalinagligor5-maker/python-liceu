@@ -23,6 +23,9 @@ import path from "path";
 
 export type ArticolBlogRezumat = {
   titlu: string;
+  /** Titlu separat pentru <title>/SEO, dacă diferă de titlul afișat (H1) —
+   *  opțional, din frontmatter "titlu_seo"; dacă lipsește, se folosește `titlu`. */
+  titluSeo?: string;
   slug: string;
   data: string; // "YYYY-MM-DD", ca text — suficient pentru sortare și afișare
   descriere: string;
@@ -135,6 +138,41 @@ function randeazaMarkdown(md: string): string {
       continue;
     }
 
+    // Tabel Markdown: | col | col |  urmat de un rând separator | --- | --- |
+    if (
+      linie.trim().startsWith("|") &&
+      i + 1 < lines.length &&
+      /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(lines[i + 1])
+    ) {
+      const impartRand = (l: string) =>
+        l.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
+      const antet = impartRand(linie);
+      i += 2; // sari rândul de separare
+      const randuri: string[][] = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        randuri.push(impartRand(lines[i]));
+        i++;
+      }
+      const thead = `<thead><tr>${antet
+        .map(
+          (c) =>
+            `<th class="border-b-2 border-brand-border bg-brand-light/40 px-3 py-2 text-left font-bold text-foreground">${inline(c)}</th>`
+        )
+        .join("")}</tr></thead>`;
+      const tbody = `<tbody>${randuri
+        .map(
+          (r) =>
+            `<tr>${r
+              .map((c) => `<td class="border-b border-border px-3 py-2 align-top">${inline(c)}</td>`)
+              .join("")}</tr>`
+        )
+        .join("")}</tbody>`;
+      out.push(
+        `<div class="overflow-x-auto rounded-xl border border-border shadow-depth-sm"><table class="w-full text-sm">${thead}${tbody}</table></div>`
+      );
+      continue;
+    }
+
     // Paragraf — linii consecutive nevide, unite cu spațiu.
     const para: string[] = [];
     while (
@@ -186,6 +224,7 @@ async function incarcaToate(): Promise<ArticolBlog[]> {
     if (!meta.slug || !meta.titlu) continue; // frontmatter incomplet — sărit
     articole.push({
       titlu: meta.titlu,
+      titluSeo: meta.titlu_seo || undefined,
       slug: meta.slug,
       data: meta.data ?? "",
       descriere: meta.descriere ?? "",
@@ -204,6 +243,7 @@ export async function getToateArticolele(): Promise<ArticolBlogRezumat[]> {
   const toate = await incarcaToate();
   return toate.map((articol) => ({
     titlu: articol.titlu,
+    titluSeo: articol.titluSeo,
     slug: articol.slug,
     data: articol.data,
     descriere: articol.descriere,

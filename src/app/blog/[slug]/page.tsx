@@ -19,13 +19,15 @@ export async function generateMetadata({
   const articol = await getArticolDupaSlug(slug);
   if (!articol) return {};
 
+  const titluPagina = articol.titluSeo || articol.titlu;
+
   return {
-    title: `${articol.titlu} — Academia Python`,
+    title: `${titluPagina} — Academia Python`,
     description: articol.descriere,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
-      title: articol.titlu,
+      title: titluPagina,
       description: articol.descriere,
       url: `/blog/${slug}`,
       publishedTime: articol.data || undefined,
