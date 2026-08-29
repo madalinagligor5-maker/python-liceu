@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getArticolDupaSlug, getToateArticolele } from "@/lib/blog";
+import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { slug: string };
 
@@ -54,6 +56,18 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+      <ArticleJsonLd
+        titlu={articol.titluSeo || articol.titlu}
+        descriere={articol.descriere}
+        data={articol.data}
+        slug={articol.slug}
+      />
+      <BreadcrumbJsonLd
+        firimituri={[
+          { nume: "Blog", cale: "/blog" },
+          { nume: articol.titlu },
+        ]}
+      />
       <nav className="text-sm text-muted">
         <Link href="/blog" className="hover:text-brand">
           Blog

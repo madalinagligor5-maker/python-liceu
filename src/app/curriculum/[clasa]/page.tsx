@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { capitole, getCapitol, hrefModul, ICOANE_SUBLECTIE } from "@/lib/curriculum";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string };
 
@@ -33,6 +34,12 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+      <BreadcrumbJsonLd
+        firimituri={[
+          { nume: "Curriculum", cale: "/curriculum" },
+          { nume: `Clasa a ${capitol.clasa}-a` },
+        ]}
+      />
       <nav className="text-sm text-muted">
         <Link href="/curriculum" className="hover:text-brand">
           Curriculum
@@ -51,6 +58,16 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
         Clasa a {capitol.clasa}-a · {capitol.module.length} module ·{" "}
         {capitol.module.length * 6} sublecții
       </p>
+
+      {capitol.clasa === "IX" && (
+        <p className="mt-3 text-xs text-muted">
+          Programa de mai jos reflectă schimbarea recentă la Informatică —{" "}
+          <Link href="/blog/schimbari-bacalaureat-informatica-python-2030" className="font-semibold text-brand hover:underline">
+            află ce se schimbă la Bacalaureatul de Informatică și de ce
+          </Link>
+          .
+        </p>
+      )}
 
       <nav aria-label="Alte clase" className="mt-6 flex flex-wrap gap-2">
         {capitole.map((c) => (

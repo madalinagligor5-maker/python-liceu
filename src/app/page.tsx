@@ -8,6 +8,8 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
 import { creeazaClientServer } from "@/lib/supabase/server";
+import { getToateArticolele } from "@/lib/blog";
+import FaqJsonLd from "@/components/seo/FaqJsonLd";
 
 const CLASE = [
   {
@@ -127,8 +129,11 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     }
   }
 
+  const articoleRecente = (await getToateArticolele()).slice(0, 3);
+
   return (
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen relative overflow-hidden font-sans">
+      <FaqJsonLd intrebari={FAQ} />
       {/* Soft ambient background glow — plutire discretă, nu statică */}
       <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
@@ -295,6 +300,49 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           ))}
         </div>
       </section>
+
+      {/* ULTIMELE DIN BLOG */}
+      {articoleRecente.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+          <ScrollReveal className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <span className="inline-flex rounded-full bg-indigo-50 border border-indigo-200 px-3.5 py-1 text-xs font-bold text-indigo-900 uppercase tracking-widest mb-3">
+                Blog
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+                Ultimele din blog
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="hidden sm:inline-block text-sm font-bold text-brand hover:text-brand-dark whitespace-nowrap"
+            >
+              Vezi tot blogul →
+            </Link>
+          </ScrollReveal>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {articoleRecente.map((a, i) => (
+              <ScrollReveal key={a.slug} index={i}>
+                <Link
+                  href={`/blog/${a.slug}`}
+                  className="hover-glow-brand block h-full rounded-3xl border border-[#EBE7DF] bg-white p-6 shadow-depth-sm transition-all"
+                >
+                  <h3 className="text-base font-black text-[#1E2430] leading-snug">{a.titlu}</h3>
+                  <p className="mt-2 text-xs text-[#525B6C] leading-relaxed line-clamp-3">{a.descriere}</p>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <Link
+            href="/blog"
+            className="mt-6 inline-block sm:hidden text-sm font-bold text-brand hover:text-brand-dark"
+          >
+            Vezi tot blogul →
+          </Link>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">

@@ -13,6 +13,7 @@ import {
 } from "@/lib/curriculum";
 import { getPredicțiiClasa } from "@/lib/predicții";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -74,6 +75,13 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <BreadcrumbJsonLd
+        firimituri={[
+          { nume: "Curriculum", cale: "/curriculum" },
+          { nume: `Clasa a ${clasa}-a`, cale: `/curriculum/${clasa}` },
+          { nume: `Modulul ${modul.numar}` },
+        ]}
+      />
       <nav className="text-sm text-muted">
         <Link href="/curriculum" className="hover:text-brand">
           Curriculum

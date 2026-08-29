@@ -70,4 +70,6 @@ Plan de acțiune pentru performanță:
 3. **Profesor asistent AI:** interacționează cu asistenți virtuali care explică logica din spatele erorilor, oferindu-ți o experiență de tutorat personalizată.
 4. **Sistemul de gamification:** menține-ți motivația prin acumularea de XP, insigne și streak-uri, transformând pregătirea pentru examen într-o activitate antrenantă.
 
+Vezi programa completă pentru fiecare an de studiu: [clasa a IX-a](/curriculum/IX), [clasa a X-a](/curriculum/X), [clasa a XI-a](/curriculum/XI), [clasa a XII-a](/curriculum/XII).
+
 Pregătirea constantă pe o platformă modernă elimină incertitudinea legată de Bacalaureatul din 2030. Informatica încetează să mai fie o barieră tehnică și devine un instrument creativ, oferindu-ți libertatea de a inova și de a construi viitorul digital.

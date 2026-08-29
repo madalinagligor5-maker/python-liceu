@@ -22,6 +22,7 @@ import { getExercitiiSublectie } from "@/lib/exercitii";
 import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
 import ScrollReveal from "@/components/ScrollReveal";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -70,6 +71,17 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   // corpul lecției adiacente. Sigur de apelat pe ambele ramuri.
   const anterior = await sublectieAnterioara(sublectieCod);
   const urmatoarea = await sublectieUrmatoare(sublectieCod);
+
+  const breadcrumbJsonLd = (
+    <BreadcrumbJsonLd
+      firimituri={[
+        { nume: "Curriculum", cale: "/curriculum" },
+        { nume: `Clasa a ${clasa}-a`, cale: `/curriculum/${clasa}` },
+        { nume: modul.cod, cale: hrefModul(modul) },
+        { nume: sublectieCod },
+      ]}
+    />
+  );
 
   const breadcrumb = (
     <nav className="text-sm text-muted">
@@ -132,6 +144,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
     // de randare al acestei ramuri, nu doar să fie ascuns vizual.
     return (
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+        {breadcrumbJsonLd}
         {breadcrumb}
 
         <div className="mt-4 flex items-center gap-3 mb-6">
@@ -208,6 +221,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      {breadcrumbJsonLd}
       {breadcrumb}
 
       <div className="mt-4 flex items-center gap-3 mb-6">
