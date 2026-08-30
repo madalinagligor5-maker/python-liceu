@@ -250,5 +250,7 @@ function traduError(mesaj: string): string {
   if (mesaj.includes("Invalid login credentials")) return "Email sau parolă incorectă.";
   if (mesaj.includes("User already registered")) return "Există deja un cont cu acest email.";
   if (mesaj.includes("Password should be")) return "Parola trebuie să aibă cel puțin 6 caractere.";
+  if (mesaj.toLowerCase().includes("email rate limit exceeded"))
+    return "S-au trimis prea multe emailuri de confirmare într-un timp scurt. Așteaptă câteva minute și încearcă din nou.";
   return mesaj;
 }

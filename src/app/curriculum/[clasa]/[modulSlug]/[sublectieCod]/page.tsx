@@ -211,10 +211,20 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   );
 
   // Pentru o pagină de quiz (1.X.6), exercițiile necesare înainte de deblocare
-  // sunt cele de pe 1.X.4 și 1.X.5 (care stau pe alte pagini). Le deducem din cod.
+  // sunt cele de pe 1.X.4 și 1.X.5 (care stau pe alte pagini). SublectieGate
+  // compară cu id-ul complet al fiecărui exercițiu (ex. "1.1.4.ex1"), nu cu
+  // codul sublecției ("1.1.4") - de-aia luăm efectiv exercițiile de-acolo și le
+  // extragem id-urile, în loc să trimitem doar codurile de sublecție (bug real,
+  // deblocarea nu functiona niciodata pentru nimeni).
+  const prefixModul = sublectieCod.replace(/\.\d+$/, "");
   const exercitiiNecesare: string[] =
     intrebari.length > 0 && exercitii.length === 0
-      ? [`${sublectieCod.replace(/\.\d+$/, "")}.4`, `${sublectieCod.replace(/\.\d+$/, "")}.5`]
+      ? (
+          await Promise.all([
+            getExercitiiSublectie(`${prefixModul}.4`),
+            getExercitiiSublectie(`${prefixModul}.5`),
+          ])
+        ).flat().map((e) => e.id)
       : [];
 
   if (!continut) notFound();
