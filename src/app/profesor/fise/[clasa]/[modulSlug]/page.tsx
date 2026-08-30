@@ -35,18 +35,7 @@ export default async function FisaModulPage({
 
   return (
     <div>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @media print {
-          @page { size: A4 portrait; margin: 1.5cm; }
-          body { background: white !important; }
-        }
-      `,
-        }}
-      />
-
-      <Link href="/profesor/fise" className="print-hidden text-sm font-semibold text-brand hover:underline">
+      <Link href="/profesor/fise" className="text-sm font-semibold text-brand hover:underline">
         ← Toate fișele
       </Link>
 
@@ -61,7 +50,7 @@ export default async function FisaModulPage({
         </p>
       ) : (
         <div className="mt-6">
-          <FisaExercitii grupeExercitii={grupeExercitii} />
+          <FisaExercitii grupeExercitii={grupeExercitii} clasa={clasa} modulSlug={modulSlug} />
         </div>
       )}
     </div>

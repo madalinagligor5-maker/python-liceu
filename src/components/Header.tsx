@@ -78,7 +78,7 @@ export default async function Header() {
 
           {user ? (
             <Link
-              href={esteProfesor ? "/profesor/clase" : "/cont"}
+              href={esteProfesor ? "/profesor/planificari" : "/cont"}
               className="hidden md:inline-block max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600"
             >
               {extrageAliasNume(user.email)}
@@ -93,7 +93,7 @@ export default async function Header() {
           )}
 
           <Link
-            href={esteProfesor ? "/profesor/clase" : "/curriculum"}
+            href={esteProfesor ? "/profesor/planificari" : "/curriculum"}
             className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
           >
             {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}

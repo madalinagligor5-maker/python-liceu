@@ -3,13 +3,42 @@
 import { useState, useTransition } from "react";
 import type { Capitol } from "@/lib/curriculum";
 import { genereazaTest, type IntrebareTest } from "@/app/actions/teste";
-import PrintButton from "@/components/PrintButton";
+
+async function descarcaPdfTest(
+  clasa: string,
+  intrebari: IntrebareTest[],
+  arataRaspunsuri: boolean
+): Promise<string | null> {
+  try {
+    const rezultat = await fetch("/api/profesor-pdf/test", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ clasa, intrebari, arataRaspunsuri }),
+    });
+    if (!rezultat.ok) throw new Error("status " + rezultat.status);
+
+    const blob = await rezultat.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `AcademiaPython_${arataRaspunsuri ? "Barem" : "Test"}_${clasa}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    return null;
+  } catch {
+    return "Nu am putut genera PDF-ul, încearcă din nou.";
+  }
+}
 
 export default function GeneratorTeste({ capitoleLiceu }: { capitoleLiceu: Capitol[] }) {
   const [clasa, setClasa] = useState(capitoleLiceu[0]?.clasa ?? "");
   const [moduleSelectate, setModuleSelectate] = useState<Set<string>>(new Set());
   const [nrIntrebari, setNrIntrebari] = useState(10);
   const [eroare, setEroare] = useState<string | null>(null);
+  const [erorarePdf, setErorarePdf] = useState<string | null>(null);
+  const [sePdf, setSePdf] = useState<"test" | "barem" | null>(null);
   const [intrebari, setIntrebari] = useState<IntrebareTest[] | null>(null);
   const [sePending, startTransition] = useTransition();
 
@@ -37,15 +66,19 @@ export default function GeneratorTeste({ capitoleLiceu }: { capitoleLiceu: Capit
     });
   }
 
+  async function descarca(arataRaspunsuri: boolean) {
+    if (!intrebari) return;
+    setErorarePdf(null);
+    setSePdf(arataRaspunsuri ? "barem" : "test");
+    const eroareRezultat = await descarcaPdfTest(clasa, intrebari, arataRaspunsuri);
+    setSePdf(null);
+    if (eroareRezultat) setErorarePdf(eroareRezultat);
+  }
+
   if (intrebari) {
     return (
       <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `@media print { @page { size: A4 portrait; margin: 1.5cm; } body { background: white !important; } .print-break { page-break-before: always; } }`,
-          }}
-        />
-        <div className="print-hidden mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <button
             type="button"
             onClick={() => setIntrebari(null)}
@@ -53,8 +86,27 @@ export default function GeneratorTeste({ capitoleLiceu }: { capitoleLiceu: Capit
           >
             ← Generează alt test
           </button>
-          <PrintButton />
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              disabled={sePdf !== null}
+              onClick={() => descarca(false)}
+              className="rounded-full border border-brand-border bg-white px-4 py-2 text-xs font-bold text-brand transition hover:bg-brand-light/40 disabled:opacity-50"
+            >
+              {sePdf === "test" ? "Se generează..." : "📄 PDF Test"}
+            </button>
+            <button
+              type="button"
+              disabled={sePdf !== null}
+              onClick={() => descarca(true)}
+              className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs transition shadow-sm disabled:opacity-50"
+            >
+              {sePdf === "barem" ? "Se generează..." : "📄 PDF Barem"}
+            </button>
+          </div>
         </div>
+
+        {erorarePdf && <p className="mb-4 text-sm text-red-600">{erorarePdf}</p>}
 
         <h1 className="text-xl font-bold text-foreground">Test — Clasa a {clasa}-a</h1>
         <ol className="mt-6 space-y-5">
@@ -72,7 +124,7 @@ export default function GeneratorTeste({ capitoleLiceu }: { capitoleLiceu: Capit
           ))}
         </ol>
 
-        <div className="print-break mt-10">
+        <div className="mt-10">
           <h2 className="text-lg font-bold text-foreground">Barem</h2>
           <ol className="mt-4 space-y-2">
             {intrebari.map((i, idx) => (

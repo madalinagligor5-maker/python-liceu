@@ -5,7 +5,6 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 const LINKURI_PROFESOR = [
   { href: "/profesor/planificari", label: "Planificări" },
   { href: "/profesor/fise", label: "Fișe de lucru" },
-  { href: "/profesor/clase", label: "Clasele mele" },
   { href: "/profesor/teste/generator", label: "Generator de teste" },
 ];
 
@@ -25,7 +24,7 @@ export default async function ProfesorLayout({
   const { user, meta } = await getUtilizatorCurent();
 
   if (!user) {
-    redirect("/login?redirect=/profesor/clase");
+    redirect("/login?redirect=/profesor/planificari");
   }
 
   if (meta?.rol === "profesor_in_asteptare") {

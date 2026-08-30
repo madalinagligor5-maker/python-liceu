@@ -197,8 +197,6 @@ export async function finalizeazaSublectie(
   const { data, error } = await supabase.rpc("finalizeaza_lectie", {
     p_lectie_slug: `sub-${sublectieCod}`,
     p_xp_quiz: xpQuiz,
-    p_scor: scor,
-    p_din_total: intrebari.length,
   });
 
   if (error) return { ok: false, eroare: error.message };

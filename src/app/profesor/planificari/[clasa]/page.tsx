@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPlanificare } from "@/lib/planificari";
-import PrintButton from "@/components/PrintButton";
 
 export async function generateMetadata({ params }: { params: Promise<{ clasa: string }> }) {
   const { clasa } = await params;
@@ -21,22 +20,16 @@ export default async function PlanificareClasaPage({
 
   return (
     <div>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @media print {
-          @page { size: A4 portrait; margin: 1.5cm; }
-          body { background: white !important; }
-        }
-      `,
-        }}
-      />
-
-      <div className="print-hidden mb-6 flex items-center justify-between">
+      <div className="mb-6 flex items-center justify-between">
         <Link href="/profesor/planificari" className="text-sm font-semibold text-brand hover:underline">
           ← Toate clasele
         </Link>
-        <PrintButton />
+        <a
+          href={`/api/profesor-pdf/planificare/${clasa}`}
+          className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-2 px-6 text-xs transition shadow-sm"
+        >
+          📄 Descarcă PDF
+        </a>
       </div>
 
       <h1 className="text-xl font-bold text-foreground">
@@ -71,7 +64,7 @@ export default async function PlanificareClasaPage({
         </tbody>
       </table>
 
-      <p className="print-hidden mt-4 text-xs text-foreground/45">
+      <p className="mt-4 text-xs text-foreground/45">
         Numărul de ore și săptămânile sunt valori implicite, editabile din fișierul{" "}
         <code className="rounded bg-black/5 px-1">content/planificari/{clasa}.json</code> — nu necesită cod.
       </p>

@@ -13,7 +13,6 @@ export type UtilizatorMeta = {
   nivel: number;
   rol: RolUtilizator;
   scoala: string | null;
-  numeAfisat: string | null;
 };
 
 /**
@@ -39,7 +38,7 @@ export async function getUtilizatorCurent(): Promise<{
   const { data: meta } = await supabase
     .from("users_meta")
     .select(
-      "subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa, rol, scoala, nume_afisat"
+      "subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa, rol, scoala"
     )
     .eq("user_id", user.id)
     .maybeSingle();
@@ -61,7 +60,6 @@ export async function getUtilizatorCurent(): Promise<{
       nivel,
       rol: (meta?.rol as RolUtilizator) ?? "elev",
       scoala: meta?.scoala ?? null,
-      numeAfisat: meta?.nume_afisat ?? null,
     },
   };
 }

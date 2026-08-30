@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pentru profesori — Academia Python",
   description:
-    "Planificări calendaristice, fișe de lucru printabile, progres pe clasă și o bancă de teste generată din quiz-urile Academia Python — gratuit pentru profesorii aprobați.",
+    "Planificări calendaristice, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
 };
 
 export default function ProfesoriPage() {
@@ -16,7 +16,9 @@ export default function ProfesoriPage() {
       </h1>
       <p className="mt-4 text-base leading-relaxed text-foreground/70">
         Academia Python oferă profesorilor o zonă separată, gratuită, cu instrumente construite
-        direct din materia deja predată pe platformă — nimic de rescris de la zero.
+        direct din materia deja predată pe platformă. Intri, iei planificarea sau fișele de care
+        ai nevoie pentru ora ta, descarci PDF-ul și pleci — nu ai nevoie de niciun cont de elev
+        și nu-ți legi elevii de platformă.
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -24,22 +26,17 @@ export default function ProfesoriPage() {
           {
             icon: "🗓️",
             titlu: "Planificări calendaristice",
-            text: "Planificare per clasă (IX–XII), gata de print, cu unități de învățare și număr de ore alocat.",
+            text: "Planificare per clasă (IX–XII), descărcabilă ca PDF, cu unități de învățare și număr de ore alocat.",
           },
           {
             icon: "📄",
             titlu: "Fișe de lucru printabile",
-            text: "Exercițiile deja existente pe platformă, într-un format curat pentru hârtie, cu sau fără barem.",
-          },
-          {
-            icon: "📊",
-            titlu: "Progres pe clasă",
-            text: "O privire de ansamblu asupra elevilor care s-au asociat cu clasa ta, cu un cod pe care îl generezi tu.",
+            text: "Exercițiile deja existente pe platformă, ca PDF curat pentru hârtie, cu sau fără barem — două descărcări separate.",
           },
           {
             icon: "📝",
             titlu: "Bancă de teste",
-            text: "Generează un test din quiz-urile existente, cu barem separat, fără riscul unei inconsecvențe între ele.",
+            text: "Generează un test din quiz-urile existente, cu barem separat ca PDF, fără riscul unei inconsecvențe între ele.",
           },
         ].map((f) => (
           <div key={f.titlu} className="rounded-2xl border border-black/10 bg-white p-5">

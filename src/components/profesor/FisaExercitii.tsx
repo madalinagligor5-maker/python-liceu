@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { Exercitiu } from "@/lib/exercitii-tipuri";
-import PrintButton from "@/components/PrintButton";
 
 function Barem({ ex }: { ex: Exercitiu }) {
   if (ex.tip === "cod") {
@@ -48,14 +47,18 @@ function CorpExercitiu({ ex }: { ex: Exercitiu }) {
 
 export default function FisaExercitii({
   grupeExercitii,
+  clasa,
+  modulSlug,
 }: {
   grupeExercitii: { sublectieCod: string; sublectieTitlu: string; exercitii: Exercitiu[] }[];
+  clasa: string;
+  modulSlug: string;
 }) {
   const [arataBarem, setArataBarem] = useState(false);
 
   return (
     <div>
-      <div className="print-hidden mb-6 flex flex-wrap items-center justify-between gap-3">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-foreground">
           <input
             type="checkbox"
@@ -63,13 +66,26 @@ export default function FisaExercitii({
             onChange={(e) => setArataBarem(e.target.checked)}
             className="h-4 w-4 accent-brand"
           />
-          Arată baremul / soluțiile
+          Arată baremul / soluțiile (pe pagină)
         </label>
-        <PrintButton />
+        <div className="flex flex-wrap gap-2">
+          <a
+            href={`/api/profesor-pdf/fisa/${clasa}/${modulSlug}?barem=false`}
+            className="rounded-full border border-brand-border bg-white px-4 py-2 text-xs font-bold text-brand transition hover:bg-brand-light/40"
+          >
+            📄 PDF fără barem
+          </a>
+          <a
+            href={`/api/profesor-pdf/fisa/${clasa}/${modulSlug}?barem=true`}
+            className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs transition shadow-sm"
+          >
+            📄 PDF cu barem
+          </a>
+        </div>
       </div>
 
       {arataBarem && (
-        <p className="print-hidden mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-800">
+        <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-800">
           Varianta cu barem — nu o da direct elevilor.
         </p>
       )}

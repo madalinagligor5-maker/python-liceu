@@ -6,16 +6,18 @@ import {
   seteazaStareUtilizatorTest,
   autentificaInBrowser,
 } from "./helpers/auth";
-import { creeazaClasaTest, stergeClasaTest } from "./helpers/clase";
 
 /**
- * Teste de atac pentru portalul de profesori (Sarcina 1 + Sarcina 4).
- * Verifică exact garanția cerută: un elev obișnuit (sau neautentificat) nu
- * poate accesa nimic din zona de profesor/admin, nici prin URL direct, nici
- * apelând Supabase direct din "consolă" (aceleași client + chei publice pe
- * care le-ar folosi cineva din browser, dar apelate direct — ocolind
- * complet server action-urile din aplicație, exact tiparul de atac descris
- * în promptul original: RPC apelat direct din consola browserului).
+ * Teste de atac pentru portalul de profesori (Sarcina 1). Verifică exact
+ * garanția cerută: un elev obișnuit (sau neautentificat) nu poate accesa
+ * nimic din zona de profesor/admin — nici rutele de pagină, nici endpoint-
+ * urile de PDF (care NU sunt acoperite de gating-ul din layout, pentru că
+ * layout-ul Next.js nu se aplică peste rutele din app/api/*), nici prin
+ * apeluri directe către Supabase din "consolă" (același client + chei
+ * publice pe care le-ar folosi cineva din browser, dar apelate direct).
+ *
+ * Portalul de profesori NU are nicio legătură cu conturile de elevi — fără
+ * clase, fără cod de asociere — deci nu există teste de izolare elev↔clasă.
  */
 
 function clientAnonCaUtilizator(accessToken: string) {
@@ -42,7 +44,7 @@ async function obtineToken(email: string, parola: string): Promise<string> {
 
 test.describe("Portal profesori — atac din contul de elev / neautentificat", () => {
   test("1. Neautentificat: /profesor/* și /admin/* redirecționează la login", async ({ page }) => {
-    await page.goto("/profesor/clase");
+    await page.goto("/profesor/planificari");
     await expect(page).toHaveURL(/\/login/);
 
     await page.goto("/admin/profesori");
@@ -55,12 +57,15 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
       await autentificaInBrowser(page, elev);
       await page.waitForLoadState("networkidle");
 
-      await page.goto("/profesor/clase");
-      await expect(page).not.toHaveURL(/\/profesor\/clase/);
-      await expect(page.getByText("Clasele mele").first()).toHaveCount(0);
-
-      await page.goto("/profesor/planificari/IX");
+      await page.goto("/profesor/planificari");
       await expect(page).not.toHaveURL(/\/profesor\/planificari/);
+      await expect(page.getByText("Generator de teste").first()).toHaveCount(0);
+
+      await page.goto("/profesor/fise");
+      await expect(page).not.toHaveURL(/\/profesor\/fise/);
+
+      await page.goto("/profesor/teste/generator");
+      await expect(page).not.toHaveURL(/\/profesor\/teste/);
 
       await page.goto("/admin/profesori");
       await expect(page).not.toHaveURL(/\/admin\/profesori/);
@@ -77,30 +82,14 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
       await autentificaInBrowser(page, candidat);
       await page.waitForLoadState("networkidle");
 
-      await page.goto("/profesor/clase");
+      await page.goto("/profesor/planificari");
       await expect(page).toHaveURL(/\/profesor-asteptare/);
     } finally {
       await stergeUtilizatorTest(candidat.id);
     }
   });
 
-  test("4. Elev nu poate crea o clasă direct din Supabase (RLS), ocolind server action-ul", async () => {
-    const elev = await creeazaUtilizatorTest("elev-rls-clase");
-    try {
-      const token = await obtineToken(elev.email, elev.parola);
-      const client = clientAnonCaUtilizator(token);
-
-      const { error } = await client
-        .from("clase")
-        .insert({ profesor_id: (await client.auth.getUser(token)).data.user!.id, nume_clasa: "Clasă fantomă" });
-
-      expect(error).not.toBeNull();
-    } finally {
-      await stergeUtilizatorTest(elev.id);
-    }
-  });
-
-  test("5. Elev nu-și poate seta singur rol='profesor_aprobat' printr-un update direct", async () => {
+  test("4. Elev nu-și poate seta singur rol='profesor_aprobat' printr-un update direct", async () => {
     const elev = await creeazaUtilizatorTest("elev-rol-hack");
     try {
       const token = await obtineToken(elev.email, elev.parola);
@@ -119,53 +108,40 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
     }
   });
 
-  test("6. Un profesor nu poate vedea progresul unei clase care nu e a lui", async () => {
-    const profA = await creeazaUtilizatorTest("prof-a");
-    const profB = await creeazaUtilizatorTest("prof-b");
-    let clasaA: { id: string; codClasa: string } | null = null;
+  test("5. Endpoint-urile de PDF nu sunt acoperite de layout — trebuie să-și verifice singure rolul", async ({
+    page,
+    request,
+  }) => {
+    // Neautentificat, direct pe endpoint-ul de PDF (nu prin pagină).
+    const raspunsAnonim = await request.get("/api/profesor-pdf/planificare/IX");
+    expect(raspunsAnonim.status()).not.toBe(200);
+    expect(raspunsAnonim.headers()["content-type"] ?? "").not.toContain("application/pdf");
+
+    // Autentificat ca elev obișnuit — nu doar fără sesiune.
+    const elev = await creeazaUtilizatorTest("elev-pdf-atac");
     try {
-      await seteazaStareUtilizatorTest(profA.id, { rol: "profesor_aprobat" });
-      await seteazaStareUtilizatorTest(profB.id, { rol: "profesor_aprobat" });
-      clasaA = await creeazaClasaTest(profA.id, "Clasa lui A");
+      await autentificaInBrowser(page, elev);
+      await page.waitForLoadState("networkidle");
 
-      const tokenB = await obtineToken(profB.email, profB.parola);
-      const clientB = clientAnonCaUtilizator(tokenB);
+      const raspunsPlanificare = await page.request.get("/api/profesor-pdf/planificare/IX");
+      expect(raspunsPlanificare.status()).not.toBe(200);
+      expect(raspunsPlanificare.headers()["content-type"] ?? "").not.toContain("application/pdf");
 
-      const { data, error } = await clientB.rpc("progres_elevi_clasa", { p_clasa_id: clasaA.id });
+      const raspunsFisa = await page.request.get("/api/profesor-pdf/fisa/IX/clasa-str-metode-de-baza");
+      expect(raspunsFisa.status()).not.toBe(200);
+      expect(raspunsFisa.headers()["content-type"] ?? "").not.toContain("application/pdf");
 
-      // RPC-ul trebuie fie să arunce eroare ("Acces interzis"), fie să
-      // întoarcă un set gol — niciodată datele elevilor din clasa lui A.
-      expect(error !== null || (Array.isArray(data) && data.length === 0)).toBe(true);
+      const raspunsTest = await page.request.post("/api/profesor-pdf/test", {
+        data: {
+          clasa: "IX",
+          arataRaspunsuri: false,
+          intrebari: [{ intrebare: "test?", variante: ["a", "b"], corect: 0 }],
+        },
+      });
+      expect(raspunsTest.status()).not.toBe(200);
+      expect(raspunsTest.headers()["content-type"] ?? "").not.toContain("application/pdf");
     } finally {
-      if (clasaA) await stergeClasaTest(clasaA.id);
-      await stergeUtilizatorTest(profA.id);
-      await stergeUtilizatorTest(profB.id);
-    }
-  });
-
-  test("7. Un elev nu poate citi asocierile altui elev cu o clasă (RLS pe clasa_elevi)", async () => {
-    const profesor = await creeazaUtilizatorTest("prof-privacy");
-    const elevTinta = await creeazaUtilizatorTest("elev-tinta");
-    const elevAtacator = await creeazaUtilizatorTest("elev-atacator");
-    let clasa: { id: string; codClasa: string } | null = null;
-    try {
-      await seteazaStareUtilizatorTest(profesor.id, { rol: "profesor_aprobat" });
-      clasa = await creeazaClasaTest(profesor.id, "Clasa privacy");
-
-      const tokenTinta = await obtineToken(elevTinta.email, elevTinta.parola);
-      const clientTinta = clientAnonCaUtilizator(tokenTinta);
-      await clientTinta.rpc("asociaza_elev_la_clasa", { p_cod_clasa: clasa.codClasa });
-
-      const tokenAtacator = await obtineToken(elevAtacator.email, elevAtacator.parola);
-      const clientAtacator = clientAnonCaUtilizator(tokenAtacator);
-
-      const { data } = await clientAtacator.from("clasa_elevi").select("*").eq("clasa_id", clasa.id);
-      expect(data ?? []).toHaveLength(0);
-    } finally {
-      if (clasa) await stergeClasaTest(clasa.id);
-      await stergeUtilizatorTest(profesor.id);
-      await stergeUtilizatorTest(elevTinta.id);
-      await stergeUtilizatorTest(elevAtacator.id);
+      await stergeUtilizatorTest(elev.id);
     }
   });
 });

@@ -6,9 +6,6 @@ import { creeazaClientServer } from "@/lib/supabase/server";
 import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
 import Mascota from "@/components/Mascota";
-import ClaseleMele from "@/components/cont/ClaseleMele";
-import NumeAfisatField from "@/components/cont/NumeAfisatField";
-import { listaClaselorMele } from "@/app/actions/clase-elev";
 
 export const metadata: Metadata = {
   title: "Contul meu — Academia Python",
@@ -54,6 +51,13 @@ export default async function ContPage() {
     redirect("/login?redirect=/cont");
   }
 
+  // Contul de elev si cel de profesor sunt complet separate — un profesor
+  // aprobat nu trebuie sa vada vreodata dashboard-ul de elev (XP, abonament,
+  // insigne nu au sens pentru el).
+  if (meta.rol === "profesor_aprobat") {
+    redirect("/profesor/planificari");
+  }
+
   // Preluăm insigne din DB
   const insigneDetinute: Set<string> = new Set();
   if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -71,8 +75,6 @@ export default async function ContPage() {
       console.error("Eroare incarcare insigne:", e);
     }
   }
-
-  const claseleMele = await listaClaselorMele();
 
   const status = STATUS_LABEL[meta.subscriptionStatus ?? "none"];
   
@@ -243,10 +245,7 @@ export default async function ContPage() {
         </div>
       </div>
 
-<NumeAfisatField numeInitial={meta.numeAfisat} />
-      <ClaseleMele claseInitiale={claseleMele} />
-
-      {/* Butoane de Ieșire / Navigare */}
+{/* Butoane de Ieșire / Navigare */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 px-2">
         <Link 
           href="/lectii" 
