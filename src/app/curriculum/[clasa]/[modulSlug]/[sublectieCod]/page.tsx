@@ -19,6 +19,7 @@ import PythonEditor from "@/components/PythonEditor";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
+import { NIVELE } from "@/lib/exercitii-tipuri";
 import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -213,10 +214,22 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   // Pentru o pagină de quiz (1.X.6), exercițiile necesare înainte de deblocare
   // sunt cele de pe 1.X.4 și 1.X.5 (care stau pe alte pagini). SublectieGate
   // compară cu id-ul complet al fiecărui exercițiu (ex. "1.1.4.ex1"), nu cu
-  // codul sublecției ("1.1.4") - de-aia luăm efectiv exercițiile de-acolo și le
-  // extragem id-urile, în loc să trimitem doar codurile de sublecție (bug real,
-  // deblocarea nu functiona niciodata pentru nimeni).
+  // codul sublecției ("1.1.4").
+  //
+  // ExercitiiInteractive arată exercițiile pe taburi de nivel (de-bază /
+  // consolidat / avansat), UN SINGUR tab vizibil o dată - implicit "de-bază",
+  // sau primul nivel disponibil dacă sublecția n-are deloc exerciții "de-bază"
+  // (același fallback ca în componentă: niveleDisponibile[0]). Cerem doar
+  // exercițiile din ACEL tab implicit - nu toate nivelurile de pe ambele
+  // pagini - altfel elevul ar trebui să dea click pe taburi ascunse și să
+  // rezolve și exercițiile avansate doar ca să ajungă la quiz.
   const prefixModul = sublectieCod.replace(/\.\d+$/, "");
+
+  function idURiNivelImplicit(listaExercitii: typeof exercitii): string[] {
+    const nivelImplicit = NIVELE.find((n) => listaExercitii.some((e) => e.nivel === n.id))?.id;
+    return listaExercitii.filter((e) => e.nivel === nivelImplicit).map((e) => e.id);
+  }
+
   const exercitiiNecesare: string[] =
     intrebari.length > 0 && exercitii.length === 0
       ? (
@@ -224,7 +237,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
             getExercitiiSublectie(`${prefixModul}.4`),
             getExercitiiSublectie(`${prefixModul}.5`),
           ])
-        ).flat().map((e) => e.id)
+        ).flatMap(idURiNivelImplicit)
       : [];
 
   if (!continut) notFound();
