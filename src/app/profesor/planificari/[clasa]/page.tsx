@@ -36,7 +36,9 @@ export default async function PlanificareClasaPage({
   });
   if (!programa) notFound();
 
-  const hrefPdf = `/api/profesor-pdf/planificare/${clasa}?anScolar=${encodeURIComponent(anScolar)}`;
+  const querySufix = `?anScolar=${encodeURIComponent(anScolar)}`;
+  const hrefPdf = `/api/profesor-pdf/planificare/${clasa}${querySufix}`;
+  const hrefWord = `/api/profesor-docx/planificare/${clasa}${querySufix}`;
 
   return (
     <div>
@@ -44,12 +46,20 @@ export default async function PlanificareClasaPage({
         <Link href="/profesor/planificari" className="text-sm font-semibold text-brand hover:underline">
           ← Toate clasele
         </Link>
-        <a
-          href={hrefPdf}
-          className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-2 px-6 text-xs transition shadow-sm"
-        >
-          📄 Descarcă PDF
-        </a>
+        <div className="flex flex-wrap gap-2">
+          <a
+            href={hrefWord}
+            className="rounded-full border border-brand-border bg-white px-4 py-2 text-xs font-bold text-brand transition hover:bg-brand-light/40"
+          >
+            📝 Descarcă Word
+          </a>
+          <a
+            href={hrefPdf}
+            className="rounded-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-black py-2 px-6 text-xs transition shadow-sm"
+          >
+            📄 Descarcă PDF
+          </a>
+        </div>
       </div>
 
       <form method="get" className="mb-8 flex flex-wrap items-end gap-3 rounded-xl border border-black/10 bg-black/[0.02] p-4">
@@ -73,6 +83,11 @@ export default async function PlanificareClasaPage({
         </button>
       </form>
 
+      <p className="mb-6 text-xs text-foreground/45">
+        Descarcă în Word ca să completezi tu datele de identificare (numele liceului, dacă lipsește) sau să
+        adaptezi planificarea — PDF-ul e gata de printat, așa cum e.
+      </p>
+
       {/* Pagină de titlu */}
       <div className="rounded-2xl border border-black/10 bg-white p-6 text-center">
         <p className="text-sm font-semibold text-foreground">{programa.paginaTitlu.liceu}</p>
@@ -82,8 +97,9 @@ export default async function PlanificareClasaPage({
           Disciplina: <strong>{programa.paginaTitlu.disciplina}</strong> · Clasa a {programa.paginaTitlu.clasa}-a
         </p>
         <p className="mt-1 text-sm text-foreground/70">
-          Durata: {programa.paginaTitlu.durataOreSaptamana ?? "—"} ore/săptămână,{" "}
-          {programa.paginaTitlu.durataOreTotal} ore total
+          Durata: {programa.paginaTitlu.durataOreSaptamana} ore/săptămână (
+          {programa.paginaTitlu.durataOreTeoriePractica}) · {programa.paginaTitlu.durataOreTotal} ore alocate
+          module în planificare
         </p>
         <p className="mt-1 text-sm text-foreground/70">Prof. {programa.paginaTitlu.profesor}</p>
         <p className="mt-1 text-sm text-foreground/70">Anul școlar {programa.paginaTitlu.anScolar}</p>
@@ -112,33 +128,22 @@ export default async function PlanificareClasaPage({
       {/* Competențe generale */}
       <section className="mt-8">
         <h2 className="text-lg font-bold text-foreground">Competențe generale</h2>
-        {programa.competenteGenerale ? (
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
-            {programa.competenteGenerale.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
-            [DE COMPLETAT — text oficial din Ordinul 4.370/2026]
-          </p>
-        )}
+        <p className="mt-1 text-xs text-foreground/45">
+          Text oficial, identic pentru toate clasele IX-XII (Ordinul 4.370/2026, Anexele 8-11).
+        </p>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
+          {programa.competenteGenerale.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
       </section>
 
       {/* Valori și atitudini */}
       <section className="mt-8">
         <h2 className="text-lg font-bold text-foreground">Valori și atitudini</h2>
-        {programa.valoriSiAtitudini ? (
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
-            {programa.valoriSiAtitudini.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
-            [DE COMPLETAT — text oficial din Ordinul 4.370/2026]
-          </p>
-        )}
+        <p className="mt-2 rounded-xl border border-black/10 bg-black/[0.02] p-3 text-sm text-foreground/70">
+          {programa.notaValoriSiAtitudini}
+        </p>
       </section>
 
       {/* Competențe specifice și conținuturi */}

@@ -102,8 +102,12 @@ export async function GET(
     doc.text(curataDiacritice(`Clasa a ${programa.paginaTitlu.clasa}-a`), { align: "center" });
     doc.text(
       curataDiacritice(
-        `Durata: ${programa.paginaTitlu.durataOreSaptamana ?? "-"} ore/saptamana, ${programa.paginaTitlu.durataOreTotal} ore total`
+        `Durata: ${programa.paginaTitlu.durataOreSaptamana} ore/saptamana (${programa.paginaTitlu.durataOreTeoriePractica})`
       ),
+      { align: "center" }
+    );
+    doc.text(
+      curataDiacritice(`${programa.paginaTitlu.durataOreTotal} ore alocate module in planificare`),
       { align: "center" }
     );
     doc.moveDown(1.5);
@@ -125,22 +129,13 @@ export async function GET(
     listaBuline(doc, programa.competenteCheie);
 
     sectiune(doc, "Competente generale");
-    if (programa.competenteGenerale) {
-      listaBuline(doc, programa.competenteGenerale);
-    } else {
-      doc.fontSize(9).font("Helvetica-Oblique").fillColor("#a15c00").text(
-        "[DE COMPLETAT - text oficial din Ordinul 4.370/2026]"
-      );
-    }
+    listaBuline(doc, programa.competenteGenerale);
 
     sectiune(doc, "Valori si atitudini");
-    if (programa.valoriSiAtitudini) {
-      listaBuline(doc, programa.valoriSiAtitudini);
-    } else {
-      doc.fontSize(9).font("Helvetica-Oblique").fillColor("#a15c00").text(
-        "[DE COMPLETAT - text oficial din Ordinul 4.370/2026]"
-      );
-    }
+    doc.fontSize(9).font("Helvetica").fillColor("#2d2d4d").text(
+      curataDiacritice(programa.notaValoriSiAtitudini),
+      { align: "justify", lineGap: 2 }
+    );
 
     sectiune(doc, "Competente specifice si continuturi");
     randTabel(doc, ["Unitate", "Competente specifice", "Continuturi", "Ore", "Sapt."], true);

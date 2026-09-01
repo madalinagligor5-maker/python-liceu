@@ -120,6 +120,10 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
     expect(raspunsAnonim.status()).not.toBe(200);
     expect(raspunsAnonim.headers()["content-type"] ?? "").not.toContain("application/pdf");
 
+    const raspunsAnonimWord = await request.get("/api/profesor-docx/planificare/IX");
+    expect(raspunsAnonimWord.status()).not.toBe(200);
+    expect(raspunsAnonimWord.headers()["content-type"] ?? "").not.toContain("wordprocessingml");
+
     // Autentificat ca elev obișnuit — nu doar fără sesiune.
     const elev = await creeazaUtilizatorTest("elev-pdf-atac");
     try {
@@ -129,6 +133,10 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
       const raspunsPlanificare = await page.request.get("/api/profesor-pdf/planificare/IX");
       expect(raspunsPlanificare.status()).not.toBe(200);
       expect(raspunsPlanificare.headers()["content-type"] ?? "").not.toContain("application/pdf");
+
+      const raspunsPlanificareWord = await page.request.get("/api/profesor-docx/planificare/IX");
+      expect(raspunsPlanificareWord.status()).not.toBe(200);
+      expect(raspunsPlanificareWord.headers()["content-type"] ?? "").not.toContain("wordprocessingml");
 
       const raspunsFisa = await page.request.get("/api/profesor-pdf/fisa/IX/clasa-str-metode-de-baza");
       expect(raspunsFisa.status()).not.toBe(200);
