@@ -67,6 +67,9 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
       await page.goto("/profesor/teste/generator");
       await expect(page).not.toHaveURL(/\/profesor\/teste/);
 
+      await page.goto("/profesor/materiale");
+      await expect(page).not.toHaveURL(/\/profesor\/materiale/);
+
       await page.goto("/admin/profesori");
       await expect(page).not.toHaveURL(/\/admin\/profesori/);
       await expect(page.getByText("Cereri de acces").first()).toHaveCount(0);
@@ -140,8 +143,60 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
       });
       expect(raspunsTest.status()).not.toBe(200);
       expect(raspunsTest.headers()["content-type"] ?? "").not.toContain("application/pdf");
+
+      const raspunsMaterial = await page.request.get(
+        "/api/profesor-pdf/material/ghid-cum-folosesc-academia-python-la-clasa"
+      );
+      expect(raspunsMaterial.status()).not.toBe(200);
+      expect(raspunsMaterial.headers()["content-type"] ?? "").not.toContain("application/pdf");
     } finally {
       await stergeUtilizatorTest(elev.id);
+    }
+  });
+});
+
+test.describe("Portal profesori — acces integral la curriculum premium (Sarcina 7)", () => {
+  // Aceeasi sublectie premium folosita in fluxuri-critice.spec.ts (modul.gratuit
+  // === false, clasa X) - un profesor aprobat trebuie sa vada continutul real,
+  // fara abonament; un profesor_in_asteptare (rol deja pe cont, dar neaprobat
+  // inca) NU trebuie sa capete acest acces doar pentru ca are rolul in DB.
+  const SUBLECTIE_PREMIUM = "/curriculum/X/clasa-str-metode-de-cautare-inlocuire-separare/2.7.1";
+  const FRAGMENT_LECTIE_REALA = "Revizuim rapid operațiile de bază cu șiruri";
+
+  test("Profesor aprobat, fara abonament, vede continutul premium complet", async ({ page }) => {
+    const profesor = await creeazaUtilizatorTest("prof-acces-premium");
+    try {
+      await seteazaStareUtilizatorTest(profesor.id, {
+        rol: "profesor_aprobat",
+        subscriptionStatus: "none",
+      });
+      await autentificaInBrowser(page, profesor);
+      await page.waitForLoadState("networkidle");
+
+      await page.goto(SUBLECTIE_PREMIUM);
+      await expect(page.getByText(FRAGMENT_LECTIE_REALA)).not.toHaveCount(0);
+      await expect(page.locator("#lectie-articol")).not.toHaveCount(0);
+    } finally {
+      await stergeUtilizatorTest(profesor.id);
+    }
+  });
+
+  test("Profesor in asteptare (neaprobat inca) NU vede continutul premium", async ({ page }) => {
+    const candidat = await creeazaUtilizatorTest("prof-asteptare-acces");
+    try {
+      await seteazaStareUtilizatorTest(candidat.id, {
+        rol: "profesor_in_asteptare",
+        subscriptionStatus: "none",
+      });
+      await autentificaInBrowser(page, candidat);
+      await page.waitForLoadState("networkidle");
+
+      await page.goto(SUBLECTIE_PREMIUM);
+      await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
+      await expect(page.locator("#lectie-articol")).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+    } finally {
+      await stergeUtilizatorTest(candidat.id);
     }
   });
 });

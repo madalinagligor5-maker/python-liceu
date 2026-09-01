@@ -4,6 +4,7 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 
 const LINKURI_PROFESOR = [
   { href: "/profesor/planificari", label: "Planificări" },
+  { href: "/profesor/materiale", label: "Materiale" },
   { href: "/profesor/fise", label: "Fișe de lucru" },
   { href: "/profesor/teste/generator", label: "Generator de teste" },
 ];

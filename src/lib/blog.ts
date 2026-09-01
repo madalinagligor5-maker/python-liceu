@@ -78,7 +78,7 @@ function inline(text: string): string {
 
 /** Randează corpul Markdown al unui articol în HTML — headinguri #/##/###,
  *  paragrafe, liste (ordonate/neordonate), blocuri de cod, link-uri. */
-function randeazaMarkdown(md: string): string {
+export function randeazaMarkdown(md: string): string {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   let i = 0;
@@ -207,7 +207,7 @@ function randeazaMarkdown(md: string): string {
   return out.join("\n");
 }
 
-function parseazaFrontmatter(raw: string): { meta: Record<string, string>; corp: string } {
+export function parseazaFrontmatter(raw: string): { meta: Record<string, string>; corp: string } {
   const normalizat = raw.replace(/\r\n/g, "\n");
   const match = normalizat.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) return { meta: {}, corp: normalizat };

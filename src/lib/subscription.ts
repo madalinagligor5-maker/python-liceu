@@ -67,3 +67,13 @@ export async function getUtilizatorCurent(): Promise<{
 export function areAbonamentActiv(meta: UtilizatorMeta | null): boolean {
   return meta?.subscriptionStatus === "active";
 }
+
+/**
+ * Un profesor aprobat vede tot conținutul premium, fără abonament - ca să
+ * poată pregăti orice lecție. Doar rolul APROBAT contează (nu
+ * profesor_in_asteptare) - verificat direct din DB, la fel ca restul
+ * verificărilor de rol.
+ */
+export function esteProfesorAprobat(meta: UtilizatorMeta | null): boolean {
+  return meta?.rol === "profesor_aprobat";
+}

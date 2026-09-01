@@ -12,7 +12,7 @@ import {
   modulUrmator,
 } from "@/lib/curriculum";
 import { getPredicțiiClasa } from "@/lib/predicții";
-import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import { getUtilizatorCurent, areAbonamentActiv, esteProfesorAprobat } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string; modulSlug: string };
@@ -48,7 +48,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   const { meta } = await getUtilizatorCurent();
   const esteGratuit = modul.gratuit || modul.numar <= 5;
-  const areAcces = esteGratuit || areAbonamentActiv(meta);
+  const areAcces = esteGratuit || areAbonamentActiv(meta) || esteProfesorAprobat(meta);
 
   const anterior = modulAnterior(clasa, modulSlug);
   const urmator = modulUrmator(clasa, modulSlug);

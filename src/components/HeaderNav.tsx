@@ -29,6 +29,7 @@ const linkuriKids = [
 
 const linkuriProfesor = [
   { href: "/profesor/planificari", label: "🗓️ Planificări", sub: "Calendar per clasă" },
+  { href: "/profesor/materiale", label: "📚 Materiale", sub: "Resurse suplimentare" },
   { href: "/profesor/fise", label: "📄 Fișe de lucru", sub: "Printabile, cu/fără barem" },
   { href: "/profesor/teste/generator", label: "📝 Generator de teste", sub: "Din bancă de quiz-uri" },
 ];

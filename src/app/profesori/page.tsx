@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pentru profesori — Academia Python",
   description:
-    "Planificări calendaristice, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
+    "Planificări calendaristice, materiale, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
 };
 
 export default function ProfesoriPage() {
@@ -16,9 +16,9 @@ export default function ProfesoriPage() {
       </h1>
       <p className="mt-4 text-base leading-relaxed text-foreground/70">
         Academia Python oferă profesorilor o zonă separată, gratuită, cu instrumente construite
-        direct din materia deja predată pe platformă. Intri, iei planificarea sau fișele de care
-        ai nevoie pentru ora ta, descarci PDF-ul și pleci — nu ai nevoie de niciun cont de elev
-        și nu-ți legi elevii de platformă.
+        direct din materia deja predată pe platformă. Intri, iei planificarea, materialele sau
+        fișele de care ai nevoie pentru ora ta, descarci PDF-ul și pleci — nu ai nevoie de niciun
+        cont de elev și nu-ți legi elevii de platformă.
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -26,7 +26,12 @@ export default function ProfesoriPage() {
           {
             icon: "🗓️",
             titlu: "Planificări calendaristice",
-            text: "Planificare per clasă (IX–XII), descărcabilă ca PDF, cu unități de învățare și număr de ore alocat.",
+            text: "Planificare completă per clasă (IX–XII), în formatul oficial de programă școlară, descărcabilă ca PDF.",
+          },
+          {
+            icon: "📚",
+            titlu: "Materiale",
+            text: "Resurse suplimentare — exemple gata generate, ghiduri de folosire la clasă. Lista crește constant.",
           },
           {
             icon: "📄",
@@ -38,6 +43,11 @@ export default function ProfesoriPage() {
             titlu: "Bancă de teste",
             text: "Generează un test din quiz-urile existente, cu barem separat ca PDF, fără riscul unei inconsecvențe între ele.",
           },
+          {
+            icon: "🔓",
+            titlu: "Acces integral la curriculum",
+            text: "Un cont aprobat vede toate modulele, exercițiile și quiz-urile platformei, fără abonament — ca să poți pregăti orice lecție.",
+          },
         ].map((f) => (
           <div key={f.titlu} className="rounded-2xl border border-black/10 bg-white p-5">
             <div className="text-2xl">{f.icon}</div>
@@ -46,6 +56,11 @@ export default function ProfesoriPage() {
           </div>
         ))}
       </div>
+
+      <p className="mt-6 text-center text-xs text-foreground/40">
+        Lista de materiale crește constant — urmează în curând planificări și resurse pentru mai
+        multe module.
+      </p>
 
       <div className="mt-10 rounded-2xl border border-brand-border bg-brand-light/40 p-6 text-center">
         <p className="font-semibold text-foreground">
