@@ -10,11 +10,23 @@ import {
   TableRow,
   TableCell,
   WidthType,
+  BorderStyle,
+  PageOrientation,
 } from "docx";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { construiestePrograma, anScolarImplicit } from "@/lib/planificarePrograma";
 
 export const dynamic = "force-dynamic";
+
+// Lățimile coloanelor tabelului, ca procent din lățimea totală (însumează 100).
+const LATIME_PROCENT = [15, 20, 45, 8, 12];
+
+const CHENAR = {
+  top: { style: BorderStyle.SINGLE, size: 4, color: "000000" },
+  bottom: { style: BorderStyle.SINGLE, size: 4, color: "000000" },
+  left: { style: BorderStyle.SINGLE, size: 4, color: "000000" },
+  right: { style: BorderStyle.SINGLE, size: 4, color: "000000" },
+};
 
 function numeDinEmail(email: string): string {
   const local = email.split("@")[0] ?? "";
@@ -23,10 +35,13 @@ function numeDinEmail(email: string): string {
   return curatat.charAt(0).toUpperCase() + curatat.slice(1);
 }
 
-function celula(text: string, antet = false): TableCell {
+function celula(text: string, latimeProcent: number, antet = false): TableCell {
   return new TableCell({
     children: [new Paragraph({ children: [new TextRun({ text, bold: antet })] })],
-    width: { size: 20, type: WidthType.PERCENTAGE },
+    width: { size: latimeProcent, type: WidthType.PERCENTAGE },
+    borders: CHENAR,
+    shading: antet ? { fill: "EEEEEE" } : undefined,
+    margins: { top: 80, bottom: 80, left: 80, right: 80 },
   });
 }
 
@@ -58,18 +73,30 @@ export async function GET(
       );
 
     const paragrafeSectiune = (titlu: string, continut: Paragraph[]) => [
-      new Paragraph({ text: titlu, heading: HeadingLevel.HEADING_2, spacing: { before: 300, after: 150 } }),
+      new Paragraph({
+        text: titlu,
+        heading: HeadingLevel.HEADING_2,
+        spacing: { before: 300, after: 150 },
+        border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "000000" } },
+      }),
       ...continut,
     ];
 
     const randTabel = (celule: string[], antet = false) =>
       new TableRow({
-        children: celule.map((c) => celula(c, antet)),
+        children: celule.map((c, i) => celula(c, LATIME_PROCENT[i], antet)),
       });
 
     const doc = new Document({
       sections: [
         {
+          properties: {
+            page: {
+              size: {
+                orientation: PageOrientation.LANDSCAPE,
+              },
+            },
+          },
           children: [
             // Pagină de titlu — datele de identificare (liceu, profesor) sunt
             // completate automat mai jos, dar rămân editabile direct în Word,
@@ -113,7 +140,17 @@ export async function GET(
             new Paragraph({
               text: `Anul școlar ${programa.paginaTitlu.anScolar}`,
               alignment: AlignmentType.CENTER,
-              pageBreakBefore: false,
+              spacing: { after: 300 },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Pagină în lucru — planificarea se completează și se actualizează constant.",
+                  italics: true,
+                  size: 16,
+                }),
+              ],
+              alignment: AlignmentType.CENTER,
             }),
 
             new Paragraph({
@@ -157,6 +194,7 @@ export async function GET(
               text: "Competențe specifice și conținuturi",
               heading: HeadingLevel.HEADING_2,
               spacing: { before: 300, after: 150 },
+              border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "000000" } },
             }),
             new Table({
               width: { size: 100, type: WidthType.PERCENTAGE },

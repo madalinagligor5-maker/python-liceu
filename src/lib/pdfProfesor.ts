@@ -22,9 +22,10 @@ export function curataDiacritice(text: string): string {
     .replace(/[̀-ͯ]/g, "");
 }
 
-export function creeazaDocumentPdf(): PDFKit.PDFDocument {
+export function creeazaDocumentPdf(opts?: { layout?: "portrait" | "landscape" }): PDFKit.PDFDocument {
   return new PDFDocument({
     size: "A4",
+    layout: opts?.layout ?? "portrait",
     margin: 40,
     bufferPages: true, // necesar ca să putem adăuga subsolul pe FIECARE pagină la final
   });
@@ -57,6 +58,8 @@ export function deseneazaAntet(doc: PDFKit.PDFDocument, subtitluDreapta: string,
  */
 export function adaugaSubsolPeToatePaginile(doc: PDFKit.PDFDocument) {
   const interval = doc.bufferedPageRange();
+  const latimeUtila = doc.page.width - 80; // margini de 40 pe fiecare parte
+  const ySubsol = doc.page.height - 62;
   for (let i = interval.start; i < interval.start + interval.count; i++) {
     doc.switchToPage(i);
     const yInitial = doc.y;
@@ -64,8 +67,8 @@ export function adaugaSubsolPeToatePaginile(doc: PDFKit.PDFDocument) {
       .fontSize(8)
       .font("Helvetica")
       .fillColor("#6b6a7b")
-      .text("Academia Python -- academiapython.ro", 40, 780, {
-        width: 515,
+      .text("Academia Python -- academiapython.ro", 40, ySubsol, {
+        width: latimeUtila,
         align: "center",
       });
     doc.y = yInitial;

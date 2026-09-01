@@ -11,7 +11,10 @@ import {
 
 export const dynamic = "force-dynamic";
 
-const LATIME_COLOANE = [85, 115, 210, 35, 60]; // total 505 (+ margini)
+// Landscape A4, margini 40 -> latime utila ~ 761.
+const LATIME_COLOANE = [130, 160, 340, 40, 55]; // total 725 (+ margini)
+const X0 = 40;
+const LATIME_TOTAL = LATIME_COLOANE.reduce((a, b) => a + b, 0);
 
 function numeDinEmail(email: string): string {
   const local = email.split("@")[0] ?? "";
@@ -20,43 +23,49 @@ function numeDinEmail(email: string): string {
   return curatat.charAt(0).toUpperCase() + curatat.slice(1);
 }
 
+/** Tabel alb-negru: chenar complet pe fiecare celulă, umplere gri deschis pe antet. */
 function randTabel(doc: PDFKit.PDFDocument, celule: string[], antet = false) {
-  const x0 = 40;
   doc.font(antet ? "Helvetica-Bold" : "Helvetica").fontSize(8);
   const inaltimi = celule.map((text, i) =>
-    doc.heightOfString(curataDiacritice(text), { width: LATIME_COLOANE[i] - 6 })
+    doc.heightOfString(curataDiacritice(text), { width: LATIME_COLOANE[i] - 8 })
   );
-  const inaltimeRand = Math.max(...inaltimi, 10) + 8;
+  const inaltimeRand = Math.max(...inaltimi, 10) + 10;
 
-  if (doc.y + inaltimeRand > 770) doc.addPage();
+  if (doc.y + inaltimeRand > 530) doc.addPage();
 
   const y = doc.y;
-  let x = x0;
+  let x = X0;
+
+  if (antet) {
+    doc.rect(X0, y, LATIME_TOTAL, inaltimeRand).fillAndStroke("#eeeeee", "#000000");
+  }
+
   celule.forEach((text, i) => {
+    doc.rect(x, y, LATIME_COLOANE[i], inaltimeRand).lineWidth(0.75).strokeColor("#000000").stroke();
     doc
       .font(antet ? "Helvetica-Bold" : "Helvetica")
       .fontSize(8)
-      .fillColor(antet ? "#16163a" : "#2d2d4d")
-      .text(curataDiacritice(text), x + 3, y + 4, { width: LATIME_COLOANE[i] - 6 });
+      .fillColor("#000000")
+      .text(curataDiacritice(text), x + 4, y + 5, { width: LATIME_COLOANE[i] - 8 });
     x += LATIME_COLOANE[i];
   });
 
   doc.y = y + inaltimeRand;
-  doc.strokeColor("#e7e0d2").lineWidth(0.5).moveTo(x0, doc.y).lineTo(x0 + 505, doc.y).stroke();
 }
 
 function sectiune(doc: PDFKit.PDFDocument, titlu: string) {
-  if (doc.y > 740) doc.addPage();
+  if (doc.y > 500) doc.addPage();
   doc.moveDown(1);
-  doc.fontSize(12).font("Helvetica-Bold").fillColor("#16163a").text(curataDiacritice(titlu));
-  doc.moveDown(0.4);
+  doc.fontSize(12).font("Helvetica-Bold").fillColor("#000000").text(curataDiacritice(titlu));
+  doc.moveTo(X0, doc.y + 2).lineTo(X0 + LATIME_TOTAL, doc.y + 2).lineWidth(0.75).strokeColor("#000000").stroke();
+  doc.moveDown(0.6);
 }
 
 function listaBuline(doc: PDFKit.PDFDocument, itemi: string[]) {
-  doc.fontSize(9).font("Helvetica").fillColor("#2d2d4d");
+  doc.fontSize(9).font("Helvetica").fillColor("#000000");
   itemi.forEach((item) => {
-    if (doc.y > 770) doc.addPage();
-    doc.text(`•  ${curataDiacritice(item)}`, { indent: 4, lineGap: 2 });
+    if (doc.y > 530) doc.addPage();
+    doc.text(`-  ${curataDiacritice(item)}`, { indent: 4, lineGap: 2 });
     doc.moveDown(0.2);
   });
 }
@@ -82,20 +91,20 @@ export async function GET(
     });
     if (!programa) return new Response("Clasa nu a fost gasita.", { status: 404 });
 
-    const doc = creeazaDocumentPdf();
+    const doc = creeazaDocumentPdf({ layout: "landscape" });
 
-    // Pagină de titlu.
-    doc.fontSize(12).font("Helvetica-Bold").fillColor("#16163a").text(
+    // Pagină de titlu — alb-negru, fără elemente colorate.
+    doc.fontSize(12).font("Helvetica-Bold").fillColor("#000000").text(
       curataDiacritice(programa.paginaTitlu.liceu),
       { align: "center" }
     );
-    doc.moveDown(1.5);
-    doc.fontSize(9).font("Helvetica").fillColor("#6b6a7b").text("Programa scolara pentru", { align: "center" });
-    doc.fontSize(18).font("Helvetica-Bold").fillColor("#16163a").text("PLANIFICARE CALENDARISTICA", {
+    doc.moveDown(1.2);
+    doc.fontSize(9).font("Helvetica").fillColor("#000000").text("Programa scolara pentru", { align: "center" });
+    doc.fontSize(18).font("Helvetica-Bold").fillColor("#000000").text("PLANIFICARE CALENDARISTICA", {
       align: "center",
     });
-    doc.moveDown(1.5);
-    doc.fontSize(11).font("Helvetica").fillColor("#2d2d4d").text(
+    doc.moveDown(1.2);
+    doc.fontSize(11).font("Helvetica").fillColor("#000000").text(
       curataDiacritice(`Disciplina: ${programa.paginaTitlu.disciplina}`),
       { align: "center" }
     );
@@ -110,18 +119,24 @@ export async function GET(
       curataDiacritice(`${programa.paginaTitlu.durataOreTotal} ore alocate module in planificare`),
       { align: "center" }
     );
-    doc.moveDown(1.5);
+    doc.moveDown(1.2);
     doc.text(curataDiacritice(`Prof. ${programa.paginaTitlu.profesor}`), { align: "center" });
     doc.text(curataDiacritice(`Anul scolar ${programa.paginaTitlu.anScolar}`), { align: "center" });
 
+    doc.moveDown(1.5);
+    doc.fontSize(8).font("Helvetica-Oblique").fillColor("#000000").text(
+      "Pagina in lucru -- planificarea se completeaza si se actualizeaza constant.",
+      { align: "center" }
+    );
+
     doc.addPage();
 
-    doc.fontSize(14).font("Helvetica-Bold").fillColor("#16163a").text(curataDiacritice(programa.paginaTitlu.disciplina));
+    doc.fontSize(14).font("Helvetica-Bold").fillColor("#000000").text(curataDiacritice(programa.paginaTitlu.disciplina));
 
     sectiune(doc, "Nota de prezentare");
-    doc.fontSize(9).font("Helvetica").fillColor("#2d2d4d");
+    doc.fontSize(9).font("Helvetica").fillColor("#000000");
     programa.notaDePrezentare.forEach((p) => {
-      doc.text(curataDiacritice(p), { align: "justify", lineGap: 2 });
+      doc.text(curataDiacritice(p), { align: "justify", lineGap: 2, width: LATIME_TOTAL });
       doc.moveDown(0.6);
     });
 
@@ -132,9 +147,9 @@ export async function GET(
     listaBuline(doc, programa.competenteGenerale);
 
     sectiune(doc, "Valori si atitudini");
-    doc.fontSize(9).font("Helvetica").fillColor("#2d2d4d").text(
+    doc.fontSize(9).font("Helvetica").fillColor("#000000").text(
       curataDiacritice(programa.notaValoriSiAtitudini),
-      { align: "justify", lineGap: 2 }
+      { align: "justify", lineGap: 2, width: LATIME_TOTAL }
     );
 
     sectiune(doc, "Competente specifice si continuturi");

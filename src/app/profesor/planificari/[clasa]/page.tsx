@@ -83,9 +83,13 @@ export default async function PlanificareClasaPage({
         </button>
       </form>
 
+      <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+        🚧 Pagină în lucru — planificarea se completează și se actualizează constant.
+      </div>
+
       <p className="mb-6 text-xs text-foreground/45">
         Descarcă în Word ca să completezi tu datele de identificare (numele liceului, dacă lipsește) sau să
-        adaptezi planificarea — PDF-ul e gata de printat, așa cum e.
+        adaptezi planificarea — PDF-ul e gata de printat (format landscape), așa cum e.
       </p>
 
       {/* Pagină de titlu */}
