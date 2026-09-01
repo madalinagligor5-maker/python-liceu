@@ -6,6 +6,11 @@ export type UtilizatorMeta = {
   email: string;
   subscriptionStatus: "none" | "active" | "past_due" | "canceled";
   subscriptionCurrentPeriodEnd: string | null;
+  /** True dacă abonamentul e programat să nu se reînnoiască la finalul
+   *  perioadei curente (anulat din Stripe Billing Portal, dar nu imediat —
+   *  comportamentul implicit Stripe: rămâne "active" până la capătul
+   *  perioadei plătite). */
+  cancelAtPeriodEnd: boolean;
   stripeCustomerId: string | null;
   xpTotal: number;
   streakZile: number;
@@ -38,7 +43,7 @@ export async function getUtilizatorCurent(): Promise<{
   const { data: meta } = await supabase
     .from("users_meta")
     .select(
-      "subscription_status, subscription_current_period_end, stripe_customer_id, xp_total, streak_zile, clasa, rol, scoala"
+      "subscription_status, subscription_current_period_end, cancel_at_period_end, stripe_customer_id, xp_total, streak_zile, clasa, rol, scoala"
     )
     .eq("user_id", user.id)
     .maybeSingle();
@@ -53,6 +58,7 @@ export async function getUtilizatorCurent(): Promise<{
       email: user.email ?? "",
       subscriptionStatus: (meta?.subscription_status as UtilizatorMeta["subscriptionStatus"]) ?? "none",
       subscriptionCurrentPeriodEnd: meta?.subscription_current_period_end ?? null,
+      cancelAtPeriodEnd: meta?.cancel_at_period_end ?? false,
       stripeCustomerId: meta?.stripe_customer_id ?? null,
       xpTotal,
       streakZile: meta?.streak_zile ?? 0,

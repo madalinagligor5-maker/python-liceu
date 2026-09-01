@@ -76,7 +76,14 @@ export default async function ContPage() {
     }
   }
 
-  const status = STATUS_LABEL[meta.subscriptionStatus ?? "none"];
+  const seAnuleazaLaFinal = meta.subscriptionStatus === "active" && meta.cancelAtPeriodEnd;
+  const status = seAnuleazaLaFinal
+    ? {
+        text: "Abonament activ — nu se reînnoiește",
+        className: "bg-amber-150 text-amber-800 border-amber-300/40",
+        desc: "Ai anulat reînnoirea automată. Păstrezi acces Premium până la finalul perioadei plătite curente, apoi contul trece automat pe versiunea gratuită.",
+      }
+    : STATUS_LABEL[meta.subscriptionStatus ?? "none"];
   
   const dataReinnoire = meta.subscriptionCurrentPeriodEnd
     ? new Date(meta.subscriptionCurrentPeriodEnd).toLocaleDateString("ro-RO", {
@@ -188,7 +195,12 @@ export default async function ContPage() {
                 </p>
                 {dataReinnoire && (
                   <p className="mt-2 text-xs font-semibold text-foreground/60">
-                    {meta.subscriptionStatus === "active" ? "Următoarea plată se va efectua pe" : "Abonamentul va expira pe"}:{" "}
+                    {seAnuleazaLaFinal
+                      ? "Acces Premium până pe"
+                      : meta.subscriptionStatus === "active"
+                        ? "Următoarea plată se va efectua pe"
+                        : "Abonamentul va expira pe"}
+                    :{" "}
                     <span className="text-foreground">{dataReinnoire}</span>
                   </p>
                 )}

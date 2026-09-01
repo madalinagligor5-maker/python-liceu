@@ -87,7 +87,7 @@ export async function citesteStareUtilizatorTest(userId: string) {
   const admin = creeazaClientAdminTest();
   const { data, error } = await admin
     .from("users_meta")
-    .select("subscription_status, stripe_customer_id, ai_requests_today, last_ai_request_date")
+    .select("subscription_status, stripe_customer_id, ai_requests_today, last_ai_request_date, cancel_at_period_end")
     .eq("user_id", userId)
     .single();
   if (error) {

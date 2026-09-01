@@ -5,6 +5,7 @@ import {
   creeazaUtilizatorTest,
   stergeUtilizatorTest,
   seteazaStareUtilizatorTest,
+  citesteStareUtilizatorTest,
   autentificaInBrowser,
 } from "./helpers/auth";
 
@@ -119,6 +120,64 @@ test.describe("Fluxuri Critice de Acces, Abonamente & Evaluare AI", () => {
     });
 
     expect([200, 400, 500]).toContain(response.status());
+  });
+
+  // Test 3b: webhook-ul Stripe trebuie sa inregistreze si "cancel_at_period_end"
+  // atunci cand elevul anuleaza reinnoirea din Billing Portal (Stripe, in
+  // configuratia implicita, NU sterge abonamentul imediat - il marcheaza sa
+  // nu se reinnoiasca, si abonamentul ramane "active" pana la finalul
+  // perioadei platite). Fara aceasta urmarire, contul arata "Activ" identic
+  // inainte si dupa anulare - bug real raportat de fondatoare.
+  test("3b. Webhook customer.subscription.updated inregistreaza cancel_at_period_end", async ({ request }) => {
+    const utilizator = await creeazaUtilizatorTest("cancel-abonament");
+    const customerId = "cus_test_" + Date.now();
+    try {
+      await seteazaStareUtilizatorTest(utilizator.id, {
+        subscriptionStatus: "active",
+        stripeCustomerId: customerId,
+      });
+
+      const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || "whsec_test_secret";
+      const perioadaEnd = Math.floor(Date.now() / 1000) + 30 * 24 * 3600;
+      const payload = JSON.stringify({
+        id: "evt_test_updated_" + Date.now(),
+        object: "event",
+        api_version: "2023-10-16",
+        created: Math.floor(Date.now() / 1000),
+        type: "customer.subscription.updated",
+        data: {
+          object: {
+            id: "sub_test_" + Date.now(),
+            object: "subscription",
+            customer: customerId,
+            status: "active",
+            cancel_at_period_end: true,
+            metadata: { supabase_user_id: utilizator.id },
+            items: { data: [{ current_period_end: perioadaEnd }] },
+          },
+        },
+      });
+
+      let signature = "";
+      try {
+        const stripe = getStripe();
+        signature = stripe.webhooks.generateTestHeaderString({ payload, secret: webhookSecret });
+      } catch (_) {
+        signature = `t=${Math.floor(Date.now() / 1000)},v1=test_sig_hash`;
+      }
+
+      const response = await request.post("/api/stripe/webhook", {
+        data: payload,
+        headers: { "Content-Type": "application/json", "stripe-signature": signature },
+      });
+      expect(response.status()).toBe(200);
+
+      const stare = await citesteStareUtilizatorTest(utilizator.id);
+      expect(stare.subscription_status).toBe("active");
+      expect(stare.cancel_at_period_end).toBe(true);
+    } finally {
+      await stergeUtilizatorTest(utilizator.id);
+    }
   });
 
   // Test 4: Verificare regulă de limitare zilnică 3/zi pentru evaluări AI

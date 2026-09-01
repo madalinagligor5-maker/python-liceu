@@ -25,6 +25,7 @@ async function actualizeazaDinAbonament(subscription: Stripe.Subscription, event
         stripe_customer_id: customerId,
         subscription_status: mapeazaStatus(subscription.status),
         subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
+        cancel_at_period_end: subscription.cancel_at_period_end,
       })
       .eq("user_id", supabaseUserId);
     if (error) {
@@ -42,6 +43,7 @@ async function actualizeazaDinAbonament(subscription: Stripe.Subscription, event
       .update({
         subscription_status: mapeazaStatus(subscription.status),
         subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
+        cancel_at_period_end: subscription.cancel_at_period_end,
       })
       .eq("stripe_customer_id", customerId);
     if (error) {
@@ -117,7 +119,7 @@ export async function POST(request: NextRequest) {
           typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
         const { error } = await supabaseAdmin
           .from("users_meta")
-          .update({ subscription_status: "canceled" })
+          .update({ subscription_status: "canceled", cancel_at_period_end: false })
           .eq("stripe_customer_id", customerId);
         if (error) {
           console.error("[stripe-webhook] update users_meta (anulare abonament) a esuat", {
