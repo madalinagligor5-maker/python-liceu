@@ -83,11 +83,13 @@ export async function GET(
     const { clasa } = await params;
     const { searchParams } = new URL(request.url);
     const anScolar = searchParams.get("anScolar")?.trim() || anScolarImplicit(new Date());
+    const profil = searchParams.get("profil")?.trim() || undefined;
 
     const programa = await construiestePrograma(clasa, {
       liceu: meta.scoala,
       profesor: numeDinEmail(user.email),
       anScolar,
+      profil,
     });
     if (!programa) return new Response("Clasa nu a fost gasita.", { status: 404 });
 
@@ -109,6 +111,7 @@ export async function GET(
       { align: "center" }
     );
     doc.text(curataDiacritice(`Clasa a ${programa.paginaTitlu.clasa}-a`), { align: "center" });
+    doc.text(curataDiacritice(programa.paginaTitlu.profilEticheta), { align: "center" });
     doc.text(
       curataDiacritice(
         `Durata: ${programa.paginaTitlu.durataOreSaptamana} ore/saptamana (${programa.paginaTitlu.durataOreTeoriePractica})`
@@ -144,6 +147,11 @@ export async function GET(
     listaBuline(doc, programa.competenteCheie);
 
     sectiune(doc, "Competente generale");
+    doc.fontSize(8).font("Helvetica-Oblique").fillColor("#000000").text(
+      curataDiacritice(programa.notaCompetenteGenerale),
+      { width: LATIME_TOTAL }
+    );
+    doc.moveDown(0.3);
     listaBuline(doc, programa.competenteGenerale);
 
     sectiune(doc, "Valori si atitudini");
@@ -174,7 +182,7 @@ export async function GET(
     listaBuline(doc, programa.bibliografie);
 
     const buffer = await finalizeazaPdf(doc);
-    return raspunsPdf(buffer, `AcademiaPython_Planificare_${clasa}.pdf`);
+    return raspunsPdf(buffer, `AcademiaPython_Planificare_${clasa}_${programa.paginaTitlu.profil}.pdf`);
   } catch (error) {
     console.error("Eroare generare PDF planificare:", error);
     return raspunsEroarePdf();

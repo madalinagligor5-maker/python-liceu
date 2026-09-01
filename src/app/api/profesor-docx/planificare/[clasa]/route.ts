@@ -58,11 +58,13 @@ export async function GET(
     const { clasa } = await params;
     const { searchParams } = new URL(request.url);
     const anScolar = searchParams.get("anScolar")?.trim() || anScolarImplicit(new Date());
+    const profil = searchParams.get("profil")?.trim() || undefined;
 
     const programa = await construiestePrograma(clasa, {
       liceu: meta.scoala,
       profesor: numeDinEmail(user.email),
       anScolar,
+      profil,
     });
     if (!programa) return new Response("Clasa nu a fost gasita.", { status: 404 });
 
@@ -125,6 +127,10 @@ export async function GET(
               alignment: AlignmentType.CENTER,
             }),
             new Paragraph({
+              text: programa.paginaTitlu.profilEticheta,
+              alignment: AlignmentType.CENTER,
+            }),
+            new Paragraph({
               text: `Durata: ${programa.paginaTitlu.durataOreSaptamana} ore/săptămână (${programa.paginaTitlu.durataOreTeoriePractica})`,
               alignment: AlignmentType.CENTER,
             }),
@@ -175,7 +181,7 @@ export async function GET(
                 new Paragraph({
                   children: [
                     new TextRun({
-                      text: "Text oficial, identic pentru toate clasele IX-XII (Ordinul 4.370/2026, Anexele 8-11).",
+                      text: programa.notaCompetenteGenerale,
                       italics: true,
                       size: 18,
                     }),
@@ -225,7 +231,7 @@ export async function GET(
     return new Response(new Uint8Array(buffer), {
       headers: {
         "Content-Type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "Content-Disposition": `attachment; filename="AcademiaPython_Planificare_${clasa}.docx"`,
+        "Content-Disposition": `attachment; filename="AcademiaPython_Planificare_${clasa}_${programa.paginaTitlu.profil}.docx"`,
       },
     });
   } catch (error) {

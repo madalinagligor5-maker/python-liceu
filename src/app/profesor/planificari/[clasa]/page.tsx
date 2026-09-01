@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
-import { construiestePrograma, anScolarImplicit } from "@/lib/planificarePrograma";
+import { construiestePrograma, anScolarImplicit, profileDisponibile } from "@/lib/planificarePrograma";
 
 function numeDinEmail(email: string): string {
   const local = email.split("@")[0] ?? "";
@@ -20,23 +20,27 @@ export default async function PlanificareClasaPage({
   searchParams,
 }: {
   params: Promise<{ clasa: string }>;
-  searchParams: Promise<{ anScolar?: string }>;
+  searchParams: Promise<{ anScolar?: string; profil?: string }>;
 }) {
   const { clasa } = await params;
-  const { anScolar: anScolarQuery } = await searchParams;
+  const { anScolar: anScolarQuery, profil: profilQuery } = await searchParams;
   const anScolar = anScolarQuery?.trim() || anScolarImplicit(new Date());
 
   const { user, meta } = await getUtilizatorCurent();
   if (!user) notFound();
 
+  const profileClasa = profileDisponibile(clasa);
+  if (profileClasa.length === 0) notFound();
+
   const programa = await construiestePrograma(clasa, {
     liceu: meta?.scoala ?? null,
     profesor: numeDinEmail(user.email),
     anScolar,
+    profil: profilQuery,
   });
   if (!programa) notFound();
 
-  const querySufix = `?anScolar=${encodeURIComponent(anScolar)}`;
+  const querySufix = `?anScolar=${encodeURIComponent(anScolar)}&profil=${encodeURIComponent(programa.paginaTitlu.profil)}`;
   const hrefPdf = `/api/profesor-pdf/planificare/${clasa}${querySufix}`;
   const hrefWord = `/api/profesor-docx/planificare/${clasa}${querySufix}`;
 
@@ -62,7 +66,26 @@ export default async function PlanificareClasaPage({
         </div>
       </div>
 
-      <form method="get" className="mb-8 flex flex-wrap items-end gap-3 rounded-xl border border-black/10 bg-black/[0.02] p-4">
+      <form method="get" className="mb-4 flex flex-wrap items-end gap-3 rounded-xl border border-black/10 bg-black/[0.02] p-4">
+        {profileClasa.length > 1 && (
+          <div>
+            <label htmlFor="profil" className="block text-xs font-semibold text-foreground/70">
+              Profil / specializare oficială
+            </label>
+            <select
+              id="profil"
+              name="profil"
+              defaultValue={programa.paginaTitlu.profil}
+              className="mt-1 rounded-lg border border-black/10 px-2.5 py-1.5 text-sm"
+            >
+              {profileClasa.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.eticheta}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <div>
           <label htmlFor="anScolar" className="block text-xs font-semibold text-foreground/70">
             An școlar
@@ -83,6 +106,14 @@ export default async function PlanificareClasaPage({
         </button>
       </form>
 
+      {clasa.toUpperCase() === "IX" && (
+        <div className="mb-4 rounded-xl border border-black/10 bg-black/[0.02] px-4 py-3 text-xs text-foreground/60">
+          Pentru clasa a IX-a, Ordinul 4.370/2026 publică programă proprie doar pentru profilul „regim intensiv”
+          (Anexa 8) — celelalte profiluri (mate-info regim normal, militar, științe ale naturii) nu au anexă
+          separată pentru clasa a IX-a în acest ordin și devin disponibile începând cu clasa a X-a.
+        </div>
+      )}
+
       <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
         🚧 Pagină în lucru — planificarea se completează și se actualizează constant.
       </div>
@@ -100,6 +131,7 @@ export default async function PlanificareClasaPage({
         <p className="mt-3 text-sm text-foreground/70">
           Disciplina: <strong>{programa.paginaTitlu.disciplina}</strong> · Clasa a {programa.paginaTitlu.clasa}-a
         </p>
+        <p className="mt-1 text-sm text-foreground/70">{programa.paginaTitlu.profilEticheta}</p>
         <p className="mt-1 text-sm text-foreground/70">
           Durata: {programa.paginaTitlu.durataOreSaptamana} ore/săptămână (
           {programa.paginaTitlu.durataOreTeoriePractica}) · {programa.paginaTitlu.durataOreTotal} ore alocate
@@ -132,9 +164,7 @@ export default async function PlanificareClasaPage({
       {/* Competențe generale */}
       <section className="mt-8">
         <h2 className="text-lg font-bold text-foreground">Competențe generale</h2>
-        <p className="mt-1 text-xs text-foreground/45">
-          Text oficial, identic pentru toate clasele IX-XII (Ordinul 4.370/2026, Anexele 8-11).
-        </p>
+        <p className="mt-1 text-xs text-foreground/45">{programa.notaCompetenteGenerale}</p>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
           {programa.competenteGenerale.map((c, i) => (
             <li key={i}>{c}</li>
