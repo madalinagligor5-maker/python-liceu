@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { esteAdmin } from "@/lib/roluri";
 
@@ -25,6 +26,14 @@ export default async function AdminLayout({
         <span className="text-xs font-bold uppercase tracking-wide text-foreground/40">
           Panou admin
         </span>
+        <nav className="mt-2 flex gap-4 text-sm font-semibold">
+          <Link href="/admin/profesori" className="text-foreground/70 hover:text-brand">
+            Profesori
+          </Link>
+          <Link href="/admin/recenzii" className="text-foreground/70 hover:text-brand">
+            Recenzii
+          </Link>
+        </nav>
       </div>
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">{children}</div>
     </div>

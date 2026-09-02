@@ -32,6 +32,25 @@ export async function listaProfesoriInAsteptare() {
   return data ?? [];
 }
 
+export type Recenzie = {
+  id: string;
+  stele: number;
+  text: string;
+  email: string | null;
+  creat_la: string;
+};
+
+export async function listaRecenzii(): Promise<Recenzie[]> {
+  await verificaAdmin();
+  const admin = creeazaClientAdmin();
+  const { data, error } = await admin
+    .from("reviewuri")
+    .select("id, stele, text, email, creat_la")
+    .order("creat_la", { ascending: false });
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
 export async function listaProfesoriAprobati() {
   await verificaAdmin();
   const admin = creeazaClientAdmin();
