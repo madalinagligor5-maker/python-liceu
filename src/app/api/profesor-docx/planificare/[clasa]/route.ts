@@ -19,7 +19,7 @@ import { construiestePrograma, anScolarImplicit } from "@/lib/planificareProgram
 export const dynamic = "force-dynamic";
 
 // Lățimile coloanelor tabelului, ca procent din lățimea totală (însumează 100).
-const LATIME_PROCENT = [15, 20, 45, 8, 12];
+const LATIME_PROCENT = [15, 18, 35, 7, 8, 17];
 
 const CHENAR = {
   top: { style: BorderStyle.SINGLE, size: 4, color: "000000" },
@@ -205,7 +205,10 @@ export async function GET(
             new Table({
               width: { size: 100, type: WidthType.PERCENTAGE },
               rows: [
-                randTabel(["Unitate de învățare", "Competențe specifice", "Conținuturi", "Ore", "Săptămâna"], true),
+                randTabel(
+                  ["Unitate de învățare", "Competențe specifice", "Conținuturi", "Ore", "Săptămâna", "Măsuri de reglare"],
+                  true
+                ),
                 ...programa.tabel.map((r) =>
                   randTabel([
                     r.unitate,
@@ -213,6 +216,7 @@ export async function GET(
                     r.continuturi.join("; "),
                     String(r.oreAlocate),
                     `S${r.saptamana}`,
+                    r.masuriDeReglare,
                   ])
                 ),
               ],

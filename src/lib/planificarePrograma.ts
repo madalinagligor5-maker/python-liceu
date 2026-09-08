@@ -3,49 +3,53 @@ import { getPlanificare } from "@/lib/planificari";
 
 /**
  * Construiește planificarea calendaristică completă, în formatul programei
- * școlare oficiale — verificat direct din Monitorul Oficial nr. 591 bis din
- * 20 iulie 2026 (Ordinul ministrului educației și cercetării nr. 4.370/2026,
- * Anexele 2-11). Folosit atât de pagina web (/profesor/planificari/[clasa])
+ * școlare oficiale. Folosit atât de pagina web (/profesor/planificari/[clasa])
  * cât și de generatoarele de PDF/Word, ca să nu existe mai multe surse de
  * adevăr pentru același conținut.
  *
- * Ordinul publică programe distincte pe 4 "profiluri" oficiale — fiecare cu
- * propriile anexe și alocare orară (verificat direct în document, pagina 3,
- * Anexa nr. 1 — centralizatorul):
- *  - regim-intensiv: filiera teoretică, real, mate-info, regim intensiv —
- *    singurul profil cu anexă proprie pentru clasa a IX-a (Anexele 8-11).
- *  - mate-info: filiera teoretică, real, mate-info, regim normal — doar
- *    clasele X-XII (Anexele 2, 3, 4).
- *  - militar: filiera vocațională, militar, mate-info militară — doar
- *    clasele X-XII (Anexele 5, 6, 4 — anexa 4 e comună cu mate-info la XII).
- *  - stiinte-naturii: filiera teoretică, real, științe ale naturii — doar
- *    clasa X (Anexa 7).
+ * Pentru clasele X-XII, sursa e Ordinul ministrului educației și cercetării
+ * nr. 4.370/2026 (Monitorul Oficial nr. 591 bis/20.VII.2026), Anexele 2-11.
  *
- * IMPORTANT — gol confirmat în sursă, nu presupunere: în acest ordin NU
- * există anexă pentru clasa a IX-a la mate-info regular, militar sau științe
- * ale naturii — deși notele de prezentare menționează alocarea orară pentru
- * toți anii (context informativ despre planul-cadru), Ministerul nu a
- * publicat programă detaliată (CG/CS/EAI/Conținuturi) pentru IX la aceste
- * profiluri în acest ordin. De aceea, pentru clasa a IX-a e disponibil doar
- * profilul "regim intensiv".
+ * Pentru clasa a IX-a, cele 3 profiluri "regulate" (mate-info, militar,
+ * științe ale naturii) NU sunt în Ordinul 4.370/2026 — sunt aprobate separat
+ * prin Anexele nr. 42, 43 și 66 la OMEC nr. 6930/19.12.2025 (verificat direct
+ * în pachetul de Repere metodologice 2026-2027 primit de la utilizatoare,
+ * secțiunea de bibliografie: "Anexa nr. 42 la OMEC nr. 6930/19.12.2025" pentru
+ * mate-info, "Anexa nr. 43" pentru științe ale naturii, "Anexa nr. 66" pentru
+ * militar). Regimul intensiv la clasa a IX-a rămâne pe Anexa 8 la Ordinul
+ * 4.370/2026, ca înainte — deci toate cele 4 profiluri au acum anexă proprie
+ * pentru clasa a IX-a (nu mai există gol de acoperire, cum am semnalat
+ * anterior din citirea Ordinului 4.370/2026 — golul era real în ACEL ordin,
+ * dar acoperirea vine din alt ordin, publicat cu 7 luni înainte).
  *
- * Competențele generale (CG1-CG6) sunt IDENTICE în toate cele 10 anexe (2-11)
- * — verificat direct în document pe fiecare anexă, nu presupus.
+ * Competențele generale (CG1-CG6) sunt identice în toate profilurile și
+ * clasele — verificat atât în Ordinul 4.370/2026 cât și în pachetul pentru
+ * clasa a IX-a (foaia "CG integral" din Orientare_si_sprijin_planificare).
+ *
+ * Tabelul "Competențe specifice și conținuturi":
+ *  - Pentru clasa a IX-a, la profilurile mate-info / militar / științe ale
+ *    naturii, folosește direct unitățile și orele orientative din pachetul
+ *    oficial primit (foile "Planificare MI/SN/MIL" din
+ *    Orientare_si_sprijin_planificare_Informatica_IX_TC_2026-2027.xlsx,
+ *    document al MEC-CNCE) — sursa explică ea însăși că rubricația e "model
+ *    agregat, orientativ", nu o machetă oficială obligatorie, notă păstrată
+ *    și aici, în paragraful de prezentare.
+ *  - Pentru regim intensiv (toate clasele) și pentru mate-info/militar la
+ *    X-XII, folosește structura proprie de module a platformei Academia
+ *    Python (identică între aceste profiluri — programa oficială diferă doar
+ *    în metadate, nu în lecțiile platformei).
  *
  * "Valori și atitudini" nu mai există ca secțiune separată în structura
- * oficială curentă (pagina 144 a documentului enumeră explicit componentele
- * programei: Notă de prezentare, Competențe generale, Competențe specifice
- * și exemple de activități de învățare, Conținuturi, Sugestii metodologice —
- * fără „Valori și atitudini", spre deosebire de formatul mai vechi din
- * modelele Word primite inițial). Secțiunea rămâne în planificare (cerută
- * explicit), dar cu o notă corectă în loc de conținut inventat sau atribuit
- * greșit ordinului.
+ * oficială curentă — componentele programei sunt Nota de prezentare,
+ * Competențe generale, Competențe specifice cu exemple de activități de
+ * învățare, Conținuturi și Sugestii metodologice. Secțiunea rămâne în
+ * planificare (cerută explicit de utilizatoare), cu o notă corectă în loc
+ * de conținut inventat.
  *
- * Tabelul de "Competențe specifice și conținuturi" reflectă mereu structura
- * proprie de module a platformei Academia Python (identică pentru toate
- * profilurile) — programa oficială diferă între profiluri doar în metadate
- * (anexă, filieră/profil/specializare, alocare orară), nu în lecțiile
- * platformei.
+ * Coloana "Măsuri de reglare" a fost adăugată după modelul de planificare
+ * calendaristică primit de la utilizatoare (machetă standard folosită în
+ * inspecție) — rămâne goală, de completat de profesor pe parcursul anului,
+ * pe măsură ce evaluează progresul elevilor.
  */
 
 export type ProfilOficial = "regim-intensiv" | "mate-info" | "militar" | "stiinte-naturii";
@@ -61,9 +65,13 @@ type DefinitieProfil = {
   id: ProfilOficial;
   eticheta: string;
   filieraProfilSpecializare: string;
-  anexe: Partial<Record<string, number>>;
+  /** Citarea completă a sursei (anexă + ordin), per clasă — diferă între IX și X-XII pentru unele profiluri. */
+  citatii: Partial<Record<string, string>>;
   ore: Partial<Record<string, OreSaptamana>>;
 };
+
+const CITARE_ORDIN_4370 = "Ordinul ministrului educației și cercetării nr. 4.370/2026 (Monitorul Oficial nr. 591 bis/20.VII.2026)";
+const CITARE_OMEC_6930 = "OMEC nr. 6930/19.12.2025";
 
 const PROFILE: DefinitieProfil[] = [
   {
@@ -71,7 +79,12 @@ const PROFILE: DefinitieProfil[] = [
     eticheta: "Regim intensiv (Anexele 8-11)",
     filieraProfilSpecializare:
       "filiera teoretică, profilul real, specializarea matematică-informatică, clase cu predarea disciplinei informatică în regim intensiv",
-    anexe: { IX: 8, X: 9, XI: 10, XII: 11 },
+    citatii: {
+      IX: `Anexa nr. 8 la ${CITARE_ORDIN_4370}`,
+      X: `Anexa nr. 9 la ${CITARE_ORDIN_4370}`,
+      XI: `Anexa nr. 10 la ${CITARE_ORDIN_4370}`,
+      XII: `Anexa nr. 11 la ${CITARE_ORDIN_4370}`,
+    },
     ore: {
       IX: { total: 4, teorie: 2, practica: 2 },
       X: { total: 4, teorie: 2, practica: 2 },
@@ -81,10 +94,16 @@ const PROFILE: DefinitieProfil[] = [
   },
   {
     id: "mate-info",
-    eticheta: "Mate-info (regim normal) — Anexele 2-4",
+    eticheta: "Mate-info (regim normal)",
     filieraProfilSpecializare: "filiera teoretică, profilul real, specializarea matematică-informatică",
-    anexe: { X: 2, XI: 3, XII: 4 },
+    citatii: {
+      IX: `Anexa nr. 42 la ${CITARE_OMEC_6930}`,
+      X: `Anexa nr. 2 la ${CITARE_ORDIN_4370}`,
+      XI: `Anexa nr. 3 la ${CITARE_ORDIN_4370}`,
+      XII: `Anexa nr. 4 la ${CITARE_ORDIN_4370}`,
+    },
     ore: {
+      IX: { total: 2, teorie: 1, practica: 1 },
       X: { total: 2, teorie: 1, practica: 1 },
       XI: { total: 4, teorie: 2, practica: 2 },
       XII: { total: 3, teorie: 1, practica: 2 },
@@ -92,10 +111,16 @@ const PROFILE: DefinitieProfil[] = [
   },
   {
     id: "militar",
-    eticheta: "Profil militar — Anexele 4-6",
+    eticheta: "Profil militar",
     filieraProfilSpecializare: "filiera vocațională, profilul militar, specializarea matematică-informatică militară",
-    anexe: { X: 5, XI: 6, XII: 4 },
+    citatii: {
+      IX: `Anexa nr. 66 la ${CITARE_OMEC_6930}`,
+      X: `Anexa nr. 5 la ${CITARE_ORDIN_4370}`,
+      XI: `Anexa nr. 6 la ${CITARE_ORDIN_4370}`,
+      XII: `Anexa nr. 4 la ${CITARE_ORDIN_4370}`,
+    },
     ore: {
+      IX: { total: 3, teorie: 1, practica: 2 },
       X: { total: 3, teorie: 1, practica: 2 },
       XI: { total: 3, teorie: 1, practica: 2 },
       XII: { total: 3, teorie: 1, practica: 2 },
@@ -103,10 +128,19 @@ const PROFILE: DefinitieProfil[] = [
   },
   {
     id: "stiinte-naturii",
-    eticheta: "Științe ale naturii — Anexa 7",
+    eticheta: "Științe ale naturii",
     filieraProfilSpecializare: "filiera teoretică, profilul real, specializarea științe ale naturii",
-    anexe: { X: 7 },
+    citatii: {
+      IX: `Anexa nr. 43 la ${CITARE_OMEC_6930}`,
+      X: `Anexa nr. 7 la ${CITARE_ORDIN_4370}`,
+    },
     ore: {
+      IX: {
+        total: 1,
+        teorie: 1,
+        practica: 0,
+        notaSplit: "1 oră/săptămână — studiu teoretic și activități practice, fără separare orară explicită",
+      },
       X: {
         total: 1,
         teorie: 1,
@@ -119,8 +153,9 @@ const PROFILE: DefinitieProfil[] = [
 
 const PROFIL_IMPLICIT: ProfilOficial = "regim-intensiv";
 
-// CG1-CG6, identice în cele 10 anexe (2-11) la Ordinul 4.370/2026 (verificat
-// pe fiecare anexă în parte, nu presupus dintr-una singură).
+// CG1-CG6, identice în toate profilurile și clasele — verificat atât în
+// Ordinul 4.370/2026 (Anexele 2-11) cât și în pachetul oficial pentru clasa
+// a IX-a (foaia "CG integral").
 const COMPETENTE_GENERALE_OFICIALE = [
   "CG1 — Identifică principalele caracteristici ale modelelor conceptuale și operaționale ale dezvoltării produselor software, pentru înțelegerea fundamentelor programării.",
   "CG2 — Explică principii care stau la baza modelelor conceptuale și operaționale ale dezvoltării produselor software, pentru a fundamenta în mod logic proiectarea și implementarea soluțiilor informatice.",
@@ -131,7 +166,7 @@ const COMPETENTE_GENERALE_OFICIALE = [
 ];
 
 const NOTA_VALORI_SI_ATITUDINI =
-  "Structura oficială curentă a programei (Ordinul 4.370/2026) nu mai definește „Valori și atitudini” ca secțiune separată — componentele programei sunt Nota de prezentare, Competențele generale, Competențele specifice cu exemple de activități de învățare, Conținuturile și Sugestiile metodologice. Dimensiunea atitudinală e integrată în Nota de prezentare și în exemplele de activități de învățare.";
+  "Structura oficială curentă a programei nu mai definește „Valori și atitudini” ca secțiune separată — componentele programei sunt Nota de prezentare, Competențele generale, Competențele specifice cu exemple de activități de învățare, Conținuturile și Sugestiile metodologice. Dimensiunea atitudinală e integrată în Nota de prezentare și în exemplele de activități de învățare.";
 
 export type RandCompetenteConținuturi = {
   unitate: string;
@@ -139,6 +174,8 @@ export type RandCompetenteConținuturi = {
   continuturi: string[];
   oreAlocate: number;
   saptamana: number;
+  /** Completată de profesor pe parcursul anului — rămâne goală în planificarea generată. */
+  masuriDeReglare: string;
 };
 
 export type ProgramaCompleta = {
@@ -176,15 +213,172 @@ function competenteSpecificePentruModul(modul: Modul): string {
   return `Aplicarea conceptelor de bază ale modulului ${modul.titlu}`;
 }
 
+/**
+ * Unitățile orientative pentru clasa a IX-a, la profilurile mate-info,
+ * militar și științe ale naturii — reproduse din foile "Planificare
+ * MI/SN/MIL" ale documentului oficial MEC-CNCE
+ * "Orientare și sprijin în elaborarea planificării calendaristice —
+ * Informatică, clasa a IX-a" (pachetul 15_2_INFO_07_09_2026). Sursa insistă
+ * explicit: e un "model agregat, orientativ", nu o machetă oficială
+ * obligatorie — rămâne responsabilitatea profesorului să adapteze orele și
+ * ordinea la ritmul propriu al clasei.
+ *
+ * Codurile de competențe (ex. "CS 1.2–6.2") grupează aceeași competență
+ * specifică (după al doilea număr) pe cele 6 competențe generale — sursa
+ * folosește "CSx.N" ca prescurtare pentru "CS 1.N, 2.N, 3.N, 4.N, 5.N, 6.N".
+ */
+type UnitateOrientativaIX = {
+  unitate: string;
+  continuturi: string[];
+  competenteCod: string;
+  oreOrientative: { mateInfo: number; militar: number; stiinteNaturii: number | null };
+};
+
+const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
+  {
+    unitate: "Strategii de rezolvare a problemelor — Principii de elaborare a unui program",
+    continuturi: [
+      "gândire computațională și etapele elaborării unui program (analiză, proiectare, implementare, testare, depanare)",
+      "moduri de reprezentare a algoritmilor: blocuri grafice, pseudocod, limbaj de programare",
+      "criterii de elaborare a testelor; eficiența algoritmilor (spațiu, timp, notația O)",
+      "moduri de comunicare cu programul: consolă, interfață grafică, fișiere",
+    ],
+    competenteCod: "CS 1.3–6.3",
+    oreOrientative: { mateInfo: 2, militar: 2, stiinteNaturii: 2 },
+  },
+  {
+    unitate: "Organizarea conceptuală a datelor — Modelul conceptual liniar (listă)",
+    continuturi: [
+      "caracteristicile unei liste și ale cazurilor particulare (stivă, coadă, acces direct/secvențial), listă de frecvențe",
+      "repere pentru parcurgerea elementelor și aplicarea algoritmilor de bază, cu sau fără memorare",
+    ],
+    competenteCod: "CS 1.1–6.1",
+    oreOrientative: { mateInfo: 3, militar: 6, stiinteNaturii: 1 },
+  },
+  {
+    unitate: "Strategii de rezolvare a problemelor — Prelucrări ale datelor numerice",
+    continuturi: [
+      "operații cu cifrele unui număr, determinarea unui divizor/multiplu",
+      "algoritmul lui Euclid pentru cel mai mare divizor comun (scăderi/împărțiri repetate)",
+      "transformarea unui număr dintr-o bază de numerație în alta",
+    ],
+    competenteCod: "CS 1.2–6.2",
+    oreOrientative: { mateInfo: 10, militar: 14, stiinteNaturii: 6 },
+  },
+  {
+    unitate: "Strategii de rezolvare a problemelor — Metode de generare sistematică a elementelor unei liste",
+    continuturi: [
+      "generarea unor secvențe de valori: secvențe cu proprietăți date, termeni ai unor expresii matematice, termeni ai unor șiruri recurente",
+    ],
+    competenteCod: "CS 1.2–6.2",
+    oreOrientative: { mateInfo: 6, militar: 9, stiinteNaturii: 3 },
+  },
+  {
+    unitate: "Strategii de rezolvare a problemelor — Metode de sortare a elementelor unei liste",
+    continuturi: [
+      "metoda de sortare prin selecția minimului",
+      "metoda de sortare cu listă de frecvențe",
+      "metoda bulelor",
+    ],
+    competenteCod: "CS 1.2–6.2",
+    oreOrientative: { mateInfo: 6, militar: 6, stiinteNaturii: 3 },
+  },
+  {
+    unitate: "Memorarea datelor și organizarea codului — Subprograme",
+    continuturi: [
+      "antet, corp, variabile locale/globale, parametri, valoare returnată, apel, mecanism de executare",
+      "sintaxă pentru definiția și apelul unui subprogram în Python",
+      "subprograme predefinite pentru operații matematice uzuale, conversii și colecții (len, min, max, sum)",
+    ],
+    competenteCod: "CS 1.5–6.5",
+    oreOrientative: { mateInfo: 8, militar: 10, stiinteNaturii: 5 },
+  },
+  {
+    unitate: "Memorarea datelor și organizarea codului — Introducere în programarea orientată pe obiecte",
+    continuturi: [
+      "noțiuni de bază: clasă, membri (date și metode), obiecte, biblioteci",
+      "instanțierea unei clase predefinite, acces la membrii unui obiect",
+    ],
+    competenteCod: "CS 1.5–6.5",
+    oreOrientative: { mateInfo: 1, militar: 3, stiinteNaturii: 1 },
+  },
+  {
+    unitate: "Memorarea datelor și organizarea codului — Clasa list din Python",
+    continuturi: [
+      "operatori: acces, apartenență, non-apartenență, concatenare, multiplicare, relaționare",
+      "metode: index(), count(), pop(), remove(), insert(), append(), copy(), sort()",
+    ],
+    competenteCod: "CS 1.4–6.4",
+    oreOrientative: { mateInfo: 5, militar: 10, stiinteNaturii: 3 },
+  },
+  {
+    unitate: "Memorarea datelor și organizarea codului — Fișiere text",
+    continuturi: [
+      "caracteristici, principii de lucru: deschidere, închidere, transfer de date",
+      "clasa TextIOWrapper din Python, metode de bază pentru citire, scriere, închidere",
+    ],
+    competenteCod: "CS 1.4–6.4",
+    oreOrientative: { mateInfo: 4, militar: 6, stiinteNaturii: 2 },
+  },
+  {
+    unitate: "Memorarea datelor și organizarea codului — Biblioteca Tkinter pentru interfețe grafice",
+    continuturi: [
+      "clase, funcții și metode de bază: Tk, Label, Button, Entry, Text, Frame, Canvas",
+      "afișarea mesajelor și organizarea ferestrei: pack, grid, place, get",
+    ],
+    competenteCod: "CS 1.4–6.4",
+    // Științe ale naturii nu are Tkinter ca domeniu distinct (verificat în foaia "Diferențe între programe").
+    oreOrientative: { mateInfo: 6, militar: 10, stiinteNaturii: null },
+  },
+];
+
+/** Ultimul rând din fiecare foaie oficială: "Integrare și rezervă" — rezerva curriculară de 25%, comună tuturor. */
+const ORE_INTEGRARE_REZERVA_IX = { mateInfo: 16, militar: 26, stiinteNaturii: 8 };
+
+function tabelOrientativIX(profil: "mate-info" | "militar" | "stiinte-naturii"): RandCompetenteConținuturi[] {
+  const cheie = profil === "mate-info" ? "mateInfo" : profil === "militar" ? "militar" : "stiinteNaturii";
+  let saptamanaCurenta = 1;
+  const randuri: RandCompetenteConținuturi[] = [];
+
+  for (const u of UNITATI_ORIENTATIVE_IX) {
+    const ore = u.oreOrientative[cheie];
+    if (ore == null) continue; // domeniu care nu există la acest profil (ex. Tkinter la științe ale naturii)
+    const saptamani = Math.max(1, Math.round(ore / (cheie === "militar" ? 3 : cheie === "stiinteNaturii" ? 1 : 2)));
+    randuri.push({
+      unitate: u.unitate,
+      competenteSpecifice: u.competenteCod,
+      continuturi: u.continuturi,
+      oreAlocate: ore,
+      saptamana: saptamanaCurenta,
+      masuriDeReglare: "",
+    });
+    saptamanaCurenta += saptamani;
+  }
+
+  const oreRezerva = ORE_INTEGRARE_REZERVA_IX[cheie];
+  randuri.push({
+    unitate: "Integrare, recapitulare și rezerva curriculară (25%)",
+    competenteSpecifice: "toate competențele specifice",
+    continuturi: [
+      "remediere, consolidare, aprofundare sau extindere, la decizia profesorului, în funcție de progresul clasei",
+    ],
+    oreAlocate: oreRezerva,
+    saptamana: saptamanaCurenta,
+    masuriDeReglare: "",
+  });
+
+  return randuri;
+}
+
 /** Profilurile oficiale disponibile pentru o clasă dată — nu toate profilurile au anexă pentru fiecare an. */
 export function profileDisponibile(clasa: string): { id: ProfilOficial; eticheta: string }[] {
   const clasaKey = clasa.toUpperCase();
-  return PROFILE.filter((p) => p.anexe[clasaKey] != null).map((p) => ({ id: p.id, eticheta: p.eticheta }));
+  return PROFILE.filter((p) => p.citatii[clasaKey] != null).map((p) => ({ id: p.id, eticheta: p.eticheta }));
 }
 
 function rezolvaProfil(clasa: string, profilCerut: string | undefined): DefinitieProfil {
   const clasaKey = clasa.toUpperCase();
-  const disponibile = PROFILE.filter((p) => p.anexe[clasaKey] != null);
+  const disponibile = PROFILE.filter((p) => p.citatii[clasaKey] != null);
   const gasit = disponibile.find((p) => p.id === profilCerut);
   if (gasit) return gasit;
   return disponibile.find((p) => p.id === PROFIL_IMPLICIT) ?? disponibile[0];
@@ -194,27 +388,35 @@ export async function construiestePrograma(
   clasa: string,
   opts: { liceu: string | null; profesor: string; anScolar: string; profil?: string }
 ): Promise<ProgramaCompleta | null> {
-  const capitol = getCapitol(clasa);
-  const planificare = await getPlanificare(clasa);
-  if (!capitol || !planificare) return null;
-
   const clasaKey = clasa.toUpperCase();
   const profilDef = rezolvaProfil(clasa, opts.profil);
   if (!profilDef) return null;
 
-  const anexa = profilDef.anexe[clasaKey];
+  const citare = profilDef.citatii[clasaKey];
   const ore = profilDef.ore[clasaKey] ?? { total: 0, teorie: 0, practica: 0 };
 
-  const tabel: RandCompetenteConținuturi[] = planificare.unitati.map((u) => {
-    const modul = capitol.module.find((m) => m.cod === u.modulCod);
-    return {
-      unitate: `${u.modulCod} — ${u.modulTitlu}`,
-      competenteSpecifice: modul ? competenteSpecificePentruModul(modul) : u.competente,
-      continuturi: modul ? modul.sublectii.map((s) => s.titlu) : [],
-      oreAlocate: u.oreAlocate,
-      saptamana: u.saptamanaEstimata,
-    };
-  });
+  const foloseșteTabelOrientativIX =
+    clasaKey === "IX" && (profilDef.id === "mate-info" || profilDef.id === "militar" || profilDef.id === "stiinte-naturii");
+
+  let tabel: RandCompetenteConținuturi[];
+  if (foloseșteTabelOrientativIX) {
+    tabel = tabelOrientativIX(profilDef.id as "mate-info" | "militar" | "stiinte-naturii");
+  } else {
+    const capitol = getCapitol(clasa);
+    const planificare = await getPlanificare(clasa);
+    if (!capitol || !planificare) return null;
+    tabel = planificare.unitati.map((u) => {
+      const modul = capitol.module.find((m) => m.cod === u.modulCod);
+      return {
+        unitate: `${u.modulCod} — ${u.modulTitlu}`,
+        competenteSpecifice: modul ? competenteSpecificePentruModul(modul) : u.competente,
+        continuturi: modul ? modul.sublectii.map((s) => s.titlu) : [],
+        oreAlocate: u.oreAlocate,
+        saptamana: u.saptamanaEstimata,
+        masuriDeReglare: "",
+      };
+    });
+  }
 
   const totalOre = tabel.reduce((acc, r) => acc + r.oreAlocate, 0);
 
@@ -223,15 +425,18 @@ export async function construiestePrograma(
     : `${ore.teorie} ore studiu teoretic și ${ore.practica} ore activități practice`;
 
   const notaDePrezentare = [
-    `Prezentul document este o planificare calendaristică pentru disciplina Informatică (curriculum de specialitate, ${profilDef.filieraProfilSpecializare}), structurată pe unități de învățare, cu competențele specifice și conținuturile aferente fiecărui modul, numărul de ore alocat și săptămâna estimată de parcurgere.`,
-    `Conform Ordinului ministrului educației și cercetării nr. 4.370/2026 (Anexa nr. ${anexa}), pentru ${profilDef.filieraProfilSpecializare}, alocarea orară pentru clasa a ${clasa}-a este de ${ore.total} ore/săptămână (${oreDescriere}, desfășurate obligatoriu în laboratorul de informatică).`,
-    "Programa e construită pe limbajul Python ca instrument principal de formare a gândirii algoritmice, cu C++ pentru înțelegerea mecanismelor interne ale programării și module de baze de date (SQL) și noțiuni introductive de învățare automată — aplicarea se face progresiv, începând cu clasa a IX-a din anul școlar 2026-2027.",
-    "Platforma Academia Python (academiapython.ro) e construită direct pe această programă, cu exerciții interactive rulate în browser și verificare automată a codului — planificarea de mai jos reflectă exact structura de module și sublecții deja disponibilă pe platformă (identică pentru toate profilurile oficiale — programa oficială diferă între profiluri doar în alocarea orară și în textul din Notă de prezentare).",
+    `Prezentul document este o planificare calendaristică pentru disciplina Informatică (curriculum de specialitate, ${profilDef.filieraProfilSpecializare}), structurată pe unități de învățare, cu competențele specifice și conținuturile aferente, numărul de ore orientativ și săptămâna estimată de parcurgere.`,
+    `Conform ${citare}, pentru ${profilDef.filieraProfilSpecializare}, alocarea orară pentru clasa a ${clasa}-a este de ${ore.total} ore/săptămână (${oreDescriere}, desfășurate obligatoriu în laboratorul de informatică). Rezerva curriculară e de 25% din timpul alocat disciplinei, la dispoziția cadrului didactic pentru remediere, consolidare, aprofundare sau extindere.`,
+    "Programa e construită pe limbajul Python ca instrument principal de formare a gândirii algoritmice — pentru elevii care vin din gimnaziu cu C++ sau alt limbaj, miza tranziției e transferul cunoștințelor algoritmice, nu reînvățarea lor de la zero.",
   ];
 
-  if (clasaKey === "IX" && profilDef.id === "regim-intensiv") {
+  if (foloseșteTabelOrientativIX) {
     notaDePrezentare.push(
-      "Notă privind acoperirea oficială: în Ordinul 4.370/2026, singurul profil cu anexă proprie pentru clasa a IX-a este regimul intensiv (Anexa 8). Pentru mate-info regim normal, profilul militar și științe ale naturii, ordinul nu publică o programă detaliată (competențe specifice, exemple de activități, conținuturi) pentru clasa a IX-a — de aceea aceste profiluri sunt disponibile pe platformă începând cu clasa a X-a."
+      "Unitățile de mai jos și numărul de ore orientativ reproduc modelul agregat din documentul oficial de orientare pentru clasa a IX-a, elaborat de Centrul Național pentru Curriculum și Evaluare — sursa precizează explicit că rubricația e orientativă și reflexivă, nu o machetă obligatorie: ordinea și numărul de ore rămân la decizia profesorului, cu rezerva de 25% inclusă separat, la final."
+    );
+  } else {
+    notaDePrezentare.push(
+      "Platforma Academia Python (academiapython.ro) e construită direct pe această programă, cu exerciții interactive rulate în browser și verificare automată a codului — planificarea de mai jos reflectă exact structura de module și sublecții deja disponibilă pe platformă."
     );
   }
 
@@ -254,7 +459,7 @@ export async function construiestePrograma(
       "Competențe în matematică, științe, tehnologie și inginerie",
     ],
     competenteGenerale: COMPETENTE_GENERALE_OFICIALE,
-    notaCompetenteGenerale: `Text oficial, identic pentru toate profilurile și clasele (Ordinul 4.370/2026, Anexa nr. ${anexa}).`,
+    notaCompetenteGenerale: `Text oficial, identic pentru toate profilurile și clasele (${citare}).`,
     notaValoriSiAtitudini: NOTA_VALORI_SI_ATITUDINI,
     tabel,
     sugestiiMetodologice: [
@@ -269,7 +474,7 @@ export async function construiestePrograma(
       "Teste — pe bază de întrebări grilă, generate direct din banca de quiz-uri a platformei; vezi secțiunea „Generator de teste” din zona de profesor, care produce automat testul și baremul din exact aceleași întrebări.",
     ],
     bibliografie: [
-      `Ordinul ministrului educației și cercetării nr. 4.370/2026 (Anexa nr. ${anexa}) — programa școlară pentru disciplina Informatică, curriculum de specialitate, ${profilDef.filieraProfilSpecializare}, publicat în Monitorul Oficial al României, Partea I, nr. 591 bis din 20 iulie 2026.`,
+      `${citare} — programa școlară pentru disciplina Informatică, curriculum de specialitate, ${profilDef.filieraProfilSpecializare}.`,
       "Ordinul ministrului educației și cercetării nr. 4.350/2025 — planurile-cadru pentru învățământul liceal cu frecvență zi.",
       "Documentația oficială Python — docs.python.org",
       "W3Schools Python Tutorial — w3schools.com/python",

@@ -12,7 +12,7 @@ import {
 export const dynamic = "force-dynamic";
 
 // Landscape A4, margini 40 -> latime utila ~ 761.
-const LATIME_COLOANE = [130, 160, 340, 40, 55]; // total 725 (+ margini)
+const LATIME_COLOANE = [110, 130, 260, 35, 45, 145]; // total 725 (+ margini)
 const X0 = 40;
 const LATIME_TOTAL = LATIME_COLOANE.reduce((a, b) => a + b, 0);
 
@@ -161,7 +161,7 @@ export async function GET(
     );
 
     sectiune(doc, "Competente specifice si continuturi");
-    randTabel(doc, ["Unitate", "Competente specifice", "Continuturi", "Ore", "Sapt."], true);
+    randTabel(doc, ["Unitate", "Competente specifice", "Continuturi", "Ore", "Sapt.", "Masuri de reglare"], true);
     for (const r of programa.tabel) {
       randTabel(doc, [
         r.unitate,
@@ -169,6 +169,7 @@ export async function GET(
         r.continuturi.join("; "),
         String(r.oreAlocate),
         `S${r.saptamana}`,
+        r.masuriDeReglare || "",
       ]);
     }
 

@@ -106,14 +106,6 @@ export default async function PlanificareClasaPage({
         </button>
       </form>
 
-      {clasa.toUpperCase() === "IX" && (
-        <div className="mb-4 rounded-xl border border-black/10 bg-black/[0.02] px-4 py-3 text-xs text-foreground/60">
-          Pentru clasa a IX-a, Ordinul 4.370/2026 publică programă proprie doar pentru profilul „regim intensiv”
-          (Anexa 8) — celelalte profiluri (mate-info regim normal, militar, științe ale naturii) nu au anexă
-          separată pentru clasa a IX-a în acest ordin și devin disponibile începând cu clasa a X-a.
-        </div>
-      )}
-
       <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
         🚧 Pagină în lucru — planificarea se completează și se actualizează constant.
       </div>
@@ -192,6 +184,7 @@ export default async function PlanificareClasaPage({
                 <th className="border border-black/10 px-3 py-2">Conținuturi</th>
                 <th className="border border-black/10 px-3 py-2">Ore</th>
                 <th className="border border-black/10 px-3 py-2">Săptămâna</th>
+                <th className="border border-black/10 px-3 py-2">Măsuri de reglare</th>
               </tr>
             </thead>
             <tbody>
@@ -208,6 +201,7 @@ export default async function PlanificareClasaPage({
                   </td>
                   <td className="border border-black/10 px-3 py-2 text-foreground/70">{r.oreAlocate}</td>
                   <td className="border border-black/10 px-3 py-2 text-foreground/70">S{r.saptamana}</td>
+                  <td className="border border-black/10 px-3 py-2 text-foreground/40">{r.masuriDeReglare || "—"}</td>
                 </tr>
               ))}
             </tbody>
