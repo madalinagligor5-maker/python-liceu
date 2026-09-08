@@ -228,6 +228,8 @@ function competenteSpecificePentruModul(modul: Modul): string {
  * folosește "CSx.N" ca prescurtare pentru "CS 1.N, 2.N, 3.N, 4.N, 5.N, 6.N".
  */
 type UnitateOrientativaIX = {
+  /** Coduri ale modulelor Academia Python care acoperă acest domeniu — verificate prin comparație directă cu content/structura_curriculum.json. */
+  moduleCod: string[];
   unitate: string;
   continuturi: string[];
   competenteCod: string;
@@ -236,6 +238,7 @@ type UnitateOrientativaIX = {
 
 const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
   {
+    moduleCod: ["1.1", "1.2", "1.3"],
     unitate: "Strategii de rezolvare a problemelor — Principii de elaborare a unui program",
     continuturi: [
       "gândire computațională și etapele elaborării unui program (analiză, proiectare, implementare, testare, depanare)",
@@ -247,6 +250,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 2, militar: 2, stiinteNaturii: 2 },
   },
   {
+    moduleCod: ["1.15"],
     unitate: "Organizarea conceptuală a datelor — Modelul conceptual liniar (listă)",
     continuturi: [
       "caracteristicile unei liste și ale cazurilor particulare (stivă, coadă, acces direct/secvențial), listă de frecvențe",
@@ -256,6 +260,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 3, militar: 6, stiinteNaturii: 1 },
   },
   {
+    moduleCod: ["1.7", "1.8", "1.9"],
     unitate: "Strategii de rezolvare a problemelor — Prelucrări ale datelor numerice",
     continuturi: [
       "operații cu cifrele unui număr, determinarea unui divizor/multiplu",
@@ -266,6 +271,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 10, militar: 14, stiinteNaturii: 6 },
   },
   {
+    moduleCod: ["1.18"],
     unitate: "Strategii de rezolvare a problemelor — Metode de generare sistematică a elementelor unei liste",
     continuturi: [
       "generarea unor secvențe de valori: secvențe cu proprietăți date, termeni ai unor expresii matematice, termeni ai unor șiruri recurente",
@@ -274,6 +280,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 6, militar: 9, stiinteNaturii: 3 },
   },
   {
+    moduleCod: ["1.19", "1.20"],
     unitate: "Strategii de rezolvare a problemelor — Metode de sortare a elementelor unei liste",
     continuturi: [
       "metoda de sortare prin selecția minimului",
@@ -284,6 +291,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 6, militar: 6, stiinteNaturii: 3 },
   },
   {
+    moduleCod: ["1.4", "1.5", "1.6"],
     unitate: "Memorarea datelor și organizarea codului — Subprograme",
     continuturi: [
       "antet, corp, variabile locale/globale, parametri, valoare returnată, apel, mecanism de executare",
@@ -294,6 +302,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 8, militar: 10, stiinteNaturii: 5 },
   },
   {
+    moduleCod: ["1.11"],
     unitate: "Memorarea datelor și organizarea codului — Introducere în programarea orientată pe obiecte",
     continuturi: [
       "noțiuni de bază: clasă, membri (date și metode), obiecte, biblioteci",
@@ -303,6 +312,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 1, militar: 3, stiinteNaturii: 1 },
   },
   {
+    moduleCod: ["1.16", "1.17"],
     unitate: "Memorarea datelor și organizarea codului — Clasa list din Python",
     continuturi: [
       "operatori: acces, apartenență, non-apartenență, concatenare, multiplicare, relaționare",
@@ -312,6 +322,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 5, militar: 10, stiinteNaturii: 3 },
   },
   {
+    moduleCod: ["1.14"],
     unitate: "Memorarea datelor și organizarea codului — Fișiere text",
     continuturi: [
       "caracteristici, principii de lucru: deschidere, închidere, transfer de date",
@@ -321,6 +332,7 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
     oreOrientative: { mateInfo: 4, militar: 6, stiinteNaturii: 2 },
   },
   {
+    moduleCod: ["1.12", "1.13"],
     unitate: "Memorarea datelor și organizarea codului — Biblioteca Tkinter pentru interfețe grafice",
     continuturi: [
       "clase, funcții și metode de bază: Tk, Label, Button, Entry, Text, Frame, Canvas",
@@ -344,8 +356,14 @@ function tabelOrientativIX(profil: "mate-info" | "militar" | "stiinte-naturii"):
     const ore = u.oreOrientative[cheie];
     if (ore == null) continue; // domeniu care nu există la acest profil (ex. Tkinter la științe ale naturii)
     const saptamani = Math.max(1, Math.round(ore / (cheie === "militar" ? 3 : cheie === "stiinteNaturii" ? 1 : 2)));
+    // La profilul militar, "Prelucrări ale datelor numerice" include suplimentar ciurul lui
+    // Eratostene și exponențierea rapidă (modulul 1.10) — verificat în foaia "Diferențe între programe".
+    const moduleCod =
+      cheie === "militar" && u.unitate.includes("Prelucrări ale datelor numerice")
+        ? [...u.moduleCod, "1.10"]
+        : u.moduleCod;
     randuri.push({
-      unitate: u.unitate,
+      unitate: `${moduleCod.join(", ")} — ${u.unitate}`,
       competenteSpecifice: u.competenteCod,
       continuturi: u.continuturi,
       oreAlocate: ore,
