@@ -97,6 +97,235 @@ function ExercitiuOrdonare({
   );
 }
 
+/** Amestecă o listă (Fisher-Yates) — folosit pentru opțiunile de unire. */
+function amesteca<T>(lista: T[]): T[] {
+  const copie = [...lista];
+  for (let i = copie.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copie[i], copie[j]] = [copie[j], copie[i]];
+  }
+  return copie;
+}
+
+/** Widget pentru exercițiul de unire (matching) — fiecare element din stânga primește o pereche aleasă din dreapta. */
+function ExercitiuUnire({
+  ex,
+  onVerificat,
+}: {
+  ex: Extract<Exercitiu, { tip: "unire" }>;
+  onVerificat?: () => void;
+}) {
+  const [optiuniDreapta] = useState(() => amesteca(ex.perechi.map((p) => p.dreapta)));
+  const [alegeri, setAlegeri] = useState<Record<number, string>>({});
+  const [verdict, setVerdict] = useState<"ok" | "gresit" | null>(null);
+
+  const alegeriComplete = ex.perechi.every((_, i) => alegeri[i]);
+
+  const verifica = () => {
+    const corect = ex.perechi.every((p, i) => alegeri[i] === p.dreapta);
+    setVerdict(corect ? "ok" : "gresit");
+    onVerificat?.();
+  };
+
+  return (
+    <div>
+      <div className="space-y-2">
+        {ex.perechi.map((p, i) => (
+          <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="min-w-[140px] rounded-lg bg-black/5 px-3 py-1.5 text-foreground">{p.stanga}</span>
+            <span className="text-foreground/40">→</span>
+            <select
+              value={alegeri[i] ?? ""}
+              onChange={(e) => {
+                setAlegeri((a) => ({ ...a, [i]: e.target.value }));
+                setVerdict(null);
+              }}
+              className="rounded-lg border border-black/15 px-2.5 py-1.5 text-sm text-foreground outline-none focus:border-brand"
+            >
+              <option value="" disabled>
+                alege...
+              </option>
+              {optiuniDreapta.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={verifica}
+          disabled={!alegeriComplete}
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
+        >
+          Verifică
+        </button>
+        {verdict === "ok" && (
+          <span className="text-sm font-semibold text-success">✓ Toate perechile sunt corecte!</span>
+        )}
+        {verdict === "gresit" && (
+          <span className="text-sm font-semibold text-red-600">✗ Mai sunt perechi greșite — încearcă din nou.</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Widget pentru exercițiul adevărat/fals — elevul marchează valoarea de adevăr a fiecărei afirmații. */
+function ExercitiuAdevaratFals({
+  ex,
+  onVerificat,
+}: {
+  ex: Extract<Exercitiu, { tip: "adevarat-fals" }>;
+  onVerificat?: () => void;
+}) {
+  const [raspunsuri, setRaspunsuri] = useState<Record<number, boolean>>({});
+  const [verificat, setVerificat] = useState(false);
+
+  const toateRaspunse = ex.afirmatii.every((_, i) => raspunsuri[i] !== undefined);
+  const corecte = ex.afirmatii.filter((a, i) => raspunsuri[i] === a.corect).length;
+
+  const verifica = () => {
+    setVerificat(true);
+    onVerificat?.();
+  };
+
+  return (
+    <div>
+      <div className="space-y-2">
+        {ex.afirmatii.map((a, i) => (
+          <div
+            key={i}
+            className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-black/10 px-3 py-2 text-sm"
+          >
+            <span className="text-foreground">{a.text}</span>
+            <div className="flex gap-1.5">
+              {(["Adevărat", "Fals"] as const).map((eticheta, idx) => {
+                const valoare = idx === 0;
+                const ales = raspunsuri[i] === valoare;
+                const corectAfisat = verificat && valoare === a.corect;
+                return (
+                  <button
+                    key={eticheta}
+                    type="button"
+                    onClick={() => {
+                      setRaspunsuri((r) => ({ ...r, [i]: valoare }));
+                      setVerificat(false);
+                    }}
+                    className={`rounded-full border px-3 py-1 text-xs font-bold transition ${
+                      verificat
+                        ? corectAfisat
+                          ? "border-success bg-success/10 text-success"
+                          : ales
+                            ? "border-red-400 bg-red-50 text-red-600"
+                            : "border-black/10 text-foreground/40"
+                        : ales
+                          ? "border-amber-400 bg-amber-400 text-slate-950"
+                          : "border-black/15 text-foreground/70 hover:border-brand"
+                    }`}
+                  >
+                    {eticheta}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={verifica}
+          disabled={!toateRaspunse}
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
+        >
+          Verifică
+        </button>
+        {verificat && (
+          <span
+            className={`text-sm font-semibold ${corecte === ex.afirmatii.length ? "text-success" : "text-red-600"}`}
+          >
+            {corecte}/{ex.afirmatii.length} corecte
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Widget pentru exercițiul de completare (cloze) — elevul scrie cuvântul care lipsește în fiecare gol marcat "___". */
+function ExercitiuCompletare({
+  ex,
+  onVerificat,
+}: {
+  ex: Extract<Exercitiu, { tip: "completare" }>;
+  onVerificat?: () => void;
+}) {
+  const segmente = ex.text.split("___");
+  const [valori, setValori] = useState<string[]>(() => ex.raspunsuri.map(() => ""));
+  const [verificat, setVerificat] = useState(false);
+
+  const normalizeaza = (s: string) => s.trim().toLowerCase();
+  const corecte = ex.raspunsuri.filter((r, i) => normalizeaza(valori[i] ?? "") === normalizeaza(r)).length;
+  const toateCompletate = valori.every((v) => v.trim().length > 0);
+
+  const verifica = () => {
+    setVerificat(true);
+    onVerificat?.();
+  };
+
+  return (
+    <div>
+      <p className="flex flex-wrap items-center gap-1.5 text-sm leading-loose text-foreground">
+        {segmente.map((seg, i) => (
+          <span key={i} className="flex flex-wrap items-center gap-1.5">
+            {seg}
+            {i < ex.raspunsuri.length && (
+              <input
+                type="text"
+                value={valori[i] ?? ""}
+                onChange={(e) => {
+                  const noi = [...valori];
+                  noi[i] = e.target.value;
+                  setValori(noi);
+                  setVerificat(false);
+                }}
+                className={`w-28 rounded-md border px-2 py-0.5 text-sm outline-none ${
+                  verificat
+                    ? normalizeaza(valori[i] ?? "") === normalizeaza(ex.raspunsuri[i])
+                      ? "border-success bg-success/10"
+                      : "border-red-400 bg-red-50"
+                    : "border-black/15 focus:border-brand"
+                }`}
+              />
+            )}
+          </span>
+        ))}
+      </p>
+      <div className="mt-3 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={verifica}
+          disabled={!toateCompletate}
+          className="rounded-lg bg-amber-400 hover:bg-amber-500 px-4 py-2 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
+        >
+          Verifică
+        </button>
+        {verificat && (
+          <span
+            className={`text-sm font-semibold ${corecte === ex.raspunsuri.length ? "text-success" : "text-red-600"}`}
+          >
+            {corecte}/{ex.raspunsuri.length} corecte
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /** Widget pentru răspuns liber (text) cu dezvăluire model. */
 function ExercitiuText({
   ex,
@@ -242,6 +471,15 @@ export default function ExercitiiInteractive({
                 )}
                 {ex.tip === "text" && (
                   <ExercitiuText ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
+                )}
+                {ex.tip === "unire" && (
+                  <ExercitiuUnire ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
+                )}
+                {ex.tip === "adevarat-fals" && (
+                  <ExercitiuAdevaratFals ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
+                )}
+                {ex.tip === "completare" && (
+                  <ExercitiuCompletare ex={ex} onVerificat={() => onRezolvat?.(ex.id)} />
                 )}
               </div>
 

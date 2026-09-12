@@ -17,7 +17,10 @@ export const dynamic = "force-dynamic";
 function textBarem(ex: Exercitiu): string | null {
   if (ex.tip === "cod") return ex.expectedOutput ? `Output asteptat: ${ex.expectedOutput}` : null;
   if (ex.tip === "ordonare") return `Ordinea corecta: ${ex.ordineCorecta.join(" -> ")}`;
-  return ex.modelRaspuns ? `Model de raspuns: ${ex.modelRaspuns}` : null;
+  if (ex.tip === "unire") return `Perechi corecte: ${ex.perechi.map((p) => `${p.stanga} -> ${p.dreapta}`).join("; ")}`;
+  if (ex.tip === "adevarat-fals") return `Barem: ${ex.afirmatii.map((a) => (a.corect ? "A" : "F")).join(", ")}`;
+  if (ex.tip === "completare") return `Raspunsuri: ${ex.raspunsuri.join(", ")}`;
+  return ex.tip === "text" && ex.modelRaspuns ? `Model de raspuns: ${ex.modelRaspuns}` : null;
 }
 
 export async function GET(

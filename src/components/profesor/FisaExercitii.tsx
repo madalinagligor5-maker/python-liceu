@@ -18,7 +18,29 @@ function Barem({ ex }: { ex: Exercitiu }) {
       </p>
     );
   }
-  return ex.modelRaspuns ? (
+  if (ex.tip === "unire") {
+    return (
+      <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+        <strong>Barem — perechi corecte:</strong>{" "}
+        {ex.perechi.map((p) => `${p.stanga} → ${p.dreapta}`).join("; ")}
+      </p>
+    );
+  }
+  if (ex.tip === "adevarat-fals") {
+    return (
+      <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+        <strong>Barem:</strong> {ex.afirmatii.map((a) => (a.corect ? "A" : "F")).join(", ")}
+      </p>
+    );
+  }
+  if (ex.tip === "completare") {
+    return (
+      <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+        <strong>Barem — răspunsuri:</strong> {ex.raspunsuri.join(", ")}
+      </p>
+    );
+  }
+  return ex.tip === "text" && ex.modelRaspuns ? (
     <p className="mt-2 rounded-lg bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
       <strong>Barem — model de răspuns:</strong> {ex.modelRaspuns}
     </p>
@@ -41,6 +63,27 @@ function CorpExercitiu({ ex }: { ex: Exercitiu }) {
         ))}
       </ul>
     );
+  }
+  if (ex.tip === "unire") {
+    return (
+      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
+        {ex.perechi.map((p, i) => (
+          <li key={i}>{p.stanga} → _________________</li>
+        ))}
+      </ul>
+    );
+  }
+  if (ex.tip === "adevarat-fals") {
+    return (
+      <ul className="mt-2 list-none space-y-1 pl-0 text-sm text-foreground/80">
+        {ex.afirmatii.map((a, i) => (
+          <li key={i}>☐A / ☐F — {a.text}</li>
+        ))}
+      </ul>
+    );
+  }
+  if (ex.tip === "completare") {
+    return <p className="mt-2 text-sm text-foreground/80">{ex.text.replace(/___/g, "…………")}</p>;
   }
   return <div className="mt-2 h-20 rounded-lg border border-dashed border-black/15" />;
 }

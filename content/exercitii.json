@@ -37,6 +37,70 @@
       "tip": "text",
       "enunt": "Pentru problema „calculează prețul total pentru 3 produse cu prețuri diferite\", descrie pe scurt cele 4 etape (fără cod).",
       "modelRaspuns": "Analiză: citim cele 3 prețuri și înțelegem că trebuie să le adunăm. Proiectare: algoritmul e simplu — suma celor 3 numere. Implementare: scriem codul care le adună. Testare: rulăm cu exemple (ex. 10, 20, 30 → 60) și verificăm."
+    },
+    {
+      "id": "1.1.4.ex4",
+      "nivel": "de-baza",
+      "tip": "unire",
+      "enunt": "Unește fiecare etapă a elaborării unui program cu descrierea ei corectă.",
+      "perechi": [
+        {
+          "stanga": "Analiză",
+          "dreapta": "Înțelegerea datelor de intrare și a rezultatului cerut"
+        },
+        {
+          "stanga": "Proiectare",
+          "dreapta": "Alegerea algoritmului care rezolvă problema"
+        },
+        {
+          "stanga": "Implementare",
+          "dreapta": "Scrierea codului într-un limbaj de programare"
+        },
+        {
+          "stanga": "Testare",
+          "dreapta": "Verificarea rezultatului pe mai multe exemple"
+        }
+      ],
+      "hint": "Gândește-te la ordinea firească în care apar aceste etape când rezolvi o problemă."
+    },
+    {
+      "id": "1.1.4.ex5",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals",
+      "enunt": "Stabilește dacă fiecare afirmație despre algoritmi este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Un algoritm este o succesiune de pași clari și ordonați pentru rezolvarea unei probleme.",
+          "corect": true
+        },
+        {
+          "text": "Etapa de testare se realizează înaintea etapei de implementare.",
+          "corect": false
+        },
+        {
+          "text": "Un algoritm poate avea date de intrare, dar niciun rezultat.",
+          "corect": false
+        },
+        {
+          "text": "Aceeași problemă poate fi rezolvată prin mai mulți algoritmi diferiți.",
+          "corect": true
+        }
+      ],
+      "hint": "Recitește ordinea celor patru etape: analiză, proiectare, implementare, testare."
+    },
+    {
+      "id": "1.1.4.ex6",
+      "nivel": "consolidat",
+      "tip": "completare",
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Elaborarea unui program parcurge patru etape: mai întâi ___, în care înțelegem problema; apoi ___, în care alegem algoritmul potrivit; urmează ___, adică scrierea codului; iar la final se face ___, pentru a verifica dacă rezultatele sunt corecte.",
+      "raspunsuri": [
+        "analiza",
+        "proiectarea",
+        "implementarea",
+        "testarea"
+      ],
+      "hint": "Cele patru cuvinte sunt exact numele etapelor discutate în lecție, la forma articulată (ex. \"analiza\", nu \"analiză\")."
     }
   ],
   "1.1.5": [
