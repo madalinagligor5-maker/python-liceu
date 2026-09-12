@@ -143,6 +143,65 @@
       "tip": "text",
       "enunt": "Scrie pseudocodul (nu codul!) pentru: „dacă un elev are media peste 9, primește calificativul Excelent, altfel primește Bine\".",
       "modelRaspuns": "citește media\ndacă media > 9 atunci\n    afișează \"Excelent\"\naltfel\n    afișează \"Bine\""
+    },
+    {
+      "enunt": "Unește fiecare mod de reprezentare a unui algoritm cu descrierea lui corectă.",
+      "perechi": [
+        {
+          "stanga": "Schemă logică",
+          "dreapta": "Reprezentare grafică cu simboluri conectate prin săgeți"
+        },
+        {
+          "stanga": "Pseudocod",
+          "dreapta": "Descriere în limbaj natural structurat, apropiat de codul real"
+        },
+        {
+          "stanga": "Cod sursă",
+          "dreapta": "Instrucțiuni scrise într-un limbaj de programare, executabile de calculator"
+        }
+      ],
+      "hint": "Gândește-te care variantă e cea mai apropiată de codul final și care e cea mai vizuală.",
+      "id": "1.2.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre reprezentarea algoritmilor este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "O schemă logică folosește simboluri grafice standardizate pentru pași și decizii.",
+          "corect": true
+        },
+        {
+          "text": "Pseudocodul poate fi executat direct de calculator, fără traducere.",
+          "corect": false
+        },
+        {
+          "text": "Codul sursă e scris într-un limbaj de programare precum Python.",
+          "corect": true
+        },
+        {
+          "text": "Toate cele trei reprezentări (schemă, pseudocod, cod) pot descrie același algoritm.",
+          "corect": true
+        }
+      ],
+      "hint": "Doar una dintre reprezentări poate fi rulată direct de calculator.",
+      "id": "1.2.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Un algoritm poate fi reprezentat în trei moduri: prin ___, care folosește simboluri grafice; prin ___, care descrie pașii în limbaj apropiat de programare; sau prin ___, scris direct într-un limbaj de programare.",
+      "raspunsuri": [
+        "schema logica",
+        "pseudocod",
+        "cod"
+      ],
+      "hint": "Ordinea urmează exact ordinea din enunț: grafic, apropiat de programare, direct executabil.",
+      "id": "1.2.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.2.5": [
@@ -174,6 +233,61 @@
       "expectedOutput": "5050",
       "hint": "Formula lui Gauss e menționată explicit în enunț — gândește-te cum se traduce n*(n+1)/2 direct în Python, fără buclă.",
       "hint2": "Scrie o singură expresie care înmulțește n cu (n+1) și împarte rezultatul la 2, folosind împărțire întreagă."
+    },
+    {
+      "enunt": "Unește fiecare termen legat de eficiența unui algoritm cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "Timp de execuție",
+          "dreapta": "Cât de repede rulează algoritmul"
+        },
+        {
+          "stanga": "Spațiu de memorie",
+          "dreapta": "Câtă memorie ocupă algoritmul în timpul rulării"
+        },
+        {
+          "stanga": "Complexitate",
+          "dreapta": "Modul în care resursele necesare cresc odată cu volumul de date"
+        }
+      ],
+      "id": "1.3.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre eficiența algoritmilor este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Un algoritm mai rapid este mereu mai bun, indiferent de memoria folosită.",
+          "corect": false
+        },
+        {
+          "text": "Eficiența unui algoritm se măsoară doar prin timpul de rulare.",
+          "corect": false
+        },
+        {
+          "text": "Complexitatea unui algoritm descrie cum cresc resursele necesare când crește volumul de date.",
+          "corect": true
+        },
+        {
+          "text": "Doi algoritmi diferiți pot rezolva aceeași problemă cu eficiențe diferite.",
+          "corect": true
+        }
+      ],
+      "id": "1.3.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Eficiența unui algoritm se evaluează în funcție de doi factori principali: ___, adică durata rulării, și ___, adică memoria ocupată.",
+      "raspunsuri": [
+        "timpul de executie",
+        "spatiul de memorie"
+      ],
+      "id": "1.3.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.3.5": [
@@ -195,6 +309,66 @@
       "expectedOutput": "153.86",
       "hint": "Formula ariei cercului e dată în enunț — cum transformi acea formulă matematică într-o linie de cod care calculează o valoare pe baza parametrului raza?",
       "hint2": "Înmulțește 3.14 cu raza de două ori (adică raza la puterea a doua) și salvează rezultatul într-o variabilă înainte de return."
+    },
+    {
+      "enunt": "Unește fiecare element legat de subprograme cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "def",
+          "dreapta": "Cuvântul cheie folosit pentru a defini o funcție în Python"
+        },
+        {
+          "stanga": "Parametru",
+          "dreapta": "Valoare transmisă unei funcții la apelare"
+        },
+        {
+          "stanga": "return",
+          "dreapta": "Instrucțiune care trimite un rezultat înapoi din funcție"
+        },
+        {
+          "stanga": "Apel de funcție",
+          "dreapta": "Momentul în care se execută codul unei funcții deja definite"
+        }
+      ],
+      "id": "1.4.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre funcții este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "O funcție trebuie apelată pentru ca instrucțiunile ei să se execute.",
+          "corect": true
+        },
+        {
+          "text": "Cuvântul cheie def este folosit pentru a apela o funcție.",
+          "corect": false
+        },
+        {
+          "text": "O funcție poate primi mai mulți parametri.",
+          "corect": true
+        },
+        {
+          "text": "Toate funcțiile trebuie să conțină obligatoriu return.",
+          "corect": false
+        }
+      ],
+      "id": "1.4.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "O funcție se definește cu cuvântul cheie ___, primește date prin ___ și poate trimite un rezultat înapoi cu instrucțiunea ___.",
+      "raspunsuri": [
+        "def",
+        "parametri",
+        "return"
+      ],
+      "id": "1.4.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.4.5": [
@@ -229,6 +403,61 @@
       "expectedOutput": "16",
       "hint": "Ce operație matematică simplă transformă un număr în dublul lui?",
       "hint2": "Înmulțește parametrul x cu 2 și salvează rezultatul în variabila locală dublu."
+    },
+    {
+      "enunt": "Unește fiecare termen despre variabile cu descrierea lui corectă.",
+      "perechi": [
+        {
+          "stanga": "Variabilă locală",
+          "dreapta": "Există doar în interiorul funcției în care a fost creată"
+        },
+        {
+          "stanga": "Variabilă globală",
+          "dreapta": "Poate fi accesată din orice parte a programului"
+        },
+        {
+          "stanga": "Transmitere prin parametri",
+          "dreapta": "Modul în care o funcție primește date din exterior"
+        }
+      ],
+      "id": "1.5.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre variabile locale și globale este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "O variabilă locală poate fi folosită și în afara funcției în care a fost definită.",
+          "corect": false
+        },
+        {
+          "text": "Variabilele globale sunt vizibile în tot programul.",
+          "corect": true
+        },
+        {
+          "text": "Parametrii unei funcții sunt un fel de variabile locale, valabile doar în acea funcție.",
+          "corect": true
+        },
+        {
+          "text": "Două funcții diferite nu pot avea fiecare o variabilă locală cu același nume.",
+          "corect": false
+        }
+      ],
+      "id": "1.5.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "O variabilă definită în interiorul unei funcții este ___ și există doar acolo, în timp ce o variabilă definită în afara oricărei funcții este ___ și poate fi accesată din tot programul.",
+      "raspunsuri": [
+        "locala",
+        "globala"
+      ],
+      "id": "1.5.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.5.5": [
@@ -253,6 +482,66 @@
       "expectedOutput": "4\n7\n10\n34",
       "hint": "Python are funcții predefinite care lucrează direct pe liste — gândește-te la ce fac funcțiile len, min, max și sum.",
       "hint2": "Apelează pe rând len(note), min(note), max(note) și sum(note), afișând fiecare rezultat."
+    },
+    {
+      "enunt": "Unește fiecare funcție predefinită cu rolul ei.",
+      "perechi": [
+        {
+          "stanga": "abs()",
+          "dreapta": "Returnează valoarea absolută a unui număr"
+        },
+        {
+          "stanga": "round()",
+          "dreapta": "Rotunjește un număr la un anumit număr de zecimale"
+        },
+        {
+          "stanga": "len()",
+          "dreapta": "Returnează numărul de elemente dintr-o colecție"
+        },
+        {
+          "stanga": "sum()",
+          "dreapta": "Returnează suma elementelor unei colecții"
+        }
+      ],
+      "id": "1.6.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre funcțiile predefinite este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Funcțiile predefinite trebuie definite de programator înainte de utilizare.",
+          "corect": false
+        },
+        {
+          "text": "len() returnează numărul de elemente al unei liste.",
+          "corect": true
+        },
+        {
+          "text": "abs(-7) returnează -7.",
+          "corect": false
+        },
+        {
+          "text": "sum() poate fi folosită pentru a aduna elementele unei liste de numere.",
+          "corect": true
+        }
+      ],
+      "id": "1.6.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a obține valoarea absolută a unui număr se folosește funcția ___, pentru rotunjire se folosește ___, iar pentru a afla câte elemente are o colecție se folosește ___.",
+      "raspunsuri": [
+        "abs",
+        "round",
+        "len"
+      ],
+      "id": "1.6.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.6.5": [
@@ -284,6 +573,57 @@
       "expectedOutput": "4",
       "hint": "Cum poți extrage și elimina cifrele unui număr, una câte una, folosind operații întregi?",
       "hint2": "Într-o buclă while cât timp n e mai mare decât 0, incrementează un contor și micșorează n prin împărțire întreagă la 10."
+    },
+    {
+      "enunt": "Unește fiecare operație cu efectul ei asupra cifrelor unui număr.",
+      "perechi": [
+        {
+          "stanga": "% 10",
+          "dreapta": "Extrage ultima cifră a unui număr"
+        },
+        {
+          "stanga": "// 10",
+          "dreapta": "Elimină ultima cifră a unui număr"
+        },
+        {
+          "stanga": "* 10 + cifra",
+          "dreapta": "Adaugă o cifră nouă la dreapta numărului"
+        }
+      ],
+      "id": "1.7.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre prelucrarea cifrelor este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Operatorul % (restul împărțirii) poate fi folosit pentru a afla ultima cifră a unui număr.",
+          "corect": true
+        },
+        {
+          "text": "Operatorul // (împărțirea întreagă) la 10 adaugă o cifră numărului.",
+          "corect": false
+        },
+        {
+          "text": "Pentru a parcurge toate cifrele unui număr putem repeta extragerea ultimei cifre până când numărul devine 0.",
+          "corect": true
+        }
+      ],
+      "id": "1.7.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a afla ultima cifră a unui număr folosim restul împărțirii la ___, iar pentru a elimina acea cifră folosim împărțirea întreagă la ___.",
+      "raspunsuri": [
+        "10",
+        "10"
+      ],
+      "id": "1.7.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.7.5": [
@@ -315,6 +655,62 @@
       "expectedOutput": "6",
       "hint": "Cum verifici dacă un număr i este divizor al lui n, folosind operatorul de rest?",
       "hint2": "Parcurge toate numerele de la 1 la n și numără-le pe cele pentru care restul împărțirii lui n la acel număr este 0."
+    },
+    {
+      "enunt": "Unește fiecare termen cu definiția lui corectă.",
+      "perechi": [
+        {
+          "stanga": "Divizor",
+          "dreapta": "Număr care împarte exact un alt număr"
+        },
+        {
+          "stanga": "Multiplu",
+          "dreapta": "Număr care se obține înmulțind un număr dat cu un întreg"
+        },
+        {
+          "stanga": "Algoritmul lui Euclid",
+          "dreapta": "Metodă pentru determinarea celui mai mare divizor comun a două numere"
+        }
+      ],
+      "id": "1.8.4.ex2",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre divizori și multipli este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Numărul 1 este divizor al oricărui număr natural.",
+          "corect": true
+        },
+        {
+          "text": "Algoritmul lui Euclid determină cel mai mic multiplu comun.",
+          "corect": false
+        },
+        {
+          "text": "Un număr este multiplu al lui 5 dacă restul împărțirii la 5 este 0.",
+          "corect": true
+        },
+        {
+          "text": "Cel mai mare divizor comun a două numere poate fi mai mare decât ambele numere.",
+          "corect": false
+        }
+      ],
+      "id": "1.8.4.ex3",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Un număr a este ___ al lui b dacă b se împarte exact la a, iar b este ___ al lui a. Algoritmul lui ___ calculează cel mai mare divizor comun a două numere.",
+      "raspunsuri": [
+        "divizor",
+        "multiplu",
+        "Euclid"
+      ],
+      "id": "1.8.4.ex4",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.8.5": [
@@ -357,6 +753,62 @@
       "expectedOutput": "5",
       "hint": "Fiecare cifră binară are o pondere care depinde de poziția ei — cum se leagă indexul i din enumerate de puterea lui 2 corespunzătoare?",
       "hint2": "Ponderea cifrei aflate la distanța i de la capătul din dreapta (după inversare) este 2 ridicat la puterea i."
+    },
+    {
+      "enunt": "Unește fiecare bază de numerație cu descrierea ei.",
+      "perechi": [
+        {
+          "stanga": "Baza 2",
+          "dreapta": "Sistem binar, folosește doar cifrele 0 și 1"
+        },
+        {
+          "stanga": "Baza 10",
+          "dreapta": "Sistem zecimal, folosit în viața de zi cu zi"
+        },
+        {
+          "stanga": "Baza 16",
+          "dreapta": "Sistem hexazecimal, folosește cifre și literele A-F"
+        }
+      ],
+      "id": "1.9.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre bazele de numerație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "În baza 2 se folosesc doar cifrele 0 și 1.",
+          "corect": true
+        },
+        {
+          "text": "Orice număr din baza 10 poate fi convertit în baza 2.",
+          "corect": true
+        },
+        {
+          "text": "Baza hexazecimală folosește doar 10 simboluri.",
+          "corect": false
+        },
+        {
+          "text": "Conversia unui număr din baza 10 în altă bază se face prin împărțiri repetate la acea bază.",
+          "corect": true
+        }
+      ],
+      "id": "1.9.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Sistemul de numerație folosit zilnic este baza ___, cel folosit de calculator la nivel fundamental este baza ___, iar sistemul care combină cifre cu literele A-F este baza ___.",
+      "raspunsuri": [
+        "10",
+        "2",
+        "16"
+      ],
+      "id": "1.9.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.9.5": [
@@ -398,6 +850,61 @@
       "expectedOutput": "1594323",
       "hint": "Gândește-te la reprezentarea binară a exponentului: de ce contează dacă bitul curent al lui e este 1 sau 0?",
       "hint2": "La fiecare pas, dacă exponentul rămas e impar, înmulțești rezultatul cu baza curentă; apoi ridici baza la pătrat și înjumătățești exponentul (împărțire întreagă)."
+    },
+    {
+      "enunt": "Unește fiecare termen cu definiția lui corectă.",
+      "perechi": [
+        {
+          "stanga": "Ciurul lui Eratostene",
+          "dreapta": "Metodă pentru găsirea tuturor numerelor prime până la o limită dată"
+        },
+        {
+          "stanga": "Exponențiere rapidă",
+          "dreapta": "Metodă eficientă de calcul al unei puteri, prin înjumătățirea repetată a exponentului"
+        },
+        {
+          "stanga": "Număr prim",
+          "dreapta": "Număr natural cu exact doi divizori: 1 și el însuși"
+        }
+      ],
+      "id": "1.10.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Ciurul lui Eratostene elimină multiplii fiecărui număr prim găsit.",
+          "corect": true
+        },
+        {
+          "text": "Exponențierea rapidă calculează o putere mai eficient decât înmulțirea repetată simplă, pentru exponenți mari.",
+          "corect": true
+        },
+        {
+          "text": "Numărul 1 este considerat număr prim.",
+          "corect": false
+        },
+        {
+          "text": "Ciurul lui Eratostene poate fi folosit pentru a găsi toți divizorii unui singur număr.",
+          "corect": false
+        }
+      ],
+      "id": "1.10.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Ciurul lui ___ găsește toate numerele ___ până la o limită dată, eliminând multiplii fiecărui număr găsit.",
+      "raspunsuri": [
+        "Eratostene",
+        "prime"
+      ],
+      "id": "1.10.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.10.5": [
@@ -439,6 +946,62 @@
       "expectedOutput": "18.85",
       "hint": "Ce formulă geometrică leagă perimetrul unui cerc de raza sa și de constanta π?",
       "hint2": "Înmulțește 2 cu math.pi și cu self.raza pentru a obține perimetrul."
+    },
+    {
+      "enunt": "Unește fiecare termen din programarea orientată pe obiecte cu definiția lui.",
+      "perechi": [
+        {
+          "stanga": "Clasă",
+          "dreapta": "Șablon (model) după care se creează obiecte"
+        },
+        {
+          "stanga": "Obiect",
+          "dreapta": "O instanță concretă a unei clase"
+        },
+        {
+          "stanga": "Metodă",
+          "dreapta": "O funcție definită în interiorul unei clase"
+        }
+      ],
+      "id": "1.11.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "O clasă este un exemplu concret al unui obiect.",
+          "corect": false
+        },
+        {
+          "text": "Un obiect este creat pe baza unei clase.",
+          "corect": true
+        },
+        {
+          "text": "Metodele sunt funcții care aparțin unei clase.",
+          "corect": true
+        },
+        {
+          "text": "Dintr-o singură clasă pot fi create mai multe obiecte diferite.",
+          "corect": true
+        }
+      ],
+      "id": "1.11.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Programarea orientată pe obiecte folosește ___ ca șablon din care se creează ___, iar funcțiile definite în interiorul unei clase se numesc ___.",
+      "raspunsuri": [
+        "clase",
+        "obiecte",
+        "metode"
+      ],
+      "id": "1.11.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.11.5": [
@@ -474,6 +1037,66 @@
       "tip": "text",
       "enunt": "Adaugă un Entry (câmp de text) și un buton care afișează ce ai scris în etichetă.",
       "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\nent = tk.Entry(f)\nent.pack()\neticheta = tk.Label(f, text=\"\")\neticheta.pack()\ndef afiseaza():\n    eticheta.config(text=ent.get())\ntk.Button(f, text='Afiseaza', command=afiseaza).pack()\nf.mainloop()"
+    },
+    {
+      "enunt": "Unește fiecare element tkinter cu rolul lui.",
+      "perechi": [
+        {
+          "stanga": "Tk()",
+          "dreapta": "Creează fereastra principală a aplicației"
+        },
+        {
+          "stanga": "Label",
+          "dreapta": "Widget pentru afișarea unui text sau a unei imagini"
+        },
+        {
+          "stanga": "Button",
+          "dreapta": "Widget pentru un buton apăsabil"
+        },
+        {
+          "stanga": "Entry",
+          "dreapta": "Widget pentru introducerea unei linii de text de la utilizator"
+        }
+      ],
+      "id": "1.12.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre tkinter este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "tkinter este o bibliotecă Python pentru interfețe grafice.",
+          "corect": true
+        },
+        {
+          "text": "Un Label permite utilizatorului să scrie text.",
+          "corect": false
+        },
+        {
+          "text": "Un Button poate declanșa o acțiune la apăsare.",
+          "corect": true
+        },
+        {
+          "text": "O fereastră tkinter poate conține mai multe widget-uri.",
+          "corect": true
+        }
+      ],
+      "id": "1.12.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "În tkinter, fereastra principală se creează cu ___, un text afișat se pune într-un ___, iar un buton apăsabil se creează cu ___.",
+      "raspunsuri": [
+        "Tk",
+        "Label",
+        "Button"
+      ],
+      "id": "1.12.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.12.5": [
@@ -509,6 +1132,57 @@
       "tip": "text",
       "enunt": "Leagă un eveniment de tastatură care afișează tasta apăsată într-o etichetă.",
       "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\net = tk.Label(f, text='Apasa o tasta')\net.pack()\ndef la_tasta(e):\n    et.config(text=e.keysym)\nf.bind('<Key>', la_tasta)\nf.mainloop()"
+    },
+    {
+      "enunt": "Unește fiecare termen legat de plasare și evenimente cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "pack()",
+          "dreapta": "Plasează widget-urile unul după altul, automat"
+        },
+        {
+          "stanga": "grid()",
+          "dreapta": "Plasează widget-urile într-un tabel de linii și coloane"
+        },
+        {
+          "stanga": "Eveniment",
+          "dreapta": "O acțiune a utilizatorului (click, apăsare de tastă) la care aplicația poate reacționa"
+        }
+      ],
+      "id": "1.13.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "grid() plasează widget-urile pe rânduri și coloane.",
+          "corect": true
+        },
+        {
+          "text": "Un eveniment poate fi, de exemplu, un click de mouse pe un buton.",
+          "corect": true
+        },
+        {
+          "text": "O aplicație tkinter nu poate reacționa la apăsarea unei taste.",
+          "corect": false
+        }
+      ],
+      "id": "1.13.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a aranja widget-uri într-un tabel de linii și coloane se folosește metoda ___, iar o acțiune a utilizatorului, precum un click, se numește ___.",
+      "raspunsuri": [
+        "grid",
+        "eveniment"
+      ],
+      "id": "1.13.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.13.5": [
@@ -547,6 +1221,66 @@
       "expectedOutput": "",
       "hint": "Ce se întâmplă cu variabila contor la fiecare trecere prin bucla for care parcurge fișierul linie cu linie?",
       "hint2": "Fiecare iterație a buclei corespunde exact unei linii citite din fișier, deci contorul trebuie incrementat o dată la fiecare iterație."
+    },
+    {
+      "enunt": "Unește fiecare funcție/metodă cu rolul ei în lucrul cu fișiere text.",
+      "perechi": [
+        {
+          "stanga": "open()",
+          "dreapta": "Deschide un fișier pentru citire sau scriere"
+        },
+        {
+          "stanga": "read()",
+          "dreapta": "Citește conținutul unui fișier"
+        },
+        {
+          "stanga": "write()",
+          "dreapta": "Scrie text într-un fișier"
+        },
+        {
+          "stanga": "close()",
+          "dreapta": "Închide fișierul după utilizare"
+        }
+      ],
+      "id": "1.14.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație despre fișiere text este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Un fișier trebuie deschis înainte de a putea fi citit sau scris.",
+          "corect": true
+        },
+        {
+          "text": "Metoda write() citește conținutul unui fișier.",
+          "corect": false
+        },
+        {
+          "text": "Este recomandat să închidem fișierul după ce am terminat lucrul cu el.",
+          "corect": true
+        },
+        {
+          "text": "Instrucțiunea with poate deschide și închide automat un fișier.",
+          "corect": true
+        }
+      ],
+      "id": "1.14.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a lucra cu un fișier text, îl deschidem cu ___, îi citim conținutul cu ___ și, după ce terminăm, îl închidem cu ___.",
+      "raspunsuri": [
+        "open",
+        "read",
+        "close"
+      ],
+      "id": "1.14.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.14.5": [
@@ -585,6 +1319,65 @@
       "tip": "text",
       "enunt": "Simulează o stivă: adaugă 5 numere, apoi golește-o afișând elementele.",
       "modelRaspuns": "stiva = []\nfor i in range(1, 6):\n    stiva.append(i)\nwhile stiva:\n    print(stiva.pop())"
+    },
+    {
+      "enunt": "Unește fiecare termen despre modelul conceptual listă cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "Stivă",
+          "dreapta": "Structură LIFO — ultimul element adăugat este primul scos"
+        },
+        {
+          "stanga": "Coadă",
+          "dreapta": "Structură FIFO — primul element adăugat este primul scos"
+        },
+        {
+          "stanga": "Acces direct",
+          "dreapta": "Se ajunge la un element folosind poziția lui, fără a parcurge restul"
+        },
+        {
+          "stanga": "Acces secvențial",
+          "dreapta": "Elementele sunt parcurse unul câte unul, în ordine"
+        }
+      ],
+      "id": "1.15.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Într-o stivă, ultimul element adăugat este primul scos.",
+          "corect": true
+        },
+        {
+          "text": "Într-o coadă, primul element adăugat este ultimul scos.",
+          "corect": false
+        },
+        {
+          "text": "Accesul direct la un element presupune parcurgerea tuturor elementelor dinaintea lui.",
+          "corect": false
+        },
+        {
+          "text": "O listă poate fi folosită atât pentru acces direct, cât și pentru acces secvențial.",
+          "corect": true
+        }
+      ],
+      "id": "1.15.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "O structură de tip ___ scoate întotdeauna ultimul element adăugat (LIFO), iar o structură de tip ___ scoate întotdeauna primul element adăugat (FIFO).",
+      "raspunsuri": [
+        "stiva",
+        "coada"
+      ],
+      "id": "1.15.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.15.5": [
@@ -623,6 +1416,65 @@
       "expectedOutput": "3",
       "hint": "Ce valoare trebuie să cauți cu metoda count() ca să numeri de câte ori apare 5 în listă?",
       "hint2": "Argumentul metodei count() este chiar valoarea 5, cea pe care vrei să o numeri."
+    },
+    {
+      "enunt": "Unește fiecare operator al clasei list cu efectul lui.",
+      "perechi": [
+        {
+          "stanga": "in",
+          "dreapta": "Verifică dacă un element aparține unei liste"
+        },
+        {
+          "stanga": "+",
+          "dreapta": "Concatenează (unește) două liste"
+        },
+        {
+          "stanga": "*",
+          "dreapta": "Repetă elementele unei liste de un anumit număr de ori"
+        },
+        {
+          "stanga": "==",
+          "dreapta": "Compară dacă două liste au aceleași elemente, în aceeași ordine"
+        }
+      ],
+      "id": "1.16.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Operatorul in verifică apartenența unui element la o listă.",
+          "corect": true
+        },
+        {
+          "text": "Operatorul + adună aritmetic elementele a două liste.",
+          "corect": false
+        },
+        {
+          "text": "Operatorul * poate repeta o listă de mai multe ori.",
+          "corect": true
+        },
+        {
+          "text": "Două liste sunt egale (==) doar dacă au aceleași elemente, în aceeași ordine.",
+          "corect": true
+        }
+      ],
+      "id": "1.16.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a verifica dacă un element se află într-o listă folosim operatorul ___, iar pentru a uni două liste într-una singură folosim operatorul ___.",
+      "raspunsuri": [
+        "in",
+        "+"
+      ],
+      "id": "1.16.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.16.5": [
@@ -664,6 +1516,66 @@
       "expectedOutput": "[5, 4, 3, 1, 1]",
       "hint": "Ce parametru al metodei sort() controlează dacă sortarea se face crescător sau descrescător?",
       "hint2": "Metoda sort() acceptă un parametru boolean numit reverse, care atunci când e adevărat inversează ordinea sortării."
+    },
+    {
+      "enunt": "Unește fiecare metodă a clasei list cu rolul ei.",
+      "perechi": [
+        {
+          "stanga": "append()",
+          "dreapta": "Adaugă un element la finalul listei"
+        },
+        {
+          "stanga": "insert()",
+          "dreapta": "Inserează un element la o poziție dată"
+        },
+        {
+          "stanga": "remove()",
+          "dreapta": "Șterge prima apariție a unei valori din listă"
+        },
+        {
+          "stanga": "sort()",
+          "dreapta": "Ordonează elementele listei"
+        }
+      ],
+      "id": "1.17.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "append() adaugă întotdeauna elementul la începutul listei.",
+          "corect": false
+        },
+        {
+          "text": "remove() șterge un element pe baza valorii lui, nu a poziției.",
+          "corect": true
+        },
+        {
+          "text": "sort() modifică ordinea elementelor direct în lista originală.",
+          "corect": true
+        },
+        {
+          "text": "insert() poate adăuga un element la orice poziție din listă.",
+          "corect": true
+        }
+      ],
+      "id": "1.17.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Pentru a adăuga un element la finalul unei liste folosim ___, pentru a-l insera la o poziție anume folosim ___, iar pentru a ordona lista folosim ___.",
+      "raspunsuri": [
+        "append",
+        "insert",
+        "sort"
+      ],
+      "id": "1.17.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.17.5": [
@@ -702,6 +1614,57 @@
       "expectedOutput": "10\n12\n14\n...continuă...",
       "hint": "Ce număr folosești ca să testezi dacă un număr este par, folosind operatorul de rest?",
       "hint2": "Un număr e par atunci când restul împărțirii lui la 2 este 0."
+    },
+    {
+      "enunt": "Unește fiecare termen despre generarea de secvențe cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "Secvență cu proprietate dată",
+          "dreapta": "Listă ai cărei termeni respectă o condiție (ex. doar numere pare)"
+        },
+        {
+          "stanga": "Termen al unei expresii matematice",
+          "dreapta": "Valoare calculată după o formulă, pentru fiecare poziție din listă"
+        },
+        {
+          "stanga": "Șir recurent",
+          "dreapta": "Secvență în care fiecare termen se calculează pe baza termenilor anteriori"
+        }
+      ],
+      "id": "1.18.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "O secvență cu proprietate dată conține doar valori care respectă o anumită condiție.",
+          "corect": true
+        },
+        {
+          "text": "Un șir recurent calculează fiecare termen independent de ceilalți termeni.",
+          "corect": false
+        },
+        {
+          "text": "Generarea sistematică presupune parcurgerea unui interval și verificarea unei condiții pentru fiecare valoare.",
+          "corect": true
+        }
+      ],
+      "id": "1.18.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "O secvență în care fiecare termen se calculează pe baza termenilor ___ se numește șir ___.",
+      "raspunsuri": [
+        "anteriori",
+        "recurent"
+      ],
+      "id": "1.18.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.18.5": [
@@ -740,6 +1703,57 @@
       "expectedOutput": "15",
       "hint": "Câte comparații face bucla interioară pentru fiecare valoare a lui i, în funcție de câte elemente rămân neverificate după poziția i?",
       "hint2": "Pentru o listă cu n elemente, numărul total de comparații este suma (n-1) + (n-2) + ... + 1, adică suma primelor n-1 numere naturale."
+    },
+    {
+      "enunt": "Unește fiecare termen despre sortarea prin selecția minimului cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "Selecția minimului",
+          "dreapta": "Metodă care caută repetat cel mai mic element rămas și îl mută pe poziția corectă"
+        },
+        {
+          "stanga": "Element minim",
+          "dreapta": "Cea mai mică valoare dintr-o secvență de numere"
+        },
+        {
+          "stanga": "Interschimbare",
+          "dreapta": "Schimbarea locurilor a două elemente dintr-o listă"
+        }
+      ],
+      "id": "1.19.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Metoda selecției minimului caută, la fiecare pas, cel mai mic element rămas nesortat.",
+          "corect": true
+        },
+        {
+          "text": "Selecția minimului sortează lista descrescător fără nicio modificare a algoritmului.",
+          "corect": false
+        },
+        {
+          "text": "După fiecare pas al selecției minimului, cel puțin un element ajunge pe poziția sa finală.",
+          "corect": true
+        }
+      ],
+      "id": "1.19.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Metoda selecției ___ caută la fiecare pas cel mai mic element rămas și îl ___ cu elementul aflat pe prima poziție nesortată.",
+      "raspunsuri": [
+        "minimului",
+        "interschimba"
+      ],
+      "id": "1.19.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.19.5": [
@@ -778,6 +1792,57 @@
       "expectedOutput": "[1, 2, 2, 3, 3]",
       "hint": "Cum poți folosi un tablou de frecvențe pentru a număra de câte ori apare fiecare valoare posibilă înainte de a reconstrui lista sortată?",
       "hint2": "Parcurge lista inițială și incrementează freq[x] pentru fiecare element x, apoi reconstruiește lista sortată parcurgând valorile posibile în ordine și repetând fiecare de atâtea ori cât arată frecvența ei."
+    },
+    {
+      "enunt": "Unește fiecare termen despre metoda bulelor și lista de frecvențe cu descrierea lui.",
+      "perechi": [
+        {
+          "stanga": "Metoda bulelor",
+          "dreapta": "Compară elemente adiacente și le interschimbă dacă sunt în ordine greșită"
+        },
+        {
+          "stanga": "Listă de frecvențe",
+          "dreapta": "Structură care reține de câte ori apare fiecare valoare posibilă"
+        },
+        {
+          "stanga": "Sortare cu listă de frecvențe",
+          "dreapta": "Metodă eficientă pentru date cu interval limitat de valori"
+        }
+      ],
+      "id": "1.20.4.ex3",
+      "nivel": "de-baza",
+      "tip": "unire"
+    },
+    {
+      "enunt": "Stabilește dacă fiecare afirmație este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Metoda bulelor compară elemente aflate la distanță mare unele de altele.",
+          "corect": false
+        },
+        {
+          "text": "O listă de frecvențe numără de câte ori apare fiecare valoare.",
+          "corect": true
+        },
+        {
+          "text": "Sortarea cu listă de frecvențe este eficientă mai ales când valorile posibile sunt puține și cunoscute.",
+          "corect": true
+        }
+      ],
+      "id": "1.20.4.ex4",
+      "nivel": "de-baza",
+      "tip": "adevarat-fals"
+    },
+    {
+      "enunt": "Completează cuvântul care lipsește din fiecare gol.",
+      "text": "Metoda ___ compară elemente vecine și le interschimbă dacă nu sunt în ordinea corectă, repetând procesul până când lista e sortată. Sortarea cu listă de ___ e potrivită pentru date cu interval limitat de valori.",
+      "raspunsuri": [
+        "bulelor",
+        "frecvente"
+      ],
+      "id": "1.20.4.ex5",
+      "nivel": "consolidat",
+      "tip": "completare"
     }
   ],
   "1.20.5": [
