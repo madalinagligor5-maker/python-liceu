@@ -2,6 +2,81 @@ import { getCapitol, type Modul } from "@/lib/curriculum";
 import { getPlanificare } from "@/lib/planificari";
 
 /**
+ * Structura anului școlar 2026-2027 (liceu) — reprodusă din calendarul oficial
+ * primit de la utilizatoare (Calendar-an-scolar-2026-2027-Bacau.pdf, sursă
+ * Edupedu, pe baza structurii aprobate de minister). Ancorele de mai jos
+ * (începutul anului, vacanța de toamnă, vacanța de iarnă) sunt fixe la nivel
+ * național. NU sunt incluse aici: "săptămâna mobilă" de vacanță de
+ * primăvară — aceasta e stabilită separat de fiecare inspectorat județean
+ * (de regulă undeva în februarie-aprilie) și diferă de la un județ la altul,
+ * așa cum a semnalat explicit utilizatoarea — de aceea nu apare o dată fixă
+ * aici, iar numerotarea săptămânilor de mai jos nu o exclude automat din
+ * calcul (profesorul trebuie să ajusteze manual planificarea în jurul ei).
+ */
+const INCEPUT_AN_SCOLAR_2026_2027 = new Date(2026, 8, 7); // luni, 7 septembrie 2026
+const VACANTE_2026_2027: { start: Date; sfarsit: Date }[] = [
+  { start: new Date(2026, 9, 26), sfarsit: new Date(2026, 10, 1) }, // vacanța de toamnă
+  { start: new Date(2026, 11, 28), sfarsit: new Date(2027, 0, 10) }, // vacanța de iarnă
+];
+
+const LUNI_SCURT = [
+  "ian", "feb", "mar", "apr", "mai", "iun", "iul", "aug", "sept", "oct", "nov", "dec",
+];
+
+function formateazaZiLuna(d: Date): string {
+  return `${d.getDate()} ${LUNI_SCURT[d.getMonth()]}`;
+}
+
+function esteInVacanta(d: Date): boolean {
+  return VACANTE_2026_2027.some((v) => d >= v.start && d <= v.sfarsit);
+}
+
+/**
+ * Generează primele `numarSaptamani` săptămâni efective de curs (luni-vineri),
+ * pornind de la începutul anului școlar, sărind peste vacanța de toamnă și de
+ * iarnă. Întoarce null pentru orice alt an școlar decât 2026-2027, caz în care
+ * apelantul revine la simpla numerotare ordinală "S1, S2, ...".
+ */
+function genereazaSaptamaniAnScolar(
+  anScolar: string,
+  numarSaptamani: number
+): { start: Date; sfarsit: Date }[] | null {
+  if (anScolar !== "2026-2027") return null;
+  const rezultat: { start: Date; sfarsit: Date }[] = [];
+  const cursor = new Date(INCEPUT_AN_SCOLAR_2026_2027);
+  let garda = 0;
+  while (rezultat.length < numarSaptamani && garda < 60) {
+    garda++;
+    if (!esteInVacanta(cursor)) {
+      const sfarsit = new Date(cursor);
+      sfarsit.setDate(cursor.getDate() + 4); // vineri
+      rezultat.push({ start: new Date(cursor), sfarsit });
+    }
+    cursor.setDate(cursor.getDate() + 7);
+  }
+  return rezultat;
+}
+
+/**
+ * Formatează eticheta pentru coloana "Săptămâna": "3" sau, dacă anScolar e
+ * 2026-2027 (an confirmat din calendarul oficial), "3 (21–25 sept)". Pentru
+ * unități care durează mai multe săptămâni, arată intervalul complet.
+ */
+function formateazaSaptamana(indexInceput: number, nrSaptamani: number, anScolar: string): string {
+  const indexSfarsit = indexInceput + Math.max(1, nrSaptamani) - 1;
+  const eticheta = nrSaptamani > 1 ? `${indexInceput}–${indexSfarsit}` : `${indexInceput}`;
+
+  const saptamani = genereazaSaptamaniAnScolar(anScolar, indexSfarsit);
+  if (!saptamani || saptamani.length < indexSfarsit) return eticheta;
+
+  const primaSaptamana = saptamani[indexInceput - 1];
+  const ultimaSaptamana = saptamani[indexSfarsit - 1];
+  const dataStart = formateazaZiLuna(primaSaptamana.start);
+  const dataSfarsit = formateazaZiLuna(ultimaSaptamana.sfarsit);
+  return `${eticheta} (${dataStart} – ${dataSfarsit})`;
+}
+
+/**
  * Construiește planificarea calendaristică completă, în formatul programei
  * școlare oficiale. Folosit atât de pagina web (/profesor/planificari/[clasa])
  * cât și de generatoarele de PDF/Word, ca să nu existe mai multe surse de
@@ -173,7 +248,7 @@ export type RandCompetenteConținuturi = {
   competenteSpecifice: string;
   continuturi: string[];
   oreAlocate: number;
-  saptamana: number;
+  saptamana: string;
   /** Completată de profesor pe parcursul anului — rămâne goală în planificarea generată. */
   masuriDeReglare: string;
 };
@@ -347,7 +422,10 @@ const UNITATI_ORIENTATIVE_IX: UnitateOrientativaIX[] = [
 /** Ultimul rând din fiecare foaie oficială: "Integrare și rezervă" — rezerva curriculară de 25%, comună tuturor. */
 const ORE_INTEGRARE_REZERVA_IX = { mateInfo: 16, militar: 26, stiinteNaturii: 8 };
 
-function tabelOrientativIX(profil: "mate-info" | "militar" | "stiinte-naturii"): RandCompetenteConținuturi[] {
+function tabelOrientativIX(
+  profil: "mate-info" | "militar" | "stiinte-naturii",
+  anScolar: string
+): RandCompetenteConținuturi[] {
   const cheie = profil === "mate-info" ? "mateInfo" : profil === "militar" ? "militar" : "stiinteNaturii";
   let saptamanaCurenta = 1;
   const randuri: RandCompetenteConținuturi[] = [];
@@ -367,7 +445,7 @@ function tabelOrientativIX(profil: "mate-info" | "militar" | "stiinte-naturii"):
       competenteSpecifice: u.competenteCod,
       continuturi: u.continuturi,
       oreAlocate: ore,
-      saptamana: saptamanaCurenta,
+      saptamana: formateazaSaptamana(saptamanaCurenta, saptamani, anScolar),
       masuriDeReglare: "",
     });
     saptamanaCurenta += saptamani;
@@ -381,7 +459,7 @@ function tabelOrientativIX(profil: "mate-info" | "militar" | "stiinte-naturii"):
       "remediere, consolidare, aprofundare sau extindere, la decizia profesorului, în funcție de progresul clasei",
     ],
     oreAlocate: oreRezerva,
-    saptamana: saptamanaCurenta,
+    saptamana: formateazaSaptamana(saptamanaCurenta, 1, anScolar),
     masuriDeReglare: "",
   });
 
@@ -418,7 +496,7 @@ export async function construiestePrograma(
 
   let tabel: RandCompetenteConținuturi[];
   if (foloseșteTabelOrientativIX) {
-    tabel = tabelOrientativIX(profilDef.id as "mate-info" | "militar" | "stiinte-naturii");
+    tabel = tabelOrientativIX(profilDef.id as "mate-info" | "militar" | "stiinte-naturii", opts.anScolar);
   } else {
     const capitol = getCapitol(clasa);
     const planificare = await getPlanificare(clasa);
@@ -430,7 +508,7 @@ export async function construiestePrograma(
         competenteSpecifice: modul ? competenteSpecificePentruModul(modul) : u.competente,
         continuturi: modul ? modul.sublectii.map((s) => s.titlu) : [],
         oreAlocate: u.oreAlocate,
-        saptamana: u.saptamanaEstimata,
+        saptamana: formateazaSaptamana(u.saptamanaEstimata, 1, opts.anScolar),
         masuriDeReglare: "",
       };
     });
@@ -455,6 +533,12 @@ export async function construiestePrograma(
   } else {
     notaDePrezentare.push(
       "Platforma Academia Python (academiapython.ro) e construită direct pe această programă, cu exerciții interactive rulate în browser și verificare automată a codului — planificarea de mai jos reflectă exact structura de module și sublecții deja disponibilă pe platformă."
+    );
+  }
+
+  if (opts.anScolar === "2026-2027") {
+    notaDePrezentare.push(
+      "Structura anului școlar 2026-2027: cursurile încep luni, 7 septembrie 2026; vacanța de toamnă e 26 octombrie – 1 noiembrie 2026, iar vacanța de iarnă e 28 decembrie 2026 – 10 ianuarie 2027 (reluare cursuri luni, 11 ianuarie 2027) — date fixe la nivel național. Săptămâna mobilă de primăvară NU e inclusă în calculul de mai jos: o stabilește fiecare inspectorat școlar județean separat (de regulă undeva în februarie-aprilie) și diferă de la un județ la altul — ajustează manual planificarea în jurul ei, după calendarul propriului județ."
     );
   }
 
