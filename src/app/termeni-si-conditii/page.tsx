@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Termeni și Condiții — Academia Python",
+  title: "Termeni și Condiții",
   description: "Termenii și condițiile de utilizare a platformei educaționale Academia Python.",
+  alternates: { canonical: "/termeni-si-conditii" },
 };
 
 export default function TermeniSiConditiiPage() {

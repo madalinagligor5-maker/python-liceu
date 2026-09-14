@@ -4,8 +4,9 @@ import { capitole } from "@/lib/curriculum";
 import LectieBadge from "@/components/LectieBadge";
 
 export const metadata: Metadata = {
-  title: "Exerciții Practice — Academia Python",
+  title: "Exerciții Practice",
   description: "Exerciții interactive de programare Python pe module școlare pentru liceu.",
+  alternates: { canonical: "/exercitii" },
 };
 
 export default function ExercitiiCatalogPage() {

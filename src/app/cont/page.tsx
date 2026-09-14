@@ -8,7 +8,7 @@ import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentBu
 import Mascota from "@/components/Mascota";
 
 export const metadata: Metadata = {
-  title: "Contul meu — Academia Python",
+  title: "Contul meu",
 };
 
 const STATUS_LABEL: Record<string, { text: string; className: string; desc: string }> = {

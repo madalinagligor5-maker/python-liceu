@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { capitole } from "@/lib/curriculum";
 
-export const metadata = { title: "Fișe de lucru — Academia Python" };
+export const metadata = { title: "Fișe de lucru" };
 
 const CLASE_LICEU = ["IX", "X", "XI", "XII"];
 

@@ -2,8 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Resurse PDF pe Clase — Academia Python",
+  title: "Resurse PDF pe Clase",
   description: "Selectează clasa pentru a descărca fișe de lucru PDF gratuite.",
+  alternates: { canonical: "/resurse" },
 };
 
 export default function ResurseCatalogPage() {

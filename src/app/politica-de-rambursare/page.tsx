@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Politică de Anulare și Rambursare — Academia Python",
+  title: "Politică de Anulare și Rambursare",
   description: "Politica de anulare a abonamentelor și garanția necondiționată de rambursare în 14 zile pentru Academia Python.",
+  alternates: { canonical: "/politica-de-rambursare" },
 };
 
 export default function PoliticaRambursarePage() {

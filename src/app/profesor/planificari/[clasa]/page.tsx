@@ -12,7 +12,7 @@ function numeDinEmail(email: string): string {
 
 export async function generateMetadata({ params }: { params: Promise<{ clasa: string }> }) {
   const { clasa } = await params;
-  return { title: `Planificare clasa a ${clasa}-a — Academia Python` };
+  return { title: `Planificare clasa a ${clasa}-a` };
 }
 
 export default async function PlanificareClasaPage({

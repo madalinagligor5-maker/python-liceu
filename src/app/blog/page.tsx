@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getToateArticolele } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog — Academia Python",
+  title: "Blog",
   description:
     "Ghiduri Python, noutăți despre programa de Informatică la liceu și materiale utile pentru elevii care se pregătesc pentru Bacalaureat.",
   alternates: { canonical: "/blog" },

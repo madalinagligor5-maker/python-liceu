@@ -24,7 +24,7 @@ export async function generateMetadata({
   const titluPagina = articol.titluSeo || articol.titlu;
 
   return {
-    title: `${titluPagina} — Academia Python`,
+    title: titluPagina,
     description: articol.descriere,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {

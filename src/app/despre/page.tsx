@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Despre — Academia Python",
+  title: "Despre",
   description:
     "De ce am făcut Academia Python: pentru elevii care cred că «nu sunt făcuți pentru programare» doar pentru că s-au blocat la primul mesaj de eroare.",
+  alternates: { canonical: "/despre" },
 };
 
 export default function DesprePage() {

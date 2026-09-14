@@ -3,7 +3,7 @@ import type { ProgresUtilizator } from "@/lib/progres";
 import { toateLectiile } from "@/lib/content";
 
 export const metadata = {
-  title: "Previzualizare dashboard — Academia Python",
+  title: "Previzualizare dashboard",
   robots: { index: false, follow: false },
 };
 

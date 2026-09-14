@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!capitol) return {};
 
   return {
-    title: `Clasa a ${clasa}-a: ${capitol.titlu} — Academia Python`,
+    title: `Clasa a ${clasa}-a: ${capitol.titlu}`,
     description: `${capitol.module.length} module pentru clasa a ${clasa}-a, conform programei oficiale de Informatică.`,
     alternates: { canonical: `/curriculum/${clasa}` },
   };

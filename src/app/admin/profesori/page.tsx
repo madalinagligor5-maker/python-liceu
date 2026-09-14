@@ -7,7 +7,7 @@ import {
 } from "@/app/actions/admin";
 import { ButonAprobare } from "@/components/admin/ButoaneProfesor";
 
-export const metadata = { title: "Admin — Profesori — Academia Python" };
+export const metadata = { title: "Admin — Profesori" };
 export const dynamic = "force-dynamic";
 
 function dataScurta(iso: string | null): string {

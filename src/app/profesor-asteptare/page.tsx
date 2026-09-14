@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
 
-export const metadata = { title: "Cerere în așteptare — Academia Python" };
+export const metadata = { title: "Cerere în așteptare" };
 
 export default async function AsteptarePage() {
   const { user, meta } = await getUtilizatorCurent();

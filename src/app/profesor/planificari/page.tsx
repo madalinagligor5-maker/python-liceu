@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { claseleDisponibile } from "@/lib/planificari";
 
-export const metadata = { title: "Planificări — Academia Python" };
+export const metadata = { title: "Planificări" };
 
 export default function PlanificariPage() {
   return (

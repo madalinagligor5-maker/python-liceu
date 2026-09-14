@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!lectie) return {};
 
   return {
-    title: `${lectie.lectie} — Academia Python`,
+    title: lectie.lectie,
     description: lectie.explicatie_scurta.slice(0, 155),
     alternates: { canonical: `/lectii/${clasa}/${unitateSlug}/${lectieSlug}` },
   };

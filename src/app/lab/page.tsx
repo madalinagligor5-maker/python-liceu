@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import LabClient from "@/components/LabClient";
 
 export const metadata: Metadata = {
-  title: "Lab (Cod online) — Academia Python",
+  title: "Lab (Cod online)",
   description: "Scrie și rulează cod Python direct în browser, fără instalare.",
+  alternates: { canonical: "/lab" },
 };
 
 export default function LabPage() {

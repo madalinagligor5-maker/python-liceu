@@ -1,6 +1,6 @@
 import { listaRecenzii } from "@/app/actions/admin";
 
-export const metadata = { title: "Admin — Recenzii — Academia Python" };
+export const metadata = { title: "Admin — Recenzii" };
 export const dynamic = "force-dynamic";
 
 function dataScurta(iso: string): string {

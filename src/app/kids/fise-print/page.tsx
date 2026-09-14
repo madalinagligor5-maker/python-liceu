@@ -3,8 +3,9 @@ import Link from "next/link";
 import PrintButton from "@/components/PrintButton";
 
 export const metadata: Metadata = {
-  title: "Fișe Didactice Printabile — Academia Python Kids",
+  title: "Fișe Didactice Printabile — Kids",
   description: "Descarcă și printează fișe didactice unplugged pentru învățarea logicii de programare pe hârtie.",
+  alternates: { canonical: "/kids/fise-print" },
 };
 
 export default function KidsPrintPage() {

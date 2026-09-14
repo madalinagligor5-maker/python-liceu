@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Politică de Confidențialitate (GDPR) — Academia Python",
+  title: "Politică de Confidențialitate (GDPR)",
   description: "Politica de confidențialitate și protecție a datelor cu caracter personal conform GDPR pe platforma Academia Python.",
+  alternates: { canonical: "/politica-de-confidentialitate" },
 };
 
 export default function PoliticaConfidentialitatePage() {

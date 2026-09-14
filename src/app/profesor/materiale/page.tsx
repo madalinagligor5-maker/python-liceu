@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getToateMaterialele } from "@/lib/materialeProfesori";
 
-export const metadata = { title: "Materiale — Academia Python" };
+export const metadata = { title: "Materiale" };
 
 export default async function MaterialeProfesorPage() {
   const materiale = await getToateMaterialele();

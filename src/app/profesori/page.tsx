@@ -2,9 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pentru profesori — Academia Python",
+  title: "Pentru profesori",
   description:
     "Planificări calendaristice, materiale, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
+  alternates: { canonical: "/profesori" },
 };
 
 export default function ProfesoriPage() {

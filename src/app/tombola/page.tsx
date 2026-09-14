@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import TombolaForm from "@/components/TombolaForm";
 
 export const metadata: Metadata = {
-  title: "Tombolă — Academia Python",
+  title: "Tombolă",
   description:
     "Încearcă 7 zile gratuit, lasă un review și intră la tombola pentru 6 luni de abonament gratuit.",
+  alternates: { canonical: "/tombola" },
 };
 
 export default function TombolaPage() {

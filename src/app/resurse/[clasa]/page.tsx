@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!capitol) return {};
 
   return {
-    title: `Fișe de lucru Clasa a ${clasa}-a — Academia Python`,
+    title: `Fișe de lucru Clasa a ${clasa}-a`,
     description: `Descărcare fișe de lucru PDF pentru clasa a ${clasa}-a, conform programei școlare.`,
     alternates: { canonical: `/resurse/${clasa}` },
   };

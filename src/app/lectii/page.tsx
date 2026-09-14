@@ -4,8 +4,9 @@ import { capitole, hrefModul } from "@/lib/curriculum";
 import LectieBadge from "@/components/LectieBadge";
 
 export const metadata: Metadata = {
-  title: "Catalog de lecții — Academia Python",
+  title: "Catalog de lecții",
   description: "Toate cele 88 de module de Python pentru liceu, organizate pe clase și unități de învățare.",
+  alternates: { canonical: "/lectii" },
 };
 
 export default function LectiiPage() {

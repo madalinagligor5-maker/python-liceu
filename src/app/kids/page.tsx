@@ -5,8 +5,9 @@ import { getProgresKids } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
 
 export const metadata: Metadata = {
-  title: "Kids — Academia Python pentru clasele I–IV",
+  title: "Kids — pentru clasele I–IV",
   description: "Învață programare vizuală și bazele Python prin jocuri de logică și labirinturi interactive.",
+  alternates: { canonical: "/kids" },
 };
 
 const NIVELE = [

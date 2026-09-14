@@ -6,10 +6,18 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 
 type Params = { nivelId: string };
 
-export const metadata: Metadata = {
-  title: "Aventura lui Pippy — Academia Python Kids",
-  description: "Rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { nivelId } = await params;
+  return {
+    title: "Aventura lui Pippy — Kids",
+    description: "Rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.",
+    alternates: { canonical: `/kids/aventura/${nivelId}` },
+  };
+}
 
 export default async function KidsLevelPage({ params }: { params: Promise<Params> }) {
   const { nivelId } = await params;

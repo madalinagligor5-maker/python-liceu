@@ -1,7 +1,7 @@
 import { capitole } from "@/lib/curriculum";
 import GeneratorTeste from "@/components/profesor/GeneratorTeste";
 
-export const metadata = { title: "Generator de teste — Academia Python" };
+export const metadata = { title: "Generator de teste" };
 
 const CLASE_LICEU = ["IX", "X", "XI", "XII"];
 

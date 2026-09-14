@@ -39,11 +39,32 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { clasa, modulSlug, sublectieCod } = await params;
   const modul = getModul(clasa, modulSlug);
+  if (!modul) return {};
+
+  // Modulele premium arată, pentru cine nu are acces, un "teaser" aproape
+  // identic pe sute de sublecții (doar titlul/descrierea scurtă diferă) —
+  // conținut subțire și cvasi-duplicat. Nu le trimitem la indexare: fără
+  // acest noindex explicit, Google le descoperă prin navigarea internă
+  // (anterior/următor, lista din pagina de modul) și rămân în limb ca
+  // "Discovered/Crawled - currently not indexed", risipind buget de crawl.
+  // Sublecțiile chiar publice (module gratuite) rămân indexabile normal.
+  const esteGratuit = modul.gratuit || modul.numar <= 5;
+  if (!esteGratuit) {
+    const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
+    if (!sublectieInfo) return {};
+    return {
+      title: `${sublectieCod} ${sublectieInfo.titlu}`,
+      description: `${sublectieInfo.descriere} — necesită abonament activ.`,
+      alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
+      robots: { index: false, follow: true },
+    };
+  }
+
   const continut = await getSublectieContinut(sublectieCod);
-  if (!modul || !continut) return {};
+  if (!continut) return {};
 
   return {
-    title: `${sublectieCod} ${continut.titlu} — Academia Python`,
+    title: `${sublectieCod} ${continut.titlu}`,
     description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}.`,
     alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
   };

@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return {
-    title: `Exercițiu de Evaluare: ${modul.titlu} — Academia Python`,
+    title: `Exercițiu de Evaluare: ${modul.titlu}`,
     description: `Rezolvă exercițiul practic de cod de sine stătător și primește evaluare/îndrumare inteligentă de la profesorul AI pentru modulul ${modul.titlu}.`,
     alternates: { canonical: `/exercitii/${clasa}/${modulSlug}` },
   };

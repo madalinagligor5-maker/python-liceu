@@ -19,15 +19,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url("/politica-de-rambursare"), changeFrequency: "yearly", priority: 0.2 },
   ];
 
-  // Toate sublecțiile din structura curriculară (clasă → modul → sublecție).
+  // Paginile de clasă (/curriculum/[clasa]) — conținut propriu, unic per
+  // clasă (lista de module), indiferent dacă modulele din ea sunt gratuite
+  // sau nu. Lipseau complet din sitemap înainte.
+  const dinClase: MetadataRoute.Sitemap = capitole.map((cap) => ({
+    url: url(`/curriculum/${cap.clasa}`),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // Paginile de modul (/curriculum/[clasa]/[modul]) — conținut propriu, unic
+  // per modul (titlu, descriere, lista celor 6 sublecții), inclusiv pentru
+  // modulele premium: pagina de modul NU e un teaser gol, arată structura
+  // reală. Le includem pe toate — spre deosebire de sublecțiile individuale.
+  const dinModule: MetadataRoute.Sitemap = capitole.flatMap((cap) =>
+    cap.module.map((modul) => ({
+      url: url(`/curriculum/${cap.clasa}/${modul.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+  );
+
+  // Sublecțiile individuale — doar din modulele cu adevărat publice (aceeași
+  // regulă de acces ca în pagina de sublecție). Pentru restul, pagina arată
+  // un "teaser" aproape identic pe sute de URL-uri (doar titlul diferă) —
+  // conținut subțire și cvasi-duplicat, exact motivul pentru care Google
+  // raportează "Discovered - currently not indexed" în masă. Nu le includem
+  // în sitemap; rămân accesibile prin navigare, doar nu trimise spre indexare.
   const dinCurriculum: MetadataRoute.Sitemap = capitole.flatMap((cap) =>
-    cap.module.flatMap((modul) =>
-      modul.sublectii.map((s) => ({
-        url: url(`/curriculum/${cap.clasa}/${modul.slug}/${s.cod}`),
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-      }))
-    )
+    cap.module
+      .filter((modul) => modul.gratuit || modul.numar <= 5)
+      .flatMap((modul) =>
+        modul.sublectii.map((s) => ({
+          url: url(`/curriculum/${cap.clasa}/${modul.slug}/${s.cod}`),
+          changeFrequency: "monthly" as const,
+          priority: 0.5,
+        }))
+      )
   );
 
   // Articolele de blog — generate dinamic din content/blog/, nu hardcodate.
@@ -38,5 +66,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...statice, ...dinCurriculum, ...dinBlog];
+  return [...statice, ...dinClase, ...dinModule, ...dinCurriculum, ...dinBlog];
 }

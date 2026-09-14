@@ -4,9 +4,10 @@ import { capitole, structura } from "@/lib/curriculum";
 import ModuleListCollapsible from "@/components/ModuleListCollapsible";
 
 export const metadata: Metadata = {
-  title: "Curriculum complet — Academia Python",
+  title: "Curriculum complet",
   description:
     "Structura completă a cursului de Informatică pentru liceu: 4 capitole, 88 module, 528 sublecții, conform programei oficiale.",
+  alternates: { canonical: "/curriculum" },
 };
 
 export default function CurriculumPage() {

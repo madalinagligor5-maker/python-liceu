@@ -4,8 +4,9 @@ import AbonaButton from "@/components/AbonaButton";
 import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
-  title: "Prețuri — Academia Python",
+  title: "Prețuri",
   description: "Planuri de abonament Academia Python — acces complet la toate lecțiile, clasele IX-XII.",
+  alternates: { canonical: "/preturi" },
 };
 
 const PLANURI = [
