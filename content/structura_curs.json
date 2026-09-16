@@ -1,0 +1,196 @@
+{
+  "sursa": "Curs practic de Python -- curs de sine statator, pentru orice varsta, separat de traseul scolar",
+  "sablon_sublectii": [
+    {
+      "titlu": "Recapitulare",
+      "descriere": "Leaga lectia de ce s-a invatat deja."
+    },
+    {
+      "titlu": "Concept nou si exemplu",
+      "descriere": "Explicatie pas cu pas si un exemplu de cod comentat."
+    },
+    {
+      "titlu": "Citeste si prezice",
+      "descriere": "Citesti un fragment de cod si anticipezi rezultatul."
+    },
+    {
+      "titlu": "Exercitii ghidate",
+      "descriere": "Probleme rezolvate partial, cu indicii."
+    },
+    {
+      "titlu": "Exercitii independente",
+      "descriere": "Probleme de rezolvat singur, fara sprijin."
+    },
+    {
+      "titlu": "Verifica-ti intelegerea",
+      "descriere": "3-5 intrebari scurte inainte de modulul urmator."
+    }
+  ],
+  "statistici": {
+    "unitati": 1,
+    "module": 3,
+    "sublectii": 18
+  },
+  "unitati": [
+    {
+      "numar": 1,
+      "titlu": "Primii pași",
+      "slug": "primii-pasi",
+      "module": [
+        {
+          "cod": "CP1.1",
+          "numar": 1,
+          "titlu": "Ce e programarea și de ce Python",
+          "slug": "ce-e-programarea-si-de-ce-python",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "CP1.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP1.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP1.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP1.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP1.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP1.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "CP1.2",
+          "numar": 2,
+          "titlu": "Variabile și tipuri de date",
+          "slug": "variabile-si-tipuri-de-date",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP1.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP1.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP1.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP1.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP1.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP1.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "CP1.3",
+          "numar": 3,
+          "titlu": "Operatori și expresii",
+          "slug": "operatori-si-expresii",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP1.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP1.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP1.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP1.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP1.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP1.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

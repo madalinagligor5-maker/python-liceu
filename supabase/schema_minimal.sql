@@ -71,6 +71,12 @@ alter table public.users_meta
   add column if not exists streak_zile integer not null default 0,
   add column if not exists ultima_activitate date;
 
+-- Produs separat: Curs practic de Python (vezi migrare-curs-practic.sql)
+alter table public.users_meta
+  add column if not exists curs_status text check (curs_status in ('none','active','past_due','canceled')) default 'none',
+  add column if not exists curs_current_period_end timestamptz,
+  add column if not exists curs_cancel_at_period_end boolean not null default false;
+
 create table if not exists public.insigne_utilizator (
   user_id uuid not null references auth.users (id) on delete cascade,
   insigna_slug text not null,

@@ -178,6 +178,13 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
             <span>🎮 Academia Kids</span>
             <span className="text-emerald-700 font-semibold">Clasele I–IV (100% Gratuit)</span>
           </Link>
+          <Link
+            href="/curs-practic"
+            className="flex items-center gap-2 rounded-full bg-rose-50 border border-rose-200 px-4 py-1.5 text-xs font-bold text-rose-900 hover:bg-rose-100 transition shadow-xs"
+          >
+            <span>🚀 Curs practic Python</span>
+            <span className="text-rose-700 font-semibold">Pentru toată lumea — Modulul 1 gratuit</span>
+          </Link>
         </div>
 
         {/* Layout Hero */}

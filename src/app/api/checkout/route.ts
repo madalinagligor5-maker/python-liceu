@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { creeazaClientServer } from "@/lib/supabase/server";
-import { getStripe, STRIPE_PRICE_IDS } from "@/lib/stripe";
+import { getStripe, STRIPE_PRICE_IDS, STRIPE_PRICE_IDS_CURS } from "@/lib/stripe";
 
 export async function POST(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -17,8 +17,9 @@ export async function POST(request: NextRequest) {
   }
 
   const body: unknown = await request.json().catch(() => ({}));
-  const planBrut =
-    typeof body === "object" && body !== null ? (body as { plan?: unknown }).plan : undefined;
+  const bodyObj = typeof body === "object" && body !== null ? (body as Record<string, unknown>) : {};
+  const planBrut = bodyObj.plan;
+  const produsBrut = bodyObj.produs;
 
   const esteplanValid = (p: unknown): p is "lunar" | "anual" => p === "lunar" || p === "anual";
 
@@ -27,7 +28,12 @@ export async function POST(request: NextRequest) {
   }
   const plan = planBrut;
 
-  const priceId = STRIPE_PRICE_IDS[plan];
+  // "produs" distinge abonamentul de liceu (implicit, comportament neschimbat)
+  // de „Curs practic de Python" -- produs separat, cu propriile price ID-uri.
+  // Salvat în metadata abonamentului, ca webhook-ul să știe ce coloană din
+  // users_meta actualizează (subscription_status vs. curs_status).
+  const produs = produsBrut === "curs" ? "curs" : "liceu";
+  const priceId = produs === "curs" ? STRIPE_PRICE_IDS_CURS[plan] : STRIPE_PRICE_IDS[plan];
   if (!priceId) {
     return NextResponse.json(
       { error: "Acest plan nu este încă configurat (lipsește price ID-ul Stripe)." },
@@ -86,7 +92,7 @@ export async function POST(request: NextRequest) {
       allow_promotion_codes: true,
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: {
-        metadata: { supabase_user_id: user.id },
+        metadata: { supabase_user_id: user.id, produs },
         trial_period_days: 7,
       },
       success_url: `${origin}/cont?checkout=success`,

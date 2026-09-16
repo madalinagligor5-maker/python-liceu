@@ -76,6 +76,7 @@ async function incarcaTot(): Promise<IndexQuiz> {
   if (cache) return cache;
 
   const fisiere = [
+    "curs-practic-u1.md",
     "lectii_VII.md", "lectii_VIII.md",
     "lectii_IX_1.1-1.8.md", "lectii_IX_1.9-1.20.md",
     "lectii_X_2.1-2.3.md", "lectii_X_2.2-2.5.md", "lectii_X_2.6-2.10.md",

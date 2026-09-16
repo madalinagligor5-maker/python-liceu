@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { capitole } from "@/lib/curriculum";
+import { unitati as unitatiCurs } from "@/lib/curs";
 import { getToateArticolele } from "@/lib/blog";
 
 const SITE_URL = "https://www.academiapython.ro";
@@ -12,6 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url("/"), changeFrequency: "weekly", priority: 1 },
     { url: url("/curriculum"), changeFrequency: "weekly", priority: 0.9 },
     { url: url("/preturi"), changeFrequency: "monthly", priority: 0.6 },
+    { url: url("/curs-practic"), changeFrequency: "weekly", priority: 0.8 },
+    { url: url("/curs-practic/preturi"), changeFrequency: "monthly", priority: 0.6 },
     { url: url("/lectii"), changeFrequency: "weekly", priority: 0.7 },
     { url: url("/blog"), changeFrequency: "weekly", priority: 0.7 },
     { url: url("/termeni-si-conditii"), changeFrequency: "yearly", priority: 0.2 },
@@ -66,5 +69,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...statice, ...dinClase, ...dinModule, ...dinCurriculum, ...dinBlog];
+  // "Curs practic de Python" -- sistem de continut complet separat de
+  // capitole/clase (vezi src/lib/curs.ts). Aceeasi regula ca la liceu:
+  // paginile de modul intra toate, sublectiile individuale doar din
+  // modulele gratuite.
+  const dinModuleCurs: MetadataRoute.Sitemap = unitatiCurs.flatMap((u) =>
+    u.module.map((modul) => ({
+      url: url(`/curs-practic/${modul.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }))
+  );
+
+  const dinCursPractic: MetadataRoute.Sitemap = unitatiCurs.flatMap((u) =>
+    u.module
+      .filter((modul) => modul.gratuit)
+      .flatMap((modul) =>
+        modul.sublectii.map((s) => ({
+          url: url(`/curs-practic/${modul.slug}/${s.cod}`),
+          changeFrequency: "monthly" as const,
+          priority: 0.5,
+        }))
+      )
+  );
+
+  return [
+    ...statice,
+    ...dinClase,
+    ...dinModule,
+    ...dinCurriculum,
+    ...dinModuleCurs,
+    ...dinCursPractic,
+    ...dinBlog,
+  ];
 }

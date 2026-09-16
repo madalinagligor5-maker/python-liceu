@@ -3729,5 +3729,113 @@
       "expectedOutput": "12",
       "hint": "Combină o buclă, un if care verifică numar % 2 == 0, și un acumulator maxim."
     }
+  ],
+  "CP1.1.4": [
+    {
+      "id": "CP1.1.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează codul ca să afișeze numele 'Alex' pe prima linie și un mesaj de bun venit pe a doua.",
+      "template": "nume = \"Alex\"\nprint(___)\nprint(\"Bine ai venit la cursul de Python!\")",
+      "expectedOutput": "Alex Bine ai venit la cursul de Python!",
+      "hint": "Completează cu numele variabilei care ține minte numele."
+    },
+    {
+      "id": "CP1.1.4.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un cod care calculează suma a două numere, 7 și 5, și o afișează.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "12",
+      "hint": "Creează două variabile cu valorile 7 și 5, adună-le și afișează rezultatul cu print()."
+    }
+  ],
+  "CP1.1.5": [
+    {
+      "id": "CP1.1.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program de prezentare cu exact 2 linii: prima afișează 'Salut, sunt un programator Python!', a doua afișează 'Azi e prima mea zi de curs.'",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "Salut, sunt un programator Python! Azi e prima mea zi de curs.",
+      "hint": "Folosește două apeluri separate de print()."
+    },
+    {
+      "id": "CP1.1.5.ex2",
+      "tip": "cod",
+      "enunt": "Mini-proiect: scrie un program care afișează suma primelor 3 numere naturale (1, 2, 3).",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "6",
+      "hint": "print(1 + 2 + 3), sau folosește variabile separate."
+    }
+  ],
+  "CP1.2.4": [
+    {
+      "id": "CP1.2.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează linia care afișează numele, vârsta și orașul Anei într-o propoziție.",
+      "template": "nume = \"Ana\"\nvarsta = 25\noras = \"Cluj\"\nprint(\"Mă numesc\", ___, \", am\", varsta, \"ani și locuiesc în\", oras)",
+      "expectedOutput": "Mă numesc Ana , am 25 ani și locuiesc în Cluj",
+      "hint": "Completează cu numele variabilei care ține minte numele persoanei."
+    },
+    {
+      "id": "CP1.2.4.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care calculează suma numerelor 8 și 4.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "12",
+      "hint": "Creează două variabile, adună-le și afișează rezultatul."
+    }
+  ],
+  "CP1.2.5": [
+    {
+      "id": "CP1.2.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program cu numerele 10 și 4: afișează suma, diferența și produsul lor, fiecare pe rândul lui.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "14 6 40",
+      "hint": "Trei apeluri print() separate: sumă, diferență, produs."
+    },
+    {
+      "id": "CP1.2.5.ex2",
+      "tip": "cod",
+      "enunt": "Mini-proiect: calculează IMC pentru o greutate de 70 kg și o înălțime de 1.75 m (formula: greutate / inaltime ** 2), rotunjit la un zecimal.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "22.9",
+      "hint": "Folosește round(rezultat, 1) ca să rotunjești la un zecimal."
+    }
+  ],
+  "CP1.3.4": [
+    {
+      "id": "CP1.3.4.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează, pe rânduri separate, 10 % 3 și 10 // 3.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "1 3",
+      "hint": "print(10 % 3) apoi print(10 // 3)."
+    },
+    {
+      "id": "CP1.3.4.ex2",
+      "tip": "cod",
+      "enunt": "Completează condiția care verifică dacă vârsta 20 e mai mare sau egală cu 18.",
+      "template": "varsta = 20\nprint(varsta ___ 18)",
+      "expectedOutput": "True",
+      "hint": "Operatorul relațional pentru „mai mare sau egal” e >=."
+    }
+  ],
+  "CP1.3.5": [
+    {
+      "id": "CP1.3.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care verifică dacă anul 2024 e bisect (divizibil cu 4, dar dacă e divizibil cu 100 trebuie să fie și divizibil cu 400).",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "True",
+      "hint": "an % 4 == 0 and (an % 100 != 0 or an % 400 == 0)"
+    },
+    {
+      "id": "CP1.3.5.ex2",
+      "tip": "cod",
+      "enunt": "Mini-proiect: scrie un program care verifică dacă prețul 150 depășește 100 de lei (caz în care s-ar aplica o reducere).",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "True",
+      "hint": "print(pret > 100)"
+    }
   ]
 }

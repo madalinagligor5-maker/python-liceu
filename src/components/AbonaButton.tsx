@@ -5,9 +5,15 @@ import { useRouter } from "next/navigation";
 
 export default function AbonaButton({
   plan,
+  produs = "liceu",
+  redirectLogin = "/preturi",
   className,
 }: {
   plan: "lunar" | "anual";
+  /** Ce se cumpără -- abonamentul de liceu (implicit) sau Cursul practic
+   *  de Python, produs separat cu propriile price ID-uri Stripe. */
+  produs?: "liceu" | "curs";
+  redirectLogin?: string;
   className?: string;
 }) {
   const router = useRouter();
@@ -22,11 +28,11 @@ export default function AbonaButton({
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan }),
+        body: JSON.stringify({ plan, produs }),
       });
 
       if (res.status === 401) {
-        router.push(`/login?redirect=${encodeURIComponent("/preturi")}`);
+        router.push(`/login?redirect=${encodeURIComponent(redirectLogin)}`);
         return;
       }
 
