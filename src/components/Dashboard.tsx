@@ -22,8 +22,9 @@ import {
   urmatoareaLectie,
   type ProgresUtilizator,
 } from "@/lib/progres";
+import { TOATE_CLASELE } from "@/lib/curriculum";
 
-const CLASE = ["IX", "X", "XI", "XII"] as const;
+const CLASE = TOATE_CLASELE;
 
 export default function Dashboard({
   prenume,

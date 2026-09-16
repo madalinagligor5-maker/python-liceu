@@ -1,4 +1,5 @@
 import continutRaw from "../../content/continut_pagina_web.json";
+import { TOATE_CLASELE } from "@/lib/curriculum";
 
 export type QuizIntrebare = {
   intrebare: string;
@@ -29,7 +30,7 @@ export type Lectie = {
 
 export const toateLectiile: Lectie[] = continutRaw as Lectie[];
 
-const ORDINE_CLASE = ["IX", "X", "XI", "XII"];
+const ORDINE_CLASE: readonly string[] = TOATE_CLASELE;
 
 export function getLectiiGrupate() {
   const clase = Array.from(new Set(toateLectiile.map((l) => l.clasa))).sort(

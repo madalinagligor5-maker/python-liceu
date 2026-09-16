@@ -66,7 +66,7 @@ create trigger on_auth_user_created
 
 -- Extindere progresie
 alter table public.users_meta
-  add column if not exists clasa text check (clasa in ('IX','X','XI','XII')),
+  add column if not exists clasa text check (clasa in ('VII','VIII','IX','X','XI','XII')),
   add column if not exists xp_total integer not null default 0,
   add column if not exists streak_zile integer not null default 0,
   add column if not exists ultima_activitate date;

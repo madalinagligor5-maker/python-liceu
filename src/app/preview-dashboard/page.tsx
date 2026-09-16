@@ -1,6 +1,7 @@
 import Dashboard from "@/components/Dashboard";
 import type { ProgresUtilizator } from "@/lib/progres";
 import { toateLectiile } from "@/lib/content";
+import { TOATE_CLASELE } from "@/lib/curriculum";
 
 export const metadata = {
   title: "Previzualizare dashboard",
@@ -19,7 +20,7 @@ export default async function PreviewDashboard({
 }) {
   const params = await searchParams;
   const cerut = Array.isArray(params?.clasa) ? params.clasa[0] : params?.clasa;
-  const clasa = cerut && ["IX", "X", "XI", "XII"].includes(cerut) ? cerut : "IX";
+  const clasa = cerut && (TOATE_CLASELE as readonly string[]).includes(cerut) ? cerut : "IX";
 
   // Marcăm primele 2 lecții ale clasei ca finalizate, ca să se vadă toate
   // stările din drumul de învățare: finalizat, curent, blocat.

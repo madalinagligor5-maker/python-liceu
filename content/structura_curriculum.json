@@ -27,11 +27,287 @@
     }
   ],
   "statistici": {
-    "capitole": 9,
-    "module": 103,
-    "sublectii": 618
+    "capitole": 11,
+    "module": 108,
+    "sublectii": 648
   },
   "capitole": [
+    {
+      "numar": 1,
+      "clasa": "VII",
+      "titlu": "De la Scratch la Python: bazele programării",
+      "slug": "python-gimnaziu-clasa-vii",
+      "module": [
+        {
+          "cod": "VII.1",
+          "numar": 1,
+          "titlu": "Primii pași în Python",
+          "slug": "primii-pasi-in-python",
+          "clasa": "VII",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "VII.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "VII.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "VII.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "VII.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "VII.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "VII.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "VII.2",
+          "numar": 2,
+          "titlu": "De la Scratch la Python: secvențial și alternativ",
+          "slug": "de-la-scratch-la-python-secvential-si-alternativ",
+          "clasa": "VII",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "VII.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "VII.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "VII.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "VII.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "VII.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "VII.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "VII.3",
+          "numar": 3,
+          "titlu": "Structura repetitivă și combinarea celor trei structuri",
+          "slug": "structura-repetitiva-si-combinarea-structurilor",
+          "clasa": "VII",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "VII.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "VII.3.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "VII.3.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "VII.3.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "VII.3.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "VII.3.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numar": 1,
+      "clasa": "VIII",
+      "titlu": "Șiruri de valori și algoritmi de prelucrare",
+      "slug": "python-gimnaziu-clasa-viii",
+      "module": [
+        {
+          "cod": "VIII.1",
+          "numar": 1,
+          "titlu": "Șiruri de valori: identificare și generare",
+          "slug": "siruri-de-valori-identificare-si-generare",
+          "clasa": "VIII",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "VIII.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "VIII.1.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "VIII.1.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "VIII.1.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "VIII.1.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "VIII.1.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "VIII.2",
+          "numar": 2,
+          "titlu": "Algoritmi de prelucrare a șirurilor de valori",
+          "slug": "algoritmi-de-prelucrare-a-sirurilor-de-valori",
+          "clasa": "VIII",
+          "gratuit": true,
+          "sublectii": [
+            {
+              "cod": "VIII.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "VIII.2.2",
+              "titlu": "Concept nou si exemplu",
+              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "VIII.2.3",
+              "titlu": "Citeste si prezice",
+              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "VIII.2.4",
+              "titlu": "Exercitii ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "VIII.2.5",
+              "titlu": "Exercitii independente",
+              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "VIII.2.6",
+              "titlu": "Verifica-ti intelegerea",
+              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
     {
       "numar": 1,
       "clasa": "IX",

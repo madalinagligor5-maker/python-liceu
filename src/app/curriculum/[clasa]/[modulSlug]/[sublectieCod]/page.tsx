@@ -6,6 +6,7 @@ import {
   getModul,
   hrefModul,
   ICOANE_SUBLECTIE,
+  toateModulele,
 } from "@/lib/curriculum";
 import {
   getSublectieContinut,
@@ -16,7 +17,7 @@ import BlocuriSublectie from "@/components/BlocuriSublectie";
 import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
 import PythonEditor from "@/components/PythonEditor";
-import { getUtilizatorCurent, areAbonamentActiv, esteProfesorAprobat } from "@/lib/subscription";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
@@ -94,6 +95,14 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   const anterior = await sublectieAnterioara(sublectieCod);
   const urmatoarea = await sublectieUrmatoare(sublectieCod);
 
+  // O sublecție adiacentă poate aparține altui modul (sau altei clase, la
+  // tranziția dintre capitole) — nu presupunem că folosește clasa/modulSlug
+  // ale paginii curente, ca să nu construim un link cu clasă/modul greșite.
+  const hrefSublectieAdiacenta = (s: { cod: string; module: string }) => {
+    const modulTinta = toateModulele().find((m) => m.cod === s.module);
+    return modulTinta ? `${hrefModul(modulTinta)}/${s.cod}` : `/curriculum/${clasa}/${modulSlug}/${s.cod}`;
+  };
+
   const breadcrumbJsonLd = (
     <BreadcrumbJsonLd
       firimituri={[
@@ -127,7 +136,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
     <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
       {anterior ? (
         <Link
-          href={`/curriculum/${clasa}/${modulSlug}/${anterior.cod}`}
+          href={hrefSublectieAdiacenta(anterior)}
           className="max-w-[45%] text-sm font-semibold text-brand hover:text-brand-dark"
         >
           ← {anterior.cod} {anterior.titlu}
@@ -137,7 +146,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       )}
       {urmatoarea ? (
         <Link
-          href={`/curriculum/${clasa}/${modulSlug}/${urmatoarea.cod}`}
+          href={hrefSublectieAdiacenta(urmatoarea)}
           className="max-w-[45%] text-right text-sm font-semibold text-brand hover:text-brand-dark"
         >
           {urmatoarea.cod} {urmatoarea.titlu} →
@@ -156,7 +165,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   // Verificare acces premium:
   const { user, meta } = await getUtilizatorCurent();
   const esteGratuit = modul.gratuit || modul.numar <= 5;
-  const areAcces = esteGratuit || areAbonamentActiv(meta) || esteProfesorAprobat(meta);
+  const areAcces = esteGratuit || areAbonamentActiv(meta);
 
   if (!areAcces) {
     // Variantă „teaser", randată server-side pentru oricine (inclusiv
@@ -288,7 +297,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
       {predic && (
         <ScrollReveal className="mt-8">
-          <PredicțieWidget predic={predic} sublectieCod={sublectieCod} />
+          <PredicțieWidget predic={predic} sublectieCod={sublectieCod} clasa={clasa} />
         </ScrollReveal>
       )}
 

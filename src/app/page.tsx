@@ -6,12 +6,28 @@ import NewsletterForm from "@/components/NewsletterForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
-import { capitole } from "@/lib/curriculum";
+import { capitole, TOATE_CLASELE } from "@/lib/curriculum";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getToateArticolele } from "@/lib/blog";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
 
 const CLASE = [
+  {
+    clasa: "VII",
+    titlu: "Primii pași în Python",
+    descriere:
+      "De la blocurile din Scratch la sintaxa text: variabile, decizii și cele trei structuri fundamentale de control, combinate.",
+    icon: "🌱",
+    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
+  },
+  {
+    clasa: "VIII",
+    titlu: "Șiruri de valori",
+    descriere:
+      "Generezi și prelucrezi șiruri de valori — exact algoritmii de bază presupuși cunoscuți la intrarea în clasa a IX-a.",
+    icon: "🔢",
+    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
+  },
   {
     clasa: "IX",
     titlu: "Bazele programării",
@@ -50,7 +66,7 @@ const FAQ = [
   {
     intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Toate cele 6 module din Academia Junior sunt 100% GRATUITE. De asemenea, primele 3 module din liceu sunt deschise complet fără card.",
+      "Da. Toate cele 6 module din Academia Junior și toate cele 5 module de gimnaziu (clasele VII-VIII) sunt 100% GRATUITE. De asemenea, primele 3 module din liceu sunt deschise complet fără card.",
   },
   {
     intrebare: "Trebuie să instalez Python pe laptop?",
@@ -60,7 +76,7 @@ const FAQ = [
   {
     intrebare: "Se potrivește cu ce facem la școală?",
     raspuns:
-      "Se potrivește 100%. Lecțiile sunt grupate pe clase (IX–XII & Ciclul Primar) și respectă programa școlară de Informatică.",
+      "Se potrivește 100%. Lecțiile sunt grupate pe clase (VII–VIII, IX–XII & Ciclul Primar) și respectă programa școlară de Informatică.",
   },
   {
     intrebare: "Mă ajută la Bacalaureat și la evaluările de la școală?",
@@ -87,7 +103,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     const progres = await getProgresUtilizator(user.id);
     const params = await searchParams;
     const cerut = Array.isArray(params?.clasa) ? params.clasa[0] : params?.clasa;
-    const valide = ["IX", "X", "XI", "XII"];
+    const valide: readonly string[] = TOATE_CLASELE;
     const clasaSelectata =
       (cerut && valide.includes(cerut) ? cerut : null) ??
       (progres?.clasa && valide.includes(progres.clasa) ? progres.clasa : null) ??
@@ -147,6 +163,13 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           >
             <span>🎓 Academia Liceu</span>
             <span className="text-blue-700 font-semibold">Clasele IX–XII</span>
+          </Link>
+          <Link
+            href="/curriculum/VII"
+            className="flex items-center gap-2 rounded-full bg-violet-50 border border-violet-200 px-4 py-1.5 text-xs font-bold text-violet-900 hover:bg-violet-100 transition shadow-xs"
+          >
+            <span>🌱 Academia Gimnaziu</span>
+            <span className="text-violet-700 font-semibold">Clasele VII–VIII (100% Gratuit)</span>
           </Link>
           <Link
             href="/kids/junior"
@@ -276,7 +299,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">Ce înveți pe clase</h2>
           <p className="mt-3 text-sm text-[#525B6C] font-medium">
-            Parcurge modulele de la clasa a IX-a până la examenul de Bacalaureat.
+            Parcurge modulele de la clasa a VII-a până la examenul de Bacalaureat.
           </p>
         </ScrollReveal>
 

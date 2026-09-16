@@ -11,7 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function CurriculumPage() {
-  const capitoleLiceu = capitole.filter((c) => !c.clasa.startsWith("P"));
+  // Pagina asta e legată explicit de Ordinul 4.370/2026 (profil
+  // Matematică-Informatică) — gimnaziul (VII/VIII) are propria programă
+  // (OMEN 3393/2017) și propriile pagini /curriculum/VII, /curriculum/VIII,
+  // dar nu aparține acestui rezumat de liceu.
+  const capitoleLiceu = capitole.filter(
+    (c) => !c.clasa.startsWith("P") && c.clasa !== "VII" && c.clasa !== "VIII"
+  );
   const nrCapitole = capitoleLiceu.length;
   const nrModule = capitoleLiceu.reduce((acc, c) => acc + c.module.length, 0);
   const nrSublectii = nrModule * 6;

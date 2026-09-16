@@ -5,7 +5,7 @@ import LectieBadge from "@/components/LectieBadge";
 
 export const metadata: Metadata = {
   title: "Catalog de lecții",
-  description: "Toate cele 88 de module de Python pentru liceu, organizate pe clase și unități de învățare.",
+  description: "Toate modulele de Python pentru gimnaziu și liceu, organizate pe clase și unități de învățare.",
   alternates: { canonical: "/lectii" },
 };
 
@@ -16,7 +16,8 @@ export default function LectiiPage() {
         <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">Catalog de lecții</h1>
         <p className="mt-2 text-foreground/70 text-sm">
           Aici găsești programa completă de Informatică (Python) structurată pe module de învățare. 
-          Primele 3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2 sunt deschise pentru explorare. 
+          Toate cele 5 module de gimnaziu (clasele a VII-a și a VIII-a) sunt complet gratuite. La liceu, primele
+          3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2 sunt deschise pentru explorare. 
           Restul necesită cont și abonament activ.
         </p>
       </div>

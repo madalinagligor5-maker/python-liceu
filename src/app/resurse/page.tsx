@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 export default function ResurseCatalogPage() {
   const clase = [
+    { clasa: "VII", titlu: "Clasa a VII-a", desc: "Primii pași în Python, de la Scratch la sintaxa text" },
+    { clasa: "VIII", titlu: "Clasa a VIII-a", desc: "Șiruri de valori și algoritmii de bază de prelucrare" },
     { clasa: "IX", titlu: "Clasa a IX-a", desc: "Bazele algoritmilor și programare în Python" },
     { clasa: "X", titlu: "Clasa a X-a", desc: "Căutare, sortare și structuri de date" },
     { clasa: "XI", titlu: "Clasa a XI-a", desc: "Programare Orientată pe Obiecte (OOP)" },

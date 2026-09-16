@@ -29,14 +29,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.academiapython.ro"),
   title: {
-    default: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    default: "Academia Python — Învață Python, clasele VII-XII",
     template: "%s — Academia Python",
   },
   description:
-    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de liceu. Drum de învățare vizual, exerciții interactive în browser, primele 3 module gratuite.",
+    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de gimnaziu și liceu. Drum de învățare vizual, exerciții interactive în browser — gimnaziul (clasele VII-VIII) e complet gratuit, primele 3 module de liceu la fel.",
   keywords: [
     "Python liceu",
+    "Python gimnaziu",
     "informatică liceu",
+    "informatică gimnaziu",
+    "Python clasa a VII-a",
+    "Python clasa a VIII-a",
     "Python clasa a IX-a",
     "Python clasa a X-a",
     "Python clasa a XI-a",
@@ -52,23 +56,23 @@ export const metadata: Metadata = {
     locale: "ro_RO",
     url: "https://www.academiapython.ro",
     siteName: "Academia Python",
-    title: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    title: "Academia Python — Învață Python, clasele VII-XII",
     description:
-      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele IX–XII, conform programei de Informatică.",
+      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele VII–XII, conform programei de Informatică. Gimnaziul e complet gratuit.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Academia Python — învață Python pentru liceu",
+        alt: "Academia Python — învață Python, gimnaziu și liceu",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Academia Python — Învață Python pentru liceu, clasele IX-XII",
+    title: "Academia Python — Învață Python, clasele VII-XII",
     description:
-      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele IX–XII.",
+      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele VII–XII.",
     images: ["/og-image.png"],
   },
 };

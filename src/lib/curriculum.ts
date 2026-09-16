@@ -48,6 +48,10 @@ export const structura = structuraRaw as Structura;
 
 export const capitole = structura.capitole;
 
+/** Toate clasele cu traseu real pe platformă, în ordinea firului pedagogic
+ *  (gimnaziu -> liceu). Sursă unică pentru orice selector/listă de clase. */
+export const TOATE_CLASELE = ["VII", "VIII", "IX", "X", "XI", "XII"] as const;
+
 /** Iconițe per tip de sublecție, folosite consecvent în UI. */
 export const ICOANE_SUBLECTIE: Record<TipSublectie, string> = {
   recapitulare: "🔄",

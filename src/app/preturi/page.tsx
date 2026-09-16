@@ -5,7 +5,7 @@ import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Prețuri",
-  description: "Planuri de abonament Academia Python — acces complet la toate lecțiile, clasele IX-XII.",
+  description: "Planuri de abonament Academia Python — acces complet la toate lecțiile de liceu, clasele IX-XII. Gimnaziul (clasele VII-VIII) e complet gratuit.",
   alternates: { canonical: "/preturi" },
 };
 
@@ -19,7 +19,7 @@ const PLANURI = [
     descriere: "Ideal dacă vrei să încerci platforma pe termen scurt.",
     badge: "⚡ Reducere 50%",
     beneficii: [
-      "Acces la toate lecțiile, clasele IX-XII",
+      "Acces la toate lecțiile de liceu, clasele IX-XII",
       "Exerciții interactive și quiz-uri",
       "Asistent AI pentru evaluarea codului",
       "Anulare oricând, fără costuri",
@@ -59,9 +59,10 @@ export default function PreturiPage() {
           Alege planul potrivit pentru tine
         </h1>
         <p className="mt-3 text-foreground/70">
-          Primele 3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2
-          sunt deschise pentru explorare — totul fără cont. Abonamentul deblochează
-          tot restul conținutului.
+          Toate cele 5 module de gimnaziu (clasele a VII-a și a VIII-a) sunt complet
+          gratuite, fără cont. La liceu, primele 3 module din clasa a IX-a sunt complet
+          gratuite, iar următoarele 2 sunt deschise pentru explorare — totul fără cont.
+          Abonamentul deblochează tot restul conținutului de liceu.
         </p>
 
         {!stripeConfigurat && (

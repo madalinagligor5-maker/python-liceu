@@ -3522,5 +3522,212 @@
       "hint": "Python are o funcție gata făcută care adună toate numerele dintr-o listă, fără să faci tu calculul manual. Gândește-te la cuvântul în engleză pentru 'sumă'.",
       "hint2": "Folosește funcția sum și pune lista note în paranteze, apoi afișeaz-o cu print, ca să vezi totalul notelor."
     }
+  ],
+  "VII.1.4": [
+    {
+      "id": "VII.1.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează codul ca să afișezi corect numele și vârsta unui elev.",
+      "template": "nume = \"Maria\"\nvarsta = 13\nprint(\"Nume:\", ___, \"Varsta:\", varsta)",
+      "expectedOutput": "Nume: Maria Varsta: 13",
+      "hint": "Completează cu numele variabilei care ține minte numele elevului."
+    },
+    {
+      "id": "VII.1.4.ex2",
+      "tip": "cod",
+      "enunt": "Calculează câți ani mai are un elev de 13 ani până la 18 ani.",
+      "template": "varsta = 13\ndiferenta = ___\nprint(\"Mai are\", diferenta, \"ani pana la 18\")",
+      "expectedOutput": "5 18",
+      "hint": "Scade vârsta curentă din 18."
+    }
+  ],
+  "VII.1.5": [
+    {
+      "id": "VII.1.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care calculează prețul total pentru 3 produse cu prețurile 12, 8 și 5 lei, și îl afișează.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "25",
+      "hint": "Adună cele trei prețuri și afișează rezultatul cu print()."
+    },
+    {
+      "id": "VII.1.5.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care calculează perimetrul unui pătrat cu latura 6.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "24",
+      "hint": "Perimetrul unui pătrat = latura × 4."
+    }
+  ],
+  "VII.2.4": [
+    {
+      "id": "VII.2.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează codul care clasifică nota 7 în promovat/nepromovat.",
+      "template": "nota = 7\nif nota >= ___:\n    print(\"Promovat\")\nelse:\n    print(\"Nepromovat\")",
+      "expectedOutput": "Promovat",
+      "hint": "Nota minimă de promovare e 5."
+    },
+    {
+      "id": "VII.2.4.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează dacă numărul 8 e par sau impar.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "Par",
+      "hint": "Folosește restul împărțirii la 2 (%) într-un if."
+    }
+  ],
+  "VII.2.5": [
+    {
+      "id": "VII.2.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care verifică dacă numărul -3 e pozitiv, negativ sau zero, și afișează rezultatul.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "Negativ",
+      "hint": "Folosește if/elif/else, comparând numărul cu 0."
+    },
+    {
+      "id": "VII.2.5.ex2",
+      "tip": "adevarat-fals",
+      "enunt": "Stabilește dacă fiecare afirmație despre structura alternativă este adevărată sau falsă.",
+      "afirmatii": [
+        {
+          "text": "Structura if/elif/else poate executa mai multe ramuri deodată, la aceeași rulare.",
+          "corect": false
+        },
+        {
+          "text": "Semnul == compară două valori, iar semnul = atribuie o valoare.",
+          "corect": true
+        },
+        {
+          "text": "Python cere obligatoriu caracterul : la finalul liniei cu if.",
+          "corect": true
+        },
+        {
+          "text": "Operatorul and cere ca ambele condiții din stânga și din dreapta să fie adevărate.",
+          "corect": true
+        }
+      ]
+    }
+  ],
+  "VII.3.4": [
+    {
+      "id": "VII.3.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează bucla for care afișează numerele de la 1 la 5.",
+      "template": "for i in range(1, ___):\n    print(i)",
+      "expectedOutput": "1 2 3 4 5",
+      "hint": "Limita de sus din range() nu e inclusă — trebuie să fie 6."
+    },
+    {
+      "id": "VII.3.4.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care numără de câte ori se repetă bucla for i in range(3, 8), fără s-o afișezi pas cu pas.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "5",
+      "hint": "Folosește o variabilă contor care crește la fiecare pas al buclei."
+    }
+  ],
+  "VII.3.5": [
+    {
+      "id": "VII.3.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează toate numerele pare din intervalul [1, 10].",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "2 4 6 8 10",
+      "hint": "Combină o buclă for cu un if care verifică numar % 2 == 0."
+    },
+    {
+      "id": "VII.3.5.ex2",
+      "tip": "ordonare",
+      "enunt": "Pune în ordinea corectă pașii unui algoritm care afișează numerele pare dintr-un interval [a, b].",
+      "pasi": [
+        "Citim capetele intervalului a și b",
+        "Parcurgem, pe rând, fiecare număr din intervalul [a, b]",
+        "Verificăm dacă numărul curent e par",
+        "Dacă e par, îl afișăm"
+      ],
+      "ordineCorecta": [
+        "Citim capetele intervalului a și b",
+        "Parcurgem, pe rând, fiecare număr din intervalul [a, b]",
+        "Verificăm dacă numărul curent e par",
+        "Dacă e par, îl afișăm"
+      ]
+    }
+  ],
+  "VIII.1.4": [
+    {
+      "id": "VIII.1.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează codul care generează primele 5 numere pare.",
+      "template": "for i in range(1, ___):\n    print(___)",
+      "expectedOutput": "2 4 6 8 10",
+      "hint": "Poți folosi range(2, 11, 2) sau i*2 într-o buclă de la 1 la 5."
+    },
+    {
+      "id": "VIII.1.4.ex2",
+      "tip": "cod",
+      "enunt": "O plantă crește 2 cm pe săptămână. Calculează înălțimea ei după 4 săptămâni, pornind de la 0 cm.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "8",
+      "hint": "Înălțimea = 2 cm înmulțit cu numărul de săptămâni."
+    }
+  ],
+  "VIII.1.5": [
+    {
+      "id": "VIII.1.5.ex1",
+      "tip": "cod",
+      "enunt": "Generează șirul lui Fibonacci pentru primii 6 termeni (pornind de la 0, 1).",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "0 1 1 2 3 5",
+      "hint": "Pornește cu a, b = 0, 1 și actualizează-le la fiecare pas: a, b = b, a + b."
+    },
+    {
+      "id": "VIII.1.5.ex2",
+      "tip": "completare",
+      "enunt": "Completează explicația despre șirul lui Fibonacci.",
+      "text": "Șirul lui Fibonacci se calculează astfel: fiecare termen e suma celor ___ termeni anteriori. Primii doi termeni ai șirului sunt ___ și ___.",
+      "raspunsuri": [
+        "doi",
+        "0",
+        "1"
+      ]
+    }
+  ],
+  "VIII.2.4": [
+    {
+      "id": "VIII.2.4.ex1",
+      "tip": "cod",
+      "enunt": "Completează algoritmul care numără câte din numerele 3, -2, 5, -1, 4 sunt pozitive.",
+      "template": "numere = [3, -2, 5, -1, 4]\ncontor = 0\nfor x in numere:\n    if ___:\n        contor += 1\nprint(contor)",
+      "expectedOutput": "3",
+      "hint": "O valoare e pozitivă dacă e mai mare strict decât 0."
+    },
+    {
+      "id": "VIII.2.4.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează cel mai mic număr dintre 8, 3, 5, 1, 9.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "1",
+      "hint": "Folosește un acumulator minim, inițializat cu prima valoare din listă."
+    }
+  ],
+  "VIII.2.5": [
+    {
+      "id": "VIII.2.5.ex1",
+      "tip": "cod",
+      "enunt": "Scrie un program care calculează suma și media numerelor 4, 5, 6.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "15 5",
+      "hint": "Media = suma împărțită la câte numere sunt (3)."
+    },
+    {
+      "id": "VIII.2.5.ex2",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează cel mai mare număr par dintre 3, 8, 5, 12, 7.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "12",
+      "hint": "Combină o buclă, un if care verifică numar % 2 == 0, și un acumulator maxim."
+    }
   ]
 }

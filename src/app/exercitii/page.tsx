@@ -5,7 +5,7 @@ import LectieBadge from "@/components/LectieBadge";
 
 export const metadata: Metadata = {
   title: "Exerciții Practice",
-  description: "Exerciții interactive de programare Python pe module școlare pentru liceu.",
+  description: "Exerciții interactive de programare Python pe module școlare, pentru gimnaziu și liceu.",
   alternates: { canonical: "/exercitii" },
 };
 

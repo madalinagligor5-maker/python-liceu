@@ -48,9 +48,11 @@ async function incarcaPyodide(): Promise<{
 export default function PredicțieWidget({
   predic,
   sublectieCod,
+  clasa,
 }: {
   predic: Predic;
   sublectieCod: string;
+  clasa: string;
 }) {
   const [ales, setAles] = useState<number | null>(null);
   const [dezv, setDezv] = useState(false);
@@ -71,7 +73,7 @@ export default function PredicțieWidget({
 
     if (ales === predic.corect) {
       try {
-        const res = await finalizeazaPredicție("IX", sublectieCod, true);
+        const res = await finalizeazaPredicție(clasa, sublectieCod, true);
         if (res.ok) {
           setXpMesaj(
             res.insigneNoi?.includes("predictie-reusita")
