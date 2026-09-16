@@ -141,9 +141,9 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
         .eq("user_id", user.id);
 
       return { ok: true, feedback };
-    } catch (e: any) {
+    } catch (e) {
       console.error("Eroare evaluare Gemini:", e);
-      eroareApelAPI = e?.message || String(e);
+      eroareApelAPI = e instanceof Error ? e.message : String(e);
       // Fallback la evaluatorul local în caz de eroare API
     }
   }
@@ -259,9 +259,10 @@ Te rog să oferi explicația în limba română în maximum 2-3 propoziții clar
     }
 
     return { ok: true, explicatie: explicatie.trim() };
-  } catch (e: any) {
+  } catch (e) {
     console.error("EXPLAIN_LINE_ERR", e);
-    return { ok: false, eroare: e?.message || "Eroare la generarea explicației." };
+    const mesaj = e instanceof Error ? e.message : undefined;
+    return { ok: false, eroare: mesaj || "Eroare la generarea explicației." };
   }
 }
 

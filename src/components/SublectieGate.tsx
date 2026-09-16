@@ -46,8 +46,10 @@ export default function SublectieGate({
   const [aCitit, setACitit] = useState(false);
   const [rezolvate, setRezolvate] = useState<Set<string>>(new Set());
 
-  // La mount, citește progresul salvat.
+  // La mount, citește progresul salvat. Randat identic (Set gol) pe server si
+  // client la primul pass, actualizat dupa mount ca sa nu apara mismatch.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRezolvate(citesteRezolvate());
   }, []);
 

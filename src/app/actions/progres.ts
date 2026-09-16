@@ -352,7 +352,7 @@ export async function salveazaProgresKids(
   return { ok: true };
 }
 
-async function performSqlWritePermission(supabase: any) {
+async function performSqlWritePermission(supabase: ClientSupabase) {
   try {
     await supabase.rpc("set_config", {
       name: "app.scriere_progres",

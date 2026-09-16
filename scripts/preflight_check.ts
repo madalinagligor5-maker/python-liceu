@@ -47,8 +47,9 @@ async function runPreflightCheck() {
           failed++;
         }
       }
-    } catch (err: any) {
-      console.error(`  ❌ Eroare la inițializarea Supabase: ${err.message}`);
+    } catch (err) {
+      const mesaj = err instanceof Error ? err.message : String(err);
+      console.error(`  ❌ Eroare la inițializarea Supabase: ${mesaj}`);
       failed++;
     }
   } else {
@@ -79,8 +80,9 @@ async function runPreflightCheck() {
         console.error(`  ❌ API Gemini Eroare: ${JSON.stringify(data.error || data)}`);
         failed++;
       }
-    } catch (err: any) {
-      console.error(`  ❌ API Gemini Test eșuat: ${err.message}`);
+    } catch (err) {
+      const mesaj = err instanceof Error ? err.message : String(err);
+      console.error(`  ❌ API Gemini Test eșuat: ${mesaj}`);
       failed++;
     }
   } else {

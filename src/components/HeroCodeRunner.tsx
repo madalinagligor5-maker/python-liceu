@@ -30,7 +30,7 @@ export default function HeroCodeRunner() {
     setEroare(null);
     setOutput(null);
 
-    let lns: string[] = [];
+    const lns: string[] = [];
 
     try {
       if (!(window as unknown as { __pyodideInstance?: unknown }).__pyodideInstance) {

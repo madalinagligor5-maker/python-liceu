@@ -9,8 +9,11 @@ export default function KidsHeaderRight() {
   const [stele, setStele] = useState(0);
 
   useEffect(() => {
+    // Bootstrap client-only (localStorage) -- randat identic pe server si
+    // client la primul pass, actualizat dupa mount ca sa nu apara mismatch.
     const p = getProfilElev();
     if (p) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setNume(p.nume);
     }
     setStele(totalStele());

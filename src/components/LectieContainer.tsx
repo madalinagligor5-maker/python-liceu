@@ -12,6 +12,10 @@ export default function LectieContainer({
   const [montat, setMontat] = useState(false);
 
   useEffect(() => {
+    // Bootstrap client-only (localStorage / prefers-color-scheme) -- randat
+    // identic pe server si client la primul pass ("montat" ramane fals),
+    // actualizat dupa mount ca sa nu apara mismatch de hidratare.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMontat(true);
     const salvat = localStorage.getItem("academia_lectie_tema");
     if (salvat === "dark") {

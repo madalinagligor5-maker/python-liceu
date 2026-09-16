@@ -163,16 +163,18 @@ test.describe("Portal profesori — atac din contul de elev / neautentificat", (
   });
 });
 
-test.describe("Portal profesori — acces integral la curriculum premium (Sarcina 7)", () => {
-  // Aceeasi sublectie premium folosita in fluxuri-critice.spec.ts (modul.gratuit
-  // === false, clasa X) - un profesor aprobat trebuie sa vada continutul real,
-  // fara abonament; un profesor_in_asteptare (rol deja pe cont, dar neaprobat
-  // inca) NU trebuie sa capete acest acces doar pentru ca are rolul in DB.
+test.describe("Portal profesori — fara acces integral la curriculum premium", () => {
+  // Fondatoarea a eliminat explicit accesul integral gratuit al profesorilor
+  // aprobati la continutul premium (esteProfesorAprobat() a fost stearsa din
+  // subscription.ts) - un cont profesor_aprobat trebuie sa vada exact aceeasi
+  // varianta gated/teaser ca orice alt cont fara abonament activ, la fel ca
+  // pentru un elev obisnuit, nu diferit. Aceeasi sublectie premium folosita
+  // in fluxuri-critice.spec.ts (modul.gratuit === false, clasa X).
   const SUBLECTIE_PREMIUM = "/curriculum/X/clasa-str-metode-de-cautare-inlocuire-separare/2.7.1";
   const FRAGMENT_LECTIE_REALA = "Revizuim rapid operațiile de bază cu șiruri";
 
-  test("Profesor aprobat, fara abonament, vede continutul premium complet", async ({ page }) => {
-    const profesor = await creeazaUtilizatorTest("prof-acces-premium");
+  test("Profesor aprobat, fara abonament, vede varianta gated/teaser - la fel ca un elev fara abonament", async ({ page }) => {
+    const profesor = await creeazaUtilizatorTest("prof-fara-acces-premium");
     try {
       await seteazaStareUtilizatorTest(profesor.id, {
         rol: "profesor_aprobat",
@@ -182,8 +184,9 @@ test.describe("Portal profesori — acces integral la curriculum premium (Sarcin
       await page.waitForLoadState("networkidle");
 
       await page.goto(SUBLECTIE_PREMIUM);
-      await expect(page.getByText(FRAGMENT_LECTIE_REALA)).not.toHaveCount(0);
-      await expect(page.locator("#lectie-articol")).not.toHaveCount(0);
+      await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
+      await expect(page.locator("#lectie-articol")).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
     } finally {
       await stergeUtilizatorTest(profesor.id);
     }

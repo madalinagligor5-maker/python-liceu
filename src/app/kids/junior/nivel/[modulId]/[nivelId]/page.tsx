@@ -60,7 +60,7 @@ export default function NivelPage() {
   const [faza, setFaza] = useState<FazaJoc>("intro");
   const [pasActivIndex, setPasActivIndex] = useState<number | null>(null);
   const [comenzi, setComenzi] = useState<BlocComanda[]>([]);
-  const [codPython, setCodPython] = useState("");
+  const codPython = genereazaPython(comenzi);
   const [stareJoc, setStareJoc] = useState<StareJoc>(() =>
     nivel
       ? { x: nivel.startPos.x, y: nivel.startPos.y, directie: nivel.startDir, steleColectate: 0, completat: false, esuat: false }
@@ -80,17 +80,14 @@ export default function NivelPage() {
     if (!profilExista) { router.replace("/kids/junior"); return; }
     if (!nivel) return;
 
+    // Inițializare legată de efectul real de mai jos (setTimeout + cleanup), nu stare derivată pură.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMesajMascota(nivel.mesajMascota);
     setStareMascota("curios");
     // Afișează intro 2s, apoi trece la joc
     const t = setTimeout(() => setFaza("joc"), 2500);
     return () => clearTimeout(t);
   }, [nivel, profilExista, router]);
-
-  // Actualizează codul Python când se schimbă comenzile
-  useEffect(() => {
-    setCodPython(genereazaPython(comenzi));
-  }, [comenzi]);
 
   const resetJoc = useCallback(() => {
     if (!nivel) return;

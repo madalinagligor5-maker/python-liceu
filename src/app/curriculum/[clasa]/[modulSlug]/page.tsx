@@ -12,10 +12,20 @@ import {
   modulUrmator,
 } from "@/lib/curriculum";
 import { getPredicțiiClasa } from "@/lib/predicții";
-import { getUtilizatorCurent, areAbonamentActiv, esteProfesorAprobat } from "@/lib/subscription";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string; modulSlug: string };
+
+/** Alege aleatoriu `n` elemente dintr-o listă (Fisher-Yates). */
+function alegeAleatoriu<T>(lista: T[], n: number): T[] {
+  const copie = [...lista];
+  for (let i = copie.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copie[i], copie[j]] = [copie[j], copie[i]];
+  }
+  return copie.slice(0, n);
+}
 
 export function generateStaticParams() {
   return capitole.flatMap((c) =>
@@ -48,7 +58,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   const { meta } = await getUtilizatorCurent();
   const esteGratuit = modul.gratuit || modul.numar <= 5;
-  const areAcces = esteGratuit || areAbonamentActiv(meta) || esteProfesorAprobat(meta);
+  const areAcces = esteGratuit || areAbonamentActiv(meta);
 
   const anterior = modulAnterior(clasa, modulSlug);
   const urmator = modulUrmator(clasa, modulSlug);
@@ -63,14 +73,11 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
   let recapitulare: { cod: string; enunt: string; variante: string[]; corect: number }[] = [];
   if (faceRecapitulare) {
     const toate = await getPredicțiiClasa(clasa);
-    const anterioare = toate
-      .filter((p) => {
-        const m = p.cod.split(".");
-        return parseInt(m[1], 10) < nrModul;
-      })
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 2);
-    recapitulare = anterioare;
+    const candidati = toate.filter((p) => {
+      const m = p.cod.split(".");
+      return parseInt(m[1], 10) < nrModul;
+    });
+    recapitulare = alegeAleatoriu(candidati, 2);
   }
 
   return (
@@ -150,7 +157,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
       <div className="mt-4 p-4 rounded-2xl bg-amber-400/15 border border-amber-400/40 flex items-center justify-between flex-wrap gap-3">
         <div>
           <span className="text-xs font-black text-amber-900 uppercase tracking-widest block">⚡ Laborator de Consolidare &amp; Practică Interactivă</span>
-          <span className="text-xs font-medium text-slate-700">Reordonează cod (Parson's), completează spațiile și rezolvă mini-proiectul pe 3 niveluri!</span>
+          <span className="text-xs font-medium text-slate-700">Reordonează cod (Parson&apos;s), completează spațiile și rezolvă mini-proiectul pe 3 niveluri!</span>
         </div>
         <Link
           href={`/exercitii/${clasa}/${modulSlug}`}

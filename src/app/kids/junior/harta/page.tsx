@@ -86,8 +86,11 @@ export default function HartaJunior() {
   const [profil, setProfil] = useState<ProfilElev | null>(null);
 
   useEffect(() => {
+    // Bootstrap client-only (localStorage) + redirect daca lipseste profilul --
+    // randat identic (null) pe server si client la primul pass.
     const p = getProfilElev();
     if (!p) { router.replace("/kids/junior"); return; }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProfil(p);
   }, [router]);
 

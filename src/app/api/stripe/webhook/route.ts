@@ -96,9 +96,12 @@ export async function POST(request: NextRequest) {
       }
       case "invoice.paid":
       case "invoice.payment_succeeded": {
-        const invoice = event.data.object as Stripe.Invoice;
-        const subscriptionId = (invoice as any).parent?.subscription_details?.subscription
-          || (invoice as any).subscription;
+        const invoice = event.data.object as Stripe.Invoice & {
+          parent?: { subscription_details?: { subscription?: string | { id: string } } };
+          subscription?: string | { id: string };
+        };
+        const subscriptionId = invoice.parent?.subscription_details?.subscription
+          || invoice.subscription;
         if (subscriptionId) {
           const stripe = getStripe();
           const subId = typeof subscriptionId === "string" ? subscriptionId : subscriptionId.id;

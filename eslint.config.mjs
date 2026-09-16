@@ -22,6 +22,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Runtime Pyodide (Python-in-browser) vendorizat direct in git, nu cod
+    // scris de noi -- vezi 0eb94bd. Nu se editeaza manual.
+    "public/pyodide/**",
   ]),
 ]);
 

@@ -7,7 +7,10 @@ export default function LabClient() {
   const [initialCode, setInitialCode] = useState<string | null>(null);
 
   useEffect(() => {
+    // Bootstrap client-only (localStorage) -- randat identic (null -> loading)
+    // pe server si client la primul pass, actualizat dupa mount.
     const saved = localStorage.getItem("lab_sandbox_code");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setInitialCode(
       saved || `# Scrie codul tău Python mai jos\n\nfor i in range(5):\n    print("Nivel", i + 1, "la Academia Python! 🐍")\n`
     );

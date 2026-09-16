@@ -44,11 +44,6 @@ export default function ProfesoriPage() {
             titlu: "Bancă de teste",
             text: "Generează un test din quiz-urile existente, cu barem separat ca PDF, fără riscul unei inconsecvențe între ele.",
           },
-          {
-            icon: "🔓",
-            titlu: "Acces integral la curriculum",
-            text: "Un cont aprobat vede toate modulele, exercițiile și quiz-urile platformei, fără abonament — ca să poți pregăti orice lecție.",
-          },
         ].map((f) => (
           <div key={f.titlu} className="rounded-2xl border border-black/10 bg-white p-5">
             <div className="text-2xl">{f.icon}</div>

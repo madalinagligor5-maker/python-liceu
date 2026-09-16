@@ -23,8 +23,11 @@ export default function DiplomaPage() {
   const [dataCurenta, setDataCurenta] = useState("");
 
   useEffect(() => {
+    // Bootstrap client-only (localStorage) -- randat identic pe server si
+    // client la primul pass, actualizat dupa mount ca sa nu apara mismatch.
     const profil = getProfilElev();
     if (profil) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setNume(profil.nume);
     }
     setStele(totalStele());

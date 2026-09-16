@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { evalueazaCodCuAI, type FeedbackAI } from "@/app/actions/ai-evaluation";
 
 type ExercitiuModel = {
@@ -10,6 +10,29 @@ type ExercitiuModel = {
   template: string;
   expectedOutput: string;
 };
+
+type DebugStep = {
+  line: number;
+  locals: Record<string, string>;
+  error?: string;
+};
+
+/** Stare inițială (șabloane goale) derivată din lista de exerciții primită. */
+function initDinExercitii(exercitii: ExercitiuModel[]) {
+  const coduri: Record<number, string> = {};
+  const outputs: Record<number, string> = {};
+  const erori: Record<number, string> = {};
+  const verdicte: Record<number, "ok" | "gresit" | null> = {};
+  const feedbacksAI: Record<number, FeedbackAI | null> = {};
+  exercitii.forEach((ex, idx) => {
+    coduri[idx] = ex.template;
+    outputs[idx] = "";
+    erori[idx] = "";
+    verdicte[idx] = null;
+    feedbacksAI[idx] = null;
+  });
+  return { coduri, outputs, erori, verdicte, feedbacksAI };
+}
 
 type Props = {
   exercitii: ExercitiuModel[];
@@ -44,13 +67,13 @@ async function incarcaPyodide(): Promise<PyodideApi> {
 
       const originalOnload = s.onload;
       s.onload = (e) => {
-        if (originalOnload) (originalOnload as Function)(e);
+        originalOnload?.call(s, e);
         res();
       };
 
       const originalOnerror = s.onerror;
       s.onerror = (e) => {
-        if (originalOnerror) (originalOnerror as Function)(e);
+        originalOnerror?.call(s, e);
         rej(new Error("Nu s-a putut încărca interpretorul Python."));
       };
     });
@@ -71,43 +94,35 @@ async function incarcaPyodide(): Promise<PyodideApi> {
 export default function ExercitiuEvaluator({ exercitii }: Props) {
   const [curentIdx, setCurentIdx] = useState(0);
 
-  // Stocăm codul, outputs, erorile și verdictele pentru fiecare dintre cele 6 exerciții
-  const [coduri, setCoduri] = useState<Record<number, string>>({});
-  const [outputs, setOutputs] = useState<Record<number, string>>({});
-  const [erori, setErori] = useState<Record<number, string>>({});
-  const [verdicte, setVerdicte] = useState<Record<number, "ok" | "gresit" | null>>({});
-  const [feedbacksAI, setFeedbacksAI] = useState<Record<number, FeedbackAI | null>>({});
+  // Stocăm codul, outputs, erorile și verdictele pentru fiecare dintre cele 6 exerciții.
+  // Inițializare lene din șabloane; dacă `exercitii` se schimbă (ex: navigare
+  // client-side între module fără remount), resetăm totul în timpul render-ului
+  // (pattern documentat React pentru "adjusting state when a prop changes"),
+  // nu într-un efect, ca să nu existe un pas intermediar cu stare veche.
+  const [prevExercitii, setPrevExercitii] = useState(exercitii);
+  const [coduri, setCoduri] = useState<Record<number, string>>(() => initDinExercitii(exercitii).coduri);
+  const [outputs, setOutputs] = useState<Record<number, string>>(() => initDinExercitii(exercitii).outputs);
+  const [erori, setErori] = useState<Record<number, string>>(() => initDinExercitii(exercitii).erori);
+  const [verdicte, setVerdicte] = useState<Record<number, "ok" | "gresit" | null>>(() => initDinExercitii(exercitii).verdicte);
+  const [feedbacksAI, setFeedbacksAI] = useState<Record<number, FeedbackAI | null>>(() => initDinExercitii(exercitii).feedbacksAI);
 
   const [ruleaza, setRuleaza] = useState(false);
   const [evaluarePending, setEvaluarePending] = useState(false);
   const [folosestePy, setFolosestePy] = useState(true);
 
-  const [debugSteps, setDebugSteps] = useState<any[]>([]);
+  const [debugSteps, setDebugSteps] = useState<DebugStep[]>([]);
   const [currentDebugStep, setCurrentDebugStep] = useState<number>(-1);
   const [debugMode, setDebugMode] = useState<boolean>(false);
 
-  // Inițializăm codurile cu șabloanele corespunzătoare
-  useEffect(() => {
-    const coduriInit: Record<number, string> = {};
-    const outputsInit: Record<number, string> = {};
-    const eroriInit: Record<number, string> = {};
-    const verdicteInit: Record<number, "ok" | "gresit" | null> = {};
-    const feedbacksInit: Record<number, FeedbackAI | null> = {};
-
-    exercitii.forEach((ex, idx) => {
-      coduriInit[idx] = ex.template;
-      outputsInit[idx] = "";
-      eroriInit[idx] = "";
-      verdicteInit[idx] = null;
-      feedbacksInit[idx] = null;
-    });
-
-    setCoduri(coduriInit);
-    setOutputs(outputsInit);
-    setErori(eroriInit);
-    setVerdicte(verdicteInit);
-    setFeedbacksAI(feedbacksInit);
-  }, [exercitii]);
+  if (exercitii !== prevExercitii) {
+    setPrevExercitii(exercitii);
+    const init = initDinExercitii(exercitii);
+    setCoduri(init.coduri);
+    setOutputs(init.outputs);
+    setErori(init.erori);
+    setVerdicte(init.verdicte);
+    setFeedbacksAI(init.feedbacksAI);
+  }
 
   const exercitiuCurent = exercitii[curentIdx];
   if (!exercitiuCurent) return null;
@@ -172,7 +187,7 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
       }
 
       setVerdicte((prev) => ({ ...prev, [curentIdx]: potriveste ? "ok" : "gresit" }));
-    } catch (e: any) {
+    } catch (e) {
       console.error("PYODIDE_ERR", e);
       if (e instanceof Error && e.message === "TIMEOUT_EXECUTION") {
         setErori((prev) => ({
@@ -180,7 +195,7 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
           [curentIdx]: "⚠️ Timpul de execuție a fost depășit (4s). Verifică dacă nu ai o buclă infinită (ex: while fără incrementare)!"
         }));
       } else {
-        const msg = e?.message || String(e);
+        const msg = e instanceof Error ? e.message : String(e);
         // Daca eroarea provine din executia de cod Python, o afisam direct elevului
         const esteEroareCod = msg.includes("Error") || msg.includes("Traceback") || msg.includes("Exception");
         setErori((prev) => ({ 
@@ -259,7 +274,7 @@ json.dumps(steps)
       } else {
         setErori((prev) => ({ ...prev, [curentIdx]: "Nu s-au putut înregistra pași de execuție." }));
       }
-    } catch (e: any) {
+    } catch (e) {
       console.error("DEBUG_ERR", e);
       if (e instanceof Error && e.message.includes("TIMEOUT_EXECUTION")) {
         setErori((prev) => ({
@@ -267,7 +282,8 @@ json.dumps(steps)
           [curentIdx]: "⚠️ Debugger-ul a fost oprit deoarece codul a efectuat prea mulți pași (bucle infinite sau recursive)."
         }));
       } else {
-        setErori((prev) => ({ ...prev, [curentIdx]: "Eroare la pornirea debuggerului: " + (e?.message || String(e)) }));
+        const mesaj = e instanceof Error ? e.message : String(e);
+        setErori((prev) => ({ ...prev, [curentIdx]: "Eroare la pornirea debuggerului: " + mesaj }));
       }
     } finally {
       setRuleaza(false);
@@ -460,7 +476,7 @@ json.dumps(steps)
               <p className="mt-1.5 text-xs text-slate-400 italic">Nicio variabilă definită încă la această linie.</p>
             ) : (
               <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {Object.entries(debugSteps[currentDebugStep].locals).map(([name, val]: any) => (
+                {Object.entries(debugSteps[currentDebugStep].locals).map(([name, val]) => (
                   <div key={name} className="flex items-center gap-2 rounded bg-slate-50 border border-slate-100 p-1.5 font-mono text-xs text-slate-700">
                     <span className="font-bold text-brand">{name}</span>
                     <span className="text-slate-400">=</span>

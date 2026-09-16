@@ -176,51 +176,6 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
     return cmds;
   };
 
-  // Simulare pas cu pas
-  useEffect(() => {
-    if (!inExecution || currentStepIndex === -1) return;
-
-    let activeCommands = [...commands];
-    if (nivelId === 3) {
-      activeCommands = parsePythonCode(pythonCode);
-    }
-
-    if (currentStepIndex >= activeCommands.length) {
-      // Verificăm condiția de victorie la sfârșitul comenzilor
-      setInExecution(false);
-      const peFinis = pippyPos.x === config.targetX && pippyPos.y === config.targetY;
-      const culesToate = collectedStars.length === config.stars.length;
-
-      if (peFinis && culesToate) {
-        // Calculăm steluțe în funcție de eficiență (număr de pași)
-        let rating = 3;
-        if (nivelId === 1 && activeCommands.length > 10) rating = 2;
-        if (nivelId === 2 && !activeCommands.includes("loop_4") && activeCommands.length > 7) rating = 2;
-        
-        setStarsRating(rating);
-        setShowVictory(true);
-
-        // Salvare progres în baza de date
-        if (autentificat) {
-          salveazaProgresKids(nivelId, rating).catch(console.error);
-        }
-      } else if (peFinis && !culesToate) {
-        setErrorMsg("Ai ajuns la poartă, dar ai uitat steluțele! Pippy are nevoie de toate steluțele. 🌟");
-      } else {
-        setErrorMsg("Pippy nu a ajuns la poarta de ieșire. Mai încearcă o dată! 🏁");
-      }
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      const currentCmd = activeCommands[currentStepIndex];
-      executaComanda(currentCmd);
-      setCurrentStepIndex((prev) => prev + 1);
-    }, 700);
-
-    return () => clearTimeout(timer);
-  }, [inExecution, currentStepIndex]);
-
   // Modificare stare Pippy pe baza comenzii
   const executaComanda = (cmd: string) => {
     setPippyPos((currentPos) => {
@@ -230,7 +185,7 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
         const steps = cmd === "loop_4" ? 4 : 1;
         
         for (let i = 0; i < steps; i++) {
-          let tempPos = { ...nextPos };
+          const tempPos = { ...nextPos };
           if (pippyDir === "E") tempPos.x += 1;
           if (pippyDir === "W") tempPos.x -= 1;
           if (pippyDir === "S") tempPos.y += 1;
@@ -294,6 +249,53 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
       });
     }
   };
+
+  // Simulare pas cu pas
+  useEffect(() => {
+    if (!inExecution || currentStepIndex === -1) return;
+
+    let activeCommands = [...commands];
+    if (nivelId === 3) {
+      activeCommands = parsePythonCode(pythonCode);
+    }
+
+    if (currentStepIndex >= activeCommands.length) {
+      // Verificăm condiția de victorie la sfârșitul comenzilor (final buclei de
+      // animație pas-cu-pas, cu setTimeout mai jos -- nu e stare derivată pură).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setInExecution(false);
+      const peFinis = pippyPos.x === config.targetX && pippyPos.y === config.targetY;
+      const culesToate = collectedStars.length === config.stars.length;
+
+      if (peFinis && culesToate) {
+        // Calculăm steluțe în funcție de eficiență (număr de pași)
+        let rating = 3;
+        if (nivelId === 1 && activeCommands.length > 10) rating = 2;
+        if (nivelId === 2 && !activeCommands.includes("loop_4") && activeCommands.length > 7) rating = 2;
+        
+        setStarsRating(rating);
+        setShowVictory(true);
+
+        // Salvare progres în baza de date
+        if (autentificat) {
+          salveazaProgresKids(nivelId, rating).catch(console.error);
+        }
+      } else if (peFinis && !culesToate) {
+        setErrorMsg("Ai ajuns la poartă, dar ai uitat steluțele! Pippy are nevoie de toate steluțele. 🌟");
+      } else {
+        setErrorMsg("Pippy nu a ajuns la poarta de ieșire. Mai încearcă o dată! 🏁");
+      }
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      const currentCmd = activeCommands[currentStepIndex];
+      executaComanda(currentCmd);
+      setCurrentStepIndex((prev) => prev + 1);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [inExecution, currentStepIndex]);
 
   // Convertim comenzile vizuale în cod text Python
   const genereazaCodPython = () => {

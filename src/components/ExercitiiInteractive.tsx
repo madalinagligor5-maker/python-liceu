@@ -31,7 +31,7 @@ function ExercitiuOrdonare({
     const corect =
       JSON.stringify(ordine) === JSON.stringify(ex.ordineCorecta);
     setVerdict(corect ? "ok" : "gresit");
-    onVerificat?.();
+    if (corect) onVerificat?.();
   };
 
   return (
@@ -124,7 +124,7 @@ function ExercitiuUnire({
   const verifica = () => {
     const corect = ex.perechi.every((p, i) => alegeri[i] === p.dreapta);
     setVerdict(corect ? "ok" : "gresit");
-    onVerificat?.();
+    if (corect) onVerificat?.();
   };
 
   return (
@@ -190,7 +190,7 @@ function ExercitiuAdevaratFals({
 
   const verifica = () => {
     setVerificat(true);
-    onVerificat?.();
+    if (corecte === ex.afirmatii.length) onVerificat?.();
   };
 
   return (
@@ -274,7 +274,7 @@ function ExercitiuCompletare({
 
   const verifica = () => {
     setVerificat(true);
-    onVerificat?.();
+    if (corecte === ex.raspunsuri.length) onVerificat?.();
   };
 
   return (

@@ -139,7 +139,7 @@ export default function KidsPrintPage() {
 
             <div className="mt-6">
               <h2 className="text-xs sm:text-sm font-bold text-slate-800">
-                Cerință: Folosește bucla 'Repetă'!
+                Cerință: Folosește bucla &apos;Repetă&apos;!
               </h2>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                 Pippy 🤖 trebuie să meargă spre dreapta 5 pași pentru a ajunge la cheie 🔑, apoi să meargă în jos 5 pași pentru a ajunge la ușă 🏁. Scrie codul folosind instrucțiunea specială **Repetă**!
