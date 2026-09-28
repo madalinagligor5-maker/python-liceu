@@ -39,9 +39,22 @@ export async function getUtilizatorCurent(): Promise<{
   }
 
   const supabase = await creeazaClientServer();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Fără cookie de sesiune nu interogăm deloc Supabase (vizitatori anonimi).
+  const { cookies } = await import("next/headers");
+  const areSesiune = (await cookies()).getAll().some((c) => c.name.startsWith("sb-"));
+  if (!areSesiune) return { user: null, meta: null };
+
+  // Limită de timp: un Supabase lent nu trebuie să blocheze randarea
+  // fiecărei pagini (layout-ul apelează funcția pe tot site-ul).
+  const rezultat = await Promise.race([
+    supabase.auth.getUser(),
+    new Promise<null>((res) => setTimeout(() => res(null), 4000)),
+  ]).catch(() => null);
+  if (!rezultat) {
+    console.error("[subscription] Supabase auth.getUser nu a răspuns la timp");
+    return { user: null, meta: null };
+  }
+  const user = rezultat.data.user;
 
   if (!user) return { user: null, meta: null };
 
