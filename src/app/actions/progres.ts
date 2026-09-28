@@ -5,6 +5,7 @@ import { getLectie } from "@/lib/content";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { XP_PE_QUIZ, XP_PE_PREDIČIE } from "@/lib/progres";
 import { getQuizSublectie } from "@/lib/quizSublectii";
+import { pragPromovare } from "@/lib/progresLocal";
 
 export type RezultatFinalizare =
   | {
@@ -193,6 +194,17 @@ export async function finalizeazaSublectie(
     0
   );
   const xpQuiz = scor * XP_PE_QUIZ;
+
+  // Pasul se marchează finalizat doar dacă testul e trecut (≥ 60%). Înainte,
+  // orice trimitere — chiar cu 0 răspunsuri corecte — marca sublecția ca
+  // finalizată în progres, ceea ce nu reflecta înțelegerea reală.
+  const prag = pragPromovare(intrebari.length);
+  if (scor < prag) {
+    return {
+      ok: false,
+      eroare: `Ai ${scor} din ${intrebari.length} răspunsuri corecte. Recitește explicațiile și încearcă din nou — pasul se consideră trecut de la ${prag} răspunsuri corecte.`,
+    };
+  }
 
   const { data, error } = await supabase.rpc("finalizeaza_lectie", {
     p_lectie_slug: `sub-${sublectieCod}`,

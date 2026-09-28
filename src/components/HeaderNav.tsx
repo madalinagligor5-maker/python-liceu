@@ -3,183 +3,327 @@
 import IconMeniu from "@/components/icons/IconMeniu";
 import IconInchide from "@/components/icons/IconInchide";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import KidsHeaderRight from "@/components/KidsHeaderRight";
 import Logo from "@/components/Logo";
-import HeaderSwitch from "@/components/HeaderSwitch";
+import { TRASEE } from "@/lib/trasee";
 
-const linkuriLiceu = [
-  { href: "/curriculum", label: "📚 Curriculum & Cursuri", sub: "Clasele IX–XII" },
-  { href: "/lectii", label: "📖 Lecții Interactive", sub: "Învățare pas cu pas" },
-  { href: "/exercitii", label: "💻 Exerciții & Algoritmi", sub: "Feedback instant" },
-  { href: "/lab", label: "🔬 Lab (Cod online)", sub: "Sandbox Python liber" },
-  { href: "/resurse", label: "📥 Resurse & Fișe PDF", sub: "Materiale didactice" },
-  { href: "/blog", label: "✍️ Blog", sub: "Ghiduri și noutăți" },
-  { href: "/preturi", label: "🏷️ Prețuri & Abonamente", sub: "Planuri transparente" },
-  { href: "/despre", label: "ℹ️ Despre Platformă", sub: "Misiune și echipa" },
+type LinkNav = { href: string; label: string; sub: string };
+
+/** Traseele, grupate sub „Cursuri". */
+const linkuriCursuri: LinkNav[] = [
+  ...TRASEE.map((t) => ({ href: t.ansamblu.href, label: `${t.icon} ${t.nume}`, sub: t.subtitlu })),
 ];
 
-const linkuriKids = [
-  { href: "/kids", label: "🏠 Acasă Kids", sub: "Centrul de aventură" },
-  { href: "/kids/junior/harta", label: "🗺️ Harta Aventurii", sub: "Modulele 1–6 (100% Gratuit)" },
-  { href: "/kids/fise-print", label: "🖨️ Fișe de Printat", sub: "Activități pe hârtie" },
+/** Opțiuni secundare, grupate sub „Mai mult". */
+const linkuriMaiMult: LinkNav[] = [
+  { href: "/lectii", label: "Catalog de lecții", sub: "Toate modulele, pe clase, într-o singură listă" },
+  { href: "/exercitii", label: "Exerciții practice", sub: "Probleme suplimentare, cu verificare automată" },
+  { href: "/resurse", label: "Fișe PDF", sub: "Materiale de printat pentru fiecare modul" },
+  { href: "/profesori", label: "Pentru profesori", sub: "Planificări, fișe și teste" },
+  { href: "/blog", label: "Blog", sub: "Ghiduri și noutăți" },
+  { href: "/despre", label: "Despre", sub: "Cum sunt construite lecțiile" },
 ];
 
-const linkuriProfesor = [
+const linkuriKids: LinkNav[] = [
+  { href: "/kids", label: "🏠 Acasă Kids", sub: "Toate activitățile pentru copii" },
+  { href: "/kids/junior/harta", label: "🗺️ Harta aventurii", sub: "Modulele Junior 1–6 (gratuit)" },
+  { href: "/kids/fise-print", label: "🖨️ Fișe de printat", sub: "Activități pe hârtie" },
+];
+
+const linkuriProfesor: LinkNav[] = [
   { href: "/profesor/planificari", label: "🗓️ Planificări", sub: "Calendar per clasă" },
   { href: "/profesor/materiale", label: "📚 Materiale", sub: "Resurse suplimentare" },
   { href: "/profesor/fise", label: "📄 Fișe de lucru", sub: "Printabile, cu/fără barem" },
   { href: "/profesor/teste/generator", label: "📝 Generator de teste", sub: "Din bancă de quiz-uri" },
 ];
 
-export default function HeaderNav({ esteProfesor = false }: { esteProfesor?: boolean }) {
-  const pathname = usePathname();
-  const isKids = pathname?.startsWith("/kids");
-  const [mobileMeniuDeschis, setMobileMeniuDeschis] = useState(false);
+/** Glosar scurt: ce înseamnă fiecare zonă a site-ului. */
+const GLOSAR = [
+  ["Curriculum", "harta materiei, pe clase și module"],
+  ["Lecție", "un modul parcurs în 6 pași, de la explicație la verificare"],
+  ["Exerciții", "practică suplimentară pe fiecare modul"],
+  ["Laborator", "editor liber, fără cerință, pentru experimente"],
+];
 
-  const linkuriActive = esteProfesor ? linkuriProfesor : isKids ? linkuriKids : linkuriLiceu;
+function Dropdown({
+  eticheta,
+  activ,
+  children,
+  latime = "w-[26rem]",
+}: {
+  eticheta: string;
+  activ: boolean;
+  children: (inchide: () => void) => React.ReactNode;
+  latime?: string;
+}) {
+  const [deschis, setDeschis] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const idPanou = useId();
 
-  // Previne scroll-ul pe fundal când meniul mobil este deschis
   useEffect(() => {
-    if (mobileMeniuDeschis) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!deschis) return;
+    const laClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setDeschis(false);
+    };
+    const laTasta = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setDeschis(false);
+        (ref.current?.querySelector("button") as HTMLButtonElement | null)?.focus();
+      }
+    };
+    document.addEventListener("mousedown", laClick);
+    document.addEventListener("keydown", laTasta);
+    return () => {
+      document.removeEventListener("mousedown", laClick);
+      document.removeEventListener("keydown", laTasta);
+    };
+  }, [deschis]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative"
+      onBlur={(e) => {
+        if (ref.current && !ref.current.contains(e.relatedTarget as Node)) setDeschis(false);
+      }}
+    >
+      <button
+        type="button"
+        aria-expanded={deschis}
+        aria-controls={idPanou}
+        onClick={() => setDeschis((d) => !d)}
+        className={`flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 ${
+          activ ? "text-amber-700" : ""
+        }`}
+      >
+        {eticheta}
+        <span aria-hidden="true" className={`text-[10px] transition-transform ${deschis ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </button>
+      {deschis && (
+        <div
+          id={idPanou}
+          className={`absolute left-0 top-full z-50 mt-2 ${latime} rounded-2xl border border-[#EBE7DF] bg-white p-3 shadow-depth-lg`}
+        >
+          {children(() => setDeschis(false))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ListaLinkuri({ linkuri, onAles }: { linkuri: LinkNav[]; onAles: () => void }) {
+  return (
+    <ul className="space-y-1">
+      {linkuri.map((l) => (
+        <li key={l.href}>
+          <Link
+            href={l.href}
+            onClick={onAles}
+            className="block rounded-xl px-3 py-2 hover:bg-amber-50 focus-visible:bg-amber-50"
+          >
+            <span className="block text-sm font-bold text-[#1E2430]">{l.label}</span>
+            <span className="block text-xs font-medium text-[#525B6C]">{l.sub}</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function HeaderNav({
+  esteProfesor = false,
+  esteAutentificat = false,
+}: {
+  esteProfesor?: boolean;
+  esteAutentificat?: boolean;
+}) {
+  const pathname = usePathname() ?? "";
+  const isKids = pathname.startsWith("/kids");
+  const [mobileMeniuDeschis, setMobileMeniuDeschis] = useState(false);
+  const butonMeniuRef = useRef<HTMLButtonElement>(null);
+
+  // Previne scroll-ul pe fundal când meniul mobil este deschis; Esc îl închide.
+  useEffect(() => {
+    if (!mobileMeniuDeschis) return;
+    document.body.style.overflow = "hidden";
+    const laTasta = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMeniuDeschis(false);
+        butonMeniuRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", laTasta);
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", laTasta);
     };
   }, [mobileMeniuDeschis]);
 
+  const inchideMobil = () => setMobileMeniuDeschis(false);
+  const cursuriActiv =
+    pathname.startsWith("/curriculum") || pathname.startsWith("/kids") || pathname.startsWith("/curs-practic");
+
   return (
     <>
-      {/* Desktop Navigation */}
-      {isKids && !esteProfesor ? (
-        <div className="hidden md:flex items-center gap-3">
-          <nav className="flex items-center gap-2 text-xs font-bold text-slate-700">
-            {linkuriKids.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="rounded-full bg-slate-100 hover:bg-amber-100 hover:text-amber-900 px-3 py-1.5 transition border border-slate-200"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <KidsHeaderRight />
-        </div>
-      ) : (
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
-          {linkuriActive.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="transition-colors hover:text-indigo-600"
-            >
-              {l.label.split(" ")[1] ?? l.label}
+      {/* Navigație desktop */}
+      {esteProfesor ? (
+        <nav aria-label="Navigație profesor" className="hidden lg:flex items-center gap-5 text-sm font-semibold text-slate-700">
+          {linkuriProfesor.map((l) => (
+            <Link key={l.href} href={l.href} className="transition-colors hover:text-amber-700">
+              {l.label}
             </Link>
           ))}
         </nav>
+      ) : (
+        <nav aria-label="Navigație principală" className="hidden lg:flex items-center gap-2 text-sm font-semibold text-slate-700">
+          <Dropdown eticheta="Cursuri" activ={cursuriActiv}>
+            {(inchide) => (
+              <>
+                <p className="px-3 pb-1 text-[11px] font-black uppercase tracking-widest text-[#525B6C]">Alege traseul</p>
+                <ListaLinkuri linkuri={linkuriCursuri} onAles={inchide} />
+                <div className="mt-2 border-t border-[#EBE7DF] pt-2">
+                  <Link
+                    href="/start"
+                    onClick={inchide}
+                    className="block rounded-xl px-3 py-2 text-sm font-bold text-amber-800 hover:bg-amber-50"
+                  >
+                    Nu știi ce să alegi? Te ajutăm în 1 pas →
+                  </Link>
+                </div>
+              </>
+            )}
+          </Dropdown>
+          <Link
+            href="/lab"
+            aria-current={pathname === "/lab" ? "page" : undefined}
+            className="rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 aria-[current=page]:text-amber-700"
+          >
+            Laborator
+          </Link>
+          <Link
+            href="/preturi"
+            aria-current={pathname === "/preturi" ? "page" : undefined}
+            className="rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 aria-[current=page]:text-amber-700"
+          >
+            Prețuri
+          </Link>
+          <Dropdown eticheta="Mai mult" activ={false} latime="w-[22rem]">
+            {(inchide) => (
+              <>
+                <ListaLinkuri linkuri={linkuriMaiMult} onAles={inchide} />
+                <dl className="mt-2 space-y-1 border-t border-[#EBE7DF] px-3 pt-2 text-[11px] text-[#525B6C]">
+                  {GLOSAR.map(([t, d]) => (
+                    <div key={t}>
+                      <dt className="inline font-bold text-[#1E2430]">{t}:</dt> <dd className="inline">{d}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </>
+            )}
+          </Dropdown>
+          {isKids && <KidsHeaderRight />}
+        </nav>
       )}
 
-      {/* Mobile Hamburger Button */}
+      {/* Buton meniu mobil */}
       <button
+        ref={butonMeniuRef}
+        type="button"
         onClick={() => setMobileMeniuDeschis(true)}
-        className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0"
-        aria-label="Deschide Meniu Mobil"
+        aria-expanded={mobileMeniuDeschis}
+        className="order-last lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0"
+        aria-label="Deschide meniul"
       >
         <IconMeniu className="h-6 w-6 text-[#1E2430]" />
       </button>
 
-      {/* 100% FULL-SCREEN MOBILE OVERLAY (Acoperă tot ecranul) */}
       {mobileMeniuDeschis && (
-        <div className="fixed inset-0 h-screen w-screen z-[99999] bg-[#FDFBF7] p-4 sm:p-6 overflow-y-auto lg:hidden flex flex-col justify-between animate-fadeIn">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Meniu"
+          className="fixed inset-0 h-dvh w-full z-[99999] bg-[#FDFBF7] p-4 sm:p-6 overflow-y-auto lg:hidden animate-fadeIn"
+        >
           <div className="flex flex-col gap-4 max-w-lg mx-auto w-full pb-8">
-            {/* Header Meniu Mobil: Logo + Switch + Buton Închidere ✕ */}
             <div className="flex items-center justify-between pb-4 border-b border-[#EBE7DF]">
-              <Link
-                href="/"
-                onClick={() => setMobileMeniuDeschis(false)}
-                className="flex items-center gap-2"
-              >
+              <Link href="/" onClick={inchideMobil} className="flex items-center gap-2">
                 <Logo className="h-9 w-9 rounded-xl" />
                 <span className="text-sm font-black text-[#1E2430]">
-                  Academia<span className="text-amber-500">Python</span>
+                  Academia<span className="text-amber-600">Python</span>
                 </span>
               </Link>
-
-              {!esteProfesor && <HeaderSwitch />}
-
               <button
-                onClick={() => setMobileMeniuDeschis(false)}
+                type="button"
+                autoFocus
+                onClick={() => {
+                  inchideMobil();
+                  butonMeniuRef.current?.focus();
+                }}
                 className="flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-[#EBE7DF] text-slate-900 shadow-sm active:scale-95 transition"
-                aria-label="Închide Meniu"
+                aria-label="Închide meniul"
               >
                 <IconInchide className="h-5 w-5 text-slate-900" />
               </button>
             </div>
 
-            {/* Stele / Profil dacă e pe Kids */}
             {isKids && !esteProfesor && (
               <div className="p-3.5 bg-white rounded-2xl border border-[#EBE7DF] shadow-xs">
                 <KidsHeaderRight />
               </div>
             )}
 
-            {/* Titlu meniu */}
-            <div className="flex items-center justify-between pt-1">
-              <span className="text-xs font-black uppercase tracking-widest text-blue-900">
-                {esteProfesor ? "Zona Profesor" : "Toate Cursurile & Opțiunile"}
-              </span>
-              <span className="text-xs text-[#525B6C] font-semibold">
-                {esteProfesor ? "Instrumente" : isKids ? "Ciclul Primar" : "Clasele IX–XII"}
-              </span>
-            </div>
-
-            {/* TOATE LINK-URILE DIN MENIU VIZIBILE COMPLET */}
-            <div className="flex flex-col gap-2.5 my-1">
-              {linkuriActive.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setMobileMeniuDeschis(false)}
-                  className="rounded-2xl border border-[#EBE7DF] bg-white p-4 text-left transition shadow-xs hover:border-amber-400 active:bg-amber-50 flex items-center justify-between group"
-                >
-                  <div>
-                    <span className="text-base font-black text-[#1E2430] group-hover:text-amber-700 block">
-                      {l.label}
-                    </span>
-                    <span className="text-xs font-medium text-[#525B6C] block mt-0.5">
-                      {l.sub}
-                    </span>
-                  </div>
-                  <span className="text-amber-500 font-black text-lg">→</span>
-                </Link>
-              ))}
-            </div>
-
-            {/* Butoane Acțiuni Rapide la Baza Meniului Mobil */}
             {!esteProfesor && (
-              <div className="pt-4 border-t border-[#EBE7DF] flex flex-col gap-3">
-                <Link
-                  href="/kids"
-                  onClick={() => setMobileMeniuDeschis(false)}
-                  className="rounded-2xl border border-slate-200 bg-white p-3.5 text-xs font-bold text-slate-800 text-center flex items-center justify-center gap-2 shadow-xs"
-                >
-                  <span>👥</span>
-                  <span>Secțiunea pentru părinți</span>
-                </Link>
-                <Link
-                  href="/curriculum"
-                  onClick={() => setMobileMeniuDeschis(false)}
-                  className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
-                >
-                  🚀 Începe gratuit / Vezi Cursurile
-                </Link>
-              </div>
+              <Link
+                href="/start"
+                onClick={inchideMobil}
+                className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
+              >
+                Începe gratuit
+              </Link>
+            )}
+
+            {esteProfesor ? (
+              <section>
+                <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Zona profesor</h2>
+                <div className="mt-2 rounded-2xl border border-[#EBE7DF] bg-white p-2">
+                  <ListaLinkuri linkuri={linkuriProfesor} onAles={inchideMobil} />
+                </div>
+              </section>
+            ) : (
+              <>
+                <section>
+                  <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Cursuri</h2>
+                  <div className="mt-2 rounded-2xl border border-[#EBE7DF] bg-white p-2">
+                    <ListaLinkuri linkuri={isKids ? linkuriKids : linkuriCursuri} onAles={inchideMobil} />
+                  </div>
+                </section>
+                <section>
+                  <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Instrumente și cont</h2>
+                  <div className="mt-2 rounded-2xl border border-[#EBE7DF] bg-white p-2">
+                    <ListaLinkuri
+                      linkuri={[
+                        { href: "/lab", label: "Laborator", sub: "Editor Python liber, rulează în browser" },
+                        { href: "/preturi", label: "Prețuri", sub: "Ce e gratuit și ce include abonamentul" },
+                        esteAutentificat
+                          ? { href: "/cont", label: "Contul meu", sub: "Progres și abonament" }
+                          : { href: "/login", label: "Autentificare", sub: "Intră în cont sau creează unul" },
+                      ]}
+                      onAles={inchideMobil}
+                    />
+                  </div>
+                </section>
+                <section>
+                  <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Mai mult</h2>
+                  <div className="mt-2 rounded-2xl border border-[#EBE7DF] bg-white p-2">
+                    <ListaLinkuri linkuri={linkuriMaiMult} onAles={inchideMobil} />
+                  </div>
+                </section>
+              </>
             )}
           </div>
         </div>

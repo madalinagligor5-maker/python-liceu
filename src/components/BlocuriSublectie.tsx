@@ -22,10 +22,13 @@ export default function BlocuriSublectie({
   blocuri,
   esteVerificare = false,
   esteExercitii = false,
+  permiteRulare = true,
 }: {
   blocuri: Bloc[];
   esteVerificare?: boolean;
   esteExercitii?: boolean;
+  /** False la pasul „Citește și prezice". */
+  permiteRulare?: boolean;
 }) {
   if (esteVerificare || esteExercitii) return null;
 
@@ -41,7 +44,17 @@ export default function BlocuriSublectie({
         )
         .map((b, i) => {
           if (b.tip === "code") {
-            return <CodeBlock key={i} code={b.code} label={`${b.lang}.py`} />;
+            // Exemplele complete pot fi rulate; cele cu spații de completat (___) nu.
+            // Nu și la „Citește și prezice" (ar da răspunsul înainte de predicție),
+            // nici exemplele care cer date (input) sau module indisponibile în browser.
+            const rulabil =
+              permiteRulare &&
+              b.lang === "python" &&
+              b.code.trim().length > 0 &&
+              !b.code.includes("___") &&
+              !/\binput\s*\(/.test(b.code) &&
+              !/^\s*(import|from)\s+(turtle|tkinter|pygame|numpy|pandas|matplotlib|sklearn|sqlite3|requests)\b/m.test(b.code);
+            return <CodeBlock key={i} code={b.code} label={`${b.lang}.py`} ruleaza={rulabil} />;
           }
           if (b.tip === "card") {
             return (

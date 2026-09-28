@@ -53,9 +53,9 @@ export default function AbonaButton({
   return (
     <div>
       <button type="button" onClick={handleClick} disabled={seIncarca} className={className}>
-        {seIncarca ? "Se procesează..." : "Abonează-te"}
+        {seIncarca ? "Se deschide plata…" : "Începe proba de 7 zile"}
       </button>
-      {eroare && <p className="mt-2 text-center text-xs text-red-600">{eroare}</p>}
+      {eroare && <p className="mt-2 text-center text-xs text-red-700" role="alert">{eroare}</p>}
     </div>
   );
 }

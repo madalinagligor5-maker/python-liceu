@@ -1,3 +1,4 @@
+import { numeClasa } from "@/lib/curriculum";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -45,7 +46,7 @@ export default async function ResursaPdfPreviewPage({
             </Link>
             <span>/</span>
             <Link href={`/resurse/${clasa}`} className="hover:text-white transition">
-              Clasa a {clasa}-a
+              {numeClasa(clasa)}
             </Link>
             <span>/</span>
             <span className="text-slate-200 truncate">{modul.cod}</span>

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { capitole, getCapitol, hrefModul, ICOANE_SUBLECTIE } from "@/lib/curriculum";
+import { capitole, esteCapitolCopii, getCapitol, hrefModul, ICOANE_SUBLECTIE, numeClasa, numeClasaScurt, radacinaClasa } from "@/lib/curriculum";
+import { ETICHETE_ACCES, nivelAccesLectii } from "@/lib/acces";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type Params = { clasa: string };
@@ -20,8 +21,10 @@ export async function generateMetadata({
   if (!capitol) return {};
 
   return {
-    title: `Clasa a ${clasa}-a: ${capitol.titlu}`,
-    description: `${capitol.module.length} module pentru clasa a ${clasa}-a, conform programei oficiale de Informatică.`,
+    title: esteCapitolCopii(capitol.clasa) ? capitol.titlu : `${numeClasa(capitol.clasa)}: ${capitol.titlu}`,
+    description: esteCapitolCopii(capitol.clasa)
+      ? `${capitol.module.length} module de Python pentru copii (${numeClasaScurt(capitol.clasa)}), gratuite, direct în browser.`
+      : `${capitol.module.length} module de Informatică (Python) pentru ${numeClasa(capitol.clasa).toLowerCase()}, organizate pe pași.`,
     alternates: { canonical: `/curriculum/${clasa}` },
   };
 }
@@ -36,16 +39,16 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <BreadcrumbJsonLd
         firimituri={[
-          { nume: "Curriculum", cale: "/curriculum" },
-          { nume: `Clasa a ${capitol.clasa}-a` },
+          radacinaClasa(capitol.clasa),
+          { nume: numeClasa(capitol.clasa) },
         ]}
       />
       <nav className="text-sm text-muted">
-        <Link href="/curriculum" className="hover:text-brand">
-          Curriculum
+        <Link href={radacinaClasa(capitol.clasa).cale} className="hover:text-brand">
+          {radacinaClasa(capitol.clasa).nume}
         </Link>
         <span className="mx-2">/</span>
-        <span>Clasa a {capitol.clasa}-a</span>
+        <span>{numeClasa(capitol.clasa)}</span>
       </nav>
 
       <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand">
@@ -55,22 +58,24 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
         {capitol.titlu}
       </h1>
       <p className="mt-2 text-sm text-muted">
-        Clasa a {capitol.clasa}-a · {capitol.module.length} module ·{" "}
-        {capitol.module.length * 6} sublecții
+        {numeClasa(capitol.clasa)} · {capitol.module.length} module · câte 6 pași fiecare
       </p>
 
       {capitol.clasa === "IX" && (
         <p className="mt-3 text-xs text-muted">
-          Programa de mai jos reflectă schimbarea recentă la Informatică —{" "}
+          Modulele urmează noua programă de Informatică pentru clasa a IX-a (specializarea matematică-informatică),
+          aplicată din anul școlar 2026–2027. Pentru context, vezi{" "}
           <Link href="/blog/schimbari-bacalaureat-informatica-python-2030" className="font-semibold text-brand hover:underline">
-            află ce se schimbă la Bacalaureatul de Informatică și de ce
+            articolul despre schimbările la Informatică
           </Link>
           .
         </p>
       )}
 
-      <nav aria-label="Alte clase" className="mt-6 flex flex-wrap gap-2">
-        {capitole.map((c) => (
+      <nav aria-label={esteCapitolCopii(capitol.clasa) ? "Alte vârste" : "Alte clase"} className="mt-6 flex flex-wrap gap-2">
+        {capitole
+          .filter((c) => esteCapitolCopii(c.clasa) === esteCapitolCopii(capitol.clasa))
+          .map((c) => (
           <Link
             key={c.clasa}
             href={`/curriculum/${c.clasa}`}
@@ -81,7 +86,7 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
                 : "border border-border bg-white text-foreground/70 hover:text-brand"
             }`}
           >
-            Clasa {c.clasa}
+            {numeClasaScurt(c.clasa)}
           </Link>
         ))}
       </nav>
@@ -100,19 +105,12 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
               <span className="min-w-0 flex-1">
                 <span className="flex flex-wrap items-center gap-2">
                   <span className="font-semibold text-foreground">{m.titlu}</span>
-                  {m.gratuit ? (
-                    <span className="rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-bold text-success">
-                      gratuit
-                    </span>
-                  ) : m.numar <= 5 ? (
-                    <span className="rounded-full bg-brand-light px-2 py-0.5 text-[11px] font-bold text-brand-dark">
-                      acces deschis
-                    </span>
-                  ) : (
-                    <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-bold text-locked">
-                      necesită abonament
-                    </span>
-                  )}
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${ETICHETE_ACCES[nivelAccesLectii(m)].clasa}`}
+                    title={ETICHETE_ACCES[nivelAccesLectii(m)].explicatie}
+                  >
+                    {ETICHETE_ACCES[nivelAccesLectii(m)].text}
+                  </span>
                 </span>
                 <span className="mt-1 flex flex-wrap gap-1.5">
                   {m.sublectii.map((s) => (

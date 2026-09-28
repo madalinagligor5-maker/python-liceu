@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { capitole, structura } from "@/lib/curriculum";
+import { capitole, numeClasa, structura } from "@/lib/curriculum";
 import ModuleListCollapsible from "@/components/ModuleListCollapsible";
 
 export const metadata: Metadata = {
   title: "Curriculum complet",
   description:
-    "Structura completă a cursului de Informatică pentru liceu: 4 capitole, 88 module, 528 sublecții, conform programei oficiale.",
+    "Structura cursului de Informatică (Python) pentru liceu, clasele IX–XII: 4 capitole, 88 de module, fiecare în 6 pași.",
   alternates: { canonical: "/curriculum" },
 };
 
@@ -26,22 +26,28 @@ export default function CurriculumPage() {
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen">
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 bg-hero-glow rounded-3xl">
         <span className="inline-flex rounded-full bg-blue-50 border border-blue-200 px-3.5 py-1 text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">
-          Programa Școlară Oficială 2026
+          Liceu · clasele IX–XII
         </span>
         <h1 className="text-3xl font-black text-[#1E2430] sm:text-4xl [font-family:var(--font-fraunces)]">
           Curriculum complet de Informatică
         </h1>
         <p className="mt-3 max-w-2xl text-[#525B6C] font-medium text-sm sm:text-base">
-          Structura cursului pentru clasele IX-XII, organizată ca{" "}
-          <strong className="text-amber-600 font-bold">capitol → modul → sublecții</strong>. Fiecare modul urmează același șablon de 6 sublecții interactive.
+          Curriculumul e harta materiei: capitole (clase) → module → câte 6 pași. Deschide un modul ca să începi lecția.
         </p>
 
+        {/* DE REVIZUIT: referințele la ordinele de ministru au fost verificate doar
+            prin surse secundare (presă), nu în Monitorul Oficial. Înainte de a
+            afișa numere de ordin, confirmați-le din documentul oficial. */}
         <div className="mt-6 rounded-3xl border border-[#EBE7DF] bg-white p-5 text-xs sm:text-sm text-[#1E2430] shadow-xs">
-          <p className="font-extrabold text-amber-700 text-sm mb-1">
-            📜 Ordinul Ministrului Educației nr. 4.370/2026
+          <p className="font-extrabold text-[#1E2430] text-sm mb-1">
+            Ce reper folosim
           </p>
-          <p className="leading-relaxed text-[#525B6C]">
-            Lecțiile sunt aliniate programei de <strong>Matematică-Informatică (intensiv)</strong>. Conținutul acoperă algoritmi, structuri de date, programare orientată pe obiecte și pregătire completă pentru Bacalaureat și Olimpiade.
+          <p className="leading-relaxed text-[#3B4252]">
+            Temele urmează noile programe școlare de Informatică pentru liceu, profilul real, specializarea
+            matematică-informatică, care se aplică treptat: clasa a IX-a din anul școlar 2026–2027, apoi câte o clasă pe an.
+            Ordinea lecțiilor de la clasă poate diferi. Platforma nu este un material oficial al Ministerului Educației și
+            nu este un curs de pregătire pentru Bacalaureat; pentru programe, consultă{" "}
+            <a href="https://www.edu.ro" className="font-semibold underline underline-offset-2" rel="noopener">edu.ro</a>.
           </p>
         </div>
 
@@ -57,7 +63,7 @@ export default function CurriculumPage() {
               className="rounded-2xl border border-[#EBE7DF] bg-white p-4 text-center shadow-xs"
             >
               <dt className="text-[10px] font-extrabold uppercase tracking-widest text-[#525B6C]">{eticheta}</dt>
-              <dd className="text-2xl font-black text-amber-600 mt-1">{valoare}</dd>
+              <dd className="text-2xl font-black text-amber-800 mt-1">{valoare}</dd>
             </div>
           ))}
         </dl>
@@ -71,7 +77,7 @@ export default function CurriculumPage() {
                 key={s.titlu}
                 className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-xs"
               >
-                <span className="text-xs font-black text-amber-600">Pasul {i + 1}</span>
+                <span className="text-xs font-black text-amber-800">Pasul {i + 1}</span>
                 <p className="mt-1 font-bold text-[#1E2430] text-sm">{s.titlu}</p>
                 <p className="mt-1 text-xs text-[#525B6C]">{s.descriere}</p>
               </li>
@@ -88,8 +94,8 @@ export default function CurriculumPage() {
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-wider text-amber-600">
-                    Capitolul {c.numar} · Clasa a {c.clasa}-a
+                  <p className="text-xs font-black uppercase tracking-wider text-amber-800">
+                    Capitolul {c.numar} · {numeClasa(c.clasa)}
                   </p>
                   <h3 className="mt-1 text-xl font-black text-[#1E2430]">{c.titlu}</h3>
                   <p className="mt-1 text-xs text-[#525B6C] font-medium">

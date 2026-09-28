@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { capitole, hrefModul } from "@/lib/curriculum";
+import { esteCapitolCopii, numeClasa, capitole, hrefModul } from "@/lib/curriculum";
 import LectieBadge from "@/components/LectieBadge";
+import { nivelAccesLectii } from "@/lib/acces";
 
 export const metadata: Metadata = {
   title: "Catalog de lecții",
@@ -15,10 +16,9 @@ export default function LectiiPage() {
       <div className="border-b border-black/5 pb-6">
         <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl">Catalog de lecții</h1>
         <p className="mt-2 text-foreground/70 text-sm">
-          Aici găsești programa completă de Informatică (Python) structurată pe module de învățare. 
-          Toate cele 5 module de gimnaziu (clasele a VII-a și a VIII-a) sunt complet gratuite. La liceu, primele
-          3 module din clasa a IX-a sunt complet gratuite, iar următoarele 2 sunt deschise pentru explorare. 
-          Restul necesită cont și abonament activ.
+          Toate modulele, pe clase, într-o singură listă. Fiecare modul e o lecție în 6 pași.
+          Ce înseamnă „gratuit”, „acces deschis” și „necesită abonament” găsești pe{" "}
+          <Link href="/preturi" className="font-semibold text-brand-dark underline">pagina Prețuri</Link>.
         </p>
       </div>
 
@@ -27,17 +27,16 @@ export default function LectiiPage() {
           <section key={capitol.clasa} className="border-b border-black/5 pb-10 last:border-0 last:pb-0">
             <h2 className="flex items-center gap-3 text-2xl font-bold text-foreground">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-base font-extrabold text-white">
-                {capitol.clasa}
+                {esteCapitolCopii(capitol.clasa) ? capitol.clasa.slice(1) : capitol.clasa}
               </span>
-              Clasa a {capitol.clasa}-a
+              {numeClasa(capitol.clasa)}
             </h2>
-            <p className="text-xs text-foreground/50 mt-1 font-semibold uppercase tracking-wider">
+            <p className="text-xs text-foreground/70 mt-1 font-semibold uppercase tracking-wider">
               {capitol.titlu}
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {capitol.module.map((modul) => {
-                const esteGratuit = modul.gratuit || (capitol.clasa === "IX" && modul.numar <= 5);
                 return (
                   <div key={modul.cod}>
                     <Link
@@ -45,7 +44,7 @@ export default function LectiiPage() {
                       className="flex items-start justify-between gap-4 rounded-2xl border border-black/10 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md h-full group"
                     >
                       <div className="min-w-0">
-                        <span className="text-[10px] font-bold text-brand uppercase tracking-wider">
+                        <span className="text-[11px] font-bold text-brand-dark uppercase tracking-wider">
                           Modulul {modul.cod}
                         </span>
                         <h3 className="mt-1 font-bold text-foreground text-sm leading-snug group-hover:text-brand transition">
@@ -56,7 +55,7 @@ export default function LectiiPage() {
                         </p>
                       </div>
                       <div className="shrink-0">
-                        <LectieBadge gratuit={esteGratuit} />
+                        <LectieBadge nivel={nivelAccesLectii(modul)} />
                       </div>
                     </Link>
                   </div>

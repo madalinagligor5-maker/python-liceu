@@ -6,82 +6,32 @@ import NewsletterForm from "@/components/NewsletterForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
-import { capitole, TOATE_CLASELE } from "@/lib/curriculum";
+import { structura, TOATE_CLASELE } from "@/lib/curriculum";
+import CarduriTrasee from "@/components/CarduriTrasee";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getToateArticolele } from "@/lib/blog";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
-
-const CLASE = [
-  {
-    clasa: "VII",
-    titlu: "Primii pași în Python",
-    descriere:
-      "De la blocurile din Scratch la sintaxa text: variabile, decizii și cele trei structuri fundamentale de control, combinate.",
-    icon: "🌱",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-  {
-    clasa: "VIII",
-    titlu: "Șiruri de valori",
-    descriere:
-      "Generezi și prelucrezi șiruri de valori — exact algoritmii de bază presupuși cunoscuți la intrarea în clasa a IX-a.",
-    icon: "🔢",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-  {
-    clasa: "IX",
-    titlu: "Bazele programării",
-    descriere:
-      "De la zero: ce e un algoritm, cum scrii un program, variabile, operații cu numere, liste și cum citești ce a scris altul.",
-    icon: "🧭",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-  {
-    clasa: "X",
-    titlu: "Funcții și structuri de date",
-    descriere:
-      "Înveți să împarți un program în bucăți mai mici (funcții), apoi lucrezi cu tupluri, seturi, dicționare și text.",
-    icon: "🔁",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-  {
-    clasa: "XI",
-    titlu: "Programare orientată pe obiecte",
-    descriere:
-      "Clase și obiecte, cum refolosești codul prin moștenire, plus algoritmi de care ai nevoie la olimpiadă și la școală.",
-    icon: "🔀",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-  {
-    clasa: "XII",
-    titlu: "Proiecte și pregătire examen",
-    descriere:
-      "Pui cap la cap tot ce ai învățat în proiecte mai mari și exersezi exact ce pică la evaluarea de la Informatică.",
-    icon: "🎒",
-    culoare: "border-[#EBE7DF] bg-white text-[#1E2430]",
-  },
-];
 
 const FAQ = [
   {
     intrebare: "Chiar pot începe fără să plătesc nimic?",
     raspuns:
-      "Da. Toate cele 6 module din Academia Junior și toate cele 5 module de gimnaziu (clasele VII-VIII) sunt 100% GRATUITE. De asemenea, primele 3 module din liceu sunt deschise complet fără card.",
+      "Da, fără cont și fără card. Sunt gratuite: toate cele 6 module Kids Junior și lecțiile „Python pentru copii”, toate cele 5 module de gimnaziu (clasele VII–VIII), primele 3 module din clasa a IX-a și modulul 1 din cursul practic. Pagina Prețuri explică exact ce înseamnă „gratuit”, „acces deschis” și „necesită abonament”.",
   },
   {
     intrebare: "Trebuie să instalez Python pe laptop?",
     raspuns:
-      "Nu. Codul se scrie și rulează direct în pagină, în browser. Nu ai nevoie de instalări pe calculator.",
+      "Nu. Codul se scrie și rulează direct în pagină, în browser. Prima rulare descarcă interpretorul Python (aprox. 15 MB), apoi merge imediat.",
   },
   {
     intrebare: "Se potrivește cu ce facem la școală?",
     raspuns:
-      "Se potrivește 100%. Lecțiile sunt grupate pe clase (VII–VIII, IX–XII & Ciclul Primar) și respectă programa școlară de Informatică.",
+      "Lecțiile de gimnaziu și liceu sunt organizate pe clase și au fost structurate după programele școlare de Informatică. Pentru detalii despre documentele folosite ca reper, vezi pagina Curriculum. Ordinea temelor de la clasă poate diferi de la profesor la profesor.",
   },
   {
-    intrebare: "Mă ajută la Bacalaureat și la evaluările de la școală?",
+    intrebare: "Mă ajută la Bacalaureat?",
     raspuns:
-      "Da! Conținutul acoperă integral algoritmii de bază, structurile de date și cerințele pentru evaluări sumative, teste curente și olimpiade școlare. Important de știut: noua programă școlară se aplică treptat, iar examenul oficial de Bacalaureat pe noua programă va fi introdus începând din anul 2030.",
+      "Lecțiile exersează algoritmii și structurile de date studiate la liceu, utile și pentru evaluările de la clasă. Nu sunt un curs oficial de pregătire pentru Bacalaureat. Calendarul și programa examenului se stabilesc prin ordine ale Ministerului Educației; verifică întotdeauna documentele oficiale pentru generația ta.",
   },
 ];
 
@@ -150,184 +100,121 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   return (
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen relative overflow-hidden font-sans">
       <FaqJsonLd intrebari={FAQ} />
-      {/* Soft ambient background glow — plutire discretă, nu statică */}
-      <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
+      <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] max-w-full rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
-      {/* HERO SECTION */}
-      <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 bg-hero-glow rounded-3xl">
-        {/* Pastile de Acces Rapid */}
-        <div className="flex flex-wrap items-center justify-start gap-3 mb-6">
-          <Link
-            href="/curriculum"
-            className="flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-1.5 text-xs font-bold text-blue-900 hover:bg-blue-100 transition shadow-xs"
-          >
-            <span>🎓 Academia Liceu</span>
-            <span className="text-blue-700 font-semibold">Clasele IX–XII</span>
-          </Link>
-          <Link
-            href="/curriculum/VII"
-            className="flex items-center gap-2 rounded-full bg-violet-50 border border-violet-200 px-4 py-1.5 text-xs font-bold text-violet-900 hover:bg-violet-100 transition shadow-xs"
-          >
-            <span>🌱 Academia Gimnaziu</span>
-            <span className="text-violet-700 font-semibold">Clasele VII–VIII (100% Gratuit)</span>
-          </Link>
-          <Link
-            href="/kids/junior"
-            className="flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1.5 text-xs font-bold text-emerald-900 hover:bg-emerald-100 transition shadow-xs"
-          >
-            <span>🎮 Academia Kids</span>
-            <span className="text-emerald-700 font-semibold">Clasele I–IV (100% Gratuit)</span>
-          </Link>
-          <Link
-            href="/curs-practic"
-            className="flex items-center gap-2 rounded-full bg-rose-50 border border-rose-200 px-4 py-1.5 text-xs font-bold text-rose-900 hover:bg-rose-100 transition shadow-xs"
-          >
-            <span>🚀 Curs practic Python</span>
-            <span className="text-rose-700 font-semibold">Pentru toată lumea — Modulul 1 gratuit</span>
-          </Link>
-        </div>
-
-        {/* Layout Hero */}
+      {/* HERO */}
+      <section className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Coloana Stânga: Text & CTA */}
-          <div className="enter-slide-up lg:col-span-5 space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-none [font-family:var(--font-fraunces)]">
-              Învață Python direct în browser. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700">
-                Progresezi pas cu pas.
-              </span>
+          <div className="enter-slide-up lg:col-span-6 space-y-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-[1.05] [font-family:var(--font-fraunces)]">
+              Învață Python pas cu pas.{" "}
+              <span className="text-amber-700">Scrie cod și vezi imediat rezultatul.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-[#525B6C] font-medium leading-relaxed">
-              Platforma educațională creată pentru elevii de liceu, gimnaziu și clasele primare. Fără instalări complicate, aliniată la programa școlară.
+            <p className="text-base sm:text-lg text-[#3B4252] font-medium leading-relaxed">
+              Explicații în română, exerciții ghidate și practică direct în browser.
             </p>
 
-            {/* Lista bife verzi calde */}
-            <div className="space-y-3 pt-2">
-              {[
-                "Exerciții interactive cu feedback instant",
-                "Aliniat cu programa oficială de informatică",
-                "Profesor Asistent AI care explică prietenos",
-                "Gamification: XP, streak-uri, insigne și diplome",
-              ].map((bifa, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-xs font-black border border-emerald-300 shrink-0">
-                    ✓
-                  </div>
-                  <span className="text-sm font-semibold text-[#1E2430]">{bifa}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Butoane CTA */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
-                href="/curriculum"
-                className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-7 py-3.5 text-base shadow-xs active:scale-95 transition-all flex items-center gap-2"
+                href="/start"
+                className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-7 py-3.5 text-base shadow-xs active:scale-95 transition-all"
               >
-                <span>Începe gratuit</span>
-                <span>🎯</span>
+                Începe gratuit
               </Link>
               <Link
-                href="/curriculum"
-                className="rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] text-[#1E2430] font-bold px-7 py-3.5 text-base transition shadow-xs"
+                href="#trasee"
+                className="rounded-xl border border-[#D9D3C7] bg-white hover:bg-[#F3EFE6] text-[#1E2430] font-bold px-7 py-3.5 text-base transition shadow-xs"
               >
-                Explorează lecțiile
+                Vezi cursurile
               </Link>
             </div>
+            <p className="text-sm text-[#525B6C]">
+              Fără cont și fără card pentru lecțiile gratuite. Fără instalare.
+            </p>
           </div>
 
-          {/* Coloana Centru: IDE Editor (Păstrat Dark doar pentru cod) */}
-          <div className="enter-slide-up enter-delay-1 lg:col-span-4 shadow-depth-lg rounded-2xl">
+          <div className="enter-slide-up enter-delay-1 lg:col-span-6 shadow-depth-lg rounded-2xl min-w-0">
             <HeroCodeRunner />
           </div>
+        </div>
+      </section>
 
-          {/* Coloana Dreapta: Floating Widgets pe carduri albe */}
-          <div className="enter-slide-up enter-delay-2 lg:col-span-3 space-y-4">
-            {/* Widget Asistent AI */}
-            <AiAssistantWidget />
+      {/* TRASEE */}
+      <section id="trasee" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-14 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+        <div className="max-w-2xl mb-8">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+            Alege traseul potrivit
+          </h2>
+          <p className="mt-3 text-sm sm:text-base text-[#525B6C] font-medium">
+            Patru trasee separate, pentru vârste și scopuri diferite. Butonul galben deschide direct prima activitate.
+          </p>
+        </div>
+        <CarduriTrasee nivelTitlu="h3" />
+      </section>
 
-            {/* Widget Progres & Gamification */}
-            <div className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-depth-md text-[#1E2430]">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-extrabold text-[#525B6C] uppercase tracking-wider">
-                  Progres & Gamification
-                </span>
-                <span className="text-xs text-amber-600 font-black">Level 12</span>
-              </div>
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-xl bg-amber-50 border border-amber-200 p-2">
-                  <span className="text-lg">🏆</span>
-                  <p className="text-[10px] text-amber-800 font-bold uppercase mt-1">+1250 XP</p>
-                </div>
-                <div className="rounded-xl bg-orange-50 border border-orange-200 p-2">
-                  <span className="text-lg">🔥</span>
-                  <p className="text-[10px] text-orange-800 font-bold uppercase mt-1">7 Zile</p>
-                </div>
-                <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-2">
-                  <span className="text-lg">⭐</span>
-                  <p className="text-[10px] text-indigo-800 font-bold uppercase mt-1">Badge-uri</p>
-                </div>
-              </div>
+      {/* CUM ARATĂ O LECȚIE */}
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+        <div className="grid gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Cum arată o lecție
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#525B6C]">
+              Fiecare modul are aceiași 6 pași. Explicația vine întâi, apoi exersezi, iar la final verifici ce ai înțeles.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm text-[#3B4252]">
+              <li><strong>Curriculum</strong> — harta materiei, pe clase și module.</li>
+              <li><strong>Lecție</strong> — un modul parcurs în cei 6 pași de alături.</li>
+              <li><strong>Exerciții</strong> — practică suplimentară pe fiecare modul.</li>
+              <li><strong>Laborator</strong> — editor liber, pentru experimente fără cerință.</li>
+            </ul>
+          </div>
+          <ol className="lg:col-span-7 grid gap-3 sm:grid-cols-2">
+            {structura.sablon_sublectii.map((pas, i) => (
+              <li key={pas.titlu} className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-depth-sm">
+                <span className="text-xs font-black text-amber-700">Pasul {i + 1} din 6</span>
+                <p className="mt-1 font-bold text-[#1E2430] text-sm">{pas.titlu}</p>
+                <p className="mt-1 text-xs text-[#525B6C]">{pas.descriere}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Exemplu demonstrativ de progres — marcat explicit ca atare */}
+        <div className="mt-8 max-w-md rounded-2xl border border-dashed border-[#D9D3C7] bg-white p-4 text-[#1E2430]">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-extrabold text-[#525B6C] uppercase tracking-wider">
+              Progresul tău, într-un cont
+            </span>
+            <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-700">
+              Exemplu demonstrativ
+            </span>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center" aria-hidden="true">
+            <div className="rounded-xl bg-amber-50 border border-amber-200 p-2">
+              <span className="text-lg">🏆</span>
+              <p className="text-[11px] text-amber-900 font-bold mt-1">XP</p>
+            </div>
+            <div className="rounded-xl bg-orange-50 border border-orange-200 p-2">
+              <span className="text-lg">🔥</span>
+              <p className="text-[11px] text-orange-900 font-bold mt-1">Zile la rând</p>
+            </div>
+            <div className="rounded-xl bg-indigo-50 border border-indigo-200 p-2">
+              <span className="text-lg">⭐</span>
+              <p className="text-[11px] text-indigo-900 font-bold mt-1">Insigne</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* PILONI DE ÎNCREDERE (4 CARDE ALBE PE FILDEȘ) */}
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { icon: "💻", bg: "bg-amber-50 border-amber-200", hover: "hover:border-amber-300 hover-glow-brand", titlu: "Învățare în ritm propriu", text: "Oriunde, oricând pe laptop sau tabletă" },
-            { icon: "📋", bg: "bg-emerald-50 border-emerald-200", hover: "hover:border-emerald-300", titlu: "Exerciții interactive", text: "Feedback instant la fiecare linie" },
-            { icon: "🎓", bg: "bg-amber-50 border-amber-200", hover: "hover:border-amber-300 hover-glow-brand", titlu: "Pregătire Bac & Școală", text: "Aliniat la programa oficială RO" },
-            { icon: "👥", bg: "bg-purple-50 border-purple-200", hover: "hover:border-purple-300", titlu: "Comunitate activă", text: "Suport de la profesori și elevi" },
-          ].map((p, i) => (
-            <ScrollReveal key={p.titlu} index={i}>
-              <div className={`rounded-2xl border border-[#EBE7DF] bg-white p-5 shadow-depth-sm flex items-center gap-4 transition ${p.hover}`}>
-                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl border shrink-0 ${p.bg}`}>
-                  {p.icon}
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-[#1E2430] text-sm">{p.titlu}</h3>
-                  <p className="text-xs text-[#525B6C]">{p.text}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CLASE CURRICULUM */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex rounded-full bg-indigo-50 border border-indigo-200 px-3.5 py-1 text-xs font-bold text-indigo-900 uppercase tracking-widest mb-3">
-            Programa Școlară
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">Ce înveți pe clase</h2>
-          <p className="mt-3 text-sm text-[#525B6C] font-medium">
-            Parcurge modulele de la clasa a VII-a până la examenul de Bacalaureat.
+          <p className="mt-3 text-xs text-[#525B6C]">
+            Cu un cont gratuit primești XP pentru predicțiile corecte și testele de final, serii de zile și insigne.
           </p>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CLASE.map((c, i) => (
-            <ScrollReveal key={c.clasa} index={i}>
-              <Link
-                href={`/curriculum/${c.clasa}`}
-                className="hover-glow-brand block rounded-3xl border border-[#EBE7DF] bg-white p-6 shadow-depth-sm transition-all"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F5F2EA] font-black text-lg text-[#1E2430]">
-                    {c.clasa}
-                  </span>
-                  <span className="text-3xl">{c.icon}</span>
-                </div>
-                <h3 className="text-lg font-black text-[#1E2430]">{c.titlu}</h3>
-                <p className="mt-2 text-xs text-[#525B6C] leading-relaxed">{c.descriere}</p>
-              </Link>
-            </ScrollReveal>
-          ))}
+      {/* ASISTENT AI (demo) — secundar, după trasee */}
+      <section className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+        <div className="max-w-md">
+          <AiAssistantWidget />
         </div>
       </section>
 

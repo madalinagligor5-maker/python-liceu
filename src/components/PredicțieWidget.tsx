@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
 import { finalizeazaPredicție } from "@/app/actions/progres";
+import { marcheazaPasReusit } from "@/lib/progresLocal";
 
 type Predic = {
   cod: string;
@@ -72,6 +73,7 @@ export default function PredicțieWidget({
     setOutputReal(out.trim());
 
     if (ales === predic.corect) {
+      marcheazaPasReusit(sublectieCod);
       try {
         const res = await finalizeazaPredicție(clasa, sublectieCod, true);
         if (res.ok) {

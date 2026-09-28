@@ -186,7 +186,7 @@ test.describe("Portal profesori — fara acces integral la curriculum premium", 
       await page.goto(SUBLECTIE_PREMIUM);
       await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
       await expect(page.locator("#lectie-articol")).toHaveCount(0);
-      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Vezi prețurile" })).toBeVisible();
     } finally {
       await stergeUtilizatorTest(profesor.id);
     }
@@ -205,7 +205,7 @@ test.describe("Portal profesori — fara acces integral la curriculum premium", 
       await page.goto(SUBLECTIE_PREMIUM);
       await expect(page.getByText(FRAGMENT_LECTIE_REALA)).toHaveCount(0);
       await expect(page.locator("#lectie-articol")).toHaveCount(0);
-      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Vezi prețurile" })).toBeVisible();
     } finally {
       await stergeUtilizatorTest(candidat.id);
     }

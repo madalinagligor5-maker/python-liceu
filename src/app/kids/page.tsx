@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresKids } from "@/lib/progres";
-import { capitole } from "@/lib/curriculum";
+import { capitole, numeClasaScurt } from "@/lib/curriculum";
 
 export const metadata: Metadata = {
   title: "Kids — pentru clasele I–IV",
@@ -94,7 +94,7 @@ export default async function KidsPage() {
           <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
             📚 Lecțiile tale Python — pe vârste
           </h2>
-          <p className="text-center text-sm text-slate-500 mb-8">
+          <p className="text-center text-sm text-slate-600 mb-8">
             Alege vârsta ta și începe să înveți Python pas cu pas!
           </p>
           <div className="space-y-6">
@@ -105,11 +105,11 @@ export default async function KidsPage() {
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                     <div>
                       <span className={`inline-block rounded-full px-3 py-0.5 text-xs font-bold mb-1 ${culori.badge}`}>
-                        {cap.clasa} · {(cap as { virsta?: string }).virsta ?? "7-11 ani"}
+                        Python pentru copii · {numeClasaScurt(cap.clasa)}
                       </span>
                       <h3 className="font-extrabold text-slate-800 text-lg leading-tight">{cap.titlu}</h3>
                     </div>
-                    <span className="text-sm text-slate-500">{cap.module.length} module · {cap.module.length * 6} lecții</span>
+                    <span className="text-sm text-slate-600">{cap.module.length} module · câte 6 pași · gratuit</span>
                   </div>
                   <div className="grid gap-2 sm:grid-cols-3">
                     {cap.module.map((m) => (
@@ -119,7 +119,7 @@ export default async function KidsPage() {
                         className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 px-4 py-3 text-xs font-bold text-slate-700 transition shadow-sm"
                       >
                         <span className="text-indigo-500 shrink-0">📖</span>
-                        <span className="leading-tight">{m.cod} {m.titlu}</span>
+                        <span className="leading-tight">{m.numar}. {m.titlu}</span>
                       </Link>
                     ))}
                   </div>
@@ -134,7 +134,7 @@ export default async function KidsPage() {
           <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
             🗺️ Jocuri Interactive
           </h2>
-          <p className="text-center text-sm text-slate-500 mb-6">
+          <p className="text-center text-sm text-slate-600 mb-6">
             Exersează logica programării prin labirinturi și puzzle-uri distractive!
           </p>
           <div className="space-y-4">
@@ -194,7 +194,7 @@ export default async function KidsPage() {
         <div className="mt-16 bg-white max-w-xl mx-auto rounded-3xl border border-black/5 p-6 text-center shadow-sm">
           <span className="text-4xl" role="img" aria-hidden="true">🖨️</span>
           <h3 className="mt-3 font-bold text-slate-800">Vrei activități pe hârtie?</h3>
-          <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+          <p className="mt-2 text-sm text-slate-600 leading-relaxed">
             Am pregătit fișe didactice offline cu labirinturi de desenat cu creionul (activități de tip Unplugged Coding). Le poți printa gratis!
           </p>
           <Link

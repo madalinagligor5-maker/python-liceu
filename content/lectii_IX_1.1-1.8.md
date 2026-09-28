@@ -8,7 +8,7 @@ Respectă exact structura de pe `academiapython.ro/curriculum/IX` — 6 sublecț
 
 ### 🔄 1.1.1 Recapitulare
 
-Nu ai încă o lecție anterioară pe platformă — dar ai deja experiență cu algoritmi, chiar dacă nu i-ai numit așa. De câte ori urmezi o rețetă de gătit, montezi un mobilier după instrucțiuni sau explici cuiva drumul spre casa ta, dai de fapt o succesiune de pași clari, în ordine. Exact asta e un algoritm. Gândește-te un minut: cum ai explica unui robot, pas cu pas, cum se face un ceai?
+Aceasta este prima lecție de liceu, deci nu presupune cunoștințe de programare. (Dacă vrei întâi o introducere și mai lentă, primul modul de gimnaziu, „Primii pași în Python”, e gratuit.) Ai totuși deja experiență cu algoritmi, chiar dacă nu i-ai numit așa. De câte ori urmezi o rețetă de gătit, montezi un mobilier după instrucțiuni sau explici cuiva drumul spre casa ta, dai de fapt o succesiune de pași clari, în ordine. Exact asta e un algoritm. Gândește-te un minut: cum ai explica unui robot, pas cu pas, cum se face un ceai?
 
 :::exemplu
 ## Exemple de algoritmi din viața de zi cu zi
@@ -63,8 +63,8 @@ Scriem efectiv algoritmul într-un limbaj de programare real. Traducem pașii pr
 
 :::tip
 ## 4. Testare
-Rulăm codul scris cu diverse seturi de date pentru a verifica dacă rezultatele returnate sunt 100% corecte.
-*Cod model:* `print("Media este:", media)` (afișarea rezultatului pe ecran).
+Rulăm programul pe mai multe seturi de date pentru care știm dinainte rezultatul corect — **rezultatul așteptat** — și îl comparăm cu ce afișează programul — **rezultatul obținut**.
+*Atenție:* `print("Media este:", media)` doar **afișează** rezultatul obținut. Afișarea nu este testare: testarea înseamnă să verifici dacă rezultatul obținut coincide cu cel așteptat.
 :::
 
 :::atentie
@@ -75,17 +75,43 @@ Un algoritm corect are mereu claritate (pași exacți) și finitudine (se opreș
 :::
 
 ```python
-# Exemplu complet de program cu cele 4 etape
-# Analiză: avem notele 8 și 10. Proiectare: adunăm și împărțim la 2.
+# Analiză: primim două note; vrem media lor.
+# Proiectare: adunăm notele și împărțim suma la 2.
 nota1 = 8
 nota2 = 10
 media = (nota1 + nota2) / 2
 
-# Implementare & Testare: afișăm valoarea obținută
+# Afișăm rezultatul obținut, ca să-l putem compara cu cel așteptat.
 print("Media notelor este:", media)
 ```
 
-Observă: primele două linii sunt comentarii (încep cu `#`) — nu sunt executate, dar arată gândirea din spatele codului. E o obișnuință bună: comentează *de ce* faci un pas, nu doar *ce* face linia.
+Observă: liniile care încep cu `#` sunt comentarii — nu sunt executate, dar arată gândirea din spatele codului. E o obișnuință bună: comentează *de ce* faci un pas, nu doar *ce* face linia.
+
+Programul afișează `9.0`. În Python, împărțirea cu `/` dă mereu un număr cu zecimale, deci `9.0` și `9` reprezintă aceeași valoare.
+
+:::exemplu
+## Cum testăm programul pentru medie
+Pentru fiecare test: calculezi de mână rezultatul așteptat, schimbi valorile lui `nota1` și `nota2`, rulezi programul și compari.
+- Intrări 8 și 10 → rezultat așteptat **9**. Programul afișează `9.0` → corect.
+- Intrări 5 și 5 → rezultat așteptat **5**. Programul afișează `5.0` → corect.
+- Intrări 7 și 8 → rezultat așteptat **7,5** (în Python se scrie cu punct: `7.5`). Programul afișează `7.5` → corect.
+Dacă rezultatul obținut diferă de cel așteptat, programul are o greșeală: de exemplu, `nota1 + nota2 / 2` (fără paranteze) dă 13.0 pentru 8 și 10, pentru că împărțirea se face înaintea adunării.
+:::
+
+:::atentie
+## Testele nu garantează corectitudinea
+Câteva teste reușite cresc încrederea că programul e corect, dar nu dovedesc că funcționează pentru orice date. De aceea alegem teste variate: valori egale, un rezultat cu zecimale, valori mari sau neobișnuite. În schimb, un singur test care eșuează arată sigur că există o greșeală.
+:::
+
+:::verifica-cod
+Completează formula mediei, apoi rulează programul pentru notele 7 și 8. Rezultatul așteptat este 7,5.
+template: nota1 = 7
+nota2 = 8
+media = ___
+
+print(media)
+output: 7.5
+:::
 
 ### 🔮 1.1.3 Citește și prezice
 
@@ -99,7 +125,7 @@ pret_final = pret - reducere
 print("Prețul final este:", pret_final)
 ```
 
-Ai scris predicția? Verific-o singur, mental, apoi treci mai departe — vei putea rula cod direct în platformă în curând.
+Ai scris predicția? Alege varianta ta în caseta de mai jos și verifică-o rulând codul.
 
 ### 🤝 1.1.4 Exerciții ghidate
 
@@ -138,7 +164,7 @@ print("Aria este:", ___)  # completează aici
 
 3. La ce etapă verificăm dacă programul dă rezultate corecte pentru mai multe exemple?
    a) Analiză  b) Proiectare  c) **Testare**
-      > Verificarea rezultatelor pe mai multe seturi de date se face la etapa de testare, ultima din cele patru, unde rulezi codul scris ca să confirmi că răspunsurile sunt 100% corecte.
+      > Verificarea pe mai multe seturi de date se face la etapa de testare, ultima din cele patru: rulezi programul pe date pentru care știi rezultatul așteptat și compari cu rezultatul obținut. Testele reușite cresc încrederea, dar nu garantează corectitudinea pentru orice date.
 
 4. Ce fac liniile care încep cu `#` într-un program Python?
    a) **Sunt comentarii, nu se execută**  b) Opresc programul  c) Afișează un mesaj de eroare

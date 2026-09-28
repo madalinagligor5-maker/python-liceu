@@ -4,7 +4,7 @@ import TombolaForm from "@/components/TombolaForm";
 export const metadata: Metadata = {
   title: "Tombolă",
   description:
-    "Încearcă 7 zile gratuit, lasă un review și intră la tombola pentru 6 luni de abonament gratuit.",
+    "Lasă o recenzie după perioada de probă de 7 zile și intră la tragerea lunară pentru 6 luni de abonament gratuit.",
   alternates: { canonical: "/tombola" },
 };
 
@@ -21,8 +21,9 @@ export default function TombolaPage() {
         </p>
         <ol className="list-decimal space-y-2 pl-5">
           <li>
-            <strong>Începi cu 7 zile gratuit.</strong> Îți creezi contul și ai acces
-            complet la toate lecțiile, fără card.
+            <strong>Începi perioada de probă de 7 zile.</strong> Îți creezi contul și
+            pornești un abonament: cardul se introduce la înscriere, dar nu se
+            debitează nimic în primele 7 zile. Poți anula oricând înainte de final.
           </li>
           <li>
             <strong>După 7 zile, lași un review</strong> scurt despre ce ai
@@ -35,17 +36,18 @@ export default function TombolaPage() {
           </li>
         </ol>
         <p className="text-sm text-foreground/60">
-          Nu e nevoie să cumperi ceva ca să participi — perioada de 7 zile e
-          gratuită pentru oricine. Review-ul e pentru noi, premiul e pentru tine.
+          Nu trebuie să plătești ca să participi: dacă anulezi înainte de finalul
+          celor 7 zile, nu se debitează nimic. Detalii despre probă și prețuri pe{" "}
+          <a href="/preturi" className="text-brand-dark underline">pagina Prețuri</a>.
         </p>
       </div>
 
       <TombolaForm />
 
       <p className="mt-8 text-xs text-muted">
-        Ai întrebări despre tombolă? Scrie-ne de pe pagina de{" "}
-        <a href="/contact" className="text-brand hover:underline">
-          contact
+        Ai întrebări despre tombolă? Scrie-ne la{" "}
+        <a href="mailto:academipython@gmail.com" className="text-brand-dark underline">
+          academipython@gmail.com
         </a>
         .
       </p>

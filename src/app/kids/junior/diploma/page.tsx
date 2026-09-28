@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { getProfilElev, totalStele } from "@/lib/junior/progres";
 import MascotaByte from "@/components/junior/MascotaByte";
@@ -15,7 +15,17 @@ const TITLURI_MODULE: Record<string, string> = {
   ALL: "Absolvirea Cursului Academia Python Junior",
 };
 
+// useSearchParams cere o limită Suspense când pagina e prerandată static
+// (de ex. la build fără variabile Supabase); altfel build-ul eșuează.
 export default function DiplomaPage() {
+  return (
+    <Suspense fallback={null}>
+      <DiplomaContinut />
+    </Suspense>
+  );
+}
+
+function DiplomaContinut() {
   const searchParams = useSearchParams();
   const modulId = searchParams.get("modul") || "ALL";
   const [nume, setNume] = useState("Elev Junior");

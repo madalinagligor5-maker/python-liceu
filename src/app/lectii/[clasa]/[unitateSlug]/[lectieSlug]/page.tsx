@@ -70,7 +70,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
 
       <div className="mt-3 flex items-start justify-between gap-4">
         <h1 className="text-3xl font-extrabold text-foreground">{lectie.lectie}</h1>
-        <LectieBadge gratuit={lectie.gratuit} />
+        <LectieBadge nivel={lectie.gratuit ? "gratuit" : "abonament"} />
       </div>
 
       <ul className="mt-4 flex flex-wrap gap-2">

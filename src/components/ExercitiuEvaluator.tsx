@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { explicaEroarea, ruleazaPython } from "@/lib/pythonRunner";
+import { comparaOutput } from "@/lib/verificareOutput";
 import { evalueazaCodCuAI, type FeedbackAI } from "@/app/actions/ai-evaluation";
 
 type ExercitiuModel = {
@@ -107,6 +109,7 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
   const [feedbacksAI, setFeedbacksAI] = useState<Record<number, FeedbackAI | null>>(() => initDinExercitii(exercitii).feedbacksAI);
 
   const [ruleaza, setRuleaza] = useState(false);
+  const opresteRef = useRef<(() => void) | null>(null);
   const [evaluarePending, setEvaluarePending] = useState(false);
   const [folosestePy, setFolosestePy] = useState(true);
 
@@ -142,73 +145,47 @@ export default function ExercitiuEvaluator({ exercitii }: Props) {
     setErori((prev) => ({ ...prev, [curentIdx]: "" }));
     setVerdicte((prev) => ({ ...prev, [curentIdx]: null }));
     setOutputs((prev) => ({ ...prev, [curentIdx]: "" }));
-    
-    try {
-      const py = await incarcaPyodide();
-      let capturat = "";
-      
-      py.setStdout({
-        batched: (s: string) => {
-          capturat += s;
-          setOutputs((prev) => ({ ...prev, [curentIdx]: capturat }));
-        },
-      });
-      
-      py.setStderr({ 
-        batched: (s: string) => {
-          setErori((prev) => ({ ...prev, [curentIdx]: (prev[curentIdx] ?? "") + s }));
-        } 
-      });
 
-      // Mecanism de timeout de 4 secunde (4000 ms) împotriva buclelor infinite
-      const runPromise = py.runPythonAsync(codCurent);
-      const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error("TIMEOUT_EXECUTION")), 4000)
-      );
+    // Rulare într-un Web Worker: o buclă infinită nu mai îngheață pagina,
+    // iar limita de timp chiar oprește execuția (pe firul principal,
+    // setTimeout-ul de protecție nu apuca să ruleze).
+    const idx = curentIdx;
+    let capturat = "";
+    const { rezultat, opreste } = ruleazaPython(codCurent, {
+      limitaMs: 4000,
+      onStdout: (s) => {
+        capturat += s;
+        setOutputs((prev) => ({ ...prev, [idx]: capturat }));
+      },
+      onStderr: (s) => {
+        setErori((prev) => ({ ...prev, [idx]: (prev[idx] ?? "") + s }));
+      },
+    });
+    opresteRef.current = opreste;
+    const r = await rezultat;
+    opresteRef.current = null;
 
-      await Promise.race([runPromise, timeoutPromise]);
-
-      const curat = (s: string) => s.replace(/\s+/g, " ").trim();
-      const extrageNumere = (s: string): number[] => {
-        const m = s.replace(",", ".").match(/-?\d+(\.\d+)?/g);
-        return m ? m.map(Number) : [];
-      };
-
-      const nrOut = extrageNumere(capturat);
-      const nrExp = extrageNumere(String(exercitiuCurent.expectedOutput));
-
-      let potriveste = false;
-      if (nrOut.length > 0 && nrExp.length > 0) {
-        potriveste =
-          nrOut.length === nrExp.length &&
-          nrOut.every((v, i) => Math.abs(v - nrExp[i]) < 0.01);
-      } else {
-        potriveste = curat(capturat) === curat(exercitiuCurent.expectedOutput);
-      }
-
-      setVerdicte((prev) => ({ ...prev, [curentIdx]: potriveste ? "ok" : "gresit" }));
-    } catch (e) {
-      console.error("PYODIDE_ERR", e);
-      if (e instanceof Error && e.message === "TIMEOUT_EXECUTION") {
-        setErori((prev) => ({
-          ...prev,
-          [curentIdx]: "⚠️ Timpul de execuție a fost depășit (4s). Verifică dacă nu ai o buclă infinită (ex: while fără incrementare)!"
-        }));
-      } else {
-        const msg = e instanceof Error ? e.message : String(e);
-        // Daca eroarea provine din executia de cod Python, o afisam direct elevului
-        const esteEroareCod = msg.includes("Error") || msg.includes("Traceback") || msg.includes("Exception");
-        setErori((prev) => ({ 
-          ...prev, 
-          [curentIdx]: esteEroareCod ? msg : "Eroare tehnică la rularea codului local." 
-        }));
-        if (!esteEroareCod) {
-          setFolosestePy(false);
-        }
-      }
-    } finally {
-      setRuleaza(false);
+    if (r.status === "ok") {
+      setFolosestePy(true);
+      const potriveste = comparaOutput(capturat, exercitiuCurent.expectedOutput);
+      setVerdicte((prev) => ({ ...prev, [idx]: potriveste ? "ok" : "gresit" }));
+    } else if (r.status === "eroare-python") {
+      setErori((prev) => ({
+        ...prev,
+        [idx]: `${r.eroare.traceback}\n\n💡 ${explicaEroarea(r.eroare)}`,
+      }));
+    } else if (r.status === "timeout") {
+      setErori((prev) => ({
+        ...prev,
+        [idx]: "⚠️ Timpul de execuție a fost depășit (4s). Verifică dacă nu ai o buclă infinită (ex: while fără incrementare)!",
+      }));
+    } else if (r.status === "oprit") {
+      setErori((prev) => ({ ...prev, [idx]: "Execuția a fost oprită." }));
+    } else {
+      setErori((prev) => ({ ...prev, [idx]: "Interpretorul Python nu a putut fi încărcat. Verifică conexiunea și încearcă din nou." }));
+      setFolosestePy(false);
     }
+    setRuleaza(false);
   };
 
   const debugCod = async () => {
@@ -395,6 +372,15 @@ json.dumps(steps)
             >
               {ruleaza ? "Se rulează…" : "▶ Rulează codul"}
             </button>
+            {ruleaza && (
+              <button
+                type="button"
+                onClick={() => opresteRef.current?.()}
+                className="w-full sm:w-auto rounded-xl border border-red-300 bg-white py-3 px-6 text-sm font-bold text-red-700 hover:bg-red-50"
+              >
+                ■ Oprește
+              </button>
+            )}
             <button
               type="button"
               onClick={debugCod}

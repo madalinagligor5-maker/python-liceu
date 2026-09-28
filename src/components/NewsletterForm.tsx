@@ -36,18 +36,22 @@ export default function NewsletterForm() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl rounded-3xl border border-brand/20 bg-brand-light/40 p-6 text-center shadow-sm sm:p-8">
-      <span className="text-4xl" aria-hidden="true">🎁</span>
-      <h3 className="mt-3 text-lg font-bold text-foreground sm:text-xl">
-        Abonează-te pentru coduri promoționale & noutăți
-      </h3>
+    <div id="newsletter" className="mx-auto max-w-2xl scroll-mt-24 rounded-3xl border border-[#EBE7DF] bg-white p-6 text-center shadow-sm sm:p-8">
+      <h2 className="text-lg font-bold text-foreground sm:text-xl">
+        Newsletter: module noi și noutăți
+      </h2>
       <p className="mt-2 text-sm text-foreground/75 leading-relaxed">
-        Lasă-ți emailul mai jos pentru a fi primul care află de noile module lansate și primește **coduri promoționale de reducere** direct în inbox!
+        Lasă-ți emailul dacă vrei să afli când apar module noi. Ocazional, anunțăm și ofertele în curs. Te poți dezabona oricând.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-stretch justify-center">
+        <label htmlFor="newsletter-email" className="sr-only">
+          Adresa de email
+        </label>
         <input
+          id="newsletter-email"
           type="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Adresa ta de email (ex: nume@email.com)"
@@ -74,7 +78,7 @@ export default function NewsletterForm() {
           {dejaAbonat ? (
             <span>😊 Ești deja înscris la newsletter-ul nostru! Îți vom trimite noutățile pe email.</span>
           ) : (
-            <span>🎉 Te-ai abonat cu succes! Verifică-ți inbox-ul în curând pentru codul de reducere.</span>
+            <span>🎉 Te-ai abonat cu succes! Îți vom scrie când apar noutăți.</span>
           )}
         </div>
       )}

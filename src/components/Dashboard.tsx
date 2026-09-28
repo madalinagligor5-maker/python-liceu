@@ -1,3 +1,4 @@
+import { numeClasaScurt } from "@/lib/curriculum";
 import Link from "next/link";
 import Mascota from "@/components/Mascota";
 import SidebarDashboard from "@/components/SidebarDashboard";
@@ -173,7 +174,7 @@ export default function Dashboard({
                       : "border border-border bg-white text-foreground/80 hover:text-brand"
                   }`}
                 >
-                  Clasa {c}
+                  {numeClasaScurt(c)}
                 </Link>
               ))}
             </nav>

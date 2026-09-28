@@ -6,13 +6,13 @@ import {
   getModul,
   hrefModul,
   ICOANE_SUBLECTIE,
-  toateModulele,
+  modulUrmator,
+  numeClasa,
+  radacinaClasa,
 } from "@/lib/curriculum";
-import {
-  getSublectieContinut,
-  sublectieAnterioara,
-  sublectieUrmatoare,
-} from "@/lib/sublectii";
+import { getSublectieContinut } from "@/lib/sublectii";
+import { lectiiLiberAccesibile } from "@/lib/acces";
+import MarcheazaPasDeschis from "@/components/MarcheazaPasDeschis";
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
@@ -49,7 +49,7 @@ export async function generateMetadata({
   // (anterior/următor, lista din pagina de modul) și rămân în limb ca
   // "Discovered/Crawled - currently not indexed", risipind buget de crawl.
   // Sublecțiile chiar publice (module gratuite) rămân indexabile normal.
-  const esteGratuit = modul.gratuit || modul.numar <= 5;
+  const esteGratuit = lectiiLiberAccesibile(modul);
   if (!esteGratuit) {
     const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
     if (!sublectieInfo) return {};
@@ -89,25 +89,21 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   const icon = ICOANE_SUBLECTIE[sublectieInfo.tip];
 
-  // Navigarea anterior/următor expune doar `cod` și `titlu` (identice cu ce
-  // arată deja, public, lista de sublecții de pe pagina de modul) — niciodată
-  // corpul lecției adiacente. Sigur de apelat pe ambele ramuri.
-  const anterior = await sublectieAnterioara(sublectieCod);
-  const urmatoarea = await sublectieUrmatoare(sublectieCod);
-
-  // O sublecție adiacentă poate aparține altui modul (sau altei clase, la
-  // tranziția dintre capitole) — nu presupunem că folosește clasa/modulSlug
-  // ale paginii curente, ca să nu construim un link cu clasă/modul greșite.
-  const hrefSublectieAdiacenta = (s: { cod: string; module: string }) => {
-    const modulTinta = toateModulele().find((m) => m.cod === s.module);
-    return modulTinta ? `${hrefModul(modulTinta)}/${s.cod}` : `/curriculum/${clasa}/${modulSlug}/${s.cod}`;
-  };
+  // Navigarea se face pas cu pas, în interiorul modulului (doar cod și titlu,
+  // aceleași date publice ca pe pagina de modul). După pasul 6 urmează
+  // modulul următor din același traseu.
+  const indexPas = modul.sublectii.findIndex((s) => s.cod === sublectieCod);
+  const pasAnterior = indexPas > 0 ? modul.sublectii[indexPas - 1] : undefined;
+  const pasUrmator = modul.sublectii[indexPas + 1];
+  const urmModul = pasUrmator ? undefined : modulUrmator(clasa, modul.slug);
+  const hrefPas = (cod: string) => `${hrefModul(modul)}/${cod}`;
+  const radacina = radacinaClasa(clasa);
 
   const breadcrumbJsonLd = (
     <BreadcrumbJsonLd
       firimituri={[
-        { nume: "Curriculum", cale: "/curriculum" },
-        { nume: `Clasa a ${clasa}-a`, cale: `/curriculum/${clasa}` },
+        radacina,
+        { nume: numeClasa(clasa), cale: `/curriculum/${clasa}` },
         { nume: modul.cod, cale: hrefModul(modul) },
         { nume: sublectieCod },
       ]}
@@ -115,47 +111,82 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   );
 
   const breadcrumb = (
-    <nav className="text-sm text-muted">
-      <Link href="/curriculum" className="hover:text-brand">
-        Curriculum
+    <nav aria-label="Breadcrumb" className="text-sm text-foreground/70">
+      <Link href={radacina.cale} className="hover:text-brand">
+        {radacina.nume}
       </Link>
-      <span className="mx-2">/</span>
+      <span className="mx-2" aria-hidden="true">/</span>
       <Link href={`/curriculum/${clasa}`} className="hover:text-brand">
-        Clasa a {clasa}-a
+        {numeClasa(clasa)}
       </Link>
-      <span className="mx-2">/</span>
+      <span className="mx-2" aria-hidden="true">/</span>
       <Link href={hrefModul(modul)} className="hover:text-brand">
-        {modul.cod}
+        Modulul {modul.cod}
       </Link>
-      <span className="mx-2">/</span>
-      <span>{sublectieCod}</span>
+    </nav>
+  );
+
+  /** Bara cu cei 6 pași: poziția curentă și acces rapid la ceilalți. */
+  const indicatorPasi = (
+    <nav aria-label="Pașii lecției" className="mt-4">
+      <p className="text-sm font-bold text-foreground">
+        Pasul {indexPas + 1} din {modul.sublectii.length}
+      </p>
+      <ol className="mt-2 grid grid-cols-6 gap-1.5">
+        {modul.sublectii.map((s, i) => (
+          <li key={s.cod}>
+            <Link
+              href={hrefPas(s.cod)}
+              aria-current={i === indexPas ? "step" : undefined}
+              title={`Pasul ${i + 1}: ${s.titlu}`}
+              className={`flex h-9 items-center justify-center rounded-lg border text-sm font-bold transition ${
+                i === indexPas
+                  ? "border-amber-500 bg-amber-400 text-slate-950"
+                  : i < indexPas
+                    ? "border-amber-200 bg-amber-50 text-amber-900 hover:border-amber-400"
+                    : "border-border bg-white text-foreground/70 hover:border-amber-400"
+              }`}
+            >
+              <span className="sr-only">Pasul </span>
+              {i + 1}
+              <span className="sr-only">: {s.titlu}</span>
+            </Link>
+          </li>
+        ))}
+      </ol>
     </nav>
   );
 
   const navigarePrevUrm = (
-    <nav className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-6">
-      {anterior ? (
+    <nav aria-label="Navigare între pași" className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
+      {pasAnterior ? (
         <Link
-          href={hrefSublectieAdiacenta(anterior)}
-          className="max-w-[45%] text-sm font-semibold text-brand hover:text-brand-dark"
+          href={hrefPas(pasAnterior.cod)}
+          className="text-sm font-semibold text-brand-dark hover:text-brand"
         >
-          ← {anterior.cod} {anterior.titlu}
+          ← Pasul {indexPas}: {pasAnterior.titlu}
         </Link>
       ) : (
-        <span />
+        <Link href={hrefModul(modul)} className="text-sm font-semibold text-brand-dark hover:text-brand">
+          ← Pagina modulului
+        </Link>
       )}
-      {urmatoarea ? (
+      {pasUrmator ? (
         <Link
-          href={hrefSublectieAdiacenta(urmatoarea)}
-          className="max-w-[45%] text-right text-sm font-semibold text-brand hover:text-brand-dark"
+          href={hrefPas(pasUrmator.cod)}
+          className="rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 shadow-xs transition hover:bg-amber-500"
         >
-          {urmatoarea.cod} {urmatoarea.titlu} →
+          Pasul următor: {pasUrmator.titlu} →
+        </Link>
+      ) : urmModul ? (
+        <Link
+          href={`${hrefModul(urmModul)}/${urmModul.sublectii[0]?.cod ?? ""}`}
+          className="rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 shadow-xs transition hover:bg-amber-500"
+        >
+          Modulul următor: {urmModul.titlu} →
         </Link>
       ) : (
-        <Link
-          href={hrefModul(modul)}
-          className="text-sm font-semibold text-brand hover:text-brand-dark"
-        >
+        <Link href={hrefModul(modul)} className="text-sm font-semibold text-brand-dark hover:text-brand">
           Înapoi la modul →
         </Link>
       )}
@@ -164,8 +195,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   // Verificare acces premium:
   const { user, meta } = await getUtilizatorCurent();
-  const esteGratuit = modul.gratuit || modul.numar <= 5;
-  const areAcces = esteGratuit || areAbonamentActiv(meta);
+  const areAcces = lectiiLiberAccesibile(modul) || areAbonamentActiv(meta);
 
   if (!areAcces) {
     // Variantă „teaser", randată server-side pentru oricine (inclusiv
@@ -177,6 +207,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
         {breadcrumbJsonLd}
         {breadcrumb}
+        {indicatorPasi}
 
         <div className="mt-4 flex items-center gap-3 mb-6">
           <span aria-hidden="true" className="text-3xl">
@@ -196,7 +227,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 text-center">
           <p className="font-semibold text-amber-900">
-            🔒 Acest modul necesită cont și abonament activ.
+            🔒 Acest pas face parte dintr-un modul care necesită cont și abonament activ.
           </p>
           <p className="mt-1 text-sm text-amber-700">
             Deblochează toate modulele, testele și exercițiile practice de programare cu un abonament activ.
@@ -204,9 +235,9 @@ export default async function SublectiePage({ params }: { params: Promise<Params
           <div className="mt-4 flex flex-wrap justify-center gap-3">
             <Link
               href="/preturi"
-              className="rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+              className="rounded-xl bg-amber-400 px-5 py-2.5 text-sm font-black text-slate-950 transition hover:bg-amber-500"
             >
-              Vezi planurile de abonament
+              Vezi prețurile
             </Link>
             {!user ? (
               <Link
@@ -276,6 +307,8 @@ export default async function SublectiePage({ params }: { params: Promise<Params
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
       {breadcrumbJsonLd}
       {breadcrumb}
+      {indicatorPasi}
+      <MarcheazaPasDeschis cod={sublectieCod} />
 
       <div className="mt-4 flex items-center gap-3 mb-6">
         <span aria-hidden="true" className="text-3xl">
@@ -292,7 +325,12 @@ export default async function SublectiePage({ params }: { params: Promise<Params
       </div>
 
       <LectieContainer>
-        <BlocuriSublectie blocuri={continut.blocuri} esteVerificare={continut.esteVerificare} esteExercitii={continut.esteExercitii} />
+        <BlocuriSublectie
+          blocuri={continut.blocuri}
+          esteVerificare={continut.esteVerificare}
+          esteExercitii={continut.esteExercitii}
+          permiteRulare={sublectieInfo.tip !== "prezice"}
+        />
       </LectieContainer>
 
       {predic && (
@@ -327,7 +365,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
                     />
                   </div>
                   <p className="mt-2 text-xs text-foreground/55">
-                    Rulește codul — dacă output-ul corespunde, ai demonstrat că
+                    Rulează codul — dacă rezultatul corespunde, ai demonstrat că
                     stăpânești conceptul, nu doar l-ai recunoscut în grilă.
                   </p>
                 </div>

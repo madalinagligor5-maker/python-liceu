@@ -1,3 +1,4 @@
+import { numeClasa } from "@/lib/curriculum";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -135,7 +136,7 @@ export default async function ContPage() {
             <p className="text-xs text-slate-800/85 truncate font-medium">{user.email}</p>
             
             <p className="text-sm text-slate-900 font-bold mt-2">
-              Clasa a {meta.clasa || "IX"}-a · Nivel {nivel}
+              {numeClasa(meta.clasa || "IX")} · Nivel {nivel}
             </p>
             
             {/* XP progress bar închis cu fundal transparent potrivit */}

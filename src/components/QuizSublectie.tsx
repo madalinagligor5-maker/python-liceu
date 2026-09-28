@@ -6,6 +6,7 @@ import { finalizeazaSublectie, type RezultatFinalizare } from "@/app/actions/pro
 import IconLectieBlocata from "@/components/icons/IconLectieBlocata";
 import IconStreak from "@/components/icons/IconStreak";
 import CelebrareModul from "@/components/CelebrareModul";
+import { marcheazaPasReusit, pragPromovare } from "@/lib/progresLocal";
 
 const PRAGURI_STREAK = new Set([7, 30, 100]);
 
@@ -38,8 +39,11 @@ export default function QuizSublectie({
   const toateCompletate = intrebari.every((_, i) => raspunsuri[i] !== undefined);
   const poateSalva = autentificat && Boolean(intrebari.length);
 
+  const prag = pragPromovare(intrebari.length);
+
   function verifica() {
     setDezvaltat(true);
+    if (scorLocal >= prag) marcheazaPasReusit(sublectieCod);
     if (!poateSalva) return;
     startTransition(async () => {
       const r = await finalizeazaSublectie(clasa, sublectieCod, raspunsuri);
@@ -75,8 +79,8 @@ export default function QuizSublectie({
         <h3 className="text-lg font-bold text-foreground">Verifică-ți înțelegerea</h3>
       </div>
       <p className="mt-1 text-sm text-foreground/60">
-        Răspunde la cele {intrebari.length} întrebări. Vezi explicația imediat ce
-        verifici — sau după fiecare răspuns, dacă vrei feedback pe loc.
+        Răspunde la cele {intrebari.length} întrebări, apoi apasă „Verifică răspunsurile”. Pasul e
+        trecut de la {prag} răspunsuri corecte.
       </p>
 
       <div className="mt-5 space-y-6">
@@ -191,7 +195,7 @@ export default function QuizSublectie({
             aria-live="polite"
           >
             <p className="flex flex-wrap items-center gap-1 text-sm font-semibold text-foreground">
-              Felicitări! Ai câștigat {rezultat.xpTotal} XP · nivel {rezultat.nivel}
+              Felicitări! +{rezultat.xpCastigat} XP · total {rezultat.xpTotal} XP · nivel {rezultat.nivel}
               {rezultat.streakZile > 0 && (
                 <span className="inline-flex items-center gap-1">
                   · <IconStreak className="h-4 w-4 text-amber-500" /> {rezultat.streakZile} zile
@@ -221,8 +225,11 @@ export default function QuizSublectie({
       )}
 
       {dezvaltat && !poateSalva && (
-        <p className="mt-4 text-xs text-foreground/55">
-          Autentifică-te ca să-ți salvezi progresul și să câștigi XP.
+        <p className="mt-4 text-xs text-foreground/70">
+          {scorLocal >= prag
+            ? "Pas trecut. Fără cont, rezultatul se reține doar în acest browser. "
+            : `Ai nevoie de ${prag} răspunsuri corecte ca pasul să fie trecut. `}
+          Autentifică-te ca să-ți salvezi progresul în cont și să câștigi XP.
         </p>
       )}
       </>

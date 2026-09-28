@@ -6,18 +6,7 @@ import QuizSublectie from "@/components/QuizSublectie";
 import type { Exercitiu } from "@/lib/exercitii-tipuri";
 import type { IntrebareQuiz } from "@/lib/quizSublectii";
 
-const KEY = "exercitii_rezolvate_v1";
-
-/** Citește setul de exerciții rezolvate din localStorage (persistă între pagini). */
-function citesteRezolvate(): Set<string> {
-  if (typeof window === "undefined") return new Set();
-  try {
-    const raw = window.localStorage.getItem(KEY);
-    return new Set(raw ? (JSON.parse(raw) as string[]) : []);
-  } catch {
-    return new Set();
-  }
-}
+import { CHEIE_EXERCITII as KEY, citesteExercitiiRezolvate as citesteRezolvate, EVENIMENT_PROGRES } from "@/lib/progresLocal";
 
 /**
  * Gestionează „gate-ul" de parcurgere:
@@ -75,6 +64,7 @@ export default function SublectieGate({
       const nou = new Set(s).add(id);
       try {
         window.localStorage.setItem(KEY, JSON.stringify([...nou]));
+        window.dispatchEvent(new Event(EVENIMENT_PROGRES));
       } catch {
         // localStorage poate fi indisponibil (mod privat) — ignorăm.
       }

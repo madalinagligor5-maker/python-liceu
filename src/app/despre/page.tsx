@@ -46,10 +46,20 @@ export default function DesprePage() {
         </p>
 
         <p>
-          Lecțiile sunt grupate pe clase (IX–XII) și urmează programa de
-          Informatică de liceu. Primele 3 module din clasa a IX-a sunt{" "}
-          <strong>gratuite</strong> (fără cont, fără card), iar următoarele 2
-          sunt deschise pentru explorare. Restul se deblochează cu abonament.
+          Există patru trasee: Kids (clasele I–IV), gimnaziu (clasele VII–VIII),
+          liceu (clasele IX–XII, structurat după noile programe de Informatică)
+          și un curs practic pentru oricine. Kids și gimnaziul sunt gratuite,
+          la fel primele 3 module din clasa a IX-a și primul modul din cursul
+          practic. Detaliile exacte sunt pe pagina{" "}
+          <Link href="/preturi" className="font-semibold text-brand-dark underline">Prețuri</Link>.
+        </p>
+        <h2 className="pt-2 text-xl font-bold text-foreground">Cine administrează platforma</h2>
+        <p>
+          Academia Python este operată de GLIGOR MĂDĂLINA-GEORGIANA P.F.A. (datele
+          complete de identificare sunt în{" "}
+          <Link href="/termeni-si-conditii" className="font-semibold text-brand-dark underline">Termeni și condiții</Link>
+          ). Pentru întrebări: {" "}
+          <a href="mailto:academipython@gmail.com" className="font-semibold text-brand-dark underline">academipython@gmail.com</a>.
         </p>
       </div>
 
@@ -58,22 +68,21 @@ export default function DesprePage() {
           Vrei să vezi dacă e pentru tine?
         </p>
         <p className="mt-1 text-sm text-foreground/70">
-          Primele 5 module din clasa a IX-a sunt gratuite. Fără card, fără
-          obligații.
+          Alege traseul și începe prima lecție gratuită. Fără cont, fără card.
         </p>
         <Link
-          href="/curriculum"
-          className="mt-4 inline-block rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          href="/start"
+          className="mt-4 inline-block rounded-lg bg-amber-400 px-5 py-2.5 text-sm font-black text-slate-950 transition hover:bg-amber-500"
         >
-          Începe acum →
+          Începe gratuit →
         </Link>
       </div>
 
       <p className="mt-8 text-xs text-muted">
-        Ai o întrebare sau o sugestie? Scrie-ne de pe pagina de{" "}
-        <Link href="/contact" className="text-brand hover:underline">
-          contact
-        </Link>
+        Ai o întrebare sau o sugestie? Scrie-ne la{" "}
+        <a href="mailto:academipython@gmail.com" className="text-brand-dark underline">
+          academipython@gmail.com
+        </a>
         .
       </p>
     </div>

@@ -35,7 +35,7 @@ test.describe("Traseu gimnaziu (clasele VII-VIII) — acces gratuit, fără cont
     ).toBeVisible();
 
     // Nu apare niciun CTA către abonament pe conținut gratuit.
-    await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "Vezi prețurile" })).toHaveCount(0);
   });
 
   test("4. O sublecție de exerciții (VIII.2.4) randează exercițiile reale din exercitii.json", async ({ page }) => {
@@ -52,7 +52,7 @@ test.describe("Traseu gimnaziu (clasele VII-VIII) — acces gratuit, fără cont
   test("5. Navigarea 'următor' de la ultima sublecție de gimnaziu (VIII.2.6) duce corect la clasa IX", async ({ page }) => {
     await page.goto("/curriculum/VIII/algoritmi-de-prelucrare-a-sirurilor-de-valori/VIII.2.6");
 
-    const linkUrmator = page.getByRole("link", { name: /1\.1\.1 Recapitulare/ });
+    const linkUrmator = page.getByRole("link", { name: /Modulul următor: Ce este un algoritm/ });
     await expect(linkUrmator).toBeVisible();
     // Regresie: link-ul trebuie să folosească modulul/clasa reale ale
     // sublecției următoare (IX), nu clasa/modulul paginii curente (VIII).

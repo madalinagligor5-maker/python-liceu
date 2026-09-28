@@ -1,3 +1,5 @@
+import { numeClasa } from "@/lib/curriculum";
+import { exercitiiPracticeLiberAccesibile } from "@/lib/acces";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -39,7 +41,7 @@ export default async function ModulExercitiiPage({
 
   // Verificare acces premium pentru exerciții
   const { user, meta } = await getUtilizatorCurent();
-  const esteGratuit = modul.gratuit || (clasa === "IX" && modul.numar <= 5);
+  const esteGratuit = exercitiiPracticeLiberAccesibile(modul, clasa);
   const areAcces = esteGratuit || areAbonamentActiv(meta);
 
   if (!areAcces) {
@@ -60,7 +62,7 @@ export default async function ModulExercitiiPage({
           Exerciții
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-foreground">Clasa a {clasa}-a</span>
+        <span className="text-foreground">{numeClasa(clasa)}</span>
         <span className="mx-2">/</span>
         <span className="font-semibold text-foreground">{modul.cod}</span>
       </nav>

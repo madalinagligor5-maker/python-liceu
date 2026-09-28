@@ -45,7 +45,7 @@ test.describe("Fluxuri Critice de Acces, Abonamente & Evaluare AI", () => {
     await expect(page.locator("#lectie-articol")).toHaveCount(0);
 
     // CTA către /preturi e prezent.
-    await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Vezi prețurile" })).toBeVisible();
   });
 
   // Test 2: Utilizator autentificat, dar fără abonament activ, accesând aceeași
@@ -70,7 +70,7 @@ test.describe("Fluxuri Critice de Acces, Abonamente & Evaluare AI", () => {
       expect(html).not.toContain(FRAGMENT_LECTIE_REALA);
 
       await expect(page.locator("#lectie-articol")).toHaveCount(0);
-      await expect(page.getByRole("link", { name: "Vezi planurile de abonament" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Vezi prețurile" })).toBeVisible();
     } finally {
       await stergeUtilizatorTest(utilizator.id);
     }

@@ -50,7 +50,7 @@ export async function intreabaAsistentDemo(
       if ((count ?? 0) >= 300) {
         return {
           ok: false,
-          eroare: "Asistentul demo a atins limita globală de utilizare pentru azi. Încearcă mâine sau creează-ți un cont gratuit pentru acces complet!",
+          eroare: "Asistentul demo a atins limita globală de utilizare pentru azi. Încearcă din nou mâine.",
         };
       }
 
@@ -71,7 +71,7 @@ export async function intreabaAsistentDemo(
       if (requestsToday >= 1) {
         return {
           ok: false,
-          eroare: "Ai atins limita de 1 întrebare gratuită pe zi pentru asistentul demo. Creează-ți un cont pentru acces nelimitat!",
+          eroare: "Ai folosit întrebarea gratuită de azi pentru asistentul demo (1 pe zi). În lecții, evaluarea AI a codului e disponibilă cu un cont: 3 evaluări pe zi gratuit, 15 pe zi cu abonament.",
         };
       }
     } catch (e) {

@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderConditional from "@/components/HeaderConditional";
-import NewsletterPopup from "@/components/NewsletterPopup";
 import { getUtilizatorCurent } from "@/lib/subscription";
 
 const GA_ID = "G-F0158XN3VT";
@@ -86,7 +85,7 @@ const jsonLd = {
       name: "Academia Python",
       url: "https://www.academiapython.ro",
       description:
-        "Platformă de învățare Python pentru liceu, clasele IX–XII, conform programei de Informatică.",
+        "Platformă de învățare Python în limba română: Kids, gimnaziu, liceu (clasele IX–XII) și curs practic.",
       sameAs: ["https://www.academiapython.ro"],
     },
     {
@@ -106,12 +105,12 @@ const jsonLd = {
       hasCourseInstance: {
         "@type": "CourseInstance",
         courseMode: "online",
-        courseWorkload: "PT528H",
       },
       offers: {
         "@type": "Offer",
         priceCurrency: "RON",
-        price: "199.00",
+        // Trebuie să coincidă cu prețul anual afișat pe /preturi (src/lib/oferta.ts).
+        price: "89.00",
         availability: "https://schema.org/InStock",
         url: "https://www.academiapython.ro/preturi",
       },
@@ -158,14 +157,19 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-background">
+        <a
+          href="#continut"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100000] focus:rounded-lg focus:bg-amber-400 focus:px-4 focus:py-2 focus:font-bold focus:text-slate-950"
+        >
+          Sari la conținut
+        </a>
         <HeaderConditional esteAutentificat={esteAutentificat}>
           <Header />
         </HeaderConditional>
-        <main className="flex-1">{children}</main>
+        <main id="continut" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
         <HeaderConditional esteAutentificat={esteAutentificat}>
           <Footer />
         </HeaderConditional>
-        <NewsletterPopup />
       </body>
     </html>
   );

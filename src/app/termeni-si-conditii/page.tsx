@@ -69,9 +69,9 @@ export default function TermeniSiConditiiPage() {
           Pentru a debloca întregul conținut (peste primele 3-5 module gratuite), utilizatorul trebuie să opteze pentru un plan de abonament Premium:
         </p>
         <ul className="list-disc pl-5 text-sm text-slate-700 space-y-2 mt-2">
-          <li><strong>Facturare recurentă:</strong> Abonamentele se achită lunar (29 lei/lună) sau anual și sunt supuse reînnoirii automate la finalul fiecărei perioade de facturare.</li>
+          <li><strong>Facturare recurentă:</strong> Abonamentele se achită lunar sau anual, la prețul afișat pe pagina Prețuri și confirmat în pagina de plată Stripe, și sunt supuse reînnoirii automate la finalul fiecărei perioade de facturare.</li>
           <li><strong>Perioada de probă (Trial):</strong> Dacă optați pentru o perioadă de probă gratuită (de exemplu, 7 zile), cardul dumneavoastră va fi debitat automat cu tariful abonamentului la finalul trialului, cu excepția cazului în care anulați înainte de expirarea acestuia.</li>
-          <li><strong>Anularea reînnoirii:</strong> Utilizatorul poate anula reînnoirea automată a abonamentului **oricând**, printr-un singur click, accesând secțiunea <Link href="/cont" className="text-brand hover:underline">Contul meu</Link> din platformă. După anulare, accesul la funcțiile premium rămâne activ până la sfârșitul perioadei deja plătite.</li>
+          <li><strong>Anularea reînnoirii:</strong> Utilizatorul poate anula reînnoirea automată a abonamentului <strong>oricând</strong>, printr-un singur click, accesând secțiunea <Link href="/cont" className="text-brand hover:underline">Contul meu</Link> din platformă. După anulare, accesul la funcțiile premium rămâne activ până la sfârșitul perioadei deja plătite.</li>
         </ul>
 
         <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">

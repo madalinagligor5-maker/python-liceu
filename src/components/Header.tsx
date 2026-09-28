@@ -2,7 +2,6 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator, nivelDinXp } from "@/lib/progres";
-import HeaderSwitch from "@/components/HeaderSwitch";
 import HeaderNav from "@/components/HeaderNav";
 
 function extrageAliasNume(email: string): string {
@@ -26,7 +25,7 @@ export default async function Header() {
           <Logo className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl transition group-hover:scale-105" />
           <span className="leading-none">
             <span className="text-sm sm:text-base font-black tracking-tight text-[#1E2430] font-sans">
-              Academia<span className="text-amber-500">Python</span>
+              Academia<span className="text-amber-600">Python</span>
             </span>
             <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-[#525B6C] md:block">
               Învață. Practică. Devino dezvoltator.
@@ -34,15 +33,8 @@ export default async function Header() {
           </span>
         </Link>
 
-        {/* Switch discret Kids/Liceu — ascuns pentru profesori, nu are sens acolo */}
-        {!esteProfesor && (
-          <div className="shrink-0">
-            <HeaderSwitch />
-          </div>
-        )}
-
         {/* Nav central adaptiv + Meniu Mobil */}
-        <HeaderNav esteProfesor={esteProfesor} />
+        <HeaderNav esteProfesor={esteProfesor} esteAutentificat={Boolean(user)} />
 
         {/* Acțiuni Dreapta (Desktop) */}
         <div className="hidden sm:flex items-center gap-2.5 shrink-0">
@@ -66,16 +58,6 @@ export default async function Header() {
             </div>
           )}
 
-          {!esteProfesor && (
-            <Link
-              href="/kids"
-              className="hidden xl:flex items-center gap-1.5 rounded-xl border border-[#EBE7DF] bg-white hover:bg-[#F3EFE6] px-3.5 py-2 text-xs font-bold text-[#1E2430] transition shadow-xs"
-            >
-              <span>👥</span>
-              <span>Pentru părinți</span>
-            </Link>
-          )}
-
           {user ? (
             <Link
               href={esteProfesor ? "/profesor/planificari" : "/cont"}
@@ -86,14 +68,14 @@ export default async function Header() {
           ) : (
             <Link
               href="/login"
-              className="hidden md:inline-block rounded-xl px-3 py-2 text-xs font-bold text-[#525B6C] hover:text-indigo-600"
+              className="hidden md:inline-block rounded-xl px-3 py-2 text-xs font-bold text-[#1E2430] hover:text-amber-700"
             >
               Autentificare
             </Link>
           )}
 
           <Link
-            href={esteProfesor ? "/profesor/planificari" : "/curriculum"}
+            href={esteProfesor ? "/profesor/planificari" : user ? "/cont" : "/start"}
             className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
           >
             {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}

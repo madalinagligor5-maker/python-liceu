@@ -6,6 +6,8 @@ data: 2026-08-29
 descriere: Află ce se schimbă la Bacalaureatul de Informatică. Detalii despre noua programă bazată pe Python, calendarul implementării și sfaturi practice pentru elevi.
 ---
 
+> **Notă editorială (septembrie 2026):** numerele ordinelor de ministru, calendarul și alocările orare din acest articol sunt în curs de verificare față de documentele publicate în Monitorul Oficial. Până la actualizare, consultă programele și calendarul oficial pe edu.ro. Informațiile despre Bacalaureat se aplică doar generațiilor care studiază după noile programe.
+
 ## Introducere și sinteza schimbării
 
 Sistemul educațional românesc marchează o tranziție fundamentală prin adoptarea Python ca limbaj de programare de bază în noua programă de liceu, înlocuind treptat hegemonia limbajelor tradiționale. Această modernizare strategică, oficializată prin OMEC nr. 6873/2025, urmărește alinierea curriculumului național la standardele europene de competențe digitale (DigComp 2.2) și la cerințele actuale ale industriei tech globale. Această schimbare nu reprezintă doar o actualizare tehnică, ci un pas esențial pentru pregătirea elevilor într-un ecosistem digital dominat de inteligență artificială și procesare complexă de date.

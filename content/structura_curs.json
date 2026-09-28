@@ -1,29 +1,29 @@
 {
-  "sursa": "Curs practic de Python -- curs de sine statator, pentru orice varsta, separat de traseul scolar",
+  "sursa": "Curs practic de Python — curs de sine stătător, pentru orice vârstă, separat de traseul școlar",
   "sablon_sublectii": [
     {
       "titlu": "Recapitulare",
-      "descriere": "Leaga lectia de ce s-a invatat deja."
+      "descriere": "Leagă lecția de ce s-a învățat deja."
     },
     {
-      "titlu": "Concept nou si exemplu",
-      "descriere": "Explicatie pas cu pas si un exemplu de cod comentat."
+      "titlu": "Concept nou și exemplu",
+      "descriere": "Explicație pas cu pas și un exemplu de cod comentat."
     },
     {
-      "titlu": "Citeste si prezice",
-      "descriere": "Citesti un fragment de cod si anticipezi rezultatul."
+      "titlu": "Citește și prezice",
+      "descriere": "Citești un fragment de cod și anticipezi rezultatul."
     },
     {
-      "titlu": "Exercitii ghidate",
+      "titlu": "Exerciții ghidate",
       "descriere": "Probleme rezolvate partial, cu indicii."
     },
     {
-      "titlu": "Exercitii independente",
-      "descriere": "Probleme de rezolvat singur, fara sprijin."
+      "titlu": "Exerciții independente",
+      "descriere": "Probleme de rezolvat singur, fără sprijin."
     },
     {
-      "titlu": "Verifica-ti intelegerea",
-      "descriere": "3-5 intrebari scurte inainte de modulul urmator."
+      "titlu": "Verifică-ți înțelegerea",
+      "descriere": "3-5 întrebări scurte înainte de modulul următor."
     }
   ],
   "statistici": {
@@ -47,42 +47,42 @@
             {
               "cod": "CP1.1.1",
               "titlu": "Recapitulare",
-              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
               "slug": "recapitulare",
               "tip": "recapitulare"
             },
             {
               "cod": "CP1.1.2",
-              "titlu": "Concept nou si exemplu",
-              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
               "slug": "concept-nou-si-exemplu",
               "tip": "concept"
             },
             {
               "cod": "CP1.1.3",
-              "titlu": "Citeste si prezice",
-              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
               "slug": "citeste-si-prezice",
               "tip": "prezice"
             },
             {
               "cod": "CP1.1.4",
-              "titlu": "Exercitii ghidate",
+              "titlu": "Exerciții ghidate",
               "descriere": "Probleme rezolvate partial, cu indicii.",
               "slug": "exercitii-ghidate",
               "tip": "ghidat"
             },
             {
               "cod": "CP1.1.5",
-              "titlu": "Exercitii independente",
-              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
               "slug": "exercitii-independente",
               "tip": "independent"
             },
             {
               "cod": "CP1.1.6",
-              "titlu": "Verifica-ti intelegerea",
-              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
               "slug": "verifica-ti-intelegerea",
               "tip": "verificare"
             }
@@ -98,42 +98,42 @@
             {
               "cod": "CP1.2.1",
               "titlu": "Recapitulare",
-              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
               "slug": "recapitulare",
               "tip": "recapitulare"
             },
             {
               "cod": "CP1.2.2",
-              "titlu": "Concept nou si exemplu",
-              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
               "slug": "concept-nou-si-exemplu",
               "tip": "concept"
             },
             {
               "cod": "CP1.2.3",
-              "titlu": "Citeste si prezice",
-              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
               "slug": "citeste-si-prezice",
               "tip": "prezice"
             },
             {
               "cod": "CP1.2.4",
-              "titlu": "Exercitii ghidate",
+              "titlu": "Exerciții ghidate",
               "descriere": "Probleme rezolvate partial, cu indicii.",
               "slug": "exercitii-ghidate",
               "tip": "ghidat"
             },
             {
               "cod": "CP1.2.5",
-              "titlu": "Exercitii independente",
-              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
               "slug": "exercitii-independente",
               "tip": "independent"
             },
             {
               "cod": "CP1.2.6",
-              "titlu": "Verifica-ti intelegerea",
-              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
               "slug": "verifica-ti-intelegerea",
               "tip": "verificare"
             }
@@ -149,42 +149,42 @@
             {
               "cod": "CP1.3.1",
               "titlu": "Recapitulare",
-              "descriere": "Leaga lectia de ce s-a invatat deja.",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
               "slug": "recapitulare",
               "tip": "recapitulare"
             },
             {
               "cod": "CP1.3.2",
-              "titlu": "Concept nou si exemplu",
-              "descriere": "Explicatie pas cu pas si un exemplu de cod comentat.",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
               "slug": "concept-nou-si-exemplu",
               "tip": "concept"
             },
             {
               "cod": "CP1.3.3",
-              "titlu": "Citeste si prezice",
-              "descriere": "Citesti un fragment de cod si anticipezi rezultatul.",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
               "slug": "citeste-si-prezice",
               "tip": "prezice"
             },
             {
               "cod": "CP1.3.4",
-              "titlu": "Exercitii ghidate",
+              "titlu": "Exerciții ghidate",
               "descriere": "Probleme rezolvate partial, cu indicii.",
               "slug": "exercitii-ghidate",
               "tip": "ghidat"
             },
             {
               "cod": "CP1.3.5",
-              "titlu": "Exercitii independente",
-              "descriere": "Probleme de rezolvat singur, fara sprijin.",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
               "slug": "exercitii-independente",
               "tip": "independent"
             },
             {
               "cod": "CP1.3.6",
-              "titlu": "Verifica-ti intelegerea",
-              "descriere": "3-5 intrebari scurte inainte de modulul urmator.",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
               "slug": "verifica-ti-intelegerea",
               "tip": "verificare"
             }

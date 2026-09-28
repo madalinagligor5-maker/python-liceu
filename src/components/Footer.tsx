@@ -13,7 +13,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-foreground/60">
-            Învață Python pas cu pas, conform programei de Informatică pentru liceu și juniori.
+            Învață Python pas cu pas: Kids, gimnaziu, liceu și curs practic, cu explicații în română.
           </p>
           <a
             href="mailto:academipython@gmail.com"

@@ -249,6 +249,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
           blocuri={continut.blocuri}
           esteVerificare={continut.esteVerificare}
           esteExercitii={continut.esteExercitii}
+          permiteRulare={!sublectieCod.endsWith(".3")}
         />
       </LectieContainer>
 
@@ -278,7 +279,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
                     />
                   </div>
                   <p className="mt-2 text-xs text-foreground/55">
-                    Rulește codul — dacă output-ul corespunde, ai demonstrat că
+                    Rulează codul — dacă rezultatul corespunde, ai demonstrat că
                     stăpânești conceptul, nu doar l-ai recunoscut în grilă.
                   </p>
                 </div>

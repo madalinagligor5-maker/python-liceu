@@ -42,7 +42,7 @@ export default function AiAssistantWidget() {
         <div>
           <h3 className="font-extrabold text-slate-950 text-sm">Profesor Asistent AI (Demo)</h3>
           <p className="text-xs text-slate-600 font-medium leading-snug">
-            Ai o întrebare? Îți ofer răspunsuri, sfaturi și exemple de cod!
+            Pune o întrebare scurtă despre Python. Răspunsurile sunt generate automat și pot conține greșeli.
           </p>
         </div>
       </div>
@@ -57,7 +57,11 @@ export default function AiAssistantWidget() {
         </button>
       ) : (
         <form onSubmit={intreaba} className="mt-3.5 space-y-2.5">
+          <label htmlFor="ai-demo-intrebare" className="sr-only">
+            Întrebarea ta despre Python
+          </label>
           <input
+            id="ai-demo-intrebare"
             type="text"
             value={intrebare}
             onChange={(e) => setIntrebare(e.target.value)}
@@ -80,7 +84,8 @@ export default function AiAssistantWidget() {
                 setRaspuns(null);
                 setEroare(null);
               }}
-              className="rounded-xl bg-slate-100 text-slate-600 px-3 py-2 text-xs hover:bg-slate-200"
+              aria-label="Închide asistentul"
+              className="rounded-xl bg-slate-100 text-slate-700 px-3 py-2 text-xs hover:bg-slate-200"
             >
               ✕
             </button>
@@ -98,8 +103,8 @@ export default function AiAssistantWidget() {
             </div>
           )}
 
-          <p className="text-[10px] text-slate-400 text-center font-medium pt-1">
-            Ai o întrebare gratuită pe zi. Creează-ți un cont pentru acces nelimitat (în limita planului tău).
+          <p className="text-[11px] text-slate-600 text-center font-medium pt-1">
+            Demo: 1 întrebare pe zi. În lecții, evaluarea AI a codului: 3 pe zi cu cont gratuit, 15 pe zi cu abonament.
           </p>
         </form>
       )}

@@ -1,3 +1,4 @@
+import { numeClasa } from "@/lib/curriculum";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -17,8 +18,8 @@ export async function generateMetadata({
   if (!capitol) return {};
 
   return {
-    title: `Fișe de lucru Clasa a ${clasa}-a`,
-    description: `Descărcare fișe de lucru PDF pentru clasa a ${clasa}-a, conform programei școlare.`,
+    title: `Fișe de lucru — ${numeClasa(clasa)}`,
+    description: `Fișe de lucru PDF pentru ${numeClasa(clasa).toLowerCase()}.`,
     alternates: { canonical: `/resurse/${clasa}` },
   };
 }
@@ -40,12 +41,12 @@ export default async function ClasaResursePage({
           Resurse
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-foreground font-semibold">Clasa a {clasa}-a</span>
+        <span className="text-foreground font-semibold">{numeClasa(clasa)}</span>
       </nav>
 
       <div className="mt-4 border-b border-black/5 pb-5">
         <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
-          Fișe PDF: Clasa a {clasa}-a
+          Fișe PDF: {numeClasa(clasa)}
         </h1>
         <p className="mt-2 text-sm text-foreground/70 leading-relaxed">
           Mai jos găsești lista completă a fișelor de sinteză teoretică și exerciții pentru clasa a {clasa}-a. 

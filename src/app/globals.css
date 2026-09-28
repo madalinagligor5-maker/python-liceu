@@ -7,13 +7,17 @@
   --foreground: #0F172A;   /* Negru cărbune intens */
   --muted: #475569;
   --border: #E2E8F0;
-  --brand: #F59E0B;        /* Galben Auriu Python */
-  --brand-dark: #D97706;   /* Galben mai închis pentru hover */
+  /* --brand e folosit pentru TEXT și pentru butoane cu text alb: galbenul
+     #F59E0B avea contrast ~2,1:1 pe alb (sub minimul WCAG de 4,5:1).
+     Accentul galben rămâne pe butoanele principale (amber-400 + text închis)
+     și pe fundaluri (--brand-light, --brand-border). */
+  --brand: #B45309;        /* Chihlimbar închis — contrast 5:1 pe alb */
+  --brand-dark: #92400E;   /* Hover */
   --brand-light: #FEF3C7;  /* Galben crem deschis */
   --brand-border: #FDE68A;
   --accent: #2563EB;       /* Albastru Python Royal Blue */
   --accent-light: #EFF6FF; /* Albastru deschis */
-  --success: #10B981;
+  --success: #047857;      /* Verde închis — contrast 5,5:1 pe alb (era #10B981, 2,5:1) */
   --warning: #F59E0B;
   --python-yellow: #FFD43B;
   --python-blue: #306998;
@@ -41,6 +45,33 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Focus vizibil pentru navigarea din tastatură, pe tot site-ul. */
+:focus-visible {
+  outline: 3px solid #1E2430;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Cod inline în lecții (`cod`). */
+.cod-inline {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9em;
+  background: #F3EFE6;
+  color: #1E2430;
+  border: 1px solid #E7E0D2;
+  border-radius: 0.3rem;
+  padding: 0.05rem 0.3rem;
+  overflow-wrap: anywhere;
+}
+
+/* Subtitluri (## …) din textul lecțiilor. */
+.lectie-subtitlu {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--foreground);
 }
 
 ::selection {
@@ -309,4 +340,25 @@ body {
    ca în modul luminos, nu doar în el. */
 #lectie-articol.tema-dark .bloc-card {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+#lectie-articol.tema-dark .cod-inline {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fde68a;
+}
+
+/* Cod în interiorul cardurilor de teorie: derulare orizontală în bloc,
+   nu pe toată pagina. */
+.card-cod {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  background: #1e1b3a;
+  color: #fff;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre;
 }
