@@ -7,6 +7,7 @@ import IconLectieBlocata from "@/components/icons/IconLectieBlocata";
 import IconStreak from "@/components/icons/IconStreak";
 import CelebrareModul from "@/components/CelebrareModul";
 import { marcheazaPasReusit, pragPromovare } from "@/lib/progresLocal";
+import { trimiteEveniment, trimiteOData } from "@/lib/analytics";
 
 const PRAGURI_STREAK = new Set([7, 30, 100]);
 
@@ -43,7 +44,14 @@ export default function QuizSublectie({
 
   function verifica() {
     setDezvaltat(true);
-    if (scorLocal >= prag) marcheazaPasReusit(sublectieCod);
+    const trecut = scorLocal >= prag;
+    if (trecut) marcheazaPasReusit(sublectieCod);
+    // Testul de verificare e ultimul pas al modulului: trecut = modul terminat.
+    trimiteEveniment("test_verificare", { cod: sublectieCod, trecut });
+    if (trecut) {
+      const modul = sublectieCod.split(".").slice(0, -1).join(".");
+      trimiteOData(`modul_${sublectieCod}`, "modul_terminat", { modul, cod: sublectieCod });
+    }
     if (!poateSalva) return;
     startTransition(async () => {
       const r = await finalizeazaSublectie(clasa, sublectieCod, raspunsuri);

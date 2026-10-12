@@ -16,6 +16,7 @@ import {
 import BlocuriSublectie from "@/components/BlocuriSublectie";
 import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
+import MarcheazaPasDeschis from "@/components/MarcheazaPasDeschis";
 import PythonEditor from "@/components/PythonEditor";
 import { getUtilizatorCurent, areAbonamentCursActiv } from "@/lib/subscription";
 import { getQuizSublectie } from "@/lib/quizSublectii";
@@ -229,6 +230,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
       {breadcrumbJsonLd}
       {breadcrumb}
+      <MarcheazaPasDeschis cod={sublectieCod} sursa="curs_practic" />
 
       <div className="mt-4 flex items-center gap-3 mb-6">
         <span aria-hidden="true" className="text-3xl">

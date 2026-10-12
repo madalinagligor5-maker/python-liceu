@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderConditional from "@/components/HeaderConditional";
+import UrmarireEvenimente from "@/components/UrmarireEvenimente";
 import { getUtilizatorCurent } from "@/lib/subscription";
 
 const GA_ID = "G-F0158XN3VT";
@@ -166,6 +167,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <HeaderConditional esteAutentificat={esteAutentificat}>
           <Header />
         </HeaderConditional>
+        <UrmarireEvenimente />
         <main id="continut" tabIndex={-1} className="flex-1 focus:outline-none">{children}</main>
         <HeaderConditional esteAutentificat={esteAutentificat}>
           <Footer />

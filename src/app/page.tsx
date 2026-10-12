@@ -118,6 +118,8 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 href="/start"
+                data-eveniment="cta_incepe_gratuit"
+                data-ev-loc="hero"
                 className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-7 py-3.5 text-base shadow-xs active:scale-95 transition-all"
               >
                 Începe gratuit

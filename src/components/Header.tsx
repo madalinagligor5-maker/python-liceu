@@ -76,6 +76,8 @@ export default async function Header() {
 
           <Link
             href={esteProfesor ? "/profesor/planificari" : user ? "/cont" : "/start"}
+            data-eveniment={!esteProfesor && !user ? "cta_incepe_gratuit" : undefined}
+            data-ev-loc="header"
             className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
           >
             {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}

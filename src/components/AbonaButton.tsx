@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { trimiteEveniment } from "@/lib/analytics";
 
 export default function AbonaButton({
   plan,
@@ -23,6 +24,7 @@ export default function AbonaButton({
   async function handleClick() {
     setSeIncarca(true);
     setEroare(null);
+    trimiteEveniment("click_proba", { plan, produs });
 
     try {
       const res = await fetch("/api/checkout", {
@@ -43,6 +45,8 @@ export default function AbonaButton({
         return;
       }
 
+      // Doar aici pleacă efectiv spre Stripe (utilizator logat, sesiune creată).
+      trimiteEveniment("begin_checkout", { plan, produs });
       window.location.href = data.url;
     } catch {
       setEroare("A apărut o eroare de rețea. Încearcă din nou.");

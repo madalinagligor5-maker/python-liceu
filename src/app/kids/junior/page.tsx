@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { creeazaProfil, getProfilElev } from "@/lib/junior/progres";
 import MascotaByte from "@/components/junior/MascotaByte";
+import { trimiteEveniment, trimiteOData } from "@/lib/analytics";
 
 const AVATARE = ["🧒", "👧", "👦", "🧑", "👩", "🧑‍💻"];
 const CULORI_AVATAR = [
@@ -34,6 +35,9 @@ export default function JuniorAvatarPage() {
       return;
     }
     creeazaProfil(avatarSelectat, nume.trim());
+    // Numele copilului nu pleacă nicăieri: doar traseul.
+    trimiteEveniment("lectie_deschisa", { cod: "kids-junior", sursa: "kids" });
+    trimiteOData("prima_lectie", "prima_lectie", { cod: "kids-junior", sursa: "kids" });
     router.push("/kids/junior/harta");
   };
 

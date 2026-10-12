@@ -46,6 +46,8 @@ export default function CarduriTrasee({ nivelTitlu = "h2" }: { nivelTitlu?: "h2"
           <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-5">
             <Link
               href={t.primaActivitate.href}
+              data-eveniment="traseu_ales"
+              data-ev-traseu={t.id}
               className="rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 shadow-xs transition hover:bg-amber-500 active:scale-95"
             >
               {t.primaActivitate.eticheta} →
