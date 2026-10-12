@@ -362,3 +362,17 @@ body {
   line-height: 1.6;
   white-space: pre;
 }
+
+/* Fără ligaturi în cod: JetBrains Mono afișa „>=" ca „≥" și „!=" ca „≠",
+   iar începătorii încercau să tasteze simbolurile respective. */
+code,
+pre,
+kbd,
+samp,
+textarea,
+.font-mono,
+.cod-inline,
+.card-cod {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}

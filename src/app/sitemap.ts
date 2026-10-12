@@ -17,6 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url("/curs-practic/preturi"), changeFrequency: "monthly", priority: 0.6 },
     { url: url("/lectii"), changeFrequency: "weekly", priority: 0.7 },
     { url: url("/blog"), changeFrequency: "weekly", priority: 0.7 },
+    { url: url("/start"), changeFrequency: "monthly", priority: 0.9 },
+    { url: url("/lab"), changeFrequency: "monthly", priority: 0.7 },
+    { url: url("/kids"), changeFrequency: "monthly", priority: 0.8 },
+    { url: url("/despre"), changeFrequency: "yearly", priority: 0.4 },
     { url: url("/termeni-si-conditii"), changeFrequency: "yearly", priority: 0.2 },
     { url: url("/politica-de-confidentialitate"), changeFrequency: "yearly", priority: 0.2 },
     { url: url("/politica-de-rambursare"), changeFrequency: "yearly", priority: 0.2 },
@@ -65,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articoleBlog = await getToateArticolele();
   const dinBlog: MetadataRoute.Sitemap = articoleBlog.map((articol) => ({
     url: url(`/blog/${articol.slug}`),
+    lastModified: articol.actualizat || articol.data || undefined,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

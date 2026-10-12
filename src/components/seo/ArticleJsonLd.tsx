@@ -6,11 +6,13 @@ export default function ArticleJsonLd({
   titlu,
   descriere,
   data,
+  actualizat,
   slug,
 }: {
   titlu: string;
   descriere: string;
   data: string;
+  actualizat?: string;
   slug: string;
 }) {
   const jsonLd = {
@@ -19,6 +21,8 @@ export default function ArticleJsonLd({
     headline: titlu,
     description: descriere,
     ...(data ? { datePublished: data } : {}),
+    ...(actualizat || data ? { dateModified: actualizat || data } : {}),
+    image: `${SITE_URL}/og-image.png`,
     url: `${SITE_URL}/blog/${slug}`,
     mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
     inLanguage: "ro",

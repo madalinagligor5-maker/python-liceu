@@ -28,12 +28,63 @@ export type ArticolBlogRezumat = {
   titluSeo?: string;
   slug: string;
   data: string; // "YYYY-MM-DD", ca text — suficient pentru sortare și afișare
+  /** Data ultimei actualizări (frontmatter "actualizat"), dacă există. */
+  actualizat?: string;
   descriere: string;
+  /** Minute de citire estimate din numărul de cuvinte (~200 cuvinte/min). */
+  minuteCitire: number;
 };
 
 export type ArticolBlog = ArticolBlogRezumat & {
   corpHtml: string;
+  /** Cuprinsul: titlurile ## din articol, cu ancore. */
+  cuprins: { id: string; text: string }[];
+  /** Întrebările din secțiunea „## Întrebări frecvente" (### întrebare +
+   *  paragraful de sub ea) — exact textul afișat, folosit pentru FAQPage. */
+  intrebariFrecvente: { intrebare: string; raspuns: string }[];
 };
+
+/** Id stabil pentru ancore: fără diacritice, litere mici, cratime. */
+export function ancora(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[`*_[\]()]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+/** Text simplu dintr-o linie Markdown (fără `cod`, **bold**, linkuri). */
+function textSimplu(md: string): string {
+  return md
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[`*]/g, "")
+    .trim();
+}
+
+/** Extrage întrebările frecvente din secțiunea dedicată a articolului. */
+function extrageIntrebari(md: string): { intrebare: string; raspuns: string }[] {
+  const linii = md.replace(/\r\n/g, "\n").split("\n");
+  const start = linii.findIndex((l) => /^##\s+Întrebări frecvente\s*$/i.test(l.trim()));
+  if (start === -1) return [];
+  const rez: { intrebare: string; raspuns: string }[] = [];
+  let curenta: { intrebare: string; raspuns: string[] } | null = null;
+  for (let i = start + 1; i < linii.length; i++) {
+    const l = linii[i];
+    if (/^##\s+/.test(l)) break;
+    const q = l.match(/^###\s+(.+)$/);
+    if (q) {
+      if (curenta) rez.push({ intrebare: curenta.intrebare, raspuns: curenta.raspuns.join(" ").trim() });
+      curenta = { intrebare: textSimplu(q[1]), raspuns: [] };
+    } else if (curenta && l.trim()) {
+      curenta.raspuns.push(textSimplu(l));
+    }
+  }
+  if (curenta) rez.push({ intrebare: curenta.intrebare, raspuns: curenta.raspuns.join(" ").trim() });
+  return rez.filter((x) => x.raspuns);
+}
 
 const DIR_BLOG = path.join(process.cwd(), "content", "blog");
 
@@ -134,7 +185,10 @@ export function randeazaMarkdown(md: string): string {
           : nivel === 2
             ? "mt-8 text-xl font-bold text-foreground [font-family:var(--font-fraunces)]"
             : "mt-6 text-lg font-bold text-foreground";
-      out.push(`<h${nivel} class="${clasa}">${inline(hMatch[2].trim())}</h${nivel}>`);
+      // În corpul articolului, „#" devine h2: pagina are deja un singur h1 (titlul).
+      const nivelHtml = Math.max(2, nivel);
+      const id = nivel >= 2 ? ` id="${ancora(hMatch[2])}"` : "";
+      out.push(`<h${nivelHtml}${id} class="${clasa} scroll-mt-24">${inline(hMatch[2].trim())}</h${nivelHtml}>`);
       i++;
       continue;
     }
@@ -238,13 +292,23 @@ async function incarcaToate(): Promise<ArticolBlog[]> {
     const raw = await fs.readFile(path.join(DIR_BLOG, fisier), "utf-8");
     const { meta, corp } = parseazaFrontmatter(raw);
     if (!meta.slug || !meta.titlu) continue; // frontmatter incomplet — sărit
+    const cuvinte = corp.split(/\s+/).filter(Boolean).length;
+    const cuprins = corp
+      .split("\n")
+      .map((l) => l.match(/^##\s+(.+)$/))
+      .filter((m): m is RegExpMatchArray => Boolean(m))
+      .map((m) => ({ id: ancora(m[1]), text: textSimplu(m[1]) }));
     articole.push({
       titlu: meta.titlu,
       titluSeo: meta.titlu_seo || undefined,
       slug: meta.slug,
       data: meta.data ?? "",
+      actualizat: meta.actualizat || undefined,
       descriere: meta.descriere ?? "",
+      minuteCitire: Math.max(1, Math.round(cuvinte / 200)),
       corpHtml: randeazaMarkdown(corp),
+      cuprins,
+      intrebariFrecvente: extrageIntrebari(corp),
     });
   }
 
@@ -262,7 +326,9 @@ export async function getToateArticolele(): Promise<ArticolBlogRezumat[]> {
     titluSeo: articol.titluSeo,
     slug: articol.slug,
     data: articol.data,
+    actualizat: articol.actualizat,
     descriere: articol.descriere,
+    minuteCitire: articol.minuteCitire,
   }));
 }
 

@@ -5,7 +5,7 @@ import { getToateArticolele } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Ghiduri Python, noutăți despre programa de Informatică la liceu și materiale utile pentru elevii care se pregătesc pentru Bacalaureat.",
+    "Ghiduri Python în română pentru începători, elevi și părinți: variabile, if, for, liste, funcții, erori frecvente și probleme rezolvate.",
   alternates: { canonical: "/blog" },
 };
 
@@ -25,12 +25,12 @@ export default async function BlogPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-wide text-brand">Blog</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-brand-dark">Blog</p>
       <h1 className="mt-1 text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
         Ghiduri și noutăți
       </h1>
       <p className="mt-2 text-sm text-muted">
-        Articole despre programa de Informatică, Bacalaureat și Python pentru liceu.
+        Ghiduri Python pentru începători, elevi, părinți și profesori — cu exemple pe care le poți rula în browser.
       </p>
 
       {articole.length === 0 ? (
@@ -47,14 +47,16 @@ export default async function BlogPage() {
               href={`/blog/${articol.slug}`}
               className="block rounded-2xl border border-border bg-white p-5 shadow-sm transition hover:border-brand/40 hover:shadow-md sm:p-6"
             >
-              <p className="text-xs font-medium text-muted">{formateazaData(articol.data)}</p>
+              <p className="text-xs font-medium text-foreground/70">
+                {formateazaData(articol.data)} · {articol.minuteCitire} min
+              </p>
               <h2 className="mt-1 text-lg font-bold text-foreground sm:text-xl [font-family:var(--font-fraunces)]">
                 {articol.titlu}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                 {articol.descriere}
               </p>
-              <span className="mt-3 inline-block text-sm font-semibold text-brand">
+              <span className="mt-3 inline-block text-sm font-semibold text-brand-dark">
                 Citește articolul →
               </span>
             </Link>
