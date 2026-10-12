@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresKids } from "@/lib/progres";
-import { capitole, numeClasaScurt } from "@/lib/curriculum";
+import { capitole } from "@/lib/curriculum";
 
 export const metadata: Metadata = {
   title: "Kids — pentru clasele I–IV",
@@ -10,201 +11,232 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kids" },
 };
 
+const IMAGINI_VARSTE: Record<string, { src: string; alt: string; eticheta: string }> = {
+  P7: {
+    src: "/images/kids/copil-directii.png",
+    alt: "Fetiță care învață direcțiile cu ajutorul unor cartonașe colorate",
+    eticheta: "Primii pași",
+  },
+  P8: {
+    src: "/images/kids/copil-labirint-robot.png",
+    alt: "Băiat care ghidează un robot educațional printr-un labirint din lemn",
+    eticheta: "Logică prin joacă",
+  },
+  P9: {
+    src: "/images/people/copil-coding.png",
+    alt: "Copil care descoperă programarea pe laptop într-un spațiu luminos",
+    eticheta: "Idei în mișcare",
+  },
+  P10: {
+    src: "/images/kids/copil-python-biblioteca.png",
+    alt: "Elevă care lucrează la o lecție de Python într-o bibliotecă",
+    eticheta: "Cod adevărat",
+  },
+  P11: {
+    src: "/images/kids/copil-proiect-python.png",
+    alt: "Elev care prezintă un proiect Python realizat pe laptop",
+    eticheta: "Proiectul tău",
+  },
+};
+
 const NIVELE = [
   {
     id: 1,
-    titlu: "Nivelul 1: Labirintul și Direcțiile",
-    clasa: "Clasa I - II",
-    descriere: "Ajută-l pe Pippy să ocolească obstacolele și să adune steluțele folosind direcții simple (secvențialitate).",
-    emoji: "🧭",
-    culoareBg: "bg-emerald-50 border-emerald-200 text-emerald-800 hover:border-emerald-300",
-    badgeCuloare: "bg-emerald-100 text-emerald-800"
+    titlu: "Labirintul și direcțiile",
+    clasa: "Clasa I–II",
+    descriere: "Îl ghidezi pe Pippy printre obstacole și descoperi cum se construiește o secvență de pași.",
+    imagine: "/images/kids/copil-directii.png",
+    alt: "Copil care lucrează cu săgeți de direcție",
   },
   {
     id: 2,
-    titlu: "Nivelul 2: Puterea Repetiției",
+    titlu: "Puterea repetiției",
     clasa: "Clasa a III-a",
-    descriere: "Învață buclele repetitive! Repetă instrucțiuni de deplasare pentru a ajunge la destinație în mai puțini pași.",
-    emoji: "🔁",
-    culoareBg: "bg-indigo-50 border-indigo-200 text-indigo-800 hover:border-indigo-300",
-    badgeCuloare: "bg-indigo-100 text-indigo-800"
+    descriere: "Scurtezi drumul cu repetiții și înveți de ce programatorii folosesc bucle.",
+    imagine: "/images/kids/copil-labirint-robot.png",
+    alt: "Copil care rezolvă un labirint cu un robot educațional",
   },
   {
     id: 3,
-    titlu: "Nivelul 3: Primul Cod Adevărat",
+    titlu: "Primul cod adevărat",
     clasa: "Clasa a IV-a",
-    descriere: "Fă pasul către codul real! Vezi cum se transformă blocurile tale vizuale în instrucțiuni Python adevărate.",
-    emoji: "🚀",
-    culoareBg: "bg-amber-50 border-amber-200 text-amber-800 hover:border-amber-300",
-    badgeCuloare: "bg-amber-100 text-amber-900"
-  }
+    descriere: "Transformi pașii din joc în instrucțiuni Python și vezi imediat ce face programul tău.",
+    imagine: "/images/kids/copil-proiect-python.png",
+    alt: "Copil care prezintă un proiect realizat în Python",
+  },
 ];
 
 export default async function KidsPage() {
   const { user } = await getUtilizatorCurent();
   const progres = user ? await getProgresKids(user.id) : {};
-
-  // Capitolele Kids din structura curriculum (P7, P8, P9, P10, P11)
   const capitoleKids = capitole.filter((c) => c.clasa.startsWith("P"));
 
-  const culoriVarste: Record<string, { bg: string; badge: string; border: string }> = {
-    P7: { bg: "bg-emerald-50", badge: "bg-emerald-100 text-emerald-800", border: "border-emerald-200" },
-    P8: { bg: "bg-sky-50", badge: "bg-sky-100 text-sky-800", border: "border-sky-200" },
-    P9: { bg: "bg-violet-50", badge: "bg-violet-100 text-violet-800", border: "border-violet-200" },
-    P10: { bg: "bg-amber-50", badge: "bg-amber-100 text-amber-800", border: "border-amber-200" },
-    P11: { bg: "bg-rose-50", badge: "bg-rose-100 text-rose-800", border: "border-rose-200" },
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6">
-      {/* HERO SECTION */}
-      <div className="mx-auto max-w-4xl text-center">
-        <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-amber-100 text-6xl shadow-md animate-bounce">
-          🐍
-        </div>
-        <h1 className="mt-6 text-4xl font-black tracking-tight text-indigo-900 sm:text-5xl font-sans rounded-3xl">
-          Salut! Eu sunt <span className="text-amber-500">Pippy</span>! 🤖
-        </h1>
-        <p className="mt-4 mx-auto max-w-xl text-base text-slate-600 leading-relaxed font-medium">
-          Bine ai venit la <strong>Academia Python Kids</strong>! Împreună vom explora lumea algoritmilor prin jocuri distractive și lecții adaptate vârstei tale.
-        </p>
-
-        {/* ACADEMIA PYTHON JUNIOR — banner proeminent */}
-        <div className="mt-10 mx-auto max-w-2xl rounded-3xl bg-gradient-to-br from-indigo-500 to-violet-600 p-6 text-white shadow-xl">
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="text-6xl shrink-0">🤖</div>
-            <div className="text-left">
-              <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">NOU · Clasele I–IV (6–10 ani)</p>
-              <h2 className="text-2xl font-black">Academia Python Junior</h2>
-              <p className="mt-1 text-sm opacity-90">
-                Jocuri interactive, robotul Byte și 6 module de programare prin drag-and-drop — fără tastatură, fără text!
-              </p>
+    <div className="min-h-screen bg-[#FDFBF7] text-[#1E2430]">
+      <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 lg:pt-10">
+        <div className="relative min-h-[38rem] overflow-hidden rounded-[2rem] bg-[#DCEAF0] shadow-depth-lg sm:min-h-[42rem]">
+          <Image
+            src="/images/kids/hero-pippy-copii.png"
+            alt="Doi copii care descoperă algoritmii alături de Pippy, mascota Academia Python Kids"
+            fill
+            priority
+            sizes="(min-width: 1280px) 80rem, 100vw"
+            className="object-cover object-[64%_center]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FCF7EC] via-[#FCF7EC]/88 to-transparent" />
+          <div className="relative flex min-h-[38rem] max-w-2xl flex-col justify-center p-7 sm:min-h-[42rem] sm:p-12 lg:p-16">
+            <span className="w-fit rounded-full border border-amber-300 bg-amber-100/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em] text-amber-900">
+              Academia Python Kids · Clasele I–IV
+            </span>
+            <h1 className="mt-5 max-w-xl text-4xl font-black leading-[0.98] tracking-tight sm:text-6xl [font-family:var(--font-fraunces)] text-balance">
+              Salut! Eu sunt <span className="text-amber-600">Pippy</span>!
+            </h1>
+            <p className="mt-5 max-w-lg text-base font-semibold leading-relaxed text-[#4D5666] sm:text-lg">
+              Bine ai venit la <strong className="text-[#1E2430]">Academia Python Kids</strong>! Împreună vom
+              explora lumea algoritmilor prin jocuri distractive și lecții adaptate vârstei tale.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/kids/junior"
+                className="rounded-xl bg-[#1E2430] px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#2B3342] active:translate-y-0"
+              >
+                Hai să începem aventura
+              </Link>
+              <a
+                href="#trasee"
+                className="rounded-xl border border-[#1E2430]/20 bg-white/75 px-6 py-3.5 text-sm font-black text-[#1E2430] backdrop-blur-sm transition hover:bg-white"
+              >
+                Vezi traseele
+              </a>
             </div>
-            <Link
-              href="/kids/junior"
-              className="shrink-0 rounded-2xl bg-white text-indigo-700 hover:bg-indigo-50 font-black px-6 py-3 text-sm shadow-md transition-all active:scale-95"
-            >
-              Joacă acum! ▶
-            </Link>
           </div>
         </div>
+      </section>
 
-
-        <div className="mt-14 text-left max-w-3xl mx-auto">
-          <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
-            📚 Lecțiile tale Python — pe vârste
+      <section id="trasee" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mb-12 max-w-3xl">
+          <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">Crește odată cu ei</span>
+          <h2 className="mt-3 text-3xl font-black leading-tight sm:text-5xl [font-family:var(--font-fraunces)] text-balance">
+            Un traseu vizual pentru fiecare vârstă
           </h2>
-          <p className="text-center text-sm text-slate-600 mb-8">
-            Alege vârsta ta și începe să înveți Python pas cu pas!
+          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-[#596170]">
+            Fiecare etapă pornește de la o situație ușor de înțeles și ajunge treptat la Python adevărat.
           </p>
-          <div className="space-y-6">
-            {capitoleKids.map((cap) => {
-              const culori = culoriVarste[cap.clasa] ?? { bg: "bg-slate-50", badge: "bg-slate-100 text-slate-700", border: "border-slate-200" };
-              return (
-                <div key={cap.clasa} className={`rounded-2xl border p-5 shadow-sm ${culori.bg} ${culori.border}`}>
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                    <div>
-                      <span className={`inline-block rounded-full px-3 py-0.5 text-xs font-bold mb-1 ${culori.badge}`}>
-                        Python pentru copii · {numeClasaScurt(cap.clasa)}
-                      </span>
-                      <h3 className="font-extrabold text-slate-800 text-lg leading-tight">{cap.titlu}</h3>
-                    </div>
-                    <span className="text-sm text-slate-600">{cap.module.length} module · câte 6 pași · gratuit</span>
+        </div>
+
+        <div className="space-y-16">
+          {capitoleKids.map((cap, index) => {
+            const vizual = IMAGINI_VARSTE[cap.clasa] ?? IMAGINI_VARSTE.P9;
+            const inversat = index % 2 === 1;
+
+            return (
+              <article key={cap.clasa} className="grid items-center gap-8 lg:grid-cols-12 lg:gap-14">
+                <div className={`relative min-h-[22rem] overflow-hidden rounded-[2rem] shadow-depth-md sm:min-h-[28rem] lg:col-span-6 ${inversat ? "lg:order-2" : ""}`}>
+                  <Image
+                    src={vizual.src}
+                    alt={vizual.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover transition duration-700 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#171B24]/80 to-transparent p-6 pt-20 text-white">
+                    <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-amber-300">{vizual.eticheta}</span>
                   </div>
-                  <div className="grid gap-2 sm:grid-cols-3">
-                    {cap.module.map((m) => (
+                </div>
+
+                <div className={`lg:col-span-6 ${inversat ? "lg:order-1" : ""}`}>
+                  <p className="text-sm font-extrabold text-amber-700">
+                    {cap.clasa} · {(cap as { virsta?: string }).virsta ?? "7–11 ani"}
+                  </p>
+                  <h3 className="mt-2 text-3xl font-black leading-tight [font-family:var(--font-fraunces)]">{cap.titlu}</h3>
+                  <p className="mt-3 text-sm font-semibold text-[#687080]">
+                    {cap.module.length} module · {cap.module.length * 6} lecții practice
+                  </p>
+                  <div className="mt-7 border-t border-[#DDD7CA]">
+                    {cap.module.map((modul, modulIndex) => (
                       <Link
-                        key={m.cod}
-                        href={`/curriculum/${cap.clasa}/${m.slug}`}
-                        className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 px-4 py-3 text-xs font-bold text-slate-700 transition shadow-sm"
+                        key={modul.cod}
+                        href={`/curriculum/${cap.clasa}/${modul.slug}`}
+                        className="group flex items-center justify-between gap-5 border-b border-[#DDD7CA] py-4 text-left transition hover:pl-2"
                       >
-                        <span className="text-indigo-500 shrink-0">📖</span>
-                        <span className="leading-tight">{m.numar}. {m.titlu}</span>
+                        <span className="flex items-baseline gap-3">
+                          <span className="font-mono text-xs font-bold text-amber-700">{String(modulIndex + 1).padStart(2, "0")}</span>
+                          <span className="font-extrabold text-[#283142]">{modul.titlu}</span>
+                        </span>
+                        <span className="text-lg text-amber-700 transition group-hover:translate-x-1" aria-hidden="true">→</span>
                       </Link>
                     ))}
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </article>
+            );
+          })}
         </div>
+      </section>
 
-        {/* MAP DE AVENTURĂ */}
-        <div className="mt-16 text-left max-w-2xl mx-auto">
-          <h2 className="text-xl font-black text-indigo-950 text-center mb-2">
-            🗺️ Jocuri Interactive
-          </h2>
-          <p className="text-center text-sm text-slate-600 mb-6">
-            Exersează logica programării prin labirinturi și puzzle-uri distractive!
-          </p>
-          <div className="space-y-4">
-            {NIVELE.map((niv) => {
-              const completat = progres[`kids-nivel-${niv.id}`];
+      <section className="bg-[#EEE9DD] py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">Jocuri interactive</span>
+            <h2 className="mt-3 text-3xl font-black sm:text-5xl [font-family:var(--font-fraunces)] text-balance">
+              Învață făcând, nu memorând
+            </h2>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            {NIVELE.map((nivel) => {
+              const completat = progres[`kids-nivel-${nivel.id}`];
               const stele = completat?.stars ?? 0;
 
               return (
-                <div
-                  key={niv.id}
-                  className={`rounded-2xl border p-5 shadow-sm transition hover:shadow-md ${niv.culoareBg}`}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <span className="text-4xl shrink-0" role="img" aria-hidden="true">
-                        {niv.emoji}
-                      </span>
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="font-extrabold text-slate-800 text-lg leading-tight">
-                            {niv.titlu}
-                          </h3>
-                          <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${niv.badgeCuloare}`}>
-                            {niv.clasa}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-sm text-slate-600 leading-normal">
-                          {niv.descriere}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0 border-t sm:border-t-0 border-slate-200/50 pt-3 sm:pt-0">
-                      <div className="flex gap-0.5 text-lg" aria-label={`Scor: ${stele} stele`}>
-                        {[1, 2, 3].map((s) => (
-                          <span key={s} className={s <= stele ? "text-amber-400" : "text-slate-300"}>
-                            ★
-                          </span>
-                        ))}
-                      </div>
-
-                      <Link
-                        href={`/kids/aventura/${niv.id}`}
-                        className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 text-xs transition shadow-sm"
-                      >
-                        {stele > 0 ? "Rejoacă 🔁" : "Joacă! ▶"}
-                      </Link>
-                    </div>
+                <article key={nivel.id} className="group overflow-hidden rounded-[1.75rem] bg-white shadow-depth-sm">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={nivel.imagine}
+                      alt={nivel.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                    />
                   </div>
-                </div>
+                  <div className="p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-amber-700">{nivel.clasa}</span>
+                      <span className="text-sm tracking-wide" aria-label={`Scor: ${stele} stele`}>
+                        {[1, 2, 3].map((stea) => (
+                          <span key={stea} className={stea <= stele ? "text-amber-500" : "text-[#D5D0C6]"}>★</span>
+                        ))}
+                      </span>
+                    </div>
+                    <h3 className="mt-3 text-2xl font-black leading-tight [font-family:var(--font-fraunces)]">{nivel.titlu}</h3>
+                    <p className="mt-3 min-h-16 text-sm font-medium leading-relaxed text-[#626A78]">{nivel.descriere}</p>
+                    <Link
+                      href={`/kids/aventura/${nivel.id}`}
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#1E2430] transition hover:text-amber-700"
+                    >
+                      {stele > 0 ? "Joacă din nou" : "Începe jocul"} <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </article>
               );
             })}
           </div>
         </div>
+      </section>
 
-        {/* PRINT SECRETS */}
-        <div className="mt-16 bg-white max-w-xl mx-auto rounded-3xl border border-black/5 p-6 text-center shadow-sm">
-          <span className="text-4xl" role="img" aria-hidden="true">🖨️</span>
-          <h3 className="mt-3 font-bold text-slate-800">Vrei activități pe hârtie?</h3>
-          <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-            Am pregătit fișe didactice offline cu labirinturi de desenat cu creionul (activități de tip Unplugged Coding). Le poți printa gratis!
-          </p>
-          <Link
-            href="/kids/fise-print"
-            className="mt-4 inline-block rounded-xl border-2 border-indigo-600 text-indigo-700 hover:bg-indigo-50 font-bold py-2.5 px-6 text-sm transition"
-          >
-            Descarcă Fișe Printabile A4
-          </Link>
-        </div>
-      </div>
+      <section className="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6">
+        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-amber-700">Și departe de ecran</p>
+        <h2 className="mt-3 text-3xl font-black [font-family:var(--font-fraunces)]">Labirinturi și jocuri pe hârtie, gata de printat</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm font-medium leading-relaxed text-[#626A78]">
+          Fișe A4 gratuite pentru exersarea pașilor, secvențelor și logicii cu creionul în mână.
+        </p>
+        <Link
+          href="/kids/fise-print"
+          className="mt-7 inline-flex rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-black text-[#1E2430] transition hover:bg-amber-500 active:scale-95"
+        >
+          Descarcă fișele printabile
+        </Link>
+      </section>
     </div>
   );
 }

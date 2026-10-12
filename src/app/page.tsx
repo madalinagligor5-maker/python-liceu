@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import HeroCodeRunner from "@/components/HeroCodeRunner";
 import AiAssistantWidget from "@/components/AiAssistantWidget";
 import Dashboard from "@/components/Dashboard";
@@ -210,6 +211,98 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
           <p className="mt-3 text-xs text-[#525B6C]">
             Cu un cont gratuit primești XP pentru predicțiile corecte și testele de final, serii de zile și insigne.
           </p>
+        </div>
+      </section>
+
+      {/* OAMENII DIN SPATELE PARCURSULUI DE ÎNVĂȚARE */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
+        <ScrollReveal className="mb-10 max-w-3xl">
+          <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">
+            O academie pentru fiecare etapă
+          </span>
+          <h2 className="mt-3 text-3xl font-black leading-tight text-[#1E2430] sm:text-4xl [font-family:var(--font-fraunces)] text-balance">
+            De la prima linie de cod la examen și mai departe
+          </h2>
+          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-[#525B6C]">
+            Fiecare traseu pornește de la nivelul real al elevului și explică ideile prin practică,
+            exemple și feedback imediat.
+          </p>
+        </ScrollReveal>
+
+        <div className="grid gap-5 lg:grid-cols-12 lg:grid-rows-2">
+          <ScrollReveal className="lg:col-span-7 lg:row-span-2" index={0}>
+            <Link
+              href="/curriculum"
+              className="group relative block min-h-[30rem] overflow-hidden rounded-[2rem] bg-[#1E2430] shadow-depth-lg sm:min-h-[38rem]"
+            >
+              <Image
+                src="/images/people/elev-python-acasa.png"
+                alt="Elev de liceu care învață Python la laptop, într-un spațiu de studiu luminos"
+                fill
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-cover object-[62%_center] transition duration-700 ease-out group-hover:scale-[1.025]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#171B24]/95 via-[#171B24]/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-9">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Gimnaziu & liceu</span>
+                <h3 className="mt-2 max-w-xl text-2xl font-black leading-tight sm:text-3xl [font-family:var(--font-fraunces)]">
+                  Înveți în ritmul tău, direct în browser
+                </h3>
+                <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/80 sm:text-base">
+                  Lecții clare, editor Python integrat și exerciții care îți arată imediat unde poți îmbunătăți soluția.
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-amber-300">
+                  Vezi curriculumul <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </Link>
+          </ScrollReveal>
+
+          <ScrollReveal className="lg:col-span-5" index={1}>
+            <Link
+              href="/profesori"
+              className="group relative block min-h-[22rem] overflow-hidden rounded-[2rem] bg-[#1E2430] shadow-depth-md lg:min-h-full"
+            >
+              <Image
+                src="/images/people/profesoara-informatica.png"
+                alt="Profesoară de informatică într-o sală de clasă, lângă laptop"
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-cover object-[center_30%] transition duration-700 ease-out group-hover:scale-[1.025]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#171B24]/90 via-[#171B24]/45 to-transparent" />
+              <div className="absolute inset-y-0 left-0 flex max-w-[68%] flex-col justify-end p-6 text-white sm:p-8">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Pentru profesori</span>
+                <h3 className="mt-2 text-2xl font-black leading-tight [font-family:var(--font-fraunces)]">
+                  Materiale gata de folosit la clasă
+                </h3>
+                <span className="mt-4 text-sm font-extrabold text-amber-300">Descoperă resursele →</span>
+              </div>
+            </Link>
+          </ScrollReveal>
+
+          <ScrollReveal className="lg:col-span-5" index={2}>
+            <Link
+              href="/kids"
+              className="group relative block min-h-[22rem] overflow-hidden rounded-[2rem] bg-[#1E2430] shadow-depth-md lg:min-h-full"
+            >
+              <Image
+                src="/images/people/copil-coding.png"
+                alt="Copil care descoperă programarea prin exerciții vizuale pe laptop"
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-cover object-center transition duration-700 ease-out group-hover:scale-[1.025]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#171B24]/90 via-[#171B24]/35 to-transparent" />
+              <div className="absolute inset-y-0 left-0 flex max-w-[66%] flex-col justify-end p-6 text-white sm:p-8">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Academia Kids</span>
+                <h3 className="mt-2 text-2xl font-black leading-tight [font-family:var(--font-fraunces)]">
+                  Programarea începe prin joacă
+                </h3>
+                <span className="mt-4 text-sm font-extrabold text-amber-300">Descoperă Kids →</span>
+              </div>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
