@@ -13,7 +13,7 @@ import { getStripe, STRIPE_PRICE_IDS, STRIPE_PRICE_IDS_CURS } from "@/lib/stripe
 export type Plan = "lunar" | "anual";
 
 export type PretAfisat = {
-  /** Suma în unități întregi ale monedei (ex. 15 pentru 15 lei). */
+  /** Suma în unități întregi ale monedei (ex. 50 pentru 50 lei). */
   suma: number;
   moneda: string;
   /** "month" | "year" */
@@ -22,24 +22,15 @@ export type PretAfisat = {
   sursa: "stripe" | "rezerva";
 };
 
-/** Prețurile afișate public înainte de integrarea cu Stripe (rezervă). */
-const REZERVA_LICEU: Record<Plan, PretAfisat> = {
-  lunar: { suma: 15, moneda: "ron", interval: "month", intervalNumar: 1, sursa: "rezerva" },
-  anual: { suma: 89, moneda: "ron", interval: "year", intervalNumar: 1, sursa: "rezerva" },
-};
-
-/** Prețurile standard declarate, afișate ca reper lângă prețul de lansare. */
-export const PRET_STANDARD_LICEU: Record<Plan, number> = { lunar: 29, anual: 199 };
-
 /**
- * Promoția de lansare. Textul vechi spunea „Valabil 3 luni!", fără dată de
- * început sau de sfârșit. Istoricul din repository (început pe 24.08.2026)
- * nu permite stabilirea datei reale, așa că data de încheiere trebuie
- * completată de administratoare. Cât timp e `null`, pagina nu afirmă nicio
- * durată a promoției.
+ * Prețurile curente ale abonamentului de liceu (din octombrie 2026, după
+ * încheierea promoției de lansare de 15 lei/lună și 89 lei/an). Se afișează
+ * doar dacă Stripe nu răspunde; altfel pagina arată prețurile reale din
+ * Stripe, care trebuie să fie aceleași (STRIPE_PRICE_ID_LUNAR / _ANUAL).
  */
-export const PROMO_LANSARE: { valabilPanaLa: string | null } = {
-  valabilPanaLa: null, // format "AAAA-LL-ZZ", ex. "2026-11-30"
+const REZERVA_LICEU: Record<Plan, PretAfisat> = {
+  lunar: { suma: 50, moneda: "ron", interval: "month", intervalNumar: 1, sursa: "rezerva" },
+  anual: { suma: 350, moneda: "ron", interval: "year", intervalNumar: 1, sursa: "rezerva" },
 };
 
 /** Perioada de probă, exact cum e configurată în /api/checkout. */
@@ -108,10 +99,4 @@ export function formateazaSuma(p: Pick<PretAfisat, "suma" | "moneda">): string {
 export function formateazaPerioada(p: Pick<PretAfisat, "interval" | "intervalNumar">): string {
   if (p.intervalNumar === 1) return p.interval === "year" ? "an" : "lună";
   return p.interval === "year" ? `${p.intervalNumar} ani` : `${p.intervalNumar} luni`;
-}
-
-export function formateazaData(iso: string): string {
-  const [a, l, z] = iso.split("-").map(Number);
-  const luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
-  return `${z} ${luni[l - 1]} ${a}`;
 }

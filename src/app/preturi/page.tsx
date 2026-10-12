@@ -3,14 +3,11 @@ import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
 import { ETICHETE_ACCES, MODULE_ACCES_DESCHIS } from "@/lib/acces";
 import {
-  formateazaData,
   formateazaPerioada,
   formateazaSuma,
   getPreturiLiceu,
   LIMITE_AI,
-  PRET_STANDARD_LICEU,
   PROBA,
-  PROMO_LANSARE,
   type Plan,
 } from "@/lib/oferta";
 
@@ -31,8 +28,6 @@ export default async function PreturiPage() {
   const preturi = await getPreturiLiceu();
   const stripeConfigurat = preturi.lunar.sursa === "stripe" && preturi.anual.sursa === "stripe";
   const esteLocal = process.env.NODE_ENV !== "production";
-
-  const promo = PROMO_LANSARE.valabilPanaLa;
 
   const carduri: { plan: Plan; nume: string; descriere: string; evidentiat: boolean }[] = [
     { plan: "lunar", nume: "Abonament lunar", descriere: "Plătești lună de lună și poți anula oricând.", evidentiat: false },
@@ -137,8 +132,6 @@ export default async function PreturiPage() {
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           {carduri.map((c) => {
             const pret = preturi[c.plan];
-            const standard = PRET_STANDARD_LICEU[c.plan];
-            const esteRedus = pret.suma < standard;
             const perLuna = c.plan === "anual" ? pret.suma / 12 : null;
             return (
               <div
@@ -147,23 +140,13 @@ export default async function PreturiPage() {
                   c.evidentiat ? "border-amber-400 bg-brand-light/40 ring-1 ring-amber-400" : "border-black/10 bg-white"
                 }`}
               >
-                {esteRedus && (
-                  <span className="self-start rounded-full bg-amber-400 px-3 py-1 text-xs font-black text-slate-950">
-                    Preț de lansare
-                  </span>
-                )}
-                <h3 className="mt-3 text-xl font-bold text-foreground">{c.nume}</h3>
+                <h3 className="text-xl font-bold text-foreground">{c.nume}</h3>
                 <p className="mt-1 text-sm text-foreground/70">{c.descriere}</p>
 
                 <p className="mt-4 flex flex-wrap items-baseline gap-2">
                   <span className="text-3xl font-extrabold text-foreground">{formateazaSuma(pret)}</span>
                   <span className="text-sm text-foreground/70">/ {formateazaPerioada(pret)}</span>
                 </p>
-                {esteRedus && (
-                  <p className="mt-1 text-xs text-foreground/70">
-                    Preț standard: <span className="line-through">{standard} lei</span> / {c.plan === "anual" ? "an" : "lună"}
-                  </p>
-                )}
 
                 <dl className="mt-4 space-y-1.5 rounded-xl bg-surface/80 p-3 text-xs text-foreground/80">
                   <div>
@@ -208,11 +191,8 @@ export default async function PreturiPage() {
 
         <div className="mt-6 space-y-2 text-sm text-foreground/80">
           <p>
-            <strong>Promoția de lansare</strong> se referă la prețul la care te abonezi, nu la durata abonamentului: abonamentul
-            anual durează un an, cel lunar o lună, și se reînnoiesc la prețul din momentul abonării.{" "}
-            {promo
-              ? `Prețul de lansare e disponibil pentru abonările făcute până la ${formateazaData(promo)} inclusiv.`
-              : "Data de încheiere a promoției va fi anunțată pe această pagină."}
+            Abonamentul anual durează un an, cel lunar o lună; amândouă se reînnoiesc automat la prețul din momentul
+            abonării, până le anulezi.
           </p>
           <p>
             Prețurile includ toate taxele. Suma finală e afișată în pagina de plată Stripe înainte de confirmare.

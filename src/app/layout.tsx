@@ -110,7 +110,7 @@ const jsonLd = {
         "@type": "Offer",
         priceCurrency: "RON",
         // Trebuie să coincidă cu prețul anual afișat pe /preturi (src/lib/oferta.ts).
-        price: "89.00",
+        price: "350.00",
         availability: "https://schema.org/InStock",
         url: "https://www.academiapython.ro/preturi",
       },
