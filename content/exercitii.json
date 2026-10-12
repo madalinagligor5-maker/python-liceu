@@ -1863,6 +1863,8 @@
   ],
   "2.1.4": [
     {
+      "id": "2.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează condiția care actualizează `dreapta` când elementul de la mijloc e mai mare decât x.",
       "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1",
@@ -1874,6 +1876,8 @@
   ],
   "2.1.5": [
     {
+      "id": "2.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care returnează poziția unde ar trebui inserat elementul (dacă nu există), în loc de -1.",
       "template": "def pozitie_inserare(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    # completează logica\n    return ___",
@@ -1884,6 +1888,8 @@
   ],
   "2.3.4": [
     {
+      "id": "2.3.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează mulțimea {5, 10, 15} și verifică apartenența lui 10.",
       "template": "m = ___\nprint(10 ___ m)",
@@ -1894,6 +1900,8 @@
   ],
   "2.3.5": [
     {
+      "id": "2.3.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care citește un text și afișează mulțimea cuvintelor distincte.",
       "template": "text = input('Text: ')\ncuvinte = text.split()\nmultime = ___\nprint(multime)",
@@ -1904,6 +1912,8 @@
   ],
   "2.2.4": [
     {
+      "id": "2.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează linia lipsă din interclaseaza (unde adaugi elementul din b când e mai mic).",
       "template": "def interclaseaza(a, b):\n    rez = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            rez.append(a[i]); i += 1\n        else:\n            ___ ; j += 1\n    rez.extend(a[i:]); rez.extend(b[j:])\n    return rez",
@@ -1914,6 +1924,8 @@
   ],
   "2.2.5": [
     {
+      "id": "2.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care interclasează două liste sortate și elimină duplicatele.",
       "template": "def interclaseaza_fara_dubluri(a, b):\n    # completează\n    return ___",
@@ -1924,6 +1936,8 @@
   ],
   "2.4.4": [
     {
+      "id": "2.4.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a adăuga 7 în mulțimea m.",
       "template": "m = {1, 2, 3}\n___  # adaugă 7\nprint(m)",
@@ -1935,6 +1949,8 @@
   ],
   "2.4.5": [
     {
+      "id": "2.4.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Determină elevii înscriși la exact un curs (nu la ambele), folosind mulțimi.",
       "template": "curs1 = {\"Ana\", \"Bogdan\", \"Cristi\"}\ncurs2 = {\"Bogdan\", \"Dana\"}\n# completează\nrez = ___",
@@ -1945,6 +1961,8 @@
   ],
   "2.5.4": [
     {
+      "id": "2.5.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a extrage ultimul caracter cu index negativ.",
       "template": "s = \"python\"\nultim = ___  # index negativ\nprint(ultim)",
@@ -1955,6 +1973,8 @@
   ],
   "2.5.5": [
     {
+      "id": "2.5.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un șir e palindrom.",
       "template": "def palindrom(s):\n    # completează\n    return ___",
@@ -1965,6 +1985,8 @@
   ],
   "2.6.4": [
     {
+      "id": "2.6.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a număra aparițiile lui 'ana' într-un text.",
       "template": "text = \"ana are ana\"\n___  # metoda care numără aparițiile",
@@ -1975,6 +1997,8 @@
   ],
   "2.6.5": [
     {
+      "id": "2.6.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără cuvintele distincte dintr-un text folosind split() și o mulțime.",
       "template": "text = \"ana ana bogdan\"\ncuvinte = text.split()\ndistincte = ___\nprint(distincte)",
@@ -1985,6 +2009,8 @@
   ],
   "2.7.4": [
     {
+      "id": "2.7.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a extrage literele de pe poziții pare (slicing cu pas 2).",
       "template": "s = \"abcdef\"\n___  # slicing pas 2",
@@ -1995,6 +2021,8 @@
   ],
   "2.7.5": [
     {
+      "id": "2.7.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care returnează șirul inversat (fără reversed).",
       "template": "def inversat(s):\n    # completează\n    return ___",
@@ -2005,6 +2033,8 @@
   ],
   "2.8.4": [
     {
+      "id": "2.8.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie funcția de decriptare Cezar (refolosește cezar cu deplasare opusă).",
       "template": "def decriptare_cezar(text, deplasare):\n    return cezar(text, ___)  # deplasare opusă",
@@ -2015,6 +2045,8 @@
   ],
   "2.8.5": [
     {
+      "id": "2.8.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează cifrul cu substituție monoalfabetică (dicționar literă→literă).",
       "template": "cheie = {'a':'x', 'b':'y', 'c':'z'}\ndef substitutie(text):\n    # completează\n    return ___",
@@ -2025,6 +2057,8 @@
   ],
   "2.9.4": [
     {
+      "id": "2.9.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Testează că decriptare_vigenere(vigenere(t, k), k) == t.",
       "template": "t = \"secret\"\nk = \"cheie\"\nassert decriptare_vigenere(vigenere(t, k), k) == ___\nprint('OK')",
@@ -2035,6 +2069,8 @@
   ],
   "2.9.5": [
     {
+      "id": "2.9.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Vigenère folosind cezar() din 2.8 ca piesă reutilizabilă.",
       "template": "def vigenere_din_cezar(text, cheie):\n    # completează (apelează cezar per literă)\n    return ___",
@@ -2045,6 +2081,8 @@
   ],
   "2.10.4": [
     {
+      "id": "2.10.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a verifica dacă două seturi au aceeași sumă Fletcher.",
       "template": "def verifica(a, b):\n    return ___ == fletcher(b)",
@@ -2055,6 +2093,8 @@
   ],
   "2.10.5": [
     {
+      "id": "2.10.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează un checksum simplu pentru un șir (folosește ord()).",
       "template": "def checksum(s):\n    suma = 0\n    for c in s:\n        suma = (suma + ord(c)) % 255\n    return ___",
@@ -2065,6 +2105,8 @@
   ],
   "2.11.4": [
     {
+      "id": "2.11.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a adăuga o pereche cheie-valoare.",
       "template": "d = {\"x\": 10}\n___ = 20  # adaugă \"y\" -> 20\nprint(d)",
@@ -2075,6 +2117,8 @@
   ],
   "2.11.5": [
     {
+      "id": "2.11.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Construiește un dicționar care asociază fiecărei litere frecvența ei într-un text.",
       "template": "text = \"ana\"\nfreq = {}\nfor c in text:\n    freq[c] = ___\nprint(freq)",
@@ -2085,6 +2129,8 @@
   ],
   "2.12.4": [
     {
+      "id": "2.12.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a accesa sigur o cheie cu valoare implicită 0.",
       "template": "d = {\"x\": 5}\nval = ___  # folosește .get() cu implicit 0",
@@ -2095,6 +2141,8 @@
   ],
   "2.12.5": [
     {
+      "id": "2.12.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Construiește cuvânt→număr de apariții pentru un text folosind .get(cuvant, 0) + 1.",
       "template": "text = \"ana ana\"\ncontor = {}\nfor cuvant in text.split():\n    contor[cuvant] = ___\nprint(contor)",
@@ -2105,6 +2153,8 @@
   ],
   "2.13.4": [
     {
+      "id": "2.13.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a extrage x și y dintr-un tuplu.",
       "template": "punct = (10, 20)\n___ = punct  # despachetare\nprint(x, y)",
@@ -2115,6 +2165,8 @@
   ],
   "2.13.5": [
     {
+      "id": "2.13.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Reprezintă o listă de puncte 2D ca listă de tupluri și calculează distanța între primele două.",
       "template": "puncte = [(0, 0), (3, 4)]\n# completează calculul distanței\nimport math\ndist = ___",
@@ -2125,6 +2177,8 @@
   ],
   "2.14.4": [
     {
+      "id": "2.14.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a crea un tuplu cu un singur element.",
       "template": "singur = ___  # tuplu cu valoarea 5",
@@ -2135,6 +2189,8 @@
   ],
   "2.14.5": [
     {
+      "id": "2.14.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care returnează tuplul (min, max) dintr-o listă.",
       "template": "def min_max(lista):\n    return ___\nprint(min_max([3, 1, 4, 1, 5]))",
@@ -2145,6 +2201,8 @@
   ],
   "2.15.4": [
     {
+      "id": "2.15.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a accesa nota primului elev.",
       "template": "date = [{\"nume\": \"Ana\", \"nota\": 10}]\n___  # accesează \"nota\" din primul element",
@@ -2155,6 +2213,8 @@
   ],
   "2.15.5": [
     {
+      "id": "2.15.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează media generală a clasei dintr-o listă de dicționare.",
       "template": "elevi = [{\"nume\": \"Ana\", \"note\": [9, 10]}, {\"nume\": \"Bogdan\", \"note\": [7, 8]}]\ntotal = 0\ncnt = 0\nfor e in elevi:\n    for n in e[\"note\"]:\n        total += n\n        cnt += 1\nmedia = ___",
@@ -2165,6 +2225,8 @@
   ],
   "2.16.4": [
     {
+      "id": "2.16.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a accesa linia 2, coloana 3 dintr-o matrice.",
       "template": "m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n___  # linia 2 (index 2), coloana 3 (index 2)",
@@ -2175,6 +2237,8 @@
   ],
   "2.16.5": [
     {
+      "id": "2.16.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează media pe fiecare linie a unei matrici.",
       "template": "m = [[1, 2, 3], [4, 5, 6]]\nfor linie in m:\n    print(___)",
@@ -2185,6 +2249,8 @@
   ],
   "2.17.4": [
     {
+      "id": "2.17.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează cazul de bază pentru suma cifrelor.",
       "template": "def suma_cifre(n):\n    if n == 0:\n        return 0\n    return ___ + suma_cifre(n // 10)",
@@ -2195,6 +2261,8 @@
   ],
   "2.17.5": [
     {
+      "id": "2.17.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie putere(a, n) recursiv.",
       "template": "def putere(a, n):\n    if n == 0:\n        return 1\n    return ___",
@@ -2205,6 +2273,8 @@
   ],
   "2.18.4": [
     {
+      "id": "2.18.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează cazul de bază pentru quicksort.",
       "template": "def quicksort(lista):\n    if ___:   # condiție de oprire\n        return lista",
@@ -2215,6 +2285,8 @@
   ],
   "2.18.5": [
     {
+      "id": "2.18.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Desenează arborele de apeluri pentru merge_sort([5, 2, 8, 1]) (scrie ordinea divizărilor).",
       "template": "# Exercițiu de desen - scrie aici observațiile tale\ndef merge_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    m = len(lista)//2\n    return merge_sort(lista[:m]) + merge_sort(lista[m:])\n\nprint('Apeluri:', merge_sort([5, 2, 8, 1]))",
@@ -2225,6 +2297,8 @@
   ],
   "2.19.4": [
     {
+      "id": "2.19.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a alege pivotul ca ultimul element.",
       "template": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = ___  # ultimul element\n    stanga = [x for x in lista[:-1] if x < pivot]\n    dreapta = [x for x in lista[:-1] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)",
@@ -2235,6 +2309,8 @@
   ],
   "2.19.5": [
     {
+      "id": "2.19.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează quicksort in-place (cu swap).",
       "template": "def quicksort_inplace(lista, stanga=0, dreapta=None):\n    if dreapta is None:\n        dreapta = len(lista) - 1\n    # completează (partition + recursivitate)\n    return ___",
@@ -2245,6 +2321,8 @@
   ],
   "2.20.4": [
     {
+      "id": "2.20.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează verificarea marginilor în Flood Fill.",
       "template": "def flood_fill(grila, i, j, veche, noua):\n    if ___:   # i sau j în afara grilei\n        return\n    if grila[i][j] != veche:\n        return\n    grila[i][j] = noua\n    # apeluri recursively...",
@@ -2255,6 +2333,8 @@
   ],
   "2.20.5": [
     {
+      "id": "2.20.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică Flood Fill să numere celulele colorate (returnează numărul).",
       "template": "def flood_fill_numara(grila, i, j, veche, noua):\n    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):\n        return 0\n    if grila[i][j] != veche:\n        return 0\n    grila[i][j] = noua\n    # completează: sumă 1 + cele 4 vecini\n    return ___",
@@ -2265,6 +2345,8 @@
   ],
   "2.21.4": [
     {
+      "id": "2.21.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a returna rezultatul dacă restul s-a dat complet.",
       "template": "def rest_greedy(suma, monede):\n    monede = sorted(monede, reverse=True)\n    rez = []\n    for m in monede:\n        while suma >= m:\n            rez.append(m); suma -= m\n    return ___ if suma == 0 else None",
@@ -2275,6 +2357,8 @@
   ],
   "2.21.5": [
     {
+      "id": "2.21.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Găsește un set de monede (diferit de [1,3,4]) unde Greedy e suboptimal pentru o sumă dată.",
       "template": "monede = [1, 4, 5]  # exemplu\n# demonstrează că pentru suma 8, Greedy (5+1+1+1) e mai slab decât (4+4)\nsuma = 8\nrez_greedy = rest_greedy(suma, monede)\nprint(rez_greedy)  # arată că e suboptimal",
@@ -2285,6 +2369,8 @@
   ],
   "3.1.4": [
     {
+      "id": "3.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează clasa Nod și funcția de parcurgere care afișează valorile unei liste înlănțuite de la cap la sfârșit (câte unul pe linie).",
       "expectedOutput": "5\n8\n12",
@@ -2295,6 +2381,8 @@
   ],
   "3.1.5": [
     {
+      "id": "3.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie funcția `lungime(cap)` care returnează numărul de noduri dintr-o listă înlănțuită.",
       "expectedOutput": "3",
@@ -2304,6 +2392,8 @@
   ],
   "3.2.4": [
     {
+      "id": "3.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează `elimina_valoare(cap, x)` care elimină primul nod cu valoarea x dintr-o listă simplu înlănțuită și returnează noul cap.",
       "expectedOutput": "1 3",
@@ -2313,6 +2403,8 @@
   ],
   "3.2.5": [
     {
+      "id": "3.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie `insereaza_dupa(cap, x, y)` care inserează valoarea y imediat după primul nod cu valoarea x.",
       "expectedOutput": "1 2 9 3",
@@ -2322,6 +2414,8 @@
   ],
   "3.3.4": [
     {
+      "id": "3.3.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un backtracking care generează și afișează toate șirurile de lungime n formate doar din 'A' și 'B'.",
       "expectedOutput": "AA\nAB\nBA\nBB",
@@ -2331,6 +2425,8 @@
   ],
   "3.3.5": [
     {
+      "id": "3.3.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică generatorul să nu permită două 'A' alăturate în șir.",
       "expectedOutput": "AB\nBA\nBB",
@@ -2340,6 +2436,8 @@
   ],
   "3.4.4": [
     {
+      "id": "3.4.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează toate permutările listei [1, 2, 3].",
       "expectedOutput": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1",
@@ -2349,6 +2447,8 @@
   ],
   "3.4.5": [
     {
+      "id": "3.4.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică problema reginelor să returneze numărul de soluții pentru n dat, nu să le afișeze.",
       "expectedOutput": "2",
@@ -2358,6 +2458,8 @@
   ],
   "3.5.4": [
     {
+      "id": "3.5.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un backtracking care generează toate combinațiile de k elemente dintr-o listă de n (fără repetare).",
       "expectedOutput": "1 2\n1 3\n2 3",
@@ -2367,6 +2469,8 @@
   ],
   "3.5.5": [
     {
+      "id": "3.5.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un backtracking care găsește o submulțime cu suma exact t dintr-o listă de numere (returnează prima găsită).",
       "expectedOutput": "2 3",
@@ -2376,6 +2480,8 @@
   ],
   "3.6.4": [
     {
+      "id": "3.6.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează numărul de căi de la colțul stânga-sus la dreapta-jos într-o grilă m×n (doar dreapta/jos) folosind programare dinamică.",
       "expectedOutput": "6",
@@ -2386,6 +2492,8 @@
   ],
   "3.6.5": [
     {
+      "id": "3.6.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie PD pentru numărul de moduri de a face suma s cu monede dintr-o listă.",
       "expectedOutput": "3",
@@ -2395,6 +2503,8 @@
   ],
   "3.7.4": [
     {
+      "id": "3.7.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează gradul fiecărui vârf pentru graful cu muchiile (1,2),(2,3),(3,4),(1,4).",
       "expectedOutput": "2 2 2 2",
@@ -2404,6 +2514,8 @@
   ],
   "3.7.5": [
     {
+      "id": "3.7.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un graf neorientat e complet.",
       "expectedOutput": "False",
@@ -2413,6 +2525,8 @@
   ],
   "3.8.4": [
     {
+      "id": "3.8.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Convertește o listă de muchii într-o listă de adiacență.",
       "expectedOutput": "{1: [2], 2: [1, 3], 3: [2]}",
@@ -2422,6 +2536,8 @@
   ],
   "3.8.5": [
     {
+      "id": "3.8.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Verifică dacă există muchie între două vârfuri date, folosind lista de adiacență.",
       "expectedOutput": "True",
@@ -2431,6 +2547,8 @@
   ],
   "3.9.4": [
     {
+      "id": "3.9.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un graf neorientat e conex (parcurge din orice vârf).",
       "expectedOutput": "True",
@@ -2440,6 +2558,8 @@
   ],
   "3.9.5": [
     {
+      "id": "3.9.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Verifică dacă un graf are toate gradele pare (condiție circuit eulerian).",
       "expectedOutput": "True",
@@ -2449,6 +2569,8 @@
   ],
   "3.10.4": [
     {
+      "id": "3.10.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie BFS care returnează drumul cel mai scurt (lista de vârfuri) de la start la țintă.",
       "expectedOutput": "[1, 2, 4]",
@@ -2458,6 +2580,8 @@
   ],
   "3.10.5": [
     {
+      "id": "3.10.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără componentele conexe ale unui graf folosind BFS repetat.",
       "expectedOutput": "1",
@@ -2467,6 +2591,8 @@
   ],
   "3.11.4": [
     {
+      "id": "3.11.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie DFS iterativ (cu stivă explicită) care afișează ordinea vizitării.",
       "expectedOutput": "1 2 4 3",
@@ -2476,6 +2602,8 @@
   ],
   "3.11.5": [
     {
+      "id": "3.11.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Detectează dacă un graf neorientat conține un ciclu folosind DFS.",
       "expectedOutput": "True",
@@ -2485,6 +2613,8 @@
   ],
   "3.12.4": [
     {
+      "id": "3.12.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Roy-Warshall pe o matrice de adiacență (0/1).",
       "expectedOutput": "[[1,1,1],[1,1,1],[1,1,1]]",
@@ -2494,6 +2624,8 @@
   ],
   "3.12.5": [
     {
+      "id": "3.12.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără perechile de vârfuri între care există drum (folosind Roy-Warshall).",
       "expectedOutput": "6",
@@ -2503,6 +2635,8 @@
   ],
   "3.13.4": [
     {
+      "id": "3.13.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Dijkstra și afișează distanța minimă de la sursă la fiecare vârf.",
       "expectedOutput": "{1: 0, 2: 3, 3: 1}",
@@ -2512,6 +2646,8 @@
   ],
   "3.13.5": [
     {
+      "id": "3.13.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul.",
       "expectedOutput": "[1, 3, 2]",
@@ -2521,6 +2657,8 @@
   ],
   "3.14.4": [
     {
+      "id": "3.14.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Roy-Floyd pe o matrice de costuri cu infinit pentru muchii lipsă.",
       "expectedOutput": "[[0, 3, 4], [inf, 0, 1], [inf, inf, 0]]",
@@ -2530,6 +2668,8 @@
   ],
   "3.14.5": [
     {
+      "id": "3.14.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Detectează ciclu de cost negativ verificând dacă vreo diagonală devine negativă.",
       "expectedOutput": "False",
@@ -2539,6 +2679,8 @@
   ],
   "3.15.4": [
     {
+      "id": "3.15.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Prim și returnează costul total al MST-ului.",
       "expectedOutput": "3",
@@ -2548,6 +2690,8 @@
   ],
   "3.15.5": [
     {
+      "id": "3.15.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică Prim să returneze și lista muchiilor alese.",
       "expectedOutput": "[(1,2),(2,3)]",
@@ -2557,6 +2701,8 @@
   ],
   "3.16.4": [
     {
+      "id": "3.16.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Kruskal cu Union-Find și returnează costul MST.",
       "expectedOutput": "3",
@@ -2566,6 +2712,8 @@
   ],
   "3.16.5": [
     {
+      "id": "3.16.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Returnează lista muchiilor alese de Kruskal.",
       "expectedOutput": "[(1,2,1),(2,3,2)]",
@@ -2575,6 +2723,8 @@
   ],
   "3.17.4": [
     {
+      "id": "3.17.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează înălțimea unui arbore reprezentat prin parinte[v].",
       "expectedOutput": "2",
@@ -2584,6 +2734,8 @@
   ],
   "3.17.5": [
     {
+      "id": "3.17.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără frunzele unui arbore (nodurile care nu apar ca părinte).",
       "expectedOutput": "3",
@@ -2593,6 +2745,8 @@
   ],
   "3.18.4": [
     {
+      "id": "3.18.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie inserare și o funcție care verifică dacă un arbore e BST valid.",
       "expectedOutput": "True",
@@ -2602,6 +2756,8 @@
   ],
   "3.18.5": [
     {
+      "id": "3.18.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie minim_bst(rad) care returnează cea mai mică valoare dintr-un BST.",
       "expectedOutput": "1",
@@ -2611,6 +2767,8 @@
   ],
   "3.19.4": [
     {
+      "id": "3.19.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Folosește heapq pentru a sorta o listă în ordine crescătoare.",
       "expectedOutput": "[1, 2, 3, 5]",
@@ -2620,6 +2778,8 @@
   ],
   "3.19.5": [
     {
+      "id": "3.19.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează manual push într-un min-heap reprezentat ca listă.",
       "expectedOutput": "[1, 3, 2]",
@@ -2629,6 +2789,8 @@
   ],
   "3.20.4": [
     {
+      "id": "3.20.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie preordine, inordine, postordine pentru un arbore binar.",
       "expectedOutput": "5 3 1 4 8",
@@ -2638,6 +2800,8 @@
   ],
   "3.20.5": [
     {
+      "id": "3.20.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează înălțimea unui arbore binar folosind postordinea.",
       "expectedOutput": "2",
@@ -2647,6 +2811,8 @@
   ],
   "3.21.4": [
     {
+      "id": "3.21.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie cauta și inserare iterativ pentru un BST.",
       "expectedOutput": "True",
@@ -2656,6 +2822,8 @@
   ],
   "3.21.5": [
     {
+      "id": "3.21.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie sterge(rad, v) care elimină un nod dintr-un BST păstrând proprietatea.",
       "expectedOutput": "True",
@@ -2665,6 +2833,8 @@
   ],
   "3.22.4": [
     {
+      "id": "3.22.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează clasa Forma cu atribut culoare și Cerc/Patrat care moștenesc Forma.",
       "expectedOutput": "rosu",
@@ -2674,6 +2844,8 @@
   ],
   "3.22.5": [
     {
+      "id": "3.22.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Adaugă metoda descriere() în Forma și suprascrie-o în derivate.",
       "expectedOutput": "Cerc rosu",
@@ -2683,6 +2855,8 @@
   ],
   "3.23.4": [
     {
+      "id": "3.23.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează clasa Produs cu nume, pret, stoc și metoda vinde(n) care scade stocul.",
       "expectedOutput": "7",
@@ -2692,6 +2866,8 @@
   ],
   "3.23.5": [
     {
+      "id": "3.23.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Adaugă metoda total() care returnează pret * stoc.",
       "expectedOutput": "80",
@@ -2701,6 +2877,8 @@
   ],
   "3.24.4": [
     {
+      "id": "3.24.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează Vehicul (cu __viteza) și Bicicleta/Masina care moștenesc, folosind super().",
       "expectedOutput": "0",
@@ -2710,6 +2888,8 @@
   ],
   "3.24.5": [
     {
+      "id": "3.24.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Demonstrează name mangling: accesează atributul privat din exterior ca _Clasa__atribut.",
       "expectedOutput": "0",
@@ -2719,6 +2899,8 @@
   ],
   "3.25.4": [
     {
+      "id": "3.25.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie același program (filtrat numere pare) în stil procedural și funcțional (filter).",
       "expectedOutput": "[2, 4]",
@@ -2728,6 +2910,8 @@
   ],
   "3.25.5": [
     {
+      "id": "3.25.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o clasă Calculator (POO) care expune operații ca metode.",
       "expectedOutput": "8",
@@ -2737,6 +2921,8 @@
   ],
   "4.18.5": [
     {
+      "id": "4.18.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție neuron(intrari, greutati, bias) care calculează suma ponderată și aplică peste ea funcția sigmoid (folosește math.exp).",
       "expectedOutput": "0.786",
@@ -2747,6 +2933,8 @@
   ],
   "4.19.4": [
     {
+      "id": "4.19.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care desenează un grafic de bare în text pentru orele de somn din 4 nopți.",
       "expectedOutput": "███████████ 6\n███████████████ 8\n█████████████ 7\n█████████ 5",
@@ -2757,6 +2945,8 @@
   ],
   "4.19.5": [
     {
+      "id": "4.19.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Extinde funcția grafic_bare astfel încât să primească și o listă de etichete și să afișeze fiecare etichetă înaintea barei ei corespunzătoare.",
       "expectedOutput": "Lun ███████████ 6\nMar ███████████████ 8\nMie █████████████ 7\nJoi █████████ 5",
@@ -2767,6 +2957,8 @@
   ],
   "4.20.4": [
     {
+      "id": "4.20.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care calculează media și maximul unei coloane dintr-un tabel reprezentat ca dicționar.",
       "expectedOutput": "Media: 8.25 | Maxim: 10",
@@ -2777,6 +2969,8 @@
   ],
   "4.20.5": [
     {
+      "id": "4.20.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Extinde funcția descrie(coloana) să întoarcă și cheia \"std\" (abaterea standard), calculată cu formula din lecție.",
       "expectedOutput": "8 5.0 2 9 2.0",
@@ -2787,6 +2981,8 @@
   ],
   "4.21.4": [
     {
+      "id": "4.21.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care calculează acuratețea unui set de predicții față de etichetele reale.",
       "expectedOutput": "Acuratete: 0.75",
@@ -2797,6 +2993,8 @@
   ],
   "4.21.5": [
     {
+      "id": "4.21.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie funcția prezice(exemplu, X_train, y_train) care întoarce eticheta celui mai apropiat vecin (1-NN), folosind funcția distanta deja definită.",
       "expectedOutput": "A\nB",
@@ -2807,6 +3005,8 @@
   ],
   "4.22.4": [
     {
+      "id": "4.22.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care calculează suma pe linii a unei matrici 2×3.",
       "expectedOutput": "Suma pe linii: [6, 15]",
@@ -2817,6 +3017,8 @@
   ],
   "4.22.5": [
     {
+      "id": "4.22.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie funcția inmulteste_matrici(a, b) care implementează înmulțirea de matrici (produsul scalar dintre fiecare linie a lui a și fiecare coloană a lui b), ca în exemplul din lecție.",
       "expectedOutput": "[[19, 22], [43, 50]]",
@@ -2827,6 +3029,8 @@
   ],
   "4.1.4": [
     {
+      "id": "4.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Definește în Python (dicționar) entitatea Carte cu atributele isbn, titlu, autor, an.",
       "expectedOutput": "{'isbn': 'X', 'titlu': 'Y', 'autor': 'Z', 'an': 2000}",
@@ -2837,6 +3041,8 @@
   ],
   "4.1.5": [
     {
+      "id": "4.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o listă de 3 cărți (dicționare), fiecare cu cele 4 atribute.",
       "expectedOutput": "3 carti",
@@ -2846,6 +3052,8 @@
   ],
   "4.2.4": [
     {
+      "id": "4.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modelați relația 1:N 'Un autor scrie multe cărți' cu Autor și Carte (cheie externă).",
       "expectedOutput": "carte_id in Carte",
@@ -2855,6 +3063,8 @@
   ],
   "4.2.5": [
     {
+      "id": "4.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modelați relația M:N Studenți-Proiecte cu tabelă asociativă.",
       "expectedOutput": "Inscriere(student_id, proiect_id)",
@@ -2864,6 +3074,8 @@
   ],
   "4.3.4": [
     {
+      "id": "4.3.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie CREATE TABLE pentru Student și Curs cu relația 1:N.",
       "expectedOutput": "curs_id REFERENCES Curs(id)",
@@ -2873,6 +3085,8 @@
   ],
   "4.3.5": [
     {
+      "id": "4.3.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie CREATE TABLE pentru M:N cu tabelă asociativă Inscriere.",
       "expectedOutput": "Inscriere(id_student, id_curs)",
@@ -2882,6 +3096,8 @@
   ],
   "4.4.4": [
     {
+      "id": "4.4.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "CREATE TABLE Comanda(id, data, client_id REFERENCES Client(id)) cu constrângeri.",
       "expectedOutput": "client_id REFERENCES Client(id)",
@@ -2891,6 +3107,8 @@
   ],
   "4.4.5": [
     {
+      "id": "4.4.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Adaugă CHECK care nu permite vârsta negativă la Student.",
       "expectedOutput": "CHECK (varsta >= 0)",
@@ -2900,6 +3118,8 @@
   ],
   "4.5.4": [
     {
+      "id": "4.5.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane într-o celulă.",
       "expectedOutput": "telefoane intr-o singura celula",
@@ -2909,6 +3129,8 @@
   ],
   "4.5.5": [
     {
+      "id": "4.5.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Normalizează la FN3: Angajat(id, nume, dept, locatie_dept).",
       "expectedOutput": "Dept(id, nume, locatie)",
@@ -2918,6 +3140,8 @@
   ],
   "4.6.4": [
     {
+      "id": "4.6.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează agenda.db cu Persoana(id, nume, telefon) folosind sqlite3.",
       "expectedOutput": "CREATE TABLE Persoana",
@@ -2928,6 +3152,8 @@
   ],
   "4.6.5": [
     {
+      "id": "4.6.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie adauga(conn, nume, telefon) care inserează și face commit.",
       "expectedOutput": "commit()",
@@ -2937,6 +3163,8 @@
   ],
   "4.7.4": [
     {
+      "id": "4.7.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "SELECT numele studenților >18 ani, ordonați alfabetic.",
       "expectedOutput": "ORDER BY nume",
@@ -2946,6 +3174,8 @@
   ],
   "4.7.5": [
     {
+      "id": "4.7.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează tabela, inserează 3 rânduri, afișează ordonate (Python + sqlite3).",
       "expectedOutput": "3 randuri ordonate",
@@ -2955,6 +3185,8 @@
   ],
   "4.8.4": [
     {
+      "id": "4.8.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără studenții pe fiecare oraș (GROUP BY).",
       "expectedOutput": "GROUP BY oras",
@@ -2964,6 +3196,8 @@
   ],
   "4.8.5": [
     {
+      "id": "4.8.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Media vârstei per oraș, doar orașe cu >=2 studenți (HAVING).",
       "expectedOutput": "HAVING COUNT(*)>=2",
@@ -2973,6 +3207,8 @@
   ],
   "4.9.4": [
     {
+      "id": "4.9.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "JOIN care afișează numele studenților și denumirea cursurilor.",
       "expectedOutput": "JOIN Inscriere ON ... JOIN Curs ON ...",
@@ -2982,6 +3218,8 @@
   ],
   "4.9.5": [
     {
+      "id": "4.9.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Subinterogare care returnează studenții înscriși la un curs dat.",
       "expectedOutput": "WHERE id IN (SELECT ...)",
@@ -2991,6 +3229,8 @@
   ],
   "4.10.4": [
     {
+      "id": "4.10.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Inserează 3 studenți apoi actualizează vârsta unuia (Python).",
       "expectedOutput": "UPDATE ... commit",
@@ -3000,6 +3240,8 @@
   ],
   "4.10.5": [
     {
+      "id": "4.10.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Șterge rândurile cu vârsta < 16 (execute + commit).",
       "expectedOutput": "DELETE WHERE varsta<16",
@@ -3009,6 +3251,8 @@
   ],
   "4.11.4": [
     {
+      "id": "4.11.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "CREATE TABLE Produs(id,nume,pret) apoi ALTER ADD stoc.",
       "expectedOutput": "ALTER TABLE Produs ADD COLUMN stoc",
@@ -3018,6 +3262,8 @@
   ],
   "4.11.5": [
     {
+      "id": "4.11.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică tipul unei coloane sau șterge o coloană.",
       "expectedOutput": "ALTER/DROP COLUMN",
@@ -3027,6 +3273,8 @@
   ],
   "4.12.4": [
     {
+      "id": "4.12.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un transfer bancar cu try/except și commit/rollback.",
       "expectedOutput": "rollback()",
@@ -3036,6 +3284,8 @@
   ],
   "4.12.5": [
     {
+      "id": "4.12.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "SAVEPOINT înainte de ștergere, apoi ROLLBACK TO SAVEPOINT.",
       "expectedOutput": "ROLLBACK TO SAVEPOINT",
@@ -3045,6 +3295,8 @@
   ],
   "4.13.4": [
     {
+      "id": "4.13.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Creează dicționar cu 5 exemple supervizate (features + target).",
       "expectedOutput": "5 exemple",
@@ -3054,6 +3306,8 @@
   ],
   "4.13.5": [
     {
+      "id": "4.13.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Separă features de target în tupluri (features, eticheta).",
       "expectedOutput": "(features, eticheta)",
@@ -3063,6 +3317,8 @@
   ],
   "4.14.4": [
     {
+      "id": "4.14.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Înlocuiește valorile lipsă (None) dintr-o listă cu media.",
       "expectedOutput": "media fara None",
@@ -3072,6 +3328,8 @@
   ],
   "4.14.5": [
     {
+      "id": "4.14.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Normalizare min-max pentru o listă de numere.",
       "expectedOutput": "(x-min)/(max-min)",
@@ -3081,6 +3339,8 @@
   ],
   "4.15.4": [
     {
+      "id": "4.15.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Folosește KMeans pe puncte 2D și afișează labels_.",
       "expectedOutput": "km.labels_",
@@ -3090,6 +3350,8 @@
   ],
   "4.15.5": [
     {
+      "id": "4.15.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Un pas manual K-means pe 4 puncte cu 2 centroizi.",
       "expectedOutput": "atribuiri noi",
@@ -3099,6 +3361,8 @@
   ],
   "4.16.4": [
     {
+      "id": "4.16.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Antrenează regresie liniară pe (1,3),(2,5),(3,7), prezice x=4.",
       "expectedOutput": "9",
@@ -3108,6 +3372,8 @@
   ],
   "4.16.5": [
     {
+      "id": "4.16.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează manual panta a pentru 2 puncte și prezice.",
       "expectedOutput": "panta*a",
@@ -3117,6 +3383,8 @@
   ],
   "4.17.4": [
     {
+      "id": "4.17.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Antrenează KNN pe un set mic și prezice un punct nou.",
       "expectedOutput": "eticheta prezisa",
@@ -3126,6 +3394,8 @@
   ],
   "4.17.5": [
     {
+      "id": "4.17.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Antrenează arbore de decizie și afișează importanța features.",
       "expectedOutput": "feature_importances_",
@@ -3135,6 +3405,8 @@
   ],
   "4.18.4": [
     {
+      "id": "4.18.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care calculează suma ponderată (produs scalar + bias) a unui neuron cu 2 intrări.",
       "expectedOutput": "Suma ponderata: 4.9",
@@ -3526,6 +3798,7 @@
   "VII.1.4": [
     {
       "id": "VII.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul ca să afișezi corect numele și vârsta unui elev.",
       "template": "nume = \"Maria\"\nvarsta = 13\nprint(\"Nume:\", ___, \"Varsta:\", varsta)",
@@ -3534,6 +3807,7 @@
     },
     {
       "id": "VII.1.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează câți ani mai are un elev de 13 ani până la 18 ani.",
       "template": "varsta = 13\ndiferenta = ___\nprint(\"Mai are\", diferenta, \"ani pana la 18\")",
@@ -3544,6 +3818,7 @@
   "VII.1.5": [
     {
       "id": "VII.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care calculează prețul total pentru 3 produse cu prețurile 12, 8 și 5 lei, și îl afișează.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3552,6 +3827,7 @@
     },
     {
       "id": "VII.1.5.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care calculează perimetrul unui pătrat cu latura 6.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3562,6 +3838,7 @@
   "VII.2.4": [
     {
       "id": "VII.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care clasifică nota 7 în promovat/nepromovat.",
       "template": "nota = 7\nif nota >= ___:\n    print(\"Promovat\")\nelse:\n    print(\"Nepromovat\")",
@@ -3570,6 +3847,7 @@
     },
     {
       "id": "VII.2.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează dacă numărul 8 e par sau impar.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3580,6 +3858,7 @@
   "VII.2.5": [
     {
       "id": "VII.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care verifică dacă numărul -3 e pozitiv, negativ sau zero, și afișează rezultatul.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3588,6 +3867,7 @@
     },
     {
       "id": "VII.2.5.ex2",
+      "nivel": "de-baza",
       "tip": "adevarat-fals",
       "enunt": "Stabilește dacă fiecare afirmație despre structura alternativă este adevărată sau falsă.",
       "afirmatii": [
@@ -3613,6 +3893,7 @@
   "VII.3.4": [
     {
       "id": "VII.3.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează bucla for care afișează numerele de la 1 la 5.",
       "template": "for i in range(1, ___):\n    print(i)",
@@ -3621,6 +3902,7 @@
     },
     {
       "id": "VII.3.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care numără de câte ori se repetă bucla for i in range(3, 8), fără s-o afișezi pas cu pas.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3631,6 +3913,7 @@
   "VII.3.5": [
     {
       "id": "VII.3.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează toate numerele pare din intervalul [1, 10].",
       "template": "# Scrie aici codul tău Python\n",
@@ -3639,6 +3922,7 @@
     },
     {
       "id": "VII.3.5.ex2",
+      "nivel": "de-baza",
       "tip": "ordonare",
       "enunt": "Pune în ordinea corectă pașii unui algoritm care afișează numerele pare dintr-un interval [a, b].",
       "pasi": [
@@ -3658,6 +3942,7 @@
   "VIII.1.4": [
     {
       "id": "VIII.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul care generează primele 5 numere pare.",
       "template": "for i in range(1, ___):\n    print(___)",
@@ -3666,6 +3951,7 @@
     },
     {
       "id": "VIII.1.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "O plantă crește 2 cm pe săptămână. Calculează înălțimea ei după 4 săptămâni, pornind de la 0 cm.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3676,6 +3962,7 @@
   "VIII.1.5": [
     {
       "id": "VIII.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Generează șirul lui Fibonacci pentru primii 6 termeni (pornind de la 0, 1).",
       "template": "# Scrie aici codul tău Python\n",
@@ -3684,6 +3971,7 @@
     },
     {
       "id": "VIII.1.5.ex2",
+      "nivel": "de-baza",
       "tip": "completare",
       "enunt": "Completează explicația despre șirul lui Fibonacci.",
       "text": "Șirul lui Fibonacci se calculează astfel: fiecare termen e suma celor ___ termeni anteriori. Primii doi termeni ai șirului sunt ___ și ___.",
@@ -3697,6 +3985,7 @@
   "VIII.2.4": [
     {
       "id": "VIII.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează algoritmul care numără câte din numerele 3, -2, 5, -1, 4 sunt pozitive.",
       "template": "numere = [3, -2, 5, -1, 4]\ncontor = 0\nfor x in numere:\n    if ___:\n        contor += 1\nprint(contor)",
@@ -3705,6 +3994,7 @@
     },
     {
       "id": "VIII.2.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează cel mai mic număr dintre 8, 3, 5, 1, 9.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3715,6 +4005,7 @@
   "VIII.2.5": [
     {
       "id": "VIII.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care calculează suma și media numerelor 4, 5, 6.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3723,6 +4014,7 @@
     },
     {
       "id": "VIII.2.5.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează cel mai mare număr par dintre 3, 8, 5, 12, 7.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3733,6 +4025,7 @@
   "CP1.1.4": [
     {
       "id": "CP1.1.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează codul ca să afișeze numele 'Alex' pe prima linie și un mesaj de bun venit pe a doua.",
       "template": "nume = \"Alex\"\nprint(___)\nprint(\"Bine ai venit la cursul de Python!\")",
@@ -3741,6 +4034,7 @@
     },
     {
       "id": "CP1.1.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un cod care calculează suma a două numere, 7 și 5, și o afișează.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3751,6 +4045,7 @@
   "CP1.1.5": [
     {
       "id": "CP1.1.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program de prezentare cu exact 2 linii: prima afișează 'Salut, sunt un programator Python!', a doua afișează 'Azi e prima mea zi de curs.'",
       "template": "# Scrie aici codul tău Python\n",
@@ -3759,6 +4054,7 @@
     },
     {
       "id": "CP1.1.5.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Mini-proiect: scrie un program care afișează suma primelor 3 numere naturale (1, 2, 3).",
       "template": "# Scrie aici codul tău Python\n",
@@ -3769,6 +4065,7 @@
   "CP1.2.4": [
     {
       "id": "CP1.2.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează linia care afișează numele, vârsta și orașul Anei într-o propoziție.",
       "template": "nume = \"Ana\"\nvarsta = 25\noras = \"Cluj\"\nprint(\"Mă numesc\", ___, \", am\", varsta, \"ani și locuiesc în\", oras)",
@@ -3777,6 +4074,7 @@
     },
     {
       "id": "CP1.2.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care calculează suma numerelor 8 și 4.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3787,6 +4085,7 @@
   "CP1.2.5": [
     {
       "id": "CP1.2.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program cu numerele 10 și 4: afișează suma, diferența și produsul lor, fiecare pe rândul lui.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3795,6 +4094,7 @@
     },
     {
       "id": "CP1.2.5.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Mini-proiect: calculează IMC pentru o greutate de 70 kg și o înălțime de 1.75 m (formula: greutate / inaltime ** 2), rotunjit la un zecimal.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3805,6 +4105,7 @@
   "CP1.3.4": [
     {
       "id": "CP1.3.4.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care afișează, pe rânduri separate, 10 % 3 și 10 // 3.",
       "template": "# Scrie aici codul tău Python\n",
@@ -3813,6 +4114,7 @@
     },
     {
       "id": "CP1.3.4.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează condiția care verifică dacă vârsta 20 e mai mare sau egală cu 18.",
       "template": "varsta = 20\nprint(varsta ___ 18)",
@@ -3823,6 +4125,7 @@
   "CP1.3.5": [
     {
       "id": "CP1.3.5.ex1",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie un program care verifică dacă anul 2024 e bisect (divizibil cu 4, dar dacă e divizibil cu 100 trebuie să fie și divizibil cu 400).",
       "template": "# Scrie aici codul tău Python\n",
@@ -3831,11 +4134,292 @@
     },
     {
       "id": "CP1.3.5.ex2",
+      "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Mini-proiect: scrie un program care verifică dacă prețul 150 depășește 100 de lei (caz în care s-ar aplica o reducere).",
       "template": "# Scrie aici codul tău Python\n",
       "expectedOutput": "True",
       "hint": "print(pret > 100)"
+    }
+  ],
+  "CP2.1.4": [
+    {
+      "id": "CP2.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția astfel încât programul să afișeze „Livrare gratuită” pentru comenzile de cel puțin 150 de lei (aici, totalul e 175).",
+      "template": "total = 175\nif total ___ 150:\n    print(\"Livrare gratuită\")\nelse:\n    print(\"Livrare: 15 lei\")",
+      "expectedOutput": "Livrare gratuită",
+      "hint": "Operatorul pentru „mai mare sau egal” este >=."
+    },
+    {
+      "id": "CP2.1.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Scrie un program care afișează „par” dacă numărul 42 este par și „impar” altfel.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "par",
+      "hint": "Un număr e par dacă restul împărțirii la 2 este 0: numar % 2 == 0."
+    }
+  ],
+  "CP2.1.5": [
+    {
+      "id": "CP2.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "O parolă e acceptată doar dacă are cel puțin 8 caractere. Pentru parola \"python2026\", afișează „Parolă acceptată” sau „Parolă prea scurtă”.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "Parolă acceptată",
+      "hint": "len(parola) dă numărul de caractere; compară-l cu 8 într-un if."
+    },
+    {
+      "id": "CP2.1.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: pentru o notă de 240 de lei și evaluarea 4, bacșișul este 5% pentru evaluări 1–2, 10% pentru 3–4 și 15% pentru 5. Afișează bacșișul.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "24.0",
+      "hint": "Folosește if / elif / else pe evaluare, apoi înmulțește nota cu procentul (de exemplu 240 * 0.10)."
+    }
+  ],
+  "CP2.2.4": [
+    {
+      "id": "CP2.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează range astfel încât programul să afișeze numerele de la 1 la 5, fiecare pe rândul lui.",
+      "template": "for i in range(1, ___):\n    print(i)",
+      "expectedOutput": "1 2 3 4 5",
+      "hint": "Valoarea de oprire din range nu e inclusă."
+    },
+    {
+      "id": "CP2.2.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Calculează suma prețurilor dintr-un coș — 12.5, 30 și 7.5 lei — folosind o buclă for, și afișeaz-o.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "50.0",
+      "hint": "Pornește cu total = 0 și adaugă fiecare preț în buclă."
+    }
+  ],
+  "CP2.2.5": [
+    {
+      "id": "CP2.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează câte numere de la 1 la 100 se împart exact la 7.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "14",
+      "hint": "Un contor care crește când numar % 7 == 0, parcurgând range(1, 101)."
+    },
+    {
+      "id": "CP2.2.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: pornești cu 500 de lei și adaugi 200 de lei în fiecare lună, timp de 12 luni. Afișează suma finală.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "2900",
+      "hint": "suma = 500, apoi în buclă de 12 ori: suma = suma + 200."
+    }
+  ],
+  "CP2.3.4": [
+    {
+      "id": "CP2.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția ca bucla să afișeze numerele 1, 2, 3, 4, 5.",
+      "template": "i = 1\nwhile i ___ 5:\n    print(i)\n    i = i + 1",
+      "expectedOutput": "1 2 3 4 5",
+      "hint": "Bucla trebuie să ruleze cât timp i este mai mic sau egal cu 5."
+    },
+    {
+      "id": "CP2.3.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Un stoc de 20 de bucăți scade cu 6 bucăți la fiecare livrare. Folosind while, afișează câte livrări complete se pot face.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "3",
+      "hint": "Repetă cât timp stocul e cel puțin 6: scazi 6 și numeri livrarea."
+    }
+  ],
+  "CP2.3.5": [
+    {
+      "id": "CP2.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru temperaturile [18, 21, 24, 27, 31, 22], afișează prima temperatură mai mare de 25 de grade și oprește căutarea cu break.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "27",
+      "hint": "Parcurge lista cu for; când găsești o valoare > 25, afișeaz-o și apoi break."
+    },
+    {
+      "id": "CP2.3.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: un credit de 1000 de lei se rambursează cu 150 de lei pe lună. Afișează în câte luni se achită integral (ultima rată poate fi mai mică).",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "7",
+      "hint": "Cât timp datoria e mai mare decât 0: scazi 150 și numeri luna."
+    }
+  ],
+  "CP3.1.4": [
+    {
+      "id": "CP3.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează indicele ca programul să afișeze al doilea oraș din listă.",
+      "template": "orase = [\"Cluj\", \"Iași\", \"Brașov\"]\nprint(orase[___])",
+      "expectedOutput": "Iași",
+      "hint": "Indicii încep de la 0, deci al doilea element are indicele 1."
+    },
+    {
+      "id": "CP3.1.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru lista de cheltuieli [120, 45, 300, 80], afișează suma lor.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "545",
+      "hint": "Funcția sum(lista) adună toate elementele."
+    }
+  ],
+  "CP3.1.5": [
+    {
+      "id": "CP3.1.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru lista de note [9, 7, 10, 8, 6], afișează media, rotunjită la două zecimale.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "8.0",
+      "hint": "round(sum(note) / len(note), 2)"
+    },
+    {
+      "id": "CP3.1.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: din vânzările zilnice [230, 180, 410, 95, 320, 150, 275], afișează câte zile au avut vânzări de peste 200 de lei.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "4",
+      "hint": "Un contor care crește pentru fiecare valoare > 200."
+    }
+  ],
+  "CP3.2.4": [
+    {
+      "id": "CP3.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează metoda ca textul să fie afișat cu majuscule.",
+      "template": "mesaj = \"comanda a fost trimisă\"\nprint(mesaj.___())",
+      "expectedOutput": "COMANDA A FOST TRIMISĂ",
+      "hint": "Metoda care transformă textul în majuscule este upper()."
+    },
+    {
+      "id": "CP3.2.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Din adresa \"ana.pop@exemplu.ro\", afișează doar partea de după @.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "exemplu.ro",
+      "hint": "adresa.split(\"@\") dă o listă cu două bucăți; ia-o pe a doua."
+    }
+  ],
+  "CP3.2.5": [
+    {
+      "id": "CP3.2.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Afișează câte cuvinte are propoziția \"Python e un limbaj ușor de învățat\".",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "7",
+      "hint": "split() fără argumente împarte la spații; len() numără bucățile."
+    },
+    {
+      "id": "CP3.2.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: pornind de la \"  ion IONESCU \", afișează numele curățat, cu fiecare cuvânt cu inițială mare.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "Ion Ionescu",
+      "hint": "Combină strip() cu title()."
+    }
+  ],
+  "CP3.3.4": [
+    {
+      "id": "CP3.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează cheia ca programul să afișeze prețul merelor.",
+      "template": "preturi = {\"pâine\": 5, \"lapte\": 8, \"mere\": 12}\nprint(preturi[___])",
+      "expectedOutput": "12",
+      "hint": "Cheia se scrie între ghilimele, exact ca în dicționar: \"mere\"."
+    },
+    {
+      "id": "CP3.3.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru cheltuielile {\"ianuarie\": 1200, \"februarie\": 950, \"martie\": 1380}, afișează totalul pe cele trei luni.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "3530",
+      "hint": "sum(dictionar.values()) adună toate valorile."
+    }
+  ],
+  "CP3.3.5": [
+    {
+      "id": "CP3.3.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Calculează valoarea totală a coșului, cu prețurile {\"pâine\": 5, \"lapte\": 8, \"mere\": 12} și cantitățile {\"pâine\": 2, \"lapte\": 1, \"mere\": 3}.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "54",
+      "hint": "Parcurge produsele și adună preturi[p] * cantitati[p]."
+    },
+    {
+      "id": "CP3.3.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: numără de câte ori apare fiecare cuvânt în \"da nu da poate da nu\" și afișează de câte ori apare cuvântul da.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "3",
+      "hint": "frecventa[cuvant] = frecventa.get(cuvant, 0) + 1, pentru fiecare cuvânt din split()."
+    }
+  ],
+  "CP3.4.4": [
+    {
+      "id": "CP3.4.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează linia ca să afișezi câte valori distincte are lista de coduri.",
+      "template": "coduri = [\"A1\", \"B2\", \"A1\", \"C3\", \"B2\"]\nprint(len(___(coduri)))",
+      "expectedOutput": "3",
+      "hint": "Transformă lista într-o mulțime cu set(), apoi numără cu len()."
+    },
+    {
+      "id": "CP3.4.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Despachetează tuplul (2026, 10, 12) în variabilele an, luna, zi și afișează doar anul.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "2026",
+      "hint": "an, luna, zi = (2026, 10, 12)"
+    }
+  ],
+  "CP3.4.5": [
+    {
+      "id": "CP3.4.5.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru abonații [\"ana\", \"radu\", \"ioana\"] și [\"radu\", \"mihai\", \"ana\"], afișează câți abonați apar în ambele liste.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "2",
+      "hint": "Transformă listele în mulțimi și folosește & pentru elementele comune."
+    },
+    {
+      "id": "CP3.4.5.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Mini-proiect: din etichetele [\"python\", \"date\", \"python\", \"web\", \"date\", \"ai\"], afișează etichetele unice, sortate alfabetic, separate prin virgulă și spațiu.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "ai, date, python, web",
+      "hint": "\", \".join(sorted(set(etichete)))"
     }
   ]
 }

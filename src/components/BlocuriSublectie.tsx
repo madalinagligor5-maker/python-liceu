@@ -54,7 +54,8 @@ export default function BlocuriSublectie({
               !b.code.includes("___") &&
               !/\binput\s*\(/.test(b.code) &&
               !/^\s*(import|from)\s+(turtle|tkinter|pygame|numpy|pandas|matplotlib|sklearn|sqlite3|requests)\b/m.test(b.code);
-            return <CodeBlock key={i} code={b.code} label={`${b.lang}.py`} ruleaza={rulabil} />;
+            const eticheta = b.lang === "text" ? "rezultat" : `${b.lang}.py`;
+            return <CodeBlock key={i} code={b.code} label={eticheta} ruleaza={rulabil} />;
           }
           if (b.tip === "card") {
             return (
