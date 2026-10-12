@@ -35,16 +35,14 @@ export default function CurriculumPage() {
           Curriculumul e harta materiei: capitole (clase) → module → câte 6 pași. Deschide un modul ca să începi lecția.
         </p>
 
-        {/* DE REVIZUIT: referințele la ordinele de ministru au fost verificate doar
-            prin surse secundare (presă), nu în Monitorul Oficial. Înainte de a
-            afișa numere de ordin, confirmați-le din documentul oficial. */}
         <div className="mt-6 rounded-3xl border border-[#EBE7DF] bg-white p-5 text-xs sm:text-sm text-[#1E2430] shadow-xs">
           <p className="font-extrabold text-[#1E2430] text-sm mb-1">
             Ce reper folosim
           </p>
           <p className="leading-relaxed text-[#3B4252]">
             Temele urmează noile programe școlare de Informatică pentru liceu, profilul real, specializarea
-            matematică-informatică, care se aplică treptat: clasa a IX-a din anul școlar 2026–2027, apoi câte o clasă pe an.
+            matematică-informatică, aprobate prin OMEC nr. 6930/19.12.2025 și Ordinul nr. 4.370/2026 (Monitorul Oficial
+            nr. 591 bis/20.VII.2026). Se aplică treptat: clasa a IX-a din anul școlar 2026–2027, apoi câte o clasă pe an.
             Ordinea lecțiilor de la clasă poate diferi. Platforma nu este un material oficial al Ministerului Educației și
             nu este un curs de pregătire pentru Bacalaureat; pentru programe, consultă{" "}
             <a href="https://www.edu.ro" className="font-semibold underline underline-offset-2" rel="noopener">edu.ro</a>.

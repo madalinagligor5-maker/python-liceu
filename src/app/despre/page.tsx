@@ -53,12 +53,13 @@ export default function DesprePage() {
           practic. Detaliile exacte sunt pe pagina{" "}
           <Link href="/preturi" className="font-semibold text-brand-dark underline">Prețuri</Link>.
         </p>
-        <h2 className="pt-2 text-xl font-bold text-foreground">Cine administrează platforma</h2>
+        <h2 className="pt-2 text-xl font-bold text-foreground">Cine a creat platforma</h2>
         <p>
-          Academia Python este operată de GLIGOR MĂDĂLINA-GEORGIANA P.F.A. (datele
-          complete de identificare sunt în{" "}
+          Academia Python a fost creată de o profesoară, din dorința ca elevii să
+          primească explicații clare și pași mici, în ordinea potrivită. Datele de
+          identificare ale operatorului sunt în{" "}
           <Link href="/termeni-si-conditii" className="font-semibold text-brand-dark underline">Termeni și condiții</Link>
-          ). Pentru întrebări: {" "}
+          . Pentru întrebări: {" "}
           <a href="mailto:academipython@gmail.com" className="font-semibold text-brand-dark underline">academipython@gmail.com</a>.
         </p>
       </div>

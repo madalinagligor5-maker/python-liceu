@@ -44,7 +44,7 @@ Prin eliminarea parantezelor și a declarărilor de tip de date la fiecare pas, 
 
 ## Takeaway 3: revoluția în programa școlară din România
 
-Începând cu anul școlar 2025-2026, Python a devenit oficial „limbajul de programare de bază" în liceele de profil din România. Noua programă, aprobată prin O.M.E.C. nr. 6873/2025, marchează o tranziție istorică: [elevii de clasa a IX-a](/curriculum/IX) încep acum cu Python pentru a-și forma gândirea algoritmică, urmând ca ulterior să aprofundeze mecanismele interne ale C++.
+Începând cu anul școlar 2026-2027, Python devine „limbajul de programare de bază" în liceele de profil din România. Noua programă, aprobată prin OMEC nr. 6930/19.12.2025 și Ordinul ministrului educației și cercetării nr. 4.370/2026 (Monitorul Oficial nr. 591 bis/20.VII.2026), marchează o tranziție istorică: [elevii de clasa a IX-a](/curriculum/IX) încep acum cu Python pentru a-și forma gândirea algoritmică, urmând ca ulterior să aprofundeze mecanismele interne ale C++.
 
 Importanța acestei discipline este subliniată de alocarea orară masivă pentru regimul intensiv:
 
