@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import ButonSetariCookie from "@/components/ButonSetariCookie";
 
 export default function Footer() {
   return (
@@ -71,6 +72,9 @@ export default function Footer() {
               <Link href="/politica-de-rambursare" className="hover:text-brand transition">
                 Politică de Anulare & Rambursare
               </Link>
+            </li>
+            <li>
+              <ButonSetariCookie className="hover:text-brand transition" />
             </li>
           </ul>
 

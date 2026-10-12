@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ButonSetariCookie from "@/components/ButonSetariCookie";
 
 export const metadata: Metadata = {
   title: "Politică de Confidențialitate (GDPR)",
@@ -82,6 +83,19 @@ export default function PoliticaConfidentialitatePage() {
           <a href="mailto:academipython@gmail.com" className="text-brand hover:underline font-semibold">
             academipython@gmail.com
           </a>. Cererile vor fi soluționate gratuit și în termen legal de maximum 30 de zile.
+        </p>
+
+        <h2 id="cookie" className="text-xl font-bold text-slate-900 mt-8 mb-4 scroll-mt-24">
+          6. Cookie-uri și stocare în browser
+        </h2>
+        <ul className="list-disc pl-5 text-sm text-slate-700 space-y-2 mt-2">
+          <li><strong>Strict necesare (fără consimțământ):</strong> cookie-urile de autentificare (Supabase), care te țin conectat la cont. Fără ele contul nu poate funcționa.</li>
+          <li><strong>Progres în browser (fără consimțământ):</strong> exercițiile rezolvate, pașii parcurși și alegerea ta privind cookie-urile se rețin în memoria locală a browserului (localStorage) și nu sunt trimise nicăieri, cu excepția sincronizării cu contul tău, dacă ești autentificat.</li>
+          <li><strong>Statistici — Google Analytics (doar cu acordul tău):</strong> cookie-urile <code>_ga</code> și <code>_ga_*</code> ne arată, agregat, câți vizitatori ajung la lecții, câți termină un modul și câți pornesc perioada de probă. Nu trimitem către Google numele, adresa de e-mail sau alte date ale contului. Scriptul Google Analytics se încarcă numai după ce apeși „Accept”.</li>
+        </ul>
+        <p className="mt-4 text-sm leading-relaxed text-slate-700">
+          Îți poți schimba oricând alegerea din linkul „Setări cookie” din subsolul paginii sau de aici:{" "}
+          <ButonSetariCookie className="font-semibold text-brand underline underline-offset-2" />. La refuz, cookie-urile Google Analytics sunt șterse din browser.
         </p>
       </article>
     </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderConditional from "@/components/HeaderConditional";
 import UrmarireEvenimente from "@/components/UrmarireEvenimente";
+import ConsimtamantCookie from "@/components/ConsimtamantCookie";
 import { getUtilizatorCurent } from "@/lib/subscription";
 
 const GA_ID = "G-F0158XN3VT";
@@ -133,22 +133,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}');
-              `}
-            </Script>
-          </>
-        )}
         {/* Fără JavaScript, IntersectionObserver (ScrollReveal.tsx) nu rulează
             niciodată, deci .is-visible nu se adaugă și conținutul .reveal ar
             rămâne permanent la opacity: 0 — invizibil pentru cine navighează
@@ -172,6 +156,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <HeaderConditional esteAutentificat={esteAutentificat}>
           <Footer />
         </HeaderConditional>
+        <ConsimtamantCookie gaId={GA_ID} activ={process.env.NODE_ENV === "production"} />
       </body>
     </html>
   );
