@@ -16,3 +16,9 @@ export async function getExercitiiSublectie(
   }
   return cache[cod] ?? [];
 }
+
+/** Toate id-urile de exerciții existente — pentru validarea datelor primite de la client. */
+export async function idExercitiiValide(): Promise<Set<string>> {
+  await getExercitiiSublectie("");
+  return new Set(Object.values(cache ?? {}).flatMap((lista) => lista.map((e) => e.id)));
+}

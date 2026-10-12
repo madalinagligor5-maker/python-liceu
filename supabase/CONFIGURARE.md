@@ -39,6 +39,18 @@ where routine_name in ('finalizeaza_lectie','nivel_din_xp');
 -- trebuie să întoarcă 2 rânduri
 ```
 
+### Migrare: exerciții rezolvate salvate în cont
+
+Ca exercițiile rezolvate să se păstreze în cont (pe orice dispozitiv), rulează o
+singură dată conținutul din `supabase/migrare-exercitii-rezolvate.sql` în
+**SQL Editor → New query → Run**. Migrarea e idempotentă (o poți rula din nou fără
+efecte). Până o rulezi, aplicația funcționează ca înainte: exercițiile se rețin
+doar în browser.
+
+Verificare: în **Table Editor** apare tabelul `exercitii_rezolvate`; după ce un
+elev autentificat rezolvă un exercițiu, apare un rând cu `user_id` și
+`exercitiu_id` (ex. `1.1.4.ex1`).
+
 ## 2. Variabile de environment în Vercel
 
 Settings → **Environment Variables**. Bifează **Production + Preview + Development**
@@ -86,6 +98,9 @@ fictive (`noindex`). Util pentru verificarea interfeței.
 - XP-ul se acordă exclusiv prin `finalizeaza_lectie()`. Trigger-ul
   `proteja_users_meta` împiedică un utilizator autentificat să-și modifice
   direct `subscription_status` (acces gratuit la conținut cu plată) sau `xp_total`.
+- `exercitii_rezolvate` are RLS: fiecare utilizator își citește și își adaugă doar
+  propriile rânduri; serverul acceptă doar id-uri de exerciții care există în
+  `content/exercitii.json`.
 - Răspunsurile la quiz se validează server-side, față de conținutul canonic;
   clientul nu trimite niciodată scorul.
 - Dacă `Deployment Protection` (Vercel Authentication) e activ, preview-urile

@@ -7,6 +7,7 @@ import type { Exercitiu } from "@/lib/exercitii-tipuri";
 import type { IntrebareQuiz } from "@/lib/quizSublectii";
 
 import { CHEIE_EXERCITII as KEY, citesteExercitiiRezolvate as citesteRezolvate, EVENIMENT_PROGRES } from "@/lib/progresLocal";
+import { salveazaExercitiuInCont, sincronizeazaExercitiiCuContul } from "@/lib/sincronizareExercitii";
 
 /**
  * Gestionează „gate-ul" de parcurgere:
@@ -40,7 +41,13 @@ export default function SublectieGate({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setRezolvate(citesteRezolvate());
-  }, []);
+    const actualizeaza = () => setRezolvate(citesteRezolvate());
+    window.addEventListener(EVENIMENT_PROGRES, actualizeaza);
+    // Pentru conturi: aduce exercițiile rezolvate pe alte dispozitive și
+    // urcă în cont pe cele rezolvate doar în acest browser.
+    if (autentificat) sincronizeazaExercitiiCuContul();
+    return () => window.removeEventListener(EVENIMENT_PROGRES, actualizeaza);
+  }, [autentificat]);
 
   useEffect(() => {
     const el = document.getElementById("lectie-articol");
@@ -60,6 +67,7 @@ export default function SublectieGate({
   }, []);
 
   const marcheazaRezolvat = (id: string) => {
+    if (autentificat) salveazaExercitiuInCont(id);
     setRezolvate((s) => {
       const nou = new Set(s).add(id);
       try {

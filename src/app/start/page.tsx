@@ -31,8 +31,8 @@ export default function StartPage() {
             <li>Codul rulează direct în browser. Prima rulare încarcă interpretorul Python (aprox. 15 MB), apoi merge imediat.</li>
             <li>
               Fără cont, exercițiile rezolvate se rețin doar în acest browser (se pierd dacă ștergi datele
-              site-ului sau schimbi dispozitivul). Cu un cont gratuit, rezultatele la „Citește și prezice”
-              și la testul de final se salvează în cont.
+              site-ului sau schimbi dispozitivul). Cu un cont gratuit, progresul (exerciții, predicții și
+              teste) se salvează în cont și îl regăsești pe orice dispozitiv.
             </li>
             <li>
               Nu ești sigur de nivel? La liceu, dacă n-ai mai scris cod, începe cu{" "}

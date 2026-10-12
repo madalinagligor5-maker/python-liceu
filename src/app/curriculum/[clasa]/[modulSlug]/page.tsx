@@ -19,6 +19,7 @@ import { ETICHETE_ACCES, exercitiiPracticeLiberAccesibile, lectiiLiberAccesibile
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
 import { getProgresUtilizator } from "@/lib/progres";
+import { getExercitiiRezolvateCont } from "@/lib/exercitiiCont";
 import PasiModul, { type PasModul } from "@/components/PasiModul";
 import type { Bloc } from "@/lib/markdownMini";
 import { getPredicțiiClasa } from "@/lib/predicții";
@@ -122,6 +123,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   // Progresul salvat în cont (predicții corecte, teste trecute).
   const progres = user ? await getProgresUtilizator(user.id) : null;
+  const exercitiiCont = user ? await getExercitiiRezolvateCont(user.id) : [];
   const reusiteCont = (progres?.lectiiFinalizate ?? [])
     .filter((slug) => slug.startsWith("sub-"))
     .map((slug) => slug.slice(4))
@@ -281,6 +283,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
         <PasiModul
           pasi={pasi}
           reusiteCont={reusiteCont}
+          exercitiiCont={exercitiiCont}
           areAcces={areAcces}
           areContinut={areContinut}
           autentificat={Boolean(user)}

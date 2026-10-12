@@ -8,6 +8,7 @@ import {
   citestePasiReusiti,
   EVENIMENT_PROGRES,
 } from "@/lib/progresLocal";
+import { sincronizeazaExercitiiCuContul } from "@/lib/sincronizareExercitii";
 
 export type PasModul = {
   cod: string;
@@ -61,6 +62,7 @@ function calculeazaStare(
 export default function PasiModul({
   pasi,
   reusiteCont,
+  exercitiiCont = [],
   areAcces,
   areContinut,
   autentificat,
@@ -69,6 +71,8 @@ export default function PasiModul({
   pasi: PasModul[];
   /** Coduri de sublecții salvate ca reușite în cont (server). */
   reusiteCont: string[];
+  /** Id-urile exercițiilor rezolvate salvate în cont (server). */
+  exercitiiCont?: string[];
   areAcces: boolean;
   areContinut: boolean;
   autentificat: boolean;
@@ -80,18 +84,19 @@ export default function PasiModul({
     const actualizeaza = () => {
       const cont = new Set(reusiteCont);
       const local = citestePasiReusiti();
-      const ex = citesteExercitiiRezolvate();
+      const ex = new Set([...citesteExercitiiRezolvate(), ...exercitiiCont]);
       const deschise = citestePasiDeschisi();
       setStari(pasi.map((p) => calculeazaStare(p, cont, local, ex, deschise)));
     };
     actualizeaza();
+    if (autentificat) sincronizeazaExercitiiCuContul();
     window.addEventListener(EVENIMENT_PROGRES, actualizeaza);
     window.addEventListener("storage", actualizeaza);
     return () => {
       window.removeEventListener(EVENIMENT_PROGRES, actualizeaza);
       window.removeEventListener("storage", actualizeaza);
     };
-  }, [pasi, reusiteCont]);
+  }, [pasi, reusiteCont, exercitiiCont, autentificat]);
 
   // Pasul la care se continuă: primul pas cu o verificare care nu e încă
   // finalizat; pașii de lectură (1–2) contează ca parcurși dacă au fost deschiși.
@@ -194,7 +199,7 @@ export default function PasiModul({
           „Deschis” înseamnă doar că ai vizitat pasul. Un pas devine „finalizat” după o predicție corectă, după
           rezolvarea exercițiilor sau după trecerea testului.{" "}
           {autentificat
-            ? "Predicțiile și testele trecute se salvează și în cont; exercițiile rezolvate se rețin în acest browser."
+            ? "Progresul se salvează în cont și îl regăsești pe orice dispozitiv."
             : "Fără cont, progresul se reține doar în acest browser."}
         </p>
       )}
