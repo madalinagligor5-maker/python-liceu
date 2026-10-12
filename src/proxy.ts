@@ -14,7 +14,7 @@ function cuLimita<T>(p: Promise<T>, ms: number): Promise<T | "timeout"> {
   ]);
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -71,7 +71,7 @@ export async function middleware(request: NextRequest) {
   if (rezultat === "timeout") {
     // Supabase nu a răspuns la timp: lăsăm cererea să treacă. Paginile
     // protejate își verifică singure accesul pe server.
-    console.error("[middleware] Supabase auth.getUser a depășit limita de timp", pathname);
+    console.error("[proxy] Supabase auth.getUser a depășit limita de timp", pathname);
     return response;
   }
   const user = rezultat.data.user;

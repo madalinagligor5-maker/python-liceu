@@ -6,7 +6,7 @@ import SignOutButton from "@/components/auth/SignOutButton";
 const MENIU = [
   { icon: "🏠", label: "Acasă", href: "/", activ: true },
   { icon: "📚", label: "Curriculum", href: "/curriculum" },
-  { icon: "📝", label: "Lecții", href: "/lectii" },
+  { icon: "📝", label: "Lecții", href: "/curriculum" },
   { icon: "✏️", label: "Exerciții", href: "/exercitii" },
   { icon: "🚀", label: "Proiecte", href: "/curriculum" },
   { icon: "🔬", label: "Lab (Cod online)", href: "/lab" },

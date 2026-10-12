@@ -60,7 +60,7 @@ export default function Dashboard({
       <SidebarDashboard prenume={prenume} xpTotal={progres.xpTotal} />
 
       <div className="min-w-0 flex-1 lg:py-6 lg:pr-6">
-        {/* Bara de sus: salut, căutare, statistici */}
+        {/* Bara de sus: salut și statistici */}
         <header className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">
@@ -68,19 +68,6 @@ export default function Dashboard({
             </h1>
             <p className="text-sm text-muted">Ce vei învăța azi?</p>
           </div>
-
-          <form action="/lectii" className="lg:w-72">
-            <label htmlFor="caut" className="sr-only">
-              Caută lecții, concepte, exerciții
-            </label>
-            <input
-              id="caut"
-              name="q"
-              type="search"
-              placeholder="🔍 Caută lecții, concepte, exerciții…"
-              className="w-full rounded-xl border border-border bg-white px-4 py-2 text-sm text-foreground placeholder:text-muted/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
-            />
-          </form>
 
           <div className="flex items-center gap-4">
             <div className="text-center">

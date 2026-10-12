@@ -19,7 +19,7 @@ const linkuriCursuri: LinkNav[] = [
 
 /** Opțiuni secundare, grupate sub „Mai mult". */
 const linkuriMaiMult: LinkNav[] = [
-  { href: "/lectii", label: "Catalog de lecții", sub: "Toate modulele, pe clase, într-o singură listă" },
+  { href: "/curriculum", label: "Curriculum complet", sub: "Toate modulele de liceu, pe clase" },
   { href: "/exercitii", label: "Exerciții practice", sub: "Probleme suplimentare, cu verificare automată" },
   { href: "/resurse", label: "Fișe PDF", sub: "Materiale de printat pentru fiecare modul" },
   { href: "/profesori", label: "Pentru profesori", sub: "Planificări, fișe și teste" },

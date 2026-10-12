@@ -261,10 +261,10 @@ export default async function ContPage() {
 {/* Butoane de Ieșire / Navigare */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 px-2">
         <Link 
-          href="/lectii" 
+          href="/curriculum"
           className="text-sm font-semibold text-brand hover:text-brand-dark flex items-center gap-1.5 transition"
         >
-          <span>←</span> Înapoi la catalogul de lecții
+          <span>←</span> Înapoi la curriculum
         </Link>
         <SignOutButton className="rounded-xl border border-black/10 bg-white px-5 py-2.5 text-sm font-semibold text-foreground/80 shadow-sm transition hover:border-red-300 hover:text-red-600 hover:bg-red-50/50" />
       </div>

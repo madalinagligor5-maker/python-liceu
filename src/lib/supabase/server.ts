@@ -19,7 +19,7 @@ export async function creeazaClientServer() {
             });
           } catch {
             // setAll poate fi apelat dintr-o componentă de server (fără scriere de cookie-uri
-            // permisă) — sesiunea tot se reîmprospătează prin middleware.
+            // permisă) — sesiunea tot se reîmprospătează prin proxy (src/proxy.ts).
           }
         },
       },

@@ -127,7 +127,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         <p className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-700">
           Autentificarea nu este configurată pe acest mediu (variabilele Supabase lipsesc). Poți
           totuși parcurge{" "}
-          <Link href="/lectii" className="font-semibold underline">
+          <Link href="/start" className="font-semibold underline">
             lecțiile gratuite
           </Link>
           .

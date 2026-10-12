@@ -27,8 +27,8 @@ export default function Footer() {
           <h3 className="text-sm font-semibold text-foreground">Platformă</h3>
           <ul className="mt-3 space-y-2 text-sm text-foreground/60">
             <li>
-              <Link href="/lectii" className="hover:text-brand">
-                Lecții
+              <Link href="/curriculum" className="hover:text-brand">
+                Curriculum
               </Link>
             </li>
             <li>

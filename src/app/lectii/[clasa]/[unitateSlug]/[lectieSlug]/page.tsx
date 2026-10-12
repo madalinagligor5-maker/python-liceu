@@ -59,8 +59,8 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <nav className="text-sm text-foreground/50">
-        <Link href="/lectii" className="hover:text-brand">
-          Lecții
+        <Link href="/curriculum" className="hover:text-brand">
+          Curriculum
         </Link>
         <span className="mx-2">/</span>
         <span>{clasa}</span>

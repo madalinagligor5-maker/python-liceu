@@ -12,7 +12,7 @@ const LINKURI_PROFESOR = [
 /**
  * Gating server-side pentru toată zona /profesor/*, verificat la fiecare
  * randare direct din baza de date (users_meta.rol) — nu dintr-un flag de
- * client sau cookie. Ruta e deja acoperită și de middleware (redirect la
+ * client sau cookie. Ruta e deja acoperită și de proxy (src/proxy.ts) (redirect la
  * /login dacă nu există sesiune), dar verificarea de rol se face DOAR aici,
  * ca un utilizator autentificat fără rolul potrivit să nu poată trece nici
  * printr-un apel direct de URL.

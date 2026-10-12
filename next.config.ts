@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
   // fără www e redirecționat permanent (301) pentru a evita conținut duplicat.
   async redirects() {
     return [
+      // Catalogul vechi /lectii dubla /curriculum: o singură cale spre lecții.
+      // Doar adresa exactă — paginile /lectii/<clasa>/... (sistemul vechi de
+      // lecții folosit de panoul elevului) rămân neschimbate.
+      { source: "/lectii", destination: "/curriculum", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "academiapython.ro" }],
