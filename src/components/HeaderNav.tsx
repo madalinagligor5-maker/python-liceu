@@ -28,9 +28,9 @@ const linkuriMaiMult: LinkNav[] = [
 ];
 
 const linkuriKids: LinkNav[] = [
-  { href: "/kids", label: "🏠 Acasă Kids", sub: "Toate activitățile pentru copii" },
-  { href: "/kids/junior/harta", label: "🗺️ Harta aventurii", sub: "Modulele Junior 1–6 (gratuit)" },
-  { href: "/kids/fise-print", label: "🖨️ Fișe de printat", sub: "Activități pe hârtie" },
+  { href: "/kids", label: "Acasă Kids", sub: "Toate activitățile pentru copii" },
+  { href: "/kids/junior/harta", label: "Harta aventurii", sub: "Cele 6 insule gratuite" },
+  { href: "/kids/fise-print", label: "Fișe de printat", sub: "Activități pe hârtie" },
 ];
 
 const linkuriProfesor: LinkNav[] = [
@@ -95,8 +95,8 @@ function Dropdown({
         aria-expanded={deschis}
         aria-controls={idPanou}
         onClick={() => setDeschis((d) => !d)}
-        className={`flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 ${
-          activ ? "text-amber-700" : ""
+        className={`flex items-center gap-1 rounded-lg px-2 py-1.5 transition-colors hover:text-[#172033] ${
+          activ ? "bg-white text-[#172033] shadow-sm" : "text-[#5F6673]"
         }`}
       >
         {eticheta}
@@ -107,7 +107,7 @@ function Dropdown({
       {deschis && (
         <div
           id={idPanou}
-          className={`absolute left-0 top-full z-50 mt-2 ${latime} rounded-2xl border border-[#EBE7DF] bg-white p-3 shadow-depth-lg`}
+          className={`absolute left-0 top-full z-50 mt-3 ${latime} rounded-2xl border border-black/10 bg-white/95 p-3 shadow-depth-lg backdrop-blur-xl`}
         >
           {children(() => setDeschis(false))}
         </div>
@@ -124,7 +124,7 @@ function ListaLinkuri({ linkuri, onAles }: { linkuri: LinkNav[]; onAles: () => v
           <Link
             href={l.href}
             onClick={onAles}
-            className="block rounded-xl px-3 py-2 hover:bg-amber-50 focus-visible:bg-amber-50"
+            className="block rounded-xl px-3 py-2.5 hover:bg-[#F3F0E8] focus-visible:bg-[#F3F0E8]"
           >
             <span className="block text-sm font-bold text-[#1E2430]">{l.label}</span>
             <span className="block text-xs font-medium text-[#525B6C]">{l.sub}</span>
@@ -180,7 +180,7 @@ export default function HeaderNav({
           ))}
         </nav>
       ) : (
-        <nav aria-label="Navigație principală" className="hidden lg:flex items-center gap-2 text-sm font-semibold text-slate-700">
+        <nav aria-label="Navigație principală" className="hidden lg:flex items-center gap-2 text-[13px] font-semibold text-[#5F6673]">
           <Dropdown eticheta="Cursuri" activ={cursuriActiv}>
             {(inchide) => (
               <>
@@ -201,14 +201,14 @@ export default function HeaderNav({
           <Link
             href="/lab"
             aria-current={pathname === "/lab" ? "page" : undefined}
-            className="rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 aria-[current=page]:text-amber-700"
+            className="rounded-lg px-2 py-1.5 transition-colors hover:text-[#172033] aria-[current=page]:bg-white aria-[current=page]:text-[#172033] aria-[current=page]:shadow-sm"
           >
             Laborator
           </Link>
           <Link
             href="/preturi"
             aria-current={pathname === "/preturi" ? "page" : undefined}
-            className="rounded-lg px-2 py-1.5 transition-colors hover:text-amber-700 aria-[current=page]:text-amber-700"
+            className="rounded-lg px-2 py-1.5 transition-colors hover:text-[#172033] aria-[current=page]:bg-white aria-[current=page]:text-[#172033] aria-[current=page]:shadow-sm"
           >
             Prețuri
           </Link>
@@ -236,7 +236,7 @@ export default function HeaderNav({
         type="button"
         onClick={() => setMobileMeniuDeschis(true)}
         aria-expanded={mobileMeniuDeschis}
-        className="order-last lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-[#EBE7DF] bg-white text-[#1E2430] shadow-xs hover:bg-[#F3EFE6] transition active:scale-95 shrink-0"
+        className="order-last lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-black/10 bg-white/80 text-[#172033] hover:bg-white transition active:scale-95 shrink-0"
         aria-label="Deschide meniul"
       >
         <IconMeniu className="h-6 w-6 text-[#1E2430]" />
@@ -247,7 +247,7 @@ export default function HeaderNav({
           role="dialog"
           aria-modal="true"
           aria-label="Meniu"
-          className="fixed inset-0 h-dvh w-full z-[99999] bg-[#FDFBF7] p-4 sm:p-6 overflow-y-auto lg:hidden animate-fadeIn"
+          className="fixed inset-0 h-dvh w-full z-[99999] bg-[#F8F5EE] p-4 sm:p-6 overflow-y-auto lg:hidden animate-fadeIn"
         >
           <div className="flex flex-col gap-4 max-w-lg mx-auto w-full pb-8">
             <div className="flex items-center justify-between pb-4 border-b border-[#EBE7DF]">
@@ -281,7 +281,7 @@ export default function HeaderNav({
               <Link
                 href="/start"
                 onClick={inchideMobil}
-                className="rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
+                className="rounded-xl bg-[#172033] hover:bg-[#2A3852] text-white font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
               >
                 Începe gratuit
               </Link>

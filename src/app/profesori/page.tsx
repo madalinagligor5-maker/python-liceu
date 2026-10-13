@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Pentru profesori",
@@ -10,19 +11,25 @@ export const metadata: Metadata = {
 
 export default function ProfesoriPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-bold uppercase tracking-wide text-brand">Pentru profesori</p>
-      <h1 className="mt-2 text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
-        Instrumente gratuite pentru orele de Informatică
+    <div className="page-shell max-w-6xl">
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+      <span className="eyebrow">Pentru profesori</span>
+      <h1 className="mt-5 text-4xl font-black leading-[1.04] text-foreground sm:text-6xl [font-family:var(--font-fraunces)]">
+        Mai puțin timp cu pregătirea. Mai mult timp pentru explicații.
       </h1>
-      <p className="mt-4 text-base leading-relaxed text-foreground/70">
+      <p className="mt-5 text-base leading-relaxed text-foreground/70 sm:text-lg">
         Academia Python oferă profesorilor o zonă separată, gratuită, cu instrumente construite
         direct din materia deja predată pe platformă. Intri, iei planificarea, materialele sau
         fișele de care ai nevoie pentru ora ta, descarci PDF-ul și pleci — nu ai nevoie de niciun
         cont de elev și nu-ți legi elevii de platformă.
-      </p>
+      </p></div>
+        <div className="relative min-h-[24rem] overflow-hidden rounded-[1.75rem] bg-[#172033] sm:min-h-[31rem]">
+          <Image src="/images/people/profesoara-informatica.png" alt="Profesoară de informatică pregătind o lecție" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        </div>
+      </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-20 grid border-t border-black/10 sm:grid-cols-2">
         {[
           {
             icon: "🗓️",
@@ -44,11 +51,11 @@ export default function ProfesoriPage() {
             titlu: "Bancă de teste",
             text: "Generează un test din quiz-urile existente, cu barem separat ca PDF, fără riscul unei inconsecvențe între ele.",
           },
-        ].map((f) => (
-          <div key={f.titlu} className="rounded-2xl border border-black/10 bg-white p-5">
-            <div className="text-2xl">{f.icon}</div>
-            <h3 className="mt-2 font-bold text-foreground">{f.titlu}</h3>
-            <p className="mt-1 text-sm text-foreground/60">{f.text}</p>
+        ].map((f, index) => (
+          <div key={f.titlu} className="border-b border-black/10 p-6 sm:border-r sm:p-8 sm:even:border-r-0">
+            <div className="font-mono text-xs text-[#C6780B]">0{index + 1}</div>
+            <h3 className="mt-4 text-xl font-bold text-foreground [font-family:var(--font-fraunces)]">{f.titlu}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/60">{f.text}</p>
           </div>
         ))}
       </div>
@@ -58,7 +65,7 @@ export default function ProfesoriPage() {
         multe module.
       </p>
 
-      <div className="mt-10 rounded-2xl border border-brand-border bg-brand-light/40 p-6 text-center">
+      <div className="mx-auto mt-14 max-w-2xl border-y border-black/10 py-8 text-center">
         <p className="font-semibold text-foreground">
           Accesul e gratuit, dar aprobat manual — nu automat.
         </p>
@@ -67,7 +74,7 @@ export default function ProfesoriPage() {
         </p>
         <Link
           href="/inregistrare?profesor=1"
-          className="mt-4 inline-block rounded-xl bg-brand px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-dark"
+          className="primary-action mt-5"
         >
           Cere acces
         </Link>

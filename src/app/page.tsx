@@ -99,7 +99,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   const articoleRecente = (await getToateArticolele()).slice(0, 3);
 
   return (
-    <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen relative overflow-hidden font-sans">
+    <div className="text-[#172033] min-h-screen relative overflow-hidden font-sans">
       <FaqJsonLd intrebari={FAQ} />
       <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] max-w-full rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
@@ -107,6 +107,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       <section className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="enter-slide-up lg:col-span-6 space-y-6">
+            <span className="eyebrow">Învață prin practică</span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E2430] leading-[1.05] [font-family:var(--font-fraunces)]">
               Învață Python pas cu pas.{" "}
               <span className="text-amber-700">Scrie cod și vezi imediat rezultatul.</span>
@@ -121,13 +122,13 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
                 href="/start"
                 data-eveniment="cta_incepe_gratuit"
                 data-ev-loc="hero"
-                className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-7 py-3.5 text-base shadow-xs active:scale-95 transition-all"
+                className="primary-action px-7 py-3.5 text-base"
               >
                 Începe gratuit
               </Link>
               <Link
                 href="#trasee"
-                className="rounded-xl border border-[#D9D3C7] bg-white hover:bg-[#F3EFE6] text-[#1E2430] font-bold px-7 py-3.5 text-base transition shadow-xs"
+                className="secondary-action px-7 py-3.5 text-base"
               >
                 Vezi cursurile
               </Link>
@@ -173,12 +174,12 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
               <li><strong>Laborator</strong> — editor liber, pentru experimente fără cerință.</li>
             </ul>
           </div>
-          <ol className="lg:col-span-7 grid gap-3 sm:grid-cols-2">
+          <ol className="lg:col-span-7 border-t border-black/10">
             {structura.sablon_sublectii.map((pas, i) => (
-              <li key={pas.titlu} className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-depth-sm">
-                <span className="text-xs font-black text-amber-700">Pasul {i + 1} din 6</span>
-                <p className="mt-1 font-bold text-[#1E2430] text-sm">{pas.titlu}</p>
-                <p className="mt-1 text-xs text-[#525B6C]">{pas.descriere}</p>
+              <li key={pas.titlu} className="grid grid-cols-[3.5rem_1fr] border-b border-black/10 py-4">
+                <span className="font-mono text-xs font-black text-[#B96D08]">0{i + 1}</span>
+                <div><p className="font-bold text-[#172033] text-sm">{pas.titlu}</p>
+                <p className="mt-1 text-sm text-[#5F6673]">{pas.descriere}</p></div>
               </li>
             ))}
           </ol>
@@ -217,9 +218,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       {/* OAMENII DIN SPATELE PARCURSULUI DE ÎNVĂȚARE */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
         <ScrollReveal className="mb-10 max-w-3xl">
-          <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">
-            O academie pentru fiecare etapă
-          </span>
+          <span className="eyebrow">O academie pentru fiecare etapă</span>
           <h2 className="mt-3 text-3xl font-black leading-tight text-[#1E2430] sm:text-4xl [font-family:var(--font-fraunces)] text-balance">
             De la prima linie de cod la examen și mai departe
           </h2>
@@ -318,9 +317,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 border-t border-[#EBE7DF]">
           <ScrollReveal className="flex items-end justify-between gap-4 mb-8">
             <div>
-              <span className="inline-flex rounded-full bg-indigo-50 border border-indigo-200 px-3.5 py-1 text-xs font-bold text-indigo-900 uppercase tracking-widest mb-3">
-                Blog
-              </span>
+              <span className="eyebrow mb-3">Din jurnal</span>
               <h2 className="text-2xl sm:text-3xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
                 Ultimele din blog
               </h2>

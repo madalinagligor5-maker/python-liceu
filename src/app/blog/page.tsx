@@ -24,12 +24,12 @@ export default async function BlogPage() {
   const articole = await getToateArticolele();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-wide text-brand-dark">Blog</p>
-      <h1 className="mt-1 text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
-        Ghiduri și noutăți
+    <div className="page-shell max-w-6xl">
+      <span className="eyebrow">Jurnalul Academiei</span>
+      <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.03] text-foreground sm:text-6xl [font-family:var(--font-fraunces)]">
+        Idei care fac programarea mai ușor de înțeles
       </h1>
-      <p className="mt-2 text-sm text-muted">
+      <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
         Ghiduri Python pentru începători, elevi, părinți și profesori — cu exemple pe care le poți rula în browser.
       </p>
 
@@ -40,25 +40,24 @@ export default async function BlogPage() {
           </p>
         </div>
       ) : (
-        <div className="mt-8 space-y-4">
-          {articole.map((articol) => (
+        <div className="mt-14 border-t border-black/10">
+          {articole.map((articol, index) => (
             <Link
               key={articol.slug}
               href={`/blog/${articol.slug}`}
-              className="block rounded-2xl border border-border bg-white p-5 shadow-sm transition hover:border-brand/40 hover:shadow-md sm:p-6"
+              className="group grid gap-3 border-b border-black/10 py-7 transition hover:bg-white/55 sm:grid-cols-[3rem_1fr_auto] sm:items-start sm:px-4"
             >
-              <p className="text-xs font-medium text-foreground/70">
+              <span className="font-mono text-xs text-[#B96D08]">{String(index + 1).padStart(2, "0")}</span>
+              <div><p className="text-xs font-medium text-foreground/70">
                 {formateazaData(articol.data)} · {articol.minuteCitire} min
               </p>
-              <h2 className="mt-1 text-lg font-bold text-foreground sm:text-xl [font-family:var(--font-fraunces)]">
+              <h2 className="mt-2 text-xl font-bold leading-tight text-foreground transition group-hover:text-[#2F6191] sm:text-2xl [font-family:var(--font-fraunces)]">
                 {articol.titlu}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                 {articol.descriere}
               </p>
-              <span className="mt-3 inline-block text-sm font-semibold text-brand-dark">
-                Citește articolul →
-              </span>
+              </div><span className="hidden pt-6 text-xl transition group-hover:translate-x-1 sm:block">→</span>
             </Link>
           ))}
         </div>

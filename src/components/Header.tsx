@@ -18,17 +18,17 @@ export default async function Header() {
   const progres = user && !esteProfesor ? await getProgresUtilizator(user.id) : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#EBE7DF] bg-[#FDFBF7]/95 backdrop-blur-md text-[#1E2430] shadow-xs">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2.5 sm:px-6 sm:py-3">
+    <header className="sticky top-0 z-50 border-b border-black/[0.07] bg-[#F8F5EE]/92 backdrop-blur-xl text-[#172033]">
+      <div className="mx-auto flex max-w-[86rem] items-center justify-between gap-3 px-4 py-3 sm:px-6">
         {/* Logo Compact pe Mobil */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <Logo className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl transition group-hover:scale-105" />
+          <Logo className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg transition duration-300 group-hover:-rotate-2 group-hover:scale-105" />
           <span className="leading-none">
             <span className="text-sm sm:text-base font-black tracking-tight text-[#1E2430] font-sans">
-              Academia<span className="text-amber-600">Python</span>
+              Academia<span className="text-[#B96D08]">Python</span>
             </span>
-            <span className="mt-0.5 hidden text-[9px] font-bold uppercase tracking-widest text-[#525B6C] md:block">
-              Învață. Practică. Devino dezvoltator.
+            <span className="mt-1 hidden text-[8px] font-bold uppercase tracking-[0.18em] text-[#6D6B67] md:block">
+              Python explicat cu răbdare
             </span>
           </span>
         </Link>
@@ -78,7 +78,7 @@ export default async function Header() {
             href={esteProfesor ? "/profesor/planificari" : user ? "/cont" : "/start"}
             data-eveniment={!esteProfesor && !user ? "cta_incepe_gratuit" : undefined}
             data-ev-loc="header"
-            className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-4 py-2 text-xs shadow-xs transition active:scale-95 whitespace-nowrap"
+            className="rounded-lg bg-[#172033] hover:bg-[#2A3852] text-white font-black px-4 py-2.5 text-xs shadow-sm transition active:scale-95 whitespace-nowrap"
           >
             {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}
           </Link>

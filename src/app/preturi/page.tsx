@@ -35,12 +35,13 @@ export default async function PreturiPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-      <header className="max-w-3xl">
-        <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
-          Prețuri
+    <div className="page-shell max-w-5xl">
+      <header className="mx-auto max-w-3xl text-center">
+        <span className="eyebrow mb-4">Acces simplu, fără surprize</span>
+        <h1 className="text-4xl font-black leading-tight text-foreground sm:text-6xl [font-family:var(--font-fraunces)]">
+          Alege planul potrivit pentru tine
         </h1>
-        <p className="mt-3 text-foreground/80">
+        <p className="mt-5 text-base leading-relaxed text-foreground/70 sm:text-lg">
           Poți învăța gratuit fără cont și fără card. Abonamentul deblochează restul modulelor de liceu. Mai jos găsești
           exact ce e gratuit, cum funcționează proba de {PROBA.zile} zile și ce plătești.
         </p>
@@ -58,10 +59,11 @@ export default async function PreturiPage() {
       )}
 
       {/* 1. GRATUIT */}
-      <section aria-labelledby="gratuit" className="mt-10">
-        <h2 id="gratuit" className="text-xl font-black text-foreground">1. Acces gratuit</h2>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-success/30 bg-white p-5">
+      <section aria-labelledby="gratuit" className="mt-16">
+        <span className="eyebrow">01 · Ce primești fără abonament</span>
+        <h2 id="gratuit" className="mt-3 text-2xl font-black text-foreground [font-family:var(--font-fraunces)]">Acces gratuit</h2>
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          <div className="surface-card p-6">
             <p className="text-sm font-black text-success">Gratuit — fără cont, fără card</p>
             <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-foreground/80">
               <li>Kids: toate cele 6 module Junior și lecțiile „Python pentru copii” (7–11 ani)</li>
@@ -71,7 +73,7 @@ export default async function PreturiPage() {
               <li>Laboratorul (editor Python liber) și fișele PDF ale modulelor</li>
             </ul>
           </div>
-          <div className="rounded-2xl border border-border bg-white p-5">
+          <div className="surface-card p-6">
             <p className="text-sm font-black text-foreground">Ce înseamnă etichetele din lecții</p>
             <dl className="mt-3 space-y-2.5 text-sm text-foreground/80">
               <div>
@@ -100,9 +102,9 @@ export default async function PreturiPage() {
       </section>
 
       {/* 2. PROBĂ */}
-      <section aria-labelledby="proba" className="mt-10">
-        <h2 id="proba" className="text-xl font-black text-foreground">2. Perioada de probă de {PROBA.zile} zile</h2>
-        <div className="mt-4 rounded-2xl border border-border bg-white p-5 text-sm text-foreground/80">
+      <section aria-labelledby="proba" className="mt-16 grid gap-6 lg:grid-cols-[0.65fr_1.35fr]">
+        <div><span className="eyebrow">02 · Încearcă înainte</span><h2 id="proba" className="mt-3 text-2xl font-black text-foreground [font-family:var(--font-fraunces)]">Perioada de probă de {PROBA.zile} zile</h2></div>
+        <div className="border-y border-black/10 py-6 text-sm leading-relaxed text-foreground/80">
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Orice abonament (lunar sau anual) începe cu {PROBA.zile} zile de acces complet, fără plată în acest interval.</li>
             <li>
@@ -119,8 +121,9 @@ export default async function PreturiPage() {
       </section>
 
       {/* 3–4. ABONAMENTE */}
-      <section aria-labelledby="abonamente" className="mt-10">
-        <h2 id="abonamente" className="text-xl font-black text-foreground">3. Abonamentul lunar și 4. abonamentul anual</h2>
+      <section aria-labelledby="abonamente" className="mt-20">
+        <span className="eyebrow">03 · Alege durata</span>
+        <h2 id="abonamente" className="mt-3 text-3xl font-black text-foreground [font-family:var(--font-fraunces)]">Abonamentul lunar și abonamentul anual</h2>
         <p className="mt-2 text-sm text-foreground/80">
           Abonamentul de liceu. (Cursul practic are un{" "}
           <Link href="/curs-practic/preturi" className="font-semibold text-brand-dark underline underline-offset-2">
@@ -129,22 +132,22 @@ export default async function PreturiPage() {
           .)
         </p>
 
-        <div className="mt-4 grid gap-6 md:grid-cols-2">
+        <div className="mt-7 grid gap-6 md:grid-cols-2 md:items-start">
           {carduri.map((c) => {
             const pret = preturi[c.plan];
             const perLuna = c.plan === "anual" ? pret.suma / 12 : null;
             return (
               <div
                 key={c.plan}
-                className={`flex flex-col rounded-2xl border p-6 shadow-sm ${
-                  c.evidentiat ? "border-amber-400 bg-brand-light/40 ring-1 ring-amber-400" : "border-black/10 bg-white"
+                className={`flex flex-col rounded-[1.6rem] border p-7 sm:p-8 ${
+                  c.evidentiat ? "border-[#172033] bg-white shadow-[0_24px_70px_rgba(23,32,51,0.14)] md:-translate-y-3" : "border-black/10 bg-white/85 shadow-[0_18px_54px_rgba(42,37,29,0.07)]"
                 }`}
               >
-                <h3 className="text-xl font-bold text-foreground">{c.nume}</h3>
+                <h3 className="text-2xl font-black text-foreground [font-family:var(--font-fraunces)]">{c.nume}</h3>
                 <p className="mt-1 text-sm text-foreground/70">{c.descriere}</p>
 
                 <p className="mt-4 flex flex-wrap items-baseline gap-2">
-                  <span className="text-3xl font-extrabold text-foreground">{formateazaSuma(pret)}</span>
+                  <span className="text-4xl font-black text-foreground">{formateazaSuma(pret)}</span>
                   <span className="text-sm text-foreground/70">/ {formateazaPerioada(pret)}</span>
                 </p>
 
@@ -181,7 +184,7 @@ export default async function PreturiPage() {
                 <div className="mt-auto pt-6">
                   <AbonaButton
                     plan={c.plan}
-                    className="w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer shadow-xs"
+                    className="w-full rounded-xl bg-[#172033] hover:bg-[#2A3852] px-5 py-3 text-sm font-black text-white transition disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer shadow-sm"
                   />
                 </div>
               </div>

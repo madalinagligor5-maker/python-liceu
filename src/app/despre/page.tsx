@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Despre",
@@ -10,13 +11,23 @@ export const metadata: Metadata = {
 
 export default function DesprePage() {
   return (
-    <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
-      <h1 className="text-3xl font-extrabold text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
-        Despre Academia Python
-      </h1>
+    <div className="page-shell max-w-6xl">
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <span className="eyebrow mb-4">De ce există academia</span>
+          <h1 className="text-4xl font-black leading-[1.04] text-foreground sm:text-6xl [font-family:var(--font-fraunces)]">
+            Programarea se învață cu explicații bune și cu răbdare.
+          </h1>
+        </div>
+        <div className="relative min-h-[22rem] overflow-hidden rounded-[1.75rem] bg-[#172033] sm:min-h-[29rem]">
+          <Image src="/images/people/profesoara-informatica.png" alt="Profesoară care explică o lecție de informatică" fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover object-center" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#172033]/65 via-transparent to-transparent" />
+          <p className="absolute bottom-0 max-w-md p-6 text-sm font-semibold leading-relaxed text-white sm:p-8 sm:text-base">O platformă construită pentru momentul în care elevul spune: „Acum am înțeles.”</p>
+        </div>
+      </div>
 
-      <div className="mt-8 space-y-6 text-[15px] leading-relaxed text-foreground/80">
-        <p className="text-lg font-medium text-foreground">
+      <div className="mx-auto mt-16 max-w-3xl space-y-7 text-[16px] leading-[1.8] text-foreground/72">
+        <p className="text-xl font-semibold leading-relaxed text-foreground [font-family:var(--font-fraunces)]">
           Nimeni nu se naște știind Python. Dar oricine poate învăța, dacă
           cineva îi explică pas cu pas — nu doar îi aruncă un manual în față.
           Asta facem aici.
@@ -64,8 +75,8 @@ export default function DesprePage() {
         </p>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-brand-border bg-brand-light/40 p-6 text-center">
-        <p className="text-base font-semibold text-brand-dark">
+      <div className="mx-auto mt-14 max-w-3xl border-y border-black/10 py-9 text-center">
+        <p className="text-xl font-bold text-foreground [font-family:var(--font-fraunces)]">
           Vrei să vezi dacă e pentru tine?
         </p>
         <p className="mt-1 text-sm text-foreground/70">
@@ -73,13 +84,13 @@ export default function DesprePage() {
         </p>
         <Link
           href="/start"
-          className="mt-4 inline-block rounded-lg bg-amber-400 px-5 py-2.5 text-sm font-black text-slate-950 transition hover:bg-amber-500"
+          className="primary-action mt-5"
         >
           Începe gratuit →
         </Link>
       </div>
 
-      <p className="mt-8 text-xs text-muted">
+      <p className="mx-auto mt-8 max-w-3xl text-xs text-muted">
         Ai o întrebare sau o sugestie? Scrie-ne la{" "}
         <a href="mailto:academipython@gmail.com" className="text-brand-dark underline">
           academipython@gmail.com

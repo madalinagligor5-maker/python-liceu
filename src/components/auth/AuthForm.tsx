@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { creeazaClientBrowser } from "@/lib/supabase/client";
 
 type Mod = "login" | "inregistrare";
@@ -113,11 +114,19 @@ export default function AuthForm({ mod }: { mod: Mod }) {
   }
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-16 sm:px-6">
-      <h1 className="text-2xl font-bold text-foreground">
+    <div className="page-shell max-w-5xl">
+      <div className="grid overflow-hidden rounded-[1.75rem] border border-black/10 bg-white/85 shadow-[0_24px_70px_rgba(42,37,29,0.09)] lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative hidden min-h-[42rem] bg-[#172033] lg:block">
+          <Image src="/images/people/elev-python-acasa.png" alt="Elev care învață Python într-un spațiu luminos" fill sizes="45vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#172033]/85 via-[#172033]/10 to-transparent" />
+          <p className="absolute bottom-0 max-w-md p-9 text-2xl font-bold leading-snug text-white [font-family:var(--font-fraunces)]">Un loc calm în care poți încerca, greși și înțelege.</p>
+        </div>
+        <div className="p-7 sm:p-10 lg:p-12">
+      <span className="eyebrow">Contul tău</span>
+      <h1 className="mt-4 text-3xl font-black text-foreground [font-family:var(--font-fraunces)]">
         {mod === "login" ? "Autentificare" : "Creează un cont"}
       </h1>
-      <p className="mt-2 text-sm text-foreground/60">
+      <p className="mt-3 text-sm leading-relaxed text-foreground/60">
         {mod === "login"
           ? "Intră în cont ca să accesezi toate lecțiile."
           : "Creează-ți contul gratuit — abonamentul se activează separat, din pagina de prețuri."}
@@ -134,7 +143,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground/80">
             Email
@@ -145,7 +154,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-brand"
+            className="mt-2 w-full rounded-xl border border-black/10 bg-[#FAF8F3] px-4 py-3 text-sm outline-none transition focus:border-[#2F6191] focus:bg-white"
           />
         </div>
         <div>
@@ -159,7 +168,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             minLength={6}
             value={parola}
             onChange={(e) => setParola(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-brand"
+            className="mt-2 w-full rounded-xl border border-black/10 bg-[#FAF8F3] px-4 py-3 text-sm outline-none transition focus:border-[#2F6191] focus:bg-white"
           />
         </div>
 
@@ -205,7 +214,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         <button
           type="submit"
           disabled={seIncarca}
-          className="w-full rounded-xl bg-amber-400 hover:bg-amber-500 px-4 py-2.5 text-sm font-black text-slate-950 transition disabled:opacity-50 shadow-xs cursor-pointer"
+          className="w-full rounded-xl bg-[#172033] px-4 py-3 text-sm font-black text-white transition hover:bg-[#2A3852] disabled:opacity-50 shadow-sm cursor-pointer"
         >
           {seIncarca ? "Se procesează..." : mod === "login" ? "Autentificare" : "Creează cont"}
         </button>
@@ -220,7 +229,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
       <button
         type="button"
         onClick={handleGoogle}
-        className="mt-4 w-full rounded-xl border border-black/10 px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+        className="mt-4 w-full rounded-xl border border-black/10 px-4 py-3 text-sm font-semibold text-foreground transition hover:border-[#2F6191] hover:text-[#2F6191]"
       >
         Continuă cu Google
       </button>
@@ -241,7 +250,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             </Link>
           </>
         )}
-      </p>
+      </p></div></div>
     </div>
   );
 }

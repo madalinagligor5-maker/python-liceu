@@ -23,34 +23,32 @@ export default function CurriculumPage() {
   const nrSublectii = nrModule * 6;
 
   return (
-    <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen">
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 bg-hero-glow rounded-3xl">
-        <span className="inline-flex rounded-full bg-blue-50 border border-blue-200 px-3.5 py-1 text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">
-          Liceu · clasele IX–XII
-        </span>
-        <h1 className="text-3xl font-black text-[#1E2430] sm:text-4xl [font-family:var(--font-fraunces)]">
+    <div className="min-h-screen text-[#172033]">
+      <div className="page-shell max-w-6xl">
+        <div className="grid items-end gap-10 lg:grid-cols-[1fr_0.7fr]">
+          <div className="page-intro">
+        <span className="eyebrow mb-4">Liceu · clasele IX–XII</span>
+        <h1 className="text-4xl font-black leading-[1.03] text-[#172033] sm:text-6xl [font-family:var(--font-fraunces)]">
           Curriculum complet de Informatică
         </h1>
-        <p className="mt-3 max-w-2xl text-[#525B6C] font-medium text-sm sm:text-base">
-          Curriculumul e harta materiei: capitole (clase) → module → câte 6 pași. Deschide un modul ca să începi lecția.
+        <p className="mt-5 max-w-2xl text-[#5F6673] font-medium leading-relaxed sm:text-lg">
+          Structura cursului pentru clasele IX-XII, organizată ca{" "}
+          <strong className="text-[#172033] font-bold">capitol → modul → sublecții</strong>. Fiecare modul urmează același șablon de 6 sublecții interactive.
         </p>
+          </div>
 
-        <div className="mt-6 rounded-3xl border border-[#EBE7DF] bg-white p-5 text-xs sm:text-sm text-[#1E2430] shadow-xs">
-          <p className="font-extrabold text-[#1E2430] text-sm mb-1">
-            Ce reper folosim
+        <div className="border-l border-black/15 pl-6 text-xs sm:text-sm text-[#172033]">
+          <p className="font-extrabold text-[#2F6191] text-sm mb-2">
+            Reperele folosite pentru structură
           </p>
-          <p className="leading-relaxed text-[#3B4252]">
-            Temele urmează noile programe școlare de Informatică pentru liceu, profilul real, specializarea
-            matematică-informatică, aprobate prin OMEC nr. 6930/19.12.2025 și Ordinul nr. 4.370/2026 (Monitorul Oficial
-            nr. 591 bis/20.VII.2026). Se aplică treptat: clasa a IX-a din anul școlar 2026–2027, apoi câte o clasă pe an.
-            Ordinea lecțiilor de la clasă poate diferi. Platforma nu este un material oficial al Ministerului Educației și
-            nu este un curs de pregătire pentru Bacalaureat; pentru programe, consultă{" "}
+          <p className="leading-relaxed text-[#5F6673]">
+            Temele urmează programele școlare de Informatică pentru liceu aprobate prin OMEC nr. 6930/19.12.2025 și Ordinul nr. 4.370/2026. Ordinea de la clasă poate diferi. Platforma nu este un material oficial al Ministerului Educației; pentru documentele oficiale, consultă{" "}
             <a href="https://www.edu.ro" className="font-semibold underline underline-offset-2" rel="noopener">edu.ro</a>.
           </p>
-        </div>
+        </div></div>
 
         {/* Statistici rapide */}
-        <dl className="mt-8 grid grid-cols-3 gap-4 sm:max-w-md">
+        <dl className="mt-14 grid grid-cols-3 border-y border-black/10">
           {[
             ["Capitole", nrCapitole],
             ["Module", nrModule],
@@ -58,41 +56,49 @@ export default function CurriculumPage() {
           ].map(([eticheta, valoare]) => (
             <div
               key={String(eticheta)}
-              className="rounded-2xl border border-[#EBE7DF] bg-white p-4 text-center shadow-xs"
+              className="border-r border-black/10 px-3 py-6 text-left last:border-r-0 sm:px-6"
             >
-              <dt className="text-[10px] font-extrabold uppercase tracking-widest text-[#525B6C]">{eticheta}</dt>
-              <dd className="text-2xl font-black text-amber-800 mt-1">{valoare}</dd>
+              <dt className="text-[10px] font-extrabold uppercase tracking-widest text-[#5F6673]">{eticheta}</dt>
+              <dd className="mt-1 text-3xl font-black text-[#C6780B] sm:text-4xl [font-family:var(--font-fraunces)]">{valoare}</dd>
             </div>
           ))}
         </dl>
 
         {/* Șablonul lecțiilor */}
-        <section className="mt-12">
-          <h2 className="text-xl font-black text-[#1E2430]">Șablonul celor 6 pași ai unei lecții</h2>
-          <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="mt-20 grid gap-8 lg:grid-cols-[0.65fr_1.35fr]">
+          <div>
+            <span className="eyebrow">Cum înveți</span>
+            <h2 className="mt-4 text-3xl font-black leading-tight text-[#172033] [font-family:var(--font-fraunces)]">Cei 6 pași ai unei lecții</h2>
+            <p className="mt-3 text-sm leading-relaxed text-[#5F6673]">Aceeași structură clară în fiecare modul, ca să știi mereu unde ești și ce urmează.</p>
+          </div>
+          <ol className="border-t border-black/10">
             {structura.sablon_sublectii.map((s, i) => (
               <li
                 key={s.titlu}
-                className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-xs"
+                className="grid grid-cols-[3rem_1fr] gap-3 border-b border-black/10 py-4"
               >
-                <span className="text-xs font-black text-amber-800">Pasul {i + 1}</span>
-                <p className="mt-1 font-bold text-[#1E2430] text-sm">{s.titlu}</p>
-                <p className="mt-1 text-xs text-[#525B6C]">{s.descriere}</p>
+                <span className="font-mono text-xs font-black text-[#C6780B]">0{i + 1}</span>
+                <div><p className="font-bold text-[#172033] text-sm">{s.titlu}</p>
+                <p className="mt-1 text-sm text-[#5F6673]">{s.descriere}</p></div>
               </li>
             ))}
           </ol>
         </section>
 
         {/* Lista capitolelor IX - XII */}
-        <section className="mt-12 space-y-6">
+        <section className="mt-24 space-y-5">
+          <div className="mb-8 max-w-xl">
+            <span className="eyebrow">Clasele IX–XII</span>
+            <h2 className="mt-4 text-3xl font-black [font-family:var(--font-fraunces)]">Alege clasa și continuă de unde ai rămas</h2>
+          </div>
           {capitoleLiceu.map((c) => (
             <article
               key={c.clasa}
-              className="rounded-3xl border border-[#EBE7DF] bg-white p-6 shadow-xs"
+              className="surface-card p-6 sm:p-8"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-wider text-amber-800">
+                  <p className="text-xs font-black uppercase tracking-wider text-amber-600">
                     Capitolul {c.numar} · {numeClasa(c.clasa)}
                   </p>
                   <h3 className="mt-1 text-xl font-black text-[#1E2430]">{c.titlu}</h3>
@@ -102,7 +108,7 @@ export default function CurriculumPage() {
                 </div>
                 <Link
                   href={`/curriculum/${c.clasa}`}
-                  className="rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black px-5 py-2.5 text-xs shadow-xs transition active:scale-95"
+                    className="primary-action text-xs"
                 >
                   Vezi modulele →
                 </Link>
