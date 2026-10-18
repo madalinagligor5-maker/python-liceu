@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest) {
     if (isProtectedRoute) {
       const url = request.nextUrl.clone();
       url.pathname = "/login";
-      url.searchParams.set("redirectTo", pathname);
+      url.searchParams.set("redirect", pathname);
       return NextResponse.redirect(url);
     }
     return response;
@@ -79,7 +79,7 @@ export async function proxy(request: NextRequest) {
   if (isProtectedRoute && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
-    url.searchParams.set("redirectTo", pathname);
+    url.searchParams.set("redirect", pathname);
     return NextResponse.redirect(url);
   }
 

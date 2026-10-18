@@ -16,6 +16,7 @@ export default function robots(): MetadataRoute.Robots {
         "/cont",
         "/login",
         "/inregistrare",
+        "/resetare-parola",
         "/auth/",
         // Zone protejate de proxy (src/proxy.ts), care redirecționează
         // spre /login pe orice vizitator neautentificat — nu au sens indexate.
