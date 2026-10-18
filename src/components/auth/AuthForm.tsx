@@ -8,10 +8,16 @@ import { creeazaClientBrowser } from "@/lib/supabase/client";
 
 type Mod = "login" | "inregistrare";
 
+/** Doar căi interne — un `redirect` extern ar trimite utilizatorul pe alt site. */
+function caleInterna(cale: string | null): string {
+  return cale && cale.startsWith("/") && !cale.startsWith("//") ? cale : "/cont";
+}
+
 export default function AuthForm({ mod }: { mod: Mod }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/cont";
+  // `redirectTo` e forma veche, trimisă de proxy înainte de unificare.
+  const redirectTo = caleInterna(searchParams.get("redirect") ?? searchParams.get("redirectTo"));
   const profesorPrebifat = searchParams.get("profesor") === "1";
 
   const [email, setEmail] = useState("");
@@ -19,13 +25,22 @@ export default function AuthForm({ mod }: { mod: Mod }) {
   const [suntProfesor, setSuntProfesor] = useState(profesorPrebifat);
   const [scoala, setScoala] = useState("");
   const [seIncarca, setSeIncarca] = useState(false);
-  const [eroare, setEroare] = useState<string | null>(null);
+  const [eroare, setEroare] = useState<string | null>(
+    searchParams.get("eroare") === "link"
+      ? "Linkul de confirmare a expirat sau a fost deschis în alt browser. Dacă ai confirmat deja emailul, autentifică-te mai jos; altfel cere un link nou."
+      : null
+  );
   const [mesajSucces, setMesajSucces] = useState<string | null>(null);
   const [cerereProfesorTrimisa, setCerereProfesorTrimisa] = useState(false);
+  // Apare când contul există dar emailul nu e confirmat (sau tocmai s-a creat).
+  const [poateRetrimite, setPoateRetrimite] = useState(searchParams.get("eroare") === "link");
 
   const configuratCorect = Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
+
+  const linkCallback = () =>
+    `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(redirectTo)}`;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,41 +52,115 @@ export default function AuthForm({ mod }: { mod: Mod }) {
     setSeIncarca(true);
     setEroare(null);
     setMesajSucces(null);
+    setPoateRetrimite(false);
 
     const supabase = creeazaClientBrowser();
 
-    if (mod === "login") {
-      const { error } = await supabase.auth.signInWithPassword({ email, password: parola });
-      setSeIncarca(false);
-      if (error) {
-        setEroare(traduError(error.message));
-        return;
-      }
-      router.push(redirectTo);
-      router.refresh();
-    } else {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password: parola,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(
-            redirectTo
-          )}`,
-          data: suntProfesor
-            ? { rol_solicitat: "profesor_in_asteptare", scoala }
-            : undefined,
-        },
-      });
-      setSeIncarca(false);
-      if (error) {
-        setEroare(traduError(error.message));
-        return;
-      }
-      if (suntProfesor) {
-        setCerereProfesorTrimisa(true);
+    try {
+      if (mod === "login") {
+        const { error } = await supabase.auth.signInWithPassword({ email, password: parola });
+        if (error) {
+          setEroare(traduError(error.message));
+          setPoateRetrimite(esteEmailNeconfirmat(error.message));
+          return;
+        }
+        router.push(redirectTo);
+        router.refresh();
       } else {
-        setMesajSucces("Cont creat! Verifică-ți emailul pentru a confirma adresa înainte de autentificare.");
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password: parola,
+          options: {
+            emailRedirectTo: linkCallback(),
+            data: suntProfesor
+              ? { rol_solicitat: "profesor_in_asteptare", scoala }
+              : undefined,
+          },
+        });
+        if (error) {
+          setEroare(traduError(error.message));
+          return;
+        }
+        // Pentru un email deja înregistrat, Supabase nu întoarce eroare (ca să nu
+        // dezvăluie ce conturi există) și nici nu trimite email — doar un user
+        // fără identități. Fără verificarea asta, omul aștepta un email care nu vine.
+        if (data.user && data.user.identities?.length === 0) {
+          setEroare(
+            "Există deja un cont cu acest email. Autentifică-te sau folosește „Ai uitat parola?” din pagina de autentificare."
+          );
+          return;
+        }
+        // Confirmarea pe email e dezactivată în Supabase: contul e deja activ.
+        if (data.session && !suntProfesor) {
+          router.push(redirectTo);
+          router.refresh();
+          return;
+        }
+        if (suntProfesor) {
+          setCerereProfesorTrimisa(true);
+        } else {
+          setMesajSucces(
+            "Cont creat! Ți-am trimis un email de confirmare — deschide linkul din el, apoi autentifică-te. Verifică și folderul Spam / Promoții."
+          );
+          setPoateRetrimite(true);
+        }
       }
+    } catch {
+      setEroare("Nu ne-am putut conecta la server. Verifică conexiunea la internet și încearcă din nou.");
+    } finally {
+      setSeIncarca(false);
+    }
+  }
+
+  async function handleRetrimite() {
+    if (!email) {
+      setEroare("Scrie adresa de email mai sus, apoi apasă din nou.");
+      return;
+    }
+    setSeIncarca(true);
+    setEroare(null);
+    try {
+      const { error } = await creeazaClientBrowser().auth.resend({
+        type: "signup",
+        email,
+        options: { emailRedirectTo: linkCallback() },
+      });
+      if (error) {
+        setEroare(traduError(error.message));
+        return;
+      }
+      setMesajSucces(`Am retrimis emailul de confirmare la ${email}. Verifică și folderul Spam / Promoții.`);
+    } catch {
+      setEroare("Nu ne-am putut conecta la server. Verifică conexiunea la internet și încearcă din nou.");
+    } finally {
+      setSeIncarca(false);
+    }
+  }
+
+  async function handleParolaUitata() {
+    if (!configuratCorect) return;
+    if (!email) {
+      setEroare("Scrie adresa de email mai sus, apoi apasă „Ai uitat parola?”.");
+      return;
+    }
+    setSeIncarca(true);
+    setEroare(null);
+    setMesajSucces(null);
+    try {
+      const { error } = await creeazaClientBrowser().auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent("/resetare-parola")}`,
+      });
+      if (error) {
+        setEroare(traduError(error.message));
+        return;
+      }
+      setMesajSucces(
+        `Dacă există un cont pentru ${email}, ți-am trimis un link de resetare a parolei. Deschide-l în acest browser.`
+      );
+    } catch {
+      setEroare("Nu ne-am putut conecta la server. Verifică conexiunea la internet și încearcă din nou.");
+    } finally {
+      setSeIncarca(false);
     }
   }
 
@@ -80,15 +169,16 @@ export default function AuthForm({ mod }: { mod: Mod }) {
       setEroare("Autentificarea nu este încă configurată pe acest mediu (lipsesc cheile Supabase).");
       return;
     }
-    const supabase = creeazaClientBrowser();
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback?redirect=${encodeURIComponent(
-          redirectTo
-        )}`,
-      },
-    });
+    setEroare(null);
+    try {
+      const { error } = await creeazaClientBrowser().auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: linkCallback() },
+      });
+      if (error) setEroare(traduError(error.message));
+    } catch {
+      setEroare("Nu ne-am putut conecta la server. Verifică conexiunea la internet și încearcă din nou.");
+    }
   }
 
   if (cerereProfesorTrimisa) {
@@ -152,6 +242,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             id="email"
             type="email"
             required
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-2 w-full rounded-xl border border-black/10 bg-[#FAF8F3] px-4 py-3 text-sm outline-none transition focus:border-[#2F6191] focus:bg-white"
@@ -166,10 +257,24 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             type="password"
             required
             minLength={6}
+            autoComplete={mod === "login" ? "current-password" : "new-password"}
             value={parola}
             onChange={(e) => setParola(e.target.value)}
             className="mt-2 w-full rounded-xl border border-black/10 bg-[#FAF8F3] px-4 py-3 text-sm outline-none transition focus:border-[#2F6191] focus:bg-white"
           />
+          {mod === "inregistrare" && (
+            <p className="mt-1.5 text-xs text-foreground/50">Minimum 6 caractere.</p>
+          )}
+          {mod === "login" && (
+            <button
+              type="button"
+              onClick={handleParolaUitata}
+              disabled={seIncarca}
+              className="mt-2 text-xs font-semibold text-brand hover:underline disabled:opacity-50"
+            >
+              Ai uitat parola?
+            </button>
+          )}
         </div>
 
         {mod === "inregistrare" && (
@@ -208,8 +313,18 @@ export default function AuthForm({ mod }: { mod: Mod }) {
           </div>
         )}
 
-        {eroare && <p className="text-sm text-red-600">{eroare}</p>}
-        {mesajSucces && <p className="text-sm text-success">{mesajSucces}</p>}
+        {eroare && <p role="alert" className="text-sm text-red-600">{eroare}</p>}
+        {mesajSucces && <p role="status" className="text-sm text-success">{mesajSucces}</p>}
+        {poateRetrimite && (
+          <button
+            type="button"
+            onClick={handleRetrimite}
+            disabled={seIncarca}
+            className="text-sm font-semibold text-brand hover:underline disabled:opacity-50"
+          >
+            Nu a venit emailul? Retrimite-l
+          </button>
+        )}
 
         <button
           type="submit"
@@ -255,11 +370,27 @@ export default function AuthForm({ mod }: { mod: Mod }) {
   );
 }
 
+function esteEmailNeconfirmat(mesaj: string): boolean {
+  return mesaj.toLowerCase().includes("email not confirmed");
+}
+
 function traduError(mesaj: string): string {
+  const m = mesaj.toLowerCase();
+  if (esteEmailNeconfirmat(mesaj))
+    return "Emailul nu e confirmat încă. Deschide linkul din emailul de confirmare (verifică și Spam / Promoții) sau cere unul nou mai jos.";
   if (mesaj.includes("Invalid login credentials")) return "Email sau parolă incorectă.";
   if (mesaj.includes("User already registered")) return "Există deja un cont cu acest email.";
   if (mesaj.includes("Password should be")) return "Parola trebuie să aibă cel puțin 6 caractere.";
   if (mesaj.toLowerCase().includes("email rate limit exceeded"))
     return "S-au trimis prea multe emailuri de confirmare într-un timp scurt. Așteaptă câteva minute și încearcă din nou.";
+  if (m.includes("for security purposes"))
+    return "Ai cerut deja un email acum câteva secunde. Așteaptă un minut și încearcă din nou.";
+  if (m.includes("unable to validate email") || m.includes("invalid format") || m.includes("is invalid"))
+    return "Adresa de email nu pare validă. Verifică dacă e scrisă corect.";
+  if (m.includes("signups not allowed")) return "Înregistrarea de conturi noi e oprită momentan.";
+  if (m.includes("database error")) return "Contul nu a putut fi creat din cauza unei erori pe server. Încearcă din nou peste câteva minute.";
+  if (m.includes("failed to fetch") || m.includes("network"))
+    return "Nu ne-am putut conecta la server. Verifică conexiunea la internet și încearcă din nou.";
+  if (m.includes("provider is not enabled")) return "Autentificarea cu Google nu e activată momentan. Folosește emailul și parola.";
   return mesaj;
 }
