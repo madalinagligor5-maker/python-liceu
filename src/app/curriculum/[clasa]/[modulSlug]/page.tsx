@@ -22,11 +22,11 @@ import { NIVELE } from "@/lib/exercitii-tipuri";
 import { getProgresUtilizator } from "@/lib/progres";
 import { getExercitiiRezolvateCont } from "@/lib/exercitiiCont";
 import PasiModul, { type PasModul } from "@/components/PasiModul";
-import type { Bloc } from "@/lib/markdownMini";
 import { getPredicțiiClasa } from "@/lib/predicții";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
+import { descriereModul, subiecteDinConcept, termeniPython, textModul, titluModul } from "@/lib/seoModul";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -56,25 +56,10 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return metadatePagina({
-    titlu: `${modul.cod} ${modul.titlu}`,
-    descriere: `Modul pentru ${numeClasaInText(clasa)}, în 6 pași: recapitulare, concept nou, citește și prezice, exerciții ghidate, exerciții independente, verificare.`,
-    cale: `/curriculum/${clasa}/${modulSlug}`,
+    titlu: titluModul(modul, clasa),
+    descriere: descriereModul(modul, clasa),
+    cale: hrefModul(modul),
   });
-}
-
-/** Titlurile cardurilor din pasul „Concept nou" — ce se învață concret. */
-function subiecteDinConcept(blocuri: Bloc[]): string[] {
-  const titluri: string[] = [];
-  for (const b of blocuri) {
-    if (b.tip !== "card" && b.tip !== "text") continue;
-    const m = b.html.match(/<div class="bloc-card--titlu">(.*?)<\/div>|<h3[^>]*>(.*?)<\/h3>/);
-    const brut = m?.[1] ?? m?.[2];
-    if (!brut) continue;
-    const text = brut.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim();
-    const curat = text.replace(/^\d+\.\s*/, "");
-    if (curat && !/^atenție|^atentie|^sfaturi/i.test(curat)) titluri.push(curat);
-  }
-  return titluri.slice(0, 5);
 }
 
 /** Cunoștințele necesare înainte de modul, deduse din ordinea curriculumului. */
@@ -118,10 +103,16 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
   const modulC = await getModulContinut(modul.cod);
   const areContinut = Boolean(modulC && modulC.sublectii.length > 0);
 
-  // Ce vei învăța: titlurile din pasul „Concept nou" (doar dacă ai acces la
-  // conținut — altfel nu citim deloc conținutul plătit).
-  const conceptC = areAcces ? modulC?.sublectii.find((s) => s.cod.endsWith(".2")) : undefined;
+  // Ce vei învăța: titlurile temelor și termenii Python din pasul „Concept
+  // nou". Se afișează pentru orice modul (și fără abonament): sunt doar
+  // titluri și cuvinte-cheie — echivalentul unei programe —, nu explicațiile
+  // sau exercițiile lecției. Pagina de modul e pagina indexabilă a lecției,
+  // iar fără ele modulele cu abonament nu aveau niciun conținut propriu.
+  const conceptC = modulC?.sublectii.find((s) => s.cod.endsWith(".2"));
   const subiecte = conceptC ? subiecteDinConcept(conceptC.blocuri) : [];
+  const termeni = conceptC ? termeniPython(conceptC.blocuri) : [];
+  const textManual = textModul(modul.cod);
+  const nivelRecomandat = `${numeClasa(clasa)} — ${capitol.titlu}`;
 
   // Progresul salvat în cont (predicții corecte, teste trecute).
   const progres = user ? await getProgresUtilizator(user.id) : null;
@@ -211,11 +202,20 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
       <p className="mt-2 text-sm text-foreground/70">
         {capitol.titlu} · 6 pași
       </p>
+      {textManual.intro && (
+        <p className="mt-4 text-base leading-relaxed text-foreground/85">{textManual.intro}</p>
+      )}
 
       <section className="mt-6 grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-border bg-white p-4">
           <h2 className="text-sm font-black text-foreground">Ce vei putea face la final</h2>
-          {subiecte.length > 0 ? (
+          {textManual.rezultate && textManual.rezultate.length > 0 ? (
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
+              {textManual.rezultate.map((r) => (
+                <li key={r}>{r}</li>
+              ))}
+            </ul>
+          ) : subiecte.length > 0 ? (
             <>
             <p className="mt-2 text-sm text-foreground/80">
               Să explici și să folosești în cod ideile din „{modul.titlu}”, verificând singur rezultatul. Temele lecției:
@@ -246,6 +246,25 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
             Nu afișăm o durată estimată: ritmul diferă mult de la elev la elev.
           </p>
         </div>
+        <div className="rounded-2xl border border-border bg-white p-4">
+          <h2 className="text-sm font-black text-foreground">Nivel recomandat</h2>
+          <p className="mt-2 text-sm text-foreground/80">{nivelRecomandat}</p>
+          <p className="mt-2 text-sm text-foreground/80">
+            {ETICHETE_ACCES[nivelAcces].explicatie}
+          </p>
+        </div>
+        {termeni.length > 0 && (
+          <div className="rounded-2xl border border-border bg-white p-4">
+            <h2 className="text-sm font-black text-foreground">Termeni Python din lecție</h2>
+            <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Termeni Python din lecție">
+              {termeni.map((t) => (
+                <li key={t}>
+                  <code className="rounded-md bg-black/[0.05] px-1.5 py-0.5 text-xs text-foreground">{t}</code>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {!areAcces && (

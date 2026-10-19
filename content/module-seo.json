@@ -1,0 +1,4 @@
+{
+  "_nota": "TODO(owner): texte scrise de un om pentru paginile de modul, cheia = codul modulului din structura_curriculum.json (ex. \"1.1\", \"P7.1\"). Câmpuri opționale: \"intro\" (2-3 propoziții despre ce învață elevul) și \"rezultate\" (listă cu 3-5 rezultate de învățare, formulate ca „Poți să ...”). Un modul fără intrare aici afișează doar conținutul generat din date (temele lecției, termenii Python, pașii). Modificarea acestui fișier nu cere cod nou.",
+  "module": {}
+}

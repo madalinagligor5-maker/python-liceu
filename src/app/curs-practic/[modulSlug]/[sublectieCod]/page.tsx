@@ -39,26 +39,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { modulSlug, sublectieCod } = await params;
   const modul = getModulCurs(modulSlug);
-  if (!modul) return {};
+  const sublectieInfo = modul?.sublectii.find((s) => s.cod === sublectieCod);
+  if (!modul || !sublectieInfo) return {};
 
-  if (!modul.gratuit) {
-    const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
-    if (!sublectieInfo) return {};
-    return metadatePagina({
-      titlu: `${sublectieCod} ${sublectieInfo.titlu}`,
-      descriere: `${sublectieInfo.descriere} — necesită abonamentul Cursului practic de Python.`,
-      cale: `/curs-practic/${modulSlug}/${sublectieCod}`,
-      noindex: true,
-    });
-  }
-
-  const continut = await getSublectieContinutCurs(sublectieCod);
-  if (!continut) return {};
-
+  // Ca în curriculum: pagina indexabilă e modulul, pașii au noindex, follow
+  // și canonical către modul.
   return metadatePagina({
-    titlu: `${sublectieCod} ${continut.titlu}`,
-    descriere: `Sublecția ${sublectieCod} din modulul ${modul.titlu}, Curs practic de Python.`,
-    cale: `/curs-practic/${modulSlug}/${sublectieCod}`,
+    titlu: `${sublectieInfo.titlu} — ${modul.titlu} (Curs practic de Python)`,
+    descriere: `Pasul „${sublectieInfo.titlu}” din modulul „${modul.titlu}”, Curs practic de Python: ${sublectieInfo.descriere}`,
+    cale: `/curs-practic/${modul.slug}/${sublectieCod}`,
+    canonical: `/curs-practic/${modul.slug}`,
+    noindex: true,
   });
 }
 
