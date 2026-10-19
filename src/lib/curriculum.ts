@@ -82,6 +82,13 @@ export function numeClasa(clasa: string): string {
   return `Clasa a ${clasa}-a`;
 }
 
+/** Numele clasei în interiorul unei propoziții: „clasa a VII-a" (nu
+ *  `numeClasa().toLowerCase()`, care strica cifrele romane: „clasa a vii-a"). */
+export function numeClasaInText(clasa: string): string {
+  const nume = numeClasa(clasa);
+  return nume.startsWith("Clasa") ? `c${nume.slice(1)}` : nume;
+}
+
 /** Variantă scurtă, pentru butoane/pastile: "IX" -> "Clasa IX", "P7" -> "7 ani". */
 export function numeClasaScurt(clasa: string): string {
   const copii = clasa.match(/^P(\d+)$/i);

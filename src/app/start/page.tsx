@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import CarduriTrasee from "@/components/CarduriTrasee";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Începe gratuit — alege traseul",
-  description:
-    "Alege traseul potrivit — Kids, gimnaziu, liceu sau curs practic — și începe direct prima lecție gratuită de Python, în browser.",
-  alternates: { canonical: "/start" },
-};
+export const metadata = metadatePagina({
+  titlu: "Începe gratuit — alege traseul",
+  descriere: "Alege traseul potrivit — Kids, gimnaziu, liceu sau curs practic — și începe direct prima lecție gratuită de Python, în browser.",
+  cale: "/start",
+});
 
 export default function StartPage() {
   return (

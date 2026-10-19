@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import PrintButton from "@/components/PrintButton";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Fișe Didactice Printabile — Kids",
-  description: "Descarcă și printează fișe didactice unplugged pentru învățarea logicii de programare pe hârtie.",
-  alternates: { canonical: "/kids/fise-print" },
-};
+export const metadata = metadatePagina({
+  titlu: "Fișe Didactice Printabile — Kids",
+  descriere: "Descarcă și printează fișe didactice unplugged pentru învățarea logicii de programare pe hârtie.",
+  cale: "/kids/fise-print",
+});
 
 export default function KidsPrintPage() {
   return (

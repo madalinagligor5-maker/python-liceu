@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Termeni și Condiții",
-  description: "Termenii și condițiile de utilizare a platformei educaționale Academia Python.",
-  alternates: { canonical: "/termeni-si-conditii" },
-};
+export const metadata = metadatePagina({
+  titlu: "Termeni și Condiții",
+  descriere: "Termenii și condițiile de utilizare a platformei educaționale Academia Python.",
+  cale: "/termeni-si-conditii",
+});
 
 export default function TermeniSiConditiiPage() {
   return (

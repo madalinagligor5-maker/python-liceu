@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { getToateArticolele } from "@/lib/blog";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Ghiduri Python în română pentru începători, elevi și părinți: variabile, if, for, liste, funcții, erori frecvente și probleme rezolvate.",
-  alternates: { canonical: "/blog" },
-};
+export const metadata = metadatePagina({
+  titlu: "Blog",
+  descriere: "Ghiduri Python în română pentru începători, elevi și părinți: variabile, if, for, liste, funcții, erori frecvente și probleme rezolvate.",
+  cale: "/blog",
+});
 
 function formateazaData(data: string): string {
   if (!data) return "";

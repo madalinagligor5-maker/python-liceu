@@ -7,6 +7,7 @@ import HeaderConditional from "@/components/HeaderConditional";
 import UrmarireEvenimente from "@/components/UrmarireEvenimente";
 import ConsimtamantCookie from "@/components/ConsimtamantCookie";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { IMAGINE_OG_IMPLICITA, NUME_SITE, SITE_URL } from "@/lib/seo";
 
 const GA_ID = "G-F0158XN3VT";
 
@@ -26,54 +27,28 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+// Valorile de aici sunt doar rezerva pentru rutele fără metadate proprii.
+// Fiecare pagină publică își setează titlul, descrierea, canonical-ul, Open
+// Graph și Twitter prin metadatePagina() (src/lib/seo.ts). Intenționat fără
+// `alternates.canonical` aici: moștenit, trimitea paginile fără canonical
+// propriu (ex. /kids/junior) spre homepage. Fără `keywords`: Google le ignoră.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.academiapython.ro"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Academia Python — Învață Python, clasele VII-XII",
-    template: "%s — Academia Python",
+    default: "Academia Python",
+    template: `%s | ${NUME_SITE}`,
   },
   description:
-    "Platformă educațională pentru disciplina Informatică (Python), conform programei oficiale de gimnaziu și liceu. Drum de învățare vizual, exerciții interactive în browser — gimnaziul (clasele VII-VIII) e complet gratuit, primele 3 module de liceu la fel.",
-  keywords: [
-    "Python liceu",
-    "Python gimnaziu",
-    "informatică liceu",
-    "informatică gimnaziu",
-    "Python clasa a VII-a",
-    "Python clasa a VIII-a",
-    "Python clasa a IX-a",
-    "Python clasa a X-a",
-    "Python clasa a XI-a",
-    "Python clasa a XII-a",
-    "pregătire bacalaureat informatică",
-    "programe liceale informatică 2026",
-  ],
-  alternates: {
-    canonical: "/",
-  },
+    "Informatică în Python pentru clasele VII–XII, conform programei oficiale. Exerciții în browser; gimnaziul e gratuit, la fel primele 3 module de liceu.",
   openGraph: {
     type: "website",
     locale: "ro_RO",
-    url: "https://www.academiapython.ro",
-    siteName: "Academia Python",
-    title: "Academia Python — Învață Python, clasele VII-XII",
-    description:
-      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele VII–XII, conform programei de Informatică. Gimnaziul e complet gratuit.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Academia Python — învață Python, gimnaziu și liceu",
-      },
-    ],
+    siteName: NUME_SITE,
+    images: [{ url: IMAGINE_OG_IMPLICITA, width: 1200, height: 630, alt: NUME_SITE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Academia Python — Învață Python, clasele VII-XII",
-    description:
-      "Învață Python direct în browser, fără instalări. Lecții interactive pe clasele VII–XII.",
-    images: ["/og-image.png"],
+    images: [IMAGINE_OG_IMPLICITA],
   },
 };
 

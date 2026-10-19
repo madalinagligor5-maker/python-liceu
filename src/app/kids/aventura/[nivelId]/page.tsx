@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import KidsAdventureClient from "@/components/KidsAdventureClient";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { nivelId: string };
 
@@ -12,11 +13,11 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { nivelId } = await params;
-  return {
-    title: "Aventura lui Pippy — Kids",
-    description: "Rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.",
-    alternates: { canonical: `/kids/aventura/${nivelId}` },
-  };
+  return metadatePagina({
+    titlu: "Aventura lui Pippy — Kids",
+    descriere: "Rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.",
+    cale: `/kids/aventura/${nivelId}`,
+  });
 }
 
 export default async function KidsLevelPage({ params }: { params: Promise<Params> }) {

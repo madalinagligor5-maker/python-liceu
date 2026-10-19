@@ -24,6 +24,7 @@ import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
 import ScrollReveal from "@/components/ScrollReveal";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { modulSlug: string; sublectieCod: string };
 
@@ -43,22 +44,22 @@ export async function generateMetadata({
   if (!modul.gratuit) {
     const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
     if (!sublectieInfo) return {};
-    return {
-      title: `${sublectieCod} ${sublectieInfo.titlu}`,
-      description: `${sublectieInfo.descriere} — necesită abonamentul Cursului practic de Python.`,
-      alternates: { canonical: `/curs-practic/${modulSlug}/${sublectieCod}` },
-      robots: { index: false, follow: true },
-    };
+    return metadatePagina({
+      titlu: `${sublectieCod} ${sublectieInfo.titlu}`,
+      descriere: `${sublectieInfo.descriere} — necesită abonamentul Cursului practic de Python.`,
+      cale: `/curs-practic/${modulSlug}/${sublectieCod}`,
+      noindex: true,
+    });
   }
 
   const continut = await getSublectieContinutCurs(sublectieCod);
   if (!continut) return {};
 
-  return {
-    title: `${sublectieCod} ${continut.titlu}`,
-    description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}, Curs practic de Python.`,
-    alternates: { canonical: `/curs-practic/${modulSlug}/${sublectieCod}` },
-  };
+  return metadatePagina({
+    titlu: `${sublectieCod} ${continut.titlu}`,
+    descriere: `Sublecția ${sublectieCod} din modulul ${modul.titlu}, Curs practic de Python.`,
+    cale: `/curs-practic/${modulSlug}/${sublectieCod}`,
+  });
 }
 
 export default async function SublectieCursPage({ params }: { params: Promise<Params> }) {

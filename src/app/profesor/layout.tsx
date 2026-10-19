@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import type { Metadata } from "next";
+import { FARA_INDEXARE } from "@/lib/seo";
+
+// Zonă privată: nu se indexează (robots.txt o blochează deja la crawl).
+export const metadata: Metadata = { robots: FARA_INDEXARE };
 
 const LINKURI_PROFESOR = [
   { href: "/profesor/planificari", label: "Planificări" },

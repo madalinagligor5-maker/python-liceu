@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { capitole, esteCapitolCopii, getCapitol, hrefModul, ICOANE_SUBLECTIE, numeClasa, numeClasaScurt, radacinaClasa } from "@/lib/curriculum";
+import { capitole, esteCapitolCopii, getCapitol, hrefModul, ICOANE_SUBLECTIE, numeClasa, numeClasaScurt, radacinaClasa, numeClasaInText } from "@/lib/curriculum";
 import { ETICHETE_ACCES, nivelAccesLectii } from "@/lib/acces";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string };
 
@@ -20,13 +21,13 @@ export async function generateMetadata({
   const capitol = getCapitol(clasa);
   if (!capitol) return {};
 
-  return {
-    title: esteCapitolCopii(capitol.clasa) ? capitol.titlu : `${numeClasa(capitol.clasa)}: ${capitol.titlu}`,
-    description: esteCapitolCopii(capitol.clasa)
+  return metadatePagina({
+    titlu: esteCapitolCopii(capitol.clasa) ? capitol.titlu : `${numeClasa(capitol.clasa)}: ${capitol.titlu}`,
+    descriere: esteCapitolCopii(capitol.clasa)
       ? `${capitol.module.length} module de Python pentru copii (${numeClasaScurt(capitol.clasa)}), gratuite, direct în browser.`
-      : `${capitol.module.length} module de Informatică (Python) pentru ${numeClasa(capitol.clasa).toLowerCase()}, organizate pe pași.`,
-    alternates: { canonical: `/curriculum/${clasa}` },
-  };
+      : `${capitol.module.length} module de Informatică (Python) pentru ${numeClasaInText(capitol.clasa)}, organizate pe pași.`,
+    cale: `/curriculum/${capitol.clasa}`,
+  });
 }
 
 export default async function CapitolPage({ params }: { params: Promise<Params> }) {

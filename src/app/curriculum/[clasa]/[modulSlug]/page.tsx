@@ -14,6 +14,7 @@ import {
   numeClasa,
   radacinaClasa,
   TOATE_CLASELE,
+  numeClasaInText,
 } from "@/lib/curriculum";
 import { ETICHETE_ACCES, exercitiiPracticeLiberAccesibile, lectiiLiberAccesibile, nivelAccesLectii } from "@/lib/acces";
 import { getExercitiiSublectie } from "@/lib/exercitii";
@@ -25,6 +26,7 @@ import type { Bloc } from "@/lib/markdownMini";
 import { getPredicțiiClasa } from "@/lib/predicții";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -53,11 +55,11 @@ export async function generateMetadata({
   const modul = getModul(clasa, modulSlug);
   if (!modul) return {};
 
-  return {
-    title: `${modul.cod} ${modul.titlu}`,
-    description: `Modul pentru ${numeClasa(clasa).toLowerCase()}, în 6 pași: recapitulare, concept nou, citește și prezice, exerciții ghidate, exerciții independente, verificare.`,
-    alternates: { canonical: `/curriculum/${clasa}/${modulSlug}` },
-  };
+  return metadatePagina({
+    titlu: `${modul.cod} ${modul.titlu}`,
+    descriere: `Modul pentru ${numeClasaInText(clasa)}, în 6 pași: recapitulare, concept nou, citește și prezice, exerciții ghidate, exerciții independente, verificare.`,
+    cale: `/curriculum/${clasa}/${modulSlug}`,
+  });
 }
 
 /** Titlurile cardurilor din pasul „Concept nou" — ce se învață concret. */
@@ -95,7 +97,7 @@ function prerechizite(clasa: string, numar: number, anterior?: { cod: string; ti
     };
   }
   const precedenta = TOATE_CLASELE[i - 1];
-  return { text: "Materia din", link: { href: `/curriculum/${precedenta}`, eticheta: numeClasa(precedenta).toLowerCase() } };
+  return { text: "Materia din", link: { href: `/curriculum/${precedenta}`, eticheta: numeClasaInText(precedenta) } };
 }
 
 export default async function ModulPage({ params }: { params: Promise<Params> }) {

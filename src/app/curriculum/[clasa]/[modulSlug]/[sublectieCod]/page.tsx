@@ -25,6 +25,7 @@ import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -53,22 +54,22 @@ export async function generateMetadata({
   if (!esteGratuit) {
     const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
     if (!sublectieInfo) return {};
-    return {
-      title: `${sublectieCod} ${sublectieInfo.titlu}`,
-      description: `${sublectieInfo.descriere} — necesită abonament activ.`,
-      alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
-      robots: { index: false, follow: true },
-    };
+    return metadatePagina({
+      titlu: `${sublectieCod} ${sublectieInfo.titlu}`,
+      descriere: `${sublectieInfo.descriere} — necesită abonament activ.`,
+      cale: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}`,
+      noindex: true,
+    });
   }
 
   const continut = await getSublectieContinut(sublectieCod);
   if (!continut) return {};
 
-  return {
-    title: `${sublectieCod} ${continut.titlu}`,
-    description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}.`,
-    alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
-  };
+  return metadatePagina({
+    titlu: `${sublectieCod} ${continut.titlu}`,
+    descriere: `Sublecția ${sublectieCod} din modulul ${modul.titlu}.`,
+    cale: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}`,
+  });
 }
 
 export default async function SublectiePage({ params }: { params: Promise<Params> }) {

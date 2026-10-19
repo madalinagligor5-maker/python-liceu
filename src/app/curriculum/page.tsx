@@ -1,14 +1,13 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { capitole, numeClasa, structura } from "@/lib/curriculum";
 import ModuleListCollapsible from "@/components/ModuleListCollapsible";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Curriculum complet",
-  description:
-    "Structura cursului de Informatică (Python) pentru liceu, clasele IX–XII: 4 capitole, 88 de module, fiecare în 6 pași.",
-  alternates: { canonical: "/curriculum" },
-};
+export const metadata = metadatePagina({
+  titlu: "Curriculum complet",
+  descriere: "Structura cursului de Informatică (Python) pentru liceu, clasele IX–XII: 4 capitole, 88 de module, fiecare în 6 pași.",
+  cale: "/curriculum",
+});
 
 export default function CurriculumPage() {
   // Pagina asta e legată explicit de Ordinul 4.370/2026 (profil

@@ -5,6 +5,7 @@ import { getArticolDupaSlug, getToateArticolele } from "@/lib/blog";
 import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -24,19 +25,15 @@ export async function generateMetadata({
 
   const titluPagina = articol.titluSeo || articol.titlu;
 
-  return {
-    title: titluPagina,
-    description: articol.descriere,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: {
-      type: "article",
-      title: titluPagina,
-      description: articol.descriere,
-      url: `/blog/${slug}`,
-      publishedTime: articol.data || undefined,
-      modifiedTime: articol.actualizat || articol.data || undefined,
-    },
-  };
+  return metadatePagina({
+    titlu: titluPagina,
+    descriere: articol.descriere,
+    cale: `/blog/${articol.slug}`,
+    tip: "article",
+    publicatLa: articol.data,
+    modificatLa: articol.actualizat,
+    imagineImplicita: false,
+  });
 }
 
 function formateazaData(data: string): string {

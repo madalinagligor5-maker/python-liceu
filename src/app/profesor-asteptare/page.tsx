@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { FARA_INDEXARE } from "@/lib/seo";
 
-export const metadata = { title: "Cerere în așteptare" };
+export const metadata = { title: "Cerere în așteptare", robots: FARA_INDEXARE };
 
 export default async function AsteptarePage() {
   const { user, meta } = await getUtilizatorCurent();

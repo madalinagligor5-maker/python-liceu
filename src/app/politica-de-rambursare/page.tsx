@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Politică de Anulare și Rambursare",
-  description: "Politica de anulare a abonamentelor și garanția necondiționată de rambursare în 14 zile pentru Academia Python.",
-  alternates: { canonical: "/politica-de-rambursare" },
-};
+export const metadata = metadatePagina({
+  titlu: "Politică de Anulare și Rambursare",
+  descriere: "Politica de anulare a abonamentelor și garanția necondiționată de rambursare în 14 zile pentru Academia Python.",
+  cale: "/politica-de-rambursare",
+});
 
 export default function PoliticaRambursarePage() {
   return (

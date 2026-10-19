@@ -12,6 +12,15 @@ import CarduriTrasee from "@/components/CarduriTrasee";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getToateArticolele } from "@/lib/blog";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
+import { metadatePagina } from "@/lib/seo";
+
+export const metadata = metadatePagina({
+  titlu: "Python pentru elevi: Informatică VII–XII | Academia Python",
+  titluAbsolut: true,
+  descriere:
+    "Informatică în Python pentru clasele VII–XII, conform programei oficiale. Exerciții în browser; gimnaziul e gratuit, la fel primele 3 module de liceu.",
+  cale: "/",
+});
 
 const FAQ = [
   {

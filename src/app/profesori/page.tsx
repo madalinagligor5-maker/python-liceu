@@ -1,13 +1,12 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import Image from "next/image";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Pentru profesori",
-  description:
-    "Planificări calendaristice, materiale, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
-  alternates: { canonical: "/profesori" },
-};
+export const metadata = metadatePagina({
+  titlu: "Pentru profesori",
+  descriere: "Planificări calendaristice, materiale, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
+  cale: "/profesori",
+});
 
 export default function ProfesoriPage() {
   return (

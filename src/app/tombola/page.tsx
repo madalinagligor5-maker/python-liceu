@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import TombolaForm from "@/components/TombolaForm";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Tombolă",
-  description:
-    "Lasă o recenzie după perioada de probă de 7 zile și intră la tragerea lunară pentru 6 luni de abonament gratuit.",
-  alternates: { canonical: "/tombola" },
-};
+export const metadata = metadatePagina({
+  titlu: "Tombolă",
+  descriere: "Lasă o recenzie după perioada de probă de 7 zile și intră la tragerea lunară pentru 6 luni de abonament gratuit.",
+  cale: "/tombola",
+});
 
 export default function TombolaPage() {
   return (
