@@ -42,10 +42,10 @@ export default async function FisaModulPage({
       <h1 className="mt-2 text-xl font-bold text-foreground">
         Fișă de lucru — {modul.cod} {modul.titlu}
       </h1>
-      <p className="mt-1 text-sm text-foreground/60">Clasa a {clasa}-a</p>
+      <p className="mt-1 text-sm text-foreground/65">Clasa a {clasa}-a</p>
 
       {grupeExercitii.length === 0 ? (
-        <p className="mt-6 text-sm text-foreground/50">
+        <p className="mt-6 text-sm text-foreground/65">
           Acest modul nu are încă exerciții încărcate în bancă.
         </p>
       ) : (

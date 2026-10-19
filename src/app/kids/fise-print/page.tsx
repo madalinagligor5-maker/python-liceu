@@ -105,7 +105,7 @@ export default function KidsPrintPage() {
 
             {/* Casete de rezolvare */}
             <div className="mt-8 sm:mt-10">
-              <h3 className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <h3 className="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Codul tău de pași (completează cu săgeți):
               </h3>
               <div className="mt-3 flex flex-wrap gap-2 sm:gap-3">
@@ -190,7 +190,7 @@ export default function KidsPrintPage() {
 
             {/* Spațiu rezolvare */}
             <div className="mt-8 sm:mt-10">
-              <h3 className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <h3 className="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Scrie planul tău de cod cu bucle repetă:
               </h3>
               <div className="mt-3 border border-slate-300 rounded-2xl h-40 bg-slate-50 p-4">
@@ -239,7 +239,7 @@ export default function KidsPrintPage() {
             </div>
 
             <div className="mt-8 sm:mt-10">
-              <h3 className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <h3 className="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Completează regula de decizie (Dacă... Atunci):
               </h3>
               <div className="mt-3 space-y-2.5 font-mono text-xs">
@@ -289,7 +289,7 @@ export default function KidsPrintPage() {
             </div>
 
             <div className="mt-8 sm:mt-10">
-              <h3 className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <h3 className="text-[10px] sm:text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Valoarea variabilei `stele` la fiecare pas:
               </h3>
               <div className="mt-3 grid grid-cols-2 sm:grid-cols-5 gap-2 font-mono text-[11px] sm:text-xs text-center">

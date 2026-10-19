@@ -34,7 +34,7 @@ export default async function BlogPage() {
 
       {articole.length === 0 ? (
         <div className="mt-10 rounded-2xl border border-border bg-white p-8 text-center shadow-sm">
-          <p className="text-sm text-foreground/60">
+          <p className="text-sm text-foreground/65">
             Nu există încă niciun articol publicat. Revino în curând.
           </p>
         </div>

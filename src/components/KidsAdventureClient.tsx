@@ -317,9 +317,9 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
       {/* PANOU STÂNGA: COMENZI */}
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm flex flex-col justify-between">
         <div>
-          <h3 className="text-md font-extrabold text-slate-800 flex items-center gap-1.5">
+          <h2 className="text-md font-extrabold text-slate-800 flex items-center gap-1.5">
             <span>⚙️</span> Panou de Comenzi
-          </h3>
+          </h2>
           <p className="mt-1 text-xs text-slate-500">
             Apasă pe butoane pentru a plănui pașii lui Pippy în labirint.
           </p>
@@ -377,6 +377,7 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
                 <span>Scrie cod real!</span>
               </div>
               <textarea
+                aria-label="Codul tău Python"
                 value={pythonCode}
                 onChange={(e) => setPythonCode(e.target.value)}
                 disabled={inExecution}
@@ -389,11 +390,11 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
           {/* LISTA COMENZILOR ADAUGATE */}
           {nivelId < 3 && (
             <div className="mt-6">
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <h3 className="text-xs font-bold text-slate-600 uppercase tracking-wider">
                 Planul tău de pași:
-              </h4>
+              </h3>
               {commands.length === 0 ? (
-                <p className="mt-2 text-xs text-slate-400 italic">
+                <p className="mt-2 text-xs text-slate-600 italic">
                   Nicio comandă adăugată. Adaugă pași de mai sus!
                 </p>
               ) : (
@@ -459,9 +460,9 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
 
       {/* PANOU CENTRAL: GRID-UL LABIRINTULUI */}
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm flex flex-col">
-        <h3 className="text-md font-extrabold text-indigo-950">
+        <h2 className="text-md font-extrabold text-indigo-950">
           🎮 Labirintul lui Pippy
-        </h3>
+        </h2>
         <p className="mt-1 text-xs text-slate-500">
           {config.enunt}
         </p>
@@ -519,7 +520,7 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
 
         {showVictory && (
           <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-center">
-            <h4 className="text-md font-black text-emerald-800">🎉 Bravo! Misiune Îndeplinită!</h4>
+            <h3 className="text-md font-black text-emerald-800">🎉 Bravo! Misiune Îndeplinită!</h3>
             <p className="text-xs text-emerald-600 mt-1">
               Ai adunat toate steluțele și ai adus robotul la destinație!
             </p>
@@ -537,9 +538,9 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
       {/* PANOU DREAPTA: DUAL-VIEW PYTHON */}
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm flex flex-col justify-between">
         <div>
-          <h3 className="text-md font-extrabold text-slate-800 flex items-center gap-1.5">
+          <h2 className="text-md font-extrabold text-slate-800 flex items-center gap-1.5">
             <span>🚀</span> Dual-View Python
-          </h3>
+          </h2>
           <p className="mt-1 text-xs text-slate-500">
             Aici vezi codul Python real generat de acțiunile tale!
           </p>
@@ -552,7 +553,7 @@ export default function KidsAdventureClient({ nivelId, autentificat }: Props) {
         </div>
 
         <div className="mt-6 border-t border-slate-100 pt-4 text-center">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+          <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block">
             Indicație didactică:
           </span>
           <p className="text-xs text-slate-600 mt-1 italic leading-normal">

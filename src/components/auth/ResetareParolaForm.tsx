@@ -94,7 +94,7 @@ export default function ResetareParolaForm() {
           {seIncarca ? "Se salvează..." : "Salvează parola"}
         </button>
       </form>
-      <p className="mt-6 text-center text-sm text-foreground/60">
+      <p className="mt-6 text-center text-sm text-foreground/65">
         <Link href="/login" className="font-semibold text-brand">
           Înapoi la autentificare
         </Link>

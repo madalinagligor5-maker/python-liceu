@@ -9,13 +9,13 @@ export default async function MaterialeProfesorPage() {
   return (
     <div>
       <h1 className="text-xl font-bold text-foreground">Materiale</h1>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Resurse suplimentare pentru profesori. Lista crește constant — urmează în curând materiale
         pentru mai multe module.
       </p>
 
       {materiale.length === 0 ? (
-        <p className="mt-6 text-sm text-foreground/50">Niciun material disponibil momentan.</p>
+        <p className="mt-6 text-sm text-foreground/65">Niciun material disponibil momentan.</p>
       ) : (
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {materiale.map((m) => (
@@ -26,7 +26,7 @@ export default async function MaterialeProfesorPage() {
                 </span>
               )}
               <h2 className="font-bold text-foreground">{m.titlu}</h2>
-              <p className="mt-1 text-sm text-foreground/60">{m.descriere}</p>
+              <p className="mt-1 text-sm text-foreground/65">{m.descriere}</p>
               {m.tip === "link" ? (
                 <a
                   href={m.href}

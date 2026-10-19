@@ -50,7 +50,7 @@ export function CardStreak({ zile }: { zile: number }) {
           <p className="text-lg font-bold text-foreground">
             {activ ? `${zile} ${zile === 1 ? "zi" : "zile"} la rând` : "Începe un ritm"}
           </p>
-          <p className="text-xs text-foreground/55">
+          <p className="text-xs text-foreground/65">
             {activ
               ? "Termină o lecție azi ca să continui seria."
               : "O lecție pe zi e de ajuns pentru a porni seria."}
@@ -79,7 +79,7 @@ export function CardContinua({
         Continuă de unde ai rămas
       </p>
       <p className="mt-1 text-lg font-bold text-foreground">{titlu}</p>
-      <p className="mt-1 text-xs text-foreground/55">{unitate}</p>
+      <p className="mt-1 text-xs text-foreground/65">{unitate}</p>
       <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand group-hover:gap-2">
         Deschide lecția <span aria-hidden="true">→</span>
       </span>
@@ -99,7 +99,7 @@ export function CardProvocare({
   return (
     <div className="rounded-2xl border border-accent/40 bg-accent/10 p-5">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">
+        <p className="text-xs font-semibold uppercase tracking-wide text-foreground/65">
           Provocarea zilei
         </p>
         <span className="rounded-full bg-accent px-2 py-0.5 text-[11px] font-bold text-brand-dark">
@@ -120,7 +120,7 @@ export function CardProvocare({
 export function CardInsigne({ insigne }: { insigne: string[] }) {
   return (
     <div className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">Insigne</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-foreground/65">Insigne</p>
       {insigne.length ? (
         <ul className="mt-3 flex flex-wrap gap-2">
           {insigne.map((slug) => (
@@ -133,7 +133,7 @@ export function CardInsigne({ insigne }: { insigne: string[] }) {
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-xs text-foreground/55">
+        <p className="mt-2 text-xs text-foreground/65">
           Prima insignă vine după ce termini prima lecție.
         </p>
       )}

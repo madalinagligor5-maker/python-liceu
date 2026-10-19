@@ -117,7 +117,7 @@ export default function PredicțieWidget({
           } else if (i === ales) {
             cls += "border-red-300 bg-red-50 text-red-700";
           } else {
-            cls += "border-black/10 bg-black/5 text-foreground/50";
+            cls += "border-black/10 bg-black/5 text-foreground/65";
           }
           return (
             <button
@@ -150,7 +150,7 @@ export default function PredicțieWidget({
               setDezv(false);
               setAles(null);
             }}
-            className="text-xs text-foreground/60 hover:text-foreground"
+            className="text-xs text-foreground/65 hover:text-foreground"
           >
             Încearcă din nou
           </button>

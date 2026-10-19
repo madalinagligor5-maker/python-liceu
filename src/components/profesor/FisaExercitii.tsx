@@ -136,7 +136,7 @@ export default function FisaExercitii({
       <div className="space-y-8">
         {grupeExercitii.map((g) => (
           <div key={g.sublectieCod}>
-            <h2 className="text-sm font-bold uppercase tracking-wide text-foreground/50">
+            <h2 className="text-sm font-bold uppercase tracking-wide text-foreground/65">
               {g.sublectieCod} {g.sublectieTitlu}
             </h2>
             <div className="mt-3 space-y-4">

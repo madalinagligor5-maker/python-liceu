@@ -147,7 +147,7 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-foreground/60">
+            <p className="mt-2 text-xs text-foreground/65">
               Verifică întotdeauna textul oficial al documentelor pentru generația ta.
             </p>
           </section>
@@ -155,7 +155,7 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
 
         <aside className="mt-10 flex gap-4 rounded-2xl border border-border bg-white p-5" aria-label="Despre autor">
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">Scris de</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-foreground/70">Scris de</p>
             <p className="mt-1 font-bold text-foreground">
               {autor.url ? (
                 <Link href={autor.url} className="hover:text-brand">

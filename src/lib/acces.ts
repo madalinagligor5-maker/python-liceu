@@ -49,7 +49,7 @@ export const ETICHETE_ACCES: Record<NivelAcces, { text: string; explicatie: stri
   gratuit: {
     text: "gratuit",
     explicatie: "Gratuit: fără cont și fără card.",
-    clasa: "bg-success/15 text-success",
+    clasa: "bg-emerald-50 text-success",
   },
   deschis: {
     text: "acces deschis",

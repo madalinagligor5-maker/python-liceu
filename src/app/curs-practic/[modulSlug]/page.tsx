@@ -76,7 +76,7 @@ export default async function ModulCursPage({ params }: { params: Promise<Params
           Modulul {modul.cod}
         </p>
         {modul.gratuit ? (
-          <span className="rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-bold text-success">
+          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-success">
             gratuit — preview
           </span>
         ) : (

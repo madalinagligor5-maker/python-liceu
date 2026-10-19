@@ -28,7 +28,7 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       <div className="border-b border-black/10 bg-white px-4 py-3 sm:px-6">
-        <span className="text-xs font-bold uppercase tracking-wide text-foreground/40">
+        <span className="text-xs font-bold uppercase tracking-wide text-foreground/65">
           Panou admin
         </span>
         <nav className="mt-2 flex gap-4 text-sm font-semibold">

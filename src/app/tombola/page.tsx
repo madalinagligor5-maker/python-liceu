@@ -34,7 +34,7 @@ export default function TombolaPage() {
             <strong>6 luni de abonament gratuit</strong>.
           </li>
         </ol>
-        <p className="text-sm text-foreground/60">
+        <p className="text-sm text-foreground/65">
           Nu trebuie să plătești ca să participi: dacă anulezi înainte de finalul
           celor 7 zile, nu se debitează nimic. Detalii despre probă și prețuri pe{" "}
           <a href="/preturi" className="text-brand-dark underline">pagina Prețuri</a>.

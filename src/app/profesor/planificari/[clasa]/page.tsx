@@ -110,7 +110,7 @@ export default async function PlanificareClasaPage({
         🚧 Pagină în lucru — planificarea se completează și se actualizează constant.
       </div>
 
-      <p className="mb-6 text-xs text-foreground/45">
+      <p className="mb-6 text-xs text-foreground/65">
         Descarcă în Word ca să completezi tu datele de identificare (numele liceului, dacă lipsește) sau să
         adaptezi planificarea — PDF-ul e gata de printat (format landscape), așa cum e.
       </p>
@@ -118,7 +118,7 @@ export default async function PlanificareClasaPage({
       {/* Pagină de titlu */}
       <div className="rounded-2xl border border-black/10 bg-white p-6 text-center">
         <p className="text-sm font-semibold text-foreground">{programa.paginaTitlu.liceu}</p>
-        <p className="mt-4 text-xs uppercase tracking-wide text-foreground/50">Programă școlară pentru</p>
+        <p className="mt-4 text-xs uppercase tracking-wide text-foreground/65">Programă școlară pentru</p>
         <h1 className="mt-1 text-xl font-extrabold text-foreground">PLANIFICARE CALENDARISTICĂ</h1>
         <p className="mt-3 text-sm text-foreground/70">
           Disciplina: <strong>{programa.paginaTitlu.disciplina}</strong> · Clasa a {programa.paginaTitlu.clasa}-a
@@ -156,7 +156,7 @@ export default async function PlanificareClasaPage({
       {/* Competențe generale */}
       <section className="mt-8">
         <h2 className="text-lg font-bold text-foreground">Competențe generale</h2>
-        <p className="mt-1 text-xs text-foreground/45">{programa.notaCompetenteGenerale}</p>
+        <p className="mt-1 text-xs text-foreground/65">{programa.notaCompetenteGenerale}</p>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/80">
           {programa.competenteGenerale.map((c, i) => (
             <li key={i}>{c}</li>
@@ -177,7 +177,7 @@ export default async function PlanificareClasaPage({
         <h2 className="text-lg font-bold text-foreground">Competențe specifice și conținuturi</h2>
         <div className="mt-3 overflow-x-auto rounded-xl border border-black/10">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
-            <thead className="bg-black/[0.03] text-xs uppercase text-foreground/50">
+            <thead className="bg-black/[0.03] text-xs uppercase text-foreground/65">
               <tr>
                 <th className="border border-black/10 px-3 py-2">Unitate de învățare</th>
                 <th className="border border-black/10 px-3 py-2">Competențe specifice</th>
@@ -201,13 +201,13 @@ export default async function PlanificareClasaPage({
                   </td>
                   <td className="border border-black/10 px-3 py-2 text-foreground/70">{r.oreAlocate}</td>
                   <td className="border border-black/10 px-3 py-2 text-foreground/70">S{r.saptamana}</td>
-                  <td className="border border-black/10 px-3 py-2 text-foreground/40">{r.masuriDeReglare || "—"}</td>
+                  <td className="border border-black/10 px-3 py-2 text-foreground/65">{r.masuriDeReglare || "—"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-foreground/45">
+        <p className="mt-2 text-xs text-foreground/65">
           Numărul de ore și săptămânile sunt valori implicite, editabile din fișierul{" "}
           <code className="rounded bg-black/5 px-1">content/planificari/{clasa}.json</code> — nu necesită cod.
         </p>

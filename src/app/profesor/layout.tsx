@@ -45,7 +45,7 @@ export default async function ProfesorLayout({
     <div className="min-h-screen bg-[#FAFAF8]">
       <div className="border-b border-black/10 bg-white print-hidden">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-1 px-4 py-3 sm:px-6">
-          <span className="mr-4 text-xs font-bold uppercase tracking-wide text-foreground/40">
+          <span className="mr-4 text-xs font-bold uppercase tracking-wide text-foreground/65">
             Zona profesor
           </span>
           <nav className="flex flex-wrap gap-1">

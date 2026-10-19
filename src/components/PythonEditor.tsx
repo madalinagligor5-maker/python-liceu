@@ -170,7 +170,7 @@ export default function PythonEditor({
           style={{ minHeight: height }}
         />
       </div>
-      <p className="mt-1 text-[11px] text-foreground/60">
+      <p className="mt-1 text-[11px] text-foreground/70">
         Tab adaugă 4 spații · Esc, apoi Tab, iese din editor · Ctrl+Enter rulează codul
       </p>
 
@@ -261,7 +261,7 @@ export default function PythonEditor({
       )}
 
       {aRulat && !ruleaza && !output && !eroare && !mesajSistem && expectedOutput === undefined && (
-        <p className="mt-2 text-xs text-foreground/60">Programul a rulat fără să afișeze nimic. Folosește print() ca să vezi un rezultat.</p>
+        <p className="mt-2 text-xs text-foreground/65">Programul a rulat fără să afișeze nimic. Folosește print() ca să vezi un rezultat.</p>
       )}
     </div>
   );

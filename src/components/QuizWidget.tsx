@@ -144,7 +144,7 @@ export default function QuizWidget({
       )}
 
       {verificat && !poateSalva && (
-        <p className="mt-4 text-xs text-foreground/55">
+        <p className="mt-4 text-xs text-foreground/65">
           Autentifică-te ca să-ți salvezi progresul și să câștigi XP.
         </p>
       )}

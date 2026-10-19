@@ -7,7 +7,7 @@ export default function PlanificariPage() {
   return (
     <div>
       <h1 className="text-xl font-bold text-foreground">Planificări calendaristice</h1>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Alege clasa pentru care vrei planificarea. Fiecare planificare e gata de print (format A4).
       </p>
 

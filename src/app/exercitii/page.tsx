@@ -49,7 +49,7 @@ export default function ExercitiiCatalogPage() {
                         <h3 className="mt-1 font-bold text-foreground text-sm leading-snug group-hover:text-brand transition">
                           {modul.titlu}
                         </h3>
-                        <p className="mt-1 text-xs text-foreground/50">
+                        <p className="mt-1 text-xs text-foreground/65">
                           Doar exerciții ghidate și independente
                         </p>
                       </div>

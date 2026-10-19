@@ -40,7 +40,7 @@ export default function ResurseCatalogPage() {
               <h2 className="mt-4 text-xl font-bold text-foreground group-hover:text-brand transition">
                 {c.titlu}
               </h2>
-              <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
+              <p className="mt-2 text-sm text-foreground/65 leading-relaxed">
                 {c.desc}
               </p>
             </div>

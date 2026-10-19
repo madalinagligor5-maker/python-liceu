@@ -53,13 +53,13 @@ export default function ProfesoriPage() {
         ].map((f, index) => (
           <div key={f.titlu} className="border-b border-black/10 p-6 sm:border-r sm:p-8 sm:even:border-r-0">
             <div className="font-mono text-xs text-[#C6780B]">0{index + 1}</div>
-            <h3 className="mt-4 text-xl font-bold text-foreground [font-family:var(--font-fraunces)]">{f.titlu}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/60">{f.text}</p>
+            <h2 className="mt-4 text-xl font-bold text-foreground [font-family:var(--font-fraunces)]">{f.titlu}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/65">{f.text}</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-6 text-center text-xs text-foreground/40">
+      <p className="mt-6 text-center text-xs text-foreground/65">
         Lista de materiale crește constant — urmează în curând planificări și resurse pentru mai
         multe module.
       </p>
@@ -68,7 +68,7 @@ export default function ProfesoriPage() {
         <p className="font-semibold text-foreground">
           Accesul e gratuit, dar aprobat manual — nu automat.
         </p>
-        <p className="mt-1 text-sm text-foreground/60">
+        <p className="mt-1 text-sm text-foreground/65">
           Îți creezi cont, bifezi „Sunt profesor” și primești acces după o verificare simplă.
         </p>
         <Link

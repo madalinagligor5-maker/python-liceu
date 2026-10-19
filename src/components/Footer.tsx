@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/45">Explorează</h3>
+          <h2 className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/65">Explorează</h2>
           <ul className="mt-5 space-y-3 text-sm text-white/70">
             <li>
               <Link href="/curriculum" className="hover:text-white">
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/45">Informații</h3>
+          <h2 className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/65">Informații</h2>
           <ul className="mt-5 space-y-3 text-sm text-white/70">
             <li>
               <Link href="/termeni-si-conditii" className="hover:text-white transition">
@@ -103,7 +103,7 @@ export default function Footer() {
                 🇪🇺 ANPC - SOL
               </a>
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-white/40 font-semibold">
+            <div className="flex items-center gap-1.5 text-[10px] text-white/65 font-semibold">
               <span>Plăți online securizate prin</span>
               <span className="font-black text-white/75 border border-white/10 px-1.5 py-0.5 rounded uppercase tracking-wider text-[8px]">
                 Stripe
@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/40 sm:px-6">
+      <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/65 sm:px-6">
         © {new Date().getFullYear()} Academia Python · Creat pentru elevi, părinți și profesori din România.
       </div>
     </footer>
