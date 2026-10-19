@@ -1,6 +1,7 @@
 import type { Capitol, Modul } from "@/lib/curriculum";
 import { esteCapitolCopii, hrefModul, numeClasa } from "@/lib/curriculum";
 import { NUME_SITE, SITE_URL } from "@/lib/seo";
+import type { Autor } from "@/lib/autori";
 
 /**
  * Date structurate schema.org, construite DOAR din date reale ale site-ului
@@ -8,7 +9,7 @@ import { NUME_SITE, SITE_URL } from "@/lib/seo";
  * afișate în footer). Nu adăugăm câmpuri pe care nu le putem susține: fără
  * durată estimată (nu o afișăm nici pe pagină), fără preț pentru modulele cu
  * abonament (prețul vine din Stripe și se poate schimba), fără autori
- * persoane fizice până nu sunt definiți (vezi AUTOR_BLOG).
+ * persoane fizice până nu sunt definiți (vezi src/lib/autori.ts).
  */
 
 /** Emailul de contact afișat în footer (src/components/Footer.tsx). */
@@ -17,18 +18,6 @@ const LOGO = `${SITE_URL}/logo.png`;
 const ID_ORGANIZATIE = `${SITE_URL}/#organizatie`;
 
 const referintaOrganizatie = { "@id": ID_ORGANIZATIE };
-
-/**
- * Autorul articolelor de blog.
- * TODO(owner): înlocuiește cu persoana care scrie articolele, de ex.
- * { "@type": "Person", name: "…", jobTitle: "…", url: "https://www.academiapython.ro/despre" }.
- * Până atunci, autorul declarat este organizația (adevărat, nu inventat).
- */
-export const AUTOR_BLOG: Record<string, unknown> = {
-  "@type": "EducationalOrganization",
-  name: NUME_SITE,
-  url: SITE_URL,
-};
 
 export function organizatie() {
   return {
@@ -131,6 +120,7 @@ export function articolBlog(a: {
   data: string;
   actualizat?: string;
   imagine: string;
+  autor: Autor;
 }) {
   const url = `${SITE_URL}/blog/${a.slug}`;
   return {
@@ -144,7 +134,16 @@ export function articolBlog(a: {
     inLanguage: "ro",
     ...(a.data ? { datePublished: a.data } : {}),
     ...(a.actualizat || a.data ? { dateModified: a.actualizat || a.data } : {}),
-    author: AUTOR_BLOG,
+    // Autorul vine din src/lib/autori.ts (TODO(owner) acolo).
+    author:
+      a.autor.tip === "Person"
+        ? {
+            "@type": "Person",
+            name: a.autor.nume,
+            jobTitle: a.autor.rol,
+            ...(a.autor.url ? { url: `${SITE_URL}${a.autor.url}` } : {}),
+          }
+        : { "@type": "EducationalOrganization", name: NUME_SITE, url: SITE_URL },
     publisher: {
       "@type": "EducationalOrganization",
       name: NUME_SITE,
