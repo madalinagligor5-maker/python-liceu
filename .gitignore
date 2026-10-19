@@ -42,3 +42,8 @@ next-env.d.ts
 
 # conținut împachetat la build (scripts/genereaza-continut.mjs)
 /src/generated/
+
+# Cloudflare (OpenNext / Wrangler)
+/.open-next/
+/.wrangler/
+.dev.vars*
