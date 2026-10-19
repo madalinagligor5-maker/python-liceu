@@ -1,109 +1,118 @@
 import type { MetadataRoute } from "next";
-import { capitole } from "@/lib/curriculum";
-import { unitati as unitatiCurs } from "@/lib/curs";
+import { capitole, esteCapitolCopii, hrefModul } from "@/lib/curriculum";
+import { toateModuleleCurs, hrefModulCurs } from "@/lib/curs";
+import { exercitiiPracticeLiberAccesibile } from "@/lib/acces";
 import { getToateArticolele } from "@/lib/blog";
+import { SITE_URL } from "@/lib/seo";
+import { ceaMaiRecenta, dataModificareFisier, fisierContinutModul } from "@/lib/dateModificare";
 
-const SITE_URL = "https://www.academiapython.ro";
+/**
+ * Sitemap-ul conține DOAR paginile indexabile, cu adresa canonică:
+ *  - fără sublecții (curriculum și curs practic): au noindex și canonical
+ *    către pagina de modul (vezi src/lib/seoModul.ts);
+ *  - fără rutele blocate în robots.txt (cont, login, admin, profesor…);
+ *  - fără paginile cu noindex (Kids Junior, vizualizatorul PDF);
+ *  - legalele doar în forma canonică (/termeni și /confidentialitate fac 301).
+ *
+ * lastModified: data reală din Git a fișierului din care se generează pagina
+ * (lecțiile Markdown pentru module, page.tsx pentru paginile statice) sau
+ * data din frontmatter pentru articole. Lipsește când nu e cunoscută.
+ */
+
+type Intrare = MetadataRoute.Sitemap[number];
+
+const url = (cale: string) => (cale === "/" ? SITE_URL : `${SITE_URL}${cale}`);
+
+function pagina(cale: string, priority: number, fisiere: string[] = []): Intrare {
+  const lastModified = ceaMaiRecenta(...fisiere.map(dataModificareFisier));
+  return { url: url(cale), priority, ...(lastModified ? { lastModified } : {}) };
+}
+
+/** Fișierul page.tsx al unei rute statice simple. */
+const pageTsx = (cale: string) => (cale === "/" ? "src/app/page.tsx" : `src/app${cale}/page.tsx`);
+const statica = (cale: string, priority: number) => pagina(cale, priority, [pageTsx(cale)]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const url = (p: string) => `${SITE_URL}${p}`;
+  const dataModul = (cod: string) => {
+    const f = fisierContinutModul(cod);
+    return f ? dataModificareFisier(f) : undefined;
+  };
 
-  // Rute statice principale.
-  const statice: MetadataRoute.Sitemap = [
-    { url: url("/"), changeFrequency: "weekly", priority: 1 },
-    { url: url("/curriculum"), changeFrequency: "weekly", priority: 0.9 },
-    { url: url("/preturi"), changeFrequency: "monthly", priority: 0.6 },
-    { url: url("/curs-practic"), changeFrequency: "weekly", priority: 0.8 },
-    { url: url("/curs-practic/preturi"), changeFrequency: "monthly", priority: 0.6 },
-    { url: url("/blog"), changeFrequency: "weekly", priority: 0.7 },
-    { url: url("/start"), changeFrequency: "monthly", priority: 0.9 },
-    { url: url("/lab"), changeFrequency: "monthly", priority: 0.7 },
-    { url: url("/kids"), changeFrequency: "monthly", priority: 0.8 },
-    { url: url("/despre"), changeFrequency: "yearly", priority: 0.4 },
-    { url: url("/termeni-si-conditii"), changeFrequency: "yearly", priority: 0.2 },
-    { url: url("/politica-de-confidentialitate"), changeFrequency: "yearly", priority: 0.2 },
-    { url: url("/politica-de-rambursare"), changeFrequency: "yearly", priority: 0.2 },
-  ];
+  // Curriculum: clasele de gimnaziu și liceu (VII–XII) și capitolele
+  // „Python pentru copii" (P7–P11, partea publică a zonei Kids).
+  const clase: Intrare[] = capitole.map((cap) => {
+    const lastModified = ceaMaiRecenta(
+      dataModificareFisier("src/app/curriculum/[clasa]/page.tsx"),
+      ...cap.module.map((m) => dataModul(m.cod))
+    );
+    return {
+      url: url(`/curriculum/${cap.clasa}`),
+      priority: esteCapitolCopii(cap.clasa) ? 0.7 : 0.9,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
 
-  // Paginile de clasă (/curriculum/[clasa]) — conținut propriu, unic per
-  // clasă (lista de module), indiferent dacă modulele din ea sunt gratuite
-  // sau nu. Lipseau complet din sitemap înainte.
-  const dinClase: MetadataRoute.Sitemap = capitole.map((cap) => ({
-    url: url(`/curriculum/${cap.clasa}`),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
-  // Paginile de modul (/curriculum/[clasa]/[modul]) — conținut propriu, unic
-  // per modul (titlu, descriere, lista celor 6 sublecții), inclusiv pentru
-  // modulele premium: pagina de modul NU e un teaser gol, arată structura
-  // reală. Le includem pe toate — spre deosebire de sublecțiile individuale.
-  const dinModule: MetadataRoute.Sitemap = capitole.flatMap((cap) =>
-    cap.module.map((modul) => ({
-      url: url(`/curriculum/${cap.clasa}/${modul.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }))
+  const paginiModule: Intrare[] = capitole.flatMap((cap) =>
+    cap.module.map((m) => {
+      const lastModified = dataModul(m.cod);
+      return {
+        url: url(hrefModul(m)),
+        priority: esteCapitolCopii(cap.clasa) ? 0.6 : 0.8,
+        ...(lastModified ? { lastModified } : {}),
+      };
+    })
   );
 
-  // Sublecțiile individuale — doar din modulele cu adevărat publice (aceeași
-  // regulă de acces ca în pagina de sublecție). Pentru restul, pagina arată
-  // un "teaser" aproape identic pe sute de URL-uri (doar titlul diferă) —
-  // conținut subțire și cvasi-duplicat, exact motivul pentru care Google
-  // raportează "Discovered - currently not indexed" în masă. Nu le includem
-  // în sitemap; rămân accesibile prin navigare, doar nu trimise spre indexare.
-  const dinCurriculum: MetadataRoute.Sitemap = capitole.flatMap((cap) =>
+  const moduleCurs: Intrare[] = toateModuleleCurs().map((m) => {
+    const lastModified = dataModul(m.cod);
+    return { url: url(hrefModulCurs(m)), priority: 0.7, ...(lastModified ? { lastModified } : {}) };
+  });
+
+  // Exerciții practice: doar modulele fără abonament (celelalte fac redirect
+  // spre /login sau /preturi pentru un vizitator anonim, deci și pentru Google).
+  const exercitii: Intrare[] = capitole.flatMap((cap) =>
     cap.module
-      .filter((modul) => modul.gratuit || modul.numar <= 5)
-      .flatMap((modul) =>
-        modul.sublectii.map((s) => ({
-          url: url(`/curriculum/${cap.clasa}/${modul.slug}/${s.cod}`),
-          changeFrequency: "monthly" as const,
-          priority: 0.5,
-        }))
-      )
+      .filter((m) => exercitiiPracticeLiberAccesibile(m, cap.clasa))
+      .map((m) => pagina(`/exercitii/${cap.clasa}/${m.slug}`, 0.5, ["content/exercitii.json"]))
   );
 
-  // Articolele de blog — generate dinamic din content/blog/, nu hardcodate.
-  const articoleBlog = await getToateArticolele();
-  const dinBlog: MetadataRoute.Sitemap = articoleBlog.map((articol) => ({
-    url: url(`/blog/${articol.slug}`),
-    lastModified: articol.actualizat || articol.data || undefined,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+  const resurseClase: Intrare[] = capitole.map((cap) =>
+    pagina(`/resurse/${cap.clasa}`, 0.4, ["src/app/resurse/[clasa]/page.tsx"])
+  );
+
+  const articole = await getToateArticolele();
+  const blog: Intrare[] = articole.map((a) => ({
+    url: url(`/blog/${a.slug}`),
+    priority: 0.7,
+    ...(a.actualizat || a.data ? { lastModified: new Date(a.actualizat || a.data) } : {}),
   }));
-
-  // "Curs practic de Python" -- sistem de continut complet separat de
-  // capitole/clase (vezi src/lib/curs.ts). Aceeasi regula ca la liceu:
-  // paginile de modul intra toate, sublectiile individuale doar din
-  // modulele gratuite.
-  const dinModuleCurs: MetadataRoute.Sitemap = unitatiCurs.flatMap((u) =>
-    u.module.map((modul) => ({
-      url: url(`/curs-practic/${modul.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }))
-  );
-
-  const dinCursPractic: MetadataRoute.Sitemap = unitatiCurs.flatMap((u) =>
-    u.module
-      .filter((modul) => modul.gratuit)
-      .flatMap((modul) =>
-        modul.sublectii.map((s) => ({
-          url: url(`/curs-practic/${modul.slug}/${s.cod}`),
-          changeFrequency: "monthly" as const,
-          priority: 0.5,
-        }))
-      )
-  );
+  const ultimulArticol = ceaMaiRecenta(...blog.map((b) => (b.lastModified ? new Date(b.lastModified) : undefined)));
 
   return [
-    ...statice,
-    ...dinClase,
-    ...dinModule,
-    ...dinCurriculum,
-    ...dinModuleCurs,
-    ...dinCursPractic,
-    ...dinBlog,
+    statica("/", 1),
+    statica("/curriculum", 0.9),
+    ...clase,
+    ...paginiModule,
+    statica("/start", 0.8),
+    statica("/preturi", 0.6),
+    statica("/lab", 0.6),
+    { url: url("/blog"), priority: 0.7, ...(ultimulArticol ? { lastModified: ultimulArticol } : {}) },
+    ...blog,
+    statica("/curs-practic", 0.8),
+    ...moduleCurs,
+    statica("/curs-practic/preturi", 0.6),
+    statica("/kids", 0.7),
+    ...[1, 2, 3].map((n) => pagina(`/kids/aventura/${n}`, 0.5, ["src/app/kids/aventura/[nivelId]/page.tsx"])),
+    statica("/kids/fise-print", 0.5),
+    statica("/profesori", 0.6),
+    statica("/despre", 0.5),
+    statica("/exercitii", 0.5),
+    ...exercitii,
+    statica("/resurse", 0.5),
+    ...resurseClase,
+    statica("/tombola", 0.3),
+    statica("/termeni-si-conditii", 0.2),
+    statica("/politica-de-confidentialitate", 0.2),
+    statica("/politica-de-rambursare", 0.2),
   ];
 }
