@@ -1,0 +1,45 @@
+# Verificări automate pe fiecare PR și pe fiecare push în main:
+# lint, auditurile de conținut, build-ul pentru Vercel și cel pentru Cloudflare
+# (cu limita de mărime a Worker-ului). Nu are nevoie de chei: fără Supabase/
+# Stripe, site-ul se construiește în modul „neconfigurat", ca local.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificari:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # istoricul complet: lastmod din sitemap
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Audit conținut (module, quiz-uri, predicții)
+        run: |
+          node scripts/audit_module.mjs
+          node scripts/audit_quiz_gaps.mjs
+          node scripts/audit_explicatii_quiz.mjs
+      - name: Build (Vercel / Node)
+        run: npm run build
+      - name: Build Cloudflare (OpenNext)
+        run: npm run cf:build
+      - name: Mărimea Worker-ului Cloudflare
+        run: |
+          npx wrangler deploy --dry-run --outdir /tmp/worker | tee /tmp/worker.log
+          gzip_kib=$(grep -oE 'gzip: [0-9.]+ KiB' /tmp/worker.log | grep -oE '[0-9.]+')
+          echo "Worker comprimat: ${gzip_kib} KiB (limite: 3072 gratuit, 10240 Workers Paid)"
+          awk -v k="$gzip_kib" 'BEGIN { exit (k > 10240) }'
