@@ -13,6 +13,8 @@ import CarduriTrasee from "@/components/CarduriTrasee";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getToateArticolele } from "@/lib/blog";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
+import JsonLd from "@/components/seo/JsonLd";
+import { organizatie, website } from "@/lib/dateStructurate";
 import { metadatePagina } from "@/lib/seo";
 
 export const metadata = metadatePagina({
@@ -120,6 +122,8 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   return (
     <div className="text-[#172033] min-h-screen relative overflow-hidden font-sans">
       <FaqJsonLd intrebari={FAQ} />
+      <JsonLd date={organizatie()} />
+      <JsonLd date={website()} />
       <div className="animate-floatSubtle pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] max-w-full rounded-full bg-gradient-to-tr from-amber-200/30 via-amber-100/40 to-yellow-100/30 blur-[130px]" />
 
       {/* HERO */}

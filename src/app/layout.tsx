@@ -52,48 +52,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Date structurate JSON-LD (schema.org) pentru rezultate îmbogățite în căutări.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "EducationalOrganization",
-      name: "Academia Python",
-      url: "https://www.academiapython.ro",
-      description:
-        "Platformă de învățare Python în limba română: Kids, gimnaziu, liceu (clasele IX–XII) și curs practic.",
-      sameAs: ["https://www.academiapython.ro"],
-    },
-    {
-      "@type": "Course",
-      name: "Informatică cu Python — clasele IX–XII",
-      description:
-        "Curs complet de Informatică (Python) structurat pe clasele IX–XII: 4 capitole, 88 module, 528 sublecții, cu exerciții interactive și verificare a înțelegerii.",
-      provider: {
-        "@type": "EducationalOrganization",
-        name: "Academia Python",
-        url: "https://www.academiapython.ro",
-      },
-      educationalLevel: "Liceu (IX–XII)",
-      teaches: ["Programare Python", "Algoritmi", "Structuri de date", "Baze de date", "Învățare automată"],
-      inLanguage: "ro",
-      isAccessibleForFree: true,
-      hasCourseInstance: {
-        "@type": "CourseInstance",
-        courseMode: "online",
-      },
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "RON",
-        // Trebuie să coincidă cu prețul anual afișat pe /preturi (src/lib/oferta.ts).
-        price: "350.00",
-        availability: "https://schema.org/InStock",
-        url: "https://www.academiapython.ro/preturi",
-      },
-    },
-  ],
-};
-
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const { user } = await getUtilizatorCurent();
   const esteAutentificat = Boolean(user);
@@ -104,10 +62,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         {/* Fără JavaScript, IntersectionObserver (ScrollReveal.tsx) nu rulează
             niciodată, deci .is-visible nu se adaugă și conținutul .reveal ar
             rămâne permanent la opacity: 0 — invizibil pentru cine navighează

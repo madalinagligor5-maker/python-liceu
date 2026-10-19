@@ -1,4 +1,5 @@
-const SITE_URL = "https://www.academiapython.ro";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/seo";
 
 export type FirimituraBreadcrumb = {
   /** Textul exact afișat în breadcrumb-ul vizual — nu inventăm un text separat. */
@@ -25,10 +26,5 @@ export default function BreadcrumbJsonLd({ firimituri }: { firimituri: Firimitur
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return <JsonLd date={data} />;
 }

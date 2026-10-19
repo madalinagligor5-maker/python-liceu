@@ -2,10 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getArticolDupaSlug, getToateArticolele } from "@/lib/blog";
-import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
+import JsonLd from "@/components/seo/JsonLd";
+import { articolBlog } from "@/lib/dateStructurate";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
-import { metadatePagina } from "@/lib/seo";
+import { metadatePagina, SITE_URL } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -58,12 +59,15 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <ArticleJsonLd
-        titlu={articol.titluSeo || articol.titlu}
-        descriere={articol.descriere}
-        data={articol.data}
-        actualizat={articol.actualizat}
-        slug={articol.slug}
+      <JsonLd
+        date={articolBlog({
+          titlu: articol.titluSeo || articol.titlu,
+          descriere: articol.descriere,
+          slug: articol.slug,
+          data: articol.data,
+          actualizat: articol.actualizat,
+          imagine: `${SITE_URL}/blog/${articol.slug}/opengraph-image`,
+        })}
       />
       {articol.intrebariFrecvente.length > 0 && <FaqJsonLd intrebari={articol.intrebariFrecvente} />}
       <BreadcrumbJsonLd

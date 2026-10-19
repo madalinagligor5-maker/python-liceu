@@ -1,15 +1,23 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { capitole, esteCapitolCopii, getCapitol, hrefModul, ICOANE_SUBLECTIE, numeClasa, numeClasaScurt, radacinaClasa, numeClasaInText } from "@/lib/curriculum";
+import { type Capitol, capitole, esteCapitolCopii, getCapitol, hrefModul, ICOANE_SUBLECTIE, numeClasa, numeClasaScurt, radacinaClasa, numeClasaInText } from "@/lib/curriculum";
 import { ETICHETE_ACCES, nivelAccesLectii } from "@/lib/acces";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { cursClasa } from "@/lib/dateStructurate";
 
 type Params = { clasa: string };
 
 export function generateStaticParams() {
   return capitole.map((c) => ({ clasa: c.clasa }));
+}
+
+function descriereClasa(capitol: Capitol): string {
+  return esteCapitolCopii(capitol.clasa)
+    ? `${capitol.module.length} module de Python pentru copii (${numeClasaScurt(capitol.clasa)}), gratuite, direct în browser.`
+    : `${capitol.module.length} module de Informatică (Python) pentru ${numeClasaInText(capitol.clasa)}, organizate pe pași.`;
 }
 
 export async function generateMetadata({
@@ -23,9 +31,7 @@ export async function generateMetadata({
 
   return metadatePagina({
     titlu: esteCapitolCopii(capitol.clasa) ? capitol.titlu : `${numeClasa(capitol.clasa)}: ${capitol.titlu}`,
-    descriere: esteCapitolCopii(capitol.clasa)
-      ? `${capitol.module.length} module de Python pentru copii (${numeClasaScurt(capitol.clasa)}), gratuite, direct în browser.`
-      : `${capitol.module.length} module de Informatică (Python) pentru ${numeClasaInText(capitol.clasa)}, organizate pe pași.`,
+    descriere: descriereClasa(capitol),
     cale: `/curriculum/${capitol.clasa}`,
   });
 }
@@ -38,6 +44,7 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+      <JsonLd date={cursClasa(capitol, descriereClasa(capitol))} />
       <BreadcrumbJsonLd
         firimituri={[
           radacinaClasa(capitol.clasa),

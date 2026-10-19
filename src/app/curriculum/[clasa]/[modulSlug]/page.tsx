@@ -26,6 +26,8 @@ import { getPredicțiiClasa } from "@/lib/predicții";
 import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { cursModul } from "@/lib/dateStructurate";
 import { descriereModul, subiecteDinConcept, termeniPython, textModul, titluModul } from "@/lib/seoModul";
 
 type Params = { clasa: string; modulSlug: string };
@@ -165,6 +167,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <JsonLd date={cursModul(modul, capitol, descriereModul(modul, clasa), termeni)} />
       <BreadcrumbJsonLd
         firimituri={[
           radacina,
