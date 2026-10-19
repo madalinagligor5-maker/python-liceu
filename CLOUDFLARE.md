@@ -13,7 +13,7 @@ Pașii de mai jos se fac **în contul tău Cloudflare și la firma de la care ai
 | Lecțiile, blogul, exercițiile etc. se citesc dintr-un pachet generat la build (`scripts/genereaza-continut.mjs`, `src/lib/fisiereContinut.ts`) | pe Cloudflare Workers nu există sistem de fișiere |
 | Stripe folosește `fetch` și verificarea asincronă a webhook-ului | pe Workers nu există modulele `http`/`crypto` din Node |
 | `wrangler.jsonc`, `open-next.config.ts`, `public/_headers` | configurația Worker-ului; `_headers` păstrează izolarea cerută de Python în browser (Pyodide) |
-| scripturi noi: `npm run cf:build`, `cf:preview`, `cf:deploy` | build, test local și deploy pentru Cloudflare |
+| scripturi noi: `npm run cf:build`, `cf:preview`, `cf:deploy`; `npm run build` face build-ul Cloudflare când rulează în Workers Builds | build, test local și deploy pentru Cloudflare |
 
 Am testat local în runtime-ul Cloudflare (`npm run cf:preview`):
 - **Pagini:** toate cele 1.100 de pagini răspund identic ca pe Node (status, titlu, descriere, H1, canonical, Open Graph, date structurate).
@@ -36,11 +36,12 @@ Am testat local în runtime-ul Cloudflare (`npm run cf:preview`):
 
 ## Pasul 2. Creează Worker-ul din GitHub
 1. **Workers & Pages → Create → Workers → Import a repository** → conectează GitHub și alege `madalinagligor5-maker/python-liceu`.
-2. Setări de build:
-   - **Project name:** `academia-python` (trebuie să fie identic cu `name` din `wrangler.jsonc`)
+2. Setări de build (Worker → **Settings → Build**):
+   - **Project name:** `python-liceu` (trebuie să fie identic cu `name` din `wrangler.jsonc`, altfel build-ul pică imediat)
    - **Production branch:** `main`
-   - **Build command:** `npx opennextjs-cloudflare build`
-   - **Deploy command:** `npx opennextjs-cloudflare deploy`
+   - **Build command:** `npm run cf:build`
+   - **Deploy command:** `npx wrangler deploy`
+   - Dacă au rămas comenzile implicite (`npm run build` + `npx wrangler deploy`), merge și așa: în Workers Builds, `npm run build` face automat build-ul complet pentru Cloudflare (`scripts/build.mjs`, după variabila `WORKERS_CI=1` setată de Cloudflare). Dacă în logul de build vezi doar `next build`, fără „OpenNext build complete”, setează explicit comanda de mai sus.
 3. **Înainte de primul build**, adaugă variabilele de la pasul 3. Altfel site-ul se construiește fără Supabase și apare „Autentificarea nu este configurată”.
 
 ## Pasul 3. Variabile de mediu
@@ -71,16 +72,16 @@ Ia valorile din Vercel → Settings → Environment Variables (aceleași ca acum
 După ce le adaugi, pornește din nou build-ul: Deployments → **Retry build**.
 
 ## Pasul 4. Testează pe adresa temporară (înainte să muți domeniul)
-După deploy, Worker-ul are o adresă de forma `https://academia-python.<contul-tău>.workers.dev`.
+După deploy, Worker-ul are o adresă de forma `https://python-liceu.<contul-tău>.workers.dev`.
 
-1. În **Supabase → Authentication → URL Configuration → Redirect URLs**, adaugă temporar `https://academia-python.<contul-tău>.workers.dev/auth/callback**`.
+1. În **Supabase → Authentication → URL Configuration → Redirect URLs**, adaugă temporar `https://python-liceu.<contul-tău>.workers.dev/auth/callback**`.
 2. Verifică pe adresa temporară:
    - [ ] homepage, `/curriculum`, o lecție, un articol de blog;
    - [ ] **Rulează codul** în `/lab` (Python în browser);
    - [ ] o fișă PDF (`/resurse/IX` → o fișă);
    - [ ] creare cont, confirmare email, autentificare, „Ai uitat parola?”;
    - [ ] contul tău de admin (`/admin/profesori`) și zona de profesor;
-   - [ ] o plată de test cu Stripe în **modul test**. Webhook-ul de producție rămâne pe domeniu, așa că pentru test adaugă în Stripe → Developers → Webhooks un endpoint temporar `https://academia-python.<contul-tău>.workers.dev/api/stripe/webhook`. Atenție: are alt secret de semnare.
+   - [ ] o plată de test cu Stripe în **modul test**. Webhook-ul de producție rămâne pe domeniu, așa că pentru test adaugă în Stripe → Developers → Webhooks un endpoint temporar `https://python-liceu.<contul-tău>.workers.dev/api/stripe/webhook`. Atenție: are alt secret de semnare.
 3. Dacă ceva nu merge, Worker → **Observability / Logs** arată eroarea. Trimite-mi-o și o repar.
 
 ## Pasul 5. Mută domeniul
