@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
 import { ETICHETE_ACCES, MODULE_ACCES_DESCHIS } from "@/lib/acces";
@@ -10,13 +9,13 @@ import {
   PROBA,
   type Plan,
 } from "@/lib/oferta";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Prețuri",
-  description:
-    "Ce e gratuit, ce include abonamentul de liceu și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
-  alternates: { canonical: "/preturi" },
-};
+export const metadata = metadatePagina({
+  titlu: "Prețuri și abonament",
+  descriere: "Ce e gratuit, ce include abonamentul de liceu și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
+  cale: "/preturi",
+});
 
 const BENEFICII_COMUNE = [
   "Toate modulele de liceu, clasele IX–XII (lecții în 6 pași)",

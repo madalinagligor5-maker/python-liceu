@@ -2,6 +2,11 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { esteAdmin } from "@/lib/roluri";
+import type { Metadata } from "next";
+import { FARA_INDEXARE } from "@/lib/seo";
+
+// Zonă privată: nu se indexează (robots.txt o blochează deja la crawl).
+export const metadata: Metadata = { robots: FARA_INDEXARE };
 
 /**
  * Gating server-side pentru /admin/*: verifică emailul contului autentificat

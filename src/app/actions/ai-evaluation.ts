@@ -21,7 +21,7 @@ export async function evalueazaCodCuAI(
   if (!user) {
     return {
       ok: false,
-      eroare: "Trebuie sa fii autentificat pentru a primi feedback si indrumare de la asistentul AI.",
+      eroare: "Trebuie să fii autentificat pentru a primi feedback și îndrumare de la asistentul AI.",
     };
   }
 

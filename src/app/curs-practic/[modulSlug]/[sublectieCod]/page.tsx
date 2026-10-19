@@ -24,6 +24,7 @@ import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
 import ScrollReveal from "@/components/ScrollReveal";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { modulSlug: string; sublectieCod: string };
 
@@ -38,27 +39,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { modulSlug, sublectieCod } = await params;
   const modul = getModulCurs(modulSlug);
-  if (!modul) return {};
+  const sublectieInfo = modul?.sublectii.find((s) => s.cod === sublectieCod);
+  if (!modul || !sublectieInfo) return {};
 
-  if (!modul.gratuit) {
-    const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
-    if (!sublectieInfo) return {};
-    return {
-      title: `${sublectieCod} ${sublectieInfo.titlu}`,
-      description: `${sublectieInfo.descriere} — necesită abonamentul Cursului practic de Python.`,
-      alternates: { canonical: `/curs-practic/${modulSlug}/${sublectieCod}` },
-      robots: { index: false, follow: true },
-    };
-  }
-
-  const continut = await getSublectieContinutCurs(sublectieCod);
-  if (!continut) return {};
-
-  return {
-    title: `${sublectieCod} ${continut.titlu}`,
-    description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}, Curs practic de Python.`,
-    alternates: { canonical: `/curs-practic/${modulSlug}/${sublectieCod}` },
-  };
+  // Ca în curriculum: pagina indexabilă e modulul, pașii au noindex, follow
+  // și canonical către modul.
+  return metadatePagina({
+    titlu: `${sublectieInfo.titlu} — ${modul.titlu} (Curs practic de Python)`,
+    descriere: `Pasul „${sublectieInfo.titlu}” din modulul „${modul.titlu}”, Curs practic de Python: ${sublectieInfo.descriere}`,
+    cale: `/curs-practic/${modul.slug}/${sublectieCod}`,
+    canonical: `/curs-practic/${modul.slug}`,
+    noindex: true,
+  });
 }
 
 export default async function SublectieCursPage({ params }: { params: Promise<Params> }) {

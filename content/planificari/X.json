@@ -11,8 +11,8 @@
     },
     {
       "modulCod": "2.2",
-      "modulTitlu": "Interclasarea a doua liste ordonate",
-      "competente": "Interclasarea a doua liste ordonate",
+      "modulTitlu": "Interclasarea a două liste ordonate",
+      "competente": "Interclasarea a două liste ordonate",
       "oreAlocate": 2,
       "saptamanaEstimata": 2
     },
@@ -25,15 +25,15 @@
     },
     {
       "modulCod": "2.4",
-      "modulTitlu": "Clasa set: operatori si metode",
-      "competente": "Clasa set: operatori si metode",
+      "modulTitlu": "Clasa set: operatori și metode",
+      "competente": "Clasa set: operatori și metode",
       "oreAlocate": 2,
       "saptamanaEstimata": 4
     },
     {
       "modulCod": "2.5",
-      "modulTitlu": "Modelul conceptual sir de caractere",
-      "competente": "Modelul conceptual sir de caractere",
+      "modulTitlu": "Modelul conceptual șir de caractere",
+      "competente": "Modelul conceptual șir de caractere",
       "oreAlocate": 2,
       "saptamanaEstimata": 5
     },
@@ -46,15 +46,15 @@
     },
     {
       "modulCod": "2.7",
-      "modulTitlu": "Clasa str: metode de căutare, inlocuire, separare",
-      "competente": "Clasa str: metode de căutare, inlocuire, separare",
+      "modulTitlu": "Clasa str: metode de căutare, înlocuire, separare",
+      "competente": "Clasa str: metode de căutare, înlocuire, separare",
       "oreAlocate": 2,
       "saptamanaEstimata": 7
     },
     {
       "modulCod": "2.8",
-      "modulTitlu": "Criptare simpla: substitutie si cifrul lui Cezar",
-      "competente": "Criptare simpla: substitutie si cifrul lui Cezar",
+      "modulTitlu": "Criptare simplă: substituție și cifrul lui Cezar",
+      "competente": "Criptare simplă: substituție și cifrul lui Cezar",
       "oreAlocate": 2,
       "saptamanaEstimata": 8
     },
@@ -81,8 +81,8 @@
     },
     {
       "modulCod": "2.12",
-      "modulTitlu": "Clasa dict: acces si metode uzuale",
-      "competente": "Clasa dict: acces si metode uzuale",
+      "modulTitlu": "Clasa dict: acces și metode uzuale",
+      "competente": "Clasa dict: acces și metode uzuale",
       "oreAlocate": 2,
       "saptamanaEstimata": 12
     },
@@ -95,15 +95,15 @@
     },
     {
       "modulCod": "2.14",
-      "modulTitlu": "Clasa tuple: operatori si metode",
-      "competente": "Clasa tuple: operatori si metode",
+      "modulTitlu": "Clasa tuple: operatori și metode",
+      "competente": "Clasa tuple: operatori și metode",
       "oreAlocate": 2,
       "saptamanaEstimata": 14
     },
     {
       "modulCod": "2.15",
-      "modulTitlu": "Modelul conceptual mixt (liste de liste, liste de dictionare)",
-      "competente": "Modelul conceptual mixt (liste de liste, liste de dictionare)",
+      "modulTitlu": "Modelul conceptual mixt (liste de liste, liste de dicționare)",
+      "competente": "Modelul conceptual mixt (liste de liste, liste de dicționare)",
       "oreAlocate": 2,
       "saptamanaEstimata": 15
     },
@@ -130,8 +130,8 @@
     },
     {
       "modulCod": "2.19",
-      "modulTitlu": "Sortare prin interclasare si sortare rapidă (quicksort)",
-      "competente": "Sortare prin interclasare si sortare rapidă (quicksort)",
+      "modulTitlu": "Sortare prin interclasare și sortare rapidă (quicksort)",
+      "competente": "Sortare prin interclasare și sortare rapidă (quicksort)",
       "oreAlocate": 2,
       "saptamanaEstimata": 19
     },

@@ -1,8 +1,9 @@
-import { numeClasa } from "@/lib/curriculum";
+import { numeClasa, numeClasaInText } from "@/lib/curriculum";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCapitol } from "@/lib/curriculum";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string };
 
@@ -17,11 +18,11 @@ export async function generateMetadata({
   const capitol = getCapitol(clasa);
   if (!capitol) return {};
 
-  return {
-    title: `Fișe de lucru — ${numeClasa(clasa)}`,
-    description: `Fișe de lucru PDF pentru ${numeClasa(clasa).toLowerCase()}.`,
-    alternates: { canonical: `/resurse/${clasa}` },
-  };
+  return metadatePagina({
+    titlu: `Fișe de lucru — ${numeClasa(clasa)}`,
+    descriere: `Fișe de lucru PDF pentru ${numeClasaInText(clasa)}.`,
+    cale: `/resurse/${clasa}`,
+  });
 }
 
 export default async function ClasaResursePage({

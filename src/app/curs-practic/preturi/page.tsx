@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
 import { toateModuleleCurs } from "@/lib/curs";
 import { formateazaPerioada, formateazaSuma, getPreturiCurs, PROBA } from "@/lib/oferta";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Prețuri — Curs practic de Python",
-  description:
-    "Planuri de abonament pentru Cursul practic de Python — produs separat de abonamentul de liceu. Modulul 1 e complet gratuit.",
-  alternates: { canonical: "/curs-practic/preturi" },
-};
+export const metadata = metadatePagina({
+  titlu: "Prețuri — Curs practic de Python",
+  descriere: "Planuri de abonament pentru Cursul practic de Python — produs separat de abonamentul de liceu. Modulul 1 e complet gratuit.",
+  cale: "/curs-practic/preturi",
+});
 
 const PLANURI = [
   {

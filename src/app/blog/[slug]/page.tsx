@@ -2,9 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getArticolDupaSlug, getToateArticolele } from "@/lib/blog";
-import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
+import JsonLd from "@/components/seo/JsonLd";
+import { articolBlog } from "@/lib/dateStructurate";
+import { articoleInrudite, modulRecomandat, surseOficiale } from "@/lib/legaturiBlog";
+import { autorArticol } from "@/lib/autori";
 import FaqJsonLd from "@/components/seo/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina, SITE_URL } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -24,19 +28,15 @@ export async function generateMetadata({
 
   const titluPagina = articol.titluSeo || articol.titlu;
 
-  return {
-    title: titluPagina,
-    description: articol.descriere,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: {
-      type: "article",
-      title: titluPagina,
-      description: articol.descriere,
-      url: `/blog/${slug}`,
-      publishedTime: articol.data || undefined,
-      modifiedTime: articol.actualizat || articol.data || undefined,
-    },
-  };
+  return metadatePagina({
+    titlu: titluPagina,
+    descriere: articol.descriere,
+    cale: `/blog/${articol.slug}`,
+    tip: "article",
+    publicatLa: articol.data,
+    modificatLa: articol.actualizat,
+    imagineImplicita: false,
+  });
 }
 
 function formateazaData(data: string): string {
@@ -56,17 +56,29 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
 
   if (!articol) notFound();
 
-  // Articole similare: celelalte articole, cele mai recente întâi.
-  const altele = (await getToateArticolele()).filter((a) => a.slug !== articol.slug).slice(0, 3);
+  // „Citește și": întâi articolele înrudite ca subiect (src/lib/legaturiBlog.ts),
+  // apoi cele mai recente, până la 3.
+  const toate = (await getToateArticolele()).filter((a) => a.slug !== articol.slug);
+  const inrudite = articoleInrudite(articol.slug)
+    .map((s) => toate.find((a) => a.slug === s))
+    .filter((a) => a !== undefined);
+  const altele = [...inrudite, ...toate.filter((a) => !inrudite.includes(a))].slice(0, 3);
+  const modul = modulRecomandat(articol.slug);
+  const surse = surseOficiale(articol.slug);
+  const autor = autorArticol(articol.slug);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <ArticleJsonLd
-        titlu={articol.titluSeo || articol.titlu}
-        descriere={articol.descriere}
-        data={articol.data}
-        actualizat={articol.actualizat}
-        slug={articol.slug}
+      <JsonLd
+        date={articolBlog({
+          titlu: articol.titluSeo || articol.titlu,
+          descriere: articol.descriere,
+          slug: articol.slug,
+          data: articol.data,
+          actualizat: articol.actualizat,
+          imagine: `${SITE_URL}/blog/${articol.slug}/opengraph-image`,
+          autor,
+        })}
       />
       {articol.intrebariFrecvente.length > 0 && <FaqJsonLd intrebari={articol.intrebariFrecvente} />}
       <BreadcrumbJsonLd
@@ -85,10 +97,11 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
 
       <article className="mt-4">
         <p className="text-xs font-medium text-foreground/70">
-          {formateazaData(articol.data)}
-          {articol.actualizat && articol.actualizat !== articol.data && (
-            <> · actualizat {formateazaData(articol.actualizat)}</>
-          )}
+          Publicat pe <time dateTime={articol.data}>{formateazaData(articol.data)}</time>
+          {" "}· Ultima actualizare:{" "}
+          <time dateTime={articol.actualizat || articol.data}>
+            {formateazaData(articol.actualizat || articol.data)}
+          </time>
           {" "}· {articol.minuteCitire} min de citit
         </p>
         <h1 className="mt-1 text-3xl font-extrabold leading-tight text-foreground sm:text-4xl [font-family:var(--font-fraunces)]">
@@ -114,7 +127,56 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
           className="mt-8 max-w-[68ch] space-y-4 text-[15.5px] leading-[1.75] text-foreground/90 [&_a]:break-words [&_code]:break-words [&_li]:ml-1 [&_p+p]:mt-4"
           dangerouslySetInnerHTML={{ __html: articol.corpHtml }}
         />
+
+        {surse.length > 0 && (
+          <section className="mt-10 rounded-2xl border border-border bg-white p-5" aria-labelledby="surse-oficiale">
+            <h2 id="surse-oficiale" className="text-lg font-bold text-foreground">Surse oficiale</h2>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-foreground/85">
+              {surse.map((s) => (
+                <li key={s.titlu}>
+                  {s.url ? (
+                    <a href={s.url} rel="noopener" className="font-semibold text-brand-dark underline underline-offset-2">
+                      {s.titlu}
+                    </a>
+                  ) : (
+                    s.titlu
+                  )}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-foreground/60">
+              Verifică întotdeauna textul oficial al documentelor pentru generația ta.
+            </p>
+          </section>
+        )}
+
+        <aside className="mt-10 flex gap-4 rounded-2xl border border-border bg-white p-5" aria-label="Despre autor">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-wide text-foreground/60">Scris de</p>
+            <p className="mt-1 font-bold text-foreground">
+              {autor.url ? (
+                <Link href={autor.url} className="hover:text-brand">
+                  {autor.nume}
+                </Link>
+              ) : (
+                autor.nume
+              )}
+            </p>
+            <p className="text-sm text-foreground/70">{autor.rol}</p>
+            {autor.descriere && <p className="mt-2 text-sm text-foreground/80">{autor.descriere}</p>}
+          </div>
+        </aside>
       </article>
+
+      {modul && (
+        <section className="mt-10 rounded-2xl border border-border bg-white p-5" aria-labelledby="lectia-potrivita">
+          <h2 id="lectia-potrivita" className="text-lg font-bold text-foreground">Lecția potrivită pe platformă</h2>
+          <Link href={modul.href} className="mt-2 block font-semibold text-brand-dark underline-offset-2 hover:underline">
+            {modul.titlu} →
+          </Link>
+          <p className="mt-1 text-sm text-foreground/70">{modul.clasa} · explicații, exemple și exerciții în browser</p>
+        </section>
+      )}
 
       <div className="mt-12 rounded-2xl border border-brand-border bg-brand-light/40 p-6 text-center">
         <p className="text-base font-semibold text-brand-dark">

@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import PrintButton from "@/components/PrintButton";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Fișe Didactice Printabile — Kids",
-  description: "Descarcă și printează fișe didactice unplugged pentru învățarea logicii de programare pe hârtie.",
-  alternates: { canonical: "/kids/fise-print" },
-};
+export const metadata = metadatePagina({
+  titlu: "Fișe Didactice Printabile — Kids",
+  descriere: "Descarcă și printează fișe didactice unplugged pentru învățarea logicii de programare pe hârtie.",
+  cale: "/kids/fise-print",
+});
 
 export default function KidsPrintPage() {
   return (
@@ -50,6 +50,7 @@ export default function KidsPrintPage() {
             ← Înapoi la Hartă
           </Link>
           
+          <h1 className="text-sm font-black text-indigo-900">Fișe didactice printabile — Kids</h1>
           <PrintButton />
         </div>
 
@@ -58,9 +59,9 @@ export default function KidsPrintPage() {
           {/* FIȘA 1 */}
           <div className="print-card bg-white rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-sm overflow-x-auto">
             <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
-              <h1 className="text-xl sm:text-2xl font-black text-indigo-900">
+              <h2 className="text-xl sm:text-2xl font-black text-indigo-900">
                 Aventura lui Pippy — Fișă Didactică 1
-              </h1>
+              </h2>
               <p className="text-[10px] sm:text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
                 Nivelul: Începător (Clasele I–II) · Tema: Direcții și Secvențialitate
               </p>
@@ -129,9 +130,9 @@ export default function KidsPrintPage() {
           {/* FIȘA 2 - LOOP (Page Break) */}
           <div className="print-card print-break bg-white rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-sm overflow-x-auto">
             <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
-              <h1 className="text-xl sm:text-2xl font-black text-indigo-900">
+              <h2 className="text-xl sm:text-2xl font-black text-indigo-900">
                 Aventura lui Pippy — Fișă Didactică 2
-              </h1>
+              </h2>
               <p className="text-[10px] sm:text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
                 Nivelul: Mediu (Clasele III–IV) · Tema: Structuri Repetitive (Bucle)
               </p>
@@ -211,9 +212,9 @@ export default function KidsPrintPage() {
           {/* FIȘA 3 - CONDIȚIONALE (Page Break) */}
           <div className="print-card print-break bg-white rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-sm overflow-x-auto">
             <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
-              <h1 className="text-xl sm:text-2xl font-black text-indigo-900">
+              <h2 className="text-xl sm:text-2xl font-black text-indigo-900">
                 Aventura lui Pippy — Fișă Didactică 3
-              </h1>
+              </h2>
               <p className="text-[10px] sm:text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
                 Nivelul: Avansat (Clasele III–IV) · Tema: Decizii Logice („Dacă... Atunci”)
               </p>
@@ -260,9 +261,9 @@ export default function KidsPrintPage() {
           {/* FIȘA 4 - VARIABILE (Page Break) */}
           <div className="print-card print-break bg-white rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-sm overflow-x-auto">
             <div className="border-b-2 border-dashed border-indigo-100 pb-4 text-center">
-              <h1 className="text-xl sm:text-2xl font-black text-indigo-900">
+              <h2 className="text-xl sm:text-2xl font-black text-indigo-900">
                 Aventura lui Pippy — Fișă Didactică 4
-              </h1>
+              </h2>
               <p className="text-[10px] sm:text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">
                 Nivelul: Avansat (Clasele III–IV) · Tema: Variabile și Numărare
               </p>

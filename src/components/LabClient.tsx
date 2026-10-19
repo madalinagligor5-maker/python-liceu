@@ -22,7 +22,9 @@ export default function LabClient() {
 
   if (initialCode === null) {
     return (
-      <div className="flex h-48 items-center justify-center rounded-2xl border border-black/10 bg-slate-50 font-medium text-slate-400">
+      // Aceeași înălțime ca editorul care îl înlocuiește (măsurat: ~506px pe
+      // mobil, ~490px pe desktop) — altfel footer-ul sărea (CLS 0,16).
+      <div className="flex min-h-[506px] items-center justify-center rounded-2xl border border-black/10 bg-slate-50 font-medium text-slate-400 sm:min-h-[490px]">
         Se încarcă laboratorul...
       </div>
     );

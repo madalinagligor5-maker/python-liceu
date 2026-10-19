@@ -3,8 +3,16 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import KidsAdventureClient from "@/components/KidsAdventureClient";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { nivelId: string };
+
+/** Numele misiunilor, ca în enunțurile din KidsAdventureClient. */
+const MISIUNI: Record<string, string> = {
+  "1": "Secvențialitate",
+  "2": "Puterea Repetiției",
+  "3": "Primul tău cod Python",
+};
 
 export async function generateMetadata({
   params,
@@ -12,11 +20,13 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { nivelId } = await params;
-  return {
-    title: "Aventura lui Pippy — Kids",
-    description: "Rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.",
-    alternates: { canonical: `/kids/aventura/${nivelId}` },
-  };
+  const misiune = MISIUNI[nivelId];
+  if (!misiune) return {};
+  return metadatePagina({
+    titlu: `Aventura lui Pippy, nivelul ${nivelId}: ${misiune} — Kids`,
+    descriere: `Nivelul ${nivelId} din 3 („${misiune}”): rezolvă puzzle-ul de logică, controlează robotul și scrie primele tale instrucțiuni Python.`,
+    cale: `/kids/aventura/${nivelId}`,
+  });
 }
 
 export default async function KidsLevelPage({ params }: { params: Promise<Params> }) {
@@ -40,9 +50,9 @@ export default async function KidsLevelPage({ params }: { params: Promise<Params
           >
             ← Înapoi la Hartă
           </Link>
-          <span className="text-xs font-semibold text-slate-400">
-            Nivelul {idNum} din 3
-          </span>
+          <h1 className="text-xs font-semibold text-slate-400">
+            Aventura lui Pippy · Nivelul {idNum} din 3
+          </h1>
         </div>
 
         {/* Client Interactive Game Board */}

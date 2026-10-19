@@ -1,14 +1,13 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { unitati, hrefModulCurs } from "@/lib/curs";
 import { ICOANE_SUBLECTIE } from "@/lib/curriculum";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Curs practic de Python",
-  description:
-    "Curs de sine stătător, pentru orice vârstă — de la zero, direct în browser, spre automatizare și o primă incursiune în analiza de date. Primul modul e complet gratuit.",
-  alternates: { canonical: "/curs-practic" },
-};
+export const metadata = metadatePagina({
+  titlu: "Curs practic de Python",
+  descriere: "Curs de sine stătător, pentru orice vârstă — de la zero, direct în browser, spre automatizare și o primă incursiune în analiza de date. Primul modul e complet gratuit.",
+  cale: "/curs-practic",
+});
 
 // Harta completă a cursului (6 unități, 20 module). Modulele publicate vin din
 // content/structura_curs.json și sunt navigabile; harta arată și ce urmează.

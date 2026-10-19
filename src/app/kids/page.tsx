@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresKids } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Kids — pentru clasele I–IV",
-  description: "Învață programare vizuală și bazele Python prin jocuri de logică și labirinturi interactive.",
-  alternates: { canonical: "/kids" },
-};
+export const metadata = metadatePagina({
+  titlu: "Kids — pentru clasele I–IV",
+  descriere: "Învață programare vizuală și bazele Python prin jocuri de logică și labirinturi interactive.",
+  cale: "/kids",
+});
 
 const IMAGINI_VARSTE: Record<string, { src: string; alt: string; eticheta: string }> = {
   P7: {

@@ -7,6 +7,7 @@ import LectieBadge from "@/components/LectieBadge";
 import CodeBlock from "@/components/CodeBlock";
 import ExercitiuInteractiv from "@/components/ExercitiuInteractiv";
 import QuizWidget from "@/components/QuizWidget";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string; unitateSlug: string; lectieSlug: string };
 
@@ -27,11 +28,11 @@ export async function generateMetadata({
   const lectie = getLectie(clasa, unitateSlug, lectieSlug);
   if (!lectie) return {};
 
-  return {
-    title: lectie.lectie,
-    description: lectie.explicatie_scurta.slice(0, 155),
-    alternates: { canonical: `/lectii/${clasa}/${unitateSlug}/${lectieSlug}` },
-  };
+  return metadatePagina({
+    titlu: lectie.lectie,
+    descriere: lectie.explicatie_scurta.slice(0, 155),
+    cale: `/lectii/${clasa}/${unitateSlug}/${lectieSlug}`,
+  });
 }
 
 export default async function LectiePage({ params }: { params: Promise<Params> }) {

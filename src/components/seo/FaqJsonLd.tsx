@@ -1,3 +1,5 @@
+import JsonLd from "@/components/seo/JsonLd";
+
 /** Date structurate FAQPage — DOAR pentru o secțiune de întrebări/răspunsuri
  *  reală, deja afișată pe pagină (ex. FAQ-ul de pe homepage). Nu inventăm
  *  întrebări noi doar ca să umplem schema; itemii vin din același array
@@ -20,10 +22,5 @@ export default function FaqJsonLd({
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
+  return <JsonLd date={jsonLd} />;
 }

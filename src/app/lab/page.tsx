@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import LabClient from "@/components/LabClient";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Lab (Cod online)",
-  description: "Scrie și rulează cod Python direct în browser, fără instalare.",
-  alternates: { canonical: "/lab" },
-};
+export const metadata = metadatePagina({
+  titlu: "Compilator Python online: scrie și rulează cod în browser",
+  descriere: "Scrie și rulează cod Python direct în browser, fără instalare.",
+  cale: "/lab",
+});
 
 export default function LabPage() {
   return (

@@ -4,22 +4,22 @@
   "unitati": [
     {
       "modulCod": "4.1",
-      "modulTitlu": "Modelul entitate-relatie: entitati si atribute",
-      "competente": "Modelul entitate-relatie: entitati si atribute",
+      "modulTitlu": "Modelul entitate-relație: entități și atribute",
+      "competente": "Modelul entitate-relație: entități și atribute",
       "oreAlocate": 2,
       "saptamanaEstimata": 1
     },
     {
       "modulCod": "4.2",
-      "modulTitlu": "Modelul entitate-relatie: relații si cardinalitate",
-      "competente": "Modelul entitate-relatie: relații si cardinalitate",
+      "modulTitlu": "Modelul entitate-relație: relații și cardinalitate",
+      "competente": "Modelul entitate-relație: relații și cardinalitate",
       "oreAlocate": 2,
       "saptamanaEstimata": 2
     },
     {
       "modulCod": "4.3",
-      "modulTitlu": "Diagrama ERD si maparea la modelul fizic",
-      "competente": "Diagrama ERD si maparea la modelul fizic",
+      "modulTitlu": "Diagrama ERD și maparea la modelul fizic",
+      "competente": "Diagrama ERD și maparea la modelul fizic",
       "oreAlocate": 2,
       "saptamanaEstimata": 3
     },
@@ -39,57 +39,57 @@
     },
     {
       "modulCod": "4.6",
-      "modulTitlu": "Clasele Connection si Cursor din Python",
-      "competente": "Clasele Connection si Cursor din Python",
+      "modulTitlu": "Clasele Connection și Cursor din Python",
+      "competente": "Clasele Connection și Cursor din Python",
       "oreAlocate": 2,
       "saptamanaEstimata": 6
     },
     {
       "modulCod": "4.7",
-      "modulTitlu": "SQL: interogari SELECT, proiectie, ordonare",
-      "competente": "SQL: interogari SELECT, proiectie, ordonare",
+      "modulTitlu": "SQL: interogări SELECT, proiecție, ordonare",
+      "competente": "SQL: interogări SELECT, proiecție, ordonare",
       "oreAlocate": 2,
       "saptamanaEstimata": 7
     },
     {
       "modulCod": "4.8",
-      "modulTitlu": "SQL: functii agregate si grupare",
-      "competente": "SQL: functii agregate si grupare",
+      "modulTitlu": "SQL: funcții agregate și grupare",
+      "competente": "SQL: funcții agregate și grupare",
       "oreAlocate": 2,
       "saptamanaEstimata": 8
     },
     {
       "modulCod": "4.9",
-      "modulTitlu": "SQL: JOIN si subinterogari",
-      "competente": "SQL: JOIN si subinterogari",
+      "modulTitlu": "SQL: JOIN și subinterogări",
+      "competente": "SQL: JOIN și subinterogări",
       "oreAlocate": 2,
       "saptamanaEstimata": 9
     },
     {
       "modulCod": "4.10",
-      "modulTitlu": "SQL: DML - inserare, actualizare, ștergere",
-      "competente": "SQL: DML - inserare, actualizare, ștergere",
+      "modulTitlu": "SQL: DML — inserare, actualizare, ștergere",
+      "competente": "SQL: DML — inserare, actualizare, ștergere",
       "oreAlocate": 2,
       "saptamanaEstimata": 10
     },
     {
       "modulCod": "4.11",
-      "modulTitlu": "SQL: DDL - creare si modificare a structurii",
-      "competente": "SQL: DDL - creare si modificare a structurii",
+      "modulTitlu": "SQL: DDL — creare și modificare a structurii",
+      "competente": "SQL: DDL — creare și modificare a structurii",
       "oreAlocate": 2,
       "saptamanaEstimata": 11
     },
     {
       "modulCod": "4.12",
-      "modulTitlu": "SQL: DCL si TCL - drepturi si tranzactii",
-      "competente": "SQL: DCL si TCL - drepturi si tranzactii",
+      "modulTitlu": "SQL: DCL și TCL — drepturi și tranzacții",
+      "competente": "SQL: DCL și TCL — drepturi și tranzacții",
       "oreAlocate": 2,
       "saptamanaEstimata": 12
     },
     {
       "modulCod": "4.13",
-      "modulTitlu": "Modele de date pentru invatarea automata",
-      "competente": "Modele de date pentru invatarea automata",
+      "modulTitlu": "Modele de date pentru învățarea automată",
+      "competente": "Modele de date pentru învățarea automată",
       "oreAlocate": 2,
       "saptamanaEstimata": 13
     },
@@ -102,29 +102,29 @@
     },
     {
       "modulCod": "4.15",
-      "modulTitlu": "Învățare nesupervizata: K-means",
-      "competente": "Învățare nesupervizata: K-means",
+      "modulTitlu": "Învățare nesupervizată: K-means",
+      "competente": "Învățare nesupervizată: K-means",
       "oreAlocate": 2,
       "saptamanaEstimata": 15
     },
     {
       "modulCod": "4.16",
-      "modulTitlu": "Învățare supervizata: regresie liniara",
-      "competente": "Învățare supervizata: regresie liniara",
+      "modulTitlu": "Învățare supervizată: regresie liniară",
+      "competente": "Învățare supervizată: regresie liniară",
       "oreAlocate": 2,
       "saptamanaEstimata": 16
     },
     {
       "modulCod": "4.17",
-      "modulTitlu": "Învățare supervizata: KNN si arbore de decizie",
-      "competente": "Învățare supervizata: KNN si arbore de decizie",
+      "modulTitlu": "Învățare supervizată: KNN și arbore de decizie",
+      "competente": "Învățare supervizată: KNN și arbore de decizie",
       "oreAlocate": 2,
       "saptamanaEstimata": 17
     },
     {
       "modulCod": "4.18",
-      "modulTitlu": "Introducere în retele neuronale",
-      "competente": "Introducere în retele neuronale",
+      "modulTitlu": "Introducere în rețele neuronale",
+      "competente": "Introducere în rețele neuronale",
       "oreAlocate": 2,
       "saptamanaEstimata": 18
     },
@@ -137,22 +137,22 @@
     },
     {
       "modulCod": "4.20",
-      "modulTitlu": "Biblioteca Pandas: DataFrame si statistici descriptive",
-      "competente": "Biblioteca Pandas: DataFrame si statistici descriptive",
+      "modulTitlu": "Biblioteca Pandas: DataFrame și statistici descriptive",
+      "competente": "Biblioteca Pandas: DataFrame și statistici descriptive",
       "oreAlocate": 2,
       "saptamanaEstimata": 20
     },
     {
       "modulCod": "4.21",
-      "modulTitlu": "Biblioteca Scikit-learn: antrenare, predictie, evaluare",
-      "competente": "Biblioteca Scikit-learn: antrenare, predictie, evaluare",
+      "modulTitlu": "Biblioteca Scikit-learn: antrenare, predicție, evaluare",
+      "competente": "Biblioteca Scikit-learn: antrenare, predicție, evaluare",
       "oreAlocate": 2,
       "saptamanaEstimata": 21
     },
     {
       "modulCod": "4.22",
-      "modulTitlu": "Biblioteca NumPy: operatii cu matrici",
-      "competente": "Biblioteca NumPy: operatii cu matrici",
+      "modulTitlu": "Biblioteca NumPy: operații cu matrici",
+      "competente": "Biblioteca NumPy: operații cu matrici",
       "oreAlocate": 2,
       "saptamanaEstimata": 22
     }

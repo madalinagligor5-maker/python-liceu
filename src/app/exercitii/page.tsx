@@ -1,14 +1,14 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { esteCapitolCopii, numeClasa, capitole } from "@/lib/curriculum";
 import LectieBadge from "@/components/LectieBadge";
 import { exercitiiPracticeLiberAccesibile } from "@/lib/acces";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Exerciții Practice",
-  description: "Exerciții interactive de programare Python pe module școlare, pentru gimnaziu și liceu.",
-  alternates: { canonical: "/exercitii" },
-};
+export const metadata = metadatePagina({
+  titlu: "Exerciții Python interactive, pe clase",
+  descriere: "Exerciții interactive de programare Python pe module școlare, pentru gimnaziu și liceu.",
+  cale: "/exercitii",
+});
 
 export default function ExercitiiCatalogPage() {
   return (

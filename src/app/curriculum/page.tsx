@@ -1,14 +1,15 @@
 import Link from "next/link";
-import type { Metadata } from "next";
-import { capitole, numeClasa, structura } from "@/lib/curriculum";
+import { capitole, numeClasa, numeClasaInText, structura } from "@/lib/curriculum";
 import ModuleListCollapsible from "@/components/ModuleListCollapsible";
+import { metadatePagina } from "@/lib/seo";
+import { TRASEE } from "@/lib/trasee";
 
-export const metadata: Metadata = {
-  title: "Curriculum complet",
-  description:
-    "Structura cursului de Informatică (Python) pentru liceu, clasele IX–XII: 4 capitole, 88 de module, fiecare în 6 pași.",
-  alternates: { canonical: "/curriculum" },
-};
+export const metadata = metadatePagina({
+  titlu: "Curriculum de Informatică în Python, clasele VII–XII",
+  descriere:
+    "Structura lecțiilor de Informatică în Python: gimnaziu (clasele VII–VIII) și liceu (clasele IX–XII, 4 capitole, 88 de module), fiecare modul în 6 pași.",
+  cale: "/curriculum",
+});
 
 export default function CurriculumPage() {
   // Pagina asta e legată explicit de Ordinul 4.370/2026 (profil
@@ -21,6 +22,9 @@ export default function CurriculumPage() {
   const nrCapitole = capitoleLiceu.length;
   const nrModule = capitoleLiceu.reduce((acc, c) => acc + c.module.length, 0);
   const nrSublectii = nrModule * 6;
+  // Gimnaziul are propriul bloc, separat de rezumatul de liceu de mai sus.
+  const capitoleGimnaziu = capitole.filter((c) => c.clasa === "VII" || c.clasa === "VIII");
+  const traseuGimnaziu = TRASEE.find((t) => t.id === "gimnaziu");
 
   return (
     <div className="min-h-screen text-[#172033]">
@@ -83,6 +87,44 @@ export default function CurriculumPage() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Gimnaziu (VII–VIII): programă proprie, deci bloc separat de liceu */}
+        <section className="mt-24" aria-labelledby="gimnaziu-titlu">
+          <div className="mb-8 max-w-xl">
+            <span className="eyebrow">Gimnaziu · clasele VII–VIII</span>
+            <h2 id="gimnaziu-titlu" className="mt-4 text-3xl font-black [font-family:var(--font-fraunces)]">
+              Începi de la zero? Gimnaziul e gratuit
+            </h2>
+            {traseuGimnaziu && (
+              <p className="mt-3 text-sm leading-relaxed text-[#5F6673]">
+                {traseuGimnaziu.public} {traseuGimnaziu.gratuit}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {capitoleGimnaziu.map((c) => (
+              <article key={c.clasa} className="surface-card p-6">
+                <p className="text-xs font-black uppercase tracking-wider text-amber-600">{numeClasa(c.clasa)}</p>
+                <h3 className="mt-1 text-xl font-black text-[#1E2430]">{c.titlu}</h3>
+                <p className="mt-1 text-xs font-medium text-[#525B6C]">
+                  {c.module.length} module · {c.module.length * 6} sublecții · gratuit
+                </p>
+                <ul className="mt-3 space-y-1 text-sm">
+                  {c.module.map((m) => (
+                    <li key={m.slug}>
+                      <Link href={`/curriculum/${c.clasa}/${m.slug}`} className="text-[#2F6191] underline-offset-2 hover:underline">
+                        {m.titlu}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href={`/curriculum/${c.clasa}`} className="primary-action mt-4 inline-flex text-xs">
+                  Vezi modulele pentru {numeClasaInText(c.clasa)} →
+                </Link>
+              </article>
+            ))}
+          </div>
         </section>
 
         {/* Lista capitolelor IX - XII */}

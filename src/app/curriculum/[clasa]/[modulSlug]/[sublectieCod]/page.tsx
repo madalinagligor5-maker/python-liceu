@@ -25,6 +25,8 @@ import { getPredicție } from "@/lib/predicții";
 import PredicțieWidget from "@/components/PredicțieWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import { metadatePagina } from "@/lib/seo";
+import { titluSublectie } from "@/lib/seoModul";
 
 type Params = { clasa: string; modulSlug: string; sublectieCod: string };
 
@@ -40,35 +42,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { clasa, modulSlug, sublectieCod } = await params;
   const modul = getModul(clasa, modulSlug);
-  if (!modul) return {};
+  const sublectieInfo = modul?.sublectii.find((s) => s.cod === sublectieCod);
+  if (!modul || !sublectieInfo) return {};
 
-  // Modulele premium arată, pentru cine nu are acces, un "teaser" aproape
-  // identic pe sute de sublecții (doar titlul/descrierea scurtă diferă) —
-  // conținut subțire și cvasi-duplicat. Nu le trimitem la indexare: fără
-  // acest noindex explicit, Google le descoperă prin navigarea internă
-  // (anterior/următor, lista din pagina de modul) și rămân în limb ca
-  // "Discovered/Crawled - currently not indexed", risipind buget de crawl.
-  // Sublecțiile chiar publice (module gratuite) rămân indexabile normal.
-  const esteGratuit = lectiiLiberAccesibile(modul);
-  if (!esteGratuit) {
-    const sublectieInfo = modul.sublectii.find((s) => s.cod === sublectieCod);
-    if (!sublectieInfo) return {};
-    return {
-      title: `${sublectieCod} ${sublectieInfo.titlu}`,
-      description: `${sublectieInfo.descriere} — necesită abonament activ.`,
-      alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
-      robots: { index: false, follow: true },
-    };
-  }
-
-  const continut = await getSublectieContinut(sublectieCod);
-  if (!continut) return {};
-
-  return {
-    title: `${sublectieCod} ${continut.titlu}`,
-    description: `Sublecția ${sublectieCod} din modulul ${modul.titlu}.`,
-    alternates: { canonical: `/curriculum/${clasa}/${modulSlug}/${sublectieCod}` },
-  };
+  // Pagina indexabilă a lecției e MODULUL. Cei 6 pași (sublecțiile) au
+  // același subiect și, fără abonament, aproape același conținut: noindex,
+  // follow + canonical către modul. Rămân accesibili normal utilizatorilor,
+  // iar Google urmează în continuare linkurile din ei.
+  return metadatePagina({
+    titlu: titluSublectie(sublectieInfo.titlu, modul, clasa),
+    descriere: `Pasul „${sublectieInfo.titlu}” din lecția „${modul.titlu}”: ${sublectieInfo.descriere}`,
+    cale: `${hrefModul(modul)}/${sublectieCod}`,
+    canonical: hrefModul(modul),
+    noindex: true,
+  });
 }
 
 export default async function SublectiePage({ params }: { params: Promise<Params> }) {

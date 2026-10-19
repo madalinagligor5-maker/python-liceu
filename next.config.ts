@@ -29,12 +29,31 @@ const nextConfig: NextConfig = {
       // Catalogul vechi /lectii dubla /curriculum: o singură cale spre lecții.
       // Doar adresa exactă — paginile /lectii/<clasa>/... (sistemul vechi de
       // lecții folosit de panoul elevului) rămân neschimbate.
-      { source: "/lectii", destination: "/curriculum", permanent: true },
+      { source: "/lectii", destination: "/curriculum", statusCode: 301 },
+      // URL-urile legale vechi duc la singura formă canonică. statusCode 301
+      // (nu `permanent`, care ar da 308) — cerut explicit pentru SEO.
+      { source: "/termeni", destination: "/termeni-si-conditii", statusCode: 301 },
+      { source: "/confidentialitate", destination: "/politica-de-confidentialitate", statusCode: 301 },
+      // Două module P8 aveau în slug diacritice / un spațiu, iar URL-urile dădeau
+      // 404 (inclusiv din sitemap). Slug-urile au fost corectate în
+      // content/structura_curriculum.json; vechile adrese duc la cele noi.
+      ...["curriculum", "exercitii", "resurse"].flatMap((sectiune) => [
+        {
+          source: `/${sectiune}/P8/input-intreaba-utilizatorul-si-prime%C8%99te-un-raspuns/:rest*`,
+          destination: `/${sectiune}/P8/input-intreaba-utilizatorul-si-primeste-un-raspuns/:rest*`,
+          statusCode: 301 as const,
+        },
+        {
+          source: `/${sectiune}/P8/liste-de-culori-si-desene-cu-ma-mult%20mai-forme/:rest*`,
+          destination: `/${sectiune}/P8/liste-de-culori-si-desene-cu-mai-multe-forme/:rest*`,
+          statusCode: 301 as const,
+        },
+      ]),
       {
         source: "/:path*",
         has: [{ type: "host", value: "academiapython.ro" }],
         destination: `${SITE}/:path*`,
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },

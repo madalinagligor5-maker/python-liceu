@@ -1,6 +1,7 @@
 import { numeClasa } from "@/lib/curriculum";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { FARA_INDEXARE } from "@/lib/seo";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { creeazaClientServer } from "@/lib/supabase/server";
@@ -10,6 +11,7 @@ import Mascota from "@/components/Mascota";
 
 export const metadata: Metadata = {
   title: "Contul meu",
+  robots: FARA_INDEXARE,
 };
 
 const STATUS_LABEL: Record<string, { text: string; className: string; desc: string }> = {

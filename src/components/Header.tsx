@@ -22,7 +22,7 @@ export default async function Header() {
       <div className="mx-auto flex max-w-[86rem] items-center justify-between gap-3 px-4 py-3 sm:px-6">
         {/* Logo Compact pe Mobil */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <Logo className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg transition duration-300 group-hover:-rotate-2 group-hover:scale-105" />
+          <Logo prioritar className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg transition duration-300 group-hover:-rotate-2 group-hover:scale-105" />
           <span className="leading-none">
             <span className="text-sm sm:text-base font-black tracking-tight text-[#1E2430] font-sans">
               Academia<span className="text-[#B96D08]">Python</span>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
+import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -15,10 +16,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { clasa, modulSlug } = await params;
   const modul = getModul(clasa, modulSlug);
-  return {
-    title: modul ? `Vizualizare Fișă: ${modul.titlu} — Academia Python` : "Resurse PDF",
-    alternates: { canonical: `/resurse/${clasa}/${modulSlug}` },
-  };
+  // Vizualizatorul pe tot ecranul conține doar PDF-ul (într-un iframe): nu
+  // are text propriu de indexat. Pagina indexabilă e lista /resurse/<clasa>.
+  return metadatePagina({
+    titlu: modul ? `Fișă de lucru PDF: ${modul.titlu}` : "Resurse PDF",
+    descriere: modul
+      ? `Fișă de lucru PDF gratuită pentru modulul „${modul.titlu}”, de printat sau descărcat.`
+      : "Fișe de lucru PDF gratuite, pe clase.",
+    cale: `/resurse/${clasa}/${modulSlug}`,
+    noindex: true,
+  });
 }
 
 export default async function ResursaPdfPreviewPage({

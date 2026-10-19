@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import ButonSetariCookie from "@/components/ButonSetariCookie";
+import { metadatePagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Politică de Confidențialitate (GDPR)",
-  description: "Politica de confidențialitate și protecție a datelor cu caracter personal conform GDPR pe platforma Academia Python.",
-  alternates: { canonical: "/politica-de-confidentialitate" },
-};
+export const metadata = metadatePagina({
+  titlu: "Politică de Confidențialitate (GDPR)",
+  descriere: "Politica de confidențialitate și protecție a datelor cu caracter personal conform GDPR pe platforma Academia Python.",
+  cale: "/politica-de-confidentialitate",
+});
 
 export default function PoliticaConfidentialitatePage() {
   return (
