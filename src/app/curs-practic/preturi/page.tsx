@@ -74,7 +74,7 @@ export default async function PreturiCursPage() {
             }`}
           >
             <h2 className="text-lg font-bold text-foreground">{p.nume}</h2>
-            <p className="mt-1 text-sm text-foreground/60">{p.descriere}</p>
+            <p className="mt-1 text-sm text-foreground/65">{p.descriere}</p>
             {preturi[p.plan] ? (
               <p className="mt-4 text-3xl font-black text-foreground">
                 {formateazaSuma(preturi[p.plan]!)}{" "}
@@ -110,7 +110,7 @@ export default async function PreturiCursPage() {
         ))}
       </div>
 
-      <p className="mt-8 text-center text-sm text-foreground/60">
+      <p className="mt-8 text-center text-sm text-foreground/65">
         Cauți lecțiile de liceu (clasele IX–XII)?{" "}
         <Link href="/preturi" className="font-semibold text-brand hover:underline">
           Vezi planurile de acolo

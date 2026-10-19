@@ -483,7 +483,7 @@ json.dumps(steps)
 
         {(outputCurent || eroareCurenta) && (
           <div className="mt-3">
-            <p className="text-xs font-semibold text-foreground/50 mb-1">Consolă / Output:</p>
+            <p className="text-xs font-semibold text-foreground/65 mb-1">Consolă / Output:</p>
             <pre className="max-h-48 overflow-auto rounded-lg bg-black/90 p-3 font-mono text-xs leading-relaxed text-green-300">
               {outputCurent}
               {eroareCurenta && <span className="text-red-400">{eroareCurenta}</span>}

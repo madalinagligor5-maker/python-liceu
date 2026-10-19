@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const STATUS_LABEL: Record<string, { text: string; className: string; desc: string }> = {
   active: {
     text: "Abonament Activ (Premium)",
-    className: "bg-success/15 text-success border-success/30",
+    className: "bg-emerald-50 text-success border-success/30",
     desc: "Felicitări! Ai acces nelimitat la toate lecțiile, exercițiile practice și materialele din programa de liceu.",
   },
   past_due: {
@@ -166,21 +166,21 @@ export default async function ContPage() {
           <div className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-inner-sm">
             <span className="text-3xl" aria-hidden="true">⭐</span>
             <div>
-              <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider">XP Acumulat</p>
+              <p className="text-xs font-semibold text-foreground/65 uppercase tracking-wider">XP Acumulat</p>
               <p className="text-lg font-extrabold text-foreground">{xpTotal} XP</p>
             </div>
           </div>
           <div className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-inner-sm">
             <span className="text-3xl" aria-hidden="true">🔥</span>
             <div>
-              <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider">Streak de Învățare</p>
+              <p className="text-xs font-semibold text-foreground/65 uppercase tracking-wider">Streak de Învățare</p>
               <p className="text-lg font-extrabold text-foreground">{meta.streakZile} {meta.streakZile === 1 ? "zi" : "zile"}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-inner-sm">
             <span className="text-3xl" aria-hidden="true">🏅</span>
             <div>
-              <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider">Insigne Câștigate</p>
+              <p className="text-xs font-semibold text-foreground/65 uppercase tracking-wider">Insigne Câștigate</p>
               <p className="text-lg font-extrabold text-foreground">{insigneDetinute.size} / {LISTA_INSIGNE.length}</p>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default async function ContPage() {
                   {status.desc}
                 </p>
                 {dataReinnoire && (
-                  <p className="mt-2 text-xs font-semibold text-foreground/60">
+                  <p className="mt-2 text-xs font-semibold text-foreground/65">
                     {seAnuleazaLaFinal
                       ? "Acces Premium până pe"
                       : meta.subscriptionStatus === "active"
@@ -230,7 +230,7 @@ export default async function ContPage() {
         <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
           <span>🏆</span> Insignele Tale
         </h2>
-        <p className="text-sm text-foreground/50 mt-1">
+        <p className="text-sm text-foreground/65 mt-1">
           Finalizează modulele de învățare, rezolvă quiz-urile corect și menține-ți streak-ul zilnic pentru a debloca toate medaliile.
         </p>
 
@@ -252,7 +252,7 @@ export default async function ContPage() {
                 </span>
                 <div className="min-w-0">
                   <p className="font-bold text-sm text-foreground truncate">{badge.nume}</p>
-                  <p className="text-xs text-foreground/60 leading-tight mt-0.5">{badge.descriere}</p>
+                  <p className="text-xs text-foreground/65 leading-tight mt-0.5">{badge.descriere}</p>
                 </div>
               </div>
             );

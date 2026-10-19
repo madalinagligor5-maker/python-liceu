@@ -11,7 +11,7 @@ export default function FisePage() {
   return (
     <div>
       <h1 className="text-xl font-bold text-foreground">Fișe de lucru printabile</h1>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Alege un modul — fișa folosește exercițiile deja existente pe platformă, cu opțiunea de
         a arăta sau ascunde baremul.
       </p>
@@ -19,7 +19,7 @@ export default function FisePage() {
       <div className="mt-6 space-y-8">
         {capitoleLiceu.map((c) => (
           <div key={c.clasa}>
-            <h2 className="text-sm font-bold uppercase tracking-wide text-foreground/50">
+            <h2 className="text-sm font-bold uppercase tracking-wide text-foreground/65">
               Clasa a {c.clasa}-a
             </h2>
             <div className="mt-2 grid gap-2 sm:grid-cols-2 md:grid-cols-3">

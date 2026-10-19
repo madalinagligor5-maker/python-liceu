@@ -115,7 +115,7 @@ export default async function KidsPage() {
 
       <section id="trasee" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
-          <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">Crește odată cu ei</span>
+          <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-800">Crește odată cu ei</span>
           <h2 className="mt-3 text-3xl font-black leading-tight sm:text-5xl [font-family:var(--font-fraunces)] text-balance">
             Un traseu vizual pentru fiecare vârstă
           </h2>
@@ -177,7 +177,7 @@ export default async function KidsPage() {
       <section className="bg-[#EEE9DD] py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
-            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-700">Jocuri interactive</span>
+            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-800">Jocuri interactive</span>
             <h2 className="mt-3 text-3xl font-black sm:text-5xl [font-family:var(--font-fraunces)] text-balance">
               Învață făcând, nu memorând
             </h2>

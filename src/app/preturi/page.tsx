@@ -76,20 +76,20 @@ export default async function PreturiPage() {
             <p className="text-sm font-black text-foreground">Ce înseamnă etichetele din lecții</p>
             <dl className="mt-3 space-y-2.5 text-sm text-foreground/80">
               <div>
-                <dt className="inline font-bold text-success">„{ETICHETE_ACCES.gratuit.text}”</dt> —{" "}
-                <dd className="inline">parte din oferta gratuită de mai sus; fără cont și fără card.</dd>
+                <dt className="inline font-bold text-success">„{ETICHETE_ACCES.gratuit.text}”</dt>{" "}
+                <dd className="inline">— parte din oferta gratuită de mai sus; fără cont și fără card.</dd>
               </div>
               <div>
-                <dt className="inline font-bold text-brand-dark">„{ETICHETE_ACCES.deschis.text}”</dt> —{" "}
-                <dd className="inline">
+                <dt className="inline font-bold text-brand-dark">„{ETICHETE_ACCES.deschis.text}”</dt>{" "}
+                <dd className="inline">— 
                   lecțiile modulelor 1–{MODULE_ACCES_DESCHIS} din fiecare clasă de liceu care nu sunt marcate gratuit. Deocamdată
                   le poți parcurge fără cont și fără abonament, dar nu fac parte din oferta gratuită garantată și pot trece sub
                   abonament. Exercițiile practice suplimentare ale acestor module sunt fără abonament doar la clasa a IX-a.
                 </dd>
               </div>
               <div>
-                <dt className="inline font-bold text-foreground">„{ETICHETE_ACCES.abonament.text}”</dt> —{" "}
-                <dd className="inline">cer cont și abonament activ (inclusiv în perioada de probă).</dd>
+                <dt className="inline font-bold text-foreground">„{ETICHETE_ACCES.abonament.text}”</dt>{" "}
+                <dd className="inline">— cer cont și abonament activ (inclusiv în perioada de probă).</dd>
               </div>
             </dl>
             <p className="mt-3 text-xs text-foreground/70">

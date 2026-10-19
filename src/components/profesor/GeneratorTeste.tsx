@@ -141,7 +141,7 @@ export default function GeneratorTeste({ capitoleLiceu }: { capitoleLiceu: Capit
   return (
     <div>
       <h1 className="text-xl font-bold text-foreground">Generator de teste</h1>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Testul și baremul se generează din aceleași întrebări, ca să nu apară inconsecvențe.
       </p>
 

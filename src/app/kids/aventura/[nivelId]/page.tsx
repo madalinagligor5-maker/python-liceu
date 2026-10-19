@@ -46,11 +46,11 @@ export default async function KidsLevelPage({ params }: { params: Promise<Params
         <div className="mb-4 flex items-center justify-between">
           <Link
             href="/kids"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-indigo-600 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-indigo-600 transition"
           >
             ← Înapoi la Hartă
           </Link>
-          <h1 className="text-xs font-semibold text-slate-400">
+          <h1 className="text-xs font-semibold text-slate-600">
             Aventura lui Pippy · Nivelul {idNum} din 3
           </h1>
         </div>

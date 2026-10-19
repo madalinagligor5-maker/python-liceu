@@ -59,7 +59,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-      <nav className="text-sm text-foreground/50">
+      <nav className="text-sm text-foreground/65">
         <Link href="/curriculum" className="hover:text-brand">
           Curriculum
         </Link>
@@ -86,7 +86,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
       </ul>
 
       <section className="mt-6">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground/50">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground/65">
           Obiective
         </h2>
         <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-foreground/70">
@@ -148,7 +148,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
             <p className="font-semibold text-foreground">
               Această lecție necesită cont și abonament activ.
             </p>
-            <p className="mt-1 text-sm text-foreground/60">
+            <p className="mt-1 text-sm text-foreground/65">
               Deblochează toate lecțiile, exercițiile și proiectele cu un abonament Academia Python.
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-3">

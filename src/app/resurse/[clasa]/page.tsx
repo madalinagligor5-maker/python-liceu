@@ -84,7 +84,7 @@ export default async function ClasaResursePage({
         ) : (
           <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-8 text-center">
             <span className="text-4xl" aria-hidden="true">🗂️</span>
-            <p className="mt-2 text-sm text-foreground/60">Nu există resurse publicate pentru această clasă.</p>
+            <p className="mt-2 text-sm text-foreground/65">Nu există resurse publicate pentru această clasă.</p>
           </div>
         )}
       </div>

@@ -194,7 +194,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             zona de profesor după ce cererea e aprobată manual — vei fi anunțată/anunțat pe email.
           </p>
         </div>
-        <p className="mt-6 text-center text-sm text-foreground/60">
+        <p className="mt-6 text-center text-sm text-foreground/65">
           <Link href="/login" className="font-semibold text-brand">
             Mergi la autentificare
           </Link>
@@ -216,7 +216,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
       <h1 className="mt-4 text-3xl font-black text-foreground [font-family:var(--font-fraunces)]">
         {mod === "login" ? "Autentificare" : "Creează un cont"}
       </h1>
-      <p className="mt-3 text-sm leading-relaxed text-foreground/60">
+      <p className="mt-3 text-sm leading-relaxed text-foreground/65">
         {mod === "login"
           ? "Intră în cont ca să accesezi toate lecțiile."
           : "Creează-ți contul gratuit — abonamentul se activează separat, din pagina de prețuri."}
@@ -263,7 +263,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             className="mt-2 w-full rounded-xl border border-black/10 bg-[#FAF8F3] px-4 py-3 text-sm outline-none transition focus:border-[#2F6191] focus:bg-white"
           />
           {mod === "inregistrare" && (
-            <p className="mt-1.5 text-xs text-foreground/50">Minimum 6 caractere.</p>
+            <p className="mt-1.5 text-xs text-foreground/65">Minimum 6 caractere.</p>
           )}
           {mod === "login" && (
             <button
@@ -290,7 +290,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
                 Sunt profesor / vreau acces pentru profesori
               </span>
             </label>
-            <p className="mt-1 pl-6 text-xs text-foreground/55">
+            <p className="mt-1 pl-6 text-xs text-foreground/65">
               Cererea intră într-o listă de așteptare și e aprobată manual. Accesul de profesor
               e gratuit.
             </p>
@@ -335,7 +335,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         </button>
       </form>
 
-      <div className="mt-4 flex items-center gap-3 text-xs text-foreground/40">
+      <div className="mt-4 flex items-center gap-3 text-xs text-foreground/65">
         <span className="h-px flex-1 bg-black/10" />
         sau
         <span className="h-px flex-1 bg-black/10" />
@@ -349,7 +349,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         Continuă cu Google
       </button>
 
-      <p className="mt-6 text-center text-sm text-foreground/60">
+      <p className="mt-6 text-center text-sm text-foreground/65">
         {mod === "login" ? (
           <>
             Nu ai cont?{" "}

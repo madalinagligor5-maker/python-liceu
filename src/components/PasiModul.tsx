@@ -30,7 +30,7 @@ const ETICHETA: Record<StarePas, string> = {
 };
 
 const STIL: Record<StarePas, string> = {
-  finalizat: "bg-success/15 text-success",
+  finalizat: "bg-emerald-50 text-success",
   deschis: "bg-amber-100 text-amber-900",
   neinceput: "bg-surface text-foreground/70",
 };

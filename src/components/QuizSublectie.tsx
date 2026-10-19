@@ -69,11 +69,11 @@ export default function QuizSublectie({
     <div className="rounded-2xl border border-brand-border bg-white p-6 shadow-sm">
       {!deblocat ? (
         <div className="flex flex-col items-center gap-2 py-6 text-center">
-          <IconLectieBlocata className="h-8 w-8 text-foreground/40" />
+          <IconLectieBlocata className="h-8 w-8 text-foreground/65" />
           <h3 className="text-lg font-bold text-foreground">
             Rezolvă mai întâi exercițiile
           </h3>
-          <p className="max-w-sm text-sm text-foreground/60">
+          <p className="max-w-sm text-sm text-foreground/65">
             Ca să fii sigur că ai înțeles, completează exercițiile de mai sus.
             Abia apoi se deblochează quiz-ul de verificare.
           </p>
@@ -86,7 +86,7 @@ export default function QuizSublectie({
         </span>
         <h3 className="text-lg font-bold text-foreground">Verifică-ți înțelegerea</h3>
       </div>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Răspunde la cele {intrebari.length} întrebări, apoi apasă „Verifică răspunsurile”. Pasul e
         trecut de la {prag} răspunsuri corecte.
       </p>
@@ -151,7 +151,7 @@ export default function QuizSublectie({
               </div>
 
               {dezvaltat && !raspunsDat && (
-                <p className="mt-2 text-xs italic text-foreground/60">
+                <p className="mt-2 text-xs italic text-foreground/65">
                   N-ai selectat un răspuns pentru această întrebare.
                 </p>
               )}

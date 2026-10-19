@@ -85,7 +85,7 @@ export default function CursPracticPage() {
                     </div>
                     <span
                       className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-bold ${
-                        m.gratuit ? "bg-success/15 text-success" : "bg-brand-light text-brand-dark"
+                        m.gratuit ? "bg-emerald-50 text-success" : "bg-brand-light text-brand-dark"
                       }`}
                     >
                       {m.gratuit ? "gratuit" : "abonament"}

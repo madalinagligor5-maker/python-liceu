@@ -351,7 +351,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
                       height={item.template ? 180 : 140}
                     />
                   </div>
-                  <p className="mt-2 text-xs text-foreground/55">
+                  <p className="mt-2 text-xs text-foreground/65">
                     Rulează codul — dacă rezultatul corespunde, ai demonstrat că
                     stăpânești conceptul, nu doar l-ai recunoscut în grilă.
                   </p>

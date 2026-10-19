@@ -1,9 +1,16 @@
 # Headere pentru fișierele statice servite direct de Cloudflare (fără să
 # treacă prin Next.js). Pyodide (Python în browser) are nevoie de izolare
 # cross-origin, la fel ca paginile — vezi headers() din next.config.ts.
+# Plus headerele de securitate, aceleași ca HEADERE_SECURITATE din next.config.ts.
 /*
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: credentialless
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: frame-ancestors 'self'
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 # Fișierele din /_next/static au hash în nume: se pot păstra în cache un an.
 # https://opennext.js.org/cloudflare/caching#static-assets-caching

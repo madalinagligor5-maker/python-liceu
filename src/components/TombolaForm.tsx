@@ -35,7 +35,7 @@ export default function TombolaForm() {
       <h2 className="text-lg font-bold text-foreground">
         Lasă reviewul tău
       </h2>
-      <p className="mt-1 text-sm text-foreground/60">
+      <p className="mt-1 text-sm text-foreground/65">
         Ce ai învățat în cele 7 zile? Cât de clară ți s-a părut explicația?
       </p>
 
@@ -51,7 +51,7 @@ export default function TombolaForm() {
             ★
           </button>
         ))}
-        <span className="ml-2 text-sm text-foreground/50">
+        <span className="ml-2 text-sm text-foreground/65">
           {stele > 0 ? `${stele} / 5` : "alege"}
         </span>
       </div>

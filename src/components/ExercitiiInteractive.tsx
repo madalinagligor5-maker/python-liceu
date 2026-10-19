@@ -45,7 +45,7 @@ function ExercitiuOrdonare({
             onClick={() => alege(i, p)}
             className={`rounded-full border px-3 py-1.5 text-sm transition ${
               folosite.has(i)
-                ? "cursor-not-allowed border-black/10 bg-black/5 text-foreground/40"
+                ? "cursor-not-allowed border-black/10 bg-black/5 text-foreground/65"
                 : "border-brand-border bg-white text-foreground hover:border-brand hover:text-brand"
             }`}
           >
@@ -56,7 +56,7 @@ function ExercitiuOrdonare({
 
       <div className="mt-3 min-h-[44px] rounded-lg border border-dashed border-black/15 p-2">
         {ordine.length === 0 ? (
-          <span className="text-sm text-foreground/40">
+          <span className="text-sm text-foreground/65">
             Apasă pașii de mai sus, în ordinea în care credi că merg.
           </span>
         ) : (
@@ -80,7 +80,7 @@ function ExercitiuOrdonare({
         <button
           type="button"
           onClick={reseteaza}
-          className="text-xs text-foreground/60 hover:text-foreground"
+          className="text-xs text-foreground/65 hover:text-foreground"
         >
           Resetează
         </button>
@@ -133,7 +133,7 @@ function ExercitiuUnire({
         {ex.perechi.map((p, i) => (
           <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
             <span className="min-w-[140px] rounded-lg bg-black/5 px-3 py-1.5 text-foreground">{p.stanga}</span>
-            <span className="text-foreground/40">→</span>
+            <span className="text-foreground/65">→</span>
             <select
               value={alegeri[i] ?? ""}
               onChange={(e) => {
@@ -221,7 +221,7 @@ function ExercitiuAdevaratFals({
                           ? "border-success bg-success/10 text-success"
                           : ales
                             ? "border-red-400 bg-red-50 text-red-600"
-                            : "border-black/10 text-foreground/40"
+                            : "border-black/10 text-foreground/65"
                         : ales
                           ? "border-amber-400 bg-amber-400 text-slate-950"
                           : "border-black/15 text-foreground/70 hover:border-brand"
@@ -409,7 +409,7 @@ export default function ExercitiiInteractive({
           <h3 className="text-lg font-bold text-foreground">
             Citește mai întâi lecția
           </h3>
-          <p className="max-w-sm text-sm text-foreground/60">
+          <p className="max-w-sm text-sm text-foreground/65">
             Derulează până la capătul lecției de mai sus, apoi se deblochează
             exercițiile.
           </p>

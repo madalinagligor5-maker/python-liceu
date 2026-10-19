@@ -245,7 +245,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
               </Link>
             )}
           </p>
-          <p className="mt-2 text-xs text-foreground/60">
+          <p className="mt-2 text-xs text-foreground/65">
             Nu afișăm o durată estimată: ritmul diferă mult de la elev la elev.
           </p>
         </div>
@@ -333,7 +333,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
                 key={r.cod}
                 className="rounded-xl border border-black/5 bg-white p-3"
               >
-                <p className="text-xs font-semibold text-foreground/60">
+                <p className="text-xs font-semibold text-foreground/65">
                   Din modulul {r.cod.split(".").slice(0, 2).join(".")}
                 </p>
                 <p className="mt-1 text-sm font-medium text-foreground">
