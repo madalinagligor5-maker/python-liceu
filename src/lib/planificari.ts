@@ -1,4 +1,7 @@
-import { citesteText } from "@/lib/fisiereContinut";
+import profesoriDate from "@/generated/profesori.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(profesoriDate);
 
 export type UnitatePlanificare = {
   modulCod: string;

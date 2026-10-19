@@ -12,6 +12,9 @@ import { metadatePagina, SITE_URL } from "@/lib/seo";
 
 type Params = { slug: string };
 
+/** Imaginea de previzualizare a articolului, generată la build (scripts/genereaza-og.mjs). */
+const imagineArticol = (slug: string) => `/og/blog/${slug}.png`;
+
 export async function generateStaticParams() {
   const articole = await getToateArticolele();
   return articole.map((a) => ({ slug: a.slug }));
@@ -35,7 +38,7 @@ export async function generateMetadata({
     tip: "article",
     publicatLa: articol.data,
     modificatLa: articol.actualizat,
-    imagineImplicita: false,
+    imagine: imagineArticol(articol.slug),
   });
 }
 
@@ -76,7 +79,7 @@ export default async function ArticolBlogPage({ params }: { params: Promise<Para
           slug: articol.slug,
           data: articol.data,
           actualizat: articol.actualizat,
-          imagine: `${SITE_URL}/blog/${articol.slug}/opengraph-image`,
+          imagine: `${SITE_URL}${imagineArticol(articol.slug)}`,
           autor,
         })}
       />

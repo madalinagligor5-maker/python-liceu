@@ -26,7 +26,9 @@ Am testat local în runtime-ul Cloudflare (`npm run cf:preview`):
 **Netestat de aici**, pentru că nu am acces la internet și la conturile tale: autentificarea cu Supabase real, plata cu Stripe real și optimizarea imaginilor prin Cloudflare Images pe contul tău. Le verifici la pasul 4.
 
 ## Costuri
-- **Workers Paid: 5 $/lună.** E obligatoriu: Worker-ul are ~3,8 MB comprimat, peste limita de 3 MB a planului gratuit (limita pe plătit e 10 MB).
+- **Workers Paid: 5 $/lună — recomandat.**
+  - Worker-ul are acum ~2,7 MB comprimat, deci încape și în limita de 3 MB a planului gratuit.
+  - Pe planul gratuit însă fiecare cerere are voie la doar 10 ms de procesor. Randarea unei pagini Next.js (lecții, cont, dashboard) poate depăși limita, iar atunci vizitatorul vede eroarea Cloudflare 1102. Pe Workers Paid limita e de 30 s.
 - **Cloudflare Images** (pentru `next/image`): are un nivel gratuit lunar. Verifică limitele actuale în dashboard → Images.
 - **Vercel:** după mutare îl poți închide. Planul gratuit (Hobby) nu permite oricum utilizare comercială.
 
@@ -109,4 +111,4 @@ După deploy, Worker-ul are o adresă de forma `https://python-liceu.<contul-tă
 ## Riscuri și limitări cunoscute
 - **`src/middleware.ts` produce la build avertismentul „middleware is deprecated, use proxy”.** E așteptat: pe Next 16, `middleware` e varianta recomandată pentru edge, iar Next o păstrează funcțională.
 - **Cache-ul paginilor e „read-only”** (`staticAssetsIncrementalCache`): paginile statice se generează doar la build. Site-ul nu folosește revalidare periodică (ISR), deci nu contează acum. Dacă pe viitor folosești `revalidate`, trebuie trecut pe cache R2 (vezi comentariul din `open-next.config.ts`).
-- **Limita Worker-ului e 10 MB comprimat** (acum ~3,8 MB). Conținutul din `content/` intră în Worker, așa că va crește încet odată cu lecțiile noi.
+- **Limita Worker-ului:** 3 MB comprimat pe planul gratuit, 10 MB pe Workers Paid (acum ~2,7 MB). Conținutul din `content/` intră în Worker, împărțit pe pachete (`scripts/genereaza-continut.mjs`), așa că va crește încet odată cu lecțiile noi. Imaginile de previzualizare se generează la build (`scripts/genereaza-og.mjs`), nu în Worker.

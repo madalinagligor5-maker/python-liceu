@@ -1,4 +1,7 @@
-import { citesteText } from "@/lib/fisiereContinut";
+import lectiiDate from "@/generated/lectii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(lectiiDate);
 
 /**
  * Extrage quiz-urile de verificare din conținutul lecțiilor (Markdown).

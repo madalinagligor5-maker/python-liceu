@@ -1,4 +1,7 @@
-import { citesteText, listeazaFisiere } from "@/lib/fisiereContinut";
+import profesoriDate from "@/generated/profesori.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText, listeazaFisiere } = pachetContinut(profesoriDate);
 import { parseazaFrontmatter, randeazaMarkdown } from "@/lib/blog";
 
 /**

@@ -47,3 +47,7 @@ next-env.d.ts
 /.open-next/
 /.wrangler/
 .dev.vars*
+
+# imagini Open Graph generate la build (scripts/genereaza-og.mjs)
+/public/og-image.png
+/public/og/

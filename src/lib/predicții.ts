@@ -1,4 +1,7 @@
-import { citesteText } from "@/lib/fisiereContinut";
+import predictiiDate from "@/generated/predictii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(predictiiDate);
 
 export type Predicție = {
   cod: string;

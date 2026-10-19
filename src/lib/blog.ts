@@ -1,4 +1,7 @@
-import { citesteText, listeazaFisiere } from "@/lib/fisiereContinut";
+import blogDate from "@/generated/blog.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText, listeazaFisiere } = pachetContinut(blogDate);
 
 /**
  * Loader + parser pentru articolele de blog — independent de

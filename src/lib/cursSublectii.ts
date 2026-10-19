@@ -1,4 +1,7 @@
-import { citesteText } from "@/lib/fisiereContinut";
+import lectiiDate from "@/generated/lectii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(lectiiDate);
 import { parseazaContinut, type ModulContinut, type SublectieContinut } from "@/lib/markdownMini";
 
 /**

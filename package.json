@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/genereaza-continut.mjs",
+    "predev": "node scripts/genereaza-continut.mjs && node scripts/genereaza-og.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/genereaza-continut.mjs",
+    "prebuild": "node scripts/genereaza-continut.mjs && node scripts/genereaza-og.mjs",
     "build": "node scripts/build.mjs",
     "start": "next start",
     "lint": "eslint",

@@ -1,4 +1,7 @@
-import { citesteText } from "@/lib/fisiereContinut";
+import exercitiiDate from "@/generated/exercitii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(exercitiiDate);
 import { Exercitiu } from "@/lib/exercitii-tipuri";
 
 type IndexExercitii = Record<string, Exercitiu[]>; // cod sublecție -> exerciții

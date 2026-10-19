@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://www.academiapython.ro";
 export const NUME_SITE = "Academia Python";
-/** Imaginea Open Graph implicită, generată de src/app/og-image.png/route.tsx. */
+/** Imaginea Open Graph implicită, generată la build de scripts/genereaza-og.mjs. */
 export const IMAGINE_OG_IMPLICITA = "/og-image.png";
 
 type OptiuniMetadate = {
@@ -33,15 +33,14 @@ type OptiuniMetadate = {
   noindex?: boolean;
   /** Canonical diferit de `cale` (ex. sublecție → modulul ei). */
   canonical?: string;
-  /** false când ruta are propriul fișier opengraph-image (ex. articolele de
-   *  blog): imaginea setată aici ar avea prioritate față de cea generată. */
-  imagineImplicita?: boolean;
+  /** Imagine Open Graph proprie (ex. /og/blog/<slug>.png); altfel cea implicită. */
+  imagine?: string;
 };
 
 export function metadatePagina(o: OptiuniMetadate): Metadata {
   const titluComplet = o.titluAbsolut ? o.titlu : `${o.titlu} | ${NUME_SITE}`;
   const canonical = o.canonical ?? o.cale;
-  const cuImagine = o.imagineImplicita !== false;
+  const imagine = o.imagine ?? IMAGINE_OG_IMPLICITA;
 
   return {
     title: o.titluAbsolut ? { absolute: o.titlu } : o.titlu,
@@ -55,9 +54,7 @@ export function metadatePagina(o: OptiuniMetadate): Metadata {
       title: titluComplet,
       description: o.descriere,
       url: o.cale,
-      ...(cuImagine
-        ? { images: [{ url: IMAGINE_OG_IMPLICITA, width: 1200, height: 630, alt: NUME_SITE }] }
-        : {}),
+      images: [{ url: imagine, width: 1200, height: 630, alt: o.imagine ? o.titlu : NUME_SITE }],
       ...(o.tip === "article"
         ? {
             publishedTime: o.publicatLa || undefined,
@@ -70,7 +67,7 @@ export function metadatePagina(o: OptiuniMetadate): Metadata {
       card: "summary_large_image",
       title: titluComplet,
       description: o.descriere,
-      ...(cuImagine ? { images: [IMAGINE_OG_IMPLICITA] } : {}),
+      images: [imagine],
     },
   };
 }
