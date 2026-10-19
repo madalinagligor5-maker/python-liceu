@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import type Stripe from "stripe";
+import Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
 import { creeazaClientAdmin } from "@/lib/supabase/admin";
 
@@ -82,7 +82,15 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event;
   try {
     const stripe = getStripe();
-    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+    // Varianta asincronă cu Web Crypto: pe Cloudflare Workers nu există
+    // verificarea sincronă (crypto din Node); merge identic și pe Node.
+    event = await stripe.webhooks.constructEventAsync(
+      rawBody,
+      signature,
+      webhookSecret,
+      undefined,
+      Stripe.createSubtleCryptoProvider()
+    );
   } catch (err) {
     return NextResponse.json(
       { error: `Semnătură invalidă: ${err instanceof Error ? err.message : "eroare necunoscută"}` },

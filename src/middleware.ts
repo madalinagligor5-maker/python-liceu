@@ -14,7 +14,11 @@ function cuLimita<T>(p: Promise<T>, ms: number): Promise<T | "timeout"> {
   ]);
 }
 
-export async function proxy(request: NextRequest) {
+// Fișierul se numește intenționat `middleware.ts`, nu `proxy.ts`: în Next 16,
+// `proxy` rulează doar pe Node.js, pe care adaptorul Cloudflare (OpenNext) îl
+// suportă doar experimental. `middleware` rulează pe edge runtime — suportat
+// oficial pe Cloudflare Workers și în continuare pe Vercel.
+export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -71,7 +75,7 @@ export async function proxy(request: NextRequest) {
   if (rezultat === "timeout") {
     // Supabase nu a răspuns la timp: lăsăm cererea să treacă. Paginile
     // protejate își verifică singure accesul pe server.
-    console.error("[proxy] Supabase auth.getUser a depășit limita de timp", pathname);
+    console.error("[middleware] Supabase auth.getUser a depășit limita de timp", pathname);
     return response;
   }
   const user = rezultat.data.user;

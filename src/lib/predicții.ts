@@ -1,5 +1,7 @@
-import { promises as fs } from "fs";
-import path from "path";
+import predictiiDate from "@/generated/predictii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(predictiiDate);
 
 export type Predicție = {
   cod: string;
@@ -12,8 +14,7 @@ let cache: Record<string, Predicție> | null = null;
 
 export async function getPredicție(cod: string): Promise<Predicție | null> {
   if (!cache) {
-    const cale = path.join(process.cwd(), "content", "predicții.json");
-    const raw = await fs.readFile(cale, "utf-8");
+    const raw = await citesteText("content/predicții.json");
     cache = JSON.parse(raw) as Record<string, Predicție>;
   }
   return cache[cod] ?? null;
@@ -26,8 +27,7 @@ export async function getPredicțiiClasa(
 ): Promise<Predicție[]> {
   if (!cache) await getPredicție("__init__").catch(() => null);
   if (!cache) {
-    const cale = path.join(process.cwd(), "content", "predicții.json");
-    const raw = await fs.readFile(cale, "utf-8");
+    const raw = await citesteText("content/predicții.json");
     cache = JSON.parse(raw) as Record<string, Predicție>;
   }
   return Object.entries(cache)

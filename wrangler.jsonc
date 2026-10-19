@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Worker-ul care servește academiapython.ro pe Cloudflare (vezi CLOUDFLARE.md).
+  "name": "python-liceu",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    // Fișierele statice (inclusiv interpretorul Python din public/pyodide).
+    // Headerele COOP/COEP pentru ele vin din public/_headers.
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      // Auto-referință cerută de OpenNext (numele = numele Worker-ului).
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "python-liceu"
+    }
+  ],
+  "images": {
+    // Optimizarea imaginilor next/image prin Cloudflare Images.
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

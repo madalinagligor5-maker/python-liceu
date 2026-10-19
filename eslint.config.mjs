@@ -19,6 +19,9 @@ const eslintConfig = defineConfig([
   },
   globalIgnores([
     ".next/**",
+    // Build-ul pentru Cloudflare (OpenNext / Wrangler): cod generat.
+    ".open-next/**",
+    ".wrangler/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

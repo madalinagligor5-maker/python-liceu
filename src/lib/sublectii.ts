@@ -1,5 +1,7 @@
-import { promises as fs } from "fs";
-import path from "path";
+import lectiiDate from "@/generated/lectii.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(lectiiDate);
 import { parseazaContinut, type ModulContinut, type SublectieContinut } from "@/lib/markdownMini";
 
 /**
@@ -38,8 +40,7 @@ async function incarcaTot(): Promise<IndexContinut> {
   const ordine: string[] = [];
 
   for (const f of fisiere) {
-    const cale = path.join(process.cwd(), "content", f);
-    const mdRaw = await fs.readFile(cale, "utf-8");
+    const mdRaw = await citesteText(`content/${f}`);
     const md = mdRaw.split(String.fromCharCode(13)).join("");
     const parse = parseazaContinut(md);
     for (const m of parse) {

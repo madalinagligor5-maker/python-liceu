@@ -11,7 +11,11 @@ export function getStripe(): Stripe {
     throw new Error("STRIPE_SECRET_KEY nu este configurat.");
   }
   if (!instanta) {
-    instanta = new Stripe(process.env.STRIPE_SECRET_KEY);
+    // Client HTTP bazat pe fetch: merge și pe Cloudflare Workers (unde
+    // modulul http din Node nu există), și pe Node/Vercel.
+    instanta = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      httpClient: Stripe.createFetchHttpClient(),
+    });
   }
   return instanta;
 }

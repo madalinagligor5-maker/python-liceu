@@ -1,5 +1,7 @@
-import { promises as fs } from "fs";
-import path from "path";
+import profesoriDate from "@/generated/profesori.json";
+import { pachetContinut } from "@/lib/fisiereContinut";
+
+const { citesteText } = pachetContinut(profesoriDate);
 
 export type UnitatePlanificare = {
   modulCod: string;
@@ -26,8 +28,7 @@ export async function getPlanificare(clasa: string): Promise<Planificare | null>
   if (!CLASE_VALIDE.includes(clasaNorm as (typeof CLASE_VALIDE)[number])) return null;
 
   try {
-    const cale = path.join(process.cwd(), "content", "planificari", `${clasaNorm}.json`);
-    const raw = await fs.readFile(cale, "utf-8");
+    const raw = await citesteText(`content/planificari/${clasaNorm}.json`);
     const parsed = JSON.parse(raw) as Planificare;
     return parsed;
   } catch {
