@@ -22,9 +22,13 @@ const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin", "latin-ext"],
 });
 
+// Fontul monospace e folosit doar în blocurile de cod: nu-l preîncărcăm pe
+// fiecare pagină (display: "swap", implicit în next/font, afișează textul
+// imediat cu fontul de rezervă până se descarcă).
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Valorile de aici sunt doar rezerva pentru rutele fără metadate proprii.

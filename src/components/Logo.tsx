@@ -10,20 +10,28 @@ export default function Logo({
   className = "",
   badge = false,
   style,
+  prioritar = false,
 }: {
   className?: string;
   badge?: boolean;
   style?: React.CSSProperties;
+  /** Doar pentru logo-ul din header (vizibil imediat la încărcare). */
+  prioritar?: boolean;
 }) {
+  // Logo-ul apare mereu lângă numele scris „Academia Python", deci e
+  // decorativ: alt="" (altfel cititoarele de ecran ar anunța numele de două ori).
+  // width/height = mărimea afișată (max. 40px), fără `sizes`: next/image
+  // generează doar variantele 1x/2x (48 și 96px). Înainte cerea varianta de
+  // 3840px a PNG-ului de 1254×1254 (~100 KB).
   const img = (
     <Image
       src="/logo.png"
-      alt="Academia Python"
-      width={1254}
-      height={1254}
+      alt=""
+      width={40}
+      height={40}
       className={className}
       style={style}
-      priority
+      priority={prioritar}
     />
   );
 
