@@ -1,5 +1,4 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { citesteText } from "@/lib/fisiereContinut";
 import { Exercitiu } from "@/lib/exercitii-tipuri";
 
 type IndexExercitii = Record<string, Exercitiu[]>; // cod sublecție -> exerciții
@@ -10,8 +9,7 @@ export async function getExercitiiSublectie(
   cod: string
 ): Promise<Exercitiu[]> {
   if (!cache) {
-    const cale = path.join(process.cwd(), "content", "exercitii.json");
-    const raw = await fs.readFile(cale, "utf-8");
+    const raw = await citesteText("content/exercitii.json");
     cache = JSON.parse(raw) as IndexExercitii;
   }
   return cache[cod] ?? [];

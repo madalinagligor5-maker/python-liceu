@@ -1,12 +1,11 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { citesteText, listeazaFisiere } from "@/lib/fisiereContinut";
 import { parseazaFrontmatter, randeazaMarkdown } from "@/lib/blog";
 
 /**
  * Loader pentru secțiunea „Materiale" din zona de profesor — după modelul
  * „un fișier = o unitate de conținut" deja folosit la blog și planificări:
  * fiecare resursă e un fișier .md în content/materiale-profesori/, descoperit
- * cu fs.readdir (nu o listă hardcodată), ca un material nou să însemne doar
+ * automat (listeazaFisiere, nu o listă hardcodată), ca un material nou să însemne doar
  * "adaugă un fișier", nu "modifică și componenta".
  *
  * Două tipuri de material:
@@ -31,7 +30,7 @@ export type MaterialProfesorComplet = MaterialProfesor & {
   corpText: string;
 };
 
-const DIR = path.join(process.cwd(), "content", "materiale-profesori");
+const DIR = "content/materiale-profesori";
 
 let cache: MaterialProfesorComplet[] | null = null;
 
@@ -40,7 +39,7 @@ async function incarcaToate(): Promise<MaterialProfesorComplet[]> {
 
   let fisiere: string[] = [];
   try {
-    fisiere = (await fs.readdir(DIR)).filter((f) => f.endsWith(".md"));
+    fisiere = (await listeazaFisiere(DIR)).filter((f) => f.endsWith(".md"));
   } catch {
     cache = [];
     return cache;
@@ -48,7 +47,7 @@ async function incarcaToate(): Promise<MaterialProfesorComplet[]> {
 
   const materiale: MaterialProfesorComplet[] = [];
   for (const fisier of fisiere) {
-    const raw = await fs.readFile(path.join(DIR, fisier), "utf-8");
+    const raw = await citesteText(`${DIR}/${fisier}`);
     const { meta, corp } = parseazaFrontmatter(raw);
     if (!meta.slug || !meta.titlu) continue;
     materiale.push({

@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { citesteBinar } from "@/lib/fisiereContinut";
 
 /**
  * Imaginea de previzualizare (Open Graph, 1200×630) folosită la distribuirea
@@ -11,7 +10,6 @@ import { join } from "node:path";
  */
 export const DIMENSIUNE_OG = { width: 1200, height: 630 };
 
-const dir = join(process.cwd(), "assets/og-fonturi");
 const fonturi = Promise.all(
   [
     ["Fraunces", "fraunces-latin-900-normal.woff", 900],
@@ -20,7 +18,7 @@ const fonturi = Promise.all(
     ["Hanken Grotesk Ext", "hanken-grotesk-latin-ext-600-normal.woff", 600],
   ].map(async ([name, fisier, weight]) => ({
     name: name as string,
-    data: await readFile(join(dir, fisier as string)),
+    data: (await citesteBinar(`assets/og-fonturi/${fisier}`)).buffer as ArrayBuffer,
     weight: weight as 600 | 900,
     style: "normal" as const,
   }))

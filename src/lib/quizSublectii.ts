@@ -1,5 +1,4 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { citesteText } from "@/lib/fisiereContinut";
 
 /**
  * Extrage quiz-urile de verificare din conținutul lecțiilor (Markdown).
@@ -93,8 +92,7 @@ async function incarcaTot(): Promise<IndexQuiz> {
   const index: IndexQuiz = {};
 
   for (const f of fisiere) {
-    const cale = path.join(process.cwd(), "content", f);
-    const mdRaw = await fs.readFile(cale, "utf-8");
+    const mdRaw = await citesteText(`content/${f}`);
     const md = mdRaw.split(String.fromCharCode(13)).join("");
 
     // Împărțim pe sublecții după header-ele "### emoji cod titlu".

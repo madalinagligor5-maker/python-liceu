@@ -1,5 +1,4 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { citesteText, listeazaFisiere } from "@/lib/fisiereContinut";
 
 /**
  * Loader + parser pentru articolele de blog — independent de
@@ -17,7 +16,7 @@ import path from "path";
  *   ---
  *   corpul articolului, Markdown obișnuit
  *
- * Fișierele sunt descoperite cu fs.readdir (nu o listă hardcodată) — un
+ * Fișierele sunt descoperite automat (listeazaFisiere, nu o listă hardcodată) — un
  * articol nou înseamnă doar "adaugă un fișier", nu "modifică și codul".
  */
 
@@ -86,7 +85,7 @@ function extrageIntrebari(md: string): { intrebare: string; raspuns: string }[] 
   return rez.filter((x) => x.raspuns);
 }
 
-const DIR_BLOG = path.join(process.cwd(), "content", "blog");
+const DIR_BLOG = "content/blog";
 
 let cache: ArticolBlog[] | null = null;
 
@@ -280,7 +279,7 @@ async function incarcaToate(): Promise<ArticolBlog[]> {
 
   let fisiere: string[] = [];
   try {
-    fisiere = (await fs.readdir(DIR_BLOG)).filter((f) => f.endsWith(".md"));
+    fisiere = (await listeazaFisiere(DIR_BLOG)).filter((f) => f.endsWith(".md"));
   } catch {
     // Directorul poate lipsi dacă nu există încă niciun articol.
     cache = [];
@@ -289,7 +288,7 @@ async function incarcaToate(): Promise<ArticolBlog[]> {
 
   const articole: ArticolBlog[] = [];
   for (const fisier of fisiere) {
-    const raw = await fs.readFile(path.join(DIR_BLOG, fisier), "utf-8");
+    const raw = await citesteText(`${DIR_BLOG}/${fisier}`);
     const { meta, corp } = parseazaFrontmatter(raw);
     if (!meta.slug || !meta.titlu) continue; // frontmatter incomplet — sărit
     const cuvinte = corp.split(/\s+/).filter(Boolean).length;
