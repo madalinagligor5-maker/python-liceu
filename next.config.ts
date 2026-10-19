@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
       // Catalogul vechi /lectii dubla /curriculum: o singură cale spre lecții.
       // Doar adresa exactă — paginile /lectii/<clasa>/... (sistemul vechi de
       // lecții folosit de panoul elevului) rămân neschimbate.
-      { source: "/lectii", destination: "/curriculum", permanent: true },
+      { source: "/lectii", destination: "/curriculum", statusCode: 301 },
       // URL-urile legale vechi duc la singura formă canonică. statusCode 301
       // (nu `permanent`, care ar da 308) — cerut explicit pentru SEO.
       { source: "/termeni", destination: "/termeni-si-conditii", statusCode: 301 },
@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "academiapython.ro" }],
         destination: `${SITE}/:path*`,
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },

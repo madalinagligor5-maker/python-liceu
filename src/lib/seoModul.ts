@@ -31,6 +31,14 @@ export function titluModul(modul: Modul, clasa: string): string {
     : `${modul.titlu} — Informatică ${numeClasaInText(clasa)}`;
 }
 
+/** Prima variantă cu 140–160 de caractere; altfel cea mai lungă care încape în 160. */
+function alegeDescriere(variante: string[]): string {
+  const inInterval = variante.find((d) => d.length >= 140 && d.length <= 160);
+  if (inInterval) return inInterval;
+  const incap = variante.filter((d) => d.length <= 160).sort((x, y) => y.length - x.length);
+  return incap[0] ?? scurteaza(variante[variante.length - 1], 160);
+}
+
 /**
  * Descriere unică, țintă 140–160 de caractere: prima variantă de șablon care
  * se încadrează (titlurile de modul au între 10 și peste 90 de caractere).
@@ -46,10 +54,21 @@ export function descriereModul(modul: Modul, clasa: string): string {
     ...extra.map((e) => `${t} — lecție de Python pentru ${p}, cu exemple de cod, exerciții în browser și test.${e}`),
     ...extra.map((e) => `${t} — Python pentru ${p}: exemple și exerciții în browser.${e}`),
   ];
-  const inInterval = variante.find((d) => d.length >= 140 && d.length <= 160);
-  if (inInterval) return inInterval;
-  const incap = variante.filter((d) => d.length <= 160).sort((x, y) => y.length - x.length);
-  return incap[0] ?? scurteaza(variante[variante.length - 1], 160);
+  return alegeDescriere(variante);
+}
+
+/** Descriere unică pentru un modul din Cursul practic de Python. */
+export function descriereModulCurs(modul: { titlu: string; gratuit: boolean }): string {
+  const t = modul.titlu;
+  const extra = modul.gratuit
+    ? [" Modul gratuit, fără instalare.", " Modul gratuit.", ""]
+    : [" Fără nicio instalare.", " Fără instalare.", ""];
+  return alegeDescriere([
+    // „pentru orice vârstă": formularea de pe /curs-practic.
+    ...extra.map((e) => `${t}: modul din Cursul practic de Python, pentru orice vârstă — explicație, exemple de cod, exerciții în browser și test.${e}`),
+    ...extra.map((e) => `${t}: modul din Cursul practic de Python, în 6 pași — explicație, exemple de cod, exerciții în browser și test.${e}`),
+    ...extra.map((e) => `${t} — Cursul practic de Python: exemple de cod, exerciții în browser și test.${e}`),
+  ]);
 }
 
 /** „<Titlu pas> — <Titlu modul> (clasa a IX-a)". */

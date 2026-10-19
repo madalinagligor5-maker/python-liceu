@@ -14,6 +14,7 @@ import { ICOANE_SUBLECTIE } from "@/lib/curriculum";
 import { getUtilizatorCurent, areAbonamentCursActiv } from "@/lib/subscription";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
+import { descriereModulCurs } from "@/lib/seoModul";
 
 type Params = { modulSlug: string };
 
@@ -31,8 +32,8 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return metadatePagina({
-    titlu: `${modul.cod} ${modul.titlu}`,
-    descriere: `Modul din Cursul practic de Python, structurat în 6 sublecții: recapitulare, concept nou, citește și prezice, exerciții ghidate, exerciții independente, verificare.`,
+    titlu: `${modul.titlu} — Curs practic de Python`,
+    descriere: descriereModulCurs(modul),
     cale: `/curs-practic/${modulSlug}`,
   });
 }
