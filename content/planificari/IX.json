@@ -18,29 +18,29 @@
     },
     {
       "modulCod": "1.3",
-      "modulTitlu": "Eficienta unui algoritm - noțiuni de baza",
-      "competente": "Eficienta unui algoritm - noțiuni de baza",
+      "modulTitlu": "Eficiența unui algoritm — noțiuni de bază",
+      "competente": "Eficiența unui algoritm — noțiuni de bază",
       "oreAlocate": 2,
       "saptamanaEstimata": 3
     },
     {
       "modulCod": "1.4",
-      "modulTitlu": "Subprograme (functii): definire si apel",
-      "competente": "Subprograme (functii): definire si apel",
+      "modulTitlu": "Subprograme (funcții): definire și apel",
+      "competente": "Subprograme (funcții): definire și apel",
       "oreAlocate": 2,
       "saptamanaEstimata": 4
     },
     {
       "modulCod": "1.5",
-      "modulTitlu": "Variabile locale si globale, transmiterea prin parametri",
-      "competente": "Variabile locale si globale, transmiterea prin parametri",
+      "modulTitlu": "Variabile locale și globale, transmiterea prin parametri",
+      "competente": "Variabile locale și globale, transmiterea prin parametri",
       "oreAlocate": 2,
       "saptamanaEstimata": 5
     },
     {
       "modulCod": "1.6",
-      "modulTitlu": "Functii predefinite pentru calcule si pentru colecții",
-      "competente": "Functii predefinite pentru calcule si pentru colecții",
+      "modulTitlu": "Funcții predefinite pentru calcule și pentru colecții",
+      "competente": "Funcții predefinite pentru calcule și pentru colecții",
       "oreAlocate": 2,
       "saptamanaEstimata": 6
     },
@@ -60,15 +60,15 @@
     },
     {
       "modulCod": "1.9",
-      "modulTitlu": "Conversia numerelor intre baze de numeratie",
-      "competente": "Conversia numerelor intre baze de numeratie",
+      "modulTitlu": "Conversia numerelor între baze de numerație",
+      "competente": "Conversia numerelor între baze de numerație",
       "oreAlocate": 2,
       "saptamanaEstimata": 9
     },
     {
       "modulCod": "1.10",
-      "modulTitlu": "Ciurul lui Eratostene si exponențiere rapidă",
-      "competente": "Ciurul lui Eratostene si exponențiere rapidă",
+      "modulTitlu": "Ciurul lui Eratostene și exponențiere rapidă",
+      "competente": "Ciurul lui Eratostene și exponențiere rapidă",
       "oreAlocate": 2,
       "saptamanaEstimata": 10
     },
@@ -81,22 +81,22 @@
     },
     {
       "modulCod": "1.12",
-      "modulTitlu": "tkinter: fereastră principală si widget-uri de baza",
-      "competente": "tkinter: fereastră principală si widget-uri de baza",
+      "modulTitlu": "tkinter: fereastră principală și widget-uri de bază",
+      "competente": "tkinter: fereastră principală și widget-uri de bază",
       "oreAlocate": 2,
       "saptamanaEstimata": 12
     },
     {
       "modulCod": "1.13",
-      "modulTitlu": "tkinter: gestionarea plasării si a evenimentelor",
-      "competente": "tkinter: gestionarea plasării si a evenimentelor",
+      "modulTitlu": "tkinter: gestionarea plasării și a evenimentelor",
+      "competente": "tkinter: gestionarea plasării și a evenimentelor",
       "oreAlocate": 2,
       "saptamanaEstimata": 13
     },
     {
       "modulCod": "1.14",
-      "modulTitlu": "Fisiere text: deschidere, citire, scriere, închidere",
-      "competente": "Fisiere text: deschidere, citire, scriere, închidere",
+      "modulTitlu": "Fișiere text: deschidere, citire, scriere, închidere",
+      "competente": "Fișiere text: deschidere, citire, scriere, închidere",
       "oreAlocate": 2,
       "saptamanaEstimata": 14
     },
@@ -109,8 +109,8 @@
     },
     {
       "modulCod": "1.16",
-      "modulTitlu": "Clasa list: operatori de baza",
-      "competente": "Clasa list: operatori de baza",
+      "modulTitlu": "Clasa list: operatori de bază",
+      "competente": "Clasa list: operatori de bază",
       "oreAlocate": 2,
       "saptamanaEstimata": 16
     },
@@ -130,15 +130,15 @@
     },
     {
       "modulCod": "1.19",
-      "modulTitlu": "Sortare: selectia minimului",
-      "competente": "Sortare: selectia minimului",
+      "modulTitlu": "Sortare: selecția minimului",
+      "competente": "Sortare: selecția minimului",
       "oreAlocate": 2,
       "saptamanaEstimata": 19
     },
     {
       "modulCod": "1.20",
-      "modulTitlu": "Sortare: metodă bulelor si listă de frecvențe",
-      "competente": "Sortare: metodă bulelor si listă de frecvențe",
+      "modulTitlu": "Sortare: metoda bulelor și lista de frecvențe",
+      "competente": "Sortare: metoda bulelor și lista de frecvențe",
       "oreAlocate": 2,
       "saptamanaEstimata": 20
     }
