@@ -16,7 +16,7 @@ function caleInterna(cale: string | null): string {
 export default function AuthForm({ mod }: { mod: Mod }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  // `redirectTo` e forma veche, trimisă de proxy înainte de unificare.
+  // `redirectTo` e forma veche, trimisă de middleware înainte de unificare.
   const redirectTo = caleInterna(searchParams.get("redirect") ?? searchParams.get("redirectTo"));
   const profesorPrebifat = searchParams.get("profesor") === "1";
 
