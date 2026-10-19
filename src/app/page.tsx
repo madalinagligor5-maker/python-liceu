@@ -7,7 +7,8 @@ import NewsletterForm from "@/components/NewsletterForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresUtilizator } from "@/lib/progres";
-import { structura, TOATE_CLASELE } from "@/lib/curriculum";
+import { numeClasa, numeClasaInText, structura, TOATE_CLASELE } from "@/lib/curriculum";
+import { TRASEE, type Traseu } from "@/lib/trasee";
 import CarduriTrasee from "@/components/CarduriTrasee";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import { getToateArticolele } from "@/lib/blog";
@@ -44,6 +45,10 @@ const FAQ = [
       "Lecțiile exersează algoritmii și structurile de date studiate la liceu, utile și pentru evaluările de la clasă. Nu sunt un curs oficial de pregătire pentru Bacalaureat. Calendarul și programa examenului se stabilesc prin ordine ale Ministerului Educației; verifică întotdeauna documentele oficiale pentru generația ta.",
   },
 ];
+
+function traseu(id: Traseu["id"]): Traseu {
+  return TRASEE.find((t) => t.id === id)!;
+}
 
 function prenumeDinEmail(email: string): string {
   const local = email.split("@")[0] ?? "";
@@ -105,7 +110,12 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
     }
   }
 
-  const articoleRecente = (await getToateArticolele()).slice(0, 3);
+  const toateArticolele = await getToateArticolele();
+  const articoleRecente = toateArticolele.slice(0, 3);
+  // Articolele de pornire, legate explicit din secțiunea „Lecții pe clase".
+  const articoleRecomandate = ["cum-inveti-python-de-la-zero", "probleme-rezolvate-python-clasa-a-ix-a", "schimbari-bacalaureat-informatica-python-2030"]
+    .map((slug) => toateArticolele.find((a) => a.slug === slug))
+    .filter((a) => a !== undefined);
 
   return (
     <div className="text-[#172033] min-h-screen relative overflow-hidden font-sans">
@@ -121,6 +131,9 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
               Învață Python pas cu pas.{" "}
               <span className="text-amber-700">Scrie cod și vezi imediat rezultatul.</span>
             </h1>
+            <p className="text-lg sm:text-xl font-bold text-[#1E2430]">
+              Informatică pentru gimnaziu și liceu, clasele VII–XII
+            </p>
 
             <p className="text-base sm:text-lg text-[#3B4252] font-medium leading-relaxed">
               Explicații în română, exerciții ghidate și practică direct în browser.
@@ -311,6 +324,94 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
               </div>
             </Link>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* LECȚII PE CLASE ȘI TRASEE — câte un H2 per traseu și linkuri directe
+          spre fiecare clasă (texte din src/lib/trasee.ts, ca pe /start). */}
+      <section
+        aria-label="Lecții pe clase și trasee"
+        className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 border-t border-[#EBE7DF]"
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Gimnaziu: clasele VII–VIII
+            </h2>
+            <p className="mt-2 text-sm text-[#525B6C]">{traseu("gimnaziu").gratuit}</p>
+            <ul className="mt-3 space-y-1 text-sm font-semibold">
+              {(["VII", "VIII"] as const).map((c) => (
+                <li key={c}>
+                  <Link href={`/curriculum/${c}`} className="text-[#2F6191] hover:underline">
+                    Informatică {numeClasaInText(c)} →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Liceu: clasele IX–XII
+            </h2>
+            <p className="mt-2 text-sm text-[#525B6C]">{traseu("liceu").rezultat}</p>
+            <ul className="mt-3 grid grid-cols-2 gap-1 text-sm font-semibold">
+              {(["IX", "X", "XI", "XII"] as const).map((c) => (
+                <li key={c}>
+                  <Link href={`/curriculum/${c}`} className="text-[#2F6191] hover:underline">
+                    {numeClasa(c)} →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Curs practic de Python
+            </h2>
+            <p className="mt-2 text-sm text-[#525B6C]">{traseu("curs-practic").public}</p>
+            <Link href="/curs-practic" className="mt-3 inline-block text-sm font-semibold text-[#2F6191] hover:underline">
+              {traseu("curs-practic").ansamblu.eticheta} →
+            </Link>
+          </div>
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Academia Kids
+            </h2>
+            <p className="mt-2 text-sm text-[#525B6C]">{traseu("kids").public}</p>
+            <Link href="/kids" className="mt-3 inline-block text-sm font-semibold text-[#2F6191] hover:underline">
+              {traseu("kids").ansamblu.eticheta} →
+            </Link>
+          </div>
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Pentru profesori
+            </h2>
+            <p className="mt-2 text-sm text-[#525B6C]">
+              Planificări, fișe de lucru printabile și o bancă de teste pentru clasă.
+            </p>
+            <Link href="/profesori" className="mt-3 inline-block text-sm font-semibold text-[#2F6191] hover:underline">
+              Descoperă resursele pentru profesori →
+            </Link>
+          </div>
+          <div className="surface-card p-6">
+            <h2 className="text-xl font-black text-[#1E2430] [font-family:var(--font-fraunces)]">
+              Ghiduri pe blog
+            </h2>
+            <ul className="mt-3 space-y-1 text-sm font-semibold">
+              {articoleRecomandate.map((a) => (
+                <li key={a.slug}>
+                  <Link href={`/blog/${a.slug}`} className="text-[#2F6191] hover:underline">
+                    {a.titlu}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/blog" className="text-[#2F6191] hover:underline">
+                  Toate articolele →
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
