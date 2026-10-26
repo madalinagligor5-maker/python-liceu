@@ -8,6 +8,7 @@ import { creeazaClientServer } from "@/lib/supabase/server";
 import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
 import Mascota from "@/components/Mascota";
+import AcordMarketing from "@/components/auth/AcordMarketing";
 
 export const metadata: Metadata = {
   title: "Contul meu",
@@ -224,6 +225,8 @@ export default async function ContPage() {
           </div>
         </div>
       </div>
+
+      <AcordMarketing initial={user.acceptMarketing} />
 
       {/* Secțiune Insigne / Trofee obținute */}
       <div className="mt-8 rounded-3xl border border-black/5 bg-white p-6 sm:p-8 shadow-sm">

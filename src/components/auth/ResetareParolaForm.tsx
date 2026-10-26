@@ -96,7 +96,7 @@ export default function ResetareParolaForm() {
       </form>
       <p className="mt-6 text-center text-sm text-foreground/65">
         <Link href="/login" className="font-semibold text-brand">
-          Înapoi la autentificare
+          Înapoi la „Intră în cont”
         </Link>
       </p>
     </div>

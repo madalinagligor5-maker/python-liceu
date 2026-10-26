@@ -38,6 +38,9 @@ export default async function AdminLayout({
           <Link href="/admin/recenzii" className="text-foreground/70 hover:text-brand">
             Recenzii
           </Link>
+          <Link href="/admin/emailuri" className="text-foreground/70 hover:text-brand">
+            Emailuri
+          </Link>
         </nav>
       </div>
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">{children}</div>

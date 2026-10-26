@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import IndemnCont from "@/components/auth/IndemnCont";
 import type { IntrebareQuiz } from "@/lib/quizSublectii";
 import { finalizeazaSublectie, type RezultatFinalizare } from "@/app/actions/progres";
 import IconLectieBlocata from "@/components/icons/IconLectieBlocata";
@@ -237,7 +238,7 @@ export default function QuizSublectie({
           {scorLocal >= prag
             ? "Pas trecut. Fără cont, rezultatul se reține doar în acest browser. "
             : `Ai nevoie de ${prag} răspunsuri corecte ca pasul să fie trecut. `}
-          Autentifică-te ca să-ți salvezi progresul în cont și să câștigi XP.
+          <IndemnCont text="ca să-ți salvezi progresul în cont și să câștigi XP." />
         </p>
       )}
       </>

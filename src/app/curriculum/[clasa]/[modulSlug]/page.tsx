@@ -289,7 +289,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
               href={user ? "/cont" : `/login?redirect=${encodeURIComponent(hrefModul(modul))}`}
               className="rounded-xl border border-black/10 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
             >
-              {user ? "Contul meu" : "Ai deja cont? Autentifică-te"}
+              {user ? "Contul meu" : "Ai deja cont? Intră în cont"}
             </Link>
           </div>
         </div>

@@ -277,15 +277,42 @@ export default function HeaderNav({
               </div>
             )}
 
-            {!esteProfesor && (
-              <Link
-                href="/start"
-                onClick={inchideMobil}
-                className="rounded-xl bg-[#172033] hover:bg-[#2A3852] text-white font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
-              >
-                Începe gratuit
-              </Link>
-            )}
+            {!esteProfesor &&
+              (esteAutentificat ? (
+                <Link
+                  href="/cont"
+                  onClick={inchideMobil}
+                  className="rounded-xl bg-[#172033] hover:bg-[#2A3852] text-white font-black p-4 text-sm text-center shadow-md active:scale-95 transition"
+                >
+                  👤 Contul meu
+                </Link>
+              ) : (
+                <div className="rounded-2xl border border-[#EBE7DF] bg-white p-3 shadow-xs">
+                  <p className="px-1 pb-2 text-sm font-bold text-[#1E2430]">
+                    Cu un cont, progresul tău rămâne salvat.
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Link
+                      href="/login"
+                      onClick={inchideMobil}
+                      data-eveniment="cta_intra_in_cont"
+                      data-ev-loc="meniu_mobil"
+                      className="rounded-xl border border-[#172033]/20 bg-white p-3.5 text-sm font-bold text-[#172033] text-center active:scale-95 transition"
+                    >
+                      Intră în cont
+                    </Link>
+                    <Link
+                      href="/inregistrare"
+                      onClick={inchideMobil}
+                      data-eveniment="cta_creeaza_cont"
+                      data-ev-loc="meniu_mobil"
+                      className="rounded-xl bg-[#172033] hover:bg-[#2A3852] text-white font-black p-3.5 text-sm text-center shadow-md active:scale-95 transition"
+                    >
+                      Cont gratuit
+                    </Link>
+                  </div>
+                </div>
+              ))}
 
             {esteProfesor ? (
               <section>
@@ -303,15 +330,13 @@ export default function HeaderNav({
                   </div>
                 </section>
                 <section>
-                  <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Instrumente și cont</h2>
+                  <h2 className="text-xs font-black uppercase tracking-widest text-[#525B6C]">Instrumente</h2>
                   <div className="mt-2 rounded-2xl border border-[#EBE7DF] bg-white p-2">
                     <ListaLinkuri
                       linkuri={[
                         { href: "/lab", label: "Laborator", sub: "Editor Python liber, rulează în browser" },
                         { href: "/preturi", label: "Prețuri", sub: "Ce e gratuit și ce include abonamentul" },
-                        esteAutentificat
-                          ? { href: "/cont", label: "Contul meu", sub: "Progres și abonament" }
-                          : { href: "/login", label: "Autentificare", sub: "Intră în cont sau creează unul" },
+                        { href: "/start", label: "Nu știi de unde să începi?", sub: "Te ajutăm să alegi în 1 pas" },
                       ]}
                       onAles={inchideMobil}
                     />

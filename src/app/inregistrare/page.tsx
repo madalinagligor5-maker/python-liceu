@@ -4,7 +4,7 @@ import { FARA_INDEXARE } from "@/lib/seo";
 import AuthForm from "@/components/auth/AuthForm";
 
 export const metadata: Metadata = {
-  title: "Înregistrare",
+  title: "Creează cont gratuit",
   robots: FARA_INDEXARE,
 };
 
