@@ -1,5 +1,6 @@
 import { creeazaClientServer } from "@/lib/supabase/server";
 import type { RolUtilizator } from "@/lib/roluri";
+import { areAcordMarketing } from "@/lib/marketing";
 
 export type UtilizatorMeta = {
   userId: string;
@@ -31,7 +32,7 @@ export type UtilizatorMeta = {
  * dacă Supabase nu e configurat, ca lecțiile gratuite să rămână accesibile.
  */
 export async function getUtilizatorCurent(): Promise<{
-  user: { id: string; email: string } | null;
+  user: { id: string; email: string; acceptMarketing: boolean } | null;
   meta: UtilizatorMeta | null;
 }> {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -83,7 +84,7 @@ export async function getUtilizatorCurent(): Promise<{
   const nivel = Math.max(1, Math.floor(Math.sqrt(Math.max(xpTotal, 0) / 100)) + 1);
 
   return {
-    user: { id: user.id, email: user.email ?? "" },
+    user: { id: user.id, email: user.email ?? "", acceptMarketing: areAcordMarketing(user.user_metadata) },
     meta: {
       userId: user.id,
       email: user.email ?? "",

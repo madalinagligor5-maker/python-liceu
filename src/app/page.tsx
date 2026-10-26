@@ -153,14 +153,19 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
                 Începe gratuit
               </Link>
               <Link
-                href="#trasee"
+                href="/inregistrare"
+                data-eveniment="cta_creeaza_cont"
+                data-ev-loc="hero"
                 className="secondary-action px-7 py-3.5 text-base"
               >
-                Vezi cursurile
+                Creează cont gratuit
               </Link>
             </div>
             <p className="text-sm text-[#525B6C]">
-              Fără cont și fără card pentru lecțiile gratuite. Fără instalare.
+              Fără card și fără instalare. Ai deja cont?{" "}
+              <Link href="/login" className="font-bold text-[#172033] underline underline-offset-2">
+                Intră în cont
+              </Link>
             </p>
           </div>
 
@@ -484,6 +489,35 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
               </details>
             </ScrollReveal>
           ))}
+        </div>
+      </section>
+
+      {/* CONT GRATUIT */}
+      <section className="mx-auto max-w-6xl px-4 pt-16 sm:px-6">
+        <div className="rounded-[1.75rem] bg-[#172033] px-6 py-10 text-center text-white sm:px-10">
+          <h2 className="text-2xl sm:text-3xl font-black [font-family:var(--font-fraunces)]">
+            Creează-ți contul gratuit
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-white/85">
+            Progresul îți rămâne salvat, primești XP și insigne și afli primul de reduceri.
+            Durează sub un minut, cu Google sau cu emailul.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/inregistrare"
+              data-eveniment="cta_creeaza_cont"
+              data-ev-loc="banda_cont"
+              className="rounded-xl bg-amber-400 px-7 py-3.5 text-base font-black text-[#172033] shadow-sm transition hover:bg-amber-300"
+            >
+              Creează cont gratuit
+            </Link>
+            <Link
+              href="/login"
+              className="rounded-xl border border-white/30 px-7 py-3.5 text-base font-bold text-white transition hover:border-white/70"
+            >
+              Am deja cont
+            </Link>
+          </div>
         </div>
       </section>
 

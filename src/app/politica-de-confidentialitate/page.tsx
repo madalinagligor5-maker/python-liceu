@@ -57,6 +57,7 @@ export default function PoliticaConfidentialitatePage() {
           <li>Salvarea și afișarea în timp real a progresului educațional și a punctajelor acumulate.</li>
           <li>Emiterea facturilor fiscale legale corespunzătoare abonamentelor achitate.</li>
           <li>Transmiterea de comunicări tehnice administrative importante (ex: modificări în cont, facturi, mesaje de asistență tehnică).</li>
+          <li><strong>Doar cu acordul dumneavoastră explicit:</strong> trimiterea pe e-mail a ofertelor și reducerilor (de exemplu, la Black Friday). Acordul se dă bifând căsuța de la înregistrare, din pagina „Contul meu” sau prin abonarea la newsletter și se poate retrage oricând din „Contul meu” sau din linkul de dezabonare din fiecare e-mail.</li>
         </ul>
 
         <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">

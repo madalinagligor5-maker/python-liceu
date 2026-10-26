@@ -23,7 +23,7 @@ export default async function Header() {
         {/* Logo Compact pe Mobil */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
           <Logo prioritar className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg transition duration-300 group-hover:-rotate-2 group-hover:scale-105" />
-          <span className="leading-none">
+          <span className="hidden min-[420px]:inline leading-none">
             <span className="text-sm sm:text-base font-black tracking-tight text-[#1E2430] font-sans">
               Academia<span className="text-[#B96D08]">Python</span>
             </span>
@@ -36,8 +36,8 @@ export default async function Header() {
         {/* Nav central adaptiv + Meniu Mobil */}
         <HeaderNav esteProfesor={esteProfesor} esteAutentificat={Boolean(user)} />
 
-        {/* Acțiuni Dreapta (Desktop) */}
-        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+        {/* Acțiuni dreapta: vizibile pe toate ecranele, inclusiv pe telefon */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
           {progres && (
             <div className="hidden lg:flex items-center gap-2">
               {progres.streakZile > 0 && (
@@ -61,27 +61,36 @@ export default async function Header() {
           {user ? (
             <Link
               href={esteProfesor ? "/profesor/planificari" : "/cont"}
-              className="hidden md:inline-block max-w-[10rem] truncate rounded-xl border border-[#EBE7DF] bg-white px-3.5 py-2 text-xs font-bold text-[#1E2430] hover:text-indigo-600"
+              title={user.email}
+              className="flex items-center gap-1.5 rounded-lg bg-[#172033] hover:bg-[#2A3852] text-white font-black px-3 py-2.5 text-xs shadow-sm transition active:scale-95 whitespace-nowrap sm:px-4"
             >
-              {extrageAliasNume(user.email)}
+              <span aria-hidden="true">👤</span>
+              <span className="hidden sm:inline max-w-[9rem] truncate">
+                {esteProfesor ? "Zona profesor" : extrageAliasNume(user.email)}
+              </span>
+              <span className="sm:hidden">{esteProfesor ? "Profesor" : "Contul meu"}</span>
             </Link>
           ) : (
-            <Link
-              href="/login"
-              className="hidden md:inline-block rounded-xl px-3 py-2 text-xs font-bold text-[#1E2430] hover:text-amber-700"
-            >
-              Autentificare
-            </Link>
+            <>
+              <Link
+                href="/login"
+                data-eveniment="cta_intra_in_cont"
+                data-ev-loc="header"
+                className="rounded-lg border border-[#172033]/20 bg-white px-2.5 py-2 text-xs font-bold text-[#172033] transition hover:border-[#172033]/50 whitespace-nowrap sm:px-3.5 sm:py-2.5"
+              >
+                Intră în cont
+              </Link>
+              <Link
+                href="/inregistrare"
+                data-eveniment="cta_creeaza_cont"
+                data-ev-loc="header"
+                className="rounded-lg bg-[#172033] hover:bg-[#2A3852] text-white font-black px-2.5 py-2 text-xs shadow-sm transition active:scale-95 whitespace-nowrap sm:px-4 sm:py-2.5"
+              >
+                <span className="sm:hidden">Cont gratuit</span>
+                <span className="hidden sm:inline">Creează cont gratuit</span>
+              </Link>
+            </>
           )}
-
-          <Link
-            href={esteProfesor ? "/profesor/planificari" : user ? "/cont" : "/start"}
-            data-eveniment={!esteProfesor && !user ? "cta_incepe_gratuit" : undefined}
-            data-ev-loc="header"
-            className="rounded-lg bg-[#172033] hover:bg-[#2A3852] text-white font-black px-4 py-2.5 text-xs shadow-sm transition active:scale-95 whitespace-nowrap"
-          >
-            {esteProfesor ? "Zona profesor" : user ? "Contul meu" : "Începe gratuit"}
-          </Link>
         </div>
       </div>
     </header>
