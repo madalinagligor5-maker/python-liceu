@@ -231,7 +231,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
                 href={`/login?redirect=${encodeURIComponent(`/curriculum/${clasa}/${modulSlug}/${sublectieCod}`)}`}
                 className="rounded-xl border border-black/10 px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
               >
-                Ai deja cont? Autentifică-te
+                Ai deja cont? Intră în cont
               </Link>
             ) : (
               <Link

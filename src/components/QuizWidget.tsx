@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import IndemnCont from "@/components/auth/IndemnCont";
 import type { QuizIntrebare } from "@/lib/content";
 import { finalizeazaLectie, type RezultatFinalizare } from "@/app/actions/progres";
 
@@ -145,7 +146,7 @@ export default function QuizWidget({
 
       {verificat && !poateSalva && (
         <p className="mt-4 text-xs text-foreground/65">
-          Autentifică-te ca să-ți salvezi progresul și să câștigi XP.
+          <IndemnCont />
         </p>
       )}
     </div>

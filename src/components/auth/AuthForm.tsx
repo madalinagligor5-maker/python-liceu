@@ -90,7 +90,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         // fără identități. Fără verificarea asta, omul aștepta un email care nu vine.
         if (data.user && data.user.identities?.length === 0) {
           setEroare(
-            "Există deja un cont cu acest email. Autentifică-te sau folosește „Ai uitat parola?” din pagina de autentificare."
+            "Există deja un cont cu acest email. Intră în cont sau folosește „Ai uitat parola?” din pagina „Intră în cont”."
           );
           return;
         }
@@ -104,7 +104,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
           setCerereProfesorTrimisa(true);
         } else {
           setMesajSucces(
-            "Cont creat! Ți-am trimis un email de confirmare — deschide linkul din el, apoi autentifică-te. Verifică și folderul Spam / Promoții."
+            "Cont creat! Ți-am trimis un email de confirmare — deschide linkul din el, apoi intră în cont. Verifică și folderul Spam / Promoții."
           );
           setPoateRetrimite(true);
         }
@@ -200,7 +200,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
         </div>
         <p className="mt-6 text-center text-sm text-foreground/65">
           <Link href="/login" className="font-semibold text-brand">
-            Mergi la autentificare
+            Intră în cont
           </Link>
         </p>
       </div>
@@ -232,7 +232,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
               aria-current={eInregistrare ? "page" : undefined}
               className="rounded-lg px-3 py-2.5 text-center text-foreground/65 transition aria-[current=page]:bg-white aria-[current=page]:text-foreground aria-[current=page]:shadow-sm"
             >
-              Cont nou
+              Cont gratuit
             </Link>
           </nav>
 
@@ -335,7 +335,7 @@ export default function AuthForm({ mod }: { mod: Mod }) {
             )}
 
             {eInregistrare && (
-              <details open={suntProfesor} className="rounded-xl border border-black/10 bg-black/[0.02] p-3.5">
+              <details open={profesorPrebifat} className="rounded-xl border border-black/10 bg-black/[0.02] p-3.5">
                 <summary className="cursor-pointer text-sm font-semibold text-foreground/80">Ești profesor?</summary>
                 <label className="mt-3 flex cursor-pointer items-start gap-2.5">
                   <input

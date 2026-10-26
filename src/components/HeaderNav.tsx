@@ -289,7 +289,7 @@ export default function HeaderNav({
               ) : (
                 <div className="rounded-2xl border border-[#EBE7DF] bg-white p-3 shadow-xs">
                   <p className="px-1 pb-2 text-sm font-bold text-[#1E2430]">
-                    Cont gratuit: progresul tău rămâne salvat.
+                    Cu un cont, progresul tău rămâne salvat.
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     <Link
@@ -308,7 +308,7 @@ export default function HeaderNav({
                       data-ev-loc="meniu_mobil"
                       className="rounded-xl bg-[#172033] hover:bg-[#2A3852] text-white font-black p-3.5 text-sm text-center shadow-md active:scale-95 transition"
                     >
-                      Creează cont
+                      Cont gratuit
                     </Link>
                   </div>
                 </div>
