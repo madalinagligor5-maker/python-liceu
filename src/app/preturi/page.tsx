@@ -11,6 +11,11 @@ import {
 } from "@/lib/oferta";
 import { metadatePagina } from "@/lib/seo";
 
+// Prețurile se citesc din Stripe la fiecare cerere: cheile Stripe sunt
+// variabile de rulare (Cloudflare), nu există la build. Generată static,
+// pagina ar rămâne fără prețuri și cu planurile „neconfigurate".
+export const dynamic = "force-dynamic";
+
 export const metadata = metadatePagina({
   titlu: "Prețuri și abonament",
   descriere: "Ce e gratuit, ce include abonamentul de liceu și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
