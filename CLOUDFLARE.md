@@ -73,6 +73,8 @@ Ia valorile din Vercel → Settings → Environment Variables (aceleași ca acum
 
 După ce le adaugi, pornește din nou build-ul: Deployments → **Retry build**.
 
+> **Important.** Cele două `NEXT_PUBLIC_SUPABASE_…` trebuie puse în **ambele** locuri: la Build și la Runtime. Fără ele la Build, pagina de login arată „Autentificarea nu este configurată”, chiar dacă există la Runtime. Variabilele de la Runtime puse din dashboard rămân la fiecare deploy (`keep_vars` în `wrangler.jsonc`).
+
 ## Pasul 4. Testează pe adresa temporară (înainte să muți domeniul)
 După deploy, Worker-ul are o adresă de forma `https://python-liceu.<contul-tău>.workers.dev`.
 
