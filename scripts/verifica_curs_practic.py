@@ -16,8 +16,10 @@ Rulare: python3 scripts/verifica_curs_practic.py [--scrie]
 """
 import io
 import json
+import os
 import re
 import sys
+import tempfile
 import unicodedata
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -30,10 +32,17 @@ erori: list[str] = []
 
 
 def ruleaza(cod: str) -> str:
-    """Rulează codul izolat și întoarce ce afișează."""
+    """Rulează codul izolat, într-un folder temporar gol (lecțiile scriu și
+    citesc fișiere), și întoarce ce afișează."""
     tampon = io.StringIO()
-    with redirect_stdout(tampon):
-        exec(compile(cod, "<lectie>", "exec"), {"__name__": "__main__"})
+    folder_initial = os.getcwd()
+    with tempfile.TemporaryDirectory() as folder:
+        os.chdir(folder)
+        try:
+            with redirect_stdout(tampon):
+                exec(compile(cod, "<lectie>", "exec"), {"__name__": "__main__"})
+        finally:
+            os.chdir(folder_initial)
     return tampon.getvalue()
 
 

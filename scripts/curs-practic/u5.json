@@ -1,0 +1,123 @@
+{
+  "unitate": {"numar": 5, "titlu": "Erori, fișiere și module", "slug": "erori-fisiere-si-module"},
+  "exercitii": {
+    "CP5.1.4": [
+      {"id": "CP5.1.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează tipul excepției, ca programul să afișeze „Împărțire la zero!” în loc să se oprească.",
+       "template": "try:\n    print(10 / 0)\nexcept ___:\n    print(\"Împărțire la zero!\")",
+       "expectedOutput": "Împărțire la zero!",
+       "hint": "Împărțirea la zero produce ZeroDivisionError.",
+       "solutie": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"Împărțire la zero!\")"},
+      {"id": "CP5.1.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Pentru lista [\"12\", \"abc\", \"5\"], transformă fiecare element în număr cu int(). Afișează numărul sau, pentru elementele invalide, textul invalid — câte unul pe rând.",
+       "template": "valori = [\"12\", \"abc\", \"5\"]\nfor v in valori:\n    # scrie aici\n",
+       "expectedOutput": "12\ninvalid\n5",
+       "hint": "În buclă: try: print(int(v)) except ValueError: print(\"invalid\")",
+       "solutie": "valori = [\"12\", \"abc\", \"5\"]\nfor v in valori:\n    try:\n        print(int(v))\n    except ValueError:\n        print(\"invalid\")"}
+    ],
+    "CP5.1.5": [
+      {"id": "CP5.1.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Scrie funcția numar_sigur(text), care întoarce int(text) sau 0 dacă textul nu e un număr. Afișează numar_sigur(\"40\") + numar_sigur(\"doi\") + numar_sigur(\"2\").",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "42",
+       "hint": "try: return int(text) except ValueError: return 0",
+       "solutie": "def numar_sigur(text):\n    try:\n        return int(text)\n    except ValueError:\n        return 0\n\nprint(numar_sigur(\"40\") + numar_sigur(\"doi\") + numar_sigur(\"2\"))"},
+      {"id": "CP5.1.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: ai stocul {\"mere\": 10, \"pere\": 4} și comenzile [\"mere\", \"kiwi\", \"pere\"]. Pentru fiecare comandă afișează „produs: stoc” sau, dacă produsul lipsește, „produs: indisponibil”. Folosește try / except KeyError.",
+       "template": "stoc = {\"mere\": 10, \"pere\": 4}\ncomenzi = [\"mere\", \"kiwi\", \"pere\"]\n# scrie aici",
+       "expectedOutput": "mere: 10\nkiwi: indisponibil\npere: 4",
+       "hint": "În buclă: try: print(f\"{p}: {stoc[p]}\") except KeyError: print(f\"{p}: indisponibil\")",
+       "solutie": "stoc = {\"mere\": 10, \"pere\": 4}\ncomenzi = [\"mere\", \"kiwi\", \"pere\"]\nfor p in comenzi:\n    try:\n        print(f\"{p}: {stoc[p]}\")\n    except KeyError:\n        print(f\"{p}: indisponibil\")"}
+    ],
+    "CP5.2.4": [
+      {"id": "CP5.2.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează modul de deschidere, ca al doilea rând să fie adăugat, nu să-l înlocuiască pe primul. Programul trebuie să afișeze 2.",
+       "template": "with open(\"lista.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"primul\\n\")\nwith open(\"lista.txt\", ___, encoding=\"utf-8\") as f:\n    f.write(\"al doilea\\n\")\nwith open(\"lista.txt\", encoding=\"utf-8\") as f:\n    print(len(f.readlines()))",
+       "expectedOutput": "2",
+       "hint": "Modul pentru adăugare este \"a\".",
+       "solutie": "with open(\"lista.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"primul\\n\")\nwith open(\"lista.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"al doilea\\n\")\nwith open(\"lista.txt\", encoding=\"utf-8\") as f:\n    print(len(f.readlines()))"},
+      {"id": "CP5.2.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Scrie în fișierul orase.txt orașele Cluj, Iași și Arad, câte unul pe rând. Apoi citește fișierul și afișează orașele pe un singur rând, separate prin virgulă și spațiu.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "Cluj, Iași, Arad",
+       "hint": "La citire: \", \".join(rand.strip() for rand in f)",
+       "solutie": "with open(\"orase.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Cluj\\nIași\\nArad\\n\")\nwith open(\"orase.txt\", encoding=\"utf-8\") as f:\n    print(\", \".join(rand.strip() for rand in f))"}
+    ],
+    "CP5.2.5": [
+      {"id": "CP5.2.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Scrie în fișierul cheltuieli.txt sumele 120, 45 și 80, câte una pe rând. Apoi citește fișierul și afișează totalul cheltuielilor.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "245",
+       "hint": "La citire, adună int(rand) pentru fiecare rând.",
+       "solutie": "with open(\"cheltuieli.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"120\\n45\\n80\\n\")\ntotal = 0\nwith open(\"cheltuieli.txt\", encoding=\"utf-8\") as f:\n    for rand in f:\n        total += int(rand)\nprint(total)"},
+      {"id": "CP5.2.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: scrie funcția citeste_sigur(nume), care întoarce conținutul fișierului sau textul „Fișierul nu există.” dacă fișierul lipsește. Apeleaz-o pentru lipsa.txt și afișează rezultatul.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "Fișierul nu există.",
+       "hint": "try: with open(nume, encoding=\"utf-8\") as f: return f.read() except FileNotFoundError: return \"Fișierul nu există.\"",
+       "solutie": "def citeste_sigur(nume):\n    try:\n        with open(nume, encoding=\"utf-8\") as f:\n            return f.read()\n    except FileNotFoundError:\n        return \"Fișierul nu există.\"\n\nprint(citeste_sigur(\"lipsa.txt\"))"}
+    ],
+    "CP5.3.4": [
+      {"id": "CP5.3.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează funcția care transformă textul JSON într-un dicționar, ca programul să afișeze Cluj.",
+       "template": "import json\n\ntext = '{\"oras\": \"Cluj\", \"populatie\": 286598}'\ndate = json.___(text)\nprint(date[\"oras\"])",
+       "expectedOutput": "Cluj",
+       "hint": "Pentru text (string) se folosește json.loads.",
+       "solutie": "import json\n\ntext = '{\"oras\": \"Cluj\", \"populatie\": 286598}'\ndate = json.loads(text)\nprint(date[\"oras\"])"},
+      {"id": "CP5.3.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Scrie fișierul elevi.csv cu antetul nume,nota și rândurile Ana,9, Radu,7 și Ioana,10. Citește-l cu csv.DictReader și afișează media notelor, rotunjită la 2 zecimale.",
+       "template": "import csv\n\n# Scrie aici codul tău Python\n",
+       "expectedOutput": "8.67",
+       "hint": "Adună int(rand[\"nota\"]) într-o listă, apoi round(sum(note) / len(note), 2).",
+       "solutie": "import csv\n\nwith open(\"elevi.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    f.write(\"nume,nota\\nAna,9\\nRadu,7\\nIoana,10\\n\")\nwith open(\"elevi.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    note = [int(r[\"nota\"]) for r in csv.DictReader(f)]\nprint(round(sum(note) / len(note), 2))"}
+    ],
+    "CP5.3.5": [
+      {"id": "CP5.3.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Salvează lista [\"pix\", \"caiet\", \"riglă\"] în fișierul rechizite.json cu json.dump, apoi citește-o înapoi cu json.load și afișează câte elemente are.",
+       "template": "import json\n\n# Scrie aici codul tău Python\n",
+       "expectedOutput": "3",
+       "hint": "După json.load(f), folosește len().",
+       "solutie": "import json\n\nwith open(\"rechizite.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump([\"pix\", \"caiet\", \"riglă\"], f, ensure_ascii=False)\nwith open(\"rechizite.json\", encoding=\"utf-8\") as f:\n    print(len(json.load(f)))"},
+      {"id": "CP5.3.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: scrie fișierul vanzari.csv cu antetul produs,suma și rândurile carte,45, pix,5, carte,30 și caiet,12. Citește-l și afișează totalul vânzărilor pentru carte.",
+       "template": "import csv\n\n# Scrie aici codul tău Python\n",
+       "expectedOutput": "75",
+       "hint": "Adună int(rand[\"suma\"]) doar când rand[\"produs\"] == \"carte\".",
+       "solutie": "import csv\n\nwith open(\"vanzari.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    f.write(\"produs,suma\\ncarte,45\\npix,5\\ncarte,30\\ncaiet,12\\n\")\ntotal = 0\nwith open(\"vanzari.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for rand in csv.DictReader(f):\n        if rand[\"produs\"] == \"carte\":\n            total += int(rand[\"suma\"])\nprint(total)"}
+    ],
+    "CP5.4.4": [
+      {"id": "CP5.4.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează importul, ca programul să afișeze radicalul lui 144.",
+       "template": "from math import ___\n\nprint(sqrt(144))",
+       "expectedOutput": "12.0",
+       "hint": "Funcția pentru radical se numește sqrt.",
+       "solutie": "from math import sqrt\n\nprint(sqrt(144))"},
+      {"id": "CP5.4.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Câte autobuze de câte 40 de locuri sunt necesare pentru 130 de elevi? Folosește math.ceil și afișează rezultatul.",
+       "template": "import math\n\n# scrie aici",
+       "expectedOutput": "4",
+       "hint": "math.ceil(130 / 40)",
+       "solutie": "import math\n\nprint(math.ceil(130 / 40))"}
+    ],
+    "CP5.4.5": [
+      {"id": "CP5.4.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Un abonament începe pe 15 ianuarie 2026 și durează 365 de zile. Afișează data de expirare în formatul zi.lună.an (de exemplu 15.01.2027).",
+       "template": "from datetime import date, timedelta\n\n# scrie aici",
+       "expectedOutput": "15.01.2027",
+       "hint": "(date(2026, 1, 15) + timedelta(days=365)).strftime(\"%d.%m.%Y\")",
+       "solutie": "from datetime import date, timedelta\n\nexpira = date(2026, 1, 15) + timedelta(days=365)\nprint(expira.strftime(\"%d.%m.%Y\"))"},
+      {"id": "CP5.4.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: folosește modulul statistics ca să afișezi, pe rânduri separate, media și mediana timpilor de livrare [2, 5, 3, 3, 7] (în zile).",
+       "template": "import statistics\n\ntimpi = [2, 5, 3, 3, 7]\n# scrie aici",
+       "expectedOutput": "4\n3",
+       "hint": "statistics.mean(timpi) și statistics.median(timpi)",
+       "solutie": "import statistics\n\ntimpi = [2, 5, 3, 3, 7]\nprint(statistics.mean(timpi))\nprint(statistics.median(timpi))"}
+    ]
+  },
+  "verifica_cod": {
+    "CP5.1": "preturi = {\"ceai\": 9}\ntry:\n    print(preturi[\"cafea\"])\nexcept KeyError:\n    print(\"Cheie lipsă\")",
+    "CP5.2": "with open(\"mesaj.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Salut din fișier\")\nwith open(\"mesaj.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "CP5.3": "import json\nprint(json.dumps({\"a\": 1}))",
+    "CP5.4": "import math\nprint(math.floor(7.9))"
+  }
+}
