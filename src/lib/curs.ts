@@ -44,6 +44,9 @@ export const structuraCurs = structuraRaw as StructuraCurs;
 
 export const unitati = structuraCurs.unitati;
 
+/** Fișierele de lecții, câte unul pe unitate: content/curs-practic-u<N>.md. */
+export const FISIERE_CURS = unitati.map((u) => `curs-practic-u${u.numar}.md`);
+
 export function toateModuleleCurs(): ModulCurs[] {
   return unitati.flatMap((u) => u.module);
 }
