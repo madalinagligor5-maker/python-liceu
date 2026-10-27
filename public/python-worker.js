@@ -126,6 +126,8 @@ self.onmessage = async function (e) {
   // Spațiu de nume nou la fiecare rulare: variabilele unui exercițiu anterior
   // nu mai pot face „să treacă" un cod greșit.
   var spatiu = py.globals.get("dict")();
+  // Ca la `python fisier.py`: altfel `if __name__ == "__main__":` nu rulează.
+  spatiu.set("__name__", "__main__");
   self.postMessage({ tip: "start", id: id });
   try {
     await py.runPythonAsync(String(msg.cod || ""), { globals: spatiu });

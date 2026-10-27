@@ -228,7 +228,7 @@ def trace_lines(frame, event, arg):
 
 sys.settrace(trace_lines)
 try:
-    exec(compile(___USER_CODE___, '<string>', 'exec'), {})
+    exec(compile(___USER_CODE___, '<string>', 'exec'), {'__name__': '__main__'})
 except Exception as e:
     tb = sys.exc_info()[2]
     while tb and tb.tb_next:
