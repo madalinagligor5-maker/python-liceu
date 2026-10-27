@@ -5,6 +5,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-15",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // Variabilele se setează din dashboard (Settings → Variables and Secrets).
+  // Fără keep_vars, fiecare deploy din Git le-ar șterge pe cele de tip Text.
+  "keep_vars": true,
   "assets": {
     // Fișierele statice (inclusiv interpretorul Python din public/pyodide).
     // Headerele COOP/COEP pentru ele vin din public/_headers.
