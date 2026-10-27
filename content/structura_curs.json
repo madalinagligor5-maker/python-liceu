@@ -27,9 +27,9 @@
     }
   ],
   "statistici": {
-    "unitati": 5,
-    "module": 18,
-    "sublectii": 108
+    "unitati": 6,
+    "module": 22,
+    "sublectii": 132
   },
   "unitati": [
     {
@@ -976,6 +976,217 @@
             },
             {
               "cod": "CP5.4.6",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numar": 6,
+      "titlu": "Programare orientată pe obiecte",
+      "slug": "programare-orientata-pe-obiecte",
+      "module": [
+        {
+          "cod": "CP6.1",
+          "numar": 1,
+          "titlu": "Clase și obiecte",
+          "slug": "clase-si-obiecte",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP6.1.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP6.1.2",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP6.1.3",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP6.1.4",
+              "titlu": "Exerciții ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP6.1.5",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP6.1.6",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "CP6.2",
+          "numar": 2,
+          "titlu": "Metode și reprezentarea obiectelor",
+          "slug": "metode-si-reprezentarea-obiectelor",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP6.2.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP6.2.2",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP6.2.3",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP6.2.4",
+              "titlu": "Exerciții ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP6.2.5",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP6.2.6",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "CP6.3",
+          "numar": 3,
+          "titlu": "Moștenire",
+          "slug": "mostenire",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP6.3.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP6.3.2",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP6.3.3",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP6.3.4",
+              "titlu": "Exerciții ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP6.3.5",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP6.3.6",
+              "titlu": "Verifică-ți înțelegerea",
+              "descriere": "3-5 întrebări scurte înainte de modulul următor.",
+              "slug": "verifica-ti-intelegerea",
+              "tip": "verificare"
+            }
+          ]
+        },
+        {
+          "cod": "CP6.4",
+          "numar": 4,
+          "titlu": "Proiect: aplicație de gestiune a unei biblioteci",
+          "slug": "proiect-aplicatie-de-gestiune-a-unei-biblioteci",
+          "gratuit": false,
+          "sublectii": [
+            {
+              "cod": "CP6.4.1",
+              "titlu": "Recapitulare",
+              "descriere": "Leagă lecția de ce s-a învățat deja.",
+              "slug": "recapitulare",
+              "tip": "recapitulare"
+            },
+            {
+              "cod": "CP6.4.2",
+              "titlu": "Concept nou și exemplu",
+              "descriere": "Explicație pas cu pas și un exemplu de cod comentat.",
+              "slug": "concept-nou-si-exemplu",
+              "tip": "concept"
+            },
+            {
+              "cod": "CP6.4.3",
+              "titlu": "Citește și prezice",
+              "descriere": "Citești un fragment de cod și anticipezi rezultatul.",
+              "slug": "citeste-si-prezice",
+              "tip": "prezice"
+            },
+            {
+              "cod": "CP6.4.4",
+              "titlu": "Exerciții ghidate",
+              "descriere": "Probleme rezolvate partial, cu indicii.",
+              "slug": "exercitii-ghidate",
+              "tip": "ghidat"
+            },
+            {
+              "cod": "CP6.4.5",
+              "titlu": "Exerciții independente",
+              "descriere": "Probleme de rezolvat singur, fără sprijin.",
+              "slug": "exercitii-independente",
+              "tip": "independent"
+            },
+            {
+              "cod": "CP6.4.6",
               "titlu": "Verifică-ți înțelegerea",
               "descriere": "3-5 întrebări scurte înainte de modulul următor.",
               "slug": "verifica-ti-intelegerea",

@@ -1,0 +1,123 @@
+{
+  "unitate": {"numar": 6, "titlu": "Programare orientată pe obiecte", "slug": "programare-orientata-pe-obiecte"},
+  "exercitii": {
+    "CP6.1.4": [
+      {"id": "CP6.1.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează constructorul, ca atributul titlu să fie salvat în obiect. Programul trebuie să afișeze Ion.",
+       "template": "class Carte:\n    def __init__(self, titlu):\n        ___ = titlu\n\nc = Carte(\"Ion\")\nprint(c.titlu)",
+       "expectedOutput": "Ion",
+       "hint": "Atributele obiectului se salvează prin self: self.titlu.",
+       "solutie": "class Carte:\n    def __init__(self, titlu):\n        self.titlu = titlu\n\nc = Carte(\"Ion\")\nprint(c.titlu)"},
+      {"id": "CP6.1.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Creează clasa Oras cu atributele nume și populatie. Creează obiectul pentru Iași, cu populația 271692, și afișează „Iași 271692”.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "Iași 271692",
+       "hint": "print(oras.nume, oras.populatie)",
+       "solutie": "class Oras:\n    def __init__(self, nume, populatie):\n        self.nume = nume\n        self.populatie = populatie\n\noras = Oras(\"Iași\", 271692)\nprint(oras.nume, oras.populatie)"}
+    ],
+    "CP6.1.5": [
+      {"id": "CP6.1.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Creează clasa Dreptunghi cu atributele lungime și latime. Creează un dreptunghi 6 × 4 și afișează aria lui, calculată din atribute.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "24",
+       "hint": "print(d.lungime * d.latime)",
+       "solutie": "class Dreptunghi:\n    def __init__(self, lungime, latime):\n        self.lungime = lungime\n        self.latime = latime\n\nd = Dreptunghi(6, 4)\nprint(d.lungime * d.latime)"},
+      {"id": "CP6.1.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: creează clasa Produs (nume, pret, cantitate). Pune într-o listă pâine (5 lei, 2 buc.), lapte (8 lei, 1 buc.) și mere (12 lei, 3 buc.), apoi afișează valoarea totală a coșului.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "54",
+       "hint": "sum(p.pret * p.cantitate for p in cos)",
+       "solutie": "class Produs:\n    def __init__(self, nume, pret, cantitate):\n        self.nume = nume\n        self.pret = pret\n        self.cantitate = cantitate\n\ncos = [Produs(\"pâine\", 5, 2), Produs(\"lapte\", 8, 1), Produs(\"mere\", 12, 3)]\nprint(sum(p.pret * p.cantitate for p in cos))"}
+    ],
+    "CP6.2.4": [
+      {"id": "CP6.2.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează metoda arie, ca programul să afișeze 24.",
+       "template": "class Dreptunghi:\n    def __init__(self, l, L):\n        self.l = l\n        self.L = L\n\n    def arie(self):\n        return ___\n\nprint(Dreptunghi(4, 6).arie())",
+       "expectedOutput": "24",
+       "hint": "Folosește atributele obiectului: self.l * self.L.",
+       "solutie": "class Dreptunghi:\n    def __init__(self, l, L):\n        self.l = l\n        self.L = L\n\n    def arie(self):\n        return self.l * self.L\n\nprint(Dreptunghi(4, 6).arie())"},
+      {"id": "CP6.2.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Adaugă clasei Elev (nume, nota) metoda __str__, care întoarce textul „Ana: 9”. Creează eleva Ana cu nota 9 și afișeaz-o cu print.",
+       "template": "class Elev:\n    def __init__(self, nume, nota):\n        self.nume = nume\n        self.nota = nota\n\n    # scrie aici metoda __str__\n\nprint(Elev(\"Ana\", 9))",
+       "expectedOutput": "Ana: 9",
+       "hint": "def __str__(self): return f\"{self.nume}: {self.nota}\"",
+       "solutie": "class Elev:\n    def __init__(self, nume, nota):\n        self.nume = nume\n        self.nota = nota\n\n    def __str__(self):\n        return f\"{self.nume}: {self.nota}\"\n\nprint(Elev(\"Ana\", 9))"}
+    ],
+    "CP6.2.5": [
+      {"id": "CP6.2.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Creează clasa Termometru cu atributul celsius și metoda fahrenheit(), care întoarce celsius * 9 / 5 + 32. Afișează rezultatul pentru 25 de grade Celsius.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "77.0",
+       "hint": "print(Termometru(25).fahrenheit())",
+       "solutie": "class Termometru:\n    def __init__(self, celsius):\n        self.celsius = celsius\n\n    def fahrenheit(self):\n        return self.celsius * 9 / 5 + 32\n\nprint(Termometru(25).fahrenheit())"},
+      {"id": "CP6.2.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: creează clasa Cos cu o listă produse (inițial goală), metoda adauga(nume, pret) și metoda total(). Adaugă pâine (5), lapte (8) și cafea (18), apoi afișează pe rânduri separate numărul de produse și totalul.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "3\n31",
+       "hint": "În __init__: self.produse = []. total() întoarce sum(pret for nume, pret in self.produse).",
+       "solutie": "class Cos:\n    def __init__(self):\n        self.produse = []\n\n    def adauga(self, nume, pret):\n        self.produse.append((nume, pret))\n\n    def total(self):\n        return sum(pret for nume, pret in self.produse)\n\ncos = Cos()\ncos.adauga(\"pâine\", 5)\ncos.adauga(\"lapte\", 8)\ncos.adauga(\"cafea\", 18)\nprint(len(cos.produse))\nprint(cos.total())"}
+    ],
+    "CP6.3.4": [
+      {"id": "CP6.3.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează declarația clasei, ca Pisica să moștenească de la Animal. Programul trebuie să afișeze „Sunt Mia”.",
+       "template": "class Animal:\n    def __init__(self, nume):\n        self.nume = nume\n\n    def prezinta(self):\n        return f\"Sunt {self.nume}\"\n\nclass Pisica(___):\n    pass\n\nprint(Pisica(\"Mia\").prezinta())",
+       "expectedOutput": "Sunt Mia",
+       "hint": "Între paranteze se scrie clasa părinte: Animal.",
+       "solutie": "class Animal:\n    def __init__(self, nume):\n        self.nume = nume\n\n    def prezinta(self):\n        return f\"Sunt {self.nume}\"\n\nclass Pisica(Animal):\n    pass\n\nprint(Pisica(\"Mia\").prezinta())"},
+      {"id": "CP6.3.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Clasa Vehicul are metoda roti(), care întoarce 4. Creează clasa copil Bicicleta, care suprascrie roti() și întoarce 2. Afișează pe același rând numărul de roți pentru un vehicul și pentru o bicicletă.",
+       "template": "class Vehicul:\n    def roti(self):\n        return 4\n\n# scrie aici clasa Bicicleta\n",
+       "expectedOutput": "4 2",
+       "hint": "class Bicicleta(Vehicul): def roti(self): return 2 — apoi print(Vehicul().roti(), Bicicleta().roti())",
+       "solutie": "class Vehicul:\n    def roti(self):\n        return 4\n\nclass Bicicleta(Vehicul):\n    def roti(self):\n        return 2\n\nprint(Vehicul().roti(), Bicicleta().roti())"}
+    ],
+    "CP6.3.5": [
+      {"id": "CP6.3.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Creează clasa Cont (titular, sold) și clasa copil ContEconomii, cu atributul în plus dobanda (procente) și metoda aplica_dobanda(), care adaugă dobânda la sold. Pentru un cont de economii cu 1000 de lei și 5% dobândă, aplică dobânda și afișează soldul.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "1050.0",
+       "hint": "În ContEconomii.__init__ apelează super().__init__(titular, sold). Dobânda: self.sold += self.sold * self.dobanda / 100.",
+       "solutie": "class Cont:\n    def __init__(self, titular, sold):\n        self.titular = titular\n        self.sold = sold\n\nclass ContEconomii(Cont):\n    def __init__(self, titular, sold, dobanda):\n        super().__init__(titular, sold)\n        self.dobanda = dobanda\n\n    def aplica_dobanda(self):\n        self.sold += self.sold * self.dobanda / 100\n\nc = ContEconomii(\"Ana\", 1000, 5)\nc.aplica_dobanda()\nprint(c.sold)"},
+      {"id": "CP6.3.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: creează clasa Forma cu metoda arie() care întoarce 0 și clasele copil Dreptunghi(l, L) și Cerc(r), cu aria cercului 3.14 * r * r. Pentru [Dreptunghi(2, 5), Cerc(1), Dreptunghi(3, 3)], afișează suma ariilor, rotunjită la 2 zecimale.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "22.14",
+       "hint": "round(sum(f.arie() for f in forme), 2)",
+       "solutie": "class Forma:\n    def arie(self):\n        return 0\n\nclass Dreptunghi(Forma):\n    def __init__(self, l, L):\n        self.l = l\n        self.L = L\n\n    def arie(self):\n        return self.l * self.L\n\nclass Cerc(Forma):\n    def __init__(self, r):\n        self.r = r\n\n    def arie(self):\n        return 3.14 * self.r * self.r\n\nforme = [Dreptunghi(2, 5), Cerc(1), Dreptunghi(3, 3)]\nprint(round(sum(f.arie() for f in forme), 2))"}
+    ],
+    "CP6.4.4": [
+      {"id": "CP6.4.4.ex1", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Completează metoda numar_carti, ca programul să afișeze 2.",
+       "template": "class Biblioteca:\n    def __init__(self):\n        self.carti = []\n\n    def adauga(self, titlu):\n        self.carti.append(titlu)\n\n    def numar_carti(self):\n        return ___\n\nb = Biblioteca()\nb.adauga(\"Ion\")\nb.adauga(\"Baltagul\")\nprint(b.numar_carti())",
+       "expectedOutput": "2",
+       "hint": "len(self.carti)",
+       "solutie": "class Biblioteca:\n    def __init__(self):\n        self.carti = []\n\n    def adauga(self, titlu):\n        self.carti.append(titlu)\n\n    def numar_carti(self):\n        return len(self.carti)\n\nb = Biblioteca()\nb.adauga(\"Ion\")\nb.adauga(\"Baltagul\")\nprint(b.numar_carti())"},
+      {"id": "CP6.4.4.ex2", "nivel": "de-baza", "tip": "cod",
+       "enunt": "Creează clasa ListaSarcini cu listele de_facut și facute, și metodele adauga(sarcina) și bifeaza(sarcina), care mută sarcina din de_facut în facute. Adaugă cumpărături, teme și sport, bifează teme, apoi afișează lista de_facut.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "['cumpărături', 'sport']",
+       "hint": "bifeaza: self.de_facut.remove(sarcina) și self.facute.append(sarcina).",
+       "solutie": "class ListaSarcini:\n    def __init__(self):\n        self.de_facut = []\n        self.facute = []\n\n    def adauga(self, sarcina):\n        self.de_facut.append(sarcina)\n\n    def bifeaza(self, sarcina):\n        self.de_facut.remove(sarcina)\n        self.facute.append(sarcina)\n\nlista = ListaSarcini()\nfor s in [\"cumpărături\", \"teme\", \"sport\"]:\n    lista.adauga(s)\nlista.bifeaza(\"teme\")\nprint(lista.de_facut)"}
+    ],
+    "CP6.4.5": [
+      {"id": "CP6.4.5.ex1", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Creează clasa ContBancar (titular, sold) cu metoda transfera(alt_cont, suma), care mută banii doar dacă soldul ajunge. Ana are 300 de lei, Radu 100. După un transfer de 120 de lei de la Ana la Radu, afișează cele două solduri pe același rând.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "180 220",
+       "hint": "În transfera: if suma <= self.sold: self.sold -= suma; alt_cont.sold += suma",
+       "solutie": "class ContBancar:\n    def __init__(self, titular, sold):\n        self.titular = titular\n        self.sold = sold\n\n    def transfera(self, alt_cont, suma):\n        if suma <= self.sold:\n            self.sold -= suma\n            alt_cont.sold += suma\n\nana = ContBancar(\"Ana\", 300)\nradu = ContBancar(\"Radu\", 100)\nana.transfera(radu, 120)\nprint(ana.sold, radu.sold)"},
+      {"id": "CP6.4.5.ex2", "nivel": "consolidat", "tip": "cod",
+       "enunt": "Mini-proiect: creează clasele Carte (titlu, pret) și Librarie, cu metodele adauga(carte), valoare_totala() și cea_mai_scumpa() (întoarce titlul). Adaugă Ion (45), Baltagul (30) și Maitreyi (52), apoi afișează pe rânduri separate valoarea totală și titlul celei mai scumpe cărți.",
+       "template": "# Scrie aici codul tău Python\n",
+       "expectedOutput": "127\nMaitreyi",
+       "hint": "max(self.carti, key=lambda c: c.pret).titlu",
+       "solutie": "class Carte:\n    def __init__(self, titlu, pret):\n        self.titlu = titlu\n        self.pret = pret\n\nclass Librarie:\n    def __init__(self):\n        self.carti = []\n\n    def adauga(self, carte):\n        self.carti.append(carte)\n\n    def valoare_totala(self):\n        return sum(c.pret for c in self.carti)\n\n    def cea_mai_scumpa(self):\n        return max(self.carti, key=lambda c: c.pret).titlu\n\nl = Librarie()\nl.adauga(Carte(\"Ion\", 45))\nl.adauga(Carte(\"Baltagul\", 30))\nl.adauga(Carte(\"Maitreyi\", 52))\nprint(l.valoare_totala())\nprint(l.cea_mai_scumpa())"}
+    ]
+  },
+  "verifica_cod": {
+    "CP6.1": "class Caine:\n    def __init__(self, nume):\n        self.nume = nume\n\nc = Caine(\"Rex\")\nprint(c.nume)",
+    "CP6.2": "class Numar:\n    def __init__(self, valoare):\n        self.valoare = valoare\n\n    def dublu(self):\n        return self.valoare * 2\n\nprint(Numar(7).dublu())",
+    "CP6.3": "class Persoana:\n    def salut(self):\n        return \"Salut\"\n\nclass Eleva(Persoana):\n    def salut(self):\n        return super().salut() + \", Ana!\"\n\nprint(Eleva().salut())",
+    "CP6.4": "carti = [(\"Ion\", True), (\"Baltagul\", False)]\ndisponibile = [titlu for titlu, imprumutata in carti if not imprumutata]\nprint(disponibile)"
+  }
+}
