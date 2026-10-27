@@ -66,7 +66,7 @@ Ia valorile din Vercel → Settings → Environment Variables (aceleași ca acum
 | `STRIPE_SECRET_KEY` | **Secret** |
 | `STRIPE_WEBHOOK_SECRET` | **Secret** |
 | `STRIPE_PRICE_ID_LUNAR`, `STRIPE_PRICE_ID_ANUAL` | text |
-| `STRIPE_PRICE_ID_CURS_LUNAR`, `STRIPE_PRICE_ID_CURS_ANUAL` | text |
+| `STRIPE_PRICE_ID_CURS_LUNAR`, `STRIPE_PRICE_ID_CURS_ANUAL` | opțional: doar pentru prețuri diferite la Curs practic; fără ele, cursul folosește prețurile de liceu |
 | `GEMINI_API_KEY` | **Secret** |
 | `RESEND_API_KEY` | **Secret** |
 | `RESEND_FROM_EMAIL`, `ADMIN_EMAIL` | text |

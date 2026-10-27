@@ -190,7 +190,7 @@ Răspunde DOAR cu obiectul JSON valid, fără alte texte înainte sau după.
     feedbackFallback.analiza = "Codul rulează fără erori semnalate de consolă locală.";
     feedbackFallback.indrumare = eroareApelAPI 
       ? `Eroare apel API Google Gemini: "${eroareApelAPI}". Asigurați-vă că cheia este activă și are acces la Gemini 1.5 Flash.`
-      : "Asistentul AI este momentan dezactivat. Vă rugăm asigurați-vă că variabila GEMINI_API_KEY este adăugată corect în Vercel și proiectul a fost redeploat.";
+      : "Asistentul AI este momentan dezactivat. Vă rugăm asigurați-vă că variabila GEMINI_API_KEY este adăugată în Cloudflare (Workers & Pages → python-liceu → Settings → Variables and Secrets).";
   }
 
   return { ok: true, feedback: feedbackFallback };

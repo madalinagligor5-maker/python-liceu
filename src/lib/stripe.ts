@@ -25,11 +25,11 @@ export const STRIPE_PRICE_IDS: Record<"lunar" | "anual", string | undefined> = {
   anual: process.env.STRIPE_PRICE_ID_ANUAL,
 };
 
-/** Price ID-uri pentru „Curs practic de Python" -- produs separat de
- *  abonamentul de liceu, cu propriile preturi Stripe (configurate de
- *  fondatoare in Stripe Dashboard, apoi adaugate ca variabile de mediu --
- *  nu sunt create din cod). */
+/** Price ID-uri pentru „Curs practic de Python". Abonamentul rămâne separat
+ *  de cel de liceu (webhook-ul îl recunoaște după metadata `produs`, nu după
+ *  preț), dar poate folosi aceleași prețuri: fără STRIPE_PRICE_ID_CURS_*,
+ *  se iau cele de liceu. */
 export const STRIPE_PRICE_IDS_CURS: Record<"lunar" | "anual", string | undefined> = {
-  lunar: process.env.STRIPE_PRICE_ID_CURS_LUNAR,
-  anual: process.env.STRIPE_PRICE_ID_CURS_ANUAL,
+  lunar: process.env.STRIPE_PRICE_ID_CURS_LUNAR || STRIPE_PRICE_IDS.lunar,
+  anual: process.env.STRIPE_PRICE_ID_CURS_ANUAL || STRIPE_PRICE_IDS.anual,
 };

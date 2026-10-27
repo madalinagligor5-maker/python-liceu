@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AbonaButton from "@/components/AbonaButton";
 import { toateModuleleCurs } from "@/lib/curs";
+import { STRIPE_PRICE_IDS_CURS } from "@/lib/stripe";
 import { formateazaPerioada, formateazaSuma, getPreturiCurs, PROBA } from "@/lib/oferta";
 import { metadatePagina } from "@/lib/seo";
 
@@ -35,10 +36,8 @@ export default async function PreturiCursPage() {
   const nrModule = toateModuleleCurs().length;
   const stripeConfigurat =
     !!process.env.STRIPE_SECRET_KEY &&
-    !!process.env.STRIPE_PRICE_ID_CURS_LUNAR &&
-    process.env.STRIPE_PRICE_ID_CURS_LUNAR.startsWith("price_") &&
-    !!process.env.STRIPE_PRICE_ID_CURS_ANUAL &&
-    process.env.STRIPE_PRICE_ID_CURS_ANUAL.startsWith("price_");
+    !!STRIPE_PRICE_IDS_CURS.lunar?.startsWith("price_") &&
+    !!STRIPE_PRICE_IDS_CURS.anual?.startsWith("price_");
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 bg-hero-glow rounded-3xl">
@@ -59,10 +58,10 @@ export default async function PreturiCursPage() {
               <span>⚠️</span> Stripe nu este încă configurat pentru acest curs
             </h3>
             <p className="mt-1 text-xs text-amber-700">
-              Lipsesc variabilele de mediu <code>STRIPE_PRICE_ID_CURS_LUNAR</code> /{" "}
-              <code>STRIPE_PRICE_ID_CURS_ANUAL</code> — creează prețurile în Stripe
-              Dashboard (produs separat de cel de liceu) și adaugă-le ca variabile
-              de mediu.
+              Lipsesc variabilele de mediu <code>STRIPE_PRICE_ID_LUNAR</code> /{" "}
+              <code>STRIPE_PRICE_ID_ANUAL</code> (sau, pentru prețuri separate,{" "}
+              <code>STRIPE_PRICE_ID_CURS_LUNAR</code> / <code>STRIPE_PRICE_ID_CURS_ANUAL</code>) — adaugă price ID-urile din Stripe
+              Dashboard ca variabile de mediu.
             </p>
           </div>
         )}
