@@ -1,0 +1,191 @@
+{
+  "unitate": {
+    "numar": 4,
+    "titlu": "Funcții",
+    "slug": "functii"
+  },
+  "exercitii": {
+    "CP4.1.4": [
+      {
+        "id": "CP4.1.4.ex1",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Completează apelul ca funcția să afișeze „Bună ziua, Ioana!”.",
+        "template": "def saluta(nume):\n    print(f\"Bună ziua, {nume}!\")\n\nsaluta(___)",
+        "expectedOutput": "Bună ziua, Ioana!",
+        "hint": "Numele trebuie dat ca text, între ghilimele: \"Ioana\".",
+        "solutie": "def saluta(nume):\n    print(f\"Bună ziua, {nume}!\")\n\nsaluta(\"Ioana\")"
+      },
+      {
+        "id": "CP4.1.4.ex2",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Scrie funcția afiseaza_dublu(numar), care afișează dublul numărului primit, și apeleaz-o cu 21.",
+        "template": "def afiseaza_dublu(numar):\n    # scrie aici\n\nafiseaza_dublu(21)",
+        "expectedOutput": "42",
+        "hint": "În corpul funcției: print(numar * 2).",
+        "solutie": "def afiseaza_dublu(numar):\n    print(numar * 2)\n\nafiseaza_dublu(21)"
+      }
+    ],
+    "CP4.1.5": [
+      {
+        "id": "CP4.1.5.ex1",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Scrie o funcție chenar(text) care afișează textul între două linii de câte 10 caractere „=”. Apeleaz-o cu \"Raport\".",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "==========\nRaport\n==========",
+        "hint": "\"=\" * 10 produce o linie de 10 semne egal.",
+        "solutie": "def chenar(text):\n    print(\"=\" * 10)\n    print(text)\n    print(\"=\" * 10)\n\nchenar(\"Raport\")"
+      },
+      {
+        "id": "CP4.1.5.ex2",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Mini-proiect: scrie funcția bon(produs, cantitate, pret), care afișează o linie de forma „Cafea x 2 = 36 lei”. Apeleaz-o pentru Cafea (2 bucăți, 18 lei) și pentru Ceai (3 bucăți, 9 lei).",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "Cafea x 2 = 36 lei\nCeai x 3 = 27 lei",
+        "hint": "f\"{produs} x {cantitate} = {cantitate * pret} lei\"",
+        "solutie": "def bon(produs, cantitate, pret):\n    print(f\"{produs} x {cantitate} = {cantitate * pret} lei\")\n\nbon(\"Cafea\", 2, 18)\nbon(\"Ceai\", 3, 9)"
+      }
+    ],
+    "CP4.2.4": [
+      {
+        "id": "CP4.2.4.ex1",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Completează funcția astfel încât să întoarcă aria unui dreptunghi.",
+        "template": "def arie(lungime, latime):\n    return ___\n\nprint(arie(4, 5))",
+        "expectedOutput": "20",
+        "hint": "Aria este lungime * latime.",
+        "solutie": "def arie(lungime, latime):\n    return lungime * latime\n\nprint(arie(4, 5))"
+      },
+      {
+        "id": "CP4.2.4.ex2",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Scrie funcția este_par(n), care întoarce True dacă n este par și False altfel. Afișează rezultatul pentru 10.",
+        "template": "def este_par(n):\n    # scrie aici\n\nprint(este_par(10))",
+        "expectedOutput": "True",
+        "hint": "return n % 2 == 0",
+        "solutie": "def este_par(n):\n    return n % 2 == 0\n\nprint(este_par(10))"
+      }
+    ],
+    "CP4.2.5": [
+      {
+        "id": "CP4.2.5.ex1",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Scrie funcția medie(numere), care întoarce media unei liste de numere. Afișează media notelor [8, 9, 10, 7].",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "8.5",
+        "hint": "sum(numere) / len(numere)",
+        "solutie": "def medie(numere):\n    return sum(numere) / len(numere)\n\nprint(medie([8, 9, 10, 7]))"
+      },
+      {
+        "id": "CP4.2.5.ex2",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Mini-proiect: scrie funcția pret_final(pret, reducere_procent), care întoarce prețul după reducere, rotunjit la 2 zecimale. Calculează și afișează totalul pentru un produs de 200 lei redus cu 15% și unul de 80 lei redus cu 10%.",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "242.0",
+        "hint": "round(pret - pret * reducere_procent / 100, 2); apoi adună cele două rezultate.",
+        "solutie": "def pret_final(pret, reducere_procent):\n    return round(pret - pret * reducere_procent / 100, 2)\n\nprint(pret_final(200, 15) + pret_final(80, 10))"
+      }
+    ],
+    "CP4.3.4": [
+      {
+        "id": "CP4.3.4.ex1",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Completează valoarea implicită astfel încât rata(1200) să împartă suma în 12 luni.",
+        "template": "def rata(suma, luni=___):\n    return suma / luni\n\nprint(rata(1200))",
+        "expectedOutput": "100.0",
+        "hint": "Valoarea implicită trebuie să fie 12.",
+        "solutie": "def rata(suma, luni=12):\n    return suma / luni\n\nprint(rata(1200))"
+      },
+      {
+        "id": "CP4.3.4.ex2",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Afișează cuvintele rosu, galben și albastru pe același rând, separate prin „ | ”, folosind un singur print și argumentul sep.",
+        "template": "print(\"rosu\", \"galben\", \"albastru\", sep=___)",
+        "expectedOutput": "rosu | galben | albastru",
+        "hint": "sep=\" | \"",
+        "solutie": "print(\"rosu\", \"galben\", \"albastru\", sep=\" | \")"
+      }
+    ],
+    "CP4.3.5": [
+      {
+        "id": "CP4.3.5.ex1",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Scrie funcția formateaza_pret(suma, moneda=\"lei\"), care întoarce un text de forma „250 lei”. Afișează rezultatul pentru 250 (moneda implicită) și pentru 40 cu moneda \"EUR\", pe rânduri separate.",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "250 lei\n40 EUR",
+        "hint": "return f\"{suma} {moneda}\"",
+        "solutie": "def formateaza_pret(suma, moneda=\"lei\"):\n    return f\"{suma} {moneda}\"\n\nprint(formateaza_pret(250))\nprint(formateaza_pret(40, \"EUR\"))"
+      },
+      {
+        "id": "CP4.3.5.ex2",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Mini-proiect: scrie funcția dobanda(suma, rata=5, ani=1), care întoarce suma * (1 + rata / 100) ** ani, rotunjită la 2 zecimale. Afișează rezultatul pentru 1000 de lei, cu rata implicită, folosind argumentul cu nume ani=3.",
+        "template": "# Scrie aici codul tău Python\n",
+        "expectedOutput": "1157.63",
+        "hint": "print(dobanda(1000, ani=3))",
+        "solutie": "def dobanda(suma, rata=5, ani=1):\n    return round(suma * (1 + rata / 100) ** ani, 2)\n\nprint(dobanda(1000, ani=3))"
+      }
+    ],
+    "CP4.4.4": [
+      {
+        "id": "CP4.4.4.ex1",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Completează key astfel încât orașele să fie ordonate după lungimea numelui.",
+        "template": "orase = [\"Iași\", \"Cluj-Napoca\", \"Arad\"]\nprint(sorted(orase, key=___))",
+        "expectedOutput": "['Iași', 'Arad', 'Cluj-Napoca']",
+        "hint": "Funcția care dă lungimea este len, scrisă fără paranteze.",
+        "solutie": "orase = [\"Iași\", \"Cluj-Napoca\", \"Arad\"]\nprint(sorted(orase, key=len))"
+      },
+      {
+        "id": "CP4.4.4.ex2",
+        "nivel": "de-baza",
+        "tip": "cod",
+        "enunt": "Pentru lista [-7, 3, -1, 5], afișează numărul cel mai apropiat de zero folosind min și key=abs.",
+        "template": "numere = [-7, 3, -1, 5]\n# scrie aici",
+        "expectedOutput": "-1",
+        "hint": "print(min(numere, key=abs))",
+        "solutie": "numere = [-7, 3, -1, 5]\nprint(min(numere, key=abs))"
+      }
+    ],
+    "CP4.4.5": [
+      {
+        "id": "CP4.4.5.ex1",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Pentru angajații [(\"Ana\", 5200), (\"Mihai\", 4800), (\"Ioana\", 6100)], afișează numele celui cu salariul cel mai mare.",
+        "template": "angajati = [(\"Ana\", 5200), (\"Mihai\", 4800), (\"Ioana\", 6100)]\n# scrie aici",
+        "expectedOutput": "Ioana",
+        "hint": "max(angajati, key=lambda a: a[1]) întoarce tuplul; numele e la poziția 0.",
+        "solutie": "angajati = [(\"Ana\", 5200), (\"Mihai\", 4800), (\"Ioana\", 6100)]\nprint(max(angajati, key=lambda a: a[1])[0])"
+      },
+      {
+        "id": "CP4.4.5.ex2",
+        "nivel": "consolidat",
+        "tip": "cod",
+        "enunt": "Mini-proiect: pentru produsele [(\"pix\", 3), (\"caiet\", 12), (\"rucsac\", 150), (\"riglă\", 5)], afișează numele produselor de la cel mai scump la cel mai ieftin, separate prin virgulă și spațiu.",
+        "template": "produse = [(\"pix\", 3), (\"caiet\", 12), (\"rucsac\", 150), (\"riglă\", 5)]\n# scrie aici",
+        "expectedOutput": "rucsac, caiet, riglă, pix",
+        "hint": "Sortează cu key=lambda p: p[1] și reverse=True, apoi \", \".join(...) pe nume.",
+        "solutie": "produse = [(\"pix\", 3), (\"caiet\", 12), (\"rucsac\", 150), (\"riglă\", 5)]\nordonate = sorted(produse, key=lambda p: p[1], reverse=True)\nprint(\", \".join(p[0] for p in ordonate))"
+      }
+    ]
+  },
+  "verifica_cod": {
+    "CP4.1": "def saluta(nume):\n    print(f\"Bună ziua, {nume}!\")\n\nsaluta(\"Maria\")",
+    "CP4.2": "def patrat(n):\n    return n * n\n\nprint(patrat(7))",
+    "CP4.3": "print(2026, 10, 27, sep=\"-\")",
+    "CP4.4": "persoane = [(\"Dan\", 34), (\"Eva\", 22), (\"Ion\", 41)]\ntanar = min(persoane, key=lambda p: p[1])\nprint(tanar[0])"
+  }
+}
