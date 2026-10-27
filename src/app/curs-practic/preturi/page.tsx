@@ -46,10 +46,10 @@ export default async function PreturiCursPage() {
           Curs practic de Python — planuri
         </h1>
         <p className="mt-3 text-foreground/70">
-          Produs separat de abonamentul de liceu — prețuri proprii, fără legătură
-          cu clasa sau traseul școlar. Modulul 1 e complet gratuit, fără cont,
-          ca să poți încerca stilul cursului înainte de a te abona. Cursul e în
-          dezvoltare: în prezent are {nrModule} module publicate.
+          Abonament separat de cel de liceu, fără legătură cu clasa sau traseul
+          școlar. Modulul 1 e complet gratuit, fără cont, ca să poți încerca
+          stilul cursului înainte de a te abona. Cursul are {nrModule} de module,
+          iar modulele adăugate pe durata abonamentului sunt incluse.
         </p>
 
         {!stripeConfigurat && process.env.NODE_ENV !== "production" && (

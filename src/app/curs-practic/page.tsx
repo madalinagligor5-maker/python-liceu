@@ -9,20 +9,8 @@ export const metadata = metadatePagina({
   cale: "/curs-practic",
 });
 
-// Harta completă a cursului (6 unități, 20 module). Modulele publicate vin din
-// content/structura_curs.json și sunt navigabile; harta arată și ce urmează.
-const HARTA_COMPLETA: { unitate: string; module: string[] }[] = [
-  { unitate: "1. Primii pași", module: ["Ce e programarea și de ce Python", "Variabile și tipuri de date", "Operatori și expresii"] },
-  { unitate: "2. Structuri de control", module: ["Decizii: if / elif / else", "Bucla for", "Bucla while, break și continue"] },
-  { unitate: "3. Colecții de date", module: ["Liste", "Șiruri de caractere (stringuri)", "Dicționare", "Tupluri și mulțimi (seturi)"] },
-  { unitate: "4. Organizarea codului", module: ["Funcții", "Module și biblioteca standard", "Gestionarea erorilor (try/except)"] },
-  { unitate: "5. Date reale", module: ["Fișiere text", "Fișiere CSV", "Formatul JSON și date structurate"] },
-  { unitate: "6. Python aplicat", module: ["Automatizarea sarcinilor repetitive", "Extragerea de date de pe web (etic)", "Introducere în analiza de date cu pandas", "Proiect final: de la date brute la un mic raport"] },
-];
-
 export default function CursPracticPage() {
   const primulModul = unitati[0]?.module[0];
-  const titluriPublicate = new Set(unitati.flatMap((u) => u.module.map((m) => m.titlu)));
   const nrModule = unitati.reduce((s, u) => s + u.module.length, 0);
 
   return (
@@ -58,7 +46,8 @@ export default function CursPracticPage() {
 
         {/* Module deja publicate, navigabile */}
         <p className="mt-10 text-sm text-[#525B6C]">
-          {nrModule} module publicate din 20. Modulul 1 e complet gratuit — încearcă stilul cursului înainte de a te abona.
+          {unitati.length} unități, {nrModule} de module: de la prima linie de cod la un proiect final
+          complet. Modulul 1 e gratuit — încearcă stilul cursului înainte de a te abona.
         </p>
         {unitati.map((unitate) => (
           <section key={unitate.slug} className="mt-8">
@@ -97,31 +86,6 @@ export default function CursPracticPage() {
           </section>
         ))}
 
-        {/* Harta completă a cursului, informativ */}
-        <section className="mt-12">
-          <h2 className="text-xl font-black text-[#1E2430]">Harta completă a cursului</h2>
-          <p className="mt-1 text-sm text-[#525B6C]">
-            6 unități, 20 de module. Modulele marcate cu ✓ sunt deja disponibile; restul se adaugă treptat, în același format.
-          </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {HARTA_COMPLETA.map((u) => (
-              <div key={u.unitate} className="rounded-2xl border border-[#EBE7DF] bg-white p-4 shadow-xs">
-                <p className="font-black text-sm text-[#1E2430]">{u.unitate}</p>
-                <ul className="mt-2 space-y-1">
-                  {u.module.map((m) => (
-                    <li key={m} className="text-xs text-[#525B6C]">
-                      {titluriPublicate.has(m) ? (
-                        <span className="font-semibold text-success">✓ {m}</span>
-                      ) : (
-                        <>· {m}</>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );
