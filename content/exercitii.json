@@ -4901,5 +4901,165 @@
       "expectedOutput": "127\nMaitreyi",
       "hint": "max(self.carti, key=lambda c: c.pret).titlu"
     }
+  ],
+  "CP7.1.4": [
+    {
+      "id": "CP7.1.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează comprehension-ul ca programul să afișeze lista cu dublul fiecărui număr: [2, 4, 6].",
+      "template": "numere = [1, 2, 3]\nprint([___ for n in numere])",
+      "expectedOutput": "[2, 4, 6]",
+      "hint": "Expresia de la început se aplică fiecărui n: n * 2."
+    },
+    {
+      "id": "CP7.1.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Din lista [\"Cluj\", \"Iași\", \"Brașov\", \"Arad\"], construiește cu o comprehension lista orașelor cu mai mult de 4 litere și afișeaz-o.",
+      "template": "orase = [\"Cluj\", \"Iași\", \"Brașov\", \"Arad\"]\n# scrie aici",
+      "expectedOutput": "['Brașov']",
+      "hint": "[o for o in orase if len(o) > 4]"
+    }
+  ],
+  "CP7.1.5": [
+    {
+      "id": "CP7.1.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Pentru lista [\"ana\", \"radu\", \"ioana\"], construiește lista cu numele scrise cu inițială mare (folosește .capitalize()) și afișeaz-o.",
+      "template": "nume = [\"ana\", \"radu\", \"ioana\"]\n# scrie aici",
+      "expectedOutput": "['Ana', 'Radu', 'Ioana']",
+      "hint": "[n.capitalize() for n in nume]"
+    },
+    {
+      "id": "CP7.1.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Mini-proiect: pentru notele {\"Ana\": 9, \"Radu\": 4, \"Ioana\": 7, \"Dan\": 3}, afișează cu o dict comprehension dicționarul elevilor cu notă de cel puțin 5. Pe rândul următor, afișează câți elevi sunt corigenți, folosind sum și o condiție.",
+      "template": "note = {\"Ana\": 9, \"Radu\": 4, \"Ioana\": 7, \"Dan\": 3}\n# scrie aici",
+      "expectedOutput": "{'Ana': 9, 'Ioana': 7}\n2",
+      "hint": "{e: n for e, n in note.items() if n >= 5} și sum(1 for n in note.values() if n < 5)"
+    }
+  ],
+  "CP7.2.4": [
+    {
+      "id": "CP7.2.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează metoda care elimină spațiile de la capete, ca programul să afișeze [Ana].",
+      "template": "nume = \"   Ana  \"\nprint(f\"[{nume.___()}]\")",
+      "expectedOutput": "[Ana]",
+      "hint": "Metoda se numește strip."
+    },
+    {
+      "id": "CP7.2.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru textul \"mere,pere,prune\", afișează fructele pe un singur rând, separate prin „ | ”, folosind split și join.",
+      "template": "text = \"mere,pere,prune\"\n# scrie aici",
+      "expectedOutput": "mere | pere | prune",
+      "hint": "\" | \".join(text.split(\",\"))"
+    }
+  ],
+  "CP7.2.5": [
+    {
+      "id": "CP7.2.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Afișează prețul 49.9 cu exact două zecimale, urmat de „ lei”: 49.90 lei.",
+      "template": "pret = 49.9\n# scrie aici",
+      "expectedOutput": "49.90 lei",
+      "hint": "f\"{pret:.2f} lei\""
+    },
+    {
+      "id": "CP7.2.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Mini-proiect: din textul \"Comenzi: #1023 livrată, #1024 în curs, #1030 anulată\", extrage cu re.findall numerele comenzilor (doar cifrele de după #) și afișează-le separate prin virgulă și spațiu.",
+      "template": "import re\n\ntext = \"Comenzi: #1023 livrată, #1024 în curs, #1030 anulată\"\n# scrie aici",
+      "expectedOutput": "1023, 1024, 1030",
+      "hint": "re.findall(r\"#(\\d+)\", text) întoarce doar grupul dintre paranteze."
+    }
+  ],
+  "CP7.3.4": [
+    {
+      "id": "CP7.3.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează condiția ca funcția main să ruleze când fișierul e pornit direct. Programul trebuie să afișeze Pornit.",
+      "template": "def main():\n    print(\"Pornit\")\n\nif __name__ == ___:\n    main()",
+      "expectedOutput": "Pornit",
+      "hint": "Valoarea lui __name__ pentru fișierul pornit direct este \"__main__\"."
+    },
+    {
+      "id": "CP7.3.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Scrie fișierul requirements.txt cu rândurile flask==3.0.3 și requests==2.32.3, apoi citește-l și afișează câte pachete conține.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "2",
+      "hint": "La citire, numără rândurile care nu sunt goale."
+    }
+  ],
+  "CP7.3.5": [
+    {
+      "id": "CP7.3.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Scrie funcția versiune(rand), care primește un rând de forma \"pandas==2.2.3\" și întoarce doar versiunea. Afișează rezultatul pentru \"flask==3.0.3\".",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "3.0.3",
+      "hint": "rand.split(\"==\")[1]"
+    },
+    {
+      "id": "CP7.3.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Mini-proiect: scrie o funcție main(), pornită prin if __name__ == \"__main__\":, care transformă lista [\"requests==2.32.3\", \"pandas==2.2.3\"] într-un dicționar {pachet: versiune} și îl afișează.",
+      "template": "# Scrie aici codul tău Python\n",
+      "expectedOutput": "{'requests': '2.32.3', 'pandas': '2.2.3'}",
+      "hint": "dict(r.split(\"==\") for r in randuri)"
+    }
+  ],
+  "CP7.4.4": [
+    {
+      "id": "CP7.4.4.ex1",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Completează linia care adună suma la totalul categoriei, ca programul să afișeze {'mâncare': 200, 'transport': 45}.",
+      "template": "cheltuieli = [(\"mâncare\", 120), (\"transport\", 45), (\"mâncare\", 80)]\ntotaluri = {}\nfor categorie, suma in cheltuieli:\n    totaluri[categorie] = ___\nprint(totaluri)",
+      "expectedOutput": "{'mâncare': 200, 'transport': 45}",
+      "hint": "totaluri.get(categorie, 0) + suma"
+    },
+    {
+      "id": "CP7.4.4.ex2",
+      "nivel": "de-baza",
+      "tip": "cod",
+      "enunt": "Pentru sumele text [\"12.5\", \"x\", \"30\", \"7.5\"], adună doar valorile valide (try / except ValueError) și afișează, pe rânduri separate, totalul și numărul de valori invalide.",
+      "template": "sume = [\"12.5\", \"x\", \"30\", \"7.5\"]\n# scrie aici",
+      "expectedOutput": "50.0\n1",
+      "hint": "În buclă: try: total += float(s) except ValueError: invalide += 1"
+    }
+  ],
+  "CP7.4.5": [
+    {
+      "id": "CP7.4.5.ex1",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Pentru totalurile {\"mâncare\": 200.5, \"transport\": 75}, afișează fiecare categorie pe câte un rând, aliniată la stânga pe 10 caractere, urmată de sumă cu două zecimale aliniată la dreapta pe 8 caractere, în ordine alfabetică.",
+      "template": "totaluri = {\"mâncare\": 200.5, \"transport\": 75}\n# scrie aici",
+      "expectedOutput": "mâncare     200.50\ntransport    75.00",
+      "hint": "for c, s in sorted(totaluri.items()): print(f\"{c:<10}{s:>8.2f}\")"
+    },
+    {
+      "id": "CP7.4.5.ex2",
+      "nivel": "consolidat",
+      "tip": "cod",
+      "enunt": "Mini-proiect: scrie fișierul luna.csv cu antetul data,categorie,suma și rândurile 2026-10-02,facturi,310, 2026-10-04,mâncare,95.5, 2026-10-11,facturi,90 și 2026-10-15,mâncare,abc. Citește-l, ignoră rândurile cu sume invalide și afișează, pe rânduri separate, categoria cu cele mai mari cheltuieli și totalul ei.",
+      "template": "import csv\n\n# Scrie aici codul tău Python\n",
+      "expectedOutput": "facturi\n400.0",
+      "hint": "Grupează sumele valide într-un dicționar, apoi max(totaluri, key=totaluri.get)."
+    }
   ]
 }
