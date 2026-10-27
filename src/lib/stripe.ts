@@ -20,9 +20,16 @@ export function getStripe(): Stripe {
   return instanta;
 }
 
+/* Price ID-urile se citesc la fiecare acces (getteri), nu o singură dată la
+ * încărcarea modulului: pe Cloudflare Workers, variabilele de rulare sunt
+ * disponibile abia în timpul cererii. */
 export const STRIPE_PRICE_IDS: Record<"lunar" | "anual", string | undefined> = {
-  lunar: process.env.STRIPE_PRICE_ID_LUNAR,
-  anual: process.env.STRIPE_PRICE_ID_ANUAL,
+  get lunar() {
+    return process.env.STRIPE_PRICE_ID_LUNAR?.trim() || undefined;
+  },
+  get anual() {
+    return process.env.STRIPE_PRICE_ID_ANUAL?.trim() || undefined;
+  },
 };
 
 /** Price ID-uri pentru „Curs practic de Python". Abonamentul rămâne separat
@@ -30,6 +37,10 @@ export const STRIPE_PRICE_IDS: Record<"lunar" | "anual", string | undefined> = {
  *  preț), dar poate folosi aceleași prețuri: fără STRIPE_PRICE_ID_CURS_*,
  *  se iau cele de liceu. */
 export const STRIPE_PRICE_IDS_CURS: Record<"lunar" | "anual", string | undefined> = {
-  lunar: process.env.STRIPE_PRICE_ID_CURS_LUNAR || STRIPE_PRICE_IDS.lunar,
-  anual: process.env.STRIPE_PRICE_ID_CURS_ANUAL || STRIPE_PRICE_IDS.anual,
+  get lunar() {
+    return process.env.STRIPE_PRICE_ID_CURS_LUNAR?.trim() || STRIPE_PRICE_IDS.lunar;
+  },
+  get anual() {
+    return process.env.STRIPE_PRICE_ID_CURS_ANUAL?.trim() || STRIPE_PRICE_IDS.anual;
+  },
 };
