@@ -1,4 +1,5 @@
 import { getModul, hrefModul, numeClasa } from "@/lib/curriculum";
+import { getModulCurs, hrefModulCurs } from "@/lib/curs";
 
 /**
  * Legături interne ale fiecărui articol: lecția de pe platformă care tratează
@@ -6,6 +7,7 @@ import { getModul, hrefModul, numeClasa } from "@/lib/curriculum";
  * celor mai recente). Opțional, sursele oficiale citate în articol.
  */
 type Sursa = { titlu: string; url?: string };
+/** `modul`: clasa (ex. "IX") sau "curs" pentru Cursul practic de Python, plus slug-ul modulului. */
 type Legaturi = { modul: [clasa: string, slug: string]; articole: string[]; surse?: Sursa[] };
 
 const LEGATURI: Record<string, Legaturi> = {
@@ -15,7 +17,7 @@ const LEGATURI: Record<string, Legaturi> = {
   },
   "cum-inveti-python-de-la-zero": {
     modul: ["VII", "primii-pasi-in-python"],
-    articole: ["variabile-in-python", "erori-frecvente-python"],
+    articole: ["merita-sa-inveti-python", "variabile-in-python", "erori-frecvente-python"],
   },
   "erori-frecvente-python": {
     modul: ["VII", "primii-pasi-in-python"],
@@ -32,6 +34,14 @@ const LEGATURI: Record<string, Legaturi> = {
   "liste-in-python": {
     modul: ["VIII", "siruri-de-valori-identificare-si-generare"],
     articole: ["bucla-for-si-range-in-python", "functii-in-python"],
+  },
+  "merita-sa-inveti-python": {
+    modul: ["curs", "ce-e-programarea-si-de-ce-python"],
+    articole: ["cum-inveti-python-de-la-zero", "erori-frecvente-python"],
+    surse: [
+      { titlu: "TIOBE Index", url: "https://www.tiobe.com/tiobe-index/" },
+      { titlu: "Stack Overflow Developer Survey", url: "https://survey.stackoverflow.co/" },
+    ],
   },
   "probleme-rezolvate-python-clasa-a-ix-a": {
     modul: ["IX", "prelucrarea-cifrelor-unui-numar"],
@@ -67,6 +77,12 @@ const LEGATURI: Record<string, Legaturi> = {
 
 export function modulRecomandat(slug: string): { href: string; titlu: string; clasa: string } | undefined {
   const l = LEGATURI[slug];
+  if (l?.modul[0] === "curs") {
+    const modulCurs = getModulCurs(l.modul[1]);
+    return modulCurs
+      ? { href: hrefModulCurs(modulCurs), titlu: modulCurs.titlu, clasa: "Curs practic de Python" }
+      : undefined;
+  }
   const modul = l && getModul(l.modul[0], l.modul[1]);
   return modul ? { href: hrefModul(modul), titlu: modul.titlu, clasa: numeClasa(l.modul[0]) } : undefined;
 }
