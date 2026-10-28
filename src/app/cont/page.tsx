@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { FARA_INDEXARE } from "@/lib/seo";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesCurs } from "@/lib/sincronizareCurs";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
@@ -61,6 +62,15 @@ export default async function ContPage() {
   if (meta.rol === "profesor_aprobat") {
     redirect("/profesor/planificari");
   }
+
+  const areCurs = await areAccesCurs(user, meta);
+  const dataCurs = meta.cursCurrentPeriodEnd
+    ? new Date(meta.cursCurrentPeriodEnd).toLocaleDateString("ro-RO", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
 
   // Preluăm insigne din DB
   const insigneDetinute: Set<string> = new Set();
@@ -189,7 +199,7 @@ export default async function ContPage() {
 
         {/* Secțiune Abonament / Plăți */}
         <div className="p-6 sm:p-8">
-          <h2 className="text-base font-bold text-foreground">Stare Abonament & Plăți</h2>
+          <h2 className="text-base font-bold text-foreground">Abonament liceu (clasele IX–XII)</h2>
           <div className={`mt-3 rounded-2xl border p-5 ${status.className}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -224,6 +234,44 @@ export default async function ContPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Abonamentul la „Curs practic de Python" e separat de cel de liceu */}
+      <div className="mt-8 rounded-3xl border border-black/5 bg-white p-6 sm:p-8 shadow-sm">
+        <h2 className="text-base font-bold text-foreground">Curs practic de Python</h2>
+        {areCurs ? (
+          <div className="mt-3 rounded-2xl border border-success/30 bg-emerald-50 p-5">
+            <span className="font-extrabold text-sm uppercase tracking-wide text-success">Status: Abonament activ</span>
+            <p className="mt-1 text-sm text-foreground/80 leading-relaxed max-w-xl">
+              Ai acces la toate modulele cursului practic.
+              {meta.cursCancelAtPeriodEnd && dataCurs
+                ? ` Reînnoirea e anulată: păstrezi accesul până pe ${dataCurs}.`
+                : dataCurs
+                  ? ` Următoarea plată: ${dataCurs}.`
+                  : ""}
+            </p>
+            <Link
+              href="/curs-practic"
+              className="mt-4 inline-block rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark"
+            >
+              Mergi la curs →
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-3 rounded-2xl border border-black/10 bg-black/5 p-5">
+            <p className="text-sm text-foreground/80 leading-relaxed max-w-xl">
+              {meta.cursStatus === "past_due"
+                ? "Ultima plată pentru curs a eșuat. Actualizează cardul din portalul de plăți ca să nu pierzi accesul."
+                : "Modulul 1 e gratuit. Abonează-te pentru restul modulelor."}
+            </p>
+            <Link
+              href="/curs-practic/preturi"
+              className="mt-4 inline-block rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+            >
+              Vezi planurile cursului
+            </Link>
+          </div>
+        )}
       </div>
 
       <AcordMarketing initial={user.acceptMarketing} />

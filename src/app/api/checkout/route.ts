@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { creeazaClientServer } from "@/lib/supabase/server";
+import { creeazaClientAdmin } from "@/lib/supabase/admin";
 import { getStripe, STRIPE_PRICE_IDS, STRIPE_PRICE_IDS_CURS } from "@/lib/stripe";
 
 export async function POST(request: NextRequest) {
@@ -70,7 +71,11 @@ export async function POST(request: NextRequest) {
         metadata: { supabase_user_id: user.id },
       });
       customerId = customer.id;
-      const { error: updErr } = await supabase
+      // stripe_customer_id e protejat de trigger-ul din Supabase: scris cu
+      // clientul utilizatorului, update-ul ar fi ignorat în tăcere și fiecare
+      // checkout ar crea un client Stripe nou. Doar service_role îl poate scrie.
+      const clientScriere = process.env.SUPABASE_SERVICE_ROLE_KEY ? creeazaClientAdmin() : supabase;
+      const { error: updErr } = await clientScriere
         .from("users_meta")
         .update({ stripe_customer_id: customerId })
         .eq("user_id", user.id);
@@ -96,7 +101,7 @@ export async function POST(request: NextRequest) {
         trial_period_days: 7,
       },
       success_url: `${origin}/cont?checkout=success`,
-      cancel_url: `${origin}/preturi`,
+      cancel_url: `${origin}${produs === "curs" ? "/curs-practic/preturi" : "/preturi"}`,
     });
 
     return NextResponse.json({ url: session.url });
