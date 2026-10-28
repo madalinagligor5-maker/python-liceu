@@ -19,7 +19,7 @@ import SublectieGate from "@/components/SublectieGate";
 import MarcheazaPasDeschis from "@/components/MarcheazaPasDeschis";
 import PythonEditor from "@/components/PythonEditor";
 import { getUtilizatorCurent } from "@/lib/subscription";
-import { areAccesCurs } from "@/lib/sincronizareCurs";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
@@ -131,7 +131,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
   );
 
   const { user, meta } = await getUtilizatorCurent();
-  const areAcces = modul.gratuit || (await areAccesCurs(user, meta));
+  const areAcces = modul.gratuit || (await areAccesPlatit(user, meta));
 
   if (!areAcces) {
     // Variantă „teaser", randată server-side — la fel ca la liceu, conținutul

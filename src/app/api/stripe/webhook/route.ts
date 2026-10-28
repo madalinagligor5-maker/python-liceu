@@ -10,55 +10,67 @@ function mapeazaStatus(statusStripe: Stripe.Subscription.Status): "active" | "pa
   return "none";
 }
 
-async function actualizeazaDinAbonament(subscription: Stripe.Subscription, eventType: string) {
+function coloaneAbonament(status: string, perioadaFinal: string | null, anulareLaFinal: boolean) {
+  return {
+    subscription_status: status,
+    subscription_current_period_end: perioadaFinal,
+    cancel_at_period_end: anulareLaFinal,
+    curs_status: status,
+    curs_current_period_end: perioadaFinal,
+    curs_cancel_at_period_end: anulareLaFinal,
+  };
+}
+
+/**
+ * Update pe users_meta. Dacă baza de date nu are încă coloanele curs_*
+ * (migrare-curs-practic.sql nerulată), reîncearcă fără ele, ca accesul de
+ * liceu să nu se blocheze din cauza lor.
+ */
+async function scrieUsersMeta(
+  coloanaFiltru: "user_id" | "stripe_customer_id",
+  valoareFiltru: string,
+  valori: Record<string, unknown>
+) {
   const supabaseAdmin = creeazaClientAdmin();
+  let { error } = await supabaseAdmin.from("users_meta").update(valori).eq(coloanaFiltru, valoareFiltru);
+  if (error && error.message.includes("curs_")) {
+    const faraCurs = Object.fromEntries(Object.entries(valori).filter(([k]) => !k.startsWith("curs_")));
+    ({ error } = await supabaseAdmin.from("users_meta").update(faraCurs).eq(coloanaFiltru, valoareFiltru));
+  }
+  return error;
+}
+
+async function actualizeazaDinAbonament(subscription: Stripe.Subscription, eventType: string) {
   const customerId =
     typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
 
   const perioada = subscription.items.data[0]?.current_period_end;
   const supabaseUserId = subscription.metadata?.supabase_user_id;
-  // "produs" a fost salvat la creare (/api/checkout) -- distinge abonamentul
-  // de liceu (implicit, pentru abonamente vechi fara aceasta metadata) de
-  // "Curs practic de Python", care scrie in coloane separate din users_meta.
-  const esteAbonamentCurs = subscription.metadata?.produs === "curs";
-
-  const coloane = esteAbonamentCurs
-    ? {
-        curs_status: mapeazaStatus(subscription.status),
-        curs_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
-        curs_cancel_at_period_end: subscription.cancel_at_period_end,
-      }
-    : {
-        subscription_status: mapeazaStatus(subscription.status),
-        subscription_current_period_end: perioada ? new Date(perioada * 1000).toISOString() : null,
-        cancel_at_period_end: subscription.cancel_at_period_end,
-      };
+  // Orice abonament plătit dă acces la tot (liceu + Curs practic de Python),
+  // așa că scriem ambele seturi de coloane, indiferent de "produs".
+  const coloane = coloaneAbonament(
+    mapeazaStatus(subscription.status),
+    perioada ? new Date(perioada * 1000).toISOString() : null,
+    subscription.cancel_at_period_end
+  );
 
   if (supabaseUserId) {
-    const { error } = await supabaseAdmin
-      .from("users_meta")
-      .update({ stripe_customer_id: customerId, ...coloane })
-      .eq("user_id", supabaseUserId);
+    const error = await scrieUsersMeta("user_id", supabaseUserId, { stripe_customer_id: customerId, ...coloane });
     if (error) {
       console.error("[stripe-webhook] update users_meta (dupa user_id) a esuat", {
         eventType,
         supabaseUserId,
         customerId,
-        esteAbonamentCurs,
         mesaj: error.message,
       });
       throw new Error(`Supabase update users_meta failed: ${error.message}`);
     }
   } else {
-    const { error } = await supabaseAdmin
-      .from("users_meta")
-      .update(coloane)
-      .eq("stripe_customer_id", customerId);
+    const error = await scrieUsersMeta("stripe_customer_id", customerId, coloane);
     if (error) {
       console.error("[stripe-webhook] update users_meta (dupa stripe_customer_id) a esuat", {
         eventType,
         customerId,
-        esteAbonamentCurs,
         mesaj: error.message,
       });
       throw new Error(`Supabase update users_meta failed: ${error.message}`);
@@ -134,22 +146,23 @@ export async function POST(request: NextRequest) {
       }
       case "customer.subscription.deleted": {
         const subscription = event.data.object as Stripe.Subscription;
-        const supabaseAdmin = creeazaClientAdmin();
         const customerId =
           typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
-        const esteAbonamentCurs = subscription.metadata?.produs === "curs";
-        const coloane = esteAbonamentCurs
-          ? { curs_status: "canceled", curs_cancel_at_period_end: false }
-          : { subscription_status: "canceled", cancel_at_period_end: false };
-        const { error } = await supabaseAdmin
-          .from("users_meta")
-          .update(coloane)
-          .eq("stripe_customer_id", customerId);
+        // Un alt abonament încă activ al aceluiași client păstrează accesul.
+        const altele = await getStripe().subscriptions.list({ customer: customerId, status: "all", limit: 20 });
+        if (altele.data.some((s) => s.id !== subscription.id && (s.status === "active" || s.status === "trialing"))) {
+          break;
+        }
+        const error = await scrieUsersMeta("stripe_customer_id", customerId, {
+          subscription_status: "canceled",
+          cancel_at_period_end: false,
+          curs_status: "canceled",
+          curs_cancel_at_period_end: false,
+        });
         if (error) {
           console.error("[stripe-webhook] update users_meta (anulare abonament) a esuat", {
             eventType: event.type,
             customerId,
-            esteAbonamentCurs,
             mesaj: error.message,
           });
           throw new Error(`Supabase update users_meta failed: ${error.message}`);

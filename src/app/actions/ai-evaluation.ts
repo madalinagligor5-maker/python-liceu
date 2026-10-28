@@ -7,7 +7,7 @@ export type FeedbackAI = {
   indiciu_sintaxa: string;
 };
 
-import { getUtilizatorCurent } from "@/lib/subscription";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import { creeazaClientServer } from "@/lib/supabase/server";
 
 export async function evalueazaCodCuAI(
@@ -17,7 +17,7 @@ export async function evalueazaCodCuAI(
   outputRulare: string
 ): Promise<{ ok: boolean; feedback?: FeedbackAI; eroare?: string }> {
   // Verificare autentificare pe server pentru a preveni abuzul de API Gemini
-  const { user } = await getUtilizatorCurent();
+  const { user, meta } = await getUtilizatorCurent();
   if (!user) {
     return {
       ok: false,
@@ -28,7 +28,7 @@ export async function evalueazaCodCuAI(
   const supabase = await creeazaClientServer();
   const { data: dbMeta } = await supabase
     .from("users_meta")
-    .select("subscription_status, ai_requests_today, last_ai_request_date")
+    .select("ai_requests_today, last_ai_request_date")
     .eq("user_id", user.id)
     .maybeSingle();
 
@@ -41,7 +41,7 @@ export async function evalueazaCodCuAI(
     requestsToday = 0;
   }
 
-  const isPremium = dbMeta?.subscription_status === "active";
+  const isPremium = areAbonamentActiv(meta);
   const limit = isPremium ? 15 : 3;
 
   if (requestsToday >= limit) {
@@ -200,7 +200,7 @@ export async function explicaLinieCod(
   linieCod: string,
   codComplet: string
 ): Promise<{ ok: boolean; explicatie?: string; eroare?: string }> {
-  const { user } = await getUtilizatorCurent();
+  const { user, meta } = await getUtilizatorCurent();
   if (!user) {
     return { ok: false, eroare: "Trebuie să fii autentificat pentru a folosi asistentul AI." };
   }

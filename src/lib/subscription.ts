@@ -105,11 +105,9 @@ export async function getUtilizatorCurent(): Promise<{
   };
 }
 
+/** Orice abonament plătit (liceu sau Curs practic de Python) dă acces la tot
+ *  conținutul plătit. Ambele coloane sunt verificate, pentru abonamentele
+ *  făcute înainte ca webhook-ul să le scrie pe amândouă. */
 export function areAbonamentActiv(meta: UtilizatorMeta | null): boolean {
-  return meta?.subscriptionStatus === "active";
-}
-
-/** Acces la „Curs practic de Python" -- independent de abonamentul de liceu. */
-export function areAbonamentCursActiv(meta: UtilizatorMeta | null): boolean {
-  return meta?.cursStatus === "active";
+  return meta?.subscriptionStatus === "active" || meta?.cursStatus === "active";
 }

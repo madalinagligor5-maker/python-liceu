@@ -6,7 +6,8 @@ import { notFound, redirect } from "next/navigation";
 import { getModul, getCapitol } from "@/lib/curriculum";
 import { obtineSetExercitii } from "@/lib/exercitiiSuplimentare";
 import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
-import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import { metadatePagina } from "@/lib/seo";
 
 type Params = { clasa: string; modulSlug: string };
@@ -43,7 +44,7 @@ export default async function ModulExercitiiPage({
   // Verificare acces premium pentru exerciții
   const { user, meta } = await getUtilizatorCurent();
   const esteGratuit = exercitiiPracticeLiberAccesibile(modul, clasa);
-  const areAcces = esteGratuit || areAbonamentActiv(meta);
+  const areAcces = esteGratuit || (await areAccesPlatit(user, meta));
 
   if (!areAcces) {
     if (!user) {

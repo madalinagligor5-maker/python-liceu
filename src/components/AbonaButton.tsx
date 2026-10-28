@@ -11,8 +11,8 @@ export default function AbonaButton({
   className,
 }: {
   plan: "lunar" | "anual";
-  /** Ce se cumpără -- abonamentul de liceu (implicit) sau Cursul practic
-   *  de Python, produs separat cu propriile price ID-uri Stripe. */
+  /** De unde se cumpără: pagina de liceu (implicit) sau a Cursului practic.
+   *  Ambele dau acces la tot; diferă doar price ID-urile, dacă sunt setate. */
   produs?: "liceu" | "curs";
   redirectLogin?: string;
   className?: string;

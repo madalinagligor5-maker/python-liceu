@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { FARA_INDEXARE } from "@/lib/seo";
 import { redirect } from "next/navigation";
 import { getUtilizatorCurent } from "@/lib/subscription";
-import { areAccesCurs } from "@/lib/sincronizareCurs";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import { creeazaClientServer } from "@/lib/supabase/server";
 import SignOutButton from "@/components/auth/SignOutButton";
 import GestioneazaAbonamentButton from "@/components/auth/GestioneazaAbonamentButton";
@@ -20,7 +20,7 @@ const STATUS_LABEL: Record<string, { text: string; className: string; desc: stri
   active: {
     text: "Abonament Activ (Premium)",
     className: "bg-emerald-50 text-success border-success/30",
-    desc: "Felicitări! Ai acces nelimitat la toate lecțiile, exercițiile practice și materialele din programa de liceu.",
+    desc: "Felicitări! Ai acces nelimitat la tot: lecțiile, exercițiile și materialele de liceu, plus Cursul practic de Python.",
   },
   past_due: {
     text: "Plată restantă",
@@ -35,7 +35,7 @@ const STATUS_LABEL: Record<string, { text: string; className: string; desc: stri
   none: {
     text: "Versiune Gratuită (Freemium)",
     className: "bg-black/5 text-foreground/75 border-black/10",
-    desc: "Momentan ai acces doar la lecțiile gratuite. Abonează-te pentru a debloca întregul curriculum de liceu.",
+    desc: "Momentan ai acces doar la lecțiile gratuite. Un abonament deblochează tot: lecțiile de liceu și Cursul practic de Python.",
   },
 };
 
@@ -63,14 +63,16 @@ export default async function ContPage() {
     redirect("/profesor/planificari");
   }
 
-  const areCurs = await areAccesCurs(user, meta);
-  const dataCurs = meta.cursCurrentPeriodEnd
-    ? new Date(meta.cursCurrentPeriodEnd).toLocaleDateString("ro-RO", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
+  // Un singur abonament dă acces la tot (liceu + Curs practic de Python).
+  // Afișăm datele abonamentului care e activ; fără abonament activ, pe cel
+  // care are o stare (ex. plată restantă).
+  const activ = await areAccesPlatit(user, meta);
+  const dinCurs =
+    meta.subscriptionStatus !== "active" &&
+    (meta.cursStatus === "active" || (meta.subscriptionStatus === "none" && meta.cursStatus !== "none"));
+  const stareAbonament = activ ? "active" : dinCurs ? meta.cursStatus : meta.subscriptionStatus;
+  const anulareLaFinal = dinCurs ? meta.cursCancelAtPeriodEnd : meta.cancelAtPeriodEnd;
+  const finalPerioada = dinCurs ? meta.cursCurrentPeriodEnd : meta.subscriptionCurrentPeriodEnd;
 
   // Preluăm insigne din DB
   const insigneDetinute: Set<string> = new Set();
@@ -90,17 +92,17 @@ export default async function ContPage() {
     }
   }
 
-  const seAnuleazaLaFinal = meta.subscriptionStatus === "active" && meta.cancelAtPeriodEnd;
+  const seAnuleazaLaFinal = stareAbonament === "active" && anulareLaFinal;
   const status = seAnuleazaLaFinal
     ? {
         text: "Abonament activ — nu se reînnoiește",
         className: "bg-amber-150 text-amber-800 border-amber-300/40",
         desc: "Ai anulat reînnoirea automată. Păstrezi acces Premium până la finalul perioadei plătite curente, apoi contul trece automat pe versiunea gratuită.",
       }
-    : STATUS_LABEL[meta.subscriptionStatus ?? "none"];
+    : STATUS_LABEL[stareAbonament ?? "none"];
   
-  const dataReinnoire = meta.subscriptionCurrentPeriodEnd
-    ? new Date(meta.subscriptionCurrentPeriodEnd).toLocaleDateString("ro-RO", {
+  const dataReinnoire = finalPerioada
+    ? new Date(finalPerioada).toLocaleDateString("ro-RO", {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -199,7 +201,7 @@ export default async function ContPage() {
 
         {/* Secțiune Abonament / Plăți */}
         <div className="p-6 sm:p-8">
-          <h2 className="text-base font-bold text-foreground">Abonament liceu (clasele IX–XII)</h2>
+          <h2 className="text-base font-bold text-foreground">Stare Abonament & Plăți</h2>
           <div className={`mt-3 rounded-2xl border p-5 ${status.className}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
@@ -211,16 +213,23 @@ export default async function ContPage() {
                   <p className="mt-2 text-xs font-semibold text-foreground/65">
                     {seAnuleazaLaFinal
                       ? "Acces Premium până pe"
-                      : meta.subscriptionStatus === "active"
+                      : stareAbonament === "active"
                         ? "Următoarea plată se va efectua pe"
                         : "Abonamentul va expira pe"}
                     :{" "}
                     <span className="text-foreground">{dataReinnoire}</span>
                   </p>
                 )}
+                {stareAbonament === "active" && (
+                  <p className="mt-3 text-sm font-semibold">
+                    <Link href="/curs-practic" className="text-brand hover:underline">
+                      Mergi la Cursul practic de Python →
+                    </Link>
+                  </p>
+                )}
               </div>
               <div className="shrink-0 mt-2 sm:mt-0">
-                {meta.subscriptionStatus === "active" || meta.stripeCustomerId ? (
+                {stareAbonament === "active" || meta.stripeCustomerId ? (
                   <GestioneazaAbonamentButton />
                 ) : (
                   <Link
@@ -234,44 +243,6 @@ export default async function ContPage() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Abonamentul la „Curs practic de Python" e separat de cel de liceu */}
-      <div className="mt-8 rounded-3xl border border-black/5 bg-white p-6 sm:p-8 shadow-sm">
-        <h2 className="text-base font-bold text-foreground">Curs practic de Python</h2>
-        {areCurs ? (
-          <div className="mt-3 rounded-2xl border border-success/30 bg-emerald-50 p-5">
-            <span className="font-extrabold text-sm uppercase tracking-wide text-success">Status: Abonament activ</span>
-            <p className="mt-1 text-sm text-foreground/80 leading-relaxed max-w-xl">
-              Ai acces la toate modulele cursului practic.
-              {meta.cursCancelAtPeriodEnd && dataCurs
-                ? ` Reînnoirea e anulată: păstrezi accesul până pe ${dataCurs}.`
-                : dataCurs
-                  ? ` Următoarea plată: ${dataCurs}.`
-                  : ""}
-            </p>
-            <Link
-              href="/curs-practic"
-              className="mt-4 inline-block rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-dark"
-            >
-              Mergi la curs →
-            </Link>
-          </div>
-        ) : (
-          <div className="mt-3 rounded-2xl border border-black/10 bg-black/5 p-5">
-            <p className="text-sm text-foreground/80 leading-relaxed max-w-xl">
-              {meta.cursStatus === "past_due"
-                ? "Ultima plată pentru curs a eșuat. Actualizează cardul din portalul de plăți ca să nu pierzi accesul."
-                : "Modulul 1 e gratuit. Abonează-te pentru restul modulelor."}
-            </p>
-            <Link
-              href="/curs-practic/preturi"
-              className="mt-4 inline-block rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
-            >
-              Vezi planurile cursului
-            </Link>
-          </div>
-        )}
       </div>
 
       <AcordMarketing initial={user.acceptMarketing} />

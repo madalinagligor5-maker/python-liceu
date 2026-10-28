@@ -23,7 +23,8 @@ import { getProgresUtilizator } from "@/lib/progres";
 import { getExercitiiRezolvateCont } from "@/lib/exercitiiCont";
 import PasiModul, { type PasModul } from "@/components/PasiModul";
 import { getPredicțiiClasa } from "@/lib/predicții";
-import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
 import JsonLd from "@/components/seo/JsonLd";
@@ -96,7 +97,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
 
   const { user, meta } = await getUtilizatorCurent();
   const nivelAcces = nivelAccesLectii(modul);
-  const areAcces = lectiiLiberAccesibile(modul) || areAbonamentActiv(meta);
+  const areAcces = lectiiLiberAccesibile(modul) || (await areAccesPlatit(user, meta));
   const exercitiiGratuite = exercitiiPracticeLiberAccesibile(modul, clasa);
 
   const anterior = modulAnterior(clasa, modulSlug);

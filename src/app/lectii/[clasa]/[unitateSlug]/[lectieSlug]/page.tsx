@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getLectie, getLectiaUrmatoare, getToateSloturile } from "@/lib/content";
-import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import LectieBadge from "@/components/LectieBadge";
 import CodeBlock from "@/components/CodeBlock";
 import ExercitiuInteractiv from "@/components/ExercitiuInteractiv";
@@ -54,7 +55,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
     if (!user) {
       redirect(`/login?redirect=${encodeURIComponent(`/lectii/${clasa}/${unitateSlug}/${lectieSlug}`)}`);
     }
-    areAcces = areAbonamentActiv(meta);
+    areAcces = await areAccesPlatit(user, meta);
   }
 
   return (
