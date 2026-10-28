@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Verifică unitățile noi din „Curs practic de Python” (content/curs-practic-uN.md).
 
-Pentru fiecare unitate care are un fișier scripts/curs-practic/uN.json:
+Pentru fiecare unitate content/curs-practic-uN.md (iar pașii 4–5 doar pentru
+unitățile cu soluții de referință în scripts/curs-practic/uN.json):
   1. structura: fiecare modul are cele 6 sublecții, cu codurile și iconurile corecte;
   2. exemplele de cod din lecție rulează fără erori, iar rezultatele scrise în text
      („Rezultatul: `...`, apoi `...`.”) sunt exact ce afișează codul;
@@ -101,11 +102,20 @@ def verifica_exemple(cod_modul: str, corp: str) -> int:
         except Exception as e:  # noqa: BLE001 — orice eroare e o greșeală în lecție
             erori.append(f"{cod_modul}: exemplul dă {type(e).__name__}: {e}\n{cod}")
             continue
+        linii = iesire.rstrip("\n").split("\n")
+        # Forma 2: „Rezultatul:” pe un rând, urmat de un bloc ```text cu ieșirea exactă.
+        if re.fullmatch(r"\s*Rezultatul:\s*", dupa):
+            bloc = re.match(r"\n```text\n(.*?)\n?```", corp[m.end():], re.S)
+            if not bloc:
+                erori.append(f"{cod_modul}: „Rezultatul:” fără bloc ```text după el\n{cod}")
+            elif bloc.group(1).split("\n") != linii:
+                erori.append(f"{cod_modul}: blocul de rezultat spune {bloc.group(1).splitlines()}, "
+                             f"codul afișează {linii}\n{cod}")
+            continue
         rezultat = re.match(r"\s*Rezultatul:\s*(.+?)(?:\n\n|\Z)", dupa, re.S)
         if not rezultat:
             continue
         valori = re.findall(r"`([^`]*)`", prima_propozitie(rezultat.group(1)))
-        linii = iesire.rstrip("\n").split("\n")
         if valori != linii:
             erori.append(f"{cod_modul}: textul spune {valori}, codul afișează {linii}\n{cod}")
     return n
@@ -171,21 +181,32 @@ def main() -> int:
     scrie = "--scrie" in sys.argv
     toate_exercitiile: dict = {}
     unitati_noi: list[dict] = []
-    for fisier_solutii in sorted(DIR_SOLUTII.glob("u*.json")):
-        unitate = fisier_solutii.stem  # ex. „u4”
-        md = (RADACINA / "content" / f"curs-practic-{unitate}.md").read_text(encoding="utf-8")
-        date = json.loads(fisier_solutii.read_text(encoding="utf-8"))
-        titluri = re.findall(r"^# Modulul (CP\d+\.\d+) — (.*)$", md, flags=re.M)
-        unitati_noi.append((date["unitate"], titluri))
+    fisiere_md = sorted(
+        (RADACINA / "content").glob("curs-practic-u*.md"),
+        key=lambda c: int(re.search(r"u(\d+)", c.stem).group(1)),
+    )
+    for fisier_md in fisiere_md:
+        unitate = fisier_md.stem.removeprefix("curs-practic-")  # ex. „u4”
+        md = fisier_md.read_text(encoding="utf-8")
+        fisier_solutii = DIR_SOLUTII / f"{unitate}.json"
+        # Unitățile 1–3 au fost scrise înainte de verificator și nu au soluții de
+        # referință: pentru ele se verifică structura, exemplele și quiz-urile.
+        date = json.loads(fisier_solutii.read_text(encoding="utf-8")) if fisier_solutii.exists() else None
         module = re.split(r"^# Modulul (CP\d+\.\d+) — .*$", md, flags=re.M)
+        if date:
+            titluri = re.findall(r"^# Modulul (CP\d+\.\d+) — (.*)$", md, flags=re.M)
+            unitati_noi.append((date["unitate"], titluri))
         nr_exemple = 0
         for cod_modul, corp in zip(module[1::2], module[2::2]):
             verifica_structura(cod_modul, corp)
             nr_exemple += verifica_exemple(cod_modul, corp)
             verifica_quiz(cod_modul, corp)
-            verifica_cod_bloc(cod_modul, corp, date["verifica_cod"])
-        nr_ex = verifica_exercitii(date["exercitii"])
-        toate_exercitiile.update(date["exercitii"])
+            if date:
+                verifica_cod_bloc(cod_modul, corp, date["verifica_cod"])
+        nr_ex = 0
+        if date:
+            nr_ex = verifica_exercitii(date["exercitii"])
+            toate_exercitiile.update(date["exercitii"])
         print(f"{unitate}: {len(module) // 2} module, {nr_exemple} exemple rulate, {nr_ex} exerciții verificate")
 
     if erori:
