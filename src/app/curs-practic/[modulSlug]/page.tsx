@@ -11,7 +11,8 @@ import {
   modulCursUrmator,
 } from "@/lib/curs";
 import { ICOANE_SUBLECTIE } from "@/lib/curriculum";
-import { getUtilizatorCurent, areAbonamentCursActiv } from "@/lib/subscription";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { metadatePagina } from "@/lib/seo";
 import { descriereModulCurs } from "@/lib/seoModul";
@@ -45,8 +46,8 @@ export default async function ModulCursPage({ params }: { params: Promise<Params
 
   if (!modul || !unitate) notFound();
 
-  const { meta } = await getUtilizatorCurent();
-  const areAcces = modul.gratuit || areAbonamentCursActiv(meta);
+  const { user, meta } = await getUtilizatorCurent();
+  const areAcces = modul.gratuit || (await areAccesPlatit(user, meta));
 
   const anterior = modulCursAnterior(modulSlug);
   const urmator = modulCursUrmator(modulSlug);

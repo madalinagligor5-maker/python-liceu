@@ -18,13 +18,14 @@ export const dynamic = "force-dynamic";
 
 export const metadata = metadatePagina({
   titlu: "Prețuri și abonament",
-  descriere: "Ce e gratuit, ce include abonamentul de liceu și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
+  descriere: "Ce e gratuit, ce include abonamentul (liceu + Curs practic de Python) și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
   cale: "/preturi",
 });
 
 const BENEFICII_COMUNE = [
   "Toate modulele de liceu, clasele IX–XII (lecții în 6 pași)",
   "Exercițiile practice suplimentare pentru fiecare modul",
+  "Cursul practic de Python complet, cu toate modulele",
   `Evaluare AI a codului: până la ${LIMITE_AI.evaluariPeZiAbonament} evaluări pe zi (față de ${LIMITE_AI.evaluariPeZiGratuit} cu un cont gratuit)`,
 ];
 
@@ -46,7 +47,7 @@ export default async function PreturiPage() {
           Alege planul potrivit pentru tine
         </h1>
         <p className="mt-5 text-base leading-relaxed text-foreground/70 sm:text-lg">
-          Poți învăța gratuit fără cont și fără card. Abonamentul deblochează restul modulelor de liceu. Mai jos găsești
+          Poți învăța gratuit fără cont și fără card. Abonamentul deblochează tot: restul modulelor de liceu și Cursul practic de Python. Mai jos găsești
           exact ce e gratuit, cum funcționează proba de {PROBA.zile} zile și ce plătești.
         </p>
       </header>
@@ -129,11 +130,11 @@ export default async function PreturiPage() {
         <span className="eyebrow">03 · Alege durata</span>
         <h2 id="abonamente" className="mt-3 text-3xl font-black text-foreground [font-family:var(--font-fraunces)]">Abonamentul lunar și abonamentul anual</h2>
         <p className="mt-2 text-sm text-foreground/80">
-          Abonamentul de liceu. (Cursul practic are un{" "}
-          <Link href="/curs-practic/preturi" className="font-semibold text-brand-dark underline underline-offset-2">
-            abonament separat
+          Un singur abonament, pentru tot: liceu și{" "}
+          <Link href="/curs-practic" className="font-semibold text-brand-dark underline underline-offset-2">
+            Cursul practic de Python
           </Link>
-          .)
+          .
         </p>
 
         <div className="mt-7 grid gap-6 md:grid-cols-2 md:items-start">

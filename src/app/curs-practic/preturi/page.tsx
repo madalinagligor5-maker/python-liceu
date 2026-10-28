@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = metadatePagina({
   titlu: "Prețuri — Curs practic de Python",
-  descriere: "Planuri de abonament pentru Cursul practic de Python — produs separat de abonamentul de liceu. Modulul 1 e complet gratuit.",
+  descriere: "Planuri de abonament pentru Cursul practic de Python. Același abonament include și lecțiile de liceu. Modulul 1 e complet gratuit.",
   cale: "/curs-practic/preturi",
 });
 
@@ -46,8 +46,8 @@ export default async function PreturiCursPage() {
           Curs practic de Python — planuri
         </h1>
         <p className="mt-3 text-foreground/70">
-          Abonament separat de cel de liceu, fără legătură cu clasa sau traseul
-          școlar. Modulul 1 e complet gratuit, fără cont, ca să poți încerca
+          Același abonament îți dă acces la tot: Cursul practic și lecțiile de
+          liceu (clasele IX–XII). Modulul 1 e complet gratuit, fără cont, ca să poți încerca
           stilul cursului înainte de a te abona. Cursul are {nrModule} de module,
           iar modulele adăugate pe durata abonamentului sunt incluse.
         </p>
@@ -92,6 +92,9 @@ export default async function PreturiCursPage() {
             <ul className="mt-4 space-y-2 text-sm text-foreground/80">
               <li className="flex items-start gap-2">
                 <span className="text-success" aria-hidden="true">✓</span> Toate modulele publicate ale cursului (acum {nrModule}) și cele adăugate pe durata abonamentului
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-success" aria-hidden="true">✓</span> Toate lecțiile de liceu, clasele IX–XII
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-success" aria-hidden="true">✓</span> Exerciții rulate direct în browser

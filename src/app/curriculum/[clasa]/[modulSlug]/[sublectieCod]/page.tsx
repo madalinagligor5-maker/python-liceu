@@ -17,7 +17,8 @@ import BlocuriSublectie from "@/components/BlocuriSublectie";
 import LectieContainer from "@/components/LectieContainer";
 import SublectieGate from "@/components/SublectieGate";
 import PythonEditor from "@/components/PythonEditor";
-import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { getExercitiiSublectie } from "@/lib/exercitii";
 import { NIVELE } from "@/lib/exercitii-tipuri";
@@ -182,7 +183,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
 
   // Verificare acces premium:
   const { user, meta } = await getUtilizatorCurent();
-  const areAcces = lectiiLiberAccesibile(modul) || areAbonamentActiv(meta);
+  const areAcces = lectiiLiberAccesibile(modul) || (await areAccesPlatit(user, meta));
 
   if (!areAcces) {
     // Variantă „teaser", randată server-side pentru oricine (inclusiv

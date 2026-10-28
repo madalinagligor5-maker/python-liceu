@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getLectie } from "@/lib/content";
 import { creeazaClientServer } from "@/lib/supabase/server";
+import { getUtilizatorCurent, areAbonamentActiv } from "@/lib/subscription";
 import { XP_PE_QUIZ, XP_PE_PREDIČIE } from "@/lib/progres";
 import { getQuizSublectie } from "@/lib/quizSublectii";
 import { pragPromovare } from "@/lib/progresLocal";
@@ -57,13 +58,8 @@ export async function finalizeazaLectie(
   // Acces: lecțiile cu plată se contorizează doar cu abonament activ, ca să nu
   // se poată strânge XP pe conținut la care utilizatorul nu are drept.
   if (!lectie.gratuit) {
-    const { data: meta } = await supabase
-      .from("users_meta")
-      .select("subscription_status")
-      .eq("user_id", user.id)
-      .maybeSingle();
-
-    if (meta?.subscription_status !== "active") {
+    const { meta } = await getUtilizatorCurent();
+    if (!areAbonamentActiv(meta)) {
       return { ok: false, eroare: "Această lecție necesită abonament activ." };
     }
   }
@@ -188,7 +184,7 @@ export async function finalizeazaSublectie(
   if (!user) return { ok: false, eroare: "Trebuie să fii autentificat." };
 
   // Toate sublecțiile din 1.1–1.8 sunt gratuite. Dacă mai târziu adăugăm
-  // conținut plătit, aici verificăm subscription_status ca la finalizeazaLectie.
+  // conținut plătit, aici verificăm abonamentul ca la finalizeazaLectie.
   const scor = intrebari.reduce(
     (acc, intrebare, i) => acc + (raspunsuri?.[i] === intrebare.corect ? 1 : 0),
     0

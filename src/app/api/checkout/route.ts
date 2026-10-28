@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { creeazaClientServer } from "@/lib/supabase/server";
+import { creeazaClientAdmin } from "@/lib/supabase/admin";
+import { getUtilizatorCurent } from "@/lib/subscription";
+import { areAccesPlatit } from "@/lib/accesPlatit";
 import { getStripe, STRIPE_PRICE_IDS, STRIPE_PRICE_IDS_CURS } from "@/lib/stripe";
 
 export async function POST(request: NextRequest) {
@@ -28,16 +31,24 @@ export async function POST(request: NextRequest) {
   }
   const plan = planBrut;
 
-  // "produs" distinge abonamentul de liceu (implicit, comportament neschimbat)
-  // de „Curs practic de Python" -- produs separat, cu propriile price ID-uri.
-  // Salvat în metadata abonamentului, ca webhook-ul să știe ce coloană din
-  // users_meta actualizează (subscription_status vs. curs_status).
+  // "produs" spune din ce pagină s-a cumpărat (liceu sau Curs practic) și
+  // alege price ID-urile. Orice abonament dă acces la tot conținutul plătit.
   const produs = produsBrut === "curs" ? "curs" : "liceu";
   const priceId = produs === "curs" ? STRIPE_PRICE_IDS_CURS[plan] : STRIPE_PRICE_IDS[plan];
   if (!priceId) {
     return NextResponse.json(
       { error: "Acest plan nu este încă configurat (lipsește price ID-ul Stripe)." },
       { status: 500 }
+    );
+  }
+
+  // Un abonament activ include deja tot (liceu + Curs practic): nu lăsăm un
+  // al doilea abonament plătit pentru același cont.
+  const { meta: metaAcces } = await getUtilizatorCurent();
+  if (await areAccesPlatit({ id: user.id, email: user.email ?? "" }, metaAcces)) {
+    return NextResponse.json(
+      { error: "Ai deja un abonament activ, care include tot: lecțiile de liceu și Cursul practic. Îl găsești în „Contul meu”." },
+      { status: 409 }
     );
   }
 
@@ -70,7 +81,11 @@ export async function POST(request: NextRequest) {
         metadata: { supabase_user_id: user.id },
       });
       customerId = customer.id;
-      const { error: updErr } = await supabase
+      // stripe_customer_id e protejat de trigger-ul din Supabase: scris cu
+      // clientul utilizatorului, update-ul ar fi ignorat în tăcere și fiecare
+      // checkout ar crea un client Stripe nou. Doar service_role îl poate scrie.
+      const clientScriere = process.env.SUPABASE_SERVICE_ROLE_KEY ? creeazaClientAdmin() : supabase;
+      const { error: updErr } = await clientScriere
         .from("users_meta")
         .update({ stripe_customer_id: customerId })
         .eq("user_id", user.id);
@@ -96,7 +111,7 @@ export async function POST(request: NextRequest) {
         trial_period_days: 7,
       },
       success_url: `${origin}/cont?checkout=success`,
-      cancel_url: `${origin}/preturi`,
+      cancel_url: `${origin}${produs === "curs" ? "/curs-practic/preturi" : "/preturi"}`,
     });
 
     return NextResponse.json({ url: session.url });
