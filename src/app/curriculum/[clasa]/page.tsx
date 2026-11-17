@@ -80,6 +80,8 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
         </p>
       )}
 
+      <IncepeClasa capitol={capitol} />
+
       <nav aria-label={esteCapitolCopii(capitol.clasa) ? "Alte vârste" : "Alte clase"} className="mt-6 flex flex-wrap gap-2">
         {capitole
           .filter((c) => esteCapitolCopii(c.clasa) === esteCapitolCopii(capitol.clasa))
@@ -143,6 +145,53 @@ export default async function CapitolPage({ params }: { params: Promise<Params> 
           </li>
         ))}
       </ol>
+    </div>
+  );
+}
+
+/**
+ * Pentru vizitatorii veniți din Google direct pe pagina clasei: un buton spre
+ * primul pas și, pe scurt, ce e gratuit — înainte de lista lungă de module.
+ */
+function IncepeClasa({ capitol }: { capitol: Capitol }) {
+  const primul = capitol.module[0];
+  const primulPas = primul?.sublectii[0];
+  if (!primul || !primulPas) return null;
+  const nivel = nivelAccesLectii(primul);
+  if (nivel === "abonament") return null;
+
+  const numara = (n: string) => capitol.module.filter((m) => nivelAccesLectii(m) === n).length;
+  const gratuite = numara("gratuit");
+  const deschise = numara("deschis");
+  const cuAbonament = numara("abonament");
+  const parti = [
+    gratuite && `${gratuite} ${gratuite === 1 ? "modul gratuit" : "module gratuite"}`,
+    deschise && `${deschise} cu acces deschis`,
+    cuAbonament && `${cuAbonament} cu abonament (probă gratuită de 7 zile)`,
+  ].filter(Boolean);
+
+  return (
+    <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-sm text-foreground/80">
+        {cuAbonament === 0 ? (
+          <>Toate cele {capitol.module.length} module sunt gratuite, fără cont și fără card.</>
+        ) : (
+          <>
+            {parti.join(" · ")}.{" "}
+            <Link href="/preturi" className="font-semibold text-brand underline underline-offset-2">
+              Vezi ce include
+            </Link>
+          </>
+        )}
+      </p>
+      <Link
+        href={`${hrefModul(primul)}/${primulPas.cod}`}
+        data-eveniment="cta_incepe_gratuit"
+        data-ev-loc={`clasa_${capitol.clasa}`}
+        className="shrink-0 rounded-xl bg-amber-400 px-5 py-3 text-center text-sm font-black text-slate-950 shadow-xs transition hover:bg-amber-500 active:scale-95"
+      >
+        Începe modulul 1{nivel === "gratuit" ? " — gratuit" : ""} →
+      </Link>
     </div>
   );
 }
