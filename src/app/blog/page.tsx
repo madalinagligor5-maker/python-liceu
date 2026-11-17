@@ -3,7 +3,7 @@ import { getToateArticolele } from "@/lib/blog";
 import { metadatePagina } from "@/lib/seo";
 
 export const metadata = metadatePagina({
-  titlu: "Blog",
+  titlu: "Tutoriale Python în română",
   descriere: "Ghiduri Python în română pentru începători, elevi și părinți: variabile, if, for, liste, funcții, erori frecvente și probleme rezolvate.",
   cale: "/blog",
 });

@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = metadatePagina({
   titlu: "Prețuri și abonament",
-  descriere: "Ce e gratuit, ce include abonamentul (liceu + Curs practic de Python) și cum funcționează perioada de probă de 7 zile, facturarea și reînnoirea. Gimnaziul și Kids sunt gratuite.",
+  descriere: "Ce e gratuit și ce include abonamentul (liceu + Curs practic de Python): probă de 7 zile, facturare și reînnoire. Gimnaziul și Kids sunt gratuite.",
   cale: "/preturi",
 });
 

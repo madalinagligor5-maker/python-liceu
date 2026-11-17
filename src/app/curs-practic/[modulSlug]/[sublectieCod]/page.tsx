@@ -46,7 +46,7 @@ export async function generateMetadata({
   // Ca în curriculum: pagina indexabilă e modulul, pașii au noindex, follow
   // și canonical către modul.
   return metadatePagina({
-    titlu: `${sublectieInfo.titlu} — ${modul.titlu} (Curs practic de Python)`,
+    titlu: `${sublectieInfo.titlu} — ${modul.titlu}`,
     descriere: `Pasul „${sublectieInfo.titlu}” din modulul „${modul.titlu}”, Curs practic de Python: ${sublectieInfo.descriere}`,
     cale: `/curs-practic/${modul.slug}/${sublectieCod}`,
     canonical: `/curs-practic/${modul.slug}`,

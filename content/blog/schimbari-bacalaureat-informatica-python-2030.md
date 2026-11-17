@@ -1,6 +1,6 @@
 ---
 titlu: Schimbările la Bacalaureatul de Informatică: Trecerea la Python și Noua Programă
-titlu_seo: Noutăți Bacalaureat Informatică: Totul despre trecerea la Python
+titlu_seo: Bacalaureat Informatică: trecerea la Python
 slug: schimbari-bacalaureat-informatica-python-2030
 data: 2026-08-29
 descriere: Află ce se schimbă la Bacalaureatul de Informatică. Detalii despre noua programă bazată pe Python, calendarul implementării și sfaturi practice pentru elevi.

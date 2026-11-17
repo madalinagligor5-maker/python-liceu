@@ -11,13 +11,15 @@ async function extrageBlocuriJsonLd(page: import("@playwright/test").Page) {
 }
 
 test.describe("Date structurate (JSON-LD) — parsează valid și au câmpurile obligatorii", () => {
-  test("Homepage: Organization + Course (existente) și FAQPage (nou)", async ({ page }) => {
+  test("Homepage: EducationalOrganization + WebSite și FAQPage", async ({ page }) => {
     await page.goto("/");
     const blocuri = await extrageBlocuriJsonLd(page);
     expect(blocuri.length).toBeGreaterThan(0);
 
-    const graf = blocuri.find((b) => Array.isArray(b["@graph"]));
-    expect(graf).toBeTruthy();
+    const organizatie = blocuri.find((b) => b["@type"] === "EducationalOrganization");
+    expect(organizatie?.name).toBe("Academia Python");
+    expect(organizatie?.url).toBe("https://www.academiapython.ro");
+    expect(blocuri.find((b) => b["@type"] === "WebSite")).toBeTruthy();
 
     const faq = blocuri.find((b) => b["@type"] === "FAQPage");
     expect(faq).toBeTruthy();
@@ -59,11 +61,12 @@ test.describe("Date structurate (JSON-LD) — parsează valid și au câmpurile 
     expect(breadcrumb.itemListElement[2].item).toBeUndefined();
   });
 
-  test("Articol de blog: Article valid + BreadcrumbList cu 2 niveluri", async ({ page }) => {
+  test("Articol de blog: BlogPosting valid + BreadcrumbList cu 2 niveluri", async ({ page }) => {
     await page.goto("/blog/schimbari-bacalaureat-informatica-python-2030");
     const blocuri = await extrageBlocuriJsonLd(page);
 
-    const articol = blocuri.find((b) => b["@type"] === "Article");
+    // BlogPosting e subtipul de Article recomandat de Google pentru articole de blog.
+    const articol = blocuri.find((b) => b["@type"] === "BlogPosting");
     expect(articol).toBeTruthy();
     expect(typeof articol.headline).toBe("string");
     expect(articol.headline.length).toBeGreaterThan(0);
@@ -78,6 +81,31 @@ test.describe("Date structurate (JSON-LD) — parsează valid și au câmpurile 
     expect(breadcrumb).toBeTruthy();
     expect(breadcrumb.itemListElement).toHaveLength(2);
     expect(breadcrumb.itemListElement[0].name).toBe("Blog");
+  });
+});
+
+test.describe("Date structurate pe paginile de vânzare", () => {
+  test("/curs-practic: Course cu modulele cursului", async ({ page }) => {
+    await page.goto("/curs-practic");
+    const curs = (await extrageBlocuriJsonLd(page)).find((b) => b["@type"] === "Course");
+    expect(curs?.provider).toBeTruthy();
+    expect(curs.inLanguage).toBe("ro");
+    expect(curs.hasPart.length).toBeGreaterThan(0);
+    for (const m of curs.hasPart) expect(m.url).toMatch(/^https:\/\/www\.academiapython\.ro\/curs-practic\//);
+  });
+
+  test("/kids: Course gratuit", async ({ page }) => {
+    await page.goto("/kids");
+    const curs = (await extrageBlocuriJsonLd(page)).find((b) => b["@type"] === "Course");
+    expect(curs?.isAccessibleForFree).toBe(true);
+    expect(curs.offers.price).toBe(0);
+  });
+
+  test("/lab: FAQPage din întrebările afișate pe pagină", async ({ page }) => {
+    await page.goto("/lab");
+    const faq = (await extrageBlocuriJsonLd(page)).find((b) => b["@type"] === "FAQPage");
+    expect(faq.mainEntity.length).toBeGreaterThan(0);
+    for (const q of faq.mainEntity) await expect(page.getByText(q.name, { exact: true })).toBeVisible();
   });
 });
 

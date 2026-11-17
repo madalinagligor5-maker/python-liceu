@@ -4,7 +4,7 @@ import { metadatePagina } from "@/lib/seo";
 
 export const metadata = metadatePagina({
   titlu: "Pentru profesori",
-  descriere: "Planificări calendaristice, materiale, fișe de lucru printabile și o bancă de teste generată din quiz-urile Academia Python — descărcabile ca PDF, gratuit pentru profesorii aprobați.",
+  descriere: "Planificări calendaristice, fișe de lucru printabile și o bancă de teste pentru informatică în Python — PDF, gratuit pentru profesorii aprobați.",
   cale: "/profesori",
 });
 

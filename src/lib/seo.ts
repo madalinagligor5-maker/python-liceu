@@ -37,13 +37,20 @@ type OptiuniMetadate = {
   imagine?: string;
 };
 
+/** Peste ~60 de caractere Google taie titlul în rezultate. */
+const LUNGIME_MAXIMA_TITLU = 60;
+
 export function metadatePagina(o: OptiuniMetadate): Metadata {
-  const titluComplet = o.titluAbsolut ? o.titlu : `${o.titlu} | ${NUME_SITE}`;
+  // Sufixul „| Academia Python" se adaugă doar dacă încape: altfel ar împinge
+  // cuvintele importante ale titlului în zona tăiată de Google.
+  const cuSufix = `${o.titlu} | ${NUME_SITE}`;
+  const absolut = o.titluAbsolut || cuSufix.length > LUNGIME_MAXIMA_TITLU;
+  const titluComplet = absolut ? o.titlu : cuSufix;
   const canonical = o.canonical ?? o.cale;
   const imagine = o.imagine ?? IMAGINE_OG_IMPLICITA;
 
   return {
-    title: o.titluAbsolut ? { absolute: o.titlu } : o.titlu,
+    title: absolut ? { absolute: o.titlu } : o.titlu,
     description: o.descriere,
     alternates: { canonical },
     ...(o.noindex ? { robots: { index: false, follow: true } } : {}),

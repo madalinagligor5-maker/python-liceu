@@ -26,9 +26,14 @@ function publicModul(clasa: string): string {
 
 /** „<Titlu modul> — Informatică clasa a IX-a" (sufixul „| Academia Python" vine din șablon). */
 export function titluModul(modul: Modul, clasa: string): string {
-  return esteCapitolCopii(clasa)
-    ? `${modul.titlu} — Python pentru copii de ${clasa.slice(1)} ani`
-    : `${modul.titlu} — Informatică ${numeClasaInText(clasa)}`;
+  const t = modul.titlu;
+  const cuPython = /python/i.test(t) ? t : `${t} în Python`;
+  // Prima variantă care încape în ~60 de caractere (cât afișează Google);
+  // cuvintele-cheie (subiectul + „Python") stau mereu la început.
+  const variante = esteCapitolCopii(clasa)
+    ? [`${t} — Python pentru copii de ${clasa.slice(1)} ani`, `${t} — Python pentru copii`, t]
+    : [`${cuPython} — ${numeClasaInText(clasa)}`, cuPython, t];
+  return variante.find((v) => v.length <= 60) ?? t;
 }
 
 /** Prima variantă cu 140–160 de caractere; altfel cea mai lungă care încape în 160. */
@@ -73,7 +78,8 @@ export function descriereModulCurs(modul: { titlu: string; gratuit: boolean }): 
 
 /** „<Titlu pas> — <Titlu modul> (clasa a IX-a)". */
 export function titluSublectie(titluPas: string, modul: Modul, clasa: string): string {
-  return `${titluPas} — ${modul.titlu} (${publicModul(clasa)})`;
+  const complet = `${titluPas} — ${modul.titlu} (${publicModul(clasa)})`;
+  return complet.length <= 60 ? complet : `${titluPas} — ${modul.titlu}`;
 }
 
 function textDinHtml(html: string): string {

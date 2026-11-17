@@ -8,7 +8,7 @@ import { obtineSetExercitii } from "@/lib/exercitiiSuplimentare";
 import ExercitiuEvaluator from "@/components/ExercitiuEvaluator";
 import { getUtilizatorCurent } from "@/lib/subscription";
 import { areAccesPlatit } from "@/lib/accesPlatit";
-import { metadatePagina } from "@/lib/seo";
+import { metadatePagina, scurteaza } from "@/lib/seo";
 
 type Params = { clasa: string; modulSlug: string };
 
@@ -24,8 +24,8 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return metadatePagina({
-    titlu: `Exercițiu de Evaluare: ${modul.titlu}`,
-    descriere: `Rezolvă exercițiul practic de cod de sine stătător și primește evaluare/îndrumare inteligentă de la profesorul AI pentru modulul ${modul.titlu}.`,
+    titlu: `Exercițiu Python: ${modul.titlu}`,
+    descriere: scurteaza(`Exercițiu de cod rezolvat în browser, cu îndrumare de la asistentul AI, pentru modulul „${modul.titlu}”.`),
     cale: `/exercitii/${clasa}/${modulSlug}`,
   });
 }

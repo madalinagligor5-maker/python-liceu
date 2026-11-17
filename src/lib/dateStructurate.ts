@@ -152,3 +152,42 @@ export function articolBlog(a: {
     },
   };
 }
+
+/** Course pentru Cursul practic de Python (/curs-practic), cu modulele publicate. */
+export function cursPractic(module: { titlu: string; slug: string }[], descriere: string) {
+  const url = `${SITE_URL}/curs-practic`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${url}#curs`,
+    name: "Curs practic de Python, de la zero",
+    description: descriere,
+    url,
+    provider: referintaOrganizatie,
+    educationalLevel: "Începători",
+    inLanguage: "ro",
+    // Primul modul e gratuit, restul cer abonament — deci nu e gratuit în întregime.
+    isAccessibleForFree: false,
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+    hasPart: module.map((m) => ({ "@type": "Course", name: m.titlu, url: `${url}/${m.slug}` })),
+  };
+}
+
+/** Course pentru zona Kids (/kids), gratuită în întregime. */
+export function cursKids(descriere: string) {
+  const url = `${SITE_URL}/kids`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${url}#curs`,
+    name: "Programare pentru copii, clasele I–IV",
+    description: descriere,
+    url,
+    provider: referintaOrganizatie,
+    educationalLevel: "Clasele I–IV",
+    inLanguage: "ro",
+    isAccessibleForFree: true,
+    offers: ofertaGratuita,
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
+  };
+}

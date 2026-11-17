@@ -3,7 +3,7 @@ import Image from "next/image";
 import { metadatePagina } from "@/lib/seo";
 
 export const metadata = metadatePagina({
-  titlu: "Despre",
+  titlu: "Despre Academia Python",
   descriere: "De ce am făcut Academia Python: pentru elevii care cred că «nu sunt făcuți pentru programare» doar pentru că s-au blocat la primul mesaj de eroare.",
   cale: "/despre",
 });

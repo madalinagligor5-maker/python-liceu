@@ -2,10 +2,15 @@ import Link from "next/link";
 import { unitati, hrefModulCurs } from "@/lib/curs";
 import { ICOANE_SUBLECTIE } from "@/lib/curriculum";
 import { metadatePagina } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { cursPractic } from "@/lib/dateStructurate";
+
+const DESCRIERE =
+  "Curs Python de la zero, în română, pentru orice vârstă: lecții scurte și exerciții direct în browser, până la automatizări. Primul modul e gratuit.";
 
 export const metadata = metadatePagina({
-  titlu: "Curs practic de Python",
-  descriere: "Curs de sine stătător, pentru orice vârstă — de la zero, direct în browser, spre automatizare și o primă incursiune în analiza de date. Primul modul e complet gratuit.",
+  titlu: "Curs Python online pentru începători",
+  descriere: DESCRIERE,
   cale: "/curs-practic",
 });
 
@@ -15,6 +20,7 @@ export default function CursPracticPage() {
 
   return (
     <div className="bg-[#FDFBF7] text-[#1E2430] min-h-screen">
+      <JsonLd date={cursPractic(unitati.flatMap((u) => u.module), DESCRIERE)} />
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 bg-hero-glow rounded-3xl">
         <span className="inline-flex rounded-full bg-violet-50 border border-violet-200 px-3.5 py-1 text-xs font-bold text-violet-900 uppercase tracking-widest mb-3">
           Curs de sine stătător — pentru orice vârstă

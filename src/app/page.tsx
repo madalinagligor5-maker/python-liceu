@@ -18,10 +18,10 @@ import { organizatie, website } from "@/lib/dateStructurate";
 import { metadatePagina } from "@/lib/seo";
 
 export const metadata = metadatePagina({
-  titlu: "Python pentru elevi: Informatică VII–XII | Academia Python",
+  titlu: "Cursuri Python online în română | Academia Python",
   titluAbsolut: true,
   descriere:
-    "Informatică în Python pentru clasele VII–XII, conform programei oficiale. Exerciții în browser; gimnaziul e gratuit, la fel primele 3 module de liceu.",
+    "Învață Python în română, cu exerciții în browser: Kids, gimnaziu, liceu (clasele IX–XII, după programa oficială) și un curs practic de la zero.",
   cale: "/",
 });
 

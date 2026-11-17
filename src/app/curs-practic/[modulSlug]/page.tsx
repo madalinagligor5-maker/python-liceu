@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (!modul) return {};
 
   return metadatePagina({
-    titlu: `${modul.titlu} — Curs practic de Python`,
+    titlu: /python/i.test(modul.titlu) ? modul.titlu : `${modul.titlu} în Python`,
     descriere: descriereModulCurs(modul),
     cale: `/curs-practic/${modulSlug}`,
   });

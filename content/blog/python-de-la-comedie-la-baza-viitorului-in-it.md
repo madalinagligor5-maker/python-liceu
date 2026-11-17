@@ -1,5 +1,6 @@
 ---
 titlu: Python: De la un show de comedie la baza viitorului tău în IT (Takeaways Surprinzătoare)
+titlu_seo: De unde vine numele Python și de ce contează
 slug: python-de-la-comedie-la-baza-viitorului-in-it
 data: 2026-08-29
 descriere: De ce se numește Python după Monty Python, cum a schimbat indentarea scrisul de cod și ce înseamnă noua programă de Bacalaureat pentru elevii de liceu.

@@ -4,10 +4,15 @@ import { getUtilizatorCurent } from "@/lib/subscription";
 import { getProgresKids } from "@/lib/progres";
 import { capitole } from "@/lib/curriculum";
 import { metadatePagina } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { cursKids } from "@/lib/dateStructurate";
+
+const DESCRIERE =
+  "Programare pentru copii de 6–10 ani, gratuit: jocuri de logică și labirinturi cu blocuri, apoi primul cod Python. Fără instalare, direct în browser.";
 
 export const metadata = metadatePagina({
-  titlu: "Kids — pentru clasele I–IV",
-  descriere: "Învață programare vizuală și bazele Python prin jocuri de logică și labirinturi interactive.",
+  titlu: "Programare pentru copii, clasele I–IV",
+  descriere: DESCRIERE,
   cale: "/kids",
 });
 
@@ -73,6 +78,7 @@ export default async function KidsPage() {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1E2430]">
+      <JsonLd date={cursKids(DESCRIERE)} />
       <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 lg:pt-10">
         <div className="relative min-h-[38rem] overflow-hidden rounded-[2rem] bg-[#DCEAF0] shadow-depth-lg sm:min-h-[42rem]">
           <Image
