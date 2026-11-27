@@ -1868,8 +1868,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează condiția care actualizează `dreapta` când elementul de la mijloc e mai mare decât x.",
-      "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1",
-      "expectedOutput": "",
+      "template": "def cautare_binara(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    while stanga <= dreapta:\n        mijloc = (stanga + dreapta) // 2\n        if lista[mijloc] == x:\n            return mijloc\n        elif lista[mijloc] < x:\n            stanga = mijloc + 1\n        else:\n            ___ = mijloc - 1\n    return -1\n\nprint(cautare_binara([2, 5, 8, 12, 16, 23, 38], 23))",
+      "expectedOutput": "5",
       "hint": "Gândește-te ce capăt al intervalului de căutare trebuie mutat atunci când elementul din mijloc e prea mare pentru x.",
       "hint2": "Trebuie să restrângi intervalul de căutare la jumătatea stângă — asta înseamnă să schimbi valoarea capătului corespunzător, folosind poziția de mijloc.",
       "extindere": "Modifică funcția să returneze poziția (indexul) unde a fost găsit x, sau -1."
@@ -1881,8 +1881,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care returnează poziția unde ar trebui inserat elementul (dacă nu există), în loc de -1.",
-      "template": "def pozitie_inserare(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    # completează logica\n    return ___",
-      "expectedOutput": "",
+      "template": "def pozitie_inserare(lista, x):\n    stanga, dreapta = 0, len(lista) - 1\n    # completează logica\n    return ___\n\nprint(pozitie_inserare([1, 3, 5, 7], 4))",
+      "expectedOutput": "2",
       "hint": "Adaptează căutarea binară: dacă lista[mijloc] < x, valoarea ar trebui inserată mai la dreapta; altfel, mai la stânga sau chiar la mijloc.",
       "hint2": "Rulează bucla while stanga <= dreapta ca la căutarea binară obișnuită, dar când nu găsești x, capătul stanga ajunge exact pe poziția unde trebuie inserat elementul."
     }
@@ -1904,9 +1904,9 @@
       "id": "2.3.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie un program care citește un text și afișează mulțimea cuvintelor distincte.",
-      "template": "text = input('Text: ')\ncuvinte = text.split()\nmultime = ___\nprint(multime)",
-      "expectedOutput": "",
+      "enunt": "Afișează, sortată, lista cuvintelor distincte din textul dat (ignorând repetițiile).",
+      "template": "text = 'ana are mere si ana are pere'\ncuvinte = text.split()\nmultime = ___\nprint(sorted(multime))",
+      "expectedOutput": "['ana', 'are', 'mere', 'pere', 'si']",
       "hint": "Ce tip de colecție din Python elimină automat duplicatele atunci când o construiești dintr-o listă?",
       "hint2": "Există o funcție predefinită care primește o listă (sau orice iterabil) și întoarce o colecție fără elemente repetate — aplic-o pe lista de cuvinte."
     }
@@ -1917,8 +1917,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează linia lipsă din interclaseaza (unde adaugi elementul din b când e mai mic).",
-      "template": "def interclaseaza(a, b):\n    rez = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            rez.append(a[i]); i += 1\n        else:\n            ___ ; j += 1\n    rez.extend(a[i:]); rez.extend(b[j:])\n    return rez",
-      "expectedOutput": "",
+      "template": "def interclaseaza(a, b):\n    rez = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            rez.append(a[i]); i += 1\n        else:\n            ___ ; j += 1\n    rez.extend(a[i:]); rez.extend(b[j:])\n    return rez\n\nprint(interclaseaza([1, 4, 7], [2, 3, 8]))",
+      "expectedOutput": "[1, 2, 3, 4, 7, 8]",
       "hint": "În ramura else, elementul curent din lista b este cel mai mic dintre cei doi comparați — trebuie tratat la fel cum ai tratat elementul din a pe ramura if.",
       "hint2": "Adaugă elementul curent din b (indexat cu j) la lista rezultat, folosind aceeași metodă de listă folosită mai sus pentru a[i]."
     }
@@ -1929,8 +1929,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care interclasează două liste sortate și elimină duplicatele.",
-      "template": "def interclaseaza_fara_dubluri(a, b):\n    # completează\n    return ___",
-      "expectedOutput": "",
+      "template": "def interclaseaza_fara_dubluri(a, b):\n    # completează\n    return ___\n\nprint(interclaseaza_fara_dubluri([1, 2, 4], [2, 3, 4, 5]))",
+      "expectedOutput": "[1, 2, 3, 4, 5]",
       "hint": "Ai nevoie de o interclasare obișnuită (ca la exercițiul anterior), plus un mecanism care să nu adauge de două ori aceeași valoare consecutivă.",
       "hint2": "O variantă simplă: la fiecare pas, adaugă elementul minim doar dacă diferă de ultimul element deja pus în lista rezultat."
     }
@@ -1954,8 +1954,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Determină elevii înscriși la exact un curs (nu la ambele), folosind mulțimi.",
-      "template": "curs1 = {\"Ana\", \"Bogdan\", \"Cristi\"}\ncurs2 = {\"Bogdan\", \"Dana\"}\n# completează\nrez = ___",
-      "expectedOutput": "",
+      "template": "curs1 = {\"Ana\", \"Bogdan\", \"Cristi\"}\ncurs2 = {\"Bogdan\", \"Dana\"}\n# completează\nrez = ___\nprint(sorted(rez))",
+      "expectedOutput": "['Ana', 'Cristi', 'Dana']",
       "hint": "Ce operație pe mulțimi păstrează doar elementele care apar într-una singură dintre cele două mulțimi, dar nu în ambele?",
       "hint2": "Python oferă un operator dedicat pentru diferența simetrică între două mulțimi — e un operator pe biți aplicat mulțimilor, diferit de reuniune (|) sau intersecție (&)."
     }
@@ -1978,15 +1978,15 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care verifică dacă un șir e palindrom.",
-      "template": "def palindrom(s):\n    # completează\n    return ___",
-      "expectedOutput": "",
+      "template": "def palindrom(s):\n    # completează\n    return ___\n\nprint(palindrom('cojoc'))\nprint(palindrom('carte'))",
+      "expectedOutput": "True\nFalse",
       "hint": "Un șir e palindrom dacă arată identic citit de la coadă la cap. Există o formă de slicing care inversează un șir.",
       "hint2": "Slicing-ul cu pas -1 (fără capete specificate) parcurge șirul invers; compară rezultatul acestuia cu șirul original."
     }
   ],
-  "2.6.4": [
+  "2.7.4": [
     {
-      "id": "2.6.4.ex1",
+      "id": "2.7.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a număra aparițiile lui 'ana' într-un text.",
@@ -1996,9 +1996,9 @@
       "hint2": "Metoda se aplică pe obiectul text și primește ca argument subșirul căutat, întorcând direct numărul de apariții."
     }
   ],
-  "2.6.5": [
+  "2.7.5": [
     {
-      "id": "2.6.5.ex1",
+      "id": "2.7.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Numără cuvintele distincte dintr-un text folosind split() și o mulțime.",
@@ -2008,9 +2008,9 @@
       "hint2": "Aplică o funcție de conversie predefinită pe lista de cuvinte pentru a obține o colecție fără duplicate."
     }
   ],
-  "2.7.4": [
+  "2.6.4": [
     {
-      "id": "2.7.4.ex1",
+      "id": "2.6.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a extrage literele de pe poziții pare (slicing cu pas 2).",
@@ -2020,14 +2020,14 @@
       "hint2": "Folosește forma s[start:stop:pas] fără start și stop (adică tot șirul), dar cu pasul ales astfel încât să selectezi doar pozițiile pare."
     }
   ],
-  "2.7.5": [
+  "2.6.5": [
     {
-      "id": "2.7.5.ex1",
+      "id": "2.6.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie o funcție care returnează șirul inversat (fără reversed).",
-      "template": "def inversat(s):\n    # completează\n    return ___",
-      "expectedOutput": "",
+      "template": "def inversat(s):\n    # completează\n    return ___\n\nprint(inversat('python'))",
+      "expectedOutput": "nohtyp",
       "hint": "Fără să folosești funcția reversed(), amintește-ți altă tehnică de slicing care poate parcurge un șir de la coadă spre cap.",
       "hint2": "Slicing-ul cu pas negativ inversează sensul de parcurgere — aplică-l pe întregul șir, fără să specifici start și stop."
     }
@@ -2038,8 +2038,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie funcția de decriptare Cezar (refolosește cezar cu deplasare opusă).",
-      "template": "def decriptare_cezar(text, deplasare):\n    return cezar(text, ___)  # deplasare opusă",
-      "expectedOutput": "",
+      "template": "def cezar(text, deplasare):\n    rez = ''\n    for c in text:\n        rez += chr((ord(c) - ord('a') + deplasare) % 26 + ord('a'))\n    return rez\n\ndef decriptare_cezar(text, deplasare):\n    return cezar(text, ___)\n\nprint(decriptare_cezar('def', 3))",
+      "expectedOutput": "abc",
       "hint": "Decriptarea Cezar înseamnă să aplici deplasarea inversă față de criptare.",
       "hint2": "Apelează aceeași funcție cezar(), dar dă-i ca al doilea argument opusul valorii deplasare (adică deplasare cu semn schimbat)."
     }
@@ -2050,8 +2050,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează cifrul cu substituție monoalfabetică (dicționar literă→literă).",
-      "template": "cheie = {'a':'x', 'b':'y', 'c':'z'}\ndef substitutie(text):\n    # completează\n    return ___",
-      "expectedOutput": "",
+      "template": "cheie = {'a':'x', 'b':'y', 'c':'z'}\ndef substitutie(text):\n    # completează\n    return ___\n\nprint(substitutie('acb'))",
+      "expectedOutput": "xzy",
       "hint": "Parcurge fiecare caracter al textului și caută-l în dicționarul cheie; dacă nu există acolo (ex. spații, punctuație), păstrează caracterul original.",
       "hint2": "Construiește rezultatul concatenând, pentru fiecare literă, fie substituția din dicționar, fie litera nemodificată dacă lipsește din dicționar — metodele dicționarelor permit o valoare implicită pentru chei absente."
     }
@@ -2074,8 +2074,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează Vigenère folosind cezar() din 2.8 ca piesă reutilizabilă.",
-      "template": "def vigenere_din_cezar(text, cheie):\n    # completează (apelează cezar per literă)\n    return ___",
-      "expectedOutput": "",
+      "template": "def vigenere_din_cezar(text, cheie):\n    # completează (apelează cezar per literă)\n    return ___\n\nprint(vigenere_din_cezar('atac', 'lemn'))",
+      "expectedOutput": "lxmp",
       "hint": "Vigenère e ca un Cezar diferit pentru fiecare literă, unde deplasarea vine din litera corespunzătoare a cheii (repetată ciclic).",
       "hint2": "Pentru fiecare literă din text, calculează o deplasare pe baza literei corespunzătoare din cheie, apoi criptează acea literă separat folosind funcția cezar deja scrisă, și concatenează rezultatele."
     }
@@ -2086,8 +2086,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a verifica dacă două seturi au aceeași sumă Fletcher.",
-      "template": "def verifica(a, b):\n    return ___ == fletcher(b)",
-      "expectedOutput": "",
+      "template": "def fletcher(data):\n    s1 = s2 = 0\n    for b in data:\n        s1 = (s1 + b) % 255\n        s2 = (s2 + s1) % 255\n    return (s2 << 8) | s1\n\ndef verifica(a, b):\n    return ___ == fletcher(b)\n\nprint(verifica([1, 2, 3], [1, 2, 3]))\nprint(verifica([1, 2, 3], [3, 2, 1]))",
+      "expectedOutput": "True\nFalse",
       "hint": "Funcția trebuie să compare suma de control a primului set de date cu cea a celui de-al doilea.",
       "hint2": "Aplică funcția fletcher pe parametrul a, la fel cum e deja aplicată pe b în partea dreaptă a egalității."
     }
@@ -2098,8 +2098,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Implementează un checksum simplu pentru un șir (folosește ord()).",
-      "template": "def checksum(s):\n    suma = 0\n    for c in s:\n        suma = (suma + ord(c)) % 255\n    return ___",
-      "expectedOutput": "",
+      "template": "def checksum(s):\n    suma = 0\n    for c in s:\n        suma = (suma + ord(c)) % 255\n    return ___\n\nprint(checksum('abc'))",
+      "expectedOutput": "39",
       "hint": "Funcția a acumulat deja o valoare pe parcursul buclei — ce ar trebui să întoarcă la final?",
       "hint2": "Variabila calculată în buclă (care ține suma codurilor ASCII modulo 255) este exact rezultatul pe care funcția trebuie să-l returneze."
     }
@@ -2170,8 +2170,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Reprezintă o listă de puncte 2D ca listă de tupluri și calculează distanța între primele două.",
-      "template": "puncte = [(0, 0), (3, 4)]\n# completează calculul distanței\nimport math\ndist = ___",
-      "expectedOutput": "",
+      "template": "import math\npuncte = [(0, 0), (3, 4)]\n(x1, y1), (x2, y2) = puncte[0], puncte[1]\ndist = ___\nprint(dist)",
+      "expectedOutput": "5.0",
       "hint": "Modulul math importat oferă o funcție care calculează direct distanța euclidiană între două puncte date ca secvențe de coordonate.",
       "hint2": "Caută în modulul math o funcție al cărei nume sugerează 'distanță' și dă-i ca argumente primele două puncte din listă."
     }
@@ -2218,8 +2218,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Calculează media generală a clasei dintr-o listă de dicționare.",
-      "template": "elevi = [{\"nume\": \"Ana\", \"note\": [9, 10]}, {\"nume\": \"Bogdan\", \"note\": [7, 8]}]\ntotal = 0\ncnt = 0\nfor e in elevi:\n    for n in e[\"note\"]:\n        total += n\n        cnt += 1\nmedia = ___",
-      "expectedOutput": "",
+      "template": "elevi = [{\"nume\": \"Ana\", \"note\": [9, 10]}, {\"nume\": \"Bogdan\", \"note\": [7, 8]}]\ntotal = 0\ncnt = 0\nfor e in elevi:\n    for n in e[\"note\"]:\n        total += n\n        cnt += 1\nmedia = ___\nprint(media)",
+      "expectedOutput": "8.5",
       "hint": "Media generală înseamnă suma tuturor notelor împărțită la câte note există în total.",
       "hint2": "Folosește cele două variabile deja calculate în buclă (suma notelor și numărul lor) și aplică operația de împărțire între ele."
     }
@@ -2243,7 +2243,7 @@
       "tip": "cod",
       "enunt": "Calculează media pe fiecare linie a unei matrici.",
       "template": "m = [[1, 2, 3], [4, 5, 6]]\nfor linie in m:\n    print(___)",
-      "expectedOutput": "",
+      "expectedOutput": "2.0\n5.0",
       "hint": "Media unei linii se calculează la fel ca media oricărei liste de numere: suma elementelor împărțită la câte sunt.",
       "hint2": "Folosește funcțiile predefinite pentru sumă și pentru lungime aplicate pe variabila linie, apoi împarte rezultatele."
     }
@@ -2254,8 +2254,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează cazul de bază pentru suma cifrelor.",
-      "template": "def suma_cifre(n):\n    if n == 0:\n        return 0\n    return ___ + suma_cifre(n // 10)",
-      "expectedOutput": "",
+      "template": "def suma_cifre(n):\n    if n == 0:\n        return 0\n    return ___ + suma_cifre(n // 10)\n\nprint(suma_cifre(4752))",
+      "expectedOutput": "18",
       "hint": "Ultima cifră a unui număr se poate obține printr-o operație aritmetică specifică; restul cifrelor se obține deja prin apelul recursiv.",
       "hint2": "Adună la rezultatul apelului recursiv cifra unităților lui n, obținută cu operatorul de rest al împărțirii la 10."
     }
@@ -2266,8 +2266,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Scrie putere(a, n) recursiv.",
-      "template": "def putere(a, n):\n    if n == 0:\n        return 1\n    return ___",
-      "expectedOutput": "",
+      "template": "def putere(a, n):\n    if n == 0:\n        return 1\n    return ___\n\nprint(putere(2, 10))",
+      "expectedOutput": "1024",
       "hint": "a la puterea n înseamnă a înmulțit cu a la puterea (n-1) — cazul recursiv trebuie să reflecte exact această relație matematică.",
       "hint2": "Înmulțește a cu rezultatul apelului recursiv al funcției pentru exponentul n-1."
     }
@@ -2278,8 +2278,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează cazul de bază pentru quicksort.",
-      "template": "def quicksort(lista):\n    if ___:   # condiție de oprire\n        return lista",
-      "expectedOutput": "",
+      "template": "def quicksort(lista):\n    if ___:   # condiție de oprire\n        return lista\n    pivot = lista[0]\n    stanga = [x for x in lista[1:] if x < pivot]\n    dreapta = [x for x in lista[1:] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)\n\nprint(quicksort([5, 3, 8, 1, 2]))",
+      "expectedOutput": "[1, 2, 3, 5, 8]",
       "hint": "Cazul de bază al oricărei sortări recursive e o listă deja considerată sortată — care sunt cele mai mici liste posibile ce nu mai au nevoie de sortare?",
       "hint2": "O listă cu 0 sau 1 elemente este mereu sortată; verifică lungimea listei față de acest prag."
     }
@@ -2289,9 +2289,9 @@
       "id": "2.18.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Desenează arborele de apeluri pentru merge_sort([5, 2, 8, 1]) (scrie ordinea divizărilor).",
-      "template": "# Exercițiu de desen - scrie aici observațiile tale\ndef merge_sort(lista):\n    if len(lista) <= 1:\n        return lista\n    m = len(lista)//2\n    return merge_sort(lista[:m]) + merge_sort(lista[m:])\n\nprint('Apeluri:', merge_sort([5, 2, 8, 1]))",
-      "expectedOutput": "[5, 2, 8, 1]",
+      "enunt": "Afișează, cu indentare, apelurile făcute de merge_sort([5, 2, 8, 1]): fiecare nivel de recursivitate e mutat cu două spații la dreapta.",
+      "template": "def merge_sort(lista, nivel=0):\n    print(___ + str(lista))\n    if len(lista) <= 1:\n        return lista\n    m = len(lista) // 2\n    merge_sort(lista[:m], nivel + 1)\n    merge_sort(lista[m:], nivel + 1)\n\nmerge_sort([5, 2, 8, 1])",
+      "expectedOutput": "[5, 2, 8, 1]\n  [5, 2]\n    [5]\n    [2]\n  [8, 1]\n    [8]\n    [1]",
       "hint": "Merge sort împarte recursiv lista în jumătate până obține liste de un singur element, apoi le recombină interclasate.",
       "hint2": "Urmărește apelurile: [5,2,8,1] se împarte în [5,2] și [8,1], care la rândul lor se împart în liste de un element — desenează acest arbore de divizări și apoi arată cum se interclasează înapoi."
     }
@@ -2302,8 +2302,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a alege pivotul ca ultimul element.",
-      "template": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = ___  # ultimul element\n    stanga = [x for x in lista[:-1] if x < pivot]\n    dreapta = [x for x in lista[:-1] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)",
-      "expectedOutput": "",
+      "template": "def quicksort(lista):\n    if len(lista) <= 1:\n        return lista\n    pivot = ___  # ultimul element\n    stanga = [x for x in lista[:-1] if x < pivot]\n    dreapta = [x for x in lista[:-1] if x >= pivot]\n    return quicksort(stanga) + [pivot] + quicksort(dreapta)\n\nprint(quicksort([5, 3, 8, 1, 2]))",
+      "expectedOutput": "[1, 2, 3, 5, 8]",
       "hint": "Comentariul spune explicit ce element trebuie ales ca pivot — cum accesezi ultimul element al unei liste în Python?",
       "hint2": "Folosește indexarea negativă pentru a lua ultimul element din listă, la fel cum ai accesat ultimul caracter al unui șir."
     }
@@ -2313,9 +2313,9 @@
       "id": "2.19.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Implementează quicksort in-place (cu swap).",
-      "template": "def quicksort_inplace(lista, stanga=0, dreapta=None):\n    if dreapta is None:\n        dreapta = len(lista) - 1\n    # completează (partition + recursivitate)\n    return ___",
-      "expectedOutput": "",
+      "enunt": "Completează apelurile recursive din quicksort-ul care sortează lista pe loc (fără liste noi): partiția întoarce poziția finală a pivotului.",
+      "template": "def partitie(L, st, dr):\n    pivot = L[dr]\n    i = st\n    for j in range(st, dr):\n        if L[j] < pivot:\n            L[i], L[j] = L[j], L[i]\n            i += 1\n    L[i], L[dr] = L[dr], L[i]\n    return i\n\ndef quicksort_inplace(L, st, dr):\n    if st < dr:\n        p = partitie(L, st, dr)\n        quicksort_inplace(L, st, ___)\n        quicksort_inplace(L, ___, dr)\n\nL = [9, 3, 8, 1, 5, 2]\nquicksort_inplace(L, 0, len(L) - 1)\nprint(L)",
+      "expectedOutput": "[1, 2, 3, 5, 8, 9]",
       "hint": "Implementarea in-place alege un pivot (de obicei ultimul element din interval), mută elementele mai mici înaintea lui prin interschimbări, apoi apelează recursiv funcția pe cele două sub-intervale rezultate.",
       "hint2": "Scrie o etapă de partiționare care parcurge indicii intervalului, ține un indice separat pentru poziția unde ar trebui plasat următorul element mic, interschimbă elementele mai mici decât pivotul spre stânga, apoi plasează pivotul pe poziția corectă și apelează recursiv funcția pe cele două jumătăți rezultate."
     }
@@ -2326,8 +2326,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează verificarea marginilor în Flood Fill.",
-      "template": "def flood_fill(grila, i, j, veche, noua):\n    if ___:   # i sau j în afara grilei\n        return\n    if grila[i][j] != veche:\n        return\n    grila[i][j] = noua\n    # apeluri recursively...",
-      "expectedOutput": "",
+      "template": "def flood_fill(grila, i, j, veche, noua):\n    if ___:   # i sau j în afara grilei\n        return\n    if grila[i][j] != veche:\n        return\n    grila[i][j] = noua\n    flood_fill(grila, i + 1, j, veche, noua)\n    flood_fill(grila, i - 1, j, veche, noua)\n    flood_fill(grila, i, j + 1, veche, noua)\n    flood_fill(grila, i, j - 1, veche, noua)\n\ng = [[0, 0, 1], [0, 1, 1], [1, 1, 1]]\nflood_fill(g, 0, 0, 0, 9)\nprint(g[0][0], g[1][0], g[2][0])",
+      "expectedOutput": "9 9 1",
       "hint": "Trebuie să verifici dacă indicii i sau j ies din limitele grilei, atât pe partea negativă cât și dincolo de ultima linie/coloană.",
       "hint2": "Compară i cu 0 și cu numărul de linii, apoi j cu 0 și cu numărul de coloane; dacă oricare condiție de depășire e adevărată, funcția trebuie să se oprească."
     }
@@ -2338,8 +2338,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Modifică Flood Fill să numere celulele colorate (returnează numărul).",
-      "template": "def flood_fill_numara(grila, i, j, veche, noua):\n    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):\n        return 0\n    if grila[i][j] != veche:\n        return 0\n    grila[i][j] = noua\n    # completează: sumă 1 + cele 4 vecini\n    return ___",
-      "expectedOutput": "",
+      "template": "def flood_fill_numara(grila, i, j, veche, noua):\n    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):\n        return 0\n    if grila[i][j] != veche:\n        return 0\n    grila[i][j] = noua\n    # completează: sumă 1 + cele 4 vecini\n    return ___\n\nprint(flood_fill_numara([[0, 0, 1], [0, 1, 1], [1, 1, 1]], 0, 0, 0, 9))",
+      "expectedOutput": "3",
       "hint": "Fiecare celulă colorată contribuie cu 1 la total, plus tot ce se colorează pornind din cei patru vecini direcți (sus, jos, stânga, dreapta).",
       "hint2": "Returnează 1 pentru celula curentă plus suma celor patru apeluri recursive ale funcției pentru vecinii de sus, jos, stânga și dreapta ai poziției (i, j)."
     }
@@ -2350,8 +2350,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează pentru a returna rezultatul dacă restul s-a dat complet.",
-      "template": "def rest_greedy(suma, monede):\n    monede = sorted(monede, reverse=True)\n    rez = []\n    for m in monede:\n        while suma >= m:\n            rez.append(m); suma -= m\n    return ___ if suma == 0 else None",
-      "expectedOutput": "",
+      "template": "def rest_greedy(suma, monede):\n    monede = sorted(monede, reverse=True)\n    rez = []\n    for m in monede:\n        while suma >= m:\n            rez.append(m); suma -= m\n    return ___ if suma == 0 else None\n\nprint(rest_greedy(8, [1, 2, 5]))",
+      "expectedOutput": "[5, 2, 1]",
       "hint": "Funcția trebuie să întoarcă lista de monede folosite doar dacă restul a fost dat exact (suma a ajuns la 0); altfel, trebuie să indice eșecul.",
       "hint2": "Folosește o expresie condițională: dacă suma a ajuns la 0, întoarce lista rez construită în buclă; în caz contrar, întoarce None."
     }
@@ -2361,9 +2361,9 @@
       "id": "2.21.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Găsește un set de monede (diferit de [1,3,4]) unde Greedy e suboptimal pentru o sumă dată.",
-      "template": "monede = [1, 4, 5]  # exemplu\n# demonstrează că pentru suma 8, Greedy (5+1+1+1) e mai slab decât (4+4)\nsuma = 8\nrez_greedy = rest_greedy(suma, monede)\nprint(rez_greedy)  # arată că e suboptimal",
-      "expectedOutput": "",
+      "enunt": "Pentru monedele [1, 4, 5] și suma 8, afișează alegerea făcută de greedy. Vei vedea că folosește 4 monede, deși 4 + 4 ar fi doar 2.",
+      "template": "def rest_greedy(suma, monede):\n    rez = []\n    for m in sorted(monede, reverse=True):\n        while suma >= m:\n            rez.append(m)\n            suma -= m\n    return rez\n\nmonede = [1, 4, 5]\nsuma = 8\nprint(___)",
+      "expectedOutput": "[5, 1, 1, 1]",
       "hint": "Testează manual: care e diferența între alegerea greedy (mereu cea mai mare monedă posibilă) și o combinație care folosește mai puține monede pentru aceeași sumă?",
       "hint2": "Pentru suma 8, calculează câte monede folosește strategia greedy cu setul [1,4,5], apoi caută o combinație alternativă care obține tot suma 8 dar cu mai puține monede — compară numărul de monede din cele două soluții."
     }

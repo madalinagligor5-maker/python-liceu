@@ -249,7 +249,7 @@
     ],
     "corect": 0
   },
-  "2.6.3": {
+  "2.7.3": {
     "cod": "text = \"abc-def-ghi\"\nprint(text.split(\"-\"))",
     "enunt": "Ce se afișează?",
     "variante": [
@@ -259,7 +259,7 @@
     ],
     "corect": 0
   },
-  "2.7.3": {
+  "2.6.3": {
     "cod": "s = \"programare\"\nprint(s[3:7])",
     "enunt": "Ce se afișează?",
     "variante": [

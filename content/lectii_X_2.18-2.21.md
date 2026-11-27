@@ -9,25 +9,61 @@ Ai văzut recursivitatea (2.17). Divide et impera e un model de rezolvare care o
 **Divide et impera** ("împarte și cucerește"): **divizare** (problema în subprobleme mai mici), **rezolvare** (recursivă), **combinare** (unirea rezultatelor).
 
 ```python
+def interclaseaza(a, b):   # din modulul 2.2
+    rez, i, j = [], 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            rez.append(a[i]); i += 1
+        else:
+            rez.append(b[j]); j += 1
+    return rez + a[i:] + b[j:]
+
 def merge_sort(lista):
     if len(lista) <= 1:
         return lista
     mijloc = len(lista) // 2
-    stanga = merge_sort(lista[:mijloc])
+    stanga = merge_sort(lista[:mijloc])       # divizare + rezolvare
     dreapta = merge_sort(lista[mijloc:])
-    return interclaseaza(stanga, dreapta)   # din modulul 2.2
+    return interclaseaza(stanga, dreapta)     # combinare
 
 print(merge_sort([5, 2, 8, 1]))   # [1, 2, 5, 8]
 ```
 
 Complexitate O(n log n) — mult mai bună decât O(n²).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Un graf neorientat cu N noduri poate fi reprezentat prin matrice de adiacență de dimensiune N x N sau prin liste de adiacență (dicționar de liste)!
-:::
+**Enunț.** Turnurile din Hanoi: mutăm n discuri de pe tija A pe tija C, folosind tija B, fără să punem vreodată un disc mare peste unul mic. Afișăm mutările pentru 3 discuri.
+
+**Ideea.** Ca să mutăm n discuri de pe A pe C: mutăm n - 1 discuri de pe A pe B (subproblemă), mutăm discul cel mare de pe A pe C, apoi mutăm cele n - 1 discuri de pe B pe C (subproblemă). Pentru n discuri sunt 2ⁿ - 1 mutări.
+
+```python
+def hanoi(n, sursa, destinatie, auxiliar):
+    if n == 0:
+        return
+    hanoi(n - 1, sursa, auxiliar, destinatie)
+    print(f'discul {n}: {sursa} -> {destinatie}')
+    hanoi(n - 1, auxiliar, destinatie, sursa)
+
+hanoi(3, 'A', 'C', 'B')
+```
+Rezultatul:
+```text
+discul 1: A -> C
+discul 2: A -> B
+discul 1: C -> B
+discul 3: A -> C
+discul 1: B -> A
+discul 2: B -> C
+discul 1: A -> C
+```
+
+:::atentie
+## Greșeli frecvente
+- Subproblemele nu sunt mai mici decât problema inițială: recursivitatea nu se mai termină.
+- Calculezi mijlocul greșit și una dintre jumătăți rămâne goală sau egală cu întreaga listă.
+- Uiți etapa de combinare: rezolvi jumătățile, dar nu le unești într-un rezultat.
+- Folosești divide et impera pentru subprobleme care se suprapun (ex. Fibonacci): aceleași calcule se repetă de multe ori. Acolo e mai potrivită programarea dinamică.
 :::
 
 ### 🔮 2.18.3 Citește și prezice
@@ -116,12 +152,47 @@ print(quicksort([5, 2, 8, 1, 9]))   # [1, 2, 5, 8, 9]
 
 Quicksort: medie O(n log n), caz nefavorabil O(n²) (pivot prost, listă deja sortată).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Comparăm cât muncesc trei sortări pe aceeași listă inversată de 8 elemente, numărând comparațiile.
+
+**Ideea.** Adăugăm un contor în locul unde fiecare algoritm compară două elemente. Pe o listă inversată, metoda bulelor face toate comparațiile posibile, iar merge sort face mult mai puține.
+
+```python
+def bule(L):
+    L, c = L[:], 0
+    for i in range(len(L)):
+        for j in range(len(L) - i - 1):
+            c += 1
+            if L[j] > L[j + 1]:
+                L[j], L[j + 1] = L[j + 1], L[j]
+    return c
+
+def merge(L):
+    if len(L) <= 1:
+        return L, 0
+    m = len(L) // 2
+    (a, ca), (b, cb) = merge(L[:m]), merge(L[m:])
+    rez, i, j, c = [], 0, 0, ca + cb
+    while i < len(a) and j < len(b):
+        c += 1
+        if a[i] <= b[j]:
+            rez.append(a[i]); i += 1
+        else:
+            rez.append(b[j]); j += 1
+    return rez + a[i:] + b[j:], c
+
+L = [8, 7, 6, 5, 4, 3, 2, 1]
+print('bule:', bule(L), 'merge sort:', merge(L)[1])
+```
+Rezultatul: `bule: 28 merge sort: 12`.
+
 :::atentie
-Păstrează un set de noduri vizitate la parcurgerea grafurilor pentru a evita buclele infinite pe componente conexe sau cicluri!
-:::
+## Greșeli frecvente
+- La quicksort pui pivotul și în una dintre părți: el apare de două ori în rezultat sau recursivitatea nu se mai termină.
+- Folosești `<` pentru o parte și `>` pentru cealaltă: elementele egale cu pivotul se pierd. Una dintre condiții trebuie să fie `<=` sau `>=`.
+- Alegi mereu primul element ca pivot pe liste deja sortate: quicksort devine O(n²).
+- La merge sort uiți să întorci lista sortată (`return`) și lucrezi mai departe cu jumătățile nesortate.
 :::
 
 ### 🔮 2.19.3 Citește și prezice
@@ -214,22 +285,62 @@ def flood_fill(grila, i, j, veche, noua):
 
 **Erori frecvente:** omiterea verificării marginilor (eroare la acces în afara listei) sau a culorii (recursivitate infinită).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Un arbore binar are pentru fiecare nod cel mult doi fii (stânga și dreapta). Rădăcina este singurul nod fără părinte!
-:::
+**Enunț.** Numărăm „insulele” dintr-o hartă: grupurile de celule 1 legate pe orizontală sau verticală. Pentru fiecare 1 încă nevizitat, umplem toată insula lui și creștem contorul.
+
+**Ideea.** Folosim varianta cu stivă a lui Flood Fill, fără recursivitate: scoatem o celulă din stivă, o marcăm cu 0 și punem în stivă vecinii ei care sunt 1.
+
+```python
+harta = [
+    [1, 1, 0, 0, 1],
+    [1, 0, 0, 1, 1],
+    [0, 0, 1, 0, 0],
+    [1, 0, 1, 1, 0],
+]
+n, m = len(harta), len(harta[0])
+insule = 0
+for i in range(n):
+    for j in range(m):
+        if harta[i][j] == 1:
+            insule += 1
+            stiva = [(i, j)]
+            while stiva:
+                x, y = stiva.pop()
+                if 0 <= x < n and 0 <= y < m and harta[x][y] == 1:
+                    harta[x][y] = 0
+                    stiva += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+print(insule)
+```
+Rezultatul: `4`.
+
+:::atentie
+## Greșeli frecvente
+- Verifici culoarea înainte de margini: `grila[i][j]` cu `i = -1` nu dă eroare, ci citește ultima linie (indice negativ). Verifică întâi marginile.
+- Culoarea nouă e egală cu cea veche: celula colorată arată ca una necolorată și recursivitatea nu se oprește. Tratează separat cazul `veche == noua`.
+- Pentru grile foarte mari, recursivitatea depășește limita Python (`RecursionError`). Varianta cu stivă sau coadă nu are această problemă.
+- Uiți unul dintre cei 4 vecini și regiunea nu se umple complet.
 :::
 
 ### 🔮 2.20.3 Citește și prezice
 
 ```python
+def flood_fill(grila, i, j, veche, noua):
+    if i < 0 or i >= len(grila) or j < 0 or j >= len(grila[0]):
+        return
+    if grila[i][j] != veche:
+        return
+    grila[i][j] = noua
+    flood_fill(grila, i+1, j, veche, noua)
+    flood_fill(grila, i-1, j, veche, noua)
+    flood_fill(grila, i, j+1, veche, noua)
+    flood_fill(grila, i, j-1, veche, noua)
+
 grila = [[0, 0, 1], [0, 1, 1], [1, 1, 1]]
 flood_fill(grila, 0, 0, 0, 9)
 print(grila[0][0], grila[1][0])
 ```
-Ce valori se afișează? (Ambele erau 0 → devin 9.)
+Ce valori se afișează? (Indiciu: urmărește care celule cu 0 sunt legate de colțul din stânga sus.)
 
 ### 🤝 2.20.4 Exerciții ghidate
 
@@ -305,12 +416,30 @@ print(rest_greedy(6, [1, 2, 5]))   # [5, 1]
 
 **Contraexemplu:** pentru monede [1, 3, 4] și suma 6, Greedy alege 4+1+1 (3 monede), dar optim e 3+3 (2 monede).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Parcurgerea în Inordine (stânga, rădăcină, dreapta) a unui Arbore Binar de Căutare (BST) vizitează nodurile în ordine strict crescătoare!
-:::
+**Enunț.** Planificarea activităților: o sală poate găzdui o singură activitate odată. Alegem cât mai multe activități care nu se suprapun.
+
+**Ideea.** Alegerea greedy corectă: sortăm activitățile după ora de terminare și o luăm pe fiecare care începe după ce s-a terminat ultima aleasă. Așa lăsăm cât mai mult timp liber pentru restul.
+
+```python
+activitati = [('Robotică', 9, 11), ('Șah', 10, 12), ('Teatru', 11, 13), ('Muzică', 12, 14), ('Sport', 13, 15), ('Desen', 9, 15)]
+alese = []
+sfarsit = 0
+for nume, inceput, final in sorted(activitati, key=lambda a: a[2]):
+    if inceput >= sfarsit:
+        alese.append(nume)
+        sfarsit = final
+print(alese)
+```
+Rezultatul: `['Robotică', 'Teatru', 'Sport']`.
+
+:::atentie
+## Greșeli frecvente
+- Crezi că greedy dă mereu soluția optimă. Trebuie să verifici (sau să știi) că problema are această proprietate; altfel caută un contraexemplu.
+- Sortezi după criteriul greșit: la planificarea activităților se sortează după **ora de terminare**, nu după cea de început sau după durată.
+- La rest cu monede uiți să sortezi monedele descrescător înainte de a alege.
+- Nu tratezi cazul în care suma nu se poate forma deloc cu monedele date.
 :::
 
 ### 🔮 2.21.3 Citește și prezice

@@ -15,12 +15,36 @@ print(note["Ana"])          # 9
 print("Ion" in note)        # False
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Folosește blocul with open(...) as f: pentru a lucra cu fișiere — garantează închiderea automată a fișierului chiar dacă apar erori!
-:::
+**Enunț.** Numărăm de câte ori apare fiecare cuvânt într-o propoziție și afișăm cuvintele în ordinea primei apariții, cu frecvența lor.
+
+**Ideea.** Dicționarul asociază fiecărui cuvânt (cheia) numărul de apariții (valoarea). La un cuvânt nou pornim de la 0. Dicționarele păstrează ordinea în care au fost adăugate cheile.
+
+```python
+propozitie = 'azi am mers la piata si am cumparat mere si pere'
+frecventa = {}
+for cuvant in propozitie.split():
+    if cuvant not in frecventa:
+        frecventa[cuvant] = 0
+    frecventa[cuvant] += 1
+
+for cuvant, nr in frecventa.items():
+    if nr > 1:
+        print(cuvant, nr)
+```
+Rezultatul:
+```text
+am 2
+si 2
+```
+
+:::atentie
+## Greșeli frecvente
+- Citești o cheie care nu există cu `d[cheie]`: programul se oprește cu `KeyError`. Verifică întâi `cheie in d` sau folosește `d.get(cheie, valoare_implicita)`.
+- Folosești o listă ca cheie: cheile trebuie să fie imutabile (text, număr, tuplu).
+- Crezi că `valoare in d` caută printre valori. `in` caută doar printre **chei**; pentru valori scrie `valoare in d.values()`.
+- Pui de două ori aceeași cheie: a doua atribuire o înlocuiește pe prima, nu se păstrează amândouă.
 :::
 
 ### 🔮 2.11.3 Citește și prezice
@@ -97,12 +121,34 @@ print(note.values())          # dict_values([9, 7])
 
 Metode: `.get()`, `.keys()`, `.values()`, `.items()`, `in` (verifică cheia).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Avem punctajele echipelor la un concurs, pe runde. Calculăm totalul fiecărei echipe și afișăm clasamentul descrescător.
+
+**Ideea.** `get(echipa, 0)` ne lasă să adunăm fără să verificăm dacă echipa a mai apărut. Clasamentul îl obținem sortând perechile `items()` după valoare.
+
+```python
+runde = [('Alfa', 10), ('Beta', 7), ('Alfa', 5), ('Gama', 12), ('Beta', 9)]
+total = {}
+for echipa, puncte in runde:
+    total[echipa] = total.get(echipa, 0) + puncte
+
+for echipa, puncte in sorted(total.items(), key=lambda p: p[1], reverse=True):
+    print(echipa, puncte)
+```
+Rezultatul:
+```text
+Beta 16
+Alfa 15
+Gama 12
+```
+
 :::atentie
-Metoda f.readline() include caracterul de linie nouă '\n' la finalul fiecărei linii. Folosește .strip() pentru a-l elimina!
-:::
+## Greșeli frecvente
+- Modifici un dicționar (adaugi sau ștergi chei) în timp ce îl parcurgi: apare `RuntimeError`. Parcurge `list(d)` sau construiește un dicționar nou.
+- Te aștepți ca `d.keys()` să fie o listă: e o „vedere” a cheilor. Dacă ai nevoie de listă, scrie `list(d.keys())`.
+- Folosești `d.get(cheie)` fără valoare implicită și apoi aduni la rezultat: pentru o cheie lipsă primești `None`.
+- Sortezi dicționarul cu `sorted(d)` și te aștepți la perechi. Obții doar cheile sortate; pentru perechi folosește `sorted(d.items())`.
 :::
 
 ### 🔮 2.12.3 Citește și prezice
@@ -177,12 +223,27 @@ print(punct[0])       # 3
 
 Tuplurile pot fi chei de dicționar (listele nu pot).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Cheile dintr-un dicționar Python trebuie să fie de tip imutabil (str, int, tuple) și sunt unice. Accesarea unei chei inexistente aruncă KeyError — folosește .get(cheie)!
-:::
+**Enunț.** O funcție poate întoarce mai multe valori odată, ca tuplu. Scriem `statistici(note)`, care întoarce minimul, maximul și media, și despachetăm rezultatul.
+
+**Ideea.** `return a, b, c` întoarce automat tuplul (a, b, c). La apel îl despachetăm direct în trei variabile.
+
+```python
+def statistici(note):
+    return min(note), max(note), round(sum(note) / len(note), 2)
+
+minim, maxim, media = statistici([7, 10, 8, 9, 6])
+print(minim, maxim, media)
+```
+Rezultatul: `6 10 8.0`.
+
+:::atentie
+## Greșeli frecvente
+- Scrii `(5)` crezând că e un tuplu cu un element: este doar numărul 5. Tuplul cu un element se scrie `(5,)`.
+- Încerci să modifici un tuplu (`t[0] = 1`): apare `TypeError`. Dacă ai nevoie să modifici date, folosește o listă.
+- La despachetare, numărul de variabile diferă de numărul de elemente: `a, b = (1, 2, 3)` dă `ValueError`.
+- Pentru coordonate folosești liste care se pot modifica din greșeală. Tuplul garantează că perechea rămâne neschimbată.
 :::
 
 ### 🔮 2.13.3 Citește și prezice
@@ -260,12 +321,31 @@ Operatori: acces prin index, `in`, `+` (concatenare), `*` (repetare). Metode: `c
 
 **Atenție:** un tuplu cu un singur element se scrie `(1,)` — virgula e obligatorie!
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Seturile (set) stochează doar elemente unice și neordonate, oferind operații rapide O(1) de verificare a apartenenței cu operatorul in!
-:::
+**Enunț.** Sortăm o listă de elevi reprezentați ca tupluri (nume, clasă, medie): după clasă crescător, iar în aceeași clasă după medie descrescător.
+
+**Ideea.** Tuplurile se compară element cu element, deci o cheie de tip tuplu `(clasă, -medie)` face exact ordonarea cerută.
+
+```python
+elevi = [('Ana', 10, 9.2), ('Dan', 9, 8.5), ('Ion', 10, 9.8), ('Eva', 9, 9.1)]
+for nume, clasa, medie in sorted(elevi, key=lambda e: (e[1], -e[2])):
+    print(clasa, nume, medie)
+```
+Rezultatul:
+```text
+9 Eva 9.1
+9 Dan 8.5
+10 Ion 9.8
+10 Ana 9.2
+```
+
+:::atentie
+## Greșeli frecvente
+- Apelezi metode de listă pe un tuplu (`t.append(4)`): tuplurile au doar `count` și `index`.
+- `t.index(x)` dă `ValueError` dacă x lipsește. Verifică întâi `x in t`.
+- Concatenezi un tuplu cu un element fără virgulă: `(1, 2) + (3)` dă eroare; corect este `(1, 2) + (3,)`.
+- Crezi că `sorted(t)` întoarce un tuplu: întoarce o **listă**. Dacă ai nevoie de tuplu, scrie `tuple(sorted(t))`.
 :::
 
 ### 🔮 2.14.3 Citește și prezice
