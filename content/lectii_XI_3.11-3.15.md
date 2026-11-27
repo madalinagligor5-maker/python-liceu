@@ -25,11 +25,56 @@ DFS e utilă pentru: detectat cicluri, sortare topologică, componente tare cone
 Diferența vizuală: BFS se răspândește ca o undă; DFS "coboară" până la capăt apoi se întoarce.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Detectăm dacă un graf neorientat are un ciclu, folosind DFS și ținând minte din ce vârf am venit.
+
+**Ideea.** Dacă, explorând vecinii lui v, găsim un vecin deja vizitat care **nu** este părintele lui v, înseamnă că am găsit un drum închis, deci un ciclu.
+
+```python
+def are_ciclu(graf):
+    viz = set()
+    def dfs(v, parinte):
+        viz.add(v)
+        for u in graf[v]:
+            if u not in viz:
+                if dfs(u, v):
+                    return True
+            elif u != parinte:
+                return True
+        return False
+    return any(dfs(s, None) for s in graf if s not in viz)
+
+arbore = {1: [2, 3], 2: [1, 4], 3: [1], 4: [2]}
+cu_ciclu = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+print(are_ciclu(arbore), are_ciclu(cu_ciclu))
+```
+Rezultatul: `False True`.
+
+:::atentie
+## Greșeli frecvente
+- Afișezi mulțimea `viz` ca „ordine de vizitare”: o mulțime nu păstrează ordinea. Reține ordinea într-o listă separată.
+- În varianta cu stivă pui vecinii în ordinea din listă și te aștepți să fie vizitați în aceeași ordine: stiva îi scoate invers. Pune-i în stivă în ordine inversă.
+- La detectarea ciclului într-un graf neorientat, consideri muchia înapoi spre părinte drept ciclu.
+- Recursivitatea DFS depășește limita Python pe grafuri foarte mari (`RecursionError`). Atunci folosește varianta cu stivă explicită.
+:::
+
 ### 🔮 3.11.3 Citește și prezice
 
 ```python
-adiacenta = {1:[2,3], 2:[4], 3:[4], 4:[]}
-# In ce ordine viziteaza DFS pornind din 1 (vecini in ordine)?
+def dfs(adiacenta, v, viz=None, ordine=None):
+    if viz is None:
+        viz = set()
+        ordine = []
+    viz.add(v)
+    ordine.append(v)
+    for u in adiacenta[v]:
+        if u not in viz:
+            dfs(adiacenta, u, viz, ordine)
+    return ordine
+
+adiacenta = {1: [2, 3], 2: [4], 3: [4], 4: []}
+print(*dfs(adiacenta, 1))
 ```
 
 ### 🤝 3.11.4 Exerciții ghidate
@@ -73,6 +118,18 @@ Detectează dacă un graf neorientat conține un ciclu, folosind DFS.
 1. De ce DFS recursează natural, în timp ce BFS are nevoie de o coadă explicită?
    a) DFS e mai rapidă decât BFS, deci nu are nevoie deloc de o structură de date  b) **Recursivitatea folosește stiva de apeluri, care e LIFO — exact ordinea în care DFS coboară și se întoarce; BFS are nevoie de ordine FIFO, pe care stiva de apeluri n-o oferă**  c) DFS nu vizitează toate vârfurile grafului, deci nu are nevoie de structuri auxiliare  d) BFS are nevoie de coadă doar pe grafuri ponderate, DFS funcționează pe orice tip de graf fără nicio structură auxiliară
       > La fiecare apel recursiv, Python pune automat vârful curent pe stiva de execuție și îl scoate abia când s-a întors din toți vecinii — exact comportamentul LIFO cerut de DFS pentru a merge cât mai adânc pe o ramură înainte de a reveni. BFS are nevoie de ordine FIFO (primul vârf adăugat e primul procesat), pe care stiva de apeluri n-o poate oferi, de-asta se implementează cu o coadă explicită.
+
+2. Ce structură folosește implicit varianta recursivă a DFS?
+   a) O coadă  b) **Stiva de apeluri a funcțiilor**  c) Un dicționar de distanțe
+      > Fiecare apel recursiv se pune pe stiva de apeluri și se scoate când a terminat cu vecinii lui, exact comportamentul LIFO al DFS.
+
+3. Pornind din 1 în {1:[2,3], 2:[4], 3:[4], 4:[]}, DFS recursiv (vecini în ordine) vizitează:
+   a) 1 2 3 4  b) **1 2 4 3**  c) 1 3 4 2
+      > Din 1 coboară în 2, din 2 în 4; 4 nu mai are vecini, revine la 1 și abia apoi vizitează 3.
+
+4. Pentru ce este folosit DFS mai des decât BFS?
+   a) Drumul cu cele mai puține muchii  b) **Detectarea ciclurilor și explorarea completă a unei componente, în adâncime**  c) Distanțele de la o sursă
+      > BFS dă distanțe minime în muchii; DFS e natural pentru cicluri, sortare topologică și labirinturi explorate până la capăt.
 
 ---
 
@@ -120,11 +177,58 @@ Roy-Warshall lucrează pe matrice de adiacență (0/1 pentru existență). Pentr
 La Roy-Warshall, `k` este vârful intermediar prin care încercăm să "trecem" de la `i` la `j`. La pasul `k`, matricea `d` trebuie să conțină deja informația corectă folosind doar vârfurile intermediare `0..k-1` — abia atunci verificarea `d[i][k] and d[k][j]` are sens. Dacă pui bucla după `i` sau `j` în exterior, unele drumuri prin `k` nu apucă să fie "propagate" înainte de a fi folosite, iar rezultatul devine greșit.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Avem zborurile directe dintre 4 orașe (graf orientat). Calculăm cu Roy-Warshall în ce orașe se poate ajunge din fiecare oraș, cu oricâte escale.
+
+**Ideea.** `d[i][j]` devine 1 dacă există drum de la i la j. La pasul k permitem și escala prin orașul k: `d[i][j] = d[i][j] or (d[i][k] and d[k][j])`.
+
+```python
+orase = ['București', 'Cluj', 'Iași', 'Timișoara']
+a = [[0, 1, 0, 0],
+     [0, 0, 1, 0],
+     [0, 0, 0, 1],
+     [0, 0, 0, 0]]
+n = len(a)
+d = [linie[:] for linie in a]
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            d[i][j] = d[i][j] or (d[i][k] and d[k][j])
+for i in range(n):
+    print(orase[i], '->', [orase[j] for j in range(n) if d[i][j]])
+```
+Rezultatul:
+```text
+București -> ['Cluj', 'Iași', 'Timișoara']
+Cluj -> ['Iași', 'Timișoara']
+Iași -> ['Timișoara']
+Timișoara -> []
+```
+
+:::atentie
+## Greșeli frecvente
+- Pui bucla lui `k` în interior: unele drumuri care trec prin mai multe vârfuri intermediare nu mai sunt găsite.
+- Modifici matricea de adiacență originală: dacă mai ai nevoie de ea, lucrează pe o copie (`[linie[:] for linie in a]`).
+- Folosești Roy-Warshall pentru costuri: el spune doar **dacă** există drum, nu cât costă.
+- Uiți că pentru un graf neorientat matricea trebuie să fie simetrică de la început.
+:::
+
 ### 🔮 3.12.3 Citește și prezice
 
 ```python
-a = [[0,1,0],[0,0,1],[1,0,0]]
-# După Roy-Warshall, există drum de la 1 la 3?
+def roy_warshall(a):
+    n = len(a)
+    d = [row[:] for row in a]
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                d[i][j] = d[i][j] or (d[i][k] and d[k][j])
+    return d
+
+a = [[0, 1, 0], [0, 0, 1], [1, 0, 0]]
+d = roy_warshall(a)
+print("Da (1)" if d[0][2] else "Nu (0)")
 ```
 
 ### 🤝 3.12.4 Exerciții ghidate
@@ -165,6 +269,18 @@ Folosește rezultatul pentru a număra perechile de vârfuri între care există
 1. De ce bucla `k` (vârful intermediar) trebuie să fie cea mai exterioară, nu una dintre celelalte două?
    a) Pentru că altfel complexitatea ar crește la O(n⁴) în loc de O(n³)  b) **La pasul `k`, matricea `d` trebuie să conțină deja drumurile găsite prin vârfurile intermediare 0..k-1, ca verificarea `d[i][k] and d[k][j]` să folosească informație completă și corectă**  c) Pentru că Python parcurge buclele `for` imbricate în ordine inversă dacă `k` nu e prima  d) Nu contează ordinea buclelor — rezultatul final e identic oricum le-am aranja
       > d[i][k] and d[k][j] are sens doar dacă d deja reflectă toate drumurile prin intermediarii 0..k-1 pentru orice pereche (i,k) și (k,j), nu doar pentru perechea (i,j) curentă; asta se garantează doar dacă bucla k a terminat complet o valoare înainte să treacă la următoarea, ceea ce cere ca ea să învelească buclele i și j, nu invers.
+
+2. Ce reprezintă `d[i][j] = 1` după Roy-Warshall?
+   a) Există muchie directă de la i la j  b) **Există un drum (cu oricâte muchii) de la i la j**  c) Costul minim de la i la j este 1
+      > Algoritmul calculează închiderea tranzitivă: drumuri de orice lungime, nu doar muchii directe.
+
+3. Ce complexitate are Roy-Warshall pentru n vârfuri?
+   a) O(n)  b) O(n²)  c) **O(n³)**
+      > Sunt trei bucle imbricate, fiecare de n pași.
+
+4. Ce înseamnă `d[i][i] = 1` după algoritm, într-un graf orientat?
+   a) Vârful i e izolat  b) **Vârful i se află pe un ciclu**  c) Nimic, diagonala e mereu 0
+      > Dacă pornind din i poți reveni în i, există un ciclu care trece prin i.
 
 ---
 
@@ -207,11 +323,68 @@ def dijkstra(graf, start):
 Dijkstra NU funcționează cu costuri negative — atunci folosești Bellman-Ford.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Calculăm cel mai scurt drum (în kilometri) de la orașul A la toate celelalte, apoi reconstituim traseul spre E.
+
+**Ideea.** Folosim un heap pentru a scoate mereu vârful cu distanța minimă cunoscută. Când găsim o distanță mai mică pentru un vecin, o actualizăm și ținem minte vârful din care am venit (`prec`).
+
+```python
+import heapq
+graf = {'A': [('B', 4), ('C', 2)], 'B': [('D', 5)], 'C': [('B', 1), ('D', 8), ('E', 10)], 'D': [('E', 2)], 'E': []}
+dist = {v: float('inf') for v in graf}
+prec = {'A': None}
+dist['A'] = 0
+heap = [(0, 'A')]
+while heap:
+    d, v = heapq.heappop(heap)
+    if d > dist[v]:
+        continue
+    for u, w in graf[v]:
+        if d + w < dist[u]:
+            dist[u] = d + w
+            prec[u] = v
+            heapq.heappush(heap, (dist[u], u))
+drum, v = [], 'E'
+while v:
+    drum.append(v)
+    v = prec[v]
+print(dist)
+print(' -> '.join(drum[::-1]))
+```
+Rezultatul:
+```text
+{'A': 0, 'B': 3, 'C': 2, 'D': 8, 'E': 10}
+A -> C -> B -> D -> E
+```
+
+:::atentie
+## Greșeli frecvente
+- Aplici Dijkstra pe un graf cu costuri negative: rezultatul poate fi greșit.
+- Uiți să sari peste intrările vechi scoase din heap (o distanță mai mare decât cea deja cunoscută): algoritmul face pași inutili.
+- Inițializezi distanțele cu 0 în loc de infinit: niciun vârf nu mai pare să poată fi îmbunătățit.
+- Folosești BFS simplu pe un graf ponderat: obții drumul cu cele mai puține muchii, nu cel mai ieftin.
+:::
+
 ### 🔮 3.13.3 Citește și prezice
 
 ```python
-graf = {1:[(2,4),(3,1)], 3:[(2,2)], 2:[]}
-# Care e distanta minima de la 1 la 2?
+import heapq
+
+def dijkstra(graf, start):
+    dist = {start: 0}
+    coada = [(0, start)]
+    while coada:
+        d, v = heapq.heappop(coada)
+        for u, w in graf.get(v, []):
+            if u not in dist or d + w < dist[u]:
+                dist[u] = d + w
+                heapq.heappush(coada, (dist[u], u))
+    return dist
+
+graf = {1: [(2, 4), (3, 1)], 3: [(2, 2)], 2: []}
+dist = dijkstra(graf, 1)
+print(dist[2])
 ```
 
 ### 🤝 3.13.4 Exerciții ghidate
@@ -257,6 +430,18 @@ Reconstruiește drumul efectiv (nu doar distanța) ținând minte predecesorul f
    a) Pentru că `heapq` din Python nu poate stoca numere negative în coadă  b) **Algoritmul presupune că, odată extras vârful cu distanța minimă cunoscută, aceasta nu mai poate scădea — adevărat doar dacă toate muchiile au cost pozitiv; o muchie negativă poate reduce ulterior o distanță deja considerată finală**  c) Pentru că, cu costuri negative, distanțele devin infinite și bucla `while` nu se mai termină  d) Pentru că Dijkstra folosește DFS pe sub-graf, iar DFS eșuează pe grafuri cu cicluri
       > Dijkstra extrage mereu din coadă vârful cu cea mai mică distanță cunoscută și îl consideră definitiv rezolvat, presupunând că orice drum alternativ ar fi cel puțin la fel de lung — lucru adevărat doar când toate muchiile adaugă cost pozitiv. Dacă există o muchie negativă, ea poate micșora ulterior distanța unui vârf deja „închis”, iar algoritmul nu se mai întoarce să-l corecteze.
 
+2. Ce vârf scoate Dijkstra din coadă la fiecare pas?
+   a) Primul adăugat  b) **Vârful cu cea mai mică distanță cunoscută**  c) Un vârf ales la întâmplare
+      > Cu costuri pozitive, distanța acestui vârf nu mai poate fi îmbunătățită, deci poate fi considerată definitivă.
+
+3. Ce înseamnă „relaxarea” muchiei (v, u) cu costul w?
+   a) Ștergerea muchiei  b) **Dacă dist[v] + w < dist[u], actualizăm dist[u]**  c) Înlocuirea costului cu 0
+      > Relaxarea verifică dacă drumul prin v este mai ieftin decât cel cunoscut până atunci pentru u.
+
+4. De ce folosim un heap (`heapq`) în Dijkstra?
+   a) Ca să sortăm muchiile  b) **Ca să găsim rapid vârful cu distanța minimă**  c) Ca să evităm recursivitatea
+      > Fără heap am căuta minimul parcurgând toate vârfurile la fiecare pas; heap-ul îl dă în O(log n).
+
 ---
 
 
@@ -278,7 +463,7 @@ Dijkstra dă drumurile minime de la *un* vârf. Roy-Floyd le dă de la *orice* v
 
 ### 💡 3.14.2 Concept nou și exemplu
 
-**Roy-Floyd (Floyd-Warshall)** calculează matricea distantelor minime între toate perechile. Similar cu Roy-Warshall, dar acumminimizează costul.
+**Roy-Floyd (Floyd-Warshall)** calculează matricea distanțelor minime între toate perechile. Similar cu Roy-Warshall, dar acum minimizează costul.
 
 ```python
 def roy_floyd(d):
@@ -296,11 +481,57 @@ Inițializează `d[i][j]` = costul muchiei, `d[i][i]` = 0, restul = infinit. Com
 Roy-Warshall = existență drum; Roy-Floyd = cost minim. Ambele au același schelet cu 3 bucle imbricate.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Avem 4 orașe și timpii de mers între ele (graf orientat). Calculăm cu Roy-Floyd timpul minim între oricare două orașe și afișăm tabelul.
+
+**Ideea.** Pornim de la matricea costurilor directe, cu `INF` unde nu e drum și 0 pe diagonală. Pentru fiecare oraș intermediar k, încercăm `d[i][k] + d[k][j]`.
+
+```python
+INF = float('inf')
+d = [[0, 5, INF, 10],
+     [INF, 0, 3, INF],
+     [INF, INF, 0, 1],
+     [INF, INF, INF, 0]]
+n = len(d)
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if d[i][k] + d[k][j] < d[i][j]:
+                d[i][j] = d[i][k] + d[k][j]
+for linie in d:
+    print(['-' if x == INF else x for x in linie])
+```
+Rezultatul:
+```text
+[0, 5, 8, 9]
+['-', 0, 3, 4]
+['-', '-', 0, 1]
+['-', '-', '-', 0]
+```
+
+:::atentie
+## Greșeli frecvente
+- Pui 0 în loc de infinit acolo unde nu există muchie: algoritmul crede că există drumuri gratuite.
+- Uiți `d[i][i] = 0` pe diagonală.
+- Pui bucla lui `k` în interior (ca la Roy-Warshall, `k` trebuie să fie bucla exterioară).
+- Folosești un număr „mare” (ex. 9999) în loc de `float('inf')` și apoi aduni două asemenea valori: rezultatul pare un drum real.
+:::
+
 ### 🔮 3.14.3 Citește și prezice
 
 ```python
-d = [[0,3,float('inf')],[float('inf'),0,1],[float('inf'),float('inf'),0]]
-# Care e distanta minima de la 1 la 3 dupa Roy-Floyd?
+def roy_floyd(d):
+    n = len(d)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+    return d
+
+d = [[0, 3, float("inf")], [float("inf"), 0, 1], [float("inf"), float("inf"), 0]]
+d = roy_floyd(d)
+print(d[0][2])
 ```
 
 ### 🤝 3.14.4 Exerciții ghidate
@@ -340,6 +571,18 @@ Detectează dacă graful are un ciclu de cost negativ (verifică dacă vreo diag
 1. De ce Roy-Floyd are complexitate O(n³) deși matricea distanțelor are doar n² celule?
    a) **Pentru fiecare din cele n² perechi (i, j) se testează pe rând toate cele n vârfuri posibile ca intermediar `k`, deci munca totală e n² × n = n³**  b) Pentru că algoritmul recalculează de n ori întreaga matrice din cauza erorilor de rotunjire la numere reale  c) Pentru că, de fapt, Roy-Floyd rulează Dijkstra din fiecare vârf, iar Dijkstra costă O(n) pe grafuri mici  d) Pentru că bucla `while` internă mai adaugă un factor n peste cele două bucle `for` vizibile
       > Deși matricea are n² celule, pentru fiecare pereche (i, j) algoritmul verifică pe rând, la fiecare valoare a lui k, dacă trecerea prin vârful k oferă un drum mai scurt (d[i][k] + d[k][j]); înmulțind cele n² perechi cu cei n intermediari posibili rezultă exact n³ operații.
+
+2. Ce valoare punem la început în d[i][j] dacă nu există muchie de la i la j?
+   a) 0  b) -1  c) **Infinit**
+      > Infinitul spune „încă nu cunoaștem niciun drum”; orice drum real găsit ulterior va fi mai mic.
+
+3. Prin ce diferă Roy-Floyd de Roy-Warshall?
+   a) Are patru bucle  b) **Calculează costul minim, nu doar existența unui drum**  c) Funcționează doar pe arbori
+      > Scheletul e același, dar Roy-Floyd folosește `min` și sume de costuri în loc de „și/sau” logic.
+
+4. Când e preferabil Roy-Floyd față de Dijkstra rulat din fiecare vârf?
+   a) Pe grafuri cu milioane de vârfuri  b) **Pe grafuri mici sau dense, când ai nevoie de toate perechile**  c) Niciodată
+      > Codul e foarte scurt și O(n³); pentru n mic sau grafuri dense este o alegere simplă și rapidă.
 
 ---
 
@@ -387,11 +630,71 @@ def prim(graf, start):
 Prim crește un arbore dintr-un punct (greedy pe muchii care conectează interiorul cu exteriorul). Kruskal (3.16) sortează toate muchiile.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Trebuie să legăm 5 sate la rețeaua de apă, cu cost minim. Aplicăm Prim și afișăm conductele alese, în ordinea adăugării, și costul total.
+
+**Ideea.** Pornim din satul A. La fiecare pas alegem din heap cea mai ieftină conductă care leagă un sat deja conectat de unul neconectat.
+
+```python
+import heapq
+cost = {'A': [('B', 4), ('C', 1)], 'B': [('A', 4), ('C', 2), ('D', 5)], 'C': [('A', 1), ('B', 2), ('D', 8), ('E', 10)], 'D': [('B', 5), ('C', 8), ('E', 2)], 'E': [('C', 10), ('D', 2)]}
+viz = {'A'}
+heap = [(c, 'A', u) for u, c in cost['A']]
+heapq.heapify(heap)
+total = 0
+while heap:
+    c, a, b = heapq.heappop(heap)
+    if b in viz:
+        continue
+    viz.add(b)
+    total += c
+    print(a, '-', b, c)
+    for u, c2 in cost[b]:
+        if u not in viz:
+            heapq.heappush(heap, (c2, b, u))
+print('total', total)
+```
+Rezultatul:
+```text
+A - C 1
+C - B 2
+B - D 5
+D - E 2
+total 10
+```
+
+:::atentie
+## Greșeli frecvente
+- Aplici Prim pe un graf neconex: obții doar arborele componentei vârfului de start.
+- Adaugi o muchie spre un vârf deja inclus în arbore: apare un ciclu. Verifică `if b in viz: continue`.
+- Pui în heap tupluri `(vârf, cost)` în loc de `(cost, ...)`: heap-ul ordonează după primul element, deci după vârf, nu după cost.
+- Crezi că arborele de acoperire minim e unic. Costul total minim e unic, dar la costuri egale pot exista mai mulți arbori.
+:::
+
 ### 🔮 3.15.3 Citește și prezice
 
 ```python
-graf = {1:[(2,1),(3,4)], 2:[(1,1),(3,2)], 3:[(1,4),(2,2)]}
-# Care e costul MST (Prim din 1)?
+import heapq
+
+def prim(graf, start):
+    viz = {start}
+    muchii = [(w, start, u) for u, w in graf[start]]
+    heapq.heapify(muchii)
+    total = 0
+    while muchii:
+        w, a, b = heapq.heappop(muchii)
+        if b in viz:
+            continue
+        viz.add(b)
+        total += w
+        for u, w2 in graf[b]:
+            if u not in viz:
+                heapq.heappush(muchii, (w2, b, u))
+    return total
+
+graf = {1: [(2, 1), (3, 4)], 2: [(1, 1), (3, 2)], 3: [(1, 4), (2, 2)]}
+print(prim(graf, 1))
 ```
 
 ### 🤝 3.15.4 Exerciții ghidate
@@ -438,6 +741,20 @@ Modifică să returneze și lista muchiilor alese (nu doar costul).
 1. De ce Prim și Kruskal dau același cost total pentru MST, deși aleg muchiile în ordine diferită?
    a) **Ambele respectă proprietatea tăieturii (cut property): la fiecare pas aleg muchia de cost minim care traversează o tăietură a grafului, ceea ce garantează optimul indiferent de ordinea în care sunt alese muchiile**  b) Pentru că, de fapt, ambele sortează toate muchiile la început; Prim doar le procesează pe rând, în timp ce Kruskal le procesează pe toate deodată  c) Pentru că setul de muchii al MST-ului e mereu unic, deci orice algoritm corect trebuie să aleagă exact aceleași muchii, în orice ordine  d) E o coincidență valabilă doar pe grafuri mici; pe grafuri mari costurile pot să difere ușor între cei doi algoritmi
       > Deși Prim crește arborele dintr-un singur vârf iar Kruskal alege muchii sortate din tot graful, ambele respectă proprietatea tăieturii: la orice separare a vârfurilor în două grupuri, muchia de cost minim care le leagă face parte obligatoriu dintr-un MST optim, indiferent de ordinea în care algoritmul o descoperă.
+
+2. Câte muchii are un arbore de acoperire pentru un graf conex cu 8 vârfuri?
+   a) 8  b) **7**  c) 16
+      > Orice arbore cu n vârfuri are n - 1 muchii.
+
+3. Ce muchie alege Prim la fiecare pas?
+   a) Cea mai ieftină muchie din tot graful  b) **Cea mai ieftină muchie care leagă arborele de un vârf din afara lui**  c) O muchie aleasă la întâmplare
+      > Prim crește un singur arbore, așa că alege doar dintre muchiile care ies din el.
+
+4. Prim este un algoritm de tip:
+   a) Backtracking  b) **Greedy**  c) Divide et impera
+      > La fiecare pas face alegerea care pare cea mai bună local (muchia cea mai ieftină), fără să revină asupra ei, și totuși obține optimul.
+
+---
 
 
 :::verifica-cod

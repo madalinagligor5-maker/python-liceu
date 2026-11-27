@@ -1556,5 +1556,955 @@
       "template": "def fletcher(s):\n    s1 = s2 = 0\n    for c in s:\n        s1 = (s1 + ord(c)) % 255\n        s2 = (s2 + s1) % 255\n    return (s2 << 8) | s1\n\n# completează\n",
       "expectedOutput": "True True"
     }
+  ],
+  "3.1": [
+    {
+      "titlu": "Afișează lista",
+      "enunt": "Leagă nodurile 4, 8 și 15 într-o listă și afișează valorile pe un rând, separate prin spațiu.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\na, b, c = Nod(4), Nod(8), Nod(15)\n# leagă nodurile, apoi parcurge de la a\n",
+      "expectedOutput": "4 8 15"
+    },
+    {
+      "titlu": "Lungimea",
+      "enunt": "Scrie funcția `lungime(cap)` și afișează lungimea listei construite din valorile 1–6.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef lungime(cap):\n    pass\n\ncap = None\nfor v in range(6, 0, -1):\n    n = Nod(v); n.urmator = cap; cap = n\nprint(lungime(cap))\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Conține valoarea?",
+      "enunt": "Scrie `contine(cap, x)` și afișează rezultatul pentru 7 și pentru 4 în lista 2 → 7 → 5.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef contine(cap, x):\n    pass\n\ncap = Nod(2); cap.urmator = Nod(7); cap.urmator.urmator = Nod(5)\nprint(contine(cap, 7), contine(cap, 4))\n",
+      "expectedOutput": "True False"
+    },
+    {
+      "titlu": "Elementul de pe poziția i",
+      "enunt": "Scrie `la_pozitia(cap, i)` (numerotare de la 0) care întoarce valoarea sau None. Afișează pozițiile 2 și 10 din lista 10 → 20 → 30 → 40.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef la_pozitia(cap, i):\n    pass\n\ncap = None\nfor v in [40, 30, 20, 10]:\n    n = Nod(v); n.urmator = cap; cap = n\nprint(la_pozitia(cap, 2), la_pozitia(cap, 10))\n",
+      "expectedOutput": "30 None"
+    },
+    {
+      "titlu": "Din listă Python în listă înlănțuită",
+      "enunt": "Scrie `din_lista(L)` care construiește lista înlănțuită cu aceleași valori, în aceeași ordine, și întoarce capul. Afișează suma valorilor parcurgând lista înlănțuită.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef din_lista(L):\n    pass\n\ncap = din_lista([5, 10, 15, 20])\n# parcurge și afișează suma\n",
+      "expectedOutput": "50"
+    },
+    {
+      "titlu": "Listă circulară",
+      "enunt": "Leagă nodurile 1, 2, 3 circular (3 arată spre 1). Pornind de la nodul 1, afișează primele 7 valori parcurse.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\na, b, c = Nod(1), Nod(2), Nod(3)\n# leagă circular și afișează 7 valori\n",
+      "expectedOutput": "1 2 3 1 2 3 1"
+    }
+  ],
+  "3.2": [
+    {
+      "titlu": "Adaugă la început",
+      "enunt": "Pornind de la lista goală, adaugă la început 1, 2 și 3, apoi afișează lista.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef adauga_inceput(cap, v):\n    pass\n\ncap = None\nfor v in [1, 2, 3]:\n    cap = adauga_inceput(cap, v)\n# afișează lista\n",
+      "expectedOutput": "3 2 1"
+    },
+    {
+      "titlu": "Adaugă la sfârșit",
+      "enunt": "Scrie `adauga_sfarsit(cap, v)` și construiește lista 5 → 6 → 7, apoi afișeaz-o.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef adauga_sfarsit(cap, v):\n    pass\n\ncap = None\nfor v in [5, 6, 7]:\n    cap = adauga_sfarsit(cap, v)\n# afișează lista\n",
+      "expectedOutput": "5 6 7"
+    },
+    {
+      "titlu": "Elimină capul",
+      "enunt": "Elimină primul nod din lista 9 → 4 → 6 și afișează lista rămasă.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ncap = Nod(9); cap.urmator = Nod(4); cap.urmator.urmator = Nod(6)\n# elimină primul nod\n",
+      "expectedOutput": "4 6"
+    },
+    {
+      "titlu": "Inserare după o valoare",
+      "enunt": "Inserează 3 după nodul cu valoarea 2 în lista 1 → 2 → 4 și afișează lista.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef insereaza_dupa(cap, x, y):\n    pass\n\ncap = Nod(1); cap.urmator = Nod(2); cap.urmator.urmator = Nod(4)\ninsereaza_dupa(cap, 2, 3)\n# afișează lista\n",
+      "expectedOutput": "1 2 3 4"
+    },
+    {
+      "titlu": "Inversarea listei",
+      "enunt": "Inversează lista 1 → 2 → 3 → 4 schimbând legăturile (fără liste Python intermediare) și afișeaz-o.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef inverseaza(cap):\n    pass\n\ncap = None\nfor v in [4, 3, 2, 1]:\n    n = Nod(v); n.urmator = cap; cap = n\ncap = inverseaza(cap)\n# afișează lista\n",
+      "expectedOutput": "4 3 2 1"
+    },
+    {
+      "titlu": "Inserare ordonată",
+      "enunt": "Lista e sortată crescător. Inserează 25 astfel încât să rămână sortată și afișeaz-o.",
+      "template": "class Nod:\n    def __init__(self, valoare):\n        self.valoare = valoare\n        self.urmator = None\n\ndef insereaza_ordonat(cap, v):\n    pass\n\ncap = None\nfor x in [40, 30, 20, 10]:\n    n = Nod(x); n.urmator = cap; cap = n\ncap = insereaza_ordonat(cap, 25)\n# afișează lista\n",
+      "expectedOutput": "10 20 25 30 40"
+    }
+  ],
+  "3.3": [
+    {
+      "titlu": "Șiruri din A și B",
+      "enunt": "Generează prin backtracking toate șirurile de lungime 3 din A și B și afișează-le pe un rând.",
+      "template": "rez = []\ndef bk(sir):\n    pass\n\nbk('')\nprint(*rez)\n",
+      "expectedOutput": "AAA AAB ABA ABB BAA BAB BBA BBB"
+    },
+    {
+      "titlu": "Fără AA",
+      "enunt": "Numără șirurile de lungime 6 din A și B care nu conțin două litere A alăturate.",
+      "template": "def numara(sir, n):\n    pass\n\nprint(numara('', 6))\n",
+      "expectedOutput": "21"
+    },
+    {
+      "titlu": "Cifre fără repetare",
+      "enunt": "Câte numere de 2 cifre cu cifre distincte se pot forma din cifrele 1, 3, 5, 7?",
+      "template": "cifre = [1, 3, 5, 7]\n# backtracking\n",
+      "expectedOutput": "12"
+    },
+    {
+      "titlu": "Paranteze echilibrate",
+      "enunt": "Generează toate șirurile corecte de 3 perechi de paranteze rotunde și afișează-le pe un rând.",
+      "template": "rez = []\ndef bk(s, deschise, inchise):\n    pass\n\nbk('', 0, 0)\nprint(*rez)\n",
+      "expectedOutput": "((())) (()()) (())() ()(()) ()()()"
+    },
+    {
+      "titlu": "Suma cifrelor",
+      "enunt": "Câte numere de 4 cifre (prima cifră nenulă) au suma cifrelor 5? Tăie ramura de îndată ce suma depășește 5.",
+      "template": "def bk(poz, suma):\n    pass\n\nprint(bk(0, 0))\n",
+      "expectedOutput": "35"
+    },
+    {
+      "titlu": "Drumuri în grilă",
+      "enunt": "Un robot pleacă din (0, 0) și ajunge în (2, 2), mergând doar dreapta (D) sau jos (J). Generează toate traseele și afișează-le pe un rând, în ordine alfabetică.",
+      "template": "rez = []\ndef bk(x, y, traseu):\n    pass\n\nbk(0, 0, '')\nprint(*sorted(rez))\n",
+      "expectedOutput": "DDJJ DJDJ DJJD JDDJ JDJD JJDD"
+    }
+  ],
+  "3.4": [
+    {
+      "titlu": "Permutările lui 1, 2, 3",
+      "enunt": "Generează prin backtracking permutările lui [1, 2, 3] și afișează-le, câte una pe rând, ca numere lipite (ex. 123).",
+      "template": "L = [1, 2, 3]\n# backtracking\n",
+      "expectedOutput": "123\n132\n213\n231\n312\n321"
+    },
+    {
+      "titlu": "Câte soluții are problema reginelor",
+      "enunt": "Afișează numărul de soluții pentru n de la 4 la 8, pe un rând.",
+      "template": "def regine(n):\n    pass\n\nprint(*[regine(n) for n in range(4, 9)])\n",
+      "expectedOutput": "2 10 4 40 92"
+    },
+    {
+      "titlu": "Anagramele unui cuvânt",
+      "enunt": "Afișează, sortate și fără repetiții, anagramele cuvântului „ana”.",
+      "template": "cuvant = 'ana'\nrez = set()\n# backtracking pe pozițiile literelor\n",
+      "expectedOutput": "['aan', 'ana', 'naa']"
+    },
+    {
+      "titlu": "Permutări fără vecini consecutivi",
+      "enunt": "Câte permutări ale lui 1, 2, 3, 4 nu au două numere consecutive (ex. 2 și 3) pe poziții alăturate?",
+      "template": "# backtracking cu verificare la fiecare pas\n",
+      "expectedOutput": "2"
+    },
+    {
+      "titlu": "Aranjamente",
+      "enunt": "Afișează câte aranjamente de câte 2 se pot forma din 5 elemente (perechi ordonate, fără repetare), prin backtracking.",
+      "template": "n, k = 5, 2\n# backtracking\n",
+      "expectedOutput": "20"
+    },
+    {
+      "titlu": "Prima soluție la 6 regine",
+      "enunt": "Afișează prima soluție găsită pentru 6 regine, ca listă de coloane (sol[i] = coloana de pe linia i).",
+      "template": "n = 6\n# oprește-te la prima soluție\n",
+      "expectedOutput": "[1, 3, 5, 0, 2, 4]"
+    }
+  ],
+  "3.5": [
+    {
+      "titlu": "Combinări de 2 din 4",
+      "enunt": "Generează combinările de câte 2 din [1, 2, 3, 4] și afișează-le pe un rând (fără spațiu între cifre).",
+      "template": "L = [1, 2, 3, 4]\nrez = []\ndef bk(start, comb):\n    pass\n\nbk(0, [])\nprint(*rez)\n",
+      "expectedOutput": "12 13 14 23 24 34"
+    },
+    {
+      "titlu": "Toate submulțimile",
+      "enunt": "Generează prin backtracking submulțimile lui [1, 2, 3] (ia / nu lua) și afișează câte sunt și pe cea mai mare.",
+      "template": "L = [1, 2, 3]\nsub = []\n# completează\n",
+      "expectedOutput": "8 [1, 2, 3]"
+    },
+    {
+      "titlu": "Prima submulțime cu suma dată",
+      "enunt": "Găsește prima submulțime (în ordinea ia-întâi) a listei [3, 34, 4, 12, 5, 2] cu suma 9 și afișeaz-o.",
+      "template": "L = [3, 34, 4, 12, 5, 2]\nt = 9\n# oprește-te la prima\n",
+      "expectedOutput": "[3, 4, 2]"
+    },
+    {
+      "titlu": "Descompuneri în sumă",
+      "enunt": "Afișează în câte moduri se poate scrie 6 ca sumă de numere naturale nenule în ordine crescătoare (ex. 1+1+4, 2+4, 6).",
+      "template": "def bk(rest, minim):\n    pass\n\nprint(bk(6, 1))\n",
+      "expectedOutput": "11"
+    },
+    {
+      "titlu": "Echipe echilibrate",
+      "enunt": "Împarte jucătorii (forțele date) în două echipe de câte 3, astfel încât diferența dintre sumele forțelor să fie minimă. Afișează diferența minimă.",
+      "template": "forte = [7, 3, 9, 5, 2, 8]\n# alege 3 jucători pentru prima echipă\n",
+      "expectedOutput": "0"
+    },
+    {
+      "titlu": "Colorarea hărții",
+      "enunt": "Cinci țări vecine conform listei de muchii trebuie colorate cu 3 culori, astfel încât două țări vecine să aibă culori diferite. Câte colorări există?",
+      "template": "vecini = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 4), (3, 4)]\nn, culori = 5, 3\n# backtracking\n",
+      "expectedOutput": "18"
+    }
+  ],
+  "3.11": [
+    {
+      "titlu": "Ordinea DFS",
+      "enunt": "Afișează ordinea vizitării DFS recursive pornind din 1 (vecinii în ordinea din listă).",
+      "template": "graf = {1: [2, 5], 2: [3, 4], 3: [], 4: [], 5: [6], 6: []}\nordine = []\ndef dfs(v):\n    pass\n\ndfs(1)\nprint(*ordine)\n",
+      "expectedOutput": "1 2 3 4 5 6"
+    },
+    {
+      "titlu": "DFS cu stivă",
+      "enunt": "Fă aceeași parcurgere cu o stivă explicită, astfel încât ordinea să fie identică (pune vecinii în stivă în ordine inversă).",
+      "template": "graf = {1: [2, 5], 2: [3, 4], 3: [], 4: [], 5: [6], 6: []}\n# completează\n",
+      "expectedOutput": "1 2 3 4 5 6"
+    },
+    {
+      "titlu": "Câte vârfuri accesibile",
+      "enunt": "Afișează câte vârfuri sunt accesibile din 3 în graful orientat dat (inclusiv 3).",
+      "template": "graf = {1: [2], 2: [3], 3: [4, 5], 4: [], 5: [3]}\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Există drum?",
+      "enunt": "Afișează True dacă există drum de la 1 la 6 în graful orientat.",
+      "template": "graf = {1: [2, 3], 2: [4], 3: [4], 4: [], 5: [6], 6: []}\n# completează\n",
+      "expectedOutput": "False"
+    },
+    {
+      "titlu": "Sortare topologică",
+      "enunt": "Sarcinile au dependențe (a → b: a trebuie făcută înaintea lui b). Afișează o ordine validă: DFS, apoi lista inversată a vârfurilor în ordinea terminării.",
+      "template": "dep = {'trezire': ['dus', 'cafea'], 'dus': ['imbracare'], 'cafea': ['imbracare'], 'imbracare': ['plecare'], 'plecare': []}\n# completează\n",
+      "expectedOutput": "trezire cafea dus imbracare plecare"
+    },
+    {
+      "titlu": "Ciclu în graf orientat",
+      "enunt": "Afișează True dacă graful orientat are un ciclu (un vârf aflat încă pe drumul curent al DFS e întâlnit din nou).",
+      "template": "graf = {1: [2], 2: [3], 3: [4], 4: [2], 5: []}\n# completează\n",
+      "expectedOutput": "True"
+    }
+  ],
+  "3.12": [
+    {
+      "titlu": "Matricea drumurilor",
+      "enunt": "Aplică Roy-Warshall și afișează matricea drumurilor, linie cu linie.",
+      "template": "a = [[0, 1, 0], [0, 0, 1], [0, 0, 0]]\n# completează\n",
+      "expectedOutput": "[0, 1, 1]\n[0, 0, 1]\n[0, 0, 0]"
+    },
+    {
+      "titlu": "Câte perechi accesibile",
+      "enunt": "Afișează câte perechi ordonate (i, j), i ≠ j, au drum de la i la j.",
+      "template": "a = [[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0], [1, 0, 0, 0]]\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Vârfuri pe cicluri",
+      "enunt": "Afișează vârfurile (numerotate de la 0) aflate pe cel puțin un ciclu.",
+      "template": "a = [[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1], [0, 0, 0, 0]]\n# completează\n",
+      "expectedOutput": "[0, 1, 2]"
+    },
+    {
+      "titlu": "Tare conex?",
+      "enunt": "Un graf orientat e tare conex dacă din orice vârf se ajunge în oricare altul. Afișează True sau False.",
+      "template": "a = [[0, 1, 0], [0, 0, 1], [1, 0, 0]]\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Cine ajunge la toți",
+      "enunt": "Afișează vârfurile din care se poate ajunge în toate celelalte.",
+      "template": "a = [[0, 1, 1, 0], [0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 1, 0]]\n# completează\n",
+      "expectedOutput": "[0]"
+    },
+    {
+      "titlu": "Dependențe indirecte",
+      "enunt": "Modulul i depinde direct de modulul j dacă a[i][j] = 1. Afișează de câte module depinde, direct sau indirect, modulul 0.",
+      "template": "a = [[0, 1, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 0, 0]]\n# completează\n",
+      "expectedOutput": "4"
+    }
+  ],
+  "3.13": [
+    {
+      "titlu": "Distanțe minime",
+      "enunt": "Aplică Dijkstra din vârful 1 și afișează distanța la fiecare vârf, în ordine.",
+      "template": "import heapq\ngraf = {1: [(2, 7), (3, 9), (6, 14)], 2: [(3, 10), (4, 15)], 3: [(4, 11), (6, 2)], 4: [(5, 6)], 5: [], 6: [(5, 9)]}\n# completează\n",
+      "expectedOutput": "0 7 9 20 20 11"
+    },
+    {
+      "titlu": "Inaccesibil",
+      "enunt": "Afișează distanța minimă de la 'A' la 'D' sau -1 dacă nu există drum.",
+      "template": "import heapq\ngraf = {'A': [('B', 2)], 'B': [('C', 3)], 'C': [], 'D': [('A', 1)]}\n# completează\n",
+      "expectedOutput": "-1"
+    },
+    {
+      "titlu": "Traseul cel mai ieftin",
+      "enunt": "Afișează drumul de cost minim de la 1 la 4, ca listă de vârfuri.",
+      "template": "import heapq\ngraf = {1: [(2, 1), (3, 4)], 2: [(3, 2), (4, 6)], 3: [(4, 3)], 4: []}\n# completează\n",
+      "expectedOutput": "[1, 2, 3, 4]"
+    },
+    {
+      "titlu": "Graf neorientat",
+      "enunt": "Drumurile dintre orașe merg în ambele sensuri. Afișează distanța minimă de la 'X' la 'Z'.",
+      "template": "import heapq\ndrumuri = [('X', 'Y', 5), ('Y', 'Z', 3), ('X', 'Z', 10), ('Y', 'W', 1), ('W', 'Z', 1)]\n# construiește graful în ambele sensuri, apoi Dijkstra\n",
+      "expectedOutput": "7"
+    },
+    {
+      "titlu": "Cel mai îndepărtat",
+      "enunt": "Afișează vârful aflat la cea mai mare distanță minimă de 'S' și distanța lui.",
+      "template": "import heapq\ngraf = {'S': [('A', 3), ('B', 1)], 'A': [('C', 2)], 'B': [('A', 1), ('C', 6)], 'C': [('D', 4)], 'D': []}\n# completează\n",
+      "expectedOutput": "D 8"
+    },
+    {
+      "titlu": "Grilă cu costuri",
+      "enunt": "Fiecare celulă a grilei are un cost de intrare. Afișează costul minim de la colțul stânga-sus la dreapta-jos (inclusiv costul celulei de start), mergând în cele 4 direcții.",
+      "template": "import heapq\ng = [[1, 3, 1], [1, 5, 1], [4, 2, 1]]\n# Dijkstra pe celule\n",
+      "expectedOutput": "7"
+    }
+  ],
+  "3.14": [
+    {
+      "titlu": "Toate distanțele",
+      "enunt": "Aplică Roy-Floyd și afișează matricea distanțelor, linie cu linie.",
+      "template": "INF = float('inf')\nd = [[0, 4, 11], [6, 0, 2], [3, INF, 0]]\n# completează\n",
+      "expectedOutput": "[0, 4, 6]\n[5, 0, 2]\n[3, 7, 0]"
+    },
+    {
+      "titlu": "Cost între două vârfuri",
+      "enunt": "Afișează costul minim de la vârful 0 la vârful 3.",
+      "template": "INF = float('inf')\nd = [[0, 1, 4, INF], [INF, 0, 2, 6], [INF, INF, 0, 3], [INF, INF, INF, 0]]\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Din muchii în matrice",
+      "enunt": "Construiește matricea de costuri pentru 3 vârfuri din lista de muchii (orientate), aplică Roy-Floyd și afișează d[0][2].",
+      "template": "INF = float('inf')\nmuchii = [(0, 1, 2), (1, 2, 3), (0, 2, 9)]\nn = 3\n# completează\n",
+      "expectedOutput": "5"
+    },
+    {
+      "titlu": "Centrul grafului",
+      "enunt": "Centrul unui graf este vârful pentru care distanța maximă spre celelalte e minimă. Afișează centrul (graf neorientat).",
+      "template": "INF = float('inf')\nd = [[0, 1, INF, INF], [1, 0, 1, INF], [INF, 1, 0, 1], [INF, INF, 1, 0]]\n# completează\n",
+      "expectedOutput": "1"
+    },
+    {
+      "titlu": "Ciclu negativ",
+      "enunt": "Afișează True dacă, după Roy-Floyd, vreun d[i][i] devine negativ (graful are un ciclu de cost negativ).",
+      "template": "INF = float('inf')\nd = [[0, 1, INF], [INF, 0, -2], [-1, INF, 0]]\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Perechea cea mai îndepărtată",
+      "enunt": "Afișează cea mai mare distanță minimă dintre două vârfuri (diametrul grafului neorientat).",
+      "template": "INF = float('inf')\nd = [[0, 2, INF, 7], [2, 0, 3, INF], [INF, 3, 0, 1], [7, INF, 1, 0]]\n# completează\n",
+      "expectedOutput": "6"
+    }
+  ],
+  "3.15": [
+    {
+      "titlu": "Costul MST",
+      "enunt": "Aplică Prim din vârful 1 și afișează costul total al arborelui de acoperire minim.",
+      "template": "import heapq\ngraf = {1: [(2, 3), (3, 1)], 2: [(1, 3), (3, 7), (4, 5)], 3: [(1, 1), (2, 7), (4, 2)], 4: [(2, 5), (3, 2)]}\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Muchiile alese",
+      "enunt": "Afișează muchiile alese de Prim pornind din 'A', în ordinea adăugării, ca perechi.",
+      "template": "import heapq\ngraf = {'A': [('B', 2), ('C', 3)], 'B': [('A', 2), ('C', 1)], 'C': [('A', 3), ('B', 1)]}\n# completează\n",
+      "expectedOutput": "[('A', 'B'), ('B', 'C')]"
+    },
+    {
+      "titlu": "Același cost din orice start",
+      "enunt": "Aplică Prim pornind pe rând din fiecare vârf și afișează mulțimea costurilor obținute (trebuie să fie un singur cost).",
+      "template": "import heapq\ngraf = {1: [(2, 4), (3, 3)], 2: [(1, 4), (3, 2), (4, 6)], 3: [(1, 3), (2, 2), (4, 7)], 4: [(2, 6), (3, 7)]}\n# completează\n",
+      "expectedOutput": "{11}"
+    },
+    {
+      "titlu": "Din matrice",
+      "enunt": "Graful e dat prin matricea costurilor (0 = fără muchie). Aplică Prim din vârful 0 și afișează costul total.",
+      "template": "import heapq\nc = [[0, 2, 0, 6, 0], [2, 0, 3, 8, 5], [0, 3, 0, 0, 7], [6, 8, 0, 0, 9], [0, 5, 7, 9, 0]]\n# completează\n",
+      "expectedOutput": "16"
+    },
+    {
+      "titlu": "Cea mai scumpă muchie din MST",
+      "enunt": "Afișează costul celei mai scumpe muchii incluse în arborele de acoperire minim (Prim din 1).",
+      "template": "import heapq\ngraf = {1: [(2, 1), (3, 5)], 2: [(1, 1), (3, 2), (4, 9)], 3: [(1, 5), (2, 2), (4, 4)], 4: [(2, 9), (3, 4)]}\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Puncte în plan",
+      "enunt": "Leagă cele 4 puncte printr-o rețea de cabluri de lungime totală minimă (cablurile sunt segmente drepte). Afișează lungimea rotunjită la 2 zecimale.",
+      "template": "import heapq, math\npuncte = [(0, 0), (2, 0), (2, 2), (5, 2)]\n# graf complet cu distanțe euclidiene, apoi Prim\n",
+      "expectedOutput": "7.0"
+    }
+  ],
+  "3.16": [
+    {
+      "titlu": "Costul cu Kruskal",
+      "enunt": "Afișează costul arborelui de acoperire minim obținut cu Kruskal (vârfurile 1–4).",
+      "template": "muchii = [(1, 2, 3), (1, 3, 1), (2, 3, 7), (2, 4, 5), (3, 4, 2)]\nparinte = list(range(5))\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Muchiile alese",
+      "enunt": "Afișează muchiile acceptate, în ordinea acceptării, ca perechi (a, b).",
+      "template": "muchii = [('x', 'y', 4), ('y', 'z', 1), ('x', 'z', 3), ('z', 't', 2)]\nparinte = {v: v for v in 'xyzt'}\n# completează\n",
+      "expectedOutput": "[('y', 'z'), ('z', 't'), ('x', 'z')]"
+    },
+    {
+      "titlu": "Câte componente",
+      "enunt": "Folosește Union-Find pentru a număra componentele conexe ale grafului cu vârfurile 0–6 și muchiile date.",
+      "template": "muchii = [(0, 1), (1, 2), (3, 4), (5, 5)]\nparinte = list(range(7))\n# unește, apoi numără rădăcinile distincte\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Aceeași componentă?",
+      "enunt": "După unirile date, afișează dacă perechile (1, 4) și (2, 5) sunt în aceeași componentă.",
+      "template": "parinte = list(range(6))\nuniri = [(1, 2), (3, 4), (2, 3)]\n# completează\n",
+      "expectedOutput": "True False"
+    },
+    {
+      "titlu": "Oprire după n - 1 muchii",
+      "enunt": "Aplică Kruskal și oprește-te imediat ce ai n - 1 muchii. Afișează câte muchii ai examinat în total.",
+      "template": "n = 4\nmuchii = [(0, 1, 1), (1, 2, 2), (2, 3, 3), (0, 2, 4), (0, 3, 5), (1, 3, 6)]\nparinte = list(range(n))\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Grupuri de prieteni",
+      "enunt": "Elevii care sunt prieteni (direct sau prin alți prieteni) fac parte din același grup. Afișează mărimile grupurilor, sortate descrescător.",
+      "template": "elevi = ['Ana', 'Bob', 'Cris', 'Dan', 'Eva', 'Fil']\nprietenii = [('Ana', 'Bob'), ('Cris', 'Dan'), ('Bob', 'Eva')]\n# Union-Find pe nume\n",
+      "expectedOutput": "[3, 2, 1]"
+    }
+  ],
+  "3.17": [
+    {
+      "titlu": "Rădăcina",
+      "enunt": "În vectorul de tați (tata[v] = părintele lui v, 0 = fără părinte), afișează rădăcina.",
+      "template": "tata = {1: 3, 2: 3, 3: 0, 4: 1, 5: 1}\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Frunzele",
+      "enunt": "Afișează frunzele arborelui (sortate).",
+      "template": "tata = {1: 3, 2: 3, 3: 0, 4: 1, 5: 1}\n# completează\n",
+      "expectedOutput": "[2, 4, 5]"
+    },
+    {
+      "titlu": "Copiii fiecărui nod",
+      "enunt": "Construiește din vectorul de tați dicționarul nod → listă de copii și afișează copiii lui 3.",
+      "template": "tata = {1: 3, 2: 3, 3: 0, 4: 1, 5: 1}\n# completează\n",
+      "expectedOutput": "[1, 2]"
+    },
+    {
+      "titlu": "Înălțimea",
+      "enunt": "Afișează înălțimea arborelui dat prin liste de copii (o frunză are înălțimea 0).",
+      "template": "copii = {1: [2, 3], 2: [4], 3: [], 4: [5], 5: []}\ndef inaltime(v):\n    pass\n\nprint(inaltime(1))\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Nodurile de pe un nivel",
+      "enunt": "Afișează nodurile de pe nivelul 2 (rădăcina e pe nivelul 0), sortate.",
+      "template": "copii = {1: [2, 3], 2: [4, 5], 3: [6], 4: [], 5: [], 6: [7], 7: []}\n# completează\n",
+      "expectedOutput": "[4, 5, 6]"
+    },
+    {
+      "titlu": "Drumul spre rădăcină",
+      "enunt": "Afișează drumul de la nodul 7 până la rădăcină, folosind vectorul de tați.",
+      "template": "tata = {1: 0, 2: 1, 3: 1, 6: 3, 7: 6}\n# completează\n",
+      "expectedOutput": "[7, 6, 3, 1]"
+    }
+  ],
+  "3.18": [
+    {
+      "titlu": "Inserare și inordine",
+      "enunt": "Inserează valorile în BST și afișează-le în inordine (vor ieși sortate).",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef inordine(rad, rez):\n    pass\n\nrad = None\nfor x in [50, 30, 70, 20, 40, 60]:\n    rad = inserare(rad, x)\nrez = []\ninordine(rad, rez)\nprint(rez)\n",
+      "expectedOutput": "[20, 30, 40, 50, 60, 70]"
+    },
+    {
+      "titlu": "Minimul și maximul",
+      "enunt": "Afișează minimul și maximul din BST, coborând mereu la stânga, respectiv la dreapta.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [15, 6, 23, 4, 7, 71, 5]:\n    rad = inserare(rad, x)\n# completează\n",
+      "expectedOutput": "4 71"
+    },
+    {
+      "titlu": "Căutare",
+      "enunt": "Scrie `cauta(rad, v)` iterativ și afișează rezultatele pentru 7 și 8.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef cauta(rad, v):\n    pass\n\nrad = None\nfor x in [15, 6, 23, 4, 7, 71, 5]:\n    rad = inserare(rad, x)\nprint(cauta(rad, 7), cauta(rad, 8))\n",
+      "expectedOutput": "True False"
+    },
+    {
+      "titlu": "Numărul de noduri",
+      "enunt": "Afișează câte noduri are arborele (recursiv).",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef numara(rad):\n    pass\n\nrad = None\nfor x in [8, 3, 10, 1, 6, 14, 4, 7, 13]:\n    rad = inserare(rad, x)\nprint(numara(rad))\n",
+      "expectedOutput": "9"
+    },
+    {
+      "titlu": "Valori dintr-un interval",
+      "enunt": "Afișează, în ordine crescătoare, valorile din BST cuprinse între 5 și 12 inclusiv (nu cobori în subarbori care sigur nu au astfel de valori).",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [8, 3, 10, 1, 6, 14, 4, 7, 13]:\n    rad = inserare(rad, x)\nrez = []\n# completează\nprint(rez)\n",
+      "expectedOutput": "[6, 7, 8, 10]"
+    },
+    {
+      "titlu": "Este BST valid?",
+      "enunt": "Arborele de mai jos a fost construit manual. Verifică dacă e BST corect, transmițând intervalul permis fiecărui nod, și afișează True sau False.",
+      "template": "class Nod:\n    def __init__(self, v, st=None, dr=None):\n        self.v, self.st, self.dr = v, st, dr\n\nrad = Nod(10, Nod(5, Nod(2), Nod(12)), Nod(15))\n# completează\n",
+      "expectedOutput": "False"
+    }
+  ],
+  "3.19": [
+    {
+      "titlu": "Heapsort cu heapq",
+      "enunt": "Sortează lista punând elementele într-un heap și scoțându-le pe rând.",
+      "template": "import heapq\nL = [9, 4, 7, 1, 8, 2]\n# completează\n",
+      "expectedOutput": "[1, 2, 4, 7, 8, 9]"
+    },
+    {
+      "titlu": "Cele mai mici 3",
+      "enunt": "Afișează cele mai mici 3 valori cu `heapq.nsmallest`.",
+      "template": "import heapq\npreturi = [45, 12, 78, 3, 56, 9, 31]\n# completează\n",
+      "expectedOutput": "[3, 9, 12]"
+    },
+    {
+      "titlu": "Max-heap",
+      "enunt": "Folosind `heapq` cu valori negate, scoate pe rând cele mai mari 3 punctaje.",
+      "template": "import heapq\npunctaje = [70, 95, 60, 88, 100, 75]\n# completează\n",
+      "expectedOutput": "100 95 88"
+    },
+    {
+      "titlu": "Sift-up manual",
+      "enunt": "Adaugă 1 în min-heap-ul dat, fără `heapq`: pune-l la final și urcă-l cât timp e mai mic decât părintele. Afișează lista.",
+      "template": "h = [2, 5, 3, 9, 6]\nx = 1\n# completează\nprint(h)\n",
+      "expectedOutput": "[1, 5, 2, 9, 6, 3]"
+    },
+    {
+      "titlu": "Este heap?",
+      "enunt": "Afișează True dacă lista respectă proprietatea de min-heap (fiecare părinte ≤ copiii lui).",
+      "template": "h = [1, 3, 2, 7, 4, 5]\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Unirea listelor sortate",
+      "enunt": "Interclasează trei liste sortate folosind un heap (`heapq.merge`) și afișează rezultatul.",
+      "template": "import heapq\na = [1, 5, 9]\nb = [2, 6]\nc = [0, 7, 8]\n# completează\n",
+      "expectedOutput": "[0, 1, 2, 5, 6, 7, 8, 9]"
+    }
+  ],
+  "3.20": [
+    {
+      "titlu": "Preordine",
+      "enunt": "Afișează preordinea arborelui dat ca tupluri (valoare, stânga, dreapta).",
+      "template": "arb = (1, (2, (4, None, None), (5, None, None)), (3, None, (6, None, None)))\ndef pre(n):\n    pass\n\nprint(pre(arb))\n",
+      "expectedOutput": "[1, 2, 4, 5, 3, 6]"
+    },
+    {
+      "titlu": "Postordine",
+      "enunt": "Afișează postordinea aceluiași arbore.",
+      "template": "arb = (1, (2, (4, None, None), (5, None, None)), (3, None, (6, None, None)))\ndef post(n):\n    pass\n\nprint(post(arb))\n",
+      "expectedOutput": "[4, 5, 2, 6, 3, 1]"
+    },
+    {
+      "titlu": "Suma valorilor",
+      "enunt": "Afișează suma valorilor din arbore, cu o parcurgere recursivă.",
+      "template": "arb = (1, (2, (4, None, None), (5, None, None)), (3, None, (6, None, None)))\n# completează\n",
+      "expectedOutput": "21"
+    },
+    {
+      "titlu": "Frunzele de la stânga la dreapta",
+      "enunt": "Afișează frunzele arborelui, în ordinea în care apar de la stânga la dreapta.",
+      "template": "arb = (1, (2, (4, None, None), (5, None, None)), (3, None, (6, None, None)))\n# completează\n",
+      "expectedOutput": "[4, 5, 6]"
+    },
+    {
+      "titlu": "Parcurgerea pe niveluri",
+      "enunt": "Afișează nodurile pe niveluri (BFS cu o coadă), de la stânga la dreapta.",
+      "template": "from collections import deque\narb = (1, (2, (4, None, None), (5, None, None)), (3, None, (6, None, None)))\n# completează\n",
+      "expectedOutput": "[1, 2, 3, 4, 5, 6]"
+    },
+    {
+      "titlu": "Evaluarea expresiei",
+      "enunt": "Evaluează arborele expresiei (2 + 3) * (7 - 1) cu postordine.",
+      "template": "arb = ('*', ('+', 2, 3), ('-', 7, 1))\ndef ev(n):\n    pass\n\nprint(ev(arb))\n",
+      "expectedOutput": "30"
+    }
+  ],
+  "3.21": [
+    {
+      "titlu": "Drumul căutării",
+      "enunt": "Afișează valorile prin care trece căutarea lui 65 în BST.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [50, 30, 70, 20, 40, 60, 80, 65]:\n    rad = inserare(rad, x)\n# completează\n",
+      "expectedOutput": "[50, 70, 60, 65]"
+    },
+    {
+      "titlu": "Inserare iterativă",
+      "enunt": "Scrie inserarea fără recursivitate și afișează inordinea după ce inserezi valorile.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v, self.st, self.dr = v, None, None\n\ndef inserare_it(rad, v):\n    pass\n\ndef ino(r):\n    return [] if r is None else ino(r.st) + [r.v] + ino(r.dr)\n\nrad = None\nfor x in [8, 3, 10, 1, 6]:\n    rad = inserare_it(rad, x)\nprint(ino(rad))\n",
+      "expectedOutput": "[1, 3, 6, 8, 10]"
+    },
+    {
+      "titlu": "Succesorul",
+      "enunt": "Afișează succesorul lui 30 (cea mai mică valoare mai mare decât 30) din BST.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [50, 30, 70, 20, 40, 35, 45]:\n    rad = inserare(rad, x)\n# completează\n",
+      "expectedOutput": "35"
+    },
+    {
+      "titlu": "Șterge o frunză",
+      "enunt": "Șterge valoarea 20 (o frunză) și afișează inordinea.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef sterge(r, v):\n    pass\n\ndef ino(r):\n    return [] if r is None else ino(r.st) + [r.v] + ino(r.dr)\n\nrad = None\nfor x in [50, 30, 70, 20, 40]:\n    rad = inserare(rad, x)\nrad = sterge(rad, 20)\nprint(ino(rad))\n",
+      "expectedOutput": "[30, 40, 50, 70]"
+    },
+    {
+      "titlu": "Șterge rădăcina",
+      "enunt": "Șterge rădăcina 50 (are doi copii) și afișează noua rădăcină și inordinea.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\ndef sterge(r, v):\n    pass\n\ndef ino(r):\n    return [] if r is None else ino(r.st) + [r.v] + ino(r.dr)\n\nrad = None\nfor x in [50, 30, 70, 60, 80]:\n    rad = inserare(rad, x)\nrad = sterge(rad, 50)\nprint(rad.v, ino(rad))\n",
+      "expectedOutput": "60 [30, 60, 70, 80]"
+    },
+    {
+      "titlu": "Al k-lea cel mai mic",
+      "enunt": "Afișează a 3-a cea mai mică valoare din BST, oprind inordinea după 3 noduri.",
+      "template": "class Nod:\n    def __init__(self, v):\n        self.v = v\n        self.st = None\n        self.dr = None\n\ndef inserare(rad, v):\n    if rad is None:\n        return Nod(v)\n    if v < rad.v:\n        rad.st = inserare(rad.st, v)\n    else:\n        rad.dr = inserare(rad.dr, v)\n    return rad\n\nrad = None\nfor x in [20, 8, 22, 4, 12, 10, 14]:\n    rad = inserare(rad, x)\n# completează\n",
+      "expectedOutput": "10"
+    }
+  ],
+  "3.22": [
+    {
+      "titlu": "Clasa derivată",
+      "enunt": "Creează clasa `Elev(Persoana)` care adaugă atributul `clasa`. Afișează numele și clasa unui elev.",
+      "template": "class Persoana:\n    def __init__(self, nume):\n        self.nume = nume\n\nclass Elev(Persoana):\n    pass\n\ne = Elev('Ioana', 'XI B')\nprint(e.nume, e.clasa)\n",
+      "expectedOutput": "Ioana XI B"
+    },
+    {
+      "titlu": "Suprascriere",
+      "enunt": "Clasa `Patrat` moștenește `Forma` și suprascrie `arie()`. Afișează aria unui pătrat cu latura 6.",
+      "template": "class Forma:\n    def arie(self):\n        return 0\n\nclass Patrat(Forma):\n    pass\n\nprint(Patrat(6).arie())\n",
+      "expectedOutput": "36"
+    },
+    {
+      "titlu": "Polimorfism",
+      "enunt": "Afișează aria totală a formelor din listă (un pătrat cu latura 2 și un dreptunghi 3 × 4), apelând aceeași metodă pentru fiecare.",
+      "template": "class Forma:\n    def arie(self):\n        return 0\n\nclass Patrat(Forma):\n    def __init__(self, l):\n        self.l = l\n    # arie\n\nclass Dreptunghi(Forma):\n    def __init__(self, a, b):\n        self.a, self.b = a, b\n    # arie\n\nforme = [Patrat(2), Dreptunghi(3, 4)]\nprint(sum(f.arie() for f in forme))\n",
+      "expectedOutput": "16"
+    },
+    {
+      "titlu": "Metoda din părinte",
+      "enunt": "`Angajat.descriere()` adaugă postul la descrierea din `Persoana`, apelând-o cu `super()`. Afișează descrierea.",
+      "template": "class Persoana:\n    def __init__(self, nume):\n        self.nume = nume\n    def descriere(self):\n        return 'Persoana ' + self.nume\n\nclass Angajat(Persoana):\n    def __init__(self, nume, post):\n        super().__init__(nume)\n        self.post = post\n    # descriere\n\nprint(Angajat('Dan', 'programator').descriere())\n",
+      "expectedOutput": "Persoana Dan, post: programator"
+    },
+    {
+      "titlu": "Câte obiecte de fiecare fel",
+      "enunt": "Numără câte vehicule din listă sunt `Masina` și câte sunt `Bicicleta`, folosind `isinstance`.",
+      "template": "class Vehicul: pass\nclass Masina(Vehicul): pass\nclass Bicicleta(Vehicul): pass\n\nparc = [Masina(), Bicicleta(), Masina(), Masina(), Bicicleta()]\n# completează\n",
+      "expectedOutput": "3 2"
+    },
+    {
+      "titlu": "Ierarhie pe trei niveluri",
+      "enunt": "`Labrador` moștenește `Caine`, care moștenește `Animal`. Afișează sunetul labradorului și dacă e o instanță a lui `Animal`.",
+      "template": "class Animal:\n    def sunet(self):\n        return '...'\n\nclass Caine(Animal):\n    def sunet(self):\n        return 'ham'\n\nclass Labrador(Caine):\n    pass\n\nl = Labrador()\n# completează\n",
+      "expectedOutput": "ham True"
+    }
+  ],
+  "3.23": [
+    {
+      "titlu": "Constructor cu valori implicite",
+      "enunt": "Clasa `Produs` are `nume`, `pret` și `stoc` (implicit 0). Creează un produs fără stoc și afișează-i atributele.",
+      "template": "class Produs:\n    pass\n\np = Produs('Caiet', 5)\nprint(p.nume, p.pret, p.stoc)\n",
+      "expectedOutput": "Caiet 5 0"
+    },
+    {
+      "titlu": "Metode care modifică",
+      "enunt": "Adaugă metodele `vinde(n)` (doar dacă e stoc) și `reaprovizioneaza(n)`. Vinde 3, încearcă să vinzi 50, adaugă 10 și afișează stocul.",
+      "template": "class Produs:\n    def __init__(self, nume, stoc):\n        self.nume, self.stoc = nume, stoc\n    # metode\n\np = Produs('Pix', 20)\np.vinde(3)\np.vinde(50)\np.reaprovizioneaza(10)\nprint(p.stoc)\n",
+      "expectedOutput": "27"
+    },
+    {
+      "titlu": "__str__",
+      "enunt": "Adaugă `__str__` clasei `Punct`, ca `print(Punct(3, -2))` să afișeze `(3, -2)`.",
+      "template": "class Punct:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    # __str__\n\nprint(Punct(3, -2))\n",
+      "expectedOutput": "(3, -2)"
+    },
+    {
+      "titlu": "Istoric fără capcană",
+      "enunt": "Fiecare cont își păstrează istoricul tranzacțiilor într-o listă proprie (folosește `None` ca valoare implicită). Afișează lungimea istoricului pentru două conturi.",
+      "template": "class Cont:\n    def __init__(self, istoric=None):\n        pass\n    def depune(self, s):\n        self.istoric.append(s)\n\na, b = Cont(), Cont()\na.depune(10)\na.depune(20)\nb.depune(5)\nprint(len(a.istoric), len(b.istoric))\n",
+      "expectedOutput": "2 1"
+    },
+    {
+      "titlu": "Atribut de clasă",
+      "enunt": "Contorul `Elev.total` (atribut al clasei, nu al obiectului) crește la fiecare elev creat. Creează 3 elevi și afișează contorul.",
+      "template": "class Elev:\n    total = 0\n    def __init__(self, nume):\n        self.nume = nume\n        # mărește contorul clasei\n\nfor n in ['Ana', 'Ion', 'Eva']:\n    Elev(n)\nprint(Elev.total)\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Coș de cumpărături",
+      "enunt": "Clasa `Cos` reține produse (nume, preț, cantitate) și are metoda `total()`. Adaugă două produse și afișează totalul.",
+      "template": "class Cos:\n    def __init__(self):\n        self.produse = []\n    def adauga(self, nume, pret, cantitate=1):\n        pass\n    def total(self):\n        pass\n\nc = Cos()\nc.adauga('lapte', 7, 2)\nc.adauga('paine', 4)\nprint(c.total())\n",
+      "expectedOutput": "18"
+    }
+  ],
+  "3.24": [
+    {
+      "titlu": "super() în constructor",
+      "enunt": "`Bicicleta(Vehicul)` adaugă `nr_viteze`. Afișează marca și numărul de viteze.",
+      "template": "class Vehicul:\n    def __init__(self, marca):\n        self.marca = marca\n\nclass Bicicleta(Vehicul):\n    pass\n\nb = Bicicleta('Pegas', 21)\nprint(b.marca, b.nr_viteze)\n",
+      "expectedOutput": "Pegas 21"
+    },
+    {
+      "titlu": "Getter pentru atribut privat",
+      "enunt": "Adaugă metoda publică `viteza_maxima()` care întoarce `__viteza`. Afișează viteza maximă a unei mașini.",
+      "template": "class Vehicul:\n    def __init__(self, viteza):\n        self.__viteza = viteza\n    # getter\n\nclass Masina(Vehicul):\n    pass\n\nprint(Masina(180).viteza_maxima())\n",
+      "expectedOutput": "180"
+    },
+    {
+      "titlu": "Validare",
+      "enunt": "Metoda `seteaza_nota(n)` acceptă doar note între 1 și 10. Încearcă 11, apoi 9, și afișează nota.",
+      "template": "class Elev:\n    def __init__(self):\n        self.__nota = None\n    def seteaza_nota(self, n):\n        pass\n    def nota(self):\n        return self.__nota\n\ne = Elev()\ne.seteaza_nota(11)\ne.seteaza_nota(9)\nprint(e.nota())\n",
+      "expectedOutput": "9"
+    },
+    {
+      "titlu": "Name mangling",
+      "enunt": "Afișează valoarea atributului privat `__pin` folosind numele lui real (doar ca demonstrație, nu așa se lucrează!).",
+      "template": "class Card:\n    def __init__(self):\n        self.__pin = 1234\n\nc = Card()\n# completează\n",
+      "expectedOutput": "1234"
+    },
+    {
+      "titlu": "Metodă extinsă",
+      "enunt": "`ContEconomii(Cont)` adaugă dobândă: metoda `aplica_dobanda()` mărește soldul cu 5%. Afișează soldul după dobândă pentru 200 de lei.",
+      "template": "class Cont:\n    def __init__(self, sold):\n        self._sold = sold\n    def sold(self):\n        return self._sold\n\nclass ContEconomii(Cont):\n    pass\n\nc = ContEconomii(200)\nc.aplica_dobanda()\nprint(c.sold())\n",
+      "expectedOutput": "210.0"
+    },
+    {
+      "titlu": "Proprietate",
+      "enunt": "Folosește `@property` ca temperatura în Fahrenheit să fie citită ca atribut, deși se calculează din Celsius.",
+      "template": "class Termometru:\n    def __init__(self, celsius):\n        self.celsius = celsius\n    # @property fahrenheit\n\nprint(Termometru(25).fahrenheit)\n",
+      "expectedOutput": "77.0"
+    }
+  ],
+  "3.25": [
+    {
+      "titlu": "map",
+      "enunt": "Transformă temperaturile din Celsius în Fahrenheit cu `map` și afișează lista.",
+      "template": "celsius = [0, 10, 25, 100]\n# completează\n",
+      "expectedOutput": "[32.0, 50.0, 77.0, 212.0]"
+    },
+    {
+      "titlu": "filter",
+      "enunt": "Păstrează cu `filter` doar cuvintele mai lungi de 4 litere.",
+      "template": "cuvinte = ['ana', 'programare', 'cod', 'python', 'date']\n# completează\n",
+      "expectedOutput": "['programare', 'python']"
+    },
+    {
+      "titlu": "Funcție ca parametru",
+      "enunt": "Scrie `aplica(f, a, b)` care întoarce f(a, b). Afișează rezultatele pentru adunare și pentru înmulțire, cu 6 și 7.",
+      "template": "def aplica(f, a, b):\n    pass\n\nprint(aplica(lambda x, y: x + y, 6, 7), aplica(lambda x, y: x * y, 6, 7))\n",
+      "expectedOutput": "13 42"
+    },
+    {
+      "titlu": "Funcție care întoarce o funcție",
+      "enunt": "Scrie `inmultitor(k)` care întoarce o funcție ce înmulțește cu k. Folosește-o pentru a tripla lista.",
+      "template": "def inmultitor(k):\n    pass\n\ntriplu = inmultitor(3)\nprint(list(map(triplu, [1, 2, 3])))\n",
+      "expectedOutput": "[3, 6, 9]"
+    },
+    {
+      "titlu": "Același calcul, două stiluri",
+      "enunt": "Calculează suma pătratelor numerelor impare din listă, întâi cu o buclă, apoi într-o singură expresie funcțională. Afișează ambele rezultate.",
+      "template": "L = [1, 2, 3, 4, 5]\n# completează\n",
+      "expectedOutput": "35 35"
+    },
+    {
+      "titlu": "Sortare după o funcție",
+      "enunt": "Sortează elevii după medie descrescător, transmițând o funcție ca cheie, și afișează numele.",
+      "template": "elevi = [('Ana', 8.5), ('Ion', 9.7), ('Eva', 7.2)]\n# completează\n",
+      "expectedOutput": "['Ion', 'Ana', 'Eva']"
+    }
+  ],
+  "3.6": [
+    {
+      "titlu": "Fibonacci iterativ",
+      "enunt": "Afișează al 50-lea termen Fibonacci (F(0) = 0, F(1) = 1), cu o buclă care ține doar ultimele două valori.",
+      "template": "n = 50\n# completează\n",
+      "expectedOutput": "12586269025"
+    },
+    {
+      "titlu": "Drumuri în grilă",
+      "enunt": "Câte drumuri există de la colțul stânga-sus la dreapta-jos într-o grilă 5 × 5 (de celule), mergând doar dreapta sau jos?",
+      "template": "m, n = 5, 5\n# dp pe grilă\n",
+      "expectedOutput": "70"
+    },
+    {
+      "titlu": "Moduri de a forma o sumă",
+      "enunt": "În câte moduri (combinații, ordinea nu contează) poți forma 10 lei cu monede de 1, 2 și 5, fiecare de oricâte ori?",
+      "template": "monede = [1, 2, 5]\ns = 10\n# dp[i] = moduri pentru suma i\n",
+      "expectedOutput": "10"
+    },
+    {
+      "titlu": "Cât mai puține monede",
+      "enunt": "Monedele sunt [1, 3, 4]. Afișează numărul minim de monede pentru suma 6 (unde greedy greșește).",
+      "template": "monede = [1, 3, 4]\ns = 6\n# dp[i] = minimul de monede pentru i\n",
+      "expectedOutput": "2"
+    },
+    {
+      "titlu": "Cel mai lung subșir crescător",
+      "enunt": "Afișează lungimea celui mai lung subșir strict crescător (nu neapărat consecutiv).",
+      "template": "a = [10, 9, 2, 5, 3, 7, 101, 18]\n# dp[i] = lungimea celui mai lung subșir care se termină în i\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Suma maximă pe drum",
+      "enunt": "Pornești din colțul stânga-sus al matricei și ajungi în dreapta-jos, mergând doar dreapta sau jos. Afișează suma maximă pe care o poți aduna.",
+      "template": "m = [\n    [5, 3, 2, 1],\n    [1, 2, 10, 1],\n    [4, 3, 1, 20],\n]\n# dp pe matrice\n",
+      "expectedOutput": "41"
+    }
+  ],
+  "3.7": [
+    {
+      "titlu": "Gradele",
+      "enunt": "Afișează gradul fiecărui vârf, în ordine, pe un rând.",
+      "template": "graf = {1: [2, 3, 4], 2: [1], 3: [1, 4], 4: [1, 3]}\n# completează\n",
+      "expectedOutput": "3 1 2 2"
+    },
+    {
+      "titlu": "Numărul de muchii",
+      "enunt": "Afișează numărul de muchii al grafului neorientat (suma gradelor / 2).",
+      "template": "graf = {1: [2, 3, 4], 2: [1], 3: [1, 4], 4: [1, 3]}\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Vârfuri izolate",
+      "enunt": "Afișează vârfurile de grad 0.",
+      "template": "graf = {1: [2], 2: [1], 3: [], 4: [5], 5: [4], 6: []}\n# completează\n",
+      "expectedOutput": "[3, 6]"
+    },
+    {
+      "titlu": "Din muchii în liste de vecini",
+      "enunt": "Construiește listele de vecini pentru graful neorientat dat prin muchii și afișează dicționarul cu cheile sortate.",
+      "template": "muchii = [(1, 2), (2, 3), (1, 3), (3, 4)]\ngraf = {}\n# completează\n",
+      "expectedOutput": "{1: [2, 3], 2: [1, 3], 3: [2, 1, 4], 4: [3]}"
+    },
+    {
+      "titlu": "Cel mai popular",
+      "enunt": "Într-un graf orientat (cine pe cine apreciază), afișează vârful cu cel mai mare grad de intrare.",
+      "template": "aprecieri = [('a', 'b'), ('c', 'b'), ('d', 'a'), ('b', 'c'), ('d', 'b')]\n# completează\n",
+      "expectedOutput": "b"
+    },
+    {
+      "titlu": "Graf complet?",
+      "enunt": "Afișează True dacă graful e complet (fiecare vârf are gradul n - 1).",
+      "template": "graf = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2, 4], 4: [1, 2, 3]}\n# completează\n",
+      "expectedOutput": "True"
+    }
+  ],
+  "3.8": [
+    {
+      "titlu": "Construiește matricea",
+      "enunt": "Construiește matricea de adiacență pentru vârfurile 1–3 și muchiile date și afișeaz-o, linie cu linie.",
+      "template": "n = 3\nmuchii = [(1, 2), (2, 3)]\n# completează\n",
+      "expectedOutput": "[0, 1, 0]\n[1, 0, 1]\n[0, 1, 0]"
+    },
+    {
+      "titlu": "Există muchie?",
+      "enunt": "Afișează True dacă există muchie între 2 și 4 și True/False pentru 1 și 4, folosind listele de vecini.",
+      "template": "graf = {1: [2], 2: [1, 4], 3: [4], 4: [2, 3]}\n# completează\n",
+      "expectedOutput": "True False"
+    },
+    {
+      "titlu": "Din matrice în liste",
+      "enunt": "Transformă matricea de adiacență (vârfurile 1–3) în liste de vecini și afișează dicționarul.",
+      "template": "a = [[0, 1, 1], [1, 0, 0], [1, 0, 0]]\n# completează\n",
+      "expectedOutput": "{1: [2, 3], 2: [1], 3: [1]}"
+    },
+    {
+      "titlu": "Simetrică?",
+      "enunt": "Afișează True dacă matricea poate fi a unui graf neorientat (e simetrică și are 0 pe diagonală).",
+      "template": "a = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Muchiile din matrice",
+      "enunt": "Afișează lista muchiilor (i, j) cu i < j din matricea de adiacență (vârfurile 1–4).",
+      "template": "a = [[0, 1, 1, 0], [1, 0, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0]]\n# completează\n",
+      "expectedOutput": "[(1, 2), (1, 3), (2, 4), (3, 4)]"
+    },
+    {
+      "titlu": "Matrice ponderată",
+      "enunt": "Muchiile au costuri. Construiește matricea costurilor (0 unde nu e muchie) pentru vârfurile 1–3 și afișează suma tuturor costurilor (fiecare muchie numărată o dată).",
+      "template": "muchii = [(1, 2, 5), (2, 3, 7), (1, 3, 2)]\nn = 3\n# completează\n",
+      "expectedOutput": "14"
+    }
+  ],
+  "3.9": [
+    {
+      "titlu": "Muchiile lui Kₙ",
+      "enunt": "Afișează numărul de muchii al grafurilor complete K₂, …, K₇, pe un rând.",
+      "template": "# formula n * (n - 1) // 2\n",
+      "expectedOutput": "1 3 6 10 15 21"
+    },
+    {
+      "titlu": "Conex?",
+      "enunt": "Afișează True dacă graful este conex (parcurge-l din vârful 1 și vezi dacă ajungi la toate).",
+      "template": "graf = {1: [2], 2: [1, 3], 3: [2], 4: [5], 5: [4]}\n# completează\n",
+      "expectedOutput": "False"
+    },
+    {
+      "titlu": "Circuit eulerian?",
+      "enunt": "Graful este conex. Afișează True dacă are circuit eulerian (toate gradele pare).",
+      "template": "graf = {1: [2, 4], 2: [1, 3], 3: [2, 4], 4: [3, 1]}\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Drum eulerian",
+      "enunt": "Afișează vârfurile de grad impar (graful e conex): de la unul dintre ele pornește drumul eulerian.",
+      "template": "graf = {1: [2, 3], 2: [1, 3], 3: [1, 2, 4], 4: [3, 5], 5: [4]}\n# completează\n",
+      "expectedOutput": "[3, 5]"
+    },
+    {
+      "titlu": "Ciclu hamiltonian",
+      "enunt": "Verifică prin backtracking dacă graful are un ciclu care trece o singură dată prin fiecare vârf și se întoarce în 1. Afișează primul găsit.",
+      "template": "graf = {1: [2, 4], 2: [1, 3, 4], 3: [2, 4], 4: [1, 2, 3]}\n# backtracking\n",
+      "expectedOutput": "[1, 2, 3, 4, 1]"
+    },
+    {
+      "titlu": "Cel mai ieftin vecin",
+      "enunt": "În graful ponderat, afișează pentru vârful 'A' vecinul legat prin muchia cea mai ieftină.",
+      "template": "graf = {'A': [('B', 7), ('C', 3), ('D', 5)], 'B': [('A', 7)], 'C': [('A', 3)], 'D': [('A', 5)]}\n# completează\n",
+      "expectedOutput": "C"
+    }
+  ],
+  "3.10": [
+    {
+      "titlu": "Ordinea BFS",
+      "enunt": "Afișează ordinea în care BFS vizitează vârfurile, pornind din 1.",
+      "template": "from collections import deque\ngraf = {1: [2, 3], 2: [4, 5], 3: [6], 4: [], 5: [6], 6: []}\n# completează\n",
+      "expectedOutput": "1 2 3 4 5 6"
+    },
+    {
+      "titlu": "Distanțele de la sursă",
+      "enunt": "Afișează distanța (în muchii) de la vârful 1 la fiecare vârf, în ordinea vârfurilor.",
+      "template": "from collections import deque\ngraf = {1: [2, 3], 2: [1, 4], 3: [1, 4], 4: [2, 3, 5], 5: [4]}\n# completează\n",
+      "expectedOutput": "0 1 1 2 3"
+    },
+    {
+      "titlu": "Drumul minim",
+      "enunt": "Reconstituie drumul minim de la 1 la 5, ținând minte părintele fiecărui vârf descoperit.",
+      "template": "from collections import deque\ngraf = {1: [2, 3], 2: [1, 4], 3: [1, 4], 4: [2, 3, 5], 5: [4]}\n# completează\n",
+      "expectedOutput": "[1, 2, 4, 5]"
+    },
+    {
+      "titlu": "Componente conexe",
+      "enunt": "Numără componentele conexe, pornind BFS din fiecare vârf încă nevizitat.",
+      "template": "from collections import deque\ngraf = {1: [2], 2: [1], 3: [4], 4: [3], 5: [], 6: [7], 7: [6]}\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Prieteni la distanță 2",
+      "enunt": "În rețeaua de prieteni, afișează (sortați) prietenii prietenilor lui 'ana' care nu sunt deja prietenii ei.",
+      "template": "from collections import deque\nretea = {'ana': ['bob', 'cri'], 'bob': ['ana', 'dan'], 'cri': ['ana', 'dan', 'eva'], 'dan': ['bob', 'cri'], 'eva': ['cri']}\n# completează\n",
+      "expectedOutput": "['dan', 'eva']"
+    },
+    {
+      "titlu": "Calul pe tabla de șah",
+      "enunt": "Afișează numărul minim de mutări ale calului de la a1 la h8 pe o tablă 8 × 8 (coordonatele de la 0 la 7).",
+      "template": "from collections import deque\nstart, tinta = (0, 0), (7, 7)\n# completează\n",
+      "expectedOutput": "6"
+    }
   ]
 }
