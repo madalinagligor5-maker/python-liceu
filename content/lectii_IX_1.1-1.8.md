@@ -200,7 +200,7 @@ Un algoritm poate fi reprezentat în trei moduri, de la cel mai vizual la cel ma
 Înainte de exemplu, iată sintaxa exactă a celor mai folosite structuri de control în Python — le vei recunoaște de-acum în orice modul.
 
 **Decizie (`if` / `elif` / `else`)** — execută un bloc de cod doar dacă o condiție e adevărată:
-```python
+```text
 if conditie:
     # cod dacă e adevărată
 elif alta_conditie:
@@ -259,6 +259,30 @@ Observă cât de aproape e pseudocodul de codul Python — de asta pseudocodul e
 - **Schema logică** se desenează (forme + săgeți), nu se scrie cod.
 - **Pseudocodul** nu rulează — e doar un plan în limbaj apropiat de programare.
 - Doar **codul Python** se execută efectiv pe calculator.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un magazin dă reducere de 10% la cumpărături de cel puțin 200 de lei. Pornind de la pseudocod, scriem programul care afișează suma de plată pentru 250 de lei.
+
+**Ideea.** Pseudocodul: `citește suma; dacă suma >= 200 atunci suma ← suma - suma * 10 / 100; afișează suma`. Fiecare rând devine o instrucțiune Python, iar „dacă … atunci” devine `if`.
+
+```python
+suma = 250
+
+if suma >= 200:
+    suma = suma - suma * 10 / 100
+
+print("De plată:", suma)
+```
+Rezultatul: `De plată: 225.0`.
+
+:::atentie
+## Greșeli frecvente
+- Uiți două puncte `:` după `if`, `elif`, `else`, `for` sau `while` — Python oprește programul cu `SyntaxError`.
+- Scrii codul din interiorul unui `if` fără indentare (4 spații). Indentarea arată ce aparține blocului.
+- Pui `=` în loc de `==` într-o condiție: `if n = 0:` e greșit, corect este `if n == 0:`.
+- Traduci pseudocodul „cuvânt cu cuvânt” și uiți ramura `altfel` (`else`) când ea există în algoritm.
 :::
 
 ### 🔮 1.2.3 Citește și prezice
@@ -402,6 +426,36 @@ Ambele dau același rezultat corect, dar pentru un număr foarte mare (ex. un mi
 Nu e nevoie să știi acum notația O matematică. Ideea importantă: pentru aceeași problemă, un algoritm mai inteligent termină mai repede și folosește mai puțină memorie. Când ai două soluții care dau același rezultat, alege-o pe cea care face mai puțini pași.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Numărăm câte operații face fiecare variantă de verificare a primalității pentru n = 997 (un număr prim), ca să vedem diferența concret.
+
+**Ideea.** Adăugăm un contor `pasi` care crește la fiecare împărțire încercată. Varianta 1 încearcă toți divizorii până la n-1, varianta 2 doar până la radicalul lui n.
+
+```python
+n = 997
+
+pasi1 = 0
+for d in range(2, n):
+    pasi1 += 1
+
+pasi2 = 0
+d = 2
+while d * d <= n:
+    pasi2 += 1
+    d += 1
+
+print(pasi1, pasi2)
+```
+Rezultatul: `995 30`.
+
+:::atentie
+## Greșeli frecvente
+- Crezi că un program mai scurt e automat mai eficient. Contează câți **pași** face, nu câte rânduri are.
+- Compari doi algoritmi pe date foarte mici (ex. n = 5): diferența apare abia când n crește.
+- Optimizezi înainte ca programul să fie corect. Întâi rezultatul bun, apoi viteza.
+:::
+
 ### 🔮 1.3.3 Citește și prezice
 
 ```python
@@ -467,13 +521,11 @@ print(suma1 == suma2)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Calculează suma 1 + 2 + … + n pentru n = 1000 fără nicio buclă, cu formula lui Gauss, și afișează rezultatul ca număr întreg.
+template: n = 1000
+suma = ___
+print(suma)
+output: 500500
 :::
 
 # Modulul 1.4 — Subprograme (funcții): definire și apel
@@ -508,6 +560,29 @@ Observă: `nota1` și `nota2` sunt parametrii — locuri libere pe care le compl
 :::exemplu
 ## De ce folosim funcții
 În loc să copiezi de 10 ori aceeași formulă în program, o scrii o dată într-o funcție și o „chemi" (apelezi) ori de câte ori ai nevoie, cu alte numere. Codul e mai scurt, mai ușor de citit și, dacă găsești o greșeală, o corectezi într-un singur loc.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Scriem o funcție `pret_final(pret, reducere)` care întoarce prețul după o reducere în procente, apoi o folosim pentru trei produse.
+
+**Ideea.** Calculul se scrie o singură dată, în funcție. La apel, parametrii primesc valorile concrete. `return` trimite rezultatul înapoi, ca să-l putem aduna.
+
+```python
+def pret_final(pret, reducere):
+    return pret - pret * reducere / 100
+
+total = pret_final(100, 20) + pret_final(50, 10) + pret_final(80, 0)
+print(total)
+```
+Rezultatul: `205.0`.
+
+:::atentie
+## Greșeli frecvente
+- Definești funcția, dar uiți să o **apelezi** — programul nu afișează nimic.
+- Folosești `print` în loc de `return` în funcție, apoi încerci să folosești rezultatul: primești `None`.
+- Apelezi funcția cu alt număr de argumente decât are parametri: `medie(8)` pentru `def medie(a, b)` dă `TypeError`.
+- Scrii apelul **înainte** de `def`: Python citește de sus în jos și încă nu cunoaște funcția.
 :::
 
 ### 🔮 1.4.3 Citește și prezice
@@ -570,13 +645,13 @@ Scrie codul care apelează funcția pentru numărul 4 și afișează rezultatul.
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
+Scrie funcția `maxim(a, b)` care întoarce cel mai mare dintre două numere, fără funcția `max`. Programul afișează `maxim(12, 31)`.
+template: def maxim(a, b):
+    # completează
     pass
 
-salut('Ana')
-output: Salut, Ana!
+print(maxim(12, 31))
+output: 31
 :::
 
 # Modulul 1.5 — Variabile locale și globale, transmiterea prin parametri
@@ -610,12 +685,30 @@ O greșeală frecventă: elevii cred că o variabilă locală „rămâne" după
 O variabilă creată în interiorul unei funcții dispare când funcția se termină. Dacă vrei să o folosești în altă parte, fie o întorci cu `return`, fie o faci globală. Altfel, încercarea de a o citi în afara funcției dă eroare.
 :::
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Întotdeauna acordă atenție diferenței dintre operatorul de atribuire (=) și cel de egalitate (==). Folosirea greșită în condiții poate duce la erori de sintaxă sau comportament neașteptat!
-:::
+**Enunț.** Vedem diferența dintre un număr și o listă transmise unei funcții care încearcă să le modifice.
+
+**Ideea.** `n = n + 1` creează în funcție o valoare nouă, legată doar de numele local. `L.append(4)` modifică lista însăși, pe care o vede și programul principal.
+
+```python
+def modifica(n, L):
+    n = n + 1
+    L.append(4)
+
+numar = 5
+lista = [1, 2, 3]
+modifica(numar, lista)
+print(numar, lista)
+```
+Rezultatul: `5 [1, 2, 3, 4]`.
+
+:::atentie
+## Greșeli frecvente
+- Încerci să citești în afara funcției o variabilă creată în ea: `NameError`. Întoarce valoarea cu `return`.
+- Modifici o variabilă globală într-o funcție fără `global`: Python creează o variabilă locală nouă, iar cea globală rămâne neschimbată.
+- Crezi că o funcție care primește un număr îl poate schimba „în afară”. Parametrul e o copie a numelui: `x = 99` în funcție nu schimbă `x` de afară.
+- Dar o **listă** primită ca parametru poate fi modificată (`L.append(...)`): funcția și programul lucrează cu aceeași listă.
 :::
 
 ### 🔮 1.5.3 Citește și prezice
@@ -673,13 +766,16 @@ dubleaza_si_afiseaza(7)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Funcția `adauga_puncte` trebuie să mărească variabila globală `scor` cu valoarea primită. Completează cuvântul care lipsește, ca programul să afișeze 15.
+template: scor = 10
 
-salut('Ana')
-output: Salut, Ana!
+def adauga_puncte(p):
+    ___ scor
+    scor = scor + p
+
+adauga_puncte(5)
+print(scor)
+output: 15
 :::
 
 # Modulul 1.6 — Funcții predefinite pentru calcule și pentru colecții
@@ -717,6 +813,28 @@ Combinate, aceste funcții îți economisesc mult cod: media notelor devine `sum
 :::tip
 ## Nu reinventa roata
 Înainte să scrii o buclă sau un calcul de mână, întreabă-te: nu există deja o funcție predefinită pentru asta? `len`, `min`, `max`, `sum`, `abs`, `round`, `pow` și cele din `math` rezolvă de obicei problema mai scurt și mai sigur.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Avem notele unui elev la o materie. Afișăm media rotunjită la două zecimale, nota cea mai mică și diferența dintre nota maximă și cea minimă, fără nicio buclă scrisă de noi.
+
+**Ideea.** `sum` și `len` dau media, `min` și `max` dau extremele. Funcțiile predefinite fac singure parcurgerea listei.
+
+```python
+note = [9, 7, 10, 8, 6]
+
+media = round(sum(note) / len(note), 2)
+print(media, min(note), max(note) - min(note))
+```
+Rezultatul: `8.0 6 4`.
+
+:::atentie
+## Greșeli frecvente
+- Dai o variabilă cu același nume ca o funcție predefinită (`sum = 0`, `max = 5`). După asta, `sum(...)` nu mai funcționează în program.
+- Aștepți ca `round(2.5)` să dea 3: Python rotunjește „la par” valorile aflate exact la jumătate, deci `round(2.5)` dă 2.
+- Uiți `import math` înainte de `math.sqrt(...)` — apare `NameError`.
+- Apelezi `min()` sau `max()` pe o listă goală: programul se oprește cu `ValueError`.
 :::
 
 ### 🔮 1.6.3 Citește și prezice
@@ -775,13 +893,11 @@ print(cea_mai_mica, cea_mai_mare, numar_zile)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Folosind doar funcții predefinite, afișează pe un rând câte temperaturi negative are lista și suma valorilor absolute ale tuturor temperaturilor.
+template: temperaturi = [-3, 5, -1, 0, 4, -6]
+# completează
 
-salut('Ana')
-output: Salut, Ana!
+output: 3 19
 :::
 
 # Modulul 1.7 — Prelucrarea cifrelor unui număr
@@ -825,6 +941,39 @@ while n > 0:
 
 print("Suma cifrelor este:", suma_cifrelor)
 ```
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Pentru numărul 52816 afișăm suma cifrelor pare și numărul format doar din cifrele impare, în ordinea în care apar.
+
+**Ideea.** Extragem cifrele de la coadă (`n % 10`). O cifră impară trebuie pusă în fața celor găsite deja, așa că o înmulțim cu o putere a lui 10 care crește.
+
+```python
+n = 52816
+suma_pare = 0
+impare = 0
+p = 1
+
+while n > 0:
+    c = n % 10
+    if c % 2 == 0:
+        suma_pare += c
+    else:
+        impare = c * p + impare
+        p = p * 10
+    n = n // 10
+
+print(suma_pare, impare)
+```
+Rezultatul: `16 51`.
+
+:::atentie
+## Greșeli frecvente
+- Folosești `/` în loc de `//`: `n / 10` dă un număr cu zecimale (ex. 473.9), iar bucla nu se mai termină corect.
+- Distrugi numărul inițial în buclă și apoi ai nevoie de el (ex. la palindrom). Păstrează o copie: `copie = n`.
+- Pentru n = 0, bucla `while n > 0` nu se execută deloc, deci „numărul de cifre” iese 0, nu 1. Tratează separat acest caz.
+- Inițializezi cifra maximă cu o valoare greșită (ex. 10). Pornește de la 0 sau de la prima cifră.
+:::
 
 ### 🔮 1.7.3 Citește și prezice
 
@@ -885,13 +1034,14 @@ print("Numărul are", numar_cifre, "cifre")
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Completează programul care calculează produsul cifrelor numărului 3425.
+template: n = 3425
+produs = 1
+while n > 0:
+    produs = produs * ___
+    n = n // 10
+print(produs)
+output: 120
 :::
 
 # Modulul 1.8 — Divizori, multipli, algoritmul lui Euclid
@@ -951,12 +1101,29 @@ print(cmmdc_impartiri(48, 18))  # 6
 
 Varianta cu împărțiri e cea folosită în practică — vezi legătura cu modulul despre eficiența algoritmilor (1.3): face mult mai puțini pași decât varianta cu scăderi, mai ales pentru numere mari.
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Două roți dințate au 24 și 36 de dinți. După câți dinți se întâlnesc din nou aceleași două puncte de contact? Răspunsul este cel mai mic multiplu comun.
+
+**Ideea.** Calculăm cmmdc prin împărțiri repetate, apoi folosim relația cmmmc(a, b) = a · b / cmmdc(a, b). Pentru că a · b se împarte exact la cmmdc, folosim împărțirea întreagă `//`.
+
+```python
+def cmmdc(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+a, b = 24, 36
+print(cmmdc(a, b), a * b // cmmdc(a, b))
+```
+Rezultatul: `12 72`.
+
 :::atentie
-Asigură-te că buclele while au o condiție de oprire clară care se modifică la fiecare pas, altfel algoritmul va intra într-o buclă infinită!
-:::
+## Greșeli frecvente
+- Pornești căutarea divizorilor de la 0: `n % 0` oprește programul cu `ZeroDivisionError`. Începe de la 1.
+- La Euclid prin scăderi, unul dintre numere este 0: bucla `while a != b` nu se mai termină. Varianta prin împărțiri tratează corect cazul.
+- Calculezi cmmmc cu `/` și obții un număr cu zecimale (ex. `36.0`). Folosește `a * b // cmmdc(a, b)`.
+- Confunzi „d e divizor al lui n” (`n % d == 0`) cu „n e divizor al lui d” (`d % n == 0`).
 :::
 
 ### 🔮 1.8.3 Citește și prezice
@@ -992,7 +1159,7 @@ print(numar_divizori)
 
 **Exercițiul 1.** Scrie un program care verifică dacă un număr este **perfect** (suma divizorilor săi, exceptând numărul însuși, este egală cu numărul — de exemplu 6 = 1 + 2 + 3).
 
-**Exercițiul 2.** Scrie o funcție `sunt_prietene(a, b)` care verifică dacă două numere sunt „prietene", adică au același cmmdc cu un al treilea număr dat de tine (exercițiu de aplicare liberă a funcției `cmmdc_impartiri`).
+**Exercițiul 2.** Două numere sunt **prietene** dacă fiecare este egal cu suma divizorilor proprii ai celuilalt (divizorii mai mici decât numărul). Scrie o funcție `sunt_prietene(a, b)` și verifică perechea 220 și 284.
 
 ### ✅ 1.8.6 Verifică-ți înțelegerea
 
@@ -1014,11 +1181,12 @@ print(numar_divizori)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Completează funcția care întoarce cel mai mare divizor comun prin împărțiri repetate. Programul afișează cmmdc(84, 60).
+template: def cmmdc(a, b):
+    while b != 0:
+        a, b = b, ___
+    return a
 
-salut('Ana')
-output: Salut, Ana!
+print(cmmdc(84, 60))
+output: 12
 :::

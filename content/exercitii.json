@@ -727,9 +727,12 @@
     {
       "id": "1.8.5.ex2",
       "nivel": "avansat",
-      "tip": "text",
-      "enunt": "Scrie o funcție sunt_prietene(a, b) care verifică dacă două numere au același cmmdc cu un al treilea număr dat.",
-      "modelRaspuns": "def cmmdc(x, y):\n    while y:\n        x, y = y, x % y\n    return x\ndef sunt_prietene(a, b, c):\n    return cmmdc(a, c) == cmmdc(b, c)"
+      "tip": "cod",
+      "enunt": "Două numere sunt prietene dacă fiecare este egal cu suma divizorilor proprii ai celuilalt (divizorii mai mici decât numărul). Scrie funcția sunt_prietene(a, b) și afișează rezultatul pentru 220 și 284.",
+      "template": "def suma_div_proprii(n):\n    # suma divizorilor mai mici decât n\n    pass\n\ndef sunt_prietene(a, b):\n    pass\n\nprint(sunt_prietene(220, 284))",
+      "expectedOutput": "True",
+      "hint": "Ce trebuie să fie egal cu ce? Calculează suma divizorilor proprii pentru fiecare număr.",
+      "hint2": "sunt_prietene întoarce suma_div_proprii(a) == b and suma_div_proprii(b) == a."
     }
   ],
   "1.9.4": [
@@ -1024,12 +1027,11 @@
     {
       "id": "1.12.4.ex1",
       "nivel": "de-baza",
-      "tip": "cod",
-      "enunt": "Completează ca să creezi o fereastră cu un buton care schimbă textul etichetei.",
-      "template": "import tkinter as tk\n\nf = tk.Tk()\neticheta = tk.Label(f, text=\"Început\")\neticheta.pack()\n\ndef schimba():\n    eticheta.config(text=\"___\")\n\ntk.Button(f, text=\"Schimbă\", command=___).pack()\nf.mainloop()",
-      "expectedOutput": "",
+      "tip": "text",
+      "enunt": "Completează golurile ca să creezi o fereastră cu un buton care schimbă textul etichetei. Programele cu ferestre nu rulează în browser: scrie aici varianta completă și compar-o cu modelul, apoi rulează-o pe calculatorul tău.",
       "hint": "Cum schimbi textul afișat de o etichetă Tkinter după ce fereastra e deja creată, și cum legi un buton de o funcție care face asta?",
-      "hint2": "Parametrul command al butonului trebuie să primească numele funcției (fără paranteze), iar în interiorul funcției apelezi metoda config cu un text nou pentru etichetă."
+      "hint2": "Parametrul command al butonului trebuie să primească numele funcției (fără paranteze), iar în interiorul funcției apelezi metoda config cu un text nou pentru etichetă.",
+      "modelRaspuns": "import tkinter as tk\n\nf = tk.Tk()\neticheta = tk.Label(f, text=\"Început\")\neticheta.pack()\n\ndef schimba():\n    eticheta.config(text=\"Am schimbat textul\")\n\ntk.Button(f, text=\"Schimbă\", command=schimba).pack()\nf.mainloop()"
     },
     {
       "id": "1.12.4.ex2",
@@ -1119,12 +1121,11 @@
     {
       "id": "1.13.4.ex1",
       "nivel": "de-baza",
-      "tip": "cod",
-      "enunt": "Completează plasarea cu grid pentru un formular (nume pe rândul 0, vârstă pe rândul 1).",
-      "template": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"Nume:\").___(row=0, column=0)\ntk.Entry(f).___(row=0, column=1)\ntk.Label(f, text=\"Vârsta:\").grid(row=1, column=0)\ntk.Entry(f).grid(row=1, column=1)\nf.mainloop()",
-      "expectedOutput": "",
+      "tip": "text",
+      "enunt": "Completează plasarea cu grid pentru un formular (nume pe rândul 0, vârstă pe rândul 1). Programele cu ferestre nu rulează în browser: scrie aici varianta completă și compar-o cu modelul.",
       "hint": "Ce metodă Tkinter folosești pentru a poziționa widget-uri într-un formular cu rânduri și coloane, în loc de pack()?",
-      "hint2": "Metoda se numește grid și primește parametrii row și column pentru a stabili poziția fiecărui widget."
+      "hint2": "Metoda se numește grid și primește parametrii row și column pentru a stabili poziția fiecărui widget.",
+      "modelRaspuns": "import tkinter as tk\nf = tk.Tk()\ntk.Label(f, text=\"Nume:\").grid(row=0, column=0)\ntk.Entry(f).grid(row=0, column=1)\ntk.Label(f, text=\"Vârsta:\").grid(row=1, column=0)\ntk.Entry(f).grid(row=1, column=1)\nf.mainloop()"
     },
     {
       "id": "1.13.4.ex2",
@@ -1217,8 +1218,8 @@
       "nivel": "consolidat",
       "tip": "cod",
       "enunt": "Scrie un program care citește un fișier linie cu linie și numără câte linii are.",
-      "template": "with open(\"date.txt\", \"r\", encoding=\"utf-8\") as f:\n    contor = 0\n    for linie in f:\n        contor += 1\n    print(contor)",
-      "expectedOutput": "",
+      "template": "with open(\"date.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"prima\\na doua\\na treia\\n\")\n\ncontor = 0\nwith open(\"date.txt\", \"r\", encoding=\"utf-8\") as f:\n    for linie in f:\n        contor = ___\nprint(contor)",
+      "expectedOutput": "3",
       "hint": "Ce se întâmplă cu variabila contor la fiecare trecere prin bucla for care parcurge fișierul linie cu linie?",
       "hint2": "Fiecare iterație a buclei corespunde exact unei linii citite din fișier, deci contorul trebuie incrementat o dată la fiecare iterație."
     },
@@ -1609,9 +1610,9 @@
       "id": "1.18.4.ex2",
       "nivel": "consolidat",
       "tip": "cod",
-      "enunt": "Generează toate numerele de 2 cifre (10-99) care sunt pare.",
-      "template": "for n in range(10, 100):\n    if n % ___ == 0:\n        print(n)",
-      "expectedOutput": "10\n12\n14\n...continuă...",
+      "enunt": "Parcurge numerele de 2 cifre (10–99) și afișează câte dintre ele sunt pare și suma lor, pe același rând.",
+      "template": "nr = 0\ns = 0\nfor n in range(10, 100):\n    if n % ___ == 0:\n        nr += 1\n        s += n\nprint(nr, s)",
+      "expectedOutput": "45 2430",
       "hint": "Ce număr folosești ca să testezi dacă un număr este par, folosind operatorul de rest?",
       "hint2": "Un număr e par atunci când restul împărțirii lui la 2 este 0."
     },
@@ -1689,8 +1690,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează bucla interioară care găsește poziția minimului.",
-      "template": "def selectie_minim(L):\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(___, n):\n            if L[j] < L[minim]:\n                minim = ___\n        L[i], L[minim] = L[minim], L[i]\n    return L",
-      "expectedOutput": "",
+      "template": "def selectie_minim(L):\n    n = len(L)\n    for i in range(n):\n        minim = i\n        for j in range(___, n):\n            if L[j] < L[minim]:\n                minim = ___\n        L[i], L[minim] = L[minim], L[i]\n    return L\n\nprint(selectie_minim([5, 2, 9, 1]))",
+      "expectedOutput": "[1, 2, 5, 9]",
       "hint": "În algoritmul de selecție, de la ce poziție ar trebui să înceapă căutarea minimului în bucla interioară, față de poziția i din bucla exterioară? Și ce trebuie actualizat atunci când găsești un element mai mic?",
       "hint2": "Bucla interioară pornește de la poziția imediat următoare lui i (adică i+1), iar variabila minim trebuie să rețină indexul j al noului element minim găsit, nu valoarea lui."
     },
@@ -1778,8 +1779,8 @@
       "nivel": "de-baza",
       "tip": "cod",
       "enunt": "Completează condiția de interschimbare din bubble sort.",
-      "template": "def bubble(L):\n    n = len(L)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if L[j] ___ L[j + 1]:   # interschimbă dacă sunt în ordine greșită\n                L[j], L[j + 1] = L[j + 1], L[j]\n    return L",
-      "expectedOutput": "",
+      "template": "def bubble(L):\n    n = len(L)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if L[j] ___ L[j + 1]:   # interschimbă dacă sunt în ordine greșită\n                L[j], L[j + 1] = L[j + 1], L[j]\n    return L\n\nprint(bubble([4, 2, 7, 1]))",
+      "expectedOutput": "[1, 2, 4, 7]",
       "hint": "În bubble sort, interschimbarea are loc atunci când două elemente vecine sunt în ordine greșită — ce relație trebuie să existe între L[j] și L[j+1] pentru o sortare crescătoare?",
       "hint2": "Pentru ca lista să ajungă în ordine crescătoare, interschimbă elementele atunci când cel din stânga este mai mare decât cel din dreapta."
     },

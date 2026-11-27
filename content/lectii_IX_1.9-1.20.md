@@ -11,21 +11,7 @@ Un număr în bază `b` este scris cu cifre de la `0` la `b-1`. Valoarea lui est
 **Din zecimal în altă bază (metoda împărțirilor repetate):**
 Împarți numărul la bază, notezi restul (e o cifră), continui cu câtul, până câtul devine 0. Cifrele rezultate se citesc de jos în sus.
 
-```python
-def in_baza(n, b):
-    if n == 0:
-        return "0"
-    cifre = ""
-    while n > 0:
-        cifre = str(n % b) + cifre
-        n = n // b
-    return cifre
-
-print(in_baza(13, 2))   # 1101  (13 în binar)
-print(in_baza(255, 16)) # 11111111 -> de fapt 255 = FF in hex, dar cu cifre 0-9: 255 = "11111111"?? atentie!
-```
-
-**Atenție:** exemplele de mai sus pentru bază 16 ar trebui să folosească literele A–F. O versiune corectă:
+Pentru bazele mai mari decât 10 avem nevoie de cifre noi: în baza 16, valorile 10–15 se scriu cu literele A–F. Funcția de mai jos merge pentru orice bază de la 2 la 16:
 
 ```python
 def in_baza(n, b):
@@ -54,12 +40,23 @@ def din_baza(sir, b):
 print(din_baza("1101", 2))  # 13
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-În Python, primul element dintr-o listă se află la indicele 0, iar ultimul element poate fi accesat direct cu indicele negativ -1!
-:::
+**Enunț.** Verificăm conversiile noastre cu funcțiile gata făcute din Python: `bin`, `hex` și `int(sir, baza)`.
+
+**Ideea.** `bin(n)` și `hex(n)` întorc reprezentarea cu prefixele `0b` și `0x`; `int('1101', 2)` face conversia inversă. Le folosim doar ca să ne verificăm algoritmul.
+
+```python
+print(bin(13), hex(255), int('1101', 2), int('ff', 16))
+```
+Rezultatul: `0b1101 0xff 13 255`.
+
+:::atentie
+## Greșeli frecvente
+- Citești resturile în ordinea în care le-ai obținut. Cifrele se citesc **invers**: ultimul rest e prima cifră.
+- La baza 16 scrii restul 11 ca „11”. În hexazecimal, valorile 10–15 se scriu cu literele A–F.
+- Uiți cazul n = 0: bucla `while n > 0` nu se execută, iar funcția întoarce un șir gol în loc de „0”.
+- La trecerea în baza 10 numeri pozițiile de la stânga. Poziția 0 este ultima cifră (cea din dreapta).
 :::
 
 ### 🔮 1.9.3 Citește și prezice
@@ -118,13 +115,16 @@ print(in_binar(10))  # 1010
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Completează funcția care trece numărul n din baza 10 în baza 2. Programul afișează `in_binar(19)`.
+template: def in_binar(n):
+    sir = ''
+    while n > 0:
+        sir = str(___) + sir
+        n = n // 2
+    return sir
 
-salut('Ana')
-output: Salut, Ana!
+print(in_binar(19))
+output: 10011
 :::
 
 # Modulul 1.10 — Ciurul lui Eratostene si exponentiere rapida
@@ -137,8 +137,8 @@ Ai învățat să verifici dacă un număr este divizor al altuia (1.8) și să 
 
 Un număr **prim** are exact doi divizori: 1 și el însuși. **Ciurul lui Eratostene** găsește toate numerele prime până la `n`:
 1. Marchezi toate numerele de la 2 la `n` ca fiind prime.
-2. Pentru fiecare număr `p` nescris ca neprim, elimini toate multiplii lui `p`.
-3. Rămân primele neradiate.
+2. Pentru fiecare număr `p` rămas marcat ca prim, tai (marchezi ca neprime) toți multiplii lui `p`.
+3. Numerele care rămân netăiate sunt prime.
 
 ```python
 def ciur(n):
@@ -167,12 +167,32 @@ def putere_rapida(b, e):
 print(putere_rapida(2, 10))  # 1024
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Căutarea secvențială parcurge fiecare element pe rând; dacă lista este ordonată, căutarea binară este mult mai rapidă (complexitate O(log n))!
-:::
+**Enunț.** Câte numere prime sunt mai mici decât 1000, și care este cel mai mare dintre ele? Folosim ciurul o singură dată și răspundem la ambele întrebări.
+
+**Ideea.** După ciur, lista `este_prim` ne spune pentru fiecare număr dacă e prim. Construim lista primelor și folosim `len` și ultimul element.
+
+```python
+n = 999
+este_prim = [True] * (n + 1)
+este_prim[0] = este_prim[1] = False
+for p in range(2, int(n ** 0.5) + 1):
+    if este_prim[p]:
+        for m in range(p * p, n + 1, p):
+            este_prim[m] = False
+
+prime = [i for i in range(n + 1) if este_prim[i]]
+print(len(prime), prime[-1])
+```
+Rezultatul: `168 997`.
+
+:::atentie
+## Greșeli frecvente
+- Consideri 1 număr prim. Un număr prim are **exact doi** divizori, iar 1 are unul singur.
+- Lista `este_prim` are lungimea n în loc de n + 1, iar `este_prim[n]` dă `IndexError`.
+- Pornești tăierea multiplilor de la 2·p. Rezultatul e corect, dar algoritmul face pași inutili: se poate porni de la p·p.
+- La exponențierea rapidă uiți `e //= 2`, iar bucla nu se mai oprește.
 :::
 
 ### 🔮 1.10.3 Citește și prezice
@@ -235,13 +255,18 @@ print(este_prim(17))  # True
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Completează exponențierea rapidă: când exponentul e impar, înmulțim rezultatul cu baza. Programul afișează 3 la puterea 20.
+template: def putere(b, e):
+    rez = 1
+    while e > 0:
+        if e % 2 == 1:
+            rez = ___
+        b = b * b
+        e = e // 2
+    return rez
 
-salut('Ana')
-output: Salut, Ana!
+print(putere(3, 20))
+output: 3486784401
 :::
 
 # Modulul 1.11 — Introducere in programarea orientata pe obiecte
@@ -270,12 +295,37 @@ print(p.distanta_origine()) # 5.0
 
 `__init__` e constructorul — se apelează automat la crearea obiectului. `self` referă la obiectul curent.
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Modelăm un dreptunghi ca obiect: constructorul primește laturile, iar metodele întorc aria și perimetrul. Creăm două dreptunghiuri și îl afișăm pe cel cu aria mai mare.
+
+**Ideea.** Fiecare obiect își păstrează propriile laturi în `self`. Aceeași metodă `arie()` dă rezultate diferite pentru obiecte diferite.
+
+```python
+class Dreptunghi:
+    def __init__(self, lungime, latime):
+        self.lungime = lungime
+        self.latime = latime
+
+    def arie(self):
+        return self.lungime * self.latime
+
+    def perimetru(self):
+        return 2 * (self.lungime + self.latime)
+
+d1 = Dreptunghi(6, 4)
+d2 = Dreptunghi(5, 5)
+mare = d1 if d1.arie() > d2.arie() else d2
+print(mare.arie(), mare.perimetru())
+```
+Rezultatul: `25 20`.
+
 :::atentie
-La determinarea minimului sau maximului, inițializează variabila de sprijin cu primul element din listă (v[0]), nu cu 0 sau o valoare arbitrară!
-:::
+## Greșeli frecvente
+- Uiți `self` ca prim parametru al unei metode: la apel apare `TypeError` (metoda primește mai multe argumente decât așteaptă).
+- Scrii `x = x` în constructor în loc de `self.x = x`: valoarea nu se păstrează în obiect.
+- Apelezi metoda fără paranteze (`p.arie` în loc de `p.arie()`): primești metoda însăși, nu rezultatul.
+- Confunzi clasa cu obiectul: `Punct.x` nu există, `x` aparține fiecărui obiect creat (`p.x`).
 :::
 
 ### 🔮 1.11.3 Citește și prezice
@@ -340,13 +390,17 @@ print(round(c.arie(), 2))  # 12.57
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Completează constructorul clasei `Elev`, ca metoda `prezentare()` să afișeze numele și clasa.
+template: class Elev:
+    def __init__(self, nume, clasa):
+        self.nume = nume
+        ___ = clasa
 
-salut('Ana')
-output: Salut, Ana!
+    def prezentare(self):
+        print(self.nume, self.clasa)
+
+Elev('Ana', 'IX').prezentare()
+output: Ana IX
 :::
 
 # Modulul 1.12 — tkinter: fereastra principala si widget-uri de baza
@@ -378,12 +432,33 @@ buton.pack()
 fereastra.mainloop()
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Bubble Sort compară și schimbă elementele adiacente la fiecare pas, în timp ce Selection Sort caută minimul din restul tabloului și îl plasează la poziția curentă!
-:::
+**Enunț.** Programele cu ferestre nu rulează în browser, dar logica lor da. Separăm calculul de interfață: funcția `calculeaza_dublu(text)` primește ce a scris utilizatorul și întoarce textul de afișat în etichetă. Butonul doar o apelează.
+
+**Ideea.** Testăm funcția fără fereastră, cu câteva valori. În aplicația reală, `command` apelează o funcție care face `eticheta.config(text=calculeaza_dublu(intrare.get()))`.
+
+```python
+def calculeaza_dublu(text):
+    if not text.strip().isdigit():
+        return 'Introdu un număr întreg'
+    return 'Dublul este ' + str(int(text) * 2)
+
+print(calculeaza_dublu('21'))
+print(calculeaza_dublu('abc'))
+```
+Rezultatul:
+```text
+Dublul este 42
+Introdu un număr întreg
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți `fereastra.mainloop()` la final: fereastra se deschide și se închide imediat.
+- Scrii `command=la_click()` (cu paranteze): funcția se execută o singură dată, la pornire, nu la fiecare apăsare. Corect este `command=la_click`.
+- Creezi widget-ul, dar uiți `pack()` sau `grid()`: el există, dar nu apare în fereastră.
+- Folosești textul unui `Entry` ca număr fără conversie: `entry.get()` întoarce text, deci ai nevoie de `int(...)` sau `float(...)`.
 :::
 
 ### 🔮 1.12.3 Citește și prezice
@@ -443,13 +518,12 @@ f.mainloop()
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Funcția apelată de un buton „Salută” primește numele scris în câmp și întoarce mesajul afișat în etichetă. Completeaz-o, ca pentru numele „Ioana” programul să afișeze `Bună, Ioana!`.
+template: def mesaj_salut(nume):
+    return ___
 
-salut('Ana')
-output: Salut, Ana!
+print(mesaj_salut('Ioana'))
+output: Bună, Ioana!
 :::
 
 # Modulul 1.13 — tkinter: gestionarea plasarii si a evenimentelor
@@ -478,18 +552,39 @@ f.mainloop()
 
 ```python
 # Exemplu grid cu 2 coloane
+import tkinter as tk
+f = tk.Tk()
 tk.Label(f, text="Nume:").grid(row=0, column=0)
 tk.Entry(f).grid(row=0, column=1)
 tk.Label(f, text="Vârsta:").grid(row=1, column=0)
 tk.Entry(f).grid(row=1, column=1)
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Un formular are etichetele pe coloana 0 și câmpurile pe coloana 1. Calculăm automat pozițiile din `grid`, apoi le verificăm fără fereastră.
+
+**Ideea.** Câmpul cu indicele i se află pe rândul i. Eticheta lui stă în coloana 0, iar `Entry` în coloana 1. În aplicație, fiecare pereche devine `Label(...).grid(row=i, column=0)` și `Entry(...).grid(row=i, column=1)`.
+
+```python
+campuri = ['Nume', 'Prenume', 'Vârsta']
+
+for i, camp in enumerate(campuri):
+    print(camp, '-> rând', i, ', etichetă pe coloana 0, câmp pe coloana 1')
+```
+Rezultatul:
+```text
+Nume -> rând 0 , etichetă pe coloana 0, câmp pe coloana 1
+Prenume -> rând 1 , etichetă pe coloana 0, câmp pe coloana 1
+Vârsta -> rând 2 , etichetă pe coloana 0, câmp pe coloana 1
+```
+
 :::atentie
-La matrice (liste de liste), primul indice reprezintă linia, iar al doilea indice reprezintă coloana: matrice[linie][coloana]!
-:::
+## Greșeli frecvente
+- Folosești `pack()` și `grid()` în același container: tkinter se blochează sau afișează o eroare. Alege o singură metodă pentru fiecare fereastră sau `Frame`.
+- Funcția legată cu `bind` nu primește parametrul pentru eveniment: scrie `def la_tasta(e):`, chiar dacă nu folosești `e`.
+- Numeri rândurile și coloanele de la 1. În `grid`, primul rând și prima coloană au numărul 0.
+- Scrii evenimentul greșit: `"Key"` în loc de `"<Key>"`, sau `"<Click>"` în loc de `"<Button-1>"`.
 :::
 
 ### 🔮 1.13.3 Citește și prezice
@@ -545,13 +640,12 @@ f.mainloop()
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+La fiecare tastă, eticheta arată câte caractere a scris utilizatorul. Completează funcția apelată de eveniment, ca pentru textul „python” să întoarcă „6 caractere”.
+template: def text_lungime(text):
+    return ___
 
-salut('Ana')
-output: Salut, Ana!
+print(text_lungime('python'))
+output: 6 caractere
 :::
 
 # Modulul 1.14 — Fisiere text: deschidere, citire, scriere, inchidere
@@ -581,12 +675,37 @@ with open("note.txt", "r", encoding="utf-8") as f:
         print(linie.strip())
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Pe diagonala principală a unei matrice pătratice n x n avem i == j, iar pe diagonala secundară i + j == n - 1!
-:::
+**Enunț.** Fișierul `note.txt` conține pe fiecare linie numele unui elev și nota lui, separate prin spațiu. Scriem fișierul, apoi îl citim și afișăm media notelor și elevul cu nota cea mai mare.
+
+**Ideea.** La citire, `linie.split()` împarte rândul în nume și notă, iar nota trebuie convertită cu `int`. Ținem minte suma, numărul de elevi și cel mai bun elev găsit până acum.
+
+```python
+with open('note.txt', 'w', encoding='utf-8') as f:
+    f.write('Ana 9\nMihai 7\nIoana 10\nDan 8\n')
+
+suma, nr = 0, 0
+best_nume, best_nota = '', -1
+with open('note.txt', 'r', encoding='utf-8') as f:
+    for linie in f:
+        nume, nota = linie.split()
+        nota = int(nota)
+        suma += nota
+        nr += 1
+        if nota > best_nota:
+            best_nume, best_nota = nume, nota
+
+print(suma / nr, best_nume)
+```
+Rezultatul: `8.5 Ioana`.
+
+:::atentie
+## Greșeli frecvente
+- Deschizi cu `"w"` un fișier la care voiai să adaugi: tot conținutul vechi se șterge. Pentru adăugare folosește `"a"`.
+- Uiți `\n` la `write`: liniile se lipesc una de alta (`write` nu trece singur la rând nou, spre deosebire de `print`).
+- Folosești liniile citite ca numere fără conversie și fără `strip()`: `'7\n' + 1` dă eroare. Scrie `int(linie)` sau `int(linie.strip())`.
+- Citești de două ori același fișier deschis: după `f.read()`, un al doilea `f.read()` întoarce șirul gol.
 :::
 
 ### 🔮 1.14.3 Citește și prezice
@@ -641,13 +760,16 @@ with open("nume.txt", "r", encoding="utf-8") as f:
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Programul scrie trei numere în fișier, câte unul pe linie, apoi le citește și le adună. Completează conversia, ca programul să afișeze suma lor.
+template: with open('numere.txt', 'w', encoding='utf-8') as f:
+    f.write('12\n30\n8\n')
 
-salut('Ana')
-output: Salut, Ana!
+s = 0
+with open('numere.txt', encoding='utf-8') as f:
+    for linie in f:
+        s += ___
+print(s)
+output: 50
 :::
 
 # Modulul 1.15 — Modelul conceptual lista: stiva, coada, acces direct/secvential
@@ -678,12 +800,34 @@ coada.append("B")
 print(coada.popleft())  # A (primul adăugat)
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-În Python șirurile de caractere sunt imutabile. Orice metodă de tipul .upper() sau .replace() returnează un șir nou fără a modifica șirul original!
-:::
+**Enunț.** Verificăm dacă parantezele dintr-o expresie sunt închise corect, de exemplu `(a+[b*c])-{d}`. Este o aplicație clasică a stivei.
+
+**Ideea.** Fiecare paranteză deschisă intră în stivă. La o paranteză închisă, vârful stivei trebuie să fie perechea ei. La final, stiva trebuie să fie goală.
+
+```python
+def echilibrat(expr):
+    pereche = {')': '(', ']': '[', '}': '{'}
+    stiva = []
+    for c in expr:
+        if c in '([{':
+            stiva.append(c)
+        elif c in ')]}':
+            if not stiva or stiva.pop() != pereche[c]:
+                return False
+    return not stiva
+
+print(echilibrat('(a+[b*c])-{d}'), echilibrat('(a+b]'))
+```
+Rezultatul: `True False`.
+
+:::atentie
+## Greșeli frecvente
+- Folosești `lista.pop(0)` pentru o coadă mare: e lent, pentru că toate celelalte elemente se mută cu o poziție. `deque.popleft()` e rapid.
+- Scoți dintr-o stivă sau coadă goală: `pop()` dă `IndexError`. Verifică întâi `if stiva:`.
+- Pui elementele în stivă la un capăt și le scoți de la celălalt: obții o coadă, nu o stivă.
+- Confunzi „vârful stivei” cu primul element al listei. Vârful e **ultimul** element: `stiva[-1]`.
 :::
 
 ### 🔮 1.15.3 Citește și prezice
@@ -739,13 +883,14 @@ print(c.___())
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Inversează un cuvânt cu o stivă: pui fiecare literă în stivă, apoi le scoți pe rând. Completează instrucțiunea care scoate din stivă.
+template: cuvant = 'stiva'
+stiva = list(cuvant)
+invers = ''
+while stiva:
+    invers += ___
+print(invers)
+output: avits
 :::
 
 # Modulul 1.16 — Clasa list: operatori de baza
@@ -775,12 +920,28 @@ L.index(5)           # pozitia lui 5
 L.count(1)           # de câte ori apare 1
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Metoda .find() returnează -1 dacă subșirul nu este găsit, spre deosebire de .index() care aruncă o eroare ValueError!
-:::
+**Enunț.** Observăm diferența dintre a da încă un nume unei liste și a o copia.
+
+**Ideea.** `B = L` nu creează o listă nouă: `B` e un alt nume pentru aceeași listă, așa că modificarea prin `B` se vede și în `L`. `C = L[:]` creează o copie separată.
+
+```python
+L = [1, 2, 3]
+B = L
+C = L[:]
+B.append(4)
+C.append(99)
+print(L, C)
+```
+Rezultatul: `[1, 2, 3, 4] [1, 2, 3, 99]`.
+
+:::atentie
+## Greșeli frecvente
+- Accesezi `L[len(L)]`: ultimul indice este `len(L) - 1`, altfel apare `IndexError`.
+- Crezi că `L[1:3]` conține și elementul de pe poziția 3. Capătul din dreapta al unei felii nu este inclus.
+- Copiezi o listă cu `B = L`: ambele nume arată spre **aceeași** listă. Pentru o copie scrie `B = L[:]`.
+- Folosești `L * 2` crezând că dublezi valorile. De fapt repeți lista: `[1, 2] * 2` dă `[1, 2, 1, 2]`.
 :::
 
 ### 🔮 1.16.3 Citește și prezice
@@ -831,13 +992,10 @@ print(L)
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Completează felia (slice-ul) care păstrează din listă doar elementele de pe pozițiile 2, 3 și 4.
+template: L = [10, 20, 30, 40, 50, 60]
+print(L[___])
+output: [30, 40, 50]
 :::
 
 # Modulul 1.17 — Clasa list: metode (căutare, inserare, stergere, sortare)
@@ -868,12 +1026,33 @@ def cauta(L, x):
 print(cauta([5, 2, 8], 8))  # 2
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Metoda .split() fără parametri împarte textul după orice spațiu alb (spații, tab-uri, newline) și elimină spațiile libere multiple automat!
-:::
+**Enunț.** Avem elevii unei clase ca perechi (nume, medie). Afișăm clasamentul descrescător după medie, iar la medii egale în ordine alfabetică.
+
+**Ideea.** `sorted` primește o funcție `key` care spune după ce comparăm. Cheia `(-medie, nume)` ordonează întâi descrescător după medie, apoi crescător după nume.
+
+```python
+elevi = [('Mara', 9.5), ('Andrei', 8.75), ('Bianca', 9.5), ('Ion', 7.0)]
+
+clasament = sorted(elevi, key=lambda e: (-e[1], e[0]))
+for loc, (nume, medie) in enumerate(clasament, start=1):
+    print(loc, nume, medie)
+```
+Rezultatul:
+```text
+1 Bianca 9.5
+2 Mara 9.5
+3 Andrei 8.75
+4 Ion 7.0
+```
+
+:::atentie
+## Greșeli frecvente
+- Scrii `L = L.sort()`: `sort()` modifică lista și întoarce `None`, deci rămâi cu `L = None`. Scrie doar `L.sort()` sau `L = sorted(L)`.
+- Ștergi elemente dintr-o listă în timp ce o parcurgi cu `for`: unele elemente sunt sărite. Construiește o listă nouă.
+- `L.remove(x)` șterge doar **prima** apariție a lui x și dă eroare dacă x lipsește.
+- `L.index(x)` dă `ValueError` când x nu există. Verifică întâi cu `x in L`.
 :::
 
 ### 🔮 1.17.3 Citește și prezice
@@ -929,13 +1108,15 @@ print(pozitii([1, 5, 1, 5], 5))  # [1, 3]
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
+Completează căutarea liniară care întoarce poziția primei apariții a lui x sau -1 dacă x lipsește. Programul afișează rezultatele pentru 9 și 4.
+template: def cauta(L, x):
+    for i in range(len(L)):
+        if L[i] == x:
+            return ___
+    return -1
 
-salut('Ana')
-output: Salut, Ana!
+print(cauta([3, 9, 2, 9], 9), cauta([3, 9, 2, 9], 4))
+output: 1 -1
 :::
 
 # Modulul 1.18 — Generarea sistematica a secventelor de valori
@@ -963,12 +1144,29 @@ perechi = [(x, y) for x in range(5) for y in range(5) if x < y]
 print(perechi)
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Câte numere de 3 cifre au suma cifrelor egală cu 10? Le generăm sistematic, cifră cu cifră.
+
+**Ideea.** Prima cifră ia valori de la 1 la 9, celelalte de la 0 la 9. Trei bucle imbricate parcurg toate cele 900 de numere, iar noi numărăm doar ce respectă condiția.
+
+```python
+nr = 0
+for a in range(1, 10):
+    for b in range(10):
+        for c in range(10):
+            if a + b + c == 10:
+                nr += 1
+print(nr)
+```
+Rezultatul: `54`.
+
 :::atentie
-O funcție oprește executarea imediat ce întâlnește instrucțiunea return. Codul scris după return în același bloc nu va fi executat niciodată!
-:::
+## Greșeli frecvente
+- Folosești aceeași variabilă în ambele bucle (`for i ...: for i ...`): bucla interioară strică valoarea celei exterioare.
+- Generezi și perechea (a, b), și perechea (b, a) când ordinea nu contează. Pornește bucla interioară de la `a + 1`.
+- Pentru numere de 3 cifre lași prima cifră să fie 0: rezultatul e de fapt un număr de 2 cifre. Prima cifră începe de la 1.
+- Numărul de combinații crește foarte repede: 3 bucle de câte 100 de valori înseamnă un milion de pași.
 :::
 
 ### 🔮 1.18.3 Citește și prezice
@@ -991,7 +1189,7 @@ for a in range(1, 5):
         print(a, b)
 ```
 
-**Exercițiul 2.** Generează toate numerele de 2 cifre (de la 10 la 99) care sunt pare.
+**Exercițiul 2.** Parcurge numerele de 2 cifre (de la 10 la 99) și afișează câte dintre ele sunt pare și care este suma lor.
 
 ### 🎯 1.18.5 Exerciții independente
 
@@ -1019,13 +1217,13 @@ for a in range(1, 5):
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Completează limitele buclei interioare, ca programul să numere perechile (a, b) cu 1 ≤ a < b ≤ 5.
+template: nr = 0
+for a in range(1, 6):
+    for b in range(___, 6):
+        nr += 1
+print(nr)
+output: 10
 :::
 
 # Modulul 1.19 — Sortare: selectia minimului
@@ -1054,12 +1252,37 @@ print(selectie_minim([5, 2, 9, 1, 5, 6]))  # [1, 2, 5, 5, 6, 9]
 
 Complexitate: O(n²) — pentru fiecare poziție parcurgem restul.
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-În Python, obiectele mutabile (cum sunt listele) transmise ca parametri la funcții pot fi modificate direct în interiorul funcției!
-:::
+**Enunț.** Urmărim pas cu pas selecția minimului pe lista [29, 10, 14, 37, 13], afișând lista după fiecare pas.
+
+**Ideea.** La pasul i căutăm poziția minimului în porțiunea L[i:] și îl aducem pe poziția i. După fiecare pas, primele i + 1 elemente sunt la locul lor definitiv.
+
+```python
+L = [29, 10, 14, 37, 13]
+n = len(L)
+for i in range(n - 1):
+    p = i
+    for j in range(i + 1, n):
+        if L[j] < L[p]:
+            p = j
+    L[i], L[p] = L[p], L[i]
+    print('pasul', i + 1, L)
+```
+Rezultatul:
+```text
+pasul 1 [10, 29, 14, 37, 13]
+pasul 2 [10, 13, 14, 37, 29]
+pasul 3 [10, 13, 14, 37, 29]
+pasul 4 [10, 13, 14, 29, 37]
+```
+
+:::atentie
+## Greșeli frecvente
+- Interschimbi în bucla interioară, la fiecare element mai mic găsit. Algoritmul tot sortează, dar face mult mai multe interschimbări. Interschimbarea se face o singură dată, după bucla interioară.
+- Pornești bucla interioară de la 0 în loc de `i + 1` și compari cu elemente deja așezate.
+- Reții valoarea minimă, dar nu și **poziția** ei: atunci nu știi ce element să interschimbi.
+- Uiți că funcția modifică lista primită. Dacă ai nevoie de original, sortează o copie: `selectie(L[:])`.
 :::
 
 ### 🔮 1.19.3 Citește și prezice
@@ -1123,13 +1346,16 @@ def selectie_minim(L):
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Completează condiția ca selecția să sorteze **descrescător** (aducând la fiecare pas maximul pe poziția curentă).
+template: L = [4, 9, 1, 7]
+for i in range(len(L)):
+    p = i
+    for j in range(i + 1, len(L)):
+        if L[j] ___ L[p]:
+            p = j
+    L[i], L[p] = L[p], L[i]
+print(L)
+output: [9, 7, 4, 1]
 :::
 
 # Modulul 1.20 — Sortare: metoda bulelor si lista de frecvente
@@ -1169,12 +1395,39 @@ def counting_sort(lista, max_val):
 print(counting_sort([2, 3, 2, 1, 3], 3))  # [1, 2, 2, 3, 3]
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Avem notele de la o lucrare (de la 1 la 10). Afișăm câți elevi au luat fiecare notă care apare și nota cea mai frecventă, folosind o listă de frecvențe.
+
+**Ideea.** `frecv[nota]` numără aparițiile fiecărei note. Parcurgând lista de frecvențe în ordine, obținem automat notele sortate crescător.
+
+```python
+note = [7, 9, 10, 7, 8, 9, 7, 5, 10, 9, 7]
+frecv = [0] * 11
+for n in note:
+    frecv[n] += 1
+
+for nota in range(1, 11):
+    if frecv[nota] > 0:
+        print(nota, frecv[nota])
+print('cea mai frecventă:', frecv.index(max(frecv)))
+```
+Rezultatul:
+```text
+5 1
+7 4
+8 1
+9 3
+10 2
+cea mai frecventă: 7
+```
+
 :::atentie
-Modificarea unei variabile globale în interiorul unei funcții necesită cuvântul cheie global; altfel, Python va crea o variabilă locală nouă cu același nume!
-:::
+## Greșeli frecvente
+- Bucla interioară merge până la `n` în loc de `n - i - 1`: `L[j + 1]` iese din listă (`IndexError`).
+- Folosești `>=` în loc de `>`: interschimbi și elemente egale, deci faci pași inutili și schimbi ordinea elementelor egale.
+- La lista de frecvențe, dimensiunea e prea mică: pentru valori până la 10 ai nevoie de `[0] * 11` (indicii 0–10).
+- Folosești lista de frecvențe pentru valori uriașe sau negative. Metoda e bună doar pentru valori mici, naturale.
 :::
 
 ### 🔮 1.20.3 Citește și prezice
@@ -1234,11 +1487,17 @@ def bubble(L):
 
 
 :::verifica-cod
-Scrie o funcție `salut(nume)` care afișează un salut personalizat. Demo: `salut('Ana')` -> `Salut, Ana!`
-template: def salut(nume):
-    # completeaza
-    pass
-
-salut('Ana')
-output: Salut, Ana!
+Completează bubble sort cu oprire timpurie: dacă într-o trecere nu s-a făcut nicio interschimbare, lista e deja sortată și ne oprim.
+template: L = [3, 1, 2, 4, 5]
+n = len(L)
+for i in range(n):
+    schimbat = False
+    for j in range(n - i - 1):
+        if L[j] > L[j + 1]:
+            L[j], L[j + 1] = L[j + 1], L[j]
+            schimbat = True
+    if not schimbat:
+        ___
+print(L, i)
+output: [1, 2, 3, 4, 5] 1
 :::
