@@ -56,7 +56,7 @@ export default async function ModulCursPage({ params }: { params: Promise<Params
   const areContinut = Boolean(modulC && modulC.sublectii.length > 0);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:max-w-5xl lg:px-8">
       <BreadcrumbJsonLd
         firimituri={[
           { nume: "Curs practic", cale: "/curs-practic" },

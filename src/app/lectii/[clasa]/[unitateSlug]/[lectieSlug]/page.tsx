@@ -59,7 +59,7 @@ export default async function LectiePage({ params }: { params: Promise<Params> }
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:max-w-5xl lg:px-8">
       <nav className="text-sm text-foreground/65">
         <Link href="/curriculum" className="hover:text-brand">
           Curriculum

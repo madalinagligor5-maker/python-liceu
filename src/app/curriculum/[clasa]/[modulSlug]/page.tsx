@@ -167,7 +167,7 @@ export default async function ModulPage({ params }: { params: Promise<Params> })
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:max-w-5xl lg:px-8">
       <JsonLd date={cursModul(modul, capitol, descriereModul(modul, clasa), termeni)} />
       <BreadcrumbJsonLd
         firimituri={[

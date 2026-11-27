@@ -76,7 +76,7 @@ export default function BlocuriSublectie({
             return (
               <div
                 key={i}
-                className="max-w-[68ch] text-[15.5px] leading-[1.75] text-foreground/90 [&_p+p]:mt-4"
+                className="max-w-[72ch] text-[15.5px] lg:max-w-[86ch] lg:text-base leading-[1.75] text-foreground/90 [&_p+p]:mt-4"
                 dangerouslySetInnerHTML={{ __html: b.html }}
               />
             );

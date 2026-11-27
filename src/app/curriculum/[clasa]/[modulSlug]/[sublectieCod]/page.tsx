@@ -192,7 +192,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
     // getPredicție: conținutul plătit nu trebuie să existe deloc în arborele
     // de randare al acestei ramuri, nu doar să fie ascuns vizual.
     return (
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:max-w-5xl lg:px-8">
         {breadcrumbJsonLd}
         {breadcrumb}
         {indicatorPasi}
@@ -292,7 +292,7 @@ export default async function SublectiePage({ params }: { params: Promise<Params
   if (!continut) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:max-w-5xl lg:px-8">
       {breadcrumbJsonLd}
       {breadcrumb}
       {indicatorPasi}
