@@ -66,6 +66,44 @@ O rețea neuronală reală înlănțuie mulți astfel de neuroni pe mai multe st
 Fără bias, un neuron cu toate intrările 0 dă mereu suma ponderată 0, indiferent de greutăți (orice număr × 0 = 0). Bias-ul e singurul termen care poate „porni" neuronul chiar și când toate intrările sunt zero — de asta e un parametru separat, învățat la fel ca greutățile.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un singur neuron poate învăța funcția logică ȘI (AND). Pornim de la greutăți nule și aplicăm regula perceptronului până când clasifică corect toate cele 4 cazuri.
+
+**Ideea.** Pentru fiecare exemplu calculăm ieșirea (treaptă). Dacă greșește, corectăm: w += rata · (țintă - ieșire) · x și b += rata · (țintă - ieșire). Ne oprim când o trecere completă nu mai are greșeli.
+
+```python
+date = [([0, 0], 0), ([0, 1], 0), ([1, 0], 0), ([1, 1], 1)]
+w, b, rata = [0.0, 0.0], 0.0, 0.1
+epoca = 0
+while True:
+    greseli = 0
+    for x, t in date:
+        y = 1 if w[0] * x[0] + w[1] * x[1] + b > 0 else 0
+        if y != t:
+            greseli += 1
+            w = [wi + rata * (t - y) * xi for wi, xi in zip(w, x)]
+            b += rata * (t - y)
+    epoca += 1
+    if greseli == 0:
+        break
+print('epoci:', epoca)
+print([1 if w[0] * x[0] + w[1] * x[1] + b > 0 else 0 for x, _ in date])
+```
+Rezultatul:
+```text
+epoci: 6
+[0, 0, 0, 1]
+```
+
+:::atentie
+## Greșeli frecvente
+- Aduni intrările fără să le înmulțești cu greutățile: rezultatul nu mai depinde de ce a învățat neuronul.
+- Uiți bias-ul: pentru intrări nule, neuronul dă mereu 0, indiferent de greutăți.
+- Folosești funcția treaptă când ai nevoie de o valoare între 0 și 1 interpretabilă ca probabilitate: atunci folosești sigmoid.
+- Ai liste de intrări și greutăți de lungimi diferite: `zip` se oprește la cea mai scurtă și ignoră în tăcere restul.
+:::
+
 ### 🔮 4.18.3 Citește și prezice
 
 ```python
@@ -115,6 +153,18 @@ print("Suma ponderata:", suma)
 1. Un neuron are o singură intrare `x`, greutate `w = 0`, bias `b = 5`. Ce se întâmplă cu suma ponderată, indiferent ce valoare are `x`?
    a) Suma ponderată e mereu 0, pentru că orice e înmulțit cu greutatea 0  b) **Suma ponderată e mereu 5 — bias-ul rămâne, dar contribuția lui `x` dispare complet, pentru că orice număr înmulțit cu 0 e 0**  c) Suma ponderată variază odată cu `x`, la fel ca la orice altă greutate  d) Neuronul aruncă o eroare, pentru că nu poți avea o greutate 0
       > În suma ponderată, contribuția lui x se calculează ca x înmulțit cu greutatea w; cum w = 0, acel produs e mereu 0 indiferent de x, deci rămâne doar bias-ul b = 5 neschimbat, exact ideea din lecție că bias-ul e singurul termen care poate "porni" neuronul independent de intrări.
+
+2. Ce calculează un neuron înainte de funcția de activare?
+   a) Produsul intrărilor  b) **Suma ponderată: Σ intrare · greutate + bias**  c) Media intrărilor
+      > Fiecare intrare e înmulțită cu greutatea ei, produsele se adună și se adaugă bias-ul.
+
+3. Ce valoare dă sigmoid(0)?
+   a) 0  b) **0.5**  c) 1
+      > 1 / (1 + e⁰) = 1 / 2.
+
+4. Ce se modifică în timpul învățării?
+   a) Intrările  b) **Greutățile și bias-ul**  c) Funcția de activare
+      > Antrenarea ajustează parametrii (greutăți și bias) ca ieșirea să se apropie de răspunsul corect.
 
 ---
 
@@ -173,6 +223,37 @@ Acest cod produce un grafic de bare orizontal, în text — fiecare linie e prop
 Codul cu `matplotlib.pyplot` de mai sus e exact ce ai scrie într-un mediu Python normal (Jupyter, VS Code) ca să obții un grafic vizual adevărat. Varianta cu `"█" * lungime` nu înlocuiește matplotlib — e un mod de a exersa *aceeași idee* (proporția dintre valori, comparație vizuală) direct în acest editor, care afișează doar text.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Facem în text o histogramă a notelor unei clase: pentru fiecare notă de la 5 la 10, o bară proporțională cu numărul de elevi care au luat-o.
+
+**Ideea.** Întâi numărăm aparițiile fiecărei note (frecvențe), apoi desenăm câte o bară scalată la frecvența maximă. Este exact ce face `plt.bar` sau `plt.hist` într-o fereastră grafică.
+
+```python
+note = [7, 8, 9, 7, 10, 6, 8, 8, 9, 5, 8, 7, 9, 10, 8]
+frecv = {n: note.count(n) for n in range(5, 11)}
+maxim = max(frecv.values())
+for n, f in frecv.items():
+    print(f'{n:>2} | ' + '#' * round(f / maxim * 10) + f' {f}')
+```
+Rezultatul:
+```text
+ 5 | ## 1
+ 6 | ## 1
+ 7 | ###### 3
+ 8 | ########## 5
+ 9 | ###### 3
+10 | #### 2
+```
+
+:::atentie
+## Greșeli frecvente
+- Folosești un grafic de linie pentru categorii fără ordine (ex. orașe): linia sugerează o evoluție care nu există. Pentru categorii folosește bare.
+- Uiți titlul și etichetele axelor: graficul nu mai poate fi citit fără explicații.
+- Scalezi barele la o valoare fixă în loc de maximul datelor: barele ies prea lungi sau toate la fel.
+- Pornești axa valorilor de la altă valoare decât 0 la un grafic de bare: diferențele mici par uriașe.
+:::
+
 ### 🔮 4.19.3 Citește și prezice
 
 ```python
@@ -212,6 +293,18 @@ for ore in ore_somn:
 1. Vrei să afli dacă există o relație între orele de studiu și nota obținută la un test, pe baza a 30 de elevi. Ce tip de grafic alegi, și de ce?
    a) Grafic de linie, pentru că timpul trece de la un elev la altul  b) Grafic de bare, pentru că fiecare elev e o categorie separată  c) **Scatter (puncte), pentru că vrei să vezi dacă cele două caracteristici numerice (ore, notă) variază împreună**  d) Niciunul — relațiile între caracteristici nu se pot vizualiza, doar se calculează
       > Orele de studiu și nota sunt ambele caracteristici numerice pentru fiecare din cei 30 de elevi, iar scatter-ul plasează fiecare elev ca punct pe cele două axe, permițându-ți să vezi dintr-o privire dacă cele două valori cresc împreună — exact rolul scatter-ului descris în lecție, diferit de linie (evoluție în timp) sau bare (comparație între categorii).
+
+2. Ce grafic arată cel mai bine evoluția temperaturii pe 30 de zile?
+   a) Bare  b) **Linie**  c) Scatter
+      > Linia unește valorile succesive în timp și arată tendința.
+
+3. Ce grafic compară vânzările a 5 magazine?
+   a) Linie  b) **Bare**  c) Histogramă
+      > Magazinele sunt categorii separate; barele se compară ușor între ele.
+
+4. Ce face `plt.show()`?
+   a) Salvează graficul pe disc  b) **Afișează graficul într-o fereastră**  c) Șterge graficul
+      > Fără `plt.show()` (sau `plt.savefig`), graficul construit nu apare nicăieri.
 
 ---
 
@@ -280,6 +373,39 @@ print("Abaterea standard:", round(abatere, 2))
 Pentru un tabel cu 3 rânduri, ca mai sus, diferența nu se simte. Dar Pandas citește direct fișiere CSV cu mii de rânduri, filtrează, grupează și calculează aceste statistici pe coloane întregi într-o singură linie, optimizat intern — codul din listă/dicționar de mai sus e util ca să înțelegi *ce calculează* Pandas pe dinăuntru, nu ca înlocuitor pentru el la scară mare.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Scriem o mini-funcție `describe` (ca în Pandas) pentru un tabel reprezentat ca dicționar de coloane și o aplicăm pe două coloane.
+
+**Ideea.** Pentru fiecare coloană calculăm număr, medie, minim, maxim și abaterea standard (populație). Aceleași statistici le calculează `df.describe()` pentru fiecare coloană numerică.
+
+```python
+import math
+tabel = {'varsta': [17, 19, 18, 17, 19], 'nota': [8, 9.5, 7, 10, 8.5]}
+
+def descrie(col):
+    n = len(col)
+    m = sum(col) / n
+    std = math.sqrt(sum((x - m) ** 2 for x in col) / n)
+    return {'count': n, 'mean': round(m, 2), 'min': min(col), 'max': max(col), 'std': round(std, 2)}
+
+for nume, col in tabel.items():
+    print(nume, descrie(col))
+```
+Rezultatul:
+```text
+varsta {'count': 5, 'mean': 18.0, 'min': 17, 'max': 19, 'std': 0.89}
+nota {'count': 5, 'mean': 8.6, 'min': 7, 'max': 10, 'std': 1.07}
+```
+
+:::atentie
+## Greșeli frecvente
+- Calculezi media unei coloane care conține și texte sau valori lipsă: întâi curăță datele.
+- Confunzi media cu mediana: la date cu valori extreme (ex. un salariu uriaș), mediana descrie mai bine valoarea „tipică”.
+- Calculezi abaterea standard fără să ridici diferențele la pătrat: diferențele pozitive și negative se anulează.
+- Scrii `df['coloana']` cu un nume greșit (litere mari, spații): apare `KeyError`.
+:::
+
 ### 🔮 4.20.3 Citește și prezice
 
 ```python
@@ -322,6 +448,18 @@ print("Media:", medie, "| Maxim:", maxim)
 1. O coloană cu notele `[10, 10, 10, 10]` și o coloană cu notele `[2, 10, 5, 15]` au aceeași medie (aproximativ). Ce le diferențiază, din punct de vedere statistic?
    a) Nimic — dacă media e la fel, coloanele sunt echivalente pentru orice analiză  b) **Abaterea standard: prima coloană are abatere 0 (toate valorile identice), a doua are abatere mare (valori foarte împrăștiate)**  c) Numărul de valori (`count`), care diferă mereu când mediile sunt apropiate  d) Maximul, care e mereu egal cu media înmulțită cu numărul de valori
       > Media identică ascunde cât de împrăștiate sunt valorile: în prima coloană fiecare notă e exact egală cu media, deci diferențele față de medie sunt 0, iar în a doua notele variază mult față de medie, ceea ce abaterea standard, calculată din pătratele acestor diferențe, surprinde direct — media singură nu arată asta.
+
+2. Ce este un DataFrame în Pandas?
+   a) O listă simplă  b) **Un tabel cu rânduri și coloane cu nume**  c) Un grafic
+      > Seamănă cu o foaie de calcul: fiecare coloană are un nume și conține valori de același fel.
+
+3. Ce măsoară abaterea standard?
+   a) Valoarea cea mai frecventă  b) **Cât de împrăștiate sunt valorile față de medie**  c) Numărul de valori
+      > O abatere mică înseamnă valori apropiate de medie; una mare, valori foarte diferite.
+
+4. Pentru salariile [3000, 3200, 3100, 50000], ce descrie mai bine salariul tipic?
+   a) Media  b) **Mediana**  c) Maximul
+      > Valoarea extremă trage media în sus; mediana (3150) rămâne reprezentativă.
 
 ---
 
@@ -397,21 +535,54 @@ def acuratete(X_test, y_test, X_train, y_train):
 Dacă normalizezi sau alegi caracteristici (features) folosind INFORMAȚII din setul de test, „scurgi" informație din test înapoi în antrenare — modelul pare mai bun decât e de fapt. Regula simplă: orice decizie luată pe baza datelor (normalizare, alegere de parametri) se ia STRICT pe setul de antrenare, niciodată uitându-te la setul de test.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Construim de mână fluxul scikit-learn: împărțim datele în antrenare și test (reproductibil, cu `random.seed`), antrenăm un clasificator 1-NN și calculăm acuratețea pe test.
+
+**Ideea.** `random.seed(0)` face amestecarea identică la fiecare rulare. Modelul vede doar datele de antrenare; acuratețea se măsoară pe exemplele de test, nevăzute.
+
+```python
+import random
+X = [[1, 1], [1, 2], [2, 1], [2, 2], [8, 8], [8, 9], [9, 8], [9, 9]]
+y = ['A', 'A', 'A', 'A', 'B', 'B', 'B', 'B']
+random.seed(0)
+idx = list(range(len(X)))
+random.shuffle(idx)
+test, antr = idx[:2], idx[2:]
+
+def prezice(p):
+    cel = min(antr, key=lambda i: sum((a - b) ** 2 for a, b in zip(X[i], p)))
+    return y[cel]
+
+corecte = sum(prezice(X[i]) == y[i] for i in test)
+print(len(antr), len(test), corecte / len(test))
+```
+Rezultatul: `6 2 1.0`.
+
+:::atentie
+## Greșeli frecvente
+- Evaluezi modelul pe aceleași date pe care l-ai antrenat: scorul pare excelent, dar nu spune nimic despre date noi.
+- Împarți datele fără amestecare, iar toate exemplele unei clase ajung doar în test.
+- Normalizezi folosind și datele de test (data leakage).
+- Te uiți doar la acuratețe pe un set dezechilibrat: un model care spune mereu „Nu” are 95% acuratețe dacă 95% din exemple sunt „Nu”.
+:::
+
 ### 🔮 4.21.3 Citește și prezice
 
 ```python
 def distanta(a, b):
     return sum((ai - bi) ** 2 for ai, bi in zip(a, b)) ** 0.5
 
-exemplu_nou = [5, 5]
+exemplu_nou = [4, 4]
 X_train = [[1, 1], [2, 2], [8, 8], [9, 9]]
 y_train = ["A", "A", "B", "B"]
 
-distante = [distanta(exemplu_nou, x) for x in X_train]
+distante = [round(distanta(exemplu_nou, x), 2) for x in X_train]
 print(distante)
+print(y_train[distante.index(min(distante))])
 ```
 
-Care punct din `X_train` e cel mai aproape de `[5, 5]`? Ce etichetă ar primi `exemplu_nou` de la un clasificator 1-NN?
+Care punct din `X_train` e cel mai aproape de `[4, 4]`? Ce etichetă ar primi `exemplu_nou` de la un clasificator 1-NN?
 
 ### 🤝 4.21.4 Exerciții ghidate
 
@@ -444,6 +615,18 @@ print("Acuratete:", acuratete)
 1. Antrenezi un model pe 100 de exemple și îl testezi tot pe acele 100 de exemple, obținând acuratețe 100%. Ce concluzie e corectă?
    a) Modelul e excelent și va avea performanță la fel de bună pe exemple noi  b) **Nu poți ști dacă modelul a învățat un tipar general sau doar a memorat exemplele — acuratețea trebuie măsurată pe date nefolosite la antrenare**  c) Acuratețea de 100% e imposibilă și indică o eroare în cod  d) Modelul e prea simplu, pentru că a obținut scor maxim
       > Testat pe exact aceleași exemple pe care le-a văzut la antrenare, un model care doar a memorat datele (fără să învețe un tipar general) ar obține tot scor perfect, la fel ca unul care a învățat cu adevărat — abia performanța pe date noi, nefolosite la antrenare, arată dacă modelul generalizează sau doar a reținut exemplele.
+
+2. De ce împărțim datele în antrenare și test?
+   a) Ca modelul să învețe mai repede  b) **Ca să măsurăm cât de bine merge modelul pe date pe care nu le-a văzut**  c) Ca să avem mai puține date
+      > Testul simulează date noi; un model care doar memorează ar eșua acolo.
+
+3. Ce fac, în ordine, `fit`, `predict` și `accuracy_score`?
+   a) Testează, antrenează, desenează  b) **Antrenează modelul, face predicții, compară predicțiile cu realitatea**  c) Toate trei antrenează
+      > Acesta e fluxul standard, identic pentru orice model din scikit-learn.
+
+4. Ce acuratețe are un model care ghicește 18 din 20 de exemple de test?
+   a) 0.18  b) **0.9**  c) 18
+      > 18 / 20 = 0.9, adică 90%.
 
 ---
 
@@ -526,6 +709,38 @@ print(inmultire_matrici(a, b))
 Codul `inmultire_matrici` de mai sus rulează bucle Python obișnuite — pentru matrici mari (mii de linii), asta devine lent. NumPy face aceleași înmulțiri și adunări, dar în cod C compilat, executat vectorizat (pe blocuri întregi de memorie deodată), nu element cu element interpretat de Python. Rezultatul matematic e identic — diferența e doar viteza.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Aplicăm un strat de rețea neuronală pe un lot de 3 exemple dintr-odată, cu înmulțire de matrici: X (3 × 2) · W (2 × 2) + bias. Așa calculează bibliotecile de ML.
+
+**Ideea.** Fiecare linie din X e un exemplu, fiecare coloană din W conține greutățile unui neuron. Produsul X · W dă, pentru fiecare exemplu, sumele ponderate ale tuturor neuronilor.
+
+```python
+def inmulteste(A, B):
+    return [[sum(a * b for a, b in zip(linie, col)) for col in zip(*B)] for linie in A]
+
+X = [[1, 2], [0, 1], [3, 0]]
+W = [[0.5, -1], [1, 2]]
+b = [0.1, 0.0]
+Z = inmulteste(X, W)
+Z = [[round(z + bi, 2) for z, bi in zip(linie, b)] for linie in Z]
+print(Z)
+print(inmulteste([[1, 2], [3, 4]], [[0, 1], [1, 0]]), inmulteste([[0, 1], [1, 0]], [[1, 2], [3, 4]]))
+```
+Rezultatul:
+```text
+[[2.6, 3.0], [1.1, 2.0], [1.6, -3.0]]
+[[2, 1], [4, 3]] [[3, 4], [1, 2]]
+```
+
+:::atentie
+## Greșeli frecvente
+- Confunzi înmulțirea element cu element cu înmulțirea de matrici. Ele dau rezultate diferite.
+- Înmulțești matrici cu dimensiuni nepotrivite: numărul de coloane al primei trebuie să fie egal cu numărul de linii al celei de-a doua.
+- Crezi că A · B = B · A. Înmulțirea de matrici nu este comutativă.
+- Confunzi `axis=0` (pe coloane, de sus în jos) cu `axis=1` (pe linii, de la stânga la dreapta) în NumPy.
+:::
+
 ### 🔮 4.22.3 Citește și prezice
 
 ```python
@@ -565,6 +780,18 @@ print("Suma pe linii:", sume_linii)
 1. Ai două matrici pătratice m1 și m2. Ce diferență e între înmulțirea element cu element și înmulțirea de matrici (`np.dot`)?
    a) Sunt exact aceeași operație, doar scrise diferit  b) **Element cu element înmulțește valorile aflate pe aceeași poziție; `np.dot` calculează, pentru fiecare poziție din rezultat, produsul scalar dintre o linie din prima matrice și o coloană din a doua**  c) Înmulțirea element cu element funcționează doar pentru matrici pătratice, `np.dot` funcționează pentru orice formă  d) `np.dot` e doar o altă denumire pentru adunarea de matrici
       > Înmulțirea element cu element combină doar valorile aflate pe aceeași poziție din cele două matrici, în timp ce np.dot calculează fiecare element din rezultat ca produs scalar între o linie întreagă din prima matrice și o coloană întreagă din a doua, deci cele două operații folosesc valori și reguli complet diferite, chiar dacă ambele matrici sunt pătratice.
+
+2. Ce dimensiune are produsul dintre o matrice 2 × 3 și una 3 × 4?
+   a) 3 × 3  b) **2 × 4**  c) Nu se pot înmulți
+      > Rezultatul are liniile primei matrice (2) și coloanele celei de-a doua (4).
+
+3. Ce dă `[1, 2, 3] + [4, 5, 6]` cu liste Python și cu NumPy?
+   a) Aceeași sumă  b) **Listele se concatenează; NumPy adună element cu element: [5, 7, 9]**  c) Eroare în ambele cazuri
+      > Pentru liste, `+` lipește; pentru vectori NumPy, `+` adună pozițiile corespunzătoare.
+
+4. Ce element se află în poziția (0, 0) a produsului [[1, 2], [3, 4]] · [[5, 6], [7, 8]]?
+   a) 5  b) **19**  c) 12
+      > 1 · 5 + 2 · 7 = 19 (produsul scalar dintre prima linie și prima coloană).
 
 ---
 

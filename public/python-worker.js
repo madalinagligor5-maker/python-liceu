@@ -125,6 +125,17 @@ self.onmessage = async function (e) {
 
   // Spațiu de nume nou la fiecare rulare: variabilele unui exercițiu anterior
   // nu mai pot face „să treacă" un cod greșit.
+  // sqlite3 nu face parte din nucleul Pyodide: pachetul (public/pyodide/
+  // sqlite3-1.0.0.zip) se încarcă doar când codul îl importă.
+  if (/^\s*(import|from)\s+sqlite3\b/m.test(String(msg.cod || ""))) {
+    try {
+      await py.loadPackage("sqlite3", { messageCallback: function () {} });
+    } catch (err) {
+      self.postMessage({ tip: "eroare-incarcare", mesaj: "Nu am putut încărca modulul sqlite3: " + String((err && err.message) || err) });
+      return;
+    }
+  }
+
   var spatiu = py.globals.get("dict")();
   // Ca la `python fisier.py`: altfel `if __name__ == "__main__":` nu rulează.
   spatiu.set("__name__", "__main__");

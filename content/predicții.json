@@ -680,22 +680,22 @@
     "corect": 1
   },
   "4.3.3": {
-    "cod": "def tabela_cu_cheie_externa(tabela_n, coloana_fk, tabel_referit):\n    return tabela_n\n\nprint(tabela_cu_cheie_externa(\"Student\", \"curs_id\", \"Curs\"))",
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Curs(cod TEXT PRIMARY KEY, denumire TEXT)\")\nconn.execute(\"CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, curs_cod TEXT REFERENCES Curs(cod))\")\n\nfor tabel in [\"Curs\", \"Student\"]:\n    chei_externe = conn.execute(f\"PRAGMA foreign_key_list({tabel})\").fetchall()\n    print(tabel, len(chei_externe))",
+    "enunt": "Un curs are mulți studenți (relație 1:N). `PRAGMA foreign_key_list` întoarce cheile externe ale unui tabel. Ce se afișează?",
     "variante": [
-      "Student",
-      "Curs",
-      "Ambele",
-      "Niciunul"
+      "Curs 0, apoi Student 1",
+      "Curs 1, apoi Student 0",
+      "Curs 1, apoi Student 1"
     ],
     "corect": 0
   },
   "4.4.3": {
-    "cod": "def valideaza_fk(curs_id, cursuri_existente):\n    if curs_id not in cursuri_existente:\n        return \"Eroare (integritate referențială)\"\n    return \"OK\"\n\nprint(valideaza_fk(99, {1, 2, 3}))",
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"PRAGMA foreign_keys = ON\")\nconn.execute(\"CREATE TABLE Curs(id INTEGER PRIMARY KEY)\")\nconn.execute(\"CREATE TABLE Student(id INTEGER PRIMARY KEY, curs_id INTEGER REFERENCES Curs(id))\")\nconn.execute(\"INSERT INTO Curs VALUES (1)\")\n\ntry:\n    conn.execute(\"INSERT INTO Student VALUES (1, 99)\")\n    print(\"Inserat\")\nexcept sqlite3.IntegrityError as e:\n    print(\"Refuzat:\", e)",
+    "enunt": "Cursul cu id-ul 99 nu există. Ce se întâmplă la inserarea studentului?",
     "variante": [
-      "Eroare (integritate referențială)",
-      "Merge",
-      "Sterge Cursul",
-      "Ignoră"
+      "Refuzat: FOREIGN KEY constraint failed",
+      "Inserat",
+      "Cursul 99 se creează automat"
     ],
     "corect": 0
   },
@@ -710,72 +710,74 @@
     "corect": 0
   },
   "4.6.3": {
-    "cod": "class CursorSimulat:\n    def __init__(self, tabel):\n        self.tabel = tabel\n    def insereaza(self, valoare):\n        self.tabel.append(valoare)  # vizibil imediat pe aceeasi conexiune, chiar fara commit\n\ntabel = []\ncursor = CursorSimulat(tabel)\ncursor.insereaza(5)\nprint(len(tabel))",
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\ncur = conn.cursor()\ncur.execute(\"CREATE TABLE T(x INTEGER)\")\ncur.execute(\"INSERT INTO T VALUES (5)\")\n# încă nu am apelat conn.commit()\nprint(cur.execute(\"SELECT COUNT(*) FROM T\").fetchone()[0])",
+    "enunt": "Pe aceeași conexiune, înainte de `commit`, câte rânduri vede `SELECT COUNT(*)`?",
     "variante": [
       "1",
       "0",
-      "Eroare",
-      "Necunoscut"
-    ],
-    "corect": 0
-  },
-  "4.7.3": {
-    "cod": "studenti = [(\"Ana\", 17), (\"Bogdan\", 19), (\"Cris\", 17)]\nordonati = sorted(studenti, key=lambda s: (-s[1], s[0]))\nprint(ordonati[0][0])",
-    "variante": [
-      "Bogdan",
-      "Ana",
-      "Cris",
-      "Bogdan,Ana"
-    ],
-    "corect": 0
-  },
-  "4.8.3": {
-    "cod": "vanzari = [(\"A\", 100), (\"A\", 200), (\"B\", 50)]\nsuma_a = sum(suma for oras, suma in vanzari if oras == \"A\")\nprint(suma_a)",
-    "variante": [
-      "300",
-      "100",
-      "350",
-      "200"
-    ],
-    "corect": 0
-  },
-  "4.9.3": {
-    "cod": "student = [(1, \"Ana\"), (2, \"Bogdan\")]\ninscriere = [(1, 10), (2, 10)]\nrezultat = [(s, i) for s in student for i in inscriere if s[0] == i[0]]\nprint(len(rezultat))",
-    "variante": [
-      "2",
-      "1",
-      "0",
-      "4"
-    ],
-    "corect": 0
-  },
-  "4.10.3": {
-    "cod": "studenti = {\"Ana\": 17, \"Bogdan\": 19}\nstudenti[\"Ana\"] += 1\nprint(studenti[\"Ana\"])",
-    "variante": [
-      "18",
-      "17",
-      "19",
       "Eroare"
     ],
     "corect": 0
   },
-  "4.11.3": {
-    "cod": "coloane = [\"a\"]\ncoloane.append(\"b\")\nprint(len(coloane))",
+  "4.7.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Student(nume TEXT, varsta INTEGER)\")\nconn.executemany(\"INSERT INTO Student VALUES (?, ?)\", [(\"Ana\", 17), (\"Bogdan\", 19), (\"Cris\", 17)])\n\nrez = conn.execute(\"SELECT nume FROM Student ORDER BY varsta DESC, nume ASC\").fetchall()\nprint(rez[0][0], rez[-1][0])",
     "variante": [
-      "2",
-      "1",
+      "Bogdan Cris",
+      "Ana Cris",
+      "Bogdan Ana",
+      "Cris Bogdan"
+    ],
+    "corect": 0
+  },
+  "4.8.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Vanzari(oras TEXT, suma INTEGER)\")\nconn.executemany(\"INSERT INTO Vanzari VALUES (?, ?)\", [(\"A\", 100), (\"A\", 200), (\"B\", 50)])\n\nfor oras, total in conn.execute(\"SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras ORDER BY oras\"):\n    print(oras, total)",
+    "variante": [
+      "A 300, apoi B 50",
+      "A 100, apoi A 200, apoi B 50",
+      "A 350",
+      "A 200, apoi B 50"
+    ],
+    "corect": 0
+  },
+  "4.9.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Student(id INTEGER, nume TEXT)\")\nconn.execute(\"CREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER)\")\nconn.executemany(\"INSERT INTO Student VALUES (?, ?)\", [(1, \"Ana\"), (2, \"Bogdan\"), (3, \"Cris\")])\nconn.executemany(\"INSERT INTO Inscriere VALUES (?, ?)\", [(1, 10), (2, 10), (1, 20)])\n\nrez = conn.execute(\"SELECT s.nume, i.curs_id FROM Student s JOIN Inscriere i ON s.id = i.student_id\").fetchall()\nprint(len(rez))",
+    "enunt": "Cris nu e înscris la niciun curs, iar Ana e înscrisă la două. Câte rânduri are rezultatul `INNER JOIN`?",
+    "variante": [
       "3",
-      "0"
+      "2",
+      "4",
+      "6"
+    ],
+    "corect": 0
+  },
+  "4.10.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Student(nume TEXT, varsta INTEGER)\")\nconn.executemany(\"INSERT INTO Student VALUES (?, ?)\", [(\"Ana\", 17), (\"Bogdan\", 19)])\nconn.execute(\"UPDATE Student SET varsta = varsta + 1 WHERE nume = 'Ana'\")\nprint(conn.execute(\"SELECT varsta FROM Student ORDER BY nume\").fetchall())",
+    "variante": [
+      "[(18,), (19,)]",
+      "[(18,), (20,)]",
+      "[(17,), (19,)]",
+      "[(17,), (20,)]"
+    ],
+    "corect": 0
+  },
+  "4.11.3": {
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE T(a INTEGER)\")\nconn.execute(\"ALTER TABLE T ADD COLUMN b INTEGER\")\ncoloane = conn.execute(\"PRAGMA table_info(T)\").fetchall()\nprint(len(coloane), [c[1] for c in coloane])",
+    "variante": [
+      "2 ['a', 'b']",
+      "1 ['a']",
+      "1 ['b']",
+      "Eroare"
     ],
     "corect": 0
   },
   "4.12.3": {
-    "cod": "def simuleaza_rollback(a_reusit_primul_update, a_reusit_al_doilea_update):\n    if a_reusit_primul_update and not a_reusit_al_doilea_update:\n        return \"Anuleaza tot transferul\"\n    return \"Confirma transferul\"\n\nprint(simuleaza_rollback(True, False))",
+    "cod": "import sqlite3\nconn = sqlite3.connect(\":memory:\")\nconn.execute(\"CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER)\")\nconn.executemany(\"INSERT INTO Cont VALUES (?, ?)\", [(1, 100), (2, 50)])\nconn.commit()\n\nconn.execute(\"UPDATE Cont SET sold = sold - 100 WHERE id = 1\")\n# al doilea UPDATE a eșuat, deci anulăm tot\nconn.rollback()\nprint(conn.execute(\"SELECT sold FROM Cont ORDER BY id\").fetchall())",
+    "enunt": "Primul `UPDATE` reușise, dar tranzacția e anulată. Ce solduri rămân?",
     "variante": [
-      "Anuleaza tot transferul",
-      "Pastreaza prima",
-      "Nu face nimic",
-      "Sterge conturile"
+      "[(100,), (50,)]",
+      "[(0,), (50,)]",
+      "[(0,), (150,)]",
+      "[]"
     ],
     "corect": 0
   },
@@ -830,52 +832,49 @@
     "corect": 0
   },
   "4.18.3": {
-    "cod": "x, w, b = 2, 3, 1\niesire = w * x + b\nprint(iesire)",
+    "cod": "import math\n\ndef suma_ponderata(intrari, greutati, bias):\n    total = 0\n    for x, w in zip(intrari, greutati):\n        total += x * w\n    return total + bias\n\nx = [1, 4]\nw = [2, 0.5]\nb = -3\n\nz = suma_ponderata(x, w, b)\nprint(z)\nprint(\"activat\" if z > 0 else \"neactivat\")",
     "variante": [
-      "7",
-      "6",
-      "5",
-      "3"
+      "1.0, apoi activat",
+      "-1.0, apoi neactivat",
+      "4.0, apoi activat",
+      "0, apoi neactivat"
     ],
     "corect": 0
   },
   "4.19.3": {
-    "cod": "temperaturi = [12, 24, 6, 18]\nmaxim = max(temperaturi)\n\nfor t in temperaturi:\n    lungime = round(t / maxim * 8)\n    print(\"█\" * lungime, t)",
-    "enunt": "Fiecare bară e scalată proporțional cu maximul (24), la 8 caractere. Bara lui 24 are exact 8 caractere (e chiar maximul). Câte caractere „█” are bara lui 18?",
+    "cod": "valori = [4, 9, 2, 7]\nmaxim = max(valori)\n\nfor v in valori:\n    lungime = round(v / maxim * 10)\n    print(\"█\" * lungime, v)",
+    "enunt": "Bara lui 9 (maximul) are exact 10 caractere. Câte caractere „█” are bara lui 2?",
     "variante": [
-      "6 caractere",
-      "8 caractere",
-      "4 caractere"
+      "2 caractere",
+      "5 caractere",
+      "1 caracter"
     ],
     "corect": 0
   },
   "4.20.3": {
-    "cod": "note = [6, 8, 10, 8]\nmedie = sum(note) / len(note)\nprint(round(medie, 2))\n\ndiferente_patrat = [(n - medie) ** 2 for n in note]\nabatere = (sum(diferente_patrat) / len(diferente_patrat)) ** 0.5\nprint(round(abatere, 2))",
-    "enunt": "Calculează manual media celor 4 note, apoi abaterea standard (formula din lecție: pătratul diferențelor față de medie, media lor, apoi rădăcina pătrată). Ce se afișează pe cele două linii?",
+    "cod": "note = [8, 9, 10, 7]\nmedie = sum(note) / len(note)\nprint(medie)\n\ndiferente_patrat = [(n - medie) ** 2 for n in note]\nprint(diferente_patrat)",
     "variante": [
-      "8.0 apoi 1.41",
-      "8.0 apoi 2.0",
-      "32 apoi 8.0"
+      "8.5, apoi [0.25, 0.25, 2.25, 2.25]",
+      "8.5, apoi [0.5, 0.5, 1.5, 1.5]",
+      "8, apoi [0, 1, 4, 1]"
     ],
     "corect": 0
   },
   "4.21.3": {
-    "cod": "n_exemple = 100\ntest_size = 0.2\nn_test = round(n_exemple * test_size)\nprint(n_test)",
+    "cod": "def distanta(a, b):\n    return sum((ai - bi) ** 2 for ai, bi in zip(a, b)) ** 0.5\n\nexemplu_nou = [4, 4]\nX_train = [[1, 1], [2, 2], [8, 8], [9, 9]]\ny_train = [\"A\", \"A\", \"B\", \"B\"]\n\ndistante = [round(distanta(exemplu_nou, x), 2) for x in X_train]\nprint(distante)\nprint(y_train[distante.index(min(distante))])",
     "variante": [
-      "20",
-      "80",
-      "0.2",
-      "100"
+      "[4.24, 2.83, 5.66, 7.07], apoi A",
+      "[4.24, 2.83, 5.66, 7.07], apoi B",
+      "[3, 2, 4, 5], apoi A"
     ],
     "corect": 0
   },
   "4.22.3": {
-    "cod": "def inmultire_matrici(a, b):\n    rezultat = []\n    for linie in a:\n        linie_noua = []\n        for j in range(len(b[0])):\n            coloana = [rand[j] for rand in b]\n            produs_scalar = sum(x * y for x, y in zip(linie, coloana))\n            linie_noua.append(produs_scalar)\n        rezultat.append(linie_noua)\n    return rezultat\n\na = [[1, 0], [0, 1]]\nb = [[3, 4], [5, 6]]\nprint(inmultire_matrici(a, b))",
-    "enunt": "Matricea `a` e matricea identitate (1 pe diagonală, 0 în rest). Fără să rulezi, ce crezi că întoarce înmulțirea de matrici `a` × `b`, calculată cu produs scalar linie-coloană?",
+    "cod": "m = [[2, 4], [6, 8]]\nsume_linii = [sum(linie) for linie in m]\nprint(sume_linii)\n\nnr_coloane = len(m[0])\nsume_coloane = [sum(linie[i] for linie in m) for i in range(nr_coloane)]\nprint(sume_coloane)",
     "variante": [
-      "[[3, 4], [5, 6]] — identică cu b",
-      "[[0, 0], [0, 0]]",
-      "[[1, 0], [0, 1]]"
+      "[6, 14], apoi [8, 12]",
+      "[8, 12], apoi [6, 14]",
+      "[6, 8], apoi [4, 8]"
     ],
     "corect": 0
   },

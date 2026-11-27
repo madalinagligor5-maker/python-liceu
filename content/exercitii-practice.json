@@ -2506,5 +2506,841 @@
       "template": "from collections import deque\nstart, tinta = (0, 0), (7, 7)\n# completează\n",
       "expectedOutput": "6"
     }
+  ],
+  "4.1": [
+    {
+      "titlu": "Entitatea Carte",
+      "enunt": "Definește o carte ca dicționar (isbn, titlu, autor, an) și afișează atributele separate prin virgulă.",
+      "template": "carte = {}  # completează\nprint(', '.join(carte))\n",
+      "expectedOutput": "isbn, titlu, autor, an"
+    },
+    {
+      "titlu": "Căutare după cheie",
+      "enunt": "Afișează titlul cărții cu isbn-ul '973-2'.",
+      "template": "carti = [\n    {'isbn': '973-1', 'titlu': 'Ion'},\n    {'isbn': '973-2', 'titlu': 'Enigma Otiliei'},\n]\n# completează\n",
+      "expectedOutput": "Enigma Otiliei"
+    },
+    {
+      "titlu": "Indexare după cheie",
+      "enunt": "Construiește dicționarul isbn → carte, ca accesul după cheie să fie direct, și afișează anul cărții '973-1'.",
+      "template": "carti = [{'isbn': '973-1', 'an': 1920}, {'isbn': '973-2', 'an': 1938}]\n# completează\n",
+      "expectedOutput": "1920"
+    },
+    {
+      "titlu": "Cheie duplicată?",
+      "enunt": "Afișează valorile de id care apar de mai multe ori (ar încălca cheia primară).",
+      "template": "randuri = [{'id': 1}, {'id': 2}, {'id': 1}, {'id': 3}, {'id': 2}]\n# completează\n",
+      "expectedOutput": "[1, 2]"
+    },
+    {
+      "titlu": "Atribut lipsă",
+      "enunt": "Fiecare elev trebuie să aibă atributele nume, clasa, media. Afișează numele elevilor cărora le lipsește vreun atribut.",
+      "template": "elevi = [{'nume': 'Ana', 'clasa': '12A', 'media': 9.1}, {'nume': 'Dan', 'clasa': '12B'}, {'nume': 'Eva', 'media': 8}]\n# completează\n",
+      "expectedOutput": "['Dan', 'Eva']"
+    },
+    {
+      "titlu": "Cheie compusă",
+      "enunt": "Într-un orar, nici sala, nici ora nu sunt unice, dar perechea (sala, ora) da. Verifică dacă perechea e unică și afișează True sau False.",
+      "template": "orar = [('A1', 8, 'mate'), ('A1', 9, 'info'), ('B2', 8, 'fizica'), ('B2', 9, 'romana')]\n# completează\n",
+      "expectedOutput": "True"
+    }
+  ],
+  "4.2": [
+    {
+      "titlu": "Cărțile unui autor",
+      "enunt": "Afișează titlurile cărților autorului cu id-ul 2 (relație 1:N cu cheie externă `autor_id`).",
+      "template": "carti = [{'titlu': 'Ion', 'autor_id': 1}, {'titlu': 'Luceafărul', 'autor_id': 2}, {'titlu': 'Scrisoarea III', 'autor_id': 2}]\n# completează\n",
+      "expectedOutput": "['Luceafărul', 'Scrisoarea III']"
+    },
+    {
+      "titlu": "Autorul unei cărți",
+      "enunt": "Afișează numele autorului cărții „Ion”, urmând cheia externă spre dicționarul de autori.",
+      "template": "autori = {1: 'Rebreanu', 2: 'Eminescu'}\ncarti = [{'titlu': 'Ion', 'autor_id': 1}]\n# completează\n",
+      "expectedOutput": "Rebreanu"
+    },
+    {
+      "titlu": "Proiectele unui student",
+      "enunt": "Din tabela asociativă, afișează proiectele studentului 1.",
+      "template": "participari = [(1, 'P1'), (2, 'P1'), (1, 'P3'), (3, 'P2')]\n# completează\n",
+      "expectedOutput": "['P1', 'P3']"
+    },
+    {
+      "titlu": "Colegii de proiect",
+      "enunt": "Afișează, sortați, studenții care au cel puțin un proiect comun cu studentul 1 (fără el).",
+      "template": "participari = [(1, 'P1'), (2, 'P1'), (1, 'P3'), (3, 'P2'), (4, 'P3')]\n# completează\n",
+      "expectedOutput": "[2, 4]"
+    },
+    {
+      "titlu": "Câți participanți are fiecare proiect",
+      "enunt": "Afișează dicționarul proiect → număr de participanți, cu cheile sortate.",
+      "template": "participari = [(1, 'P1'), (2, 'P1'), (1, 'P3'), (3, 'P2'), (4, 'P3'), (5, 'P1')]\n# completează\n",
+      "expectedOutput": "{'P1': 3, 'P2': 1, 'P3': 2}"
+    },
+    {
+      "titlu": "Relație 1:1",
+      "enunt": "Fiecare elev are cel mult un card de bibliotecă (relație 1:1). Verifică dacă vreun elev apare la mai multe carduri și afișează True dacă relația e respectată.",
+      "template": "carduri = {'C1': 'Ana', 'C2': 'Dan', 'C3': 'Ana'}\n# completează\n",
+      "expectedOutput": "False"
+    }
+  ],
+  "4.3": [
+    {
+      "titlu": "CREATE TABLE din descriere",
+      "enunt": "Construiește textul instrucțiunii CREATE TABLE pentru entitatea dată și afișează-l.",
+      "template": "nume = 'Produs'\ncoloane = {'id': 'INTEGER PRIMARY KEY', 'denumire': 'TEXT', 'pret': 'REAL'}\n# completează\n",
+      "expectedOutput": "CREATE TABLE Produs (id INTEGER PRIMARY KEY, denumire TEXT, pret REAL);"
+    },
+    {
+      "titlu": "Tabela creată",
+      "enunt": "Creează în SQLite tabela Carte(isbn, titlu, an) și afișează numele coloanelor citite cu `PRAGMA table_info`.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\n# creează tabela, apoi citește coloanele\n",
+      "expectedOutput": "['isbn', 'titlu', 'an']"
+    },
+    {
+      "titlu": "Cheie externă",
+      "enunt": "Creează Autor și Carte(autor_id → Autor), inserează un autor și două cărți și afișează câte cărți are autorul, cu un JOIN.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\n# completează\n",
+      "expectedOutput": "Rebreanu 2"
+    },
+    {
+      "titlu": "Tabela asociativă",
+      "enunt": "Generează textul CREATE TABLE pentru tabela asociativă a relației M:N dintre tabelele date.",
+      "template": "a, b = 'Elev', 'Cerc'\n# rezultatul: CREATE TABLE Elev_Cerc (elev_id INTEGER REFERENCES Elev(id), cerc_id INTEGER REFERENCES Cerc(id), PRIMARY KEY (elev_id, cerc_id));\n",
+      "expectedOutput": "CREATE TABLE Elev_Cerc (elev_id INTEGER REFERENCES Elev(id), cerc_id INTEGER REFERENCES Cerc(id), PRIMARY KEY (elev_id, cerc_id));"
+    },
+    {
+      "titlu": "Dublura în tabela asociativă",
+      "enunt": "Încearcă să inserezi de două ori aceeași pereche în tabela cu cheie primară compusă. Afișează mesajul erorii prinse.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Inscriere(s INTEGER, c TEXT, PRIMARY KEY (s, c))')\n# completează\n",
+      "expectedOutput": "UNIQUE constraint failed: Inscriere.s, Inscriere.c"
+    },
+    {
+      "titlu": "Ordinea creării",
+      "enunt": "Ai dependențele „tabela → tabelele la care se referă”. Afișează o ordine de creare în care fiecare tabelă apare după cele la care se referă.",
+      "template": "depinde = {'Inscriere': ['Student', 'Curs'], 'Student': ['Clasa'], 'Curs': [], 'Clasa': []}\n# completează\n",
+      "expectedOutput": "['Clasa', 'Student', 'Curs', 'Inscriere']"
+    }
+  ],
+  "4.4": [
+    {
+      "titlu": "NOT NULL",
+      "enunt": "Încearcă să inserezi un produs fără nume în tabela cu `nume TEXT NOT NULL` și afișează mesajul erorii.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Produs(id INTEGER PRIMARY KEY, nume TEXT NOT NULL)')\n# completează\n",
+      "expectedOutput": "NOT NULL constraint failed: Produs.nume"
+    },
+    {
+      "titlu": "UNIQUE",
+      "enunt": "Coloana email e `UNIQUE`. Inserează două conturi cu același email și afișează câte rânduri au ajuns în tabelă.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, email TEXT UNIQUE)')\n# completează\n",
+      "expectedOutput": "1"
+    },
+    {
+      "titlu": "CHECK",
+      "enunt": "Tabela Nota acceptă doar valori de la 1 la 10. Încearcă să inserezi notele 9, 11 și 0 și afișează notele acceptate.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Nota(v INTEGER CHECK (v BETWEEN 1 AND 10))')\n# completează\n",
+      "expectedOutput": "[9]"
+    },
+    {
+      "titlu": "Cheie externă activată",
+      "enunt": "Activează cheile externe și încearcă o comandă pentru clientul 7, care nu există. Afișează True dacă a fost respinsă.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\n# activează cheile externe, creează Client și Comanda\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Ștergere în cascadă",
+      "enunt": "Cu `ON DELETE CASCADE`, ștergerea unui client șterge și comenzile lui. Șterge clientul 1 și afișează câte comenzi au rămas.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('PRAGMA foreign_keys = ON')\nconn.execute('CREATE TABLE Client(id INTEGER PRIMARY KEY)')\nconn.execute('CREATE TABLE Comanda(id INTEGER PRIMARY KEY, client_id INTEGER REFERENCES Client(id) ON DELETE CASCADE)')\nconn.execute('INSERT INTO Client VALUES (1), (2)')\nconn.execute('INSERT INTO Comanda(client_id) VALUES (1), (1), (2)')\n# completează\n",
+      "expectedOutput": "1"
+    },
+    {
+      "titlu": "Validare înainte de inserare",
+      "enunt": "Scrie `valid(elev)` care verifică în Python constrângerile (nume nevid, vârstă între 14 și 20) și afișează rezultatul pentru cei trei elevi.",
+      "template": "def valid(elev):\n    pass\n\nfor e in [{'nume': 'Ana', 'varsta': 17}, {'nume': '', 'varsta': 16}, {'nume': 'Dan', 'varsta': 25}]:\n    print(valid(e))\n",
+      "expectedOutput": "True\nFalse\nFalse"
+    }
+  ],
+  "4.5": [
+    {
+      "titlu": "Celule atomice",
+      "enunt": "Desparte telefoanele fiecărei persoane pe rânduri separate (FN1) și afișează câte rânduri rezultă.",
+      "template": "persoane = [{'id': 1, 'tel': '0722, 0733'}, {'id': 2, 'tel': '0744'}, {'id': 3, 'tel': '0755, 0766, 0777'}]\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Tabela departamentelor",
+      "enunt": "Extrage dependența dept → locatie într-o tabelă separată (dicționar) și afișeaz-o cu cheile sortate.",
+      "template": "angajati = [('Ana', 'IT', 'Cluj'), ('Dan', 'HR', 'Iasi'), ('Eva', 'IT', 'Cluj')]\n# completează\n",
+      "expectedOutput": "{'HR': 'Iasi', 'IT': 'Cluj'}"
+    },
+    {
+      "titlu": "Câtă redundanță",
+      "enunt": "Numără de câte ori e copiată inutil locația unui departament (aparițiile în plus față de prima).",
+      "template": "angajati = [('Ana', 'IT', 'Cluj'), ('Dan', 'HR', 'Iasi'), ('Eva', 'IT', 'Cluj'), ('Ion', 'IT', 'Cluj')]\n# completează\n",
+      "expectedOutput": "2"
+    },
+    {
+      "titlu": "Date contradictorii",
+      "enunt": "După o actualizare făcută greșit, același departament apare cu locații diferite. Afișează departamentele cu date contradictorii.",
+      "template": "angajati = [('Ana', 'IT', 'Cluj'), ('Dan', 'HR', 'Iasi'), ('Eva', 'IT', 'Brasov')]\n# completează\n",
+      "expectedOutput": "['IT']"
+    },
+    {
+      "titlu": "Reconstruirea prin legătură",
+      "enunt": "După normalizare, afișează pentru fiecare angajat orașul, unind cele două tabele prin dept.",
+      "template": "angajati = [('Ana', 'IT'), ('Dan', 'HR')]\ndept = {'IT': 'Cluj', 'HR': 'Iasi'}\n# completează\n",
+      "expectedOutput": "Ana Cluj\nDan Iasi"
+    },
+    {
+      "titlu": "Dependență parțială",
+      "enunt": "Tabela Nota(elev_id, materie, nota, nume_elev) are cheia (elev_id, materie). `nume_elev` depinde doar de elev_id. Separă numele într-o tabelă proprie și afișează-o.",
+      "template": "note = [(1, 'mate', 9, 'Ana'), (1, 'info', 10, 'Ana'), (2, 'mate', 7, 'Dan')]\n# completează\n",
+      "expectedOutput": "{1: 'Ana', 2: 'Dan'}"
+    }
+  ],
+  "4.13": [
+    {
+      "titlu": "Ținta",
+      "enunt": "Extrage lista țintelor (coloana 'pret') din exemple.",
+      "template": "case = [{'mp': 50, 'camere': 2, 'pret': 90}, {'mp': 80, 'camere': 3, 'pret': 140}]\n# completează\n",
+      "expectedOutput": "[90, 140]"
+    },
+    {
+      "titlu": "Matricea caracteristicilor",
+      "enunt": "Construiește X (listă de liste) din toate coloanele, în afară de țintă, în ordinea din dicționar.",
+      "template": "case = [{'mp': 50, 'camere': 2, 'pret': 90}, {'mp': 80, 'camere': 3, 'pret': 140}]\n# completează\n",
+      "expectedOutput": "[[50, 2], [80, 3]]"
+    },
+    {
+      "titlu": "Clasificare sau regresie",
+      "enunt": "Pentru fiecare țintă, afișează „clasificare” dacă valorile sunt texte și „regresie” dacă sunt numere.",
+      "template": "tinte = {'spam': ['da', 'nu', 'da'], 'pret': [120.5, 99.0, 150.0]}\n# completează\n",
+      "expectedOutput": "spam clasificare\npret regresie"
+    },
+    {
+      "titlu": "Set echilibrat?",
+      "enunt": "Afișează proporția clasei majoritare (rotunjită la 2 zecimale).",
+      "template": "etichete = ['Da', 'Nu', 'Da', 'Da', 'Nu', 'Da', 'Da', 'Da']\n# completează\n",
+      "expectedOutput": "0.75"
+    },
+    {
+      "titlu": "Exemple fără etichetă",
+      "enunt": "Afișează câte exemple nu au eticheta completată (valoarea None) și deci nu pot fi folosite la antrenarea supervizată.",
+      "template": "date = [{'x': 1, 'eticheta': 'A'}, {'x': 2, 'eticheta': None}, {'x': 3, 'eticheta': 'B'}, {'x': 4, 'eticheta': None}]\n# completează\n",
+      "expectedOutput": "2"
+    },
+    {
+      "titlu": "Codificarea categoriilor",
+      "enunt": "Modelele lucrează cu numere. Transformă orașele în coduri numerice (în ordinea primei apariții, de la 0) și afișează lista codurilor.",
+      "template": "orase = ['Cluj', 'Iasi', 'Cluj', 'Arad', 'Iasi']\n# completează\n",
+      "expectedOutput": "[0, 1, 0, 2, 1]"
+    }
+  ],
+  "4.14": [
+    {
+      "titlu": "Câte lipsesc",
+      "enunt": "Afișează câte valori lipsesc (None) din coloană.",
+      "template": "col = [7, None, 9, None, None, 10]\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Completare cu media",
+      "enunt": "Înlocuiește valorile lipsă cu media celor cunoscute și afișează coloana.",
+      "template": "col = [8, None, 10, 6]\n# completează\n",
+      "expectedOutput": "[8, 8.0, 10, 6]"
+    },
+    {
+      "titlu": "Completare cu mediana",
+      "enunt": "Media e influențată de valori extreme. Completează lipsurile cu mediana (folosește `statistics.median`) și afișează coloana.",
+      "template": "import statistics\ncol = [2, 3, None, 4, 100]\n# completează\n",
+      "expectedOutput": "[2, 3, 3.5, 4, 100]"
+    },
+    {
+      "titlu": "Min-max",
+      "enunt": "Normalizează valorile min-max și afișează-le rotunjite la 2 zecimale.",
+      "template": "col = [40, 55, 70, 100]\n# completează\n",
+      "expectedOutput": "[0.0, 0.25, 0.5, 1.0]"
+    },
+    {
+      "titlu": "Fără împărțire la zero",
+      "enunt": "Scrie `normalizeaza(col)` care întoarce o listă de zerouri când toate valorile sunt egale. Afișează rezultatul pentru [5, 5, 5].",
+      "template": "def normalizeaza(col):\n    pass\n\nprint(normalizeaza([5, 5, 5]))\n",
+      "expectedOutput": "[0, 0, 0]"
+    },
+    {
+      "titlu": "Aceeași scală pentru date noi",
+      "enunt": "Calculează minimul și maximul doar pe datele de antrenare, apoi normalizează cu ele un exemplu nou (60). Afișează rezultatul.",
+      "template": "antrenare = [20, 40, 80]\nnou = 60\n# completează\n",
+      "expectedOutput": "0.6666666666666666"
+    }
+  ],
+  "4.15": [
+    {
+      "titlu": "Cel mai apropiat centroid",
+      "enunt": "Afișează indicele centroidului cel mai apropiat de punctul (6, 5).",
+      "template": "centroizi = [[1, 1], [5, 5], [9, 1]]\np = [6, 5]\n# completează\n",
+      "expectedOutput": "1"
+    },
+    {
+      "titlu": "Atribuirea",
+      "enunt": "Atribuie fiecare număr celui mai apropiat dintre centroizii 2 și 10 și afișează lista indicilor.",
+      "template": "puncte = [1, 3, 4, 8, 9, 12]\ncentroizi = [2, 10]\n# completează\n",
+      "expectedOutput": "[0, 0, 0, 1, 1, 1]"
+    },
+    {
+      "titlu": "Noii centroizi",
+      "enunt": "Știind atribuirile, calculează noii centroizi (media fiecărui grup) și afișează-i.",
+      "template": "puncte = [1, 3, 4, 8, 9, 12]\netichete = [0, 0, 0, 1, 1, 1]\n# completează\n",
+      "expectedOutput": "[2.6666666666666665, 9.666666666666666]"
+    },
+    {
+      "titlu": "K-means complet pe o axă",
+      "enunt": "Rulează K-means pe numere (k = 2, centroizii inițiali 0 și 1) până nu se mai schimbă și afișează centroizii finali.",
+      "template": "puncte = [1, 2, 3, 10, 11, 12]\ncentroizi = [0, 1]\n# repetă: atribuire, apoi medii\n",
+      "expectedOutput": "[2.0, 11.0]"
+    },
+    {
+      "titlu": "Inerția",
+      "enunt": "Inerția e suma pătratelor distanțelor de la fiecare punct la centroidul lui; cu cât e mai mică, cu atât grupurile sunt mai compacte. Afișeaz-o.",
+      "template": "puncte = [1, 2, 3, 10, 11, 12]\ncentroizi = [2, 11]\netichete = [0, 0, 0, 1, 1, 1]\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Puncte 2D",
+      "enunt": "Folosește funcția `kmeans` dată pentru k = 3 și afișează etichetele celor 6 puncte.",
+      "template": "def dist(a, b):\n    return sum((x - y) ** 2 for x, y in zip(a, b)) ** 0.5\n\ndef kmeans(puncte, centroizi, pasi=10):\n    for _ in range(pasi):\n        grupuri = [[] for _ in centroizi]\n        for p in puncte:\n            k = min(range(len(centroizi)), key=lambda i: dist(p, centroizi[i]))\n            grupuri[k].append(p)\n        centroizi = [[sum(c) / len(g) for c in zip(*g)] if g else centroizi[i] for i, g in enumerate(grupuri)]\n    eticheta = [min(range(len(centroizi)), key=lambda i: dist(p, centroizi[i])) for p in puncte]\n    return eticheta, centroizi\n\npuncte = [[1, 1], [1, 2], [5, 5], [5, 6], [9, 1], [9, 2]]\n# completează (centroizi inițiali: primul, al treilea și al cincilea punct)\n",
+      "expectedOutput": "[0, 0, 1, 1, 2, 2]"
+    }
+  ],
+  "4.16": [
+    {
+      "titlu": "Predicție",
+      "enunt": "Modelul învățat e y = 3x - 2. Afișează predicțiile pentru x = 0, 1, 10.",
+      "template": "a, b = 3, -2\n# completează\n",
+      "expectedOutput": "[-2, 1, 28]"
+    },
+    {
+      "titlu": "Panta din două puncte",
+      "enunt": "Calculează panta și termenul liber pentru dreapta care trece prin (2, 5) și (6, 13). Afișează-le.",
+      "template": "x1, y1, x2, y2 = 2, 5, 6, 13\n# completează\n",
+      "expectedOutput": "2.0 1.0"
+    },
+    {
+      "titlu": "Cele mai mici pătrate",
+      "enunt": "Calculează a și b pentru datele (1, 3), (2, 5), (3, 7), (4, 9) și afișează predicția pentru x = 10.",
+      "template": "x = [1, 2, 3, 4]\ny = [3, 5, 7, 9]\n# completează\n",
+      "expectedOutput": "21.0"
+    },
+    {
+      "titlu": "Eroarea medie",
+      "enunt": "Calculează eroarea medie absolută a modelului y = 2x pe datele date.",
+      "template": "x = [1, 2, 3, 4]\ny = [2.5, 3.5, 6.5, 8.5]\n# completează\n",
+      "expectedOutput": "0.5"
+    },
+    {
+      "titlu": "Care model e mai bun",
+      "enunt": "Compară două modele, y = 2x + 1 și y = 3x, după suma pătratelor erorilor. Afișează numele celui mai bun.",
+      "template": "x = [1, 2, 3]\ny = [3.2, 4.9, 7.1]\nmodele = {'2x+1': lambda v: 2 * v + 1, '3x': lambda v: 3 * v}\n# completează\n",
+      "expectedOutput": "2x+1"
+    },
+    {
+      "titlu": "Coborârea pe gradient",
+      "enunt": "Învață panta a pentru modelul y = a·x (fără termen liber) prin 100 de pași de gradient descent, cu rata 0.01, pornind de la a = 0. Afișează a rotunjit la 2 zecimale.",
+      "template": "x = [1, 2, 3, 4]\ny = [2, 4, 6, 8]\na = 0\n# la fiecare pas: a = a - rata * media(2 * (a*x - y) * x)\n",
+      "expectedOutput": "2.0"
+    }
+  ],
+  "4.17": [
+    {
+      "titlu": "Distanța",
+      "enunt": "Afișează distanța euclidiană dintre (1, 2) și (4, 6).",
+      "template": "a, b = [1, 2], [4, 6]\n# completează\n",
+      "expectedOutput": "5.0"
+    },
+    {
+      "titlu": "Cel mai apropiat vecin",
+      "enunt": "Afișează eticheta celui mai apropiat exemplu de punctul nou (1-NN).",
+      "template": "X = [[1, 1], [2, 2], [8, 8], [9, 9]]\ny = ['A', 'A', 'B', 'B']\nnou = [7, 6]\n# completează\n",
+      "expectedOutput": "B"
+    },
+    {
+      "titlu": "KNN cu k = 3",
+      "enunt": "Clasifică punctul nou cu k = 3 (vot majoritar).",
+      "template": "X = [[1, 1], [1, 2], [2, 2], [6, 6], [7, 7]]\ny = ['A', 'A', 'B', 'B', 'B']\nnou = [2, 1]\n# completează\n",
+      "expectedOutput": "A"
+    },
+    {
+      "titlu": "Un arbore de decizie scris de mână",
+      "enunt": "Arborele: dacă venit > 5000 → Da; altfel, dacă vârsta < 25 → Nu; altfel → Da. Aplică-l clienților și afișează deciziile.",
+      "template": "clienti = [(6000, 30), (3000, 22), (4000, 40)]\n# completează\n",
+      "expectedOutput": "['Da', 'Nu', 'Da']"
+    },
+    {
+      "titlu": "Cel mai bun prag",
+      "enunt": "Un arbore cu o singură întrebare: „x > prag?” → B, altfel A. Încearcă pragurile din listă și afișează pragul cu cele mai multe clasificări corecte.",
+      "template": "x = [1, 2, 3, 6, 7, 8]\ny = ['A', 'A', 'A', 'B', 'B', 'B']\npraguri = [1.5, 4.5, 7.5]\n# completează\n",
+      "expectedOutput": "4.5"
+    },
+    {
+      "titlu": "Acuratețea KNN",
+      "enunt": "Folosind 1-NN cu datele de antrenare, clasifică exemplele de test și afișează câte au fost clasificate corect.",
+      "template": "Xa = [[1, 1], [2, 1], [8, 8], [9, 7]]\nya = ['A', 'A', 'B', 'B']\nXt = [[1, 2], [7, 8], [5, 4]]\nyt = ['A', 'B', 'B']\n# completează\n",
+      "expectedOutput": "2"
+    }
+  ],
+  "4.18": [
+    {
+      "titlu": "Suma ponderată",
+      "enunt": "Calculează suma ponderată pentru intrările [1, 0, 2], greutățile [0.5, 3, -1] și bias 2.",
+      "template": "x = [1, 0, 2]\nw = [0.5, 3, -1]\nb = 2\n# completează\n",
+      "expectedOutput": "0.5"
+    },
+    {
+      "titlu": "Sigmoid",
+      "enunt": "Afișează sigmoid(z) rotunjit la 3 zecimale pentru z = -2, 0, 2.",
+      "template": "import math\n# completează\n",
+      "expectedOutput": "[0.119, 0.5, 0.881]"
+    },
+    {
+      "titlu": "Neuronul SAU",
+      "enunt": "Cu greutățile [1, 1] și bias -0.5, neuronul cu treaptă calculează SAU logic. Afișează ieșirile pentru cele 4 combinații de intrări.",
+      "template": "w, b = [1, 1], -0.5\nintrari = [[0, 0], [0, 1], [1, 0], [1, 1]]\n# completează\n",
+      "expectedOutput": "[0, 1, 1, 1]"
+    },
+    {
+      "titlu": "Neuron cu sigmoid",
+      "enunt": "Scrie `neuron(x, w, b)` care aplică sigmoid peste suma ponderată. Afișează ieșirea pentru x = [2, 1], w = [0.5, -1], b = 0.5, rotunjită la 3 zecimale.",
+      "template": "import math\ndef neuron(x, w, b):\n    pass\n\nprint(round(neuron([2, 1], [0.5, -1], 0.5), 3))\n",
+      "expectedOutput": "0.622"
+    },
+    {
+      "titlu": "Un strat de neuroni",
+      "enunt": "Un strat are doi neuroni (cu treaptă), fiecare cu greutățile și bias-ul lui. Afișează ieșirile stratului pentru intrarea [1, 1].",
+      "template": "W = [[1, 1], [1, -1]]\nB = [-1.5, 0.5]\nx = [1, 1]\n# completează\n",
+      "expectedOutput": "[1, 1]"
+    },
+    {
+      "titlu": "Învață SAU",
+      "enunt": "Antrenează un perceptron pe funcția SAU (rata 0.1, greutăți inițiale 0) până nu mai greșește și afișează ieșirile finale.",
+      "template": "date = [([0, 0], 0), ([0, 1], 1), ([1, 0], 1), ([1, 1], 1)]\nw, b = [0.0, 0.0], 0.0\n# completează\n",
+      "expectedOutput": "[0, 1, 1, 1]"
+    }
+  ],
+  "4.19": [
+    {
+      "titlu": "Lungimea barei",
+      "enunt": "Afișează lungimile barelor scalate la 20 de caractere pentru valori, relativ la maxim.",
+      "template": "valori = [3, 6, 9, 12]\n# completează\n",
+      "expectedOutput": "[5, 10, 15, 20]"
+    },
+    {
+      "titlu": "Grafic de bare cu etichete",
+      "enunt": "Desenează barele (caracterul #, scală 10) cu etichetele aliniate la stânga pe 4 caractere.",
+      "template": "zile = ['Lun', 'Mar', 'Mie']\nore = [4, 8, 6]\n# completează\n",
+      "expectedOutput": "Lun  ##### 4\nMar  ########## 8\nMie  ######## 6"
+    },
+    {
+      "titlu": "Frecvențe",
+      "enunt": "Numără câte zile au fost însorite, înnorate și ploioase, în ordinea dată, și afișează dicționarul.",
+      "template": "vreme = ['soare', 'ploaie', 'soare', 'nori', 'soare', 'ploaie']\ncategorii = ['soare', 'nori', 'ploaie']\n# completează\n",
+      "expectedOutput": "{'soare': 3, 'nori': 1, 'ploaie': 2}"
+    },
+    {
+      "titlu": "Grafic de linie în text",
+      "enunt": "Pentru fiecare zi, afișează un * pe poziția dată de temperatură (cu temperatura minimă la poziția 0).",
+      "template": "temp = [3, 5, 4, 7]\n# completează\n",
+      "expectedOutput": "*\n  *\n *\n    *"
+    },
+    {
+      "titlu": "Tendința",
+      "enunt": "Afișează pentru fiecare lună (de la a doua) dacă vânzările au crescut (↑), au scăzut (↓) sau au rămas la fel (=), pe un singur rând.",
+      "template": "vanzari = [120, 135, 128, 128, 160]\n# completează\n",
+      "expectedOutput": "↑↓=↑"
+    },
+    {
+      "titlu": "Histogramă pe intervale",
+      "enunt": "Grupează punctajele pe intervale de câte 10 (0–9, 10–19, …) și afișează numărul de punctaje din fiecare interval de la 0 la 40.",
+      "template": "punctaje = [3, 15, 17, 22, 28, 29, 31, 8, 19]\n# completează\n",
+      "expectedOutput": "[2, 3, 3, 1]"
+    }
+  ],
+  "4.20": [
+    {
+      "titlu": "Media unei coloane",
+      "enunt": "Afișează media coloanei 'pret'.",
+      "template": "tabel = {'produs': ['a', 'b', 'c', 'd'], 'pret': [10, 25, 15, 30]}\n# completează\n",
+      "expectedOutput": "20.0"
+    },
+    {
+      "titlu": "Filtrare",
+      "enunt": "Afișează produsele cu prețul peste medie (ca `df[df.pret > df.pret.mean()]`).",
+      "template": "tabel = {'produs': ['a', 'b', 'c', 'd'], 'pret': [10, 25, 15, 30]}\n# completează\n",
+      "expectedOutput": "['b', 'd']"
+    },
+    {
+      "titlu": "Mediana",
+      "enunt": "Afișează mediana salariilor cu `statistics.median`.",
+      "template": "import statistics\nsalarii = [3000, 3200, 3100, 50000]\n# completează\n",
+      "expectedOutput": "3150.0"
+    },
+    {
+      "titlu": "Abaterea standard",
+      "enunt": "Afișează abaterea standard (populație) a valorilor, rotunjită la 2 zecimale.",
+      "template": "valori = [2, 4, 4, 4, 5, 5, 7, 9]\n# completează\n",
+      "expectedOutput": "2.0"
+    },
+    {
+      "titlu": "Grupare",
+      "enunt": "Calculează media notelor pe clase (ca `df.groupby('clasa').nota.mean()`) și afișează dicționarul.",
+      "template": "clase = ['A', 'B', 'A', 'B', 'A']\nnote = [8, 6, 10, 7, 9]\n# completează\n",
+      "expectedOutput": "{'A': 9.0, 'B': 6.5}"
+    },
+    {
+      "titlu": "Citire CSV",
+      "enunt": "Citește textul CSV cu modulul `csv` (fără Pandas) și afișează media coloanei 'nota'.",
+      "template": "import csv, io\ntext = 'nume,nota\\nAna,9\\nDan,7\\nEva,8\\n'\n# completează\n",
+      "expectedOutput": "8.0"
+    }
+  ],
+  "4.21": [
+    {
+      "titlu": "Acuratețea",
+      "enunt": "Afișează acuratețea predicțiilor.",
+      "template": "pred = ['Da', 'Nu', 'Nu', 'Da', 'Da']\nreal = ['Da', 'Nu', 'Da', 'Da', 'Nu']\n# completează\n",
+      "expectedOutput": "0.6"
+    },
+    {
+      "titlu": "Împărțirea",
+      "enunt": "Împarte 10 exemple în 80% antrenare și 20% test, fără amestecare, și afișează dimensiunile.",
+      "template": "date = list(range(10))\n# completează\n",
+      "expectedOutput": "8 2"
+    },
+    {
+      "titlu": "Amestecare reproductibilă",
+      "enunt": "Amestecă lista cu `random.seed(1)` și afișeaz-o (aceeași ordine la fiecare rulare).",
+      "template": "import random\nL = [1, 2, 3, 4, 5]\n# completează\n",
+      "expectedOutput": "[3, 4, 5, 1, 2]"
+    },
+    {
+      "titlu": "Matricea de confuzie",
+      "enunt": "Numără adevărat-pozitivele, fals-pozitivele, fals-negativele și adevărat-negativele (clasa pozitivă e 'Da').",
+      "template": "pred = ['Da', 'Da', 'Nu', 'Nu', 'Da', 'Nu']\nreal = ['Da', 'Nu', 'Da', 'Nu', 'Da', 'Nu']\n# completează\n",
+      "expectedOutput": "TP=2 FP=1 FN=1 TN=2"
+    },
+    {
+      "titlu": "Modelul leneș",
+      "enunt": "Pe un set dezechilibrat, un model care spune mereu 'Nu' pare bun. Afișează acuratețea lui și câte cazuri 'Da' a prins.",
+      "template": "real = ['Nu'] * 18 + ['Da'] * 2\npred = ['Nu'] * 20\n# completează\n",
+      "expectedOutput": "0.9 0"
+    },
+    {
+      "titlu": "Antrenare vs. test",
+      "enunt": "Un 1-NN memorează datele: pe antrenare are acuratețe 1.0. Afișează acuratețea pe antrenare și pe test.",
+      "template": "Xa = [[1], [2], [3], [10], [11], [12]]\nya = ['A', 'A', 'B', 'B', 'B', 'B']\nXt = [[2.6], [4]]\nyt = ['A', 'A']\n# completează\n",
+      "expectedOutput": "1.0 0.0"
+    }
+  ],
+  "4.22": [
+    {
+      "titlu": "Adunarea",
+      "enunt": "Adună element cu element cele două matrici.",
+      "template": "A = [[1, 2], [3, 4]]\nB = [[10, 20], [30, 40]]\n# completează\n",
+      "expectedOutput": "[[11, 22], [33, 44]]"
+    },
+    {
+      "titlu": "Înmulțire cu un număr",
+      "enunt": "Înmulțește fiecare element cu 3.",
+      "template": "A = [[1, 0], [2, 5]]\n# completează\n",
+      "expectedOutput": "[[3, 0], [6, 15]]"
+    },
+    {
+      "titlu": "Transpusa",
+      "enunt": "Afișează transpusa matricei 2 × 3 (folosește `zip(*A)`).",
+      "template": "A = [[1, 2, 3], [4, 5, 6]]\n# completează\n",
+      "expectedOutput": "[[1, 4], [2, 5], [3, 6]]"
+    },
+    {
+      "titlu": "Produsul de matrici",
+      "enunt": "Înmulțește matricea 2 × 3 cu matricea 3 × 2.",
+      "template": "A = [[1, 2, 3], [4, 5, 6]]\nB = [[7, 8], [9, 10], [11, 12]]\n# completează\n",
+      "expectedOutput": "[[58, 64], [139, 154]]"
+    },
+    {
+      "titlu": "Matricea unitate",
+      "enunt": "Construiește matricea unitate 3 × 3 (1 pe diagonală, 0 în rest) și verifică că A · I = A. Afișează True.",
+      "template": "A = [[2, 1, 0], [0, 3, 4], [5, 0, 1]]\n# completează\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Puterea unei matrice",
+      "enunt": "Puterile matricei [[1, 1], [1, 0]] conțin numerele Fibonacci. Calculează M la puterea 10 și afișează elementul (0, 1).",
+      "template": "M = [[1, 1], [1, 0]]\n# completează\n",
+      "expectedOutput": "55"
+    }
+  ],
+  "4.6": [
+    {
+      "titlu": "Prima tabelă",
+      "enunt": "Creează tabela Persoana în memorie, inserează un rând și afișează-l cu `fetchone()`.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\n# completează\n",
+      "expectedOutput": "(1, 'Ana', '0722')"
+    },
+    {
+      "titlu": "executemany",
+      "enunt": "Inserează cele patru produse cu `executemany` și afișează câte rânduri are tabela.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Produs(nume TEXT, pret REAL)')\nproduse = [('pix', 2.5), ('caiet', 6), ('rigla', 3), ('carte', 40)]\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Funcția adauga",
+      "enunt": "Scrie `adauga(conn, nume, telefon)` care inserează și face commit. Adaugă două persoane și afișează numele lor.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Persoana(nume TEXT, telefon TEXT)')\n\ndef adauga(conn, nume, telefon):\n    pass\n\nadauga(conn, 'Ana', '0722')\nadauga(conn, 'Dan', '0733')\nprint([r[0] for r in conn.execute('SELECT nume FROM Persoana')])\n",
+      "expectedOutput": "['Ana', 'Dan']"
+    },
+    {
+      "titlu": "Căutare",
+      "enunt": "Scrie `cauta(conn, nume)` care întoarce telefonul sau None. Afișează rezultatul pentru 'Dan' și 'Zoe'.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Persoana(nume TEXT, telefon TEXT)')\nconn.executemany('INSERT INTO Persoana VALUES (?, ?)', [('Ana', '0722'), ('Dan', '0733')])\n\ndef cauta(conn, nume):\n    pass\n\nprint(cauta(conn, 'Dan'), cauta(conn, 'Zoe'))\n",
+      "expectedOutput": "0733 None"
+    },
+    {
+      "titlu": "Parcurgere cu cursorul",
+      "enunt": "Parcurge rezultatul unui SELECT direct cu `for` și afișează fiecare produs cu prețul lui.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Produs(nume TEXT, pret INTEGER)')\nconn.executemany('INSERT INTO Produs VALUES (?, ?)', [('pix', 3), ('caiet', 6)])\n# completează\n",
+      "expectedOutput": "pix 3\ncaiet 6"
+    },
+    {
+      "titlu": "Ghilimele în nume",
+      "enunt": "Inserează numele „O'Neil” cu parametri `?` (fără să dea eroare) și afișează-l citit înapoi.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE P(nume TEXT)')\nnume = \"O'Neil\"\n# completează\n",
+      "expectedOutput": "O'Neil"
+    }
+  ],
+  "4.7": [
+    {
+      "titlu": "Toți elevii",
+      "enunt": "Afișează numele tuturor elevilor, în ordine alfabetică.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "['Ana', 'Bogdan', 'Cris', 'Dana', 'Emil', 'Flavia']"
+    },
+    {
+      "titlu": "Majorii",
+      "enunt": "Afișează numele elevilor de cel puțin 18 ani, ordonați alfabetic.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "['Bogdan', 'Cris', 'Emil', 'Flavia']"
+    },
+    {
+      "titlu": "Doi pe condiție",
+      "enunt": "Afișează elevii din Iasi sau Arad (nume, oraș), ordonați după nume.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "[('Bogdan', 'Iasi'), ('Dana', 'Arad'), ('Flavia', 'Iasi')]"
+    },
+    {
+      "titlu": "Cel mai mare",
+      "enunt": "Afișează numele celui mai în vârstă elev; la egalitate, primul alfabetic (`ORDER BY` și `LIMIT 1`).",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "Bogdan"
+    },
+    {
+      "titlu": "Căutare după text",
+      "enunt": "Afișează elevii al căror nume începe cu litera C sau D (`LIKE`), ordonați.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "['Cris', 'Dana']"
+    },
+    {
+      "titlu": "Vârste distincte",
+      "enunt": "Afișează vârstele distincte, descrescător.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "[19, 18, 17, 16]"
+    }
+  ],
+  "4.8": [
+    {
+      "titlu": "Câți elevi",
+      "enunt": "Afișează numărul total de elevi.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Statistici",
+      "enunt": "Afișează vârsta minimă, maximă și medie (rotunjită la 2 zecimale) într-o singură interogare.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "(16, 19, 17.83)"
+    },
+    {
+      "titlu": "Pe orașe",
+      "enunt": "Afișează numărul de elevi din fiecare oraș, ordonat după oraș.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "[('Arad', 1), ('Cluj', 3), ('Iasi', 2)]"
+    },
+    {
+      "titlu": "HAVING",
+      "enunt": "Afișează orașele în care vârsta medie e peste 18, ordonate.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "['Iasi']"
+    },
+    {
+      "titlu": "Vânzări pe lună",
+      "enunt": "Afișează totalul vânzărilor pe fiecare lună, doar pentru lunile cu total peste 100.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE V(luna TEXT, suma INTEGER)')\nconn.executemany('INSERT INTO V VALUES (?, ?)', [('ian', 50), ('ian', 70), ('feb', 40), ('mar', 90), ('mar', 30)])\n# completează\n",
+      "expectedOutput": "[('ian', 120), ('mar', 120)]"
+    },
+    {
+      "titlu": "WHERE și HAVING împreună",
+      "enunt": "Numără, pe orașe, doar elevii majori (≥ 18) și păstrează orașele cu cel puțin 2 elevi majori.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "[('Cluj', 2), ('Iasi', 2)]"
+    }
+  ],
+  "4.9": [
+    {
+      "titlu": "JOIN pe trei tabele",
+      "enunt": "Afișează perechile (elev, curs), ordonate după elev și curs.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "[('Ana', 'Python'), ('Ana', 'SQL'), ('Bogdan', 'SQL')]"
+    },
+    {
+      "titlu": "Câți la fiecare curs",
+      "enunt": "Afișează fiecare curs cu numărul de elevi înscriși, inclusiv cursurile goale, ordonate după denumire.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "[('Grafică', 0), ('Python', 1), ('SQL', 2)]"
+    },
+    {
+      "titlu": "Neînscriși",
+      "enunt": "Afișează elevii care nu sunt înscriși la niciun curs (LEFT JOIN + IS NULL).",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "[('Cris',)]"
+    },
+    {
+      "titlu": "Subinterogare cu IN",
+      "enunt": "Afișează elevii înscriși la cursul SQL, folosind o subinterogare (fără JOIN).",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "[('Ana',), ('Bogdan',)]"
+    },
+    {
+      "titlu": "Cursul cel mai căutat",
+      "enunt": "Afișează denumirea cursului cu cei mai mulți elevi.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "SQL"
+    },
+    {
+      "titlu": "Colegi de curs",
+      "enunt": "Afișează perechile de elevi diferiți care au un curs comun (fiecare pereche o singură dată, numele în ordine alfabetică).",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\n# completează\n",
+      "expectedOutput": "[('Ana', 'Bogdan')]"
+    }
+  ],
+  "4.10": [
+    {
+      "titlu": "INSERT",
+      "enunt": "Adaugă eleva Ioana (17 ani, Arad) și afișează numărul de elevi.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "7"
+    },
+    {
+      "titlu": "UPDATE",
+      "enunt": "Mută-l pe Bogdan în Cluj și afișează câți elevi sunt acum în Cluj.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "DELETE",
+      "enunt": "Șterge elevii minori (sub 18 ani) și afișează numele celor rămași, ordonate.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "['Bogdan', 'Cris', 'Emil', 'Flavia']"
+    },
+    {
+      "titlu": "Câte rânduri",
+      "enunt": "Mărește cu 1 vârsta elevilor din Iasi și afișează `rowcount`.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "2"
+    },
+    {
+      "titlu": "Funcție de actualizare",
+      "enunt": "Scrie `schimba_oras(conn, nume, oras)` cu parametri `?` și afișează orașul Danei după ce o muți în Timisoara.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\ndef schimba_oras(conn, nume, oras):\n    pass\n\nschimba_oras(conn, 'Dana', 'Timisoara')\nprint(cur.execute(\"SELECT oras FROM Student WHERE nume = 'Dana'\").fetchone()[0])\n",
+      "expectedOutput": "Timisoara"
+    },
+    {
+      "titlu": "Ștergere cu subinterogare",
+      "enunt": "Șterge elevii din orașul cu cei mai puțini elevi și afișează câți elevi au rămas.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\n# completează\n",
+      "expectedOutput": "5"
+    }
+  ],
+  "4.11": [
+    {
+      "titlu": "CREATE și coloanele",
+      "enunt": "Creează tabela Elev(id, nume, clasa) și afișează câte coloane are.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "ADD COLUMN",
+      "enunt": "Adaugă coloana email la tabela Elev și afișează lista coloanelor.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Elev(id INTEGER PRIMARY KEY, nume TEXT)')\n# completează\n",
+      "expectedOutput": "['id', 'nume', 'email']"
+    },
+    {
+      "titlu": "DEFAULT",
+      "enunt": "Adaugă coloana activ cu valoarea implicită 1 și afișează rândurile existente.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(nume TEXT)')\nconn.executemany('INSERT INTO Cont VALUES (?)', [('a',), ('b',)])\n# completează\n",
+      "expectedOutput": "[('a', 1), ('b', 1)]"
+    },
+    {
+      "titlu": "DROP TABLE IF EXISTS",
+      "enunt": "Șterge tabela Temp (care există) și apoi încă o dată (nu mai există), fără eroare. Afișează câte tabele au rămas.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Temp(x)')\nconn.execute('CREATE TABLE Pastrata(x)')\n# completează\n",
+      "expectedOutput": "1"
+    },
+    {
+      "titlu": "Schimbarea tipului",
+      "enunt": "Schimbă tipul coloanei pret din TEXT în REAL recreând tabela: creezi Produs_nou, copiezi datele cu conversie, ștergi vechea tabelă și o redenumești pe cea nouă. Afișează suma prețurilor.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Produs(nume TEXT, pret TEXT)')\nconn.executemany('INSERT INTO Produs VALUES (?, ?)', [('pix', '2.5'), ('caiet', '6')])\n# completează\n",
+      "expectedOutput": "8.5"
+    },
+    {
+      "titlu": "Index",
+      "enunt": "Creează un index pe coloana nume și afișează numele indexurilor tabelei.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Elev(id INTEGER PRIMARY KEY, nume TEXT)')\n# completează\n",
+      "expectedOutput": "['idx_nume']"
+    }
+  ],
+  "4.12": [
+    {
+      "titlu": "Commit",
+      "enunt": "Depune 25 de lei în contul 2, confirmă și afișează soldurile.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\n# completează\n",
+      "expectedOutput": "[(100,), (75,)]"
+    },
+    {
+      "titlu": "Rollback",
+      "enunt": "Golește contul 1, apoi răzgândește-te cu `rollback` și afișează soldul contului 1.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\n# completează\n",
+      "expectedOutput": "100"
+    },
+    {
+      "titlu": "Transfer reușit",
+      "enunt": "Scrie `transfer(sursa, dest, suma)` cu try/except și commit/rollback. Transferă 40 de lei din 1 în 2 și afișează soldurile.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\ndef transfer(sursa, dest, suma):\n    pass\n\ntransfer(1, 2, 40)\nprint(conn.execute('SELECT sold FROM Cont ORDER BY id').fetchall())\n",
+      "expectedOutput": "[(60,), (90,)]"
+    },
+    {
+      "titlu": "Transfer imposibil",
+      "enunt": "Cu aceeași funcție, încearcă să transferi 500 de lei din 2 în 1 și afișează soldurile (trebuie să rămână neschimbate).",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\ndef transfer(sursa, dest, suma):\n    pass\n\ntransfer(2, 1, 500)\nprint(conn.execute('SELECT sold FROM Cont ORDER BY id').fetchall())\n",
+      "expectedOutput": "[(100,), (50,)]"
+    },
+    {
+      "titlu": "Savepoint",
+      "enunt": "Pornește o tranzacție, adaugă un cont, creează un SAVEPOINT, șterge toate conturile, revino la savepoint și confirmă. Afișează numărul de conturi.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\nconn.isolation_level = None  # tranzacțiile le controlăm manual\n# completează\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Suma totală se păstrează",
+      "enunt": "După trei transferuri (unul imposibil), afișează suma totală din conturi: într-un sistem corect ea nu se schimbă.",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\ndef transfer(sursa, dest, suma):\n    pass\n\nfor s, d, x in [(1, 2, 30), (2, 1, 500), (2, 1, 10)]:\n    transfer(s, d, x)\nprint(conn.execute('SELECT SUM(sold) FROM Cont').fetchone()[0])\n",
+      "expectedOutput": "150"
+    }
   ]
 }
