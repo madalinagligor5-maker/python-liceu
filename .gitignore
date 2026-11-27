@@ -51,3 +51,4 @@ next-env.d.ts
 # imagini Open Graph generate la build (scripts/genereaza-og.mjs)
 /public/og-image.png
 /public/og/
+__pycache__/

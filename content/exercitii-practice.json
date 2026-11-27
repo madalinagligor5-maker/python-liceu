@@ -1,0 +1,762 @@
+{
+  "1.1": [
+    {
+      "titlu": "Calcularea ariei unui triunghi",
+      "enunt": "Scrie un program Python care calculează aria unui triunghi având baza = 10 și înălțimea = 5. Formula este: aria = (baza * inaltime) / 2. Afișează rezultatul sub forma: 'Aria triunghiului este: X.Y'.",
+      "template": "baza = 10\ninaltime = 5\n# Calculează aria și afișeaz-o sub forma cerută\n",
+      "expectedOutput": "Aria triunghiului este: 25.0"
+    },
+    {
+      "titlu": "Calcularea mediei a 3 note",
+      "enunt": "Scrie un program Python care calculează și afișează media aritmetică a trei note: 7, 9 și 10. Afișează doar valoarea numerică a mediei.",
+      "template": "nota1 = 7\nnota2 = 9\nnota3 = 10\n# Calculează media aritmetică și printeaz-o\n",
+      "expectedOutput": "8.666666666666666"
+    },
+    {
+      "titlu": "Perimetrul unui pătrat",
+      "enunt": "Calculează perimetrul unui pătrat care are latura egală cu 8 cm. Afișează doar valoarea numerică a perimetrului (perimetrul = latura * 4).",
+      "template": "latura = 8\n# Calculează perimetrul și printează-l\n",
+      "expectedOutput": "32"
+    },
+    {
+      "titlu": "Suma primelor 10 numere",
+      "enunt": "Calculează suma primelor 10 numere naturale nenule (1 + 2 + 3 + ... + 10). Afișează direct rezultatul obținut.",
+      "template": "# Calculează suma primelor 10 numere naturale nenule și afișeaz-o\n",
+      "expectedOutput": "55"
+    },
+    {
+      "titlu": "Afișare pe două rânduri",
+      "enunt": "Scrie un program care afișează textul 'Academia Python' pe primul rând și 'Clasa a IX-a' pe al doilea rând.",
+      "template": "# Afișează cele două texte pe rânduri diferite\n",
+      "expectedOutput": "Academia Python\nClasa a IX-a"
+    },
+    {
+      "titlu": "Inversarea valorilor",
+      "enunt": "Având variabilele a = 5 și b = 10, inversează valorile acestora astfel încât a să aibă valoarea 10 și b valoarea 5. Afișează-le în formatul: 'a=10 b=5'.",
+      "template": "a = 5\nb = 10\n# Inversează valorile celor două variabile\nprint(f'a={a} b={b}')\n",
+      "expectedOutput": "a=10 b=5"
+    }
+  ],
+  "1.2": [
+    {
+      "titlu": "Par sau impar",
+      "enunt": "Transformă în Python pseudocodul: „dacă n este divizibil cu 2 atunci afișează «par», altfel afișează «impar»”, pentru n = 14.",
+      "template": "n = 14\n# scrie decizia aici\n",
+      "expectedOutput": "par"
+    },
+    {
+      "titlu": "Cel mai mare din două",
+      "enunt": "Pentru a = 17 și b = 23, afișează numărul mai mare. Rezolvă cu un `if`, fără funcția `max`.",
+      "template": "a = 17\nb = 23\n# afișează numărul mai mare\n",
+      "expectedOutput": "23"
+    },
+    {
+      "titlu": "Calificativul",
+      "enunt": "Pentru media 8.5 afișează calificativul: „Excelent” pentru media de cel puțin 9, „Bine” pentru cel puțin 7, altfel „Suficient”.",
+      "template": "media = 8.5\n# folosește if / elif / else\n",
+      "expectedOutput": "Bine"
+    },
+    {
+      "titlu": "Suma de la 1 la n",
+      "enunt": "Pseudocodul „s ← 0; pentru i de la 1 la n execută s ← s + i; afișează s” scris în Python, pentru n = 20.",
+      "template": "n = 20\ns = 0\n# bucla for\nprint(s)\n",
+      "expectedOutput": "210"
+    },
+    {
+      "titlu": "Cât timp mai rămâne",
+      "enunt": "Un bazin are 100 de litri și pierde 15 litri pe oră. Cu o buclă `while`, afișează după câte ore rămâne gol sau aproape gol (cel mult 0 litri).",
+      "template": "litri = 100\nore = 0\n# while litri > 0: ...\nprint(ore)\n",
+      "expectedOutput": "7"
+    },
+    {
+      "titlu": "Anul bisect",
+      "enunt": "Un an este bisect dacă se împarte la 4 și nu la 100, sau dacă se împarte la 400. Afișează „bisect” sau „nebisect” pentru anul 2100.",
+      "template": "an = 2100\n# condiție compusă cu and / or\n",
+      "expectedOutput": "nebisect"
+    }
+  ],
+  "1.3": [
+    {
+      "titlu": "Numără pașii",
+      "enunt": "Afișează de câte ori se execută `print` în bucla `for i in range(1, 101, 3)`, fără să afișezi valorile — doar numărul de pași.",
+      "template": "pasi = 0\nfor i in range(1, 101, 3):\n    # numără pașii\n    pass\nprint(pasi)\n",
+      "expectedOutput": "34"
+    },
+    {
+      "titlu": "Gauss pentru numere pare",
+      "enunt": "Suma numerelor pare 2 + 4 + … + 2n este n·(n+1). Calculeaz-o direct (fără buclă) pentru n = 50.",
+      "template": "n = 50\n# formula directă\n",
+      "expectedOutput": "2550"
+    },
+    {
+      "titlu": "Bucla care se oprește devreme",
+      "enunt": "Caută primul multiplu de 7 mai mare decât 100 și afișează-l, oprind bucla imediat ce l-ai găsit (`break`).",
+      "template": "x = 101\nwhile True:\n    # verifică și oprește-te\n    x += 1\n",
+      "expectedOutput": "105"
+    },
+    {
+      "titlu": "Pătratul fără buclă",
+      "enunt": "Suma primelor n numere impare este n². Verifică pentru n = 30: afișează suma calculată cu buclă și n², pe același rând.",
+      "template": "n = 30\nsuma = 0\n# adună primele n numere impare\nprint(suma, n * n)\n",
+      "expectedOutput": "900 900"
+    },
+    {
+      "titlu": "Câte cifre, rapid",
+      "enunt": "Află câte cifre are 2 la puterea 100. Folosește `len(str(...))`, nu o buclă care împarte la 10.",
+      "template": "numar = 2 ** 100\n# câte cifre are?\n",
+      "expectedOutput": "31"
+    },
+    {
+      "titlu": "Divizori până la radical",
+      "enunt": "Numără divizorii lui 360 parcurgând doar d de la 1 cât timp d·d ≤ n: fiecare divizor d găsit vine în pereche cu n // d (atenție când d·d == n).",
+      "template": "n = 360\nnr = 0\nd = 1\n# while d * d <= n: ...\nprint(nr)\n",
+      "expectedOutput": "24"
+    }
+  ],
+  "1.4": [
+    {
+      "titlu": "Aria pătratului",
+      "enunt": "Scrie funcția `aria_patrat(l)` care întoarce aria unui pătrat. Afișează aria pentru latura 9.",
+      "template": "def aria_patrat(l):\n    # completează\n    pass\n\nprint(aria_patrat(9))\n",
+      "expectedOutput": "81"
+    },
+    {
+      "titlu": "Media a trei note",
+      "enunt": "Scrie funcția `media3(a, b, c)` care întoarce media rotunjită la 2 zecimale. Afișează media pentru 7, 8 și 10.",
+      "template": "def media3(a, b, c):\n    pass\n\nprint(media3(7, 8, 10))\n",
+      "expectedOutput": "8.33"
+    },
+    {
+      "titlu": "Este par?",
+      "enunt": "Scrie funcția `este_par(n)` care întoarce True sau False. Afișează rezultatul pentru 15 și pentru 42, pe rânduri separate.",
+      "template": "def este_par(n):\n    pass\n\nprint(este_par(15))\nprint(este_par(42))\n",
+      "expectedOutput": "False\nTrue"
+    },
+    {
+      "titlu": "Funcție care folosește altă funcție",
+      "enunt": "Scrie `patrat(x)` și apoi `suma_patratelor(a, b)` care o folosește pe prima. Afișează `suma_patratelor(3, 4)`.",
+      "template": "def patrat(x):\n    pass\n\ndef suma_patratelor(a, b):\n    pass\n\nprint(suma_patratelor(3, 4))\n",
+      "expectedOutput": "25"
+    },
+    {
+      "titlu": "Factorialul",
+      "enunt": "Scrie funcția `factorial(n)` care întoarce 1·2·…·n (cu o buclă). Afișează factorial(10).",
+      "template": "def factorial(n):\n    pass\n\nprint(factorial(10))\n",
+      "expectedOutput": "3628800"
+    },
+    {
+      "titlu": "Funcție cu mai multe rezultate",
+      "enunt": "Scrie funcția `cat_si_rest(a, b)` care întoarce câtul și restul împărțirii (două valori). Afișează-le pentru 47 și 5, separate prin spațiu.",
+      "template": "def cat_si_rest(a, b):\n    pass\n\nc, r = cat_si_rest(47, 5)\nprint(c, r)\n",
+      "expectedOutput": "9 2"
+    }
+  ],
+  "1.5": [
+    {
+      "titlu": "Return în loc de variabilă locală",
+      "enunt": "Funcția calculează dublul în variabila locală `d`. Fă-o să întoarcă valoarea și afișează rezultatul pentru 21.",
+      "template": "def dublu(x):\n    d = x * 2\n    # întoarce rezultatul\n\nprint(dublu(21))\n",
+      "expectedOutput": "42"
+    },
+    {
+      "titlu": "Contor global",
+      "enunt": "Folosește o variabilă globală `apeluri`, mărită cu 1 de fiecare dată când se apelează funcția `salut()`. Apelează funcția de 3 ori și afișează `apeluri`.",
+      "template": "apeluri = 0\n\ndef salut():\n    # mărește contorul global\n    pass\n\nsalut()\nsalut()\nsalut()\nprint(apeluri)\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Același nume, două variabile",
+      "enunt": "Fără să schimbi funcția, afișează ce valoare are `x` după apel (rulează și observă). Apoi scrie în comentariu de ce.",
+      "template": "x = 3\n\ndef f():\n    x = 100\n    return x\n\nf()\nprint(x)\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Funcția care modifică o listă",
+      "enunt": "Scrie funcția `dubleaza_tot(L)` care înmulțește cu 2 fiecare element al listei primite (modifică lista, nu întoarce alta). Afișează lista după apel.",
+      "template": "def dubleaza_tot(L):\n    pass\n\nnote = [3, 5, 7]\ndubleaza_tot(note)\nprint(note)\n",
+      "expectedOutput": "[6, 10, 14]"
+    },
+    {
+      "titlu": "Fără variabile globale",
+      "enunt": "Rescrie calculul ca funcție `total_cu_tva(pret, cota)` care nu folosește nicio variabilă globală. Afișează totalul pentru 200 de lei cu cota 19.",
+      "template": "def total_cu_tva(pret, cota):\n    pass\n\nprint(total_cu_tva(200, 19))\n",
+      "expectedOutput": "238.0"
+    },
+    {
+      "titlu": "Interschimbare în listă",
+      "enunt": "Scrie funcția `schimba(L, i, j)` care interschimbă elementele de pe pozițiile i și j ale listei. Afișează lista după `schimba(L, 0, 3)`.",
+      "template": "def schimba(L, i, j):\n    pass\n\nL = [4, 8, 15, 16]\nschimba(L, 0, 3)\nprint(L)\n",
+      "expectedOutput": "[16, 8, 15, 4]"
+    }
+  ],
+  "1.6": [
+    {
+      "titlu": "Ipotenuza",
+      "enunt": "Calculează ipotenuza unui triunghi dreptunghic cu catetele 5 și 12, folosind `math.sqrt`. Afișează rezultatul.",
+      "template": "import math\na = 5\nb = 12\n# completează\n",
+      "expectedOutput": "13.0"
+    },
+    {
+      "titlu": "Distanța pe axă",
+      "enunt": "Afișează distanța dintre punctele -7 și 4 de pe axa numerelor, folosind `abs`.",
+      "template": "x = -7\ny = 4\n# completează\n",
+      "expectedOutput": "11"
+    },
+    {
+      "titlu": "Rotunjirea mediei",
+      "enunt": "Afișează media numerelor din listă rotunjită la o zecimală.",
+      "template": "valori = [4.25, 7.5, 9.1, 6.3]\n# completează\n",
+      "expectedOutput": "6.8"
+    },
+    {
+      "titlu": "Cel mai scurt nume",
+      "enunt": "Afișează cel mai scurt nume din listă, folosind `min` cu `key=len`.",
+      "template": "nume = ['Alexandra', 'Ion', 'Maria', 'Bogdan']\n# completează\n",
+      "expectedOutput": "Ion"
+    },
+    {
+      "titlu": "Puterea și restul",
+      "enunt": "Afișează ultimele două cifre ale lui 7 la puterea 222, folosind `pow` cu trei argumente (`pow(a, b, m)` dă restul lui a^b la m).",
+      "template": "# completează\n",
+      "expectedOutput": "49"
+    },
+    {
+      "titlu": "Statistică rapidă",
+      "enunt": "Afișează, pe un singur rând, valoarea minimă, maximă și media rotunjită la întreg a vânzărilor săptămânale.",
+      "template": "vanzari = [120, 95, 210, 180, 75, 160, 140]\n# completează\n",
+      "expectedOutput": "75 210 140"
+    }
+  ],
+  "1.7": [
+    {
+      "titlu": "Ultima și prima cifră",
+      "enunt": "Afișează ultima și prima cifră a numărului 86412, separate prin spațiu.",
+      "template": "n = 86412\n# ultima cifră: n % 10; prima: împarte la 10 cât timp n >= 10\n",
+      "expectedOutput": "2 8"
+    },
+    {
+      "titlu": "Câte cifre de 7",
+      "enunt": "Numără de câte ori apare cifra 7 în numărul 7307717.",
+      "template": "n = 7307717\nnr = 0\n# completează\nprint(nr)\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Oglinditul",
+      "enunt": "Afișează oglinditul (inversul) numărului 120345.",
+      "template": "n = 120345\ninv = 0\n# completează\nprint(inv)\n",
+      "expectedOutput": "543021"
+    },
+    {
+      "titlu": "Palindrom",
+      "enunt": "Afișează DA dacă 4567654 este palindrom, altfel NU (păstrează o copie a numărului).",
+      "template": "n = 4567654\n# completează\n",
+      "expectedOutput": "DA"
+    },
+    {
+      "titlu": "Cifrele în ordine crescătoare",
+      "enunt": "Verifică dacă cifrele lui 13579 sunt în ordine strict crescătoare de la stânga la dreapta. Afișează True sau False.",
+      "template": "n = 13579\n# compară fiecare cifră cu cea din stânga ei\n",
+      "expectedOutput": "True"
+    },
+    {
+      "titlu": "Fără cifrele de 0",
+      "enunt": "Construiește numărul obținut din 405060 prin eliminarea tuturor cifrelor 0, păstrând ordinea celorlalte cifre.",
+      "template": "n = 405060\nrez = 0\np = 1\n# completează\nprint(rez)\n",
+      "expectedOutput": "456"
+    }
+  ],
+  "1.8": [
+    {
+      "titlu": "Divizorii proprii",
+      "enunt": "Afișează pe un rând, separați prin spațiu, divizorii lui 30 diferiți de 1 și de 30.",
+      "template": "n = 30\n# completează\n",
+      "expectedOutput": "2 3 5 6 10 15"
+    },
+    {
+      "titlu": "Suma divizorilor",
+      "enunt": "Afișează suma tuturor divizorilor lui 28 (inclusiv 1 și 28).",
+      "template": "n = 28\ns = 0\n# completează\nprint(s)\n",
+      "expectedOutput": "56"
+    },
+    {
+      "titlu": "Fracție ireductibilă",
+      "enunt": "Simplifică fracția 84/126 cu ajutorul cmmdc și afișeaz-o sub forma `a/b`.",
+      "template": "a, b = 84, 126\n# completează\n",
+      "expectedOutput": "2/3"
+    },
+    {
+      "titlu": "Multiplii dintr-un interval",
+      "enunt": "Afișează câți multipli de 7 există în intervalul [100, 200].",
+      "template": "# completează\n",
+      "expectedOutput": "14"
+    },
+    {
+      "titlu": "Numere prime între ele",
+      "enunt": "Două numere sunt prime între ele dacă cmmdc lor este 1. Afișează câte numere de la 1 la 30 sunt prime cu 30.",
+      "template": "import math\n# completează\n",
+      "expectedOutput": "8"
+    },
+    {
+      "titlu": "Numere prietene",
+      "enunt": "Două numere sunt prietene dacă fiecare este egal cu suma divizorilor proprii ai celuilalt (divizorii mai mici decât numărul). Afișează True dacă 220 și 284 sunt prietene.",
+      "template": "def suma_div_proprii(n):\n    pass\n\na, b = 220, 284\n# completează\n",
+      "expectedOutput": "True"
+    }
+  ],
+  "1.9": [
+    {
+      "titlu": "Binarul lui 45",
+      "enunt": "Afișează scrierea în baza 2 a numărului 45, folosind împărțiri repetate (nu funcția `bin`).",
+      "template": "n = 45\nsir = ''\n# completează\nprint(sir)\n",
+      "expectedOutput": "101101"
+    },
+    {
+      "titlu": "Din binar în zecimal",
+      "enunt": "Afișează valoarea în baza 10 a numărului binar 110110, parcurgând cifrele de la stânga la dreapta (valoare = valoare · 2 + cifră).",
+      "template": "sir = '110110'\nvaloare = 0\n# completează\nprint(valoare)\n",
+      "expectedOutput": "54"
+    },
+    {
+      "titlu": "Baza 8",
+      "enunt": "Afișează scrierea numărului 2026 în baza 8.",
+      "template": "n = 2026\n# completează\n",
+      "expectedOutput": "3752"
+    },
+    {
+      "titlu": "Hexazecimal",
+      "enunt": "Afișează scrierea numărului 48879 în baza 16, cu litere mari.",
+      "template": "n = 48879\nsimboluri = '0123456789ABCDEF'\n# completează\n",
+      "expectedOutput": "BEEF"
+    },
+    {
+      "titlu": "Câți biți de 1",
+      "enunt": "Afișează câte cifre de 1 are scrierea în baza 2 a lui 1000 (fără să construiești șirul: numără resturile egale cu 1).",
+      "template": "n = 1000\nnr = 0\n# completează\nprint(nr)\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Din baza 3 în baza 5",
+      "enunt": "Numărul 21012 este scris în baza 3. Afișează-l în baza 5 (treci întâi prin baza 10).",
+      "template": "sir = '21012'\n# completează\n",
+      "expectedOutput": "1234"
+    }
+  ],
+  "1.10": [
+    {
+      "titlu": "Este prim?",
+      "enunt": "Afișează True dacă 221 este prim, altfel False (testează divizorii până la radical).",
+      "template": "n = 221\n# completează\n",
+      "expectedOutput": "False"
+    },
+    {
+      "titlu": "Primele 10 prime",
+      "enunt": "Afișează pe un rând primele 10 numere prime.",
+      "template": "# completează\n",
+      "expectedOutput": "2 3 5 7 11 13 17 19 23 29"
+    },
+    {
+      "titlu": "Suma primelor",
+      "enunt": "Cu ciurul lui Eratostene, afișează suma numerelor prime mai mici sau egale cu 100.",
+      "template": "n = 100\n# completează\n",
+      "expectedOutput": "1060"
+    },
+    {
+      "titlu": "Descompunere în factori",
+      "enunt": "Afișează factorii primi ai lui 360, cu repetiție, separați prin spațiu.",
+      "template": "n = 360\nfactori = []\n# completează\nprint(*factori)\n",
+      "expectedOutput": "2 2 2 3 3 5"
+    },
+    {
+      "titlu": "Ultimele cifre ale unei puteri",
+      "enunt": "Afișează ultimele 3 cifre ale lui 2 la puterea 1000, cu exponențiere rapidă în care păstrezi doar restul la 1000 la fiecare înmulțire.",
+      "template": "def putere_mod(b, e, m):\n    pass\n\nprint(putere_mod(2, 1000, 1000))\n",
+      "expectedOutput": "376"
+    },
+    {
+      "titlu": "Goldbach",
+      "enunt": "Orice număr par mai mare decât 2 pare să fie suma a două numere prime. Afișează prima descompunere a lui 100 în p + q, cu p cât mai mic.",
+      "template": "def prim(x):\n    pass\n\nn = 100\n# completează\n",
+      "expectedOutput": "3 97"
+    }
+  ],
+  "1.11": [
+    {
+      "titlu": "Clasa Carte",
+      "enunt": "Creează clasa `Carte` cu atributele `titlu` și `pagini`. Creează cartea „Ion”, cu 380 de pagini, și afișează titlul și numărul de pagini.",
+      "template": "class Carte:\n    pass\n\n# creează obiectul și afișează\n",
+      "expectedOutput": "Ion 380"
+    },
+    {
+      "titlu": "Metoda care întoarce",
+      "enunt": "Adaugă clasei `Patrat` metoda `arie()`. Afișează aria unui pătrat cu latura 7.",
+      "template": "class Patrat:\n    def __init__(self, latura):\n        self.latura = latura\n    # metoda arie\n\nprint(Patrat(7).arie())\n",
+      "expectedOutput": "49"
+    },
+    {
+      "titlu": "Contor de vizite",
+      "enunt": "Clasa `Pagina` are atributul `vizite`, pornit de la 0, și metoda `viziteaza()`, care îl mărește cu 1. Vizitează pagina de 4 ori și afișează numărul de vizite.",
+      "template": "class Pagina:\n    pass\n\np = Pagina()\n# 4 vizite, apoi afișează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Media unui elev",
+      "enunt": "Clasa `Elev` primește numele și o listă de note; metoda `medie()` întoarce media rotunjită la 2 zecimale. Afișează media pentru notele 9, 8, 10 și 7.",
+      "template": "class Elev:\n    pass\n\ne = Elev('Mihai', [9, 8, 10, 7])\nprint(e.medie())\n",
+      "expectedOutput": "8.5"
+    },
+    {
+      "titlu": "Cont bancar",
+      "enunt": "Clasa `Cont` are soldul inițial 100. Metoda `retrage(suma)` scade suma doar dacă soldul ajunge; altfel lasă soldul neschimbat. Retrage 30, apoi 90, și afișează soldul.",
+      "template": "class Cont:\n    pass\n\nc = Cont()\nc.retrage(30)\nc.retrage(90)\nprint(c.sold)\n",
+      "expectedOutput": "70"
+    },
+    {
+      "titlu": "Lista de obiecte",
+      "enunt": "Ai trei produse (nume, preț). Creează câte un obiect `Produs` pentru fiecare, apoi afișează numele celui mai scump.",
+      "template": "class Produs:\n    def __init__(self, nume, pret):\n        self.nume = nume\n        self.pret = pret\n\nproduse = [Produs('pix', 3), Produs('caiet', 7), Produs('rucsac', 120)]\n# completează\n",
+      "expectedOutput": "rucsac"
+    }
+  ],
+  "1.12": [
+    {
+      "titlu": "Textul butonului",
+      "enunt": "Funcția `text_buton(apasat)` întoarce „Pornit” dacă `apasat` este True, altfel „Oprit”. Afișează rezultatul pentru True.",
+      "template": "def text_buton(apasat):\n    pass\n\nprint(text_buton(True))\n",
+      "expectedOutput": "Pornit"
+    },
+    {
+      "titlu": "Contorul de click-uri",
+      "enunt": "Un buton mărește un contor la fiecare click. Simulează 5 click-uri apelând funcția `la_click()` și afișează textul etichetei: „Click-uri: 5”.",
+      "template": "click = 0\n\ndef la_click():\n    global click\n    # mărește și întoarce textul etichetei\n\nfor _ in range(5):\n    text = la_click()\nprint(text)\n",
+      "expectedOutput": "Click-uri: 5"
+    },
+    {
+      "titlu": "Conversie de temperatură",
+      "enunt": "Funcția `celsius_in_fahrenheit(text)` primește textul din `Entry` și întoarce rezultatul cu o zecimală, ca text. Afișează rezultatul pentru '36.6'.",
+      "template": "def celsius_in_fahrenheit(text):\n    pass\n\nprint(celsius_in_fahrenheit('36.6'))\n",
+      "expectedOutput": "97.9"
+    },
+    {
+      "titlu": "Validarea câmpului",
+      "enunt": "Funcția `valideaza_varsta(text)` întoarce „ok” pentru un număr întreg între 1 și 120, altfel „vârstă invalidă”. Afișează rezultatele pentru '17', '0' și 'x'.",
+      "template": "def valideaza_varsta(text):\n    pass\n\nfor t in ['17', '0', 'x']:\n    print(valideaza_varsta(t))\n",
+      "expectedOutput": "ok\nvârstă invalidă\nvârstă invalidă"
+    },
+    {
+      "titlu": "Culoarea etichetei",
+      "enunt": "Trei butoane trimit numele unei culori. Funcția `culoare_fundal(nume)` întoarce codul culorii din dicționar sau „white” dacă numele lipsește. Afișează rezultatele pentru 'rosu' și 'mov'.",
+      "template": "CULORI = {'rosu': 'red', 'verde': 'green', 'albastru': 'blue'}\n\ndef culoare_fundal(nume):\n    pass\n\nprint(culoare_fundal('rosu'))\nprint(culoare_fundal('mov'))\n",
+      "expectedOutput": "red\nwhite"
+    },
+    {
+      "titlu": "Calculator de medie",
+      "enunt": "Câmpul conține note separate prin virgulă. Funcția `medie_din_text(text)` întoarce media cu 2 zecimale. Afișează rezultatul pentru '9, 7,10, 8'.",
+      "template": "def medie_din_text(text):\n    pass\n\nprint(medie_din_text('9, 7,10, 8'))\n",
+      "expectedOutput": "8.5"
+    }
+  ],
+  "1.13": [
+    {
+      "titlu": "Poziția în grilă",
+      "enunt": "Butoanele unui calculator sunt numerotate de la 0 la 8 și așezate pe 3 coloane. Afișează rândul și coloana butonului 7 (`divmod` ajută).",
+      "template": "buton = 7\n# rând = buton // 3, coloană = buton % 3\n",
+      "expectedOutput": "2 1"
+    },
+    {
+      "titlu": "Tasta apăsată",
+      "enunt": "Funcția `descrie_tasta(keysym)` întoarce „săgeată” pentru Left, Right, Up și Down și „altă tastă” pentru orice altceva. Afișează rezultatele pentru 'Up' și 'a'.",
+      "template": "def descrie_tasta(keysym):\n    pass\n\nprint(descrie_tasta('Up'))\nprint(descrie_tasta('a'))\n",
+      "expectedOutput": "săgeată\naltă tastă"
+    },
+    {
+      "titlu": "Mișcarea cu săgețile",
+      "enunt": "Un personaj pornește din (0, 0). Săgețile îl mută cu 10 pixeli (în tkinter, y crește în jos). Aplică tastele ['Right', 'Right', 'Down', 'Left'] și afișează poziția finală.",
+      "template": "x, y = 0, 0\ntaste = ['Right', 'Right', 'Down', 'Left']\n# completează\nprint(x, y)\n",
+      "expectedOutput": "10 10"
+    },
+    {
+      "titlu": "Afișajul calculatorului",
+      "enunt": "Fiecare buton adaugă un caracter pe afișaj, iar „C” îl golește. Aplică apăsările ['7', '+', '8', 'C', '9'] și afișează ce rămâne pe ecran.",
+      "template": "afisaj = ''\napasari = ['7', '+', '8', 'C', '9']\n# completează\nprint(afisaj)\n",
+      "expectedOutput": "9"
+    },
+    {
+      "titlu": "Butonul =",
+      "enunt": "Butonul „=” calculează expresii de forma „a+b” sau „a-b”, cu numere întregi. Scrie funcția `egal(afisaj)` fără `eval` și afișează rezultatul pentru '125-48'.",
+      "template": "def egal(afisaj):\n    pass\n\nprint(egal('125-48'))\n",
+      "expectedOutput": "77"
+    },
+    {
+      "titlu": "Tabla de X și 0",
+      "enunt": "O tablă 3×3 e reținută ca listă de 9 caractere (indicii 0–8, pe rânduri). Afișează True dacă X a câștigat pe o linie, o coloană sau o diagonală.",
+      "template": "tabla = ['X', '0', ' ',\n         '0', 'X', ' ',\n         ' ', '0', 'X']\n# completează\n",
+      "expectedOutput": "True"
+    }
+  ],
+  "1.14": [
+    {
+      "titlu": "Scrie și numără liniile",
+      "enunt": "Scrie în `zile.txt` numele celor 7 zile ale săptămânii, câte una pe linie, apoi citește fișierul și afișează câte linii are.",
+      "template": "zile = ['luni', 'marți', 'miercuri', 'joi', 'vineri', 'sâmbătă', 'duminică']\n# scrie, apoi numără liniile\n",
+      "expectedOutput": "7"
+    },
+    {
+      "titlu": "Adaugă fără să ștergi",
+      "enunt": "Scrie „prima” în `jurnal.txt` cu modul \"w\", apoi adaugă „a doua” cu modul \"a\". Afișează conținutul, linie cu linie.",
+      "template": "# completează\n",
+      "expectedOutput": "prima\na doua"
+    },
+    {
+      "titlu": "Numerele de pe o linie",
+      "enunt": "Fișierul conține pe o singură linie numere separate prin spații. Scrie-l cu textul '4 15 8 23 42', citește-l și afișează cel mai mare număr.",
+      "template": "with open('date.txt', 'w', encoding='utf-8') as f:\n    f.write('4 15 8 23 42')\n# citește și afișează maximul\n",
+      "expectedOutput": "42"
+    },
+    {
+      "titlu": "Primul n, apoi n numere",
+      "enunt": "Formatul clasic de concurs: prima linie conține n, a doua n numere. Pentru fișierul '5\\n3 9 2 7 4', afișează suma numerelor pare.",
+      "template": "with open('date.in', 'w', encoding='utf-8') as f:\n    f.write('5\\n3 9 2 7 4\\n')\n# citește n și numerele\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Rezultatul în fișier",
+      "enunt": "Calculează pătratele numerelor de la 1 la 5 și scrie-le în `patrate.out`, pe o singură linie, separate prin spațiu. Apoi afișează conținutul fișierului.",
+      "template": "# scrie în patrate.out, apoi citește-l\n",
+      "expectedOutput": "1 4 9 16 25"
+    },
+    {
+      "titlu": "Cuvinte lungi",
+      "enunt": "Scrie textul 'programarea in python este frumoasa' în `text.txt`. Citește-l și afișează cuvintele care au mai mult de 6 litere, în ordinea apariției.",
+      "template": "# completează\n",
+      "expectedOutput": "programarea frumoasa"
+    }
+  ],
+  "1.15": [
+    {
+      "titlu": "Vârful stivei",
+      "enunt": "Pune în stivă pe rând 5, 8 și 13, scoate un element, apoi afișează vârful stivei (fără să-l scoți).",
+      "template": "stiva = []\n# completează\n",
+      "expectedOutput": "8"
+    },
+    {
+      "titlu": "Coada la casă",
+      "enunt": "Clienții Ana, Bogdan și Carmen intră pe rând în coadă. Primul este servit, apoi vine Dan. Afișează, separați prin spațiu, clienții rămași în ordinea servirii.",
+      "template": "from collections import deque\ncoada = deque()\n# completează\n",
+      "expectedOutput": "Bogdan Carmen Dan"
+    },
+    {
+      "titlu": "Binar cu stiva",
+      "enunt": "Pune în stivă resturile împărțirilor lui 37 la 2, apoi scoate-le pe rând ca să obții scrierea în baza 2.",
+      "template": "n = 37\nstiva = []\n# completează\n",
+      "expectedOutput": "100101"
+    },
+    {
+      "titlu": "Undo",
+      "enunt": "Un editor reține acțiunile într-o stivă. Se fac acțiunile 'scrie A', 'scrie B', 'șterge', apoi „undo” de două ori. Afișează ultima acțiune rămasă în stivă.",
+      "template": "actiuni = []\n# completează\n",
+      "expectedOutput": "scrie A"
+    },
+    {
+      "titlu": "Josephus",
+      "enunt": "7 copii stau în cerc (1–7). Numărătoarea pornește de la primul, iar fiecare al treilea copil iese. Simulează cu o coadă (`rotate` sau `popleft` + `append`) și afișează ordinea ieșirii.",
+      "template": "from collections import deque\ncerc = deque(range(1, 8))\nordine = []\n# completează\nprint(*ordine)\n",
+      "expectedOutput": "3 6 2 7 5 1 4"
+    },
+    {
+      "titlu": "Expresie postfixată",
+      "enunt": "În forma postfixată, operatorul vine după operanzi: '3 4 + 2 *' înseamnă (3 + 4) · 2. Evaluează expresia cu o stivă.",
+      "template": "expr = '3 4 + 2 *'\nstiva = []\n# completează\n",
+      "expectedOutput": "14"
+    }
+  ],
+  "1.16": [
+    {
+      "titlu": "Primul și ultimul",
+      "enunt": "Afișează primul și ultimul element al listei, folosind indici (inclusiv unul negativ).",
+      "template": "L = [7, 3, 9, 4, 1]\n# completează\n",
+      "expectedOutput": "7 1"
+    },
+    {
+      "titlu": "Fără primul și ultimul",
+      "enunt": "Afișează lista fără primul și ultimul element, cu o singură felie.",
+      "template": "L = ['a', 'b', 'c', 'd', 'e']\n# completează\n",
+      "expectedOutput": "['b', 'c', 'd']"
+    },
+    {
+      "titlu": "Din două în două",
+      "enunt": "Afișează elementele de pe pozițiile pare (0, 2, 4, ...), folosind pasul unei felii.",
+      "template": "L = [5, 8, 2, 9, 4, 7, 1]\n# completează\n",
+      "expectedOutput": "[5, 2, 4, 1]"
+    },
+    {
+      "titlu": "Inserări și ștergeri",
+      "enunt": "Pornind de la [1, 2, 3]: adaugă 4 la sfârșit, pune 0 la început, șterge valoarea 2 și afișează lista.",
+      "template": "L = [1, 2, 3]\n# completează\nprint(L)\n",
+      "expectedOutput": "[0, 1, 3, 4]"
+    },
+    {
+      "titlu": "Rotire la stânga",
+      "enunt": "Rotește lista cu 2 poziții la stânga (primele două elemente trec la final), folosind felii.",
+      "template": "L = [1, 2, 3, 4, 5, 6]\nk = 2\n# completează\n",
+      "expectedOutput": "[3, 4, 5, 6, 1, 2]"
+    },
+    {
+      "titlu": "Unirea fără dubluri",
+      "enunt": "Construiește lista elementelor care apar în A sau în B, fiecare o singură dată, în ordinea primei apariții (A întâi, apoi B).",
+      "template": "A = [1, 3, 5, 7]\nB = [3, 4, 5, 6]\nrez = []\n# completează\nprint(rez)\n",
+      "expectedOutput": "[1, 3, 5, 7, 4, 6]"
+    }
+  ],
+  "1.17": [
+    {
+      "titlu": "Sortare fără să strici originalul",
+      "enunt": "Afișează lista sortată crescător, apoi lista originală neschimbată, pe rânduri separate.",
+      "template": "L = [4, 1, 3, 2]\n# completează\n",
+      "expectedOutput": "[1, 2, 3, 4]\n[4, 1, 3, 2]"
+    },
+    {
+      "titlu": "Cele mai mari trei",
+      "enunt": "Afișează cele mai mari 3 valori, în ordine descrescătoare.",
+      "template": "punctaje = [56, 91, 73, 88, 64, 99, 70]\n# completează\n",
+      "expectedOutput": "[99, 91, 88]"
+    },
+    {
+      "titlu": "Ultima apariție",
+      "enunt": "Afișează poziția ultimei apariții a valorii 5 în listă.",
+      "template": "L = [5, 2, 5, 8, 5, 1]\n# completează\n",
+      "expectedOutput": "4"
+    },
+    {
+      "titlu": "Șterge toate aparițiile",
+      "enunt": "Elimină din listă toate valorile 0 (construind o listă nouă) și afișează rezultatul.",
+      "template": "L = [0, 4, 0, 0, 7, 2, 0]\n# completează\n",
+      "expectedOutput": "[4, 7, 2]"
+    },
+    {
+      "titlu": "Sortare după lungime",
+      "enunt": "Sortează cuvintele crescător după numărul de litere; la lungimi egale păstrează ordinea alfabetică.",
+      "template": "cuvinte = ['mar', 'banana', 'kiwi', 'pruna', 'cais']\n# completează\n",
+      "expectedOutput": "['mar', 'cais', 'kiwi', 'pruna', 'banana']"
+    },
+    {
+      "titlu": "Inserare păstrând ordinea",
+      "enunt": "Lista e sortată crescător. Inserează 26 la poziția potrivită, astfel încât lista să rămână sortată (găsește poziția cu o buclă), și afișeaz-o.",
+      "template": "L = [3, 11, 19, 30, 42]\nx = 26\n# completează\nprint(L)\n",
+      "expectedOutput": "[3, 11, 19, 26, 30, 42]"
+    }
+  ],
+  "1.18": [
+    {
+      "titlu": "Tabla înmulțirii",
+      "enunt": "Afișează rândul 7 din tabla înmulțirii: produsele 7·1, 7·2, …, 7·10, separate prin spațiu.",
+      "template": "# completează\n",
+      "expectedOutput": "7 14 21 28 35 42 49 56 63 70"
+    },
+    {
+      "titlu": "Perechi cu suma dată",
+      "enunt": "Afișează câte perechi (a, b), cu 1 ≤ a ≤ b ≤ 20, au suma 20.",
+      "template": "# completează\n",
+      "expectedOutput": "10"
+    },
+    {
+      "titlu": "Triunghiul de stele",
+      "enunt": "Afișează un triunghi cu 4 rânduri: pe rândul i sunt i stele.",
+      "template": "n = 4\n# completează\n",
+      "expectedOutput": "*\n**\n***\n****"
+    },
+    {
+      "titlu": "Cifre distincte",
+      "enunt": "Numără câte numere de 3 cifre au toate cifrele diferite.",
+      "template": "# completează\n",
+      "expectedOutput": "648"
+    },
+    {
+      "titlu": "Șiruri binare fără 11",
+      "enunt": "Generează toate șirurile binare de lungime 5 și numără-le pe cele care nu conțin două cifre 1 alăturate.",
+      "template": "# completează\n",
+      "expectedOutput": "13"
+    },
+    {
+      "titlu": "Triplete pitagoreice",
+      "enunt": "Afișează tripletele (a, b, c) cu a < b < c ≤ 20 și a² + b² = c², câte unul pe rând.",
+      "template": "# completează\n",
+      "expectedOutput": "3 4 5\n5 12 13\n6 8 10\n8 15 17\n9 12 15\n12 16 20"
+    }
+  ],
+  "1.19": [
+    {
+      "titlu": "Poziția minimului",
+      "enunt": "Afișează poziția celui mai mic element din listă, cu o singură parcurgere (fără `min` și `index`).",
+      "template": "L = [8, 3, 6, 1, 9, 1]\np = 0\n# completează\nprint(p)\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Selecția minimului",
+      "enunt": "Sortează crescător lista cu selecția minimului (fără `sort` sau `sorted`) și afișeaz-o.",
+      "template": "L = [64, 25, 12, 22, 11]\n# completează\nprint(L)\n",
+      "expectedOutput": "[11, 12, 22, 25, 64]"
+    },
+    {
+      "titlu": "Câte interschimbări",
+      "enunt": "Sortează lista cu selecția minimului, dar interschimbă doar când minimul nu e deja pe loc. Afișează câte interschimbări s-au făcut.",
+      "template": "L = [3, 1, 2, 5, 4]\nnr = 0\n# completează\nprint(nr)\n",
+      "expectedOutput": "3"
+    },
+    {
+      "titlu": "Sortare de cuvinte",
+      "enunt": "Sortează alfabetic lista de cuvinte cu selecția minimului (`<` compară și textele).",
+      "template": "L = ['pere', 'mere', 'caise', 'banane']\n# completează\nprint(L)\n",
+      "expectedOutput": "['banane', 'caise', 'mere', 'pere']"
+    },
+    {
+      "titlu": "Primele k sortate",
+      "enunt": "Fă doar primii 3 pași ai selecției minimului și afișează lista. Așa obții cele mai mici 3 valori pe primele poziții, fără să sortezi tot.",
+      "template": "L = [9, 4, 7, 1, 8, 2, 6]\nk = 3\n# completează\nprint(L)\n",
+      "expectedOutput": "[1, 2, 4, 9, 8, 7, 6]"
+    },
+    {
+      "titlu": "Pare înaintea impare",
+      "enunt": "Sortează lista astfel încât numerele pare să fie înaintea celor impare, iar fiecare grupă să fie crescătoare. Compară cu cheia (x % 2, x) în selecția minimului.",
+      "template": "L = [7, 2, 9, 4, 1, 8]\n# completează\nprint(L)\n",
+      "expectedOutput": "[2, 4, 8, 1, 7, 9]"
+    }
+  ],
+  "1.20": [
+    {
+      "titlu": "O singură trecere",
+      "enunt": "Fă o singură trecere a metodei bulelor pe listă și afișează rezultatul (cel mai mare element ajunge la final).",
+      "template": "L = [5, 1, 4, 2, 8, 3]\n# completează\nprint(L)\n",
+      "expectedOutput": "[1, 4, 2, 5, 3, 8]"
+    },
+    {
+      "titlu": "Metoda bulelor",
+      "enunt": "Sortează lista crescător cu metoda bulelor (fără `sort`) și afișeaz-o.",
+      "template": "L = [38, 27, 43, 3, 9, 82, 10]\n# completează\nprint(L)\n",
+      "expectedOutput": "[3, 9, 10, 27, 38, 43, 82]"
+    },
+    {
+      "titlu": "Câte interschimbări",
+      "enunt": "Numără interschimbările făcute de metoda bulelor pentru lista [4, 3, 2, 1].",
+      "template": "L = [4, 3, 2, 1]\nnr = 0\n# completează\nprint(nr)\n",
+      "expectedOutput": "6"
+    },
+    {
+      "titlu": "Sortare prin numărare",
+      "enunt": "Cifrele 0–9 apar de mai multe ori în listă. Sortează-le cu o listă de frecvențe (fără `sort`) și afișează rezultatul.",
+      "template": "cifre = [3, 0, 7, 3, 9, 1, 0, 7, 3]\n# completează\n",
+      "expectedOutput": "[0, 0, 1, 3, 3, 3, 7, 7, 9]"
+    },
+    {
+      "titlu": "Cifrele care lipsesc",
+      "enunt": "Afișează cifrele care nu apar deloc în numărul 9071234, în ordine crescătoare (folosește o listă de frecvențe).",
+      "template": "n = 9071234\n# completează\n",
+      "expectedOutput": "5 6 8"
+    },
+    {
+      "titlu": "Cel mai mare număr din cifre",
+      "enunt": "Formează cel mai mare număr care se poate scrie cu toate cifrele lui 30591 (fiecare folosită o dată), cu o listă de frecvențe.",
+      "template": "n = 30591\n# completează\n",
+      "expectedOutput": "95310"
+    }
+  ]
+}

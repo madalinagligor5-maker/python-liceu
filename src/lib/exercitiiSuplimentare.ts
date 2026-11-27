@@ -7,48 +7,14 @@ export type ExercitiuSuplimentar = {
   expectedOutput: string;
 };
 
+import practiceRaw from "../../content/exercitii-practice.json";
+
 type ExData = Omit<ExercitiuSuplimentar, "id" | "cod">;
 
-const BAZA_EXERCITII_SET: Record<string, ExData[]> = {
-  "1.1": [
-    {
-      titlu: "Calcularea ariei unui triunghi",
-      enunt: "Scrie un program Python care calculează aria unui triunghi având baza = 10 și înălțimea = 5. Formula este: aria = (baza * inaltime) / 2. Afișează rezultatul sub forma: 'Aria triunghiului este: X.Y'.",
-      template: "baza = 10\ninaltime = 5\n# Calculează aria și afișeaz-o sub forma cerută\n",
-      expectedOutput: "Aria triunghiului este: 25.0",
-    },
-    {
-      titlu: "Calcularea mediei a 3 note",
-      enunt: "Scrie un program Python care calculează și afișează media aritmetică a trei note: 7, 9 și 10. Afișează doar valoarea numerică a mediei.",
-      template: "nota1 = 7\nnota2 = 9\nnota3 = 10\n# Calculează media aritmetică și printeaz-o\n",
-      expectedOutput: "8.666666666666666",
-    },
-    {
-      titlu: "Perimetrul unui pătrat",
-      enunt: "Calculează perimetrul unui pătrat care are latura egală cu 8 cm. Afișează doar valoarea numerică a perimetrului (perimetrul = latura * 4).",
-      template: "latura = 8\n# Calculează perimetrul și printează-l\n",
-      expectedOutput: "32",
-    },
-    {
-      titlu: "Suma primelor 10 numere",
-      enunt: "Calculează suma primelor 10 numere naturale nenule (1 + 2 + 3 + ... + 10). Afișează direct rezultatul obținut.",
-      template: "# Calculează manual sau prin formulă (n*(n+1))/2 suma primelor 10 numere naturale și afișeaz-o\n",
-      expectedOutput: "55",
-    },
-    {
-      titlu: "Afișare nume și clasă",
-      enunt: "Scrie un program care afișează pe ecran textul 'Mădălina' pe primul rând, și 'Clasa a IX-a' pe al doilea rând.",
-      template: "# Printează numele și clasa pe rânduri diferite\n",
-      expectedOutput: "Mădălina\nClasa a IX-a",
-    },
-    {
-      titlu: "Inversarea valorilor",
-      enunt: "Având variabilele a = 5 și b = 10, inversează valorile acestora astfel încât a să aibă valoarea 10 și b valoarea 5. Afișează suma valorilor și apoi valorile lor în format: 'a=10 b=5'.",
-      template: "a = 5\nb = 10\n# Realizează inversarea valorilor celor două variabile\n# Sugestie: a, b = b, a\nprint(f'a={a} b={b}')\n",
-      expectedOutput: "a=10 b=5",
-    }
-  ]
-};
+/** Câte 6 exerciții progresive pentru fiecare modul, scrise în
+ *  scripts/lectii/practice.json (cu soluții verificate de
+ *  scripts/verifica_lectii.py) și copiate fără soluții în content/. */
+const BAZA_EXERCITII_SET: Record<string, ExData[]> = practiceRaw;
 
 export function obtineSetExercitii(
   cod: string,
@@ -63,7 +29,7 @@ export function obtineSetExercitii(
     }));
   }
 
-  // Generare dinamică pentru restul de 87 module
+  // Generare dinamică pentru modulele care nu au încă exerciții scrise
   return Array.from({ length: 6 }).map((_, idx) => {
     const id = idx + 1;
     let titlu = "";
