@@ -1,89 +1,10 @@
-# Modulul 2.6 — Clasa str: metode de căutare, înlocuire, separare
+# Modulul 2.6 — Clasa str: indexare, slicing, concatenare, comparare
 
 ### 🔄 2.6.1 Recapitulare
 
-În modulul 2.5 ai văzut că șirurile sunt imutabile și cum se accesează. Acum metodele uzuale care returnează șiruri noi.
+În modulul 2.5 ai văzut că un șir este o secvență imutabilă de caractere. Acum lucrăm cu el: indexare, felii (slicing), concatenare și comparare.
 
 ### 💡 2.6.2 Concept nou și exemplu
-
-```python
-text = "Informatica este utila"
-cuvinte = text.split(" ")             # ['Informatica', 'este', 'utila']
-nou = text.replace("utila", "distractiva")
-poz = text.find("este")               # 13 (prima apariție)
-print(cuvinte, nou, poz)
-```
-
-Operatori: `in` (apartenență subșir), `+` (concatenare), `*` (repetare), comparare lexicografică. Metode: `find()`, `index()`, `replace()`, `split()`, `join()`, `strip()`, `upper()`/`lower()`.
-
-**Atenție:** `replace()`/`upper()` etc. returnează un șir nou — nu modifică originalul!
-
-
-:::tip
-## find() vs. index(): nu le confunda
-`text.find("x")` returnează **-1** dacă subșirul lipsește, în timp ce `text.index("x")` aruncă `ValueError` în aceeași situație. Dacă vrei doar să testezi apartenența, folosește operatorul `in` (mai clar); dacă ai nevoie de poziție și ești sigur că subșirul există, `index()` e mai sigur pentru că nu ascunde o eroare de logică sub un -1 trecut cu vederea. Și nu uita: `replace()`, `split()`, `strip()`, `upper()`/`lower()` nu modifică șirul pe care le apelezi — dacă nu reții rezultatul într-o variabilă (`text = text.strip()`), efectul se pierde.
-:::
-
-### 🔮 2.6.3 Citește și prezice
-
-```python
-text = "abc-def-ghi"
-print(text.split("-"))
-```
-Ce se afișează?
-
-### 🤝 2.6.4 Exerciții ghidate
-
-**Exercițiul 1.** Completează pentru a număra de câte ori apare "ana" într-un text:
-```python
-text = "ana are ana"
-___  # metoda care numără aparițiile unui subșir
-```
-
-**Exercițiul 2.** Scrie codul care unește o listă de cuvinte într-un șir, separate prin virgulă.
-
-### 🎯 2.6.5 Exerciții independente
-
-**Exercițiul 1.** Numără cuvintele distincte dintr-un text folosind `split()` și o mulțime.
-
-**Exercițiul 2.** Scrie o funcție care înlocuiește toate vocalele dintr-un șir cu `*`.
-
-### ✅ 2.6.6 Verifică-ți înțelegerea
-
-1. `split(" ")` pe "a b c" returnează:
-   a) "abc"  b) **['a', 'b', 'c']**  c) ['a b c']
-      > split(" ") taie textul la fiecare spațiu și întoarce o listă cu bucățile rezultate, deci "a b c" devine lista ['a', 'b', 'c'], nu un singur șir.
-
-2. `replace()` modifică șirul original?
-   a) Da  b) **Nu, returnează un șir nou**  c) Doar dacă e atribuit
-      > replace(), ca toate metodele de șiruri, nu poate modifica șirul original pentru că șirurile sunt imutabile în Python — ea construiește și întoarce un șir nou, care trebuie reținut într-o variabilă ca să nu se piardă.
-
-3. `text.find("x")` când "x" lipsește returnează:
-   a) 0  b) **-1**  c) None
-      > find() este gândită să nu arunce eroare când subșirul lipsește, așa că întoarce -1 ca semnal de "nu a fost găsit"; pentru o eroare explicită în acest caz s-ar folosi index().
-
-4. `",".join(["a","b"])` produce:
-   a) "ab"  b) **"a,b"**  c) "[a,b]"
-      > join() lipește elementele listei folosind șirul din stânga ca separator între ele, deci ",".join(["a","b"]) pune o virgulă între "a" și "b", rezultând "a,b".
-
-
-:::verifica-cod
-Scrie o funcție `numara_aparitii(text, sub)` care returnează de câte ori apare `sub` în `text`. Demo: `numara_aparitii("ana are ana", "ana")` -> `2`
-template: def numara_aparitii(text, sub):
-    # completeaza
-    pass
-
-print(numara_aparitii("ana are ana", "ana"))
-output: 2
-:::
-
-# Modulul 2.7 — Clasa str: indexare, slicing, concatenare, comparare
-
-### 🔄 2.7.1 Recapitulare
-
-Revizuim rapid operațiile de bază cu șiruri înainte de a trece la criptare.
-
-### 💡 2.7.2 Concept nou și exemplu
 
 ```python
 a = "abc"; b = "def"
@@ -101,7 +22,31 @@ print("a" in "racheta")  # True
 Dacă accesezi `a[10]` pe un șir cu 3 caractere, primești o eroare (`IndexError`). Dar `a[0:10]` pe același șir nu dă eroare — Python taie automat la lungimea disponibilă și returnează ce există, chiar și un șir gol dacă indicii sunt complet în afara intervalului. Reține și că indicii negativi numără de la coadă (`a[-1]` e ultimul caracter), iar comparațiile de tip `"abc" < "abd"` sunt lexicografice și sensibile la majuscule/minuscule — în ASCII literele mari sunt „mai mici" decât cele mici, deci `"Z" < "a"` este `True`.
 :::
 
-### 🔮 2.7.3 Citește și prezice
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un CNP are 13 cifre. Din primele 7 extragem cu felii (slicing) data nașterii, pentru CNP-ul fictiv 5080214123456.
+
+**Ideea.** Prima cifră (5 sau 6) arată că persoana s-a născut după 2000. Cifrele 2–3 sunt anul, 4–5 luna, 6–7 ziua, adică feliile `[1:3]`, `[3:5]` și `[5:7]`.
+
+```python
+cnp = '5080214123456'
+an = cnp[1:3]
+luna = cnp[3:5]
+zi = cnp[5:7]
+secol = '20' if cnp[0] in '56' else '19'
+print(zi + '.' + luna + '.' + secol + an)
+```
+Rezultatul: `14.02.2008`.
+
+:::atentie
+## Greșeli frecvente
+- Crezi că `s[2:5]` include caracterul de pe poziția 5. Capătul din dreapta nu este inclus.
+- Compari texte cu litere mari și mici amestecate: `'Zebra' < 'albina'` este `True`, pentru că literele mari vin înaintea celor mici. Compară `s.lower()`.
+- Concatenezi un text cu un număr: `'Nota: ' + 9` dă eroare. Scrie `'Nota: ' + str(9)`.
+- Folosești `s[len(s)]`: ultimul caracter este `s[-1]`.
+:::
+
+### 🔮 2.6.3 Citește și prezice
 
 ```python
 s = "programare"
@@ -109,7 +54,7 @@ print(s[3:7])
 ```
 Ce se afișează?
 
-### 🤝 2.7.4 Exerciții ghidate
+### 🤝 2.6.4 Exerciții ghidate
 
 **Exercițiul 1.** Completează pentru a extrage literele de pe pozițiile pare:
 ```python
@@ -119,13 +64,13 @@ ___  # slicing cu pas 2
 
 **Exercițiul 2.** Scrie codul care verifică dacă un șir începe cu "RO".
 
-### 🎯 2.7.5 Exerciții independente
+### 🎯 2.6.5 Exerciții independente
 
 **Exercițiul 1.** Scrie o funcție care returnează șirul cu caracterele în ordine inversă (fără a folosi `reversed`).
 
 **Exercițiul 2.** Compară două șiruri ignorând majusculele/minusculele.
 
-### ✅ 2.7.6 Verifică-ți înțelegerea
+### ✅ 2.6.6 Verifică-ți înțelegerea
 
 1. `"a" * 3` produce:
    a) "a3"  b) **"aaa"**  c) Eroare
@@ -152,6 +97,106 @@ template: def este_palindrom(s):
 
 print(este_palindrom("abcba"))
 output: True
+:::
+
+# Modulul 2.7 — Clasa str: metode de căutare, înlocuire, separare
+
+### 🔄 2.7.1 Recapitulare
+
+În modulul 2.6 ai lucrat cu indexarea și feliile. Acum folosim metodele clasei `str` care caută, înlocuiesc și separă text — toate întorc șiruri noi.
+
+### 💡 2.7.2 Concept nou și exemplu
+
+```python
+text = "Informatica este utila"
+cuvinte = text.split(" ")             # ['Informatica', 'este', 'utila']
+nou = text.replace("utila", "distractiva")
+poz = text.find("este")               # 13 (prima apariție)
+print(cuvinte, nou, poz)
+```
+
+Operatori: `in` (apartenență subșir), `+` (concatenare), `*` (repetare), comparare lexicografică. Metode: `find()`, `index()`, `replace()`, `split()`, `join()`, `strip()`, `upper()`/`lower()`.
+
+**Atenție:** `replace()`/`upper()` etc. returnează un șir nou — nu modifică originalul!
+
+
+:::tip
+## find() vs. index(): nu le confunda
+`text.find("x")` returnează **-1** dacă subșirul lipsește, în timp ce `text.index("x")` aruncă `ValueError` în aceeași situație. Dacă vrei doar să testezi apartenența, folosește operatorul `in` (mai clar); dacă ai nevoie de poziție și ești sigur că subșirul există, `index()` e mai sigur pentru că nu ascunde o eroare de logică sub un -1 trecut cu vederea. Și nu uita: `replace()`, `split()`, `strip()`, `upper()`/`lower()` nu modifică șirul pe care le apelezi — dacă nu reții rezultatul într-o variabilă (`text = text.strip()`), efectul se pierde.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Avem o linie dintr-un fișier CSV: „  Popescu ; Ana ; 9.50 ”. Extragem câmpurile curate și afișăm „Ana Popescu are media 9.5”.
+
+**Ideea.** `split(';')` separă câmpurile, `strip()` elimină spațiile din jurul fiecăruia, iar `float()` transformă media în număr. Rezultatul îl construim cu un f-string.
+
+```python
+linie = '  Popescu ; Ana ; 9.50 '
+nume, prenume, media = [camp.strip() for camp in linie.split(';')]
+print(f'{prenume} {nume} are media {float(media)}')
+```
+Rezultatul: `Ana Popescu are media 9.5`.
+
+:::atentie
+## Greșeli frecvente
+- Apelezi `text.replace(...)` sau `text.strip()` fără să reții rezultatul: șirul `text` rămâne neschimbat.
+- Folosești `split(' ')` pe un text cu mai multe spații la rând și obții elemente goale. `split()` fără argument tratează orice grup de spații ca un singur separator.
+- Apelezi `join` pe listă: `lista.join(',')` e greșit. Separatorul e cel care apelează metoda: `','.join(lista)`.
+- Folosești `find` și uiți să verifici rezultatul -1 (subșirul lipsește). `text[text.find('x'):]` va lua atunci doar ultimul caracter.
+:::
+
+### 🔮 2.7.3 Citește și prezice
+
+```python
+text = "abc-def-ghi"
+print(text.split("-"))
+```
+Ce se afișează?
+
+### 🤝 2.7.4 Exerciții ghidate
+
+**Exercițiul 1.** Completează pentru a număra de câte ori apare "ana" într-un text:
+```python
+text = "ana are ana"
+___  # metoda care numără aparițiile unui subșir
+```
+
+**Exercițiul 2.** Scrie codul care unește o listă de cuvinte într-un șir, separate prin virgulă.
+
+### 🎯 2.7.5 Exerciții independente
+
+**Exercițiul 1.** Numără cuvintele distincte dintr-un text folosind `split()` și o mulțime.
+
+**Exercițiul 2.** Scrie o funcție care înlocuiește toate vocalele dintr-un șir cu `*`.
+
+### ✅ 2.7.6 Verifică-ți înțelegerea
+
+1. `split(" ")` pe "a b c" returnează:
+   a) "abc"  b) **['a', 'b', 'c']**  c) ['a b c']
+      > split(" ") taie textul la fiecare spațiu și întoarce o listă cu bucățile rezultate, deci "a b c" devine lista ['a', 'b', 'c'], nu un singur șir.
+
+2. `replace()` modifică șirul original?
+   a) Da  b) **Nu, returnează un șir nou**  c) Doar dacă e atribuit
+      > replace(), ca toate metodele de șiruri, nu poate modifica șirul original pentru că șirurile sunt imutabile în Python — ea construiește și întoarce un șir nou, care trebuie reținut într-o variabilă ca să nu se piardă.
+
+3. `text.find("x")` când "x" lipsește returnează:
+   a) 0  b) **-1**  c) None
+      > find() este gândită să nu arunce eroare când subșirul lipsește, așa că întoarce -1 ca semnal de "nu a fost găsit"; pentru o eroare explicită în acest caz s-ar folosi index().
+
+4. `",".join(["a","b"])` produce:
+   a) "ab"  b) **"a,b"**  c) "[a,b]"
+      > join() lipește elementele listei folosind șirul din stânga ca separator între ele, deci ",".join(["a","b"]) pune o virgulă între "a" și "b", rezultând "a,b".
+
+
+:::verifica-cod
+Scrie o funcție `numara_aparitii(text, sub)` care returnează de câte ori apare `sub` în `text`. Demo: `numara_aparitii("ana are ana", "ana")` -> `2`
+template: def numara_aparitii(text, sub):
+    # completeaza
+    pass
+
+print(numara_aparitii("ana are ana", "ana"))
+output: 2
 :::
 
 # Modulul 2.8 — Criptare simplă: substituție și cifrul lui Cezar
@@ -185,6 +230,39 @@ print(cezar("xyz", 1))   # yza
 :::tip
 ## De ce alegem `baza` în funcție de majusculă
 Formula `chr((ord(c) - baza + deplasare) % 26 + baza)` funcționează doar dacă `baza` e chiar litera de start a alfabetului cu aceeași capitalizare ca `c` (`'A'` pentru majuscule, `'a'` pentru minuscule). Dacă folosești mereu `ord('a')`, majusculele se transformă greșit — de exemplu 'A' + 3 ar deveni un caracter din altă zonă ASCII, nu 'D'. Testează mereu cifrul cu text care conține și majuscule, și minuscule, și caractere non-alfabetice (spații, cifre, punctuație) — acestea trebuie să rămână neschimbate, exact cum se întâmplă în ramura `else` a buclei.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Am interceptat mesajul „Dcl vh idfh whpd”, criptat cu Cezar, dar nu știm cheia. Îl spargem prin forță brută: încercăm toate cele 25 de chei și o păstrăm pe cea care dă un cuvânt pe care îl așteptăm în mesaj, „face”.
+
+**Ideea.** Decriptarea cu cheia k este criptarea cu deplasarea 26 - k. Afișăm doar cheia pentru care textul decriptat conține „face”.
+
+```python
+def cezar(text, d):
+    rez = ''
+    for c in text:
+        if c.isalpha():
+            baza = ord('A') if c.isupper() else ord('a')
+            rez += chr((ord(c) - baza + d) % 26 + baza)
+        else:
+            rez += c
+    return rez
+
+mesaj = 'Dcl vh idfh whpd'
+for k in range(1, 26):
+    candidat = cezar(mesaj, 26 - k)
+    if 'face' in candidat:
+        print(k, candidat)
+```
+Rezultatul: `3 Azi se face tema`.
+
+:::atentie
+## Greșeli frecvente
+- Uiți `% 26`: după „z” apar caractere care nu sunt litere (ex. „{”).
+- Tratezi literele mari cu baza lui „a”: „A” se transformă greșit. Alege baza după tipul literei.
+- Criptezi și spațiile sau semnele de punctuație. În cifrul lui Cezar ele rămân neschimbate.
+- Decriptezi cu aceeași deplasare: decriptarea folosește deplasarea opusă (sau 26 minus deplasarea).
 :::
 
 ### 🔮 2.8.3 Citește și prezice
@@ -280,6 +358,42 @@ print(vigenere("criptare", "cheie"))
 :::tip
 ## `i` numără doar literele, nu toate caracterele
 Contorul `i` din `vigenere()` avansează exclusiv în interiorul lui `if c.isalpha():` — dacă l-ai incrementa la fiecare caracter (inclusiv spații sau punctuație), litera cheii folosită s-ar decala greșit față de literele reale ale mesajului. De asta un text cu spații criptat corect trebuie testat mereu: dacă cheia "pare" să nu se cicleze corect, prima suspiciune e că `i` a fost mutat în afara `if`-ului. Și nu uita `% len(cheie)` — fără el, indexarea `cheie[i]` produce `IndexError` de îndată ce mesajul depășește lungimea cheii.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Criptăm „atac la noapte” cu cheia „lemn”, apoi decriptăm și verificăm că obținem textul inițial.
+
+**Ideea.** Scriem o singură funcție cu un parametru `semn`: +1 pentru criptare, -1 pentru decriptare. Indicele cheii crește doar la litere.
+
+```python
+def vigenere(text, cheie, semn=1):
+    rez, i = '', 0
+    for c in text:
+        if c.isalpha():
+            d = ord(cheie[i % len(cheie)]) - ord('a')
+            rez += chr((ord(c) - ord('a') + semn * d) % 26 + ord('a'))
+            i += 1
+        else:
+            rez += c
+    return rez
+
+criptat = vigenere('atac la noapte', 'lemn')
+print(criptat)
+print(vigenere(criptat, 'lemn', -1))
+```
+Rezultatul:
+```text
+lxmp we zbltfr
+atac la noapte
+```
+
+:::atentie
+## Greșeli frecvente
+- Avansezi indicele cheii și pentru spații: cheia „alunecă” față de litere și decriptarea iese greșită.
+- Uiți `i % len(cheie)`: când mesajul e mai lung decât cheia apare `IndexError`.
+- Amesteci litere mari și mici în cheie: „C” și „c” dau deplasări diferite dacă nu folosești `.lower()`.
+- Folosești același semn la criptare și decriptare: la decriptare deplasarea se scade.
 :::
 
 ### 🔮 2.9.3 Citește și prezice
@@ -400,6 +514,37 @@ Dacă un octet se schimbă, suma se schimbă → datele au fost alterate.
 :::tip
 ## Checksum nu înseamnă criptare
 Fletcher **detectează** alterări, dar nu ascunde conținutul — oricine poate recalcula suma pornind de la date, deci nu folosi un checksum ca metodă de securitate (pentru asta ai nevoie de criptare, ca Vigenère, sau de funcții hash criptografice). Observă și de ce `sum2` există: dacă ai folosi doar `sum1` (o simplă sumă a octeților), doi octeți care își schimbă locul între ei (de exemplu `[10, 20]` devine `[20, 10]`) ar produce aceeași sumă, deci eroarea ar trece neobservată. `sum2` acumulează sumele parțiale ale lui `sum1`, ceea ce face suma sensibilă și la *ordinea* octeților, nu doar la valorile lor.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Arătăm de ce Fletcher folosește două sume: pentru [10, 20] și [20, 10], suma simplă e aceeași, dar suma Fletcher e diferită.
+
+**Ideea.** `sum1` e suma octeților și nu ține cont de ordine. `sum2` adună sumele parțiale ale lui `sum1`, deci octeții de la început contează de mai multe ori.
+
+```python
+def fletcher(data):
+    s1 = s2 = 0
+    for b in data:
+        s1 = (s1 + b) % 255
+        s2 = (s2 + s1) % 255
+    return (s2 << 8) | s1
+
+for date in ([10, 20], [20, 10]):
+    print(sum(date), fletcher(date))
+```
+Rezultatul:
+```text
+30 10270
+30 12830
+```
+
+:::atentie
+## Greșeli frecvente
+- Folosești doar suma octeților: dacă doi octeți își schimbă locul, suma rămâne aceeași și eroarea nu e detectată.
+- Uiți `% 255` la fiecare pas: sumele cresc fără limită și nu mai seamănă cu algoritmul Fletcher-16.
+- Calculezi suma pe text, nu pe coduri: pentru șiruri folosește `ord(c)` (sau `text.encode()`), ca să lucrezi cu numere.
+- Crezi că o sumă de control protejează datele. Ea doar **detectează** modificările întâmplătoare, nu ascunde conținutul.
 :::
 
 ### 🔮 2.10.3 Citește și prezice

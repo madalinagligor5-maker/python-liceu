@@ -108,6 +108,10 @@ def main() -> int:
     nr_ex = 0
     for lista in exercitii.values():
         for ex in lista:
+            # Un exercițiu de cod fără rezultat așteptat trece doar dacă elevul nu
+            # afișează nimic; „...” în rezultat nu poate fi atins niciodată.
+            if ex.get("tip") == "cod" and (not ex.get("expectedOutput") or "..." in ex["expectedOutput"]):
+                vcp.erori.append(f"{ex['id']}: exercițiu de cod fără rezultat așteptat verificabil")
             solutie = solutii.get(ex.get("id", ""))
             if not solutie or ex.get("tip") != "cod":
                 continue

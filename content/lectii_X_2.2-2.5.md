@@ -16,7 +16,7 @@ def interclaseaza(a, b):
         if a[i] <= b[j]:
             rez.append(a[i]); i += 1
         else:
-            rez.append(b[j]); __
+            rez.append(b[j]); j += 1
     rez.extend(a[i:]); rez.extend(b[j:])
     return rez
 
@@ -25,12 +25,37 @@ print(interclaseaza([1, 4, 7], [2, 3, 8]))  # [1, 2, 3, 4, 7, 8]
 
 Interclasarea e baza **sortării prin interclasare** (merge sort, modulul 2.19).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-La calculul recursiv al șirului Fibonacci sau factorialului, verifică valorile de intrare pentru n <= 0 pentru a preveni apeluri infinite!
-:::
+**Enunț.** Sortarea prin inserție folosește aceeași idee de „listă deja ordonată”. Parcurgem lista și inserăm fiecare element în porțiunea sortată din stânga lui. Afișăm lista după fiecare inserare.
+
+**Ideea.** Elementul curent se reține în `x`. Elementele mai mari din stânga lui se mută cu o poziție la dreapta, apoi `x` se pune în golul rămas.
+
+```python
+L = [7, 3, 9, 1, 5]
+for i in range(1, len(L)):
+    x = L[i]
+    j = i - 1
+    while j >= 0 and L[j] > x:
+        L[j + 1] = L[j]
+        j -= 1
+    L[j + 1] = x
+    print(L)
+```
+Rezultatul:
+```text
+[3, 7, 9, 1, 5]
+[3, 7, 9, 1, 5]
+[1, 3, 7, 9, 5]
+[1, 3, 5, 7, 9]
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți să copiezi restul listei care nu s-a terminat (`rez.extend(a[i:])` și `rez.extend(b[j:])`): rezultatul pierde elemente.
+- Avansezi ambii indici la fiecare pas: unele elemente sunt sărite.
+- Interclasezi liste nesortate: rezultatul nu este sortat. Interclasarea presupune că ambele liste sunt deja ordonate.
+- Folosești `a + b` urmat de `sort()` și crezi că e la fel de eficient: interclasarea face doar n + m pași.
 :::
 
 ### 🔮 2.2.3 Citește și prezice
@@ -126,12 +151,30 @@ a.remove(2)     # elimină; crapă dacă nu există
 
 Metode uzuale: `add(x)`, `remove(x)`/`discard(x)`, `union()`, `intersection()`, `difference()` (variante-metodă ale operatorilor).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Un magazin online reține categoriile de produse cumpărate de doi clienți. Recomandăm fiecăruia categoriile cumpărate de celălalt și verificăm dacă unul dintre ei a cumpărat doar categorii cumpărate și de celălalt.
+
+**Ideea.** Recomandările sunt diferențe (`b - a`, `a - b`). „Doar categorii cumpărate și de celălalt” înseamnă incluziune: `issubset`.
+
+```python
+a = {'cărți', 'jocuri', 'muzică'}
+b = {'cărți', 'muzică'}
+print(sorted(b - a), sorted(a - b))
+print(b.issubset(a), a.issubset(b))
+```
+Rezultatul:
+```text
+[] ['jocuri']
+True False
+```
+
 :::atentie
-Căutarea binară funcționează EXCLUSIV pe tablouri deja sortate. Asigură-te că lista este ordonată înainte de apelul funcției!
-:::
+## Greșeli frecvente
+- Folosești `remove(x)` pentru un element care poate lipsi: apare `KeyError`. `discard(x)` nu dă eroare.
+- Scrii `a + b` pentru reuniune: mulțimile nu au operatorul `+`. Reuniunea este `a | b` sau `a.union(b)`.
+- Confunzi `a.add(x)` (adaugă un element) cu `a.update(lista)` (adaugă toate elementele dintr-o colecție).
+- Crezi că `a & b` modifică mulțimea `a`. Operatorii întorc o mulțime nouă; doar metode ca `add` și `update` modifică mulțimea.
 :::
 
 ### 🔮 2.4.3 Citește și prezice
@@ -207,12 +250,30 @@ print(nou)              # Hello
 print(text[1:4])        # ell (slicing)
 ```
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-MergeSort garantează o complexitate de O(n log n) în toate cazurile, dar folosește memorie suplimentară pentru interclasare!
-:::
+**Enunț.** Transformăm un nume scris neîngrijit, „  ana-maria POPESCU ”, în forma corectă: „Ana-Maria Popescu”, construind un șir nou caracter cu caracter.
+
+**Ideea.** Un caracter devine literă mare dacă este primul dintr-un cuvânt, adică dacă înaintea lui e un spațiu sau o cratimă. Celelalte devin litere mici. Spațiile de la capete le eliminăm cu `strip()`.
+
+```python
+nume = '  ana-maria POPESCU '.strip()
+rez = ''
+for i, c in enumerate(nume):
+    if i == 0 or nume[i - 1] in ' -':
+        rez += c.upper()
+    else:
+        rez += c.lower()
+print(rez)
+```
+Rezultatul: `Ana-Maria Popescu`.
+
+:::atentie
+## Greșeli frecvente
+- Încerci să modifici un caracter: `s[0] = 'X'` dă `TypeError`, pentru că șirurile sunt imutabile. Construiește un șir nou.
+- Construiești un șir lung prin `s = s + c` în bucle foarte mari: e lent. Pune bucățile într-o listă și unește-le cu `''.join(...)`.
+- Confunzi lungimea cu ultimul indice: ultimul caracter este `s[len(s) - 1]` sau `s[-1]`, nu `s[len(s)]`.
+- Compari un număr cu un text: `'5' == 5` este `False`. Convertește întâi cu `int()` sau `str()`.
 :::
 
 ### 🔮 2.5.3 Citește și prezice

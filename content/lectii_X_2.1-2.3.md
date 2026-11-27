@@ -27,29 +27,42 @@ print(cautare_binara([1, 3, 5, 7, 9, 11], 4))  # -1
 
 **De ce e rapidă?** La fiecare pas eliminăm jumătate din lista rămasă. Pentru 1000 de elemente, în loc de 1000 de pași, ajungem la rezultat în maxim ~10 pași (log₂1000 ≈ 10).
 
-**Interclasarea** combină două liste *deja sortate* într-una singură, sortată, parcurgându-le simultan și alegând mereu cea mai mică valoare disponibilă. E baza sortării prin interclasare (modulul 2.19).
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Urmărim pas cu pas căutarea lui 23 în lista sortată [2, 5, 8, 12, 16, 23, 38, 56, 72, 91] și numărăm comparațiile.
+
+**Ideea.** La fiecare pas afișăm intervalul curent și mijlocul. Observăm că intervalul se înjumătățește și că 10 elemente se rezolvă în cel mult 4 pași.
 
 ```python
-def interclaseaza(a, b):
-    rez = []
-    i = j = 0
-    while i < len(a) and j < len(b):
-        if a[i] <= b[j]:
-            rez.append(a[i]); i += 1
-        else:
-            rez.append(b[j]); j += 1
-    rez.extend(a[i:]); rez.extend(b[j:])
-    return rez
-
-print(interclaseaza([1, 4, 7], [2, 3, 8]))  # [1, 2, 3, 4, 7, 8]
+L = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+x = 23
+st, dr = 0, len(L) - 1
+pas = 0
+while st <= dr:
+    m = (st + dr) // 2
+    pas += 1
+    print('pas', pas, ': interval', st, '-', dr, ', mijloc', m, '=', L[m])
+    if L[m] == x:
+        break
+    if L[m] < x:
+        st = m + 1
+    else:
+        dr = m - 1
+```
+Rezultatul:
+```text
+pas 1 : interval 0 - 9 , mijloc 4 = 16
+pas 2 : interval 5 - 9 , mijloc 7 = 56
+pas 3 : interval 5 - 6 , mijloc 5 = 23
 ```
 
-
-:::tip
-## Sfaturi & Bune Practici Didactice
 :::atentie
-Fiecare funcție recursivă trebuie să aibă cel puțin un caz de bază (condiție de oprire) bine definit, altfel va rezulta o eroare de tip RecursionError (stack overflow)!
-:::
+## Greșeli frecvente
+- Aplici căutarea binară pe o listă nesortată: algoritmul poate spune „nu există” deși elementul e în listă.
+- Scrii `while stanga < dreapta` în loc de `<=`: ratezi cazul în care elementul e chiar ultimul rămas în interval.
+- Actualizezi `stanga = mijloc` în loc de `mijloc + 1`: intervalul nu se mai micșorează și bucla devine infinită.
+- Calculezi mijlocul cu `/`: obții un număr cu zecimale, care nu poate fi folosit ca indice. Folosește `//`.
 :::
 
 ### 🔮 2.1.3 Citește și prezice
@@ -151,12 +164,33 @@ print(a)        # {2, 3, 4, 10}
 
 Atenție: `{}` creează un **dicționar** vid, nu o mulțime! Mulțimea vidă se creează cu `set()`.
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-Tehnica Divide et Impera împarte problema în subprobleme independente de dimensiune mai mică, le rezolvă recursiv și combină rezultatele!
-:::
+**Enunț.** Două clase au făcut câte o listă cu limbile străine studiate de elevi. Aflăm ce limbi se studiază în ambele clase, doar în prima clasă și câte limbi diferite sunt în total.
+
+**Ideea.** Transformăm listele în mulțimi, ca să scăpăm de repetiții, apoi folosim intersecția, diferența și reuniunea. Afișăm cu `sorted`, ca ordinea să fie mereu aceeași.
+
+```python
+clasa_a = ['engleză', 'franceză', 'engleză', 'germană']
+clasa_b = ['engleză', 'spaniolă', 'germană']
+a, b = set(clasa_a), set(clasa_b)
+print(sorted(a & b))
+print(sorted(a - b))
+print(len(a | b))
+```
+Rezultatul:
+```text
+['engleză', 'germană']
+['franceză']
+4
+```
+
+:::atentie
+## Greșeli frecvente
+- Scrii `m = {}` crezând că ai creat o mulțime goală: ai creat un dicționar. Mulțimea goală este `set()`.
+- Încerci `m[0]`: o mulțime nu are ordine, deci nici poziții. Parcurge-o cu `for` sau transform-o în listă.
+- Pui o listă într-o mulțime (`{[1, 2]}`): elementele trebuie să fie imutabile, așa că folosește un tuplu.
+- Te bazezi pe ordinea în care `print` afișează o mulțime. Dacă ordinea contează, afișează `sorted(m)`.
 :::
 
 ### 🔮 2.3.3 Citește și prezice

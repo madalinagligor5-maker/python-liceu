@@ -18,12 +18,40 @@ for elev in elevi:
 
 Combinări frecvente: liste de liste (matrice), liste de tupluri, liste de dicționare, dicționare cu valori-listă.
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-O stivă respectă principiul LIFO (Last In First Out), iar o coadă respectă FIFO (First In First Out). În Python le poți implementa eficient folosind collections.deque!
-:::
+**Enunț.** Un catalog e reținut ca matrice: fiecare linie e un elev, fiecare coloană o materie. Afișăm media fiecărui elev și media fiecărei materii.
+
+**Ideea.** Media pe linie se obține din `sum(linie)`. Pentru media pe coloană adunăm `m[i][j]` pentru fiecare linie i, cu j fixat.
+
+```python
+note = [
+    [9, 8, 10],
+    [7, 6, 8],
+    [10, 9, 9],
+]
+for i, linie in enumerate(note):
+    print('elevul', i + 1, round(sum(linie) / len(linie), 2))
+for j in range(len(note[0])):
+    coloana = [note[i][j] for i in range(len(note))]
+    print('materia', j + 1, round(sum(coloana) / len(coloana), 2))
+```
+Rezultatul:
+```text
+elevul 1 9.0
+elevul 2 7.0
+elevul 3 9.33
+materia 1 8.67
+materia 2 7.67
+materia 3 9.0
+```
+
+:::atentie
+## Greșeli frecvente
+- Creezi o matrice cu `[[0] * m] * n`: toate liniile sunt **aceeași** listă, iar o modificare apare pe toate. Corect: `[[0] * m for _ in range(n)]`.
+- Inversezi indicii: `m[coloana][linie]` în loc de `m[linie][coloana]`.
+- Calculezi media pe o listă de note goală: împărțirea la 0 oprește programul. Verifică întâi lungimea.
+- Copiezi o listă de dicționare cu `L[:]` și apoi modifici un dicționar: dicționarele sunt aceleași în ambele liste.
 :::
 
 ### 🔮 2.15.3 Citește și prezice
@@ -102,12 +130,39 @@ print(lista_dict[1]["x"]) # 10
 
 Se recomandă "citirea cu voce tare": `date[2]["note"][1]` = "al 3-lea elev, câmpul note, a 2-a notă".
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
+**Enunț.** Parcurgem o matrice în spirală: prima linie spre dreapta, ultima coloană în jos, ultima linie spre stânga, prima coloană în sus, apoi repetăm pentru interior.
+
+**Ideea.** Ținem patru margini: sus, jos, stânga, dreapta. După fiecare latură parcursă, marginea respectivă se strânge cu 1, până când marginile se întâlnesc.
+
+```python
+m = [[1, 2, 3, 4],
+     [5, 6, 7, 8],
+     [9, 10, 11, 12]]
+sus, jos, st, dr = 0, len(m) - 1, 0, len(m[0]) - 1
+rez = []
+while sus <= jos and st <= dr:
+    rez += [m[sus][j] for j in range(st, dr + 1)]
+    sus += 1
+    rez += [m[i][dr] for i in range(sus, jos + 1)]
+    dr -= 1
+    if sus <= jos:
+        rez += [m[jos][j] for j in range(dr, st - 1, -1)]
+        jos -= 1
+    if st <= dr:
+        rez += [m[i][st] for i in range(jos, sus - 1, -1)]
+        st += 1
+print(rez)
+```
+Rezultatul: `[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]`.
+
 :::atentie
-Înainte de a extrage un element dintr-o stivă sau coadă (pop/popleft), verifică întotdeauna dacă structura nu este goală!
-:::
+## Greșeli frecvente
+- La o matrice pătratică, confunzi diagonalele: principala are `i == j`, secundara are `i + j == n - 1`.
+- Parcurgi o matrice dreptunghiulară cu `range(len(m))` și pe coloane: numărul de coloane este `len(m[0])`, nu `len(m)`.
+- Interschimbi două linii element cu element și uiți o parte: în Python interschimbi direct `m[i], m[j] = m[j], m[i]`.
+- Pentru transpusă scrii rezultatul în aceeași matrice și suprascrii valori încă necitite. Construiește o matrice nouă.
 :::
 
 ### 🔮 2.16.3 Citește și prezice
@@ -167,7 +222,7 @@ output: 6
 
 ### 🔄 2.17.1 Recapitulare
 
-Ai folosit funcții simple (modulul 3.1 din IX). Acum funcții care se apelează pe ele însele — recursivitatea.
+Ai folosit funcții simple în clasa a IX-a (modulul 1.4). Acum funcții care se apelează pe ele însele — recursivitatea.
 
 ### 💡 2.17.2 Concept nou și exemplu
 
@@ -182,12 +237,35 @@ print(factorial(4))   # 24
 
 Orice funcție recursivă are: **caz de bază** (oprește recursivitatea) și **pas recursiv** (reduce problema).
 
+## Problemă rezolvată pas cu pas
 
-:::tip
-## Sfaturi & Bune Practici Didactice
-:::tip
-În listele simplu înlănțuite, fiecare nod conține valoarea și o referință (next) către nodul următor. Ultimul nod indică spre None!
-:::
+**Enunț.** Calculăm cmmdc recursiv, după relația cmmdc(a, b) = cmmdc(b, a % b) și cmmdc(a, 0) = a. Afișăm fiecare apel, ca să vedem cum coboară recursivitatea.
+
+**Ideea.** Cazul de bază este b == 0. La fiecare apel, al doilea argument scade, deci ajungem sigur la cazul de bază.
+
+```python
+def cmmdc(a, b, nivel=0):
+    print('  ' * nivel + f'cmmdc({a}, {b})')
+    if b == 0:
+        return a
+    return cmmdc(b, a % b, nivel + 1)
+
+print(cmmdc(84, 36))
+```
+Rezultatul:
+```text
+cmmdc(84, 36)
+  cmmdc(36, 12)
+    cmmdc(12, 0)
+12
+```
+
+:::atentie
+## Greșeli frecvente
+- Lipsește cazul de bază sau nu este atins niciodată: apare `RecursionError`.
+- Pasul recursiv nu micșorează problema (ex. `f(n)` apelează tot `f(n)`).
+- Uiți `return` în fața apelului recursiv: funcția calculează rezultatul, dar întoarce `None`.
+- Folosești recursivitate simplă pentru Fibonacci cu n mare: aceleași valori se recalculează de foarte multe ori și programul devine extrem de lent.
 :::
 
 ### 🔮 2.17.3 Citește și prezice
