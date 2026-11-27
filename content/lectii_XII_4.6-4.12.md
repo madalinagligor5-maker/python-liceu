@@ -25,8 +25,43 @@ Orice modificare (INSERT/UPDATE/DELETE/DDL) trebuie urmată de `conn.commit()`, 
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
+## Conexiunea: deschide târziu, închide devreme
 Deschide conexiunea cât mai târziu și închide-o cât mai devreme. Dacă uiți `conn.close()`, fișierul `.db` poate rămâne blocat pentru alte programe care vor să-l acceseze — cel mai sigur e să folosești `with sqlite3.connect(...) as conn:`, care închide automat conexiunea la ieșirea din bloc.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Construim o agendă în SQLite: creăm tabela, inserăm trei contacte cu parametri `?`, căutăm unul după nume și afișăm toate contactele ordonate.
+
+**Ideea.** Conexiunea (`connect`) deschide baza, cursorul execută interogările. `executemany` inserează mai multe rânduri odată, `fetchone` aduce un rând, `fetchall` le aduce pe toate.
+
+```python
+import sqlite3
+conn = sqlite3.connect(':memory:')
+cur = conn.cursor()
+cur.execute('CREATE TABLE Persoana(id INTEGER PRIMARY KEY, nume TEXT, telefon TEXT)')
+cur.executemany('INSERT INTO Persoana(nume, telefon) VALUES (?, ?)',
+                [('Mara', '0721'), ('Ion', '0733'), ('Eva', '0744')])
+conn.commit()
+
+cur.execute('SELECT telefon FROM Persoana WHERE nume = ?', ('Ion',))
+print(cur.fetchone())
+cur.execute('SELECT nume FROM Persoana ORDER BY nume')
+print(cur.fetchall())
+conn.close()
+```
+Rezultatul:
+```text
+('0733',)
+[('Eva',), ('Ion',), ('Mara',)]
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți `conn.commit()` după modificări: la închidere, ele se pierd.
+- Construiești interogarea lipind valori în text (`"... WHERE nume = '" + nume + "'"`): apar erori la ghilimele și riscul de SQL injection. Folosește `?`.
+- Apelezi `fetchone()` de două ori și te miri că a doua oară primești rândul următor (sau `None`): cursorul avansează.
+- Folosești `executemany` cu o listă de valori simple (`[1, 2]`) în loc de o listă de tupluri (`[(1,), (2,)]`).
 :::
 
 ### 🔮 4.6.3 Citește și prezice
@@ -37,8 +72,12 @@ conn = sqlite3.connect(":memory:")
 cur = conn.cursor()
 cur.execute("CREATE TABLE T(x INTEGER)")
 cur.execute("INSERT INTO T VALUES (5)")
-# Cat are T inainte de commit? (count)
+# încă nu am apelat conn.commit()
+print(cur.execute("SELECT COUNT(*) FROM T").fetchone()[0])
 ```
+
+Pe aceeași conexiune, înainte de `commit`, câte rânduri vede `SELECT COUNT(*)`?
+
 
 ### 🤝 4.6.4 Exerciții ghidate
 
@@ -76,6 +115,18 @@ Scrie o funcție `adauga(conn, nume, telefon)` care inserează și face commit.
 1. Un coleg scrie `conn.execute("SELECT * FROM Student")` direct pe obiectul Connection și îi merge, așa că întreabă la ce mai folosește Cursor-ul. Care e explicația corectă a rolurilor celor două obiecte?
    a) Connection și Cursor fac exact același lucru, sunt redundante din motive istorice  b) **Connection administrează legătura cu fișierul bazei (deschidere, commit, close), iar Cursor execută interogările și ține poziția curentă în rezultate — unele driver-e oferă comod un `execute` direct pe conexiune, dar cursorul rămâne obiectul care parcurge datele**  c) Cursor administrează fișierul bazei, iar Connection doar execută interogările  d) Connection e necesar doar pentru `SELECT`, Cursor doar pentru `INSERT`/`UPDATE`
       > Connection administrează legătura cu fișierul bazei (deschidere, commit, close), iar Cursor este obiectul care execută efectiv interogările și ține poziția curentă în rezultate; faptul că unele driver-e permit `conn.execute` direct nu schimbă faptul că, sub capotă, cursorul e cel care parcurge datele.
+
+2. Ce face `conn.commit()`?
+   a) Închide conexiunea  b) **Salvează definitiv modificările făcute în tranzacția curentă**  c) Execută o interogare
+      > Până la commit, modificările sunt provizorii și pot fi anulate (rollback) sau pierdute la închidere.
+
+3. Ce întoarce `cur.fetchall()` după un SELECT?
+   a) Un singur rând  b) **O listă de tupluri, câte un tuplu pentru fiecare rând**  c) Numărul de rânduri
+      > Fiecare rând e un tuplu cu valorile coloanelor selectate.
+
+4. De ce folosim `?` în `execute('... WHERE nume = ?', (nume,))`?
+   a) E obligatoriu în Python  b) **Valorile sunt trimise separat de text, ceea ce previne erorile și SQL injection**  c) Face interogarea mai lentă
+      > Biblioteca se ocupă de ghilimele și caractere speciale; textul interogării nu poate fi modificat de date.
 
 ---
 
@@ -132,22 +183,50 @@ print("Studenți peste 17 ani:", rezultate)
 `SELECT *` ia toate coloanele — în producție e mai bine să numeri explicit coloanele (proiecție) pentru claritate și performanță.
 :::
 
-### 🔮 4.7.3 Citește și prezice
+## Problemă rezolvată pas cu pas
 
-```sql
--- Tabela Student(nume, varsta): ('Ana',17),('Bogdan',19),('Cris',17)
--- SELECT nume FROM Student ORDER BY varsta DESC, nume ASC
--- Care e primul rezultat?
-```
+**Enunț.** Din tabela Student afișăm numele și vârsta elevilor din Cluj, ordonați descrescător după vârstă, iar la vârstă egală alfabetic, apoi orașele distincte.
 
+**Ideea.** Proiecția (`SELECT nume, varsta`) alege coloanele, `WHERE` alege rândurile, `ORDER BY` stabilește ordinea, iar `DISTINCT` elimină dublurile.
 
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(':memory:')
+cur = conn.cursor()
+cur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')
+cur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [
+    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),
+    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])
+print(cur.execute("SELECT nume, varsta FROM Student WHERE oras = 'Cluj' ORDER BY varsta DESC, nume").fetchall())
+print(cur.execute('SELECT DISTINCT oras FROM Student ORDER BY oras').fetchall())
 ```
+Rezultatul:
+```text
+[('Emil', 19), ('Cris', 18), ('Ana', 17)]
+[('Arad',), ('Cluj',), ('Iasi',)]
+```
+
+:::atentie
+## Greșeli frecvente
+- Scrii clauzele în altă ordine (`SELECT ... WHERE ... FROM`). Ordinea este `SELECT … FROM … WHERE … ORDER BY …`.
+- Folosești ghilimele duble pentru texte în SQL (`WHERE oras = "Cluj"`). Standardul folosește apostrof: `'Cluj'` (SQLite le acceptă pe amândouă, alte SGBD-uri nu).
+- Uiți că `ORDER BY` fără `DESC` ordonează crescător.
+- Pui `DISTINCT` doar pe o coloană crezând că se aplică doar ei: se aplică întregului rând selectat.
+:::
+
+### 🔮 4.7.3 Citește și prezice
+
+```python
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Student(nume TEXT, varsta INTEGER)")
+conn.executemany("INSERT INTO Student VALUES (?, ?)", [("Ana", 17), ("Bogdan", 19), ("Cris", 17)])
+
+rez = conn.execute("SELECT nume FROM Student ORDER BY varsta DESC, nume ASC").fetchall()
+print(rez[0][0], rez[-1][0])
+```
+
+Ce afișează programul?
 
 
 ### 🤝 4.7.4 Exerciții ghidate
@@ -182,6 +261,18 @@ Folosind `sqlite3` în Python, creează tabela, inserează 3 rânduri și afișe
 1. Un elev scrie `SELECT nume, oras WHERE varsta > 18 FROM Student` și primește eroare de sintaxă. Ce confuzie a făcut între proiecție (`SELECT col1, col2`) și filtrare (`WHERE`)?
    a) A crezut că `WHERE` alege coloanele afișate, la fel ca proiecția, de-aia l-a scris lângă lista de coloane, deși `WHERE` filtrează rândurile și trebuie să vină după `FROM`  b) **A pus `WHERE` înaintea clauzei `FROM`, nerespectând ordinea obligatorie `SELECT ... FROM ... WHERE ...`; proiecția alege coloanele, `WHERE` alege rândurile**  c) Greșeala e doar virgula dintre `nume` și `oras` — SQL ar cere spațiu simplu între coloane  d) `WHERE` și proiecția sunt interschimbabile, ordinea clauzelor nu contează atât timp cât apar toate
       > SQL impune ordinea fixă `SELECT ... FROM ... WHERE ...`: proiecția (`SELECT nume, oras`) alege coloanele afișate, iar `WHERE` filtrează rândurile și trebuie scris după `FROM`, nu lipit de lista de coloane ca și cum ar face parte din proiecție.
+
+2. Ce face `SELECT nume, varsta FROM Student`?
+   a) Șterge celelalte coloane  b) **Afișează doar coloanele nume și varsta (proiecție)**  c) Ordonează după nume
+      > Proiecția alege coloanele din rezultat; tabela rămâne neschimbată.
+
+3. Cum ordonezi descrescător după medie?
+   a) `ORDER medie DOWN`  b) **`ORDER BY medie DESC`**  c) `SORT BY medie`
+      > `DESC` înseamnă descrescător; implicit `ORDER BY` este crescător (`ASC`).
+
+4. Ce întoarce `SELECT DISTINCT oras FROM Student` pentru orașele Cluj, Cluj, Iasi?
+   a) Cluj, Cluj, Iasi  b) **Cluj, Iasi**  c) 2
+      > `DISTINCT` păstrează fiecare valoare (rând) o singură dată.
 
 ---
 
@@ -234,26 +325,56 @@ for oras, total in cur.fetchall():
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
+## Regula pentru GROUP BY
 Orice coloană din `SELECT` care nu e argument al unei funcții agregate trebuie să apară și în `GROUP BY` — altfel rezultatul e ambiguu (SQLite e permisiv și alege o valoare oarecare, dar alte SGBD-uri refuză direct interogarea).
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Pentru fiecare oraș afișăm numărul de elevi și vârsta medie, doar pentru orașele cu cel puțin doi elevi, ordonate după numărul de elevi.
+
+**Ideea.** `GROUP BY oras` formează câte un grup pentru fiecare oraș. `COUNT(*)` și `AVG(varsta)` se calculează pe fiecare grup, iar `HAVING` păstrează doar grupurile care ne interesează.
+
+```python
+import sqlite3
+conn = sqlite3.connect(':memory:')
+cur = conn.cursor()
+cur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')
+cur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [
+    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),
+    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])
+rez = cur.execute('''
+    SELECT oras, COUNT(*), ROUND(AVG(varsta), 2)
+    FROM Student
+    GROUP BY oras
+    HAVING COUNT(*) >= 2
+    ORDER BY COUNT(*) DESC
+''').fetchall()
+print(rez)
+```
+Rezultatul: `[('Cluj', 3, 18.0), ('Iasi', 2, 18.5)]`.
+
+:::atentie
+## Greșeli frecvente
+- Folosești `WHERE COUNT(*) > 1`: o funcție agregată nu poate apărea în `WHERE`. Folosește `HAVING`.
+- Selectezi o coloană care nu e nici în `GROUP BY`, nici într-o funcție agregată: rezultatul e ambiguu.
+- Crezi că `COUNT(coloana)` numără și valorile `NULL`. Doar `COUNT(*)` numără toate rândurile.
+- Uiți că `AVG` pe numere întregi dă rezultat real (ex. 17.5) și compari greșit cu un număr întreg.
 :::
 
 ### 🔮 4.8.3 Citește și prezice
 
-```sql
--- Vanzari(oras, suma): ('A',100),('A',200),('B',50)
--- SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras
--- Care e suma pentru 'A'?
-```
-
-
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Vanzari(oras TEXT, suma INTEGER)")
+conn.executemany("INSERT INTO Vanzari VALUES (?, ?)", [("A", 100), ("A", 200), ("B", 50)])
+
+for oras, total in conn.execute("SELECT oras, SUM(suma) FROM Vanzari GROUP BY oras ORDER BY oras"):
+    print(oras, total)
 ```
+
+Ce afișează programul?
 
 
 ### 🤝 4.8.4 Exerciții ghidate
@@ -288,6 +409,18 @@ Calculează media vârstei per oraș, dar doar pentru orașele cu minim 2 studen
 1. Un elev scrie `SELECT oras, COUNT(*) FROM Student WHERE COUNT(*) > 1 GROUP BY oras` și primește eroare. De ce trebuie folosit `HAVING COUNT(*) > 1` în loc de `WHERE COUNT(*) > 1`?
    a) `HAVING` și `WHERE` sunt sinonime în SQL, dar `HAVING` e sintaxa mai nouă și recomandată  b) **`WHERE` filtrează rândurile brute înainte ca `GROUP BY` să calculeze `COUNT(*)`, deci valoarea agregată încă nu există; `HAVING` filtrează grupurile după ce agregarea s-a făcut**  c) `COUNT(*)` nu poate apărea niciodată într-o condiție, indiferent de clauză  d) `WHERE` funcționează doar pe coloane text, iar `COUNT(*)` produce un număr
       > `WHERE` filtrează rândurile brute înainte ca `GROUP BY` să calculeze agregatul, deci `COUNT(*)` încă nu există în acel moment; `HAVING` acționează după gruparea și agregarea rândurilor, când valoarea `COUNT(*)` per grup e deja calculată și poate fi comparată.
+
+2. Ce face `GROUP BY oras`?
+   a) Ordonează după oraș  b) **Formează câte un grup de rânduri pentru fiecare oraș, pe care se calculează funcțiile agregate**  c) Șterge orașele duplicate
+      > Fiecare grup devine un singur rând în rezultat.
+
+3. Unde se scrie condiția pe un rezultat agregat, ca `COUNT(*) > 2`?
+   a) În `WHERE`  b) **În `HAVING`**  c) În `ORDER BY`
+      > `WHERE` filtrează rândurile înainte de grupare; `HAVING` filtrează grupurile după calcul.
+
+4. Ce întoarce `SELECT MAX(varsta) FROM Student`?
+   a) Toate vârstele  b) **O singură valoare: vârsta maximă**  c) Numărul de elevi
+      > Fără `GROUP BY`, funcția agregată se aplică întregii tabele și dă un singur rând.
 
 ---
 
@@ -351,21 +484,60 @@ print("Înscrieri:", cur.fetchall())
 INNER JOIN returnează doar rândurile cu potrivire în ambele tabele. LEFT JOIN păstrează toate din stânga, chiar dacă n-au potrivire.
 :::
 
-### 🔮 4.9.3 Citește și prezice
+## Problemă rezolvată pas cu pas
 
-```sql
--- Student(1,'Ana'),(2,'Bogdan'); Inscriere(1,10),(2,10)
--- INNER JOIN Student-Incriere: cate randuri are rezultatul?
-```
+**Enunț.** Afișăm, pentru fiecare elev, câte cursuri urmează, inclusiv elevii fără niciun curs, și apoi cursurile la care nu e înscris nimeni.
 
+**Ideea.** `LEFT JOIN` păstrează toți elevii; cei fără înscrieri au `NULL` la `curs_id`, iar `COUNT(i.curs_id)` nu numără `NULL`. Pentru cursurile goale folosim o subinterogare cu `NOT IN`.
 
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(':memory:')
+cur = conn.cursor()
+cur.executescript('''
+CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);
+CREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);
+CREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);
+INSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');
+INSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');
+INSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);
+''')
+print(cur.execute('''
+    SELECT s.nume, COUNT(i.curs_id)
+    FROM Student s LEFT JOIN Inscriere i ON s.id = i.student_id
+    GROUP BY s.id ORDER BY s.nume
+''').fetchall())
+print(cur.execute('SELECT denumire FROM Curs WHERE id NOT IN (SELECT curs_id FROM Inscriere)').fetchall())
 ```
+Rezultatul:
+```text
+[('Ana', 2), ('Bogdan', 1), ('Cris', 0)]
+[('Grafică',)]
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți condiția `ON` la JOIN: obții produsul cartezian (fiecare rând cu fiecare rând).
+- Folosești `INNER JOIN` când ai nevoie și de rândurile fără potrivire (ex. elevi neînscriși). Atunci ai nevoie de `LEFT JOIN`.
+- Scrii același nume de coloană din două tabele fără prefix (`id`): apare eroarea „ambiguous column”. Folosește aliasuri: `s.id`, `c.id`.
+- La `NOT IN` cu o subinterogare care conține `NULL`, rezultatul poate fi gol. Verifică datele sau folosește `NOT EXISTS`.
+:::
+
+### 🔮 4.9.3 Citește și prezice
+
+```python
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Student(id INTEGER, nume TEXT)")
+conn.execute("CREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER)")
+conn.executemany("INSERT INTO Student VALUES (?, ?)", [(1, "Ana"), (2, "Bogdan"), (3, "Cris")])
+conn.executemany("INSERT INTO Inscriere VALUES (?, ?)", [(1, 10), (2, 10), (1, 20)])
+
+rez = conn.execute("SELECT s.nume, i.curs_id FROM Student s JOIN Inscriere i ON s.id = i.student_id").fetchall()
+print(len(rez))
+```
+
+Cris nu e înscris la niciun curs, iar Ana e înscrisă la două. Câte rânduri are rezultatul `INNER JOIN`?
 
 
 ### 🤝 4.9.4 Exerciții ghidate
@@ -405,6 +577,18 @@ Scrie o subinterogare care returnează studenții înscriși la un curs dat.
 1. Vrei doar numele studenților înscriși la cursul cu `id=1`, fără să afișezi nimic din tabela `Curs`. Un coleg insistă că trebuie neapărat un `JOIN` între `Student` și `Inscriere`. Ce alegere e de fapt mai potrivită și de ce?
    a) `JOIN`-ul e obligatoriu oricând sunt implicate două tabele, altfel SQL nu poate compara datele  b) O subinterogare (`WHERE id IN (SELECT ...)`) e mai potrivită aici, pentru că ai nevoie de coloane din ambele tabele afișate simultan, ceea ce doar `JOIN` poate face  c) **O subinterogare (`WHERE id IN (SELECT ...)`) e mai potrivită aici, pentru că nu ai nevoie de coloane din tabela `Inscriere` în rezultat — `JOIN` ar aduce date suplimentare inutile și, dacă un student e înscris la mai multe cursuri care se potrivesc, ar duplica rândul de student**  d) Nu contează care variantă alegi, cele două produc mereu exact aceleași rânduri în orice situație
       > Cum rezultatul cerut conține doar coloane din `Student`, un `JOIN` cu `Inscriere` ar aduce date suplimentare inutile și, dacă un student e înscris la mai multe cursuri potrivite, i-ar duplica rândul; o subinterogare cu `WHERE id IN (SELECT ...)` obține exact lista de id-uri fără să afecteze structura rezultatului final.
+
+2. Ce rânduri întoarce un INNER JOIN?
+   a) Toate rândurile din ambele tabele  b) **Doar perechile de rânduri care respectă condiția ON**  c) Doar rândurile fără potrivire
+      > Rândurile din stânga fără potrivire în dreapta (și invers) nu apar.
+
+3. Ce păstrează LEFT JOIN în plus față de INNER JOIN?
+   a) Nimic  b) **Rândurile din tabela din stânga fără potrivire, cu NULL în coloanele din dreapta**  c) Rândurile din dreapta fără potrivire
+      > Așa poți găsi, de exemplu, elevii care nu sunt înscriși la niciun curs.
+
+4. Ce face `WHERE id IN (SELECT student_id FROM Inscriere)`?
+   a) Creează o tabelă nouă  b) **Păstrează rândurile al căror id apare în rezultatul subinterogării**  c) Șterge înscrierile
+      > Subinterogarea produce o listă de valori, iar `IN` verifică apartenența.
 
 ---
 
@@ -458,26 +642,61 @@ print("Student după actualizare:", cur.fetchall())
 
 
 :::tip
-## Sfaturi & Bune Practici Didactice
+## Parametri legați, nu concatenare
 Folosește întotdeauna parametri legați — `cur.execute("... WHERE nume = ?", (nume,))` — în loc să concatenezi valori direct în string-ul SQL. Previi atât erorile de sintaxă cauzate de ghilimele sau caractere speciale, cât și atacurile de tip SQL injection.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Aplicăm pe tabela Student trei operații DML și verificăm efectul fiecăreia cu `cur.rowcount` (câte rânduri au fost afectate).
+
+**Ideea.** `INSERT` adaugă rânduri, `UPDATE` modifică rândurile care respectă `WHERE`, `DELETE` le șterge. `rowcount` spune câte rânduri a atins ultima comandă, util ca să prinzi un `WHERE` greșit.
+
+```python
+import sqlite3
+conn = sqlite3.connect(':memory:')
+cur = conn.cursor()
+cur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')
+cur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [
+    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),
+    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])
+cur.execute("INSERT INTO Student(nume, varsta, oras) VALUES ('Gelu', 15, 'Arad')")
+print('inserate:', cur.rowcount)
+cur.execute("UPDATE Student SET varsta = varsta + 1 WHERE oras = 'Cluj'")
+print('actualizate:', cur.rowcount)
+cur.execute('DELETE FROM Student WHERE varsta < 17')
+print('șterse:', cur.rowcount)
+conn.commit()
+print(cur.execute('SELECT COUNT(*), MIN(varsta) FROM Student').fetchone())
+```
+Rezultatul:
+```text
+inserate: 1
+actualizate: 3
+șterse: 2
+(5, 18)
+```
+
+:::atentie
+## Greșeli frecvente
+- Scrii `UPDATE` sau `DELETE` fără `WHERE`: modifici sau ștergi toată tabela.
+- Uiți `commit()`: modificările nu se salvează.
+- Verifici efectul unui `UPDATE` citind o variabilă Python, nu baza de date: rulează un `SELECT` după modificare.
+- La `INSERT` fără listă de coloane dai valorile în altă ordine decât coloanele tabelei.
 :::
 
 ### 🔮 4.10.3 Citește și prezice
 
-```sql
--- Tabela are ('Ana',17),('Bogdan',19)
--- UPDATE Student SET varsta = varsta + 1 WHERE nume='Ana'
--- Cat are Ana acum?
-```
-
-
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Student(nume TEXT, varsta INTEGER)")
+conn.executemany("INSERT INTO Student VALUES (?, ?)", [("Ana", 17), ("Bogdan", 19)])
+conn.execute("UPDATE Student SET varsta = varsta + 1 WHERE nume = 'Ana'")
+print(conn.execute("SELECT varsta FROM Student ORDER BY nume").fetchall())
 ```
+
+Ce afișează programul?
 
 
 ### 🤝 4.10.4 Exerciții ghidate
@@ -515,6 +734,18 @@ conn.___()
    a) Comanda e sigură implicit — SQLite ar fi trebuit să ceară confirmare automat înainte de a șterge toate rândurile  b) **Fără `WHERE`, condiția de filtrare lipsește și `DELETE` se aplică tuturor rândurilor din tabelă; singura șansă de recuperare e dacă nu s-a făcut încă `conn.commit()`, prin `conn.rollback()` — după commit, datele sunt pierdute definitiv**  c) `DELETE FROM Student` fără `WHERE` doar marchează rândurile ca șterse, dar `SELECT` tot le mai poate citi ulterior  d) Problema nu e lipsa lui `WHERE`, ci faptul că nu a folosit `DROP TABLE` în schimb
       > Fără `WHERE`, condiția de filtrare lipsește, deci `DELETE` se aplică tuturor rândurilor din tabelă; singura șansă de recuperare era înainte de `conn.commit()`, prin `conn.rollback()` — după commit, modificarea e salvată definitiv și datele nu mai pot fi recuperate.
 
+2. Ce face `UPDATE Student SET varsta = varsta + 1` fără `WHERE`?
+   a) Nimic  b) **Mărește vârsta tuturor elevilor**  c) Doar primului elev
+      > Fără `WHERE`, comanda se aplică tuturor rândurilor.
+
+3. Ce comandă adaugă un rând nou?
+   a) `ADD ROW`  b) **`INSERT INTO`**  c) `UPDATE`
+      > `INSERT INTO tabela(coloane) VALUES (...)` adaugă înregistrări.
+
+4. Ce arată `cur.rowcount` după un `DELETE`?
+   a) Câte rânduri au rămas  b) **Câte rânduri au fost șterse**  c) Numărul de coloane
+      > E o verificare rapidă că `WHERE` a atins exact rândurile pe care le voiai.
+
 ---
 
 
@@ -532,7 +763,7 @@ output: [{'nume': 'Ana', 'varsta': 18}, {'nume': 'Bogdan', 'varsta': 19}]
 
 ### 🔄 4.11.1 Recapitulare
 
-În 4.10 ai modificat datele. DDL modifică *structura* bazei (tabrole, coloane).
+În 4.10 ai modificat datele. DDL modifică *structura* bazei (tabele, coloane).
 
 ### 💡 4.11.2 Concept nou și exemplu
 
@@ -563,21 +794,50 @@ print("Coloanele tabelei Produs:", cur.fetchall())
 DDL e pentru "scheletul" bazei. Schimbările DDL sunt rare, față de DML (care e zilnic).
 :::
 
-### 🔮 4.11.3 Citește și prezice
+## Problemă rezolvată pas cu pas
 
-```sql
--- CREATE TABLE T(a INT); ALTER TABLE T ADD COLUMN b INT;
--- Cat coloane are T acum?
-```
+**Enunț.** Evoluăm structura tabelei Produs: adăugăm coloana `stoc` cu o valoare implicită, apoi redenumim tabela și verificăm structura după fiecare pas.
 
+**Ideea.** DDL schimbă scheletul bazei, nu datele. `PRAGMA table_info` arată coloanele, iar `sqlite_master` arată tabelele existente. Rândurile vechi primesc valoarea `DEFAULT` a noii coloane.
 
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(':memory:')
+conn.execute('CREATE TABLE Produs(id INTEGER PRIMARY KEY, nume TEXT, pret REAL)')
+conn.execute("INSERT INTO Produs(nume, pret) VALUES ('pix', 3)")
+conn.execute('ALTER TABLE Produs ADD COLUMN stoc INTEGER DEFAULT 0')
+print([r[1] for r in conn.execute('PRAGMA table_info(Produs)')])
+print(conn.execute('SELECT * FROM Produs').fetchall())
+conn.execute('ALTER TABLE Produs RENAME TO Articol')
+print([r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type = 'table'")])
 ```
+Rezultatul:
+```text
+['id', 'nume', 'pret', 'stoc']
+[(1, 'pix', 3.0, 0)]
+['Articol']
+```
+
+:::atentie
+## Greșeli frecvente
+- Rulezi `DROP TABLE` crezând că golește tabela: o șterge cu totul, cu structură și date. Pentru golire folosește `DELETE FROM tabela`.
+- Creezi o tabelă care există deja: apare eroare. Folosește `CREATE TABLE IF NOT EXISTS` sau `DROP TABLE IF EXISTS` înainte.
+- Te aștepți ca `ALTER TABLE ... ADD COLUMN` să completeze valori în rândurile vechi: noua coloană e `NULL` (sau valoarea `DEFAULT`).
+- Crezi că SQLite permite orice `ALTER`: schimbarea tipului unei coloane, de exemplu, se face recreând tabela.
+:::
+
+### 🔮 4.11.3 Citește și prezice
+
+```python
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE T(a INTEGER)")
+conn.execute("ALTER TABLE T ADD COLUMN b INTEGER")
+coloane = conn.execute("PRAGMA table_info(T)").fetchall()
+print(len(coloane), [c[1] for c in coloane])
+```
+
+Ce afișează programul?
 
 
 ### 🤝 4.11.4 Exerciții ghidate
@@ -615,6 +875,18 @@ Modifică tipul unei coloane sau șterge o coloană (dacă sistemul permite).
    a) Are dreptate — DDL și DML sunt denumiri diferite pentru aceeași categorie de comenzi SQL  b) **DDL (`ALTER`) modifică structura tabelei — coloanele, tipurile, existența ei — în timp ce DML (`INSERT`) modifică doar conținutul (rândurile), fără să schimbe structura; de-aia schimbările DDL sunt rare, iar DML se rulează zilnic**  c) DDL modifică doar conținutul rândurilor, iar DML modifică structura tabelei — elevul a inversat cele două categorii  d) Diferența e doar că DDL necesită `conn.commit()`, iar DML nu
       > DDL (`ALTER TABLE`) schimbă structura tabelei — coloane, tipuri, existența ei — în timp ce DML (`INSERT`) modifică doar conținutul, adăugând rânduri fără să atingă structura; de-aceea schimbările DDL sunt rare, iar comenzile DML rulează zilnic.
 
+2. Care categorie de comenzi conține `CREATE`, `ALTER` și `DROP`?
+   a) DML  b) **DDL**  c) DCL
+      > DDL (Data Definition Language) definește structura: tabele, coloane, indecși.
+
+3. Ce valoare primește o coloană nouă în rândurile existente, fără `DEFAULT`?
+   a) 0  b) **NULL**  c) Un text gol
+      > Coloana nu avea valori înainte, așa că rândurile vechi primesc NULL.
+
+4. Care e diferența dintre `DELETE FROM T` și `DROP TABLE T`?
+   a) Niciuna  b) **`DELETE` golește tabela, `DROP` o șterge cu totul**  c) `DROP` șterge doar un rând
+      > După `DELETE`, tabela există, dar e goală; după `DROP`, tabela nu mai există.
+
 ---
 
 
@@ -632,7 +904,7 @@ output: [{'id': 1, 'nume': 'Ana', 'stoc': 0}, {'id': 2, 'nume': 'Bogdan', 'stoc'
 
 ### 🔄 4.12.1 Recapitulare
 
-Ai folosit DDL (4.11) și DML (4.10). Acum_controlul accesului și al operațiunilor multiple.
+Ai folosit DDL (4.11) și DML (4.10). Acum urmează controlul accesului și al operațiunilor multiple.
 
 ### 💡 4.12.2 Concept nou și exemplu
 
@@ -641,24 +913,83 @@ Ai folosit DDL (4.11) și DML (4.10). Acum_controlul accesului și al operațiun
 
 O **tranzacție** e un grup de operațiuni care trebuie să se execute integral ("toate sau nimic"):
 ```python
+import sqlite3
+conn = sqlite3.connect(":memory:")
+cur = conn.cursor()
+cur.execute("CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))")
+cur.executemany("INSERT INTO Cont VALUES (?, ?)", [(1, 300), (2, 50)])
+conn.commit()
+
 try:
     cur.execute("UPDATE Cont SET sold = sold - 100 WHERE id=1")
     cur.execute("UPDATE Cont SET sold = sold + 100 WHERE id=2")
-    conn.commit()        # ambele reusesc
-except:
-    conn.rollback()      # nimic nu se schimba
+    conn.commit()        # ambele reușesc: modificările devin definitive
+except sqlite3.Error:
+    conn.rollback()      # ceva a eșuat: nimic nu se schimbă
+
+print(cur.execute("SELECT sold FROM Cont ORDER BY id").fetchall())  # [(200,), (150,)]
 ```
 
 :::tip
 Tranzacțiile garantează consistența: dacă transferul de bani eșuează la jumătate, ROLLBACK anulează tot.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Transfer bancar cu tranzacție: contul 1 are 100 de lei. Încercăm să transferăm 150 de lei. Constrângerea `CHECK (sold >= 0)` face al doilea pas să eșueze, iar `rollback` readuce ambele conturi la starea inițială.
+
+**Ideea.** Ordinea pașilor e intenționat „întâi adăugăm, apoi scădem”, ca să vedem cum `rollback` anulează și pasul care reușise deja. Transferul de 30 de lei, valid, se confirmă cu `commit`.
+
+```python
+import sqlite3
+conn = sqlite3.connect(':memory:')
+conn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')
+conn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])
+conn.commit()
+def transfer(sursa, dest, suma):
+    try:
+        conn.execute('UPDATE Cont SET sold = sold + ? WHERE id = ?', (suma, dest))
+        conn.execute('UPDATE Cont SET sold = sold - ? WHERE id = ?', (suma, sursa))
+        conn.commit()
+        return 'reușit'
+    except sqlite3.IntegrityError:
+        conn.rollback()
+        return 'anulat'
+
+print(transfer(1, 2, 150), conn.execute('SELECT sold FROM Cont ORDER BY id').fetchall())
+print(transfer(1, 2, 30), conn.execute('SELECT sold FROM Cont ORDER BY id').fetchall())
+```
+Rezultatul:
+```text
+anulat [(100,), (50,)]
+reușit [(70,), (80,)]
+```
+
+:::atentie
+## Greșeli frecvente
+- Faci `commit()` după primul `UPDATE` al unui transfer: dacă al doilea eșuează, banii au dispărut deja din primul cont.
+- Prinzi eroarea cu `except` dar uiți `rollback()`: modificările parțiale rămân în tranzacția deschisă.
+- Crezi că `ROLLBACK` anulează și modificările deja confirmate cu `COMMIT`. Nu le anulează: după commit, ele sunt definitive.
+- Confunzi DCL (`GRANT`/`REVOKE`, drepturi) cu TCL (`COMMIT`/`ROLLBACK`, tranzacții). SQLite nu are utilizatori, deci nici `GRANT`.
+:::
+
 ### 🔮 4.12.3 Citește și prezice
 
 ```python
-# Transfer 100 de la contul 1 la 2.
-# Daca a 2-a UPDATE da eroare, ce face ROLLBACK?
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER)")
+conn.executemany("INSERT INTO Cont VALUES (?, ?)", [(1, 100), (2, 50)])
+conn.commit()
+
+conn.execute("UPDATE Cont SET sold = sold - 100 WHERE id = 1")
+# al doilea UPDATE a eșuat, deci anulăm tot
+conn.rollback()
+print(conn.execute("SELECT sold FROM Cont ORDER BY id").fetchall())
 ```
+
+Primul `UPDATE` reușise, dar tranzacția e anulată. Ce solduri rămân?
+
 
 ### 🤝 4.12.4 Exerciții ghidate
 
@@ -693,6 +1024,21 @@ Creează un `SAVEPOINT` înainte de o ștergere, apoi demonstrează `ROLLBACK TO
 1. Un elev scrie un transfer bancar fără `try/except`: rulează cele două `UPDATE`-uri și apoi un singur `conn.commit()` la final. Dacă al doilea `UPDATE` eșuează (de exemplu din cauza unei erori de rețea la interogare), ce se întâmplă cu banii, și de ce e nevoie de `try/except` cu `rollback` în plus față de simplul `commit`?
    a) Nimic grav — SQLite anulează automat primul `UPDATE` dacă al doilea eșuează, chiar și fără `rollback` explicit  b) `commit()` salvează automat doar operațiile reușite, deci primul cont rămâne neschimbat oricum, iar `try/except` e doar o măsură stilistică, nu una necesară  c) **Fără `try/except`, dacă al doilea `UPDATE` eșuează, execuția se oprește cu eroare înainte de `commit()`, dar primul `UPDATE` a fost deja aplicat în tranzacția curentă; fără `rollback()` explicit acea modificare parțială poate rămâne nesalvată dar "agățată", sau poate fi confirmată din greșeală la o reconectare — tranzacția trebuie închisă explicit cu commit sau rollback pentru a garanta "totul sau nimic"**  d) Diferența nu contează, pentru că `sqlite3` face automat rollback la orice eroare, indiferent dacă exista `try/except`
       > Fără `try/except`, dacă al doilea `UPDATE` eșuează, execuția se oprește cu eroare înainte să ajungă la `conn.commit()`, dar primul `UPDATE` a fost deja aplicat în tranzacția curentă; fără un `rollback()` explicit, acea modificare parțială rămâne agățată în tranzacție, încălcând regula „totul sau nimic” pe care trebuie s-o garanteze un transfer bancar.
+
+2. Ce înseamnă că o tranzacție e „atomică”?
+   a) E foarte rapidă  b) **Toate operațiile ei se aplică împreună, sau niciuna**  c) Are o singură operație
+      > Atomicitatea garantează că nu rămân modificări pe jumătate, ca la un transfer întrerupt.
+
+3. Ce face `ROLLBACK`?
+   a) Salvează modificările  b) **Anulează modificările necomise din tranzacția curentă**  c) Șterge baza de date
+      > Revine la starea de după ultimul `COMMIT`.
+
+4. Ce comenzi țin de DCL?
+   a) `COMMIT` și `ROLLBACK`  b) **`GRANT` și `REVOKE`**  c) `CREATE` și `DROP`
+      > DCL controlează drepturile utilizatorilor (cine poate citi sau modifica tabelele); TCL controlează tranzacțiile.
+
+---
+
 
 :::verifica-cod
 Scrie o funcție `transfer(conturi, sursa, dest, suma)` care simulează un transfer bancar (dicționar id -> sold): dacă `sursa` nu are fonduri suficiente, tranzacția eșuează și `conturi` rămâne NESCHIMBAT (ca după un `ROLLBACK`); altfel scade suma din sursă și o adaugă la destinație. Demo: încearcă un transfer prea mare și arată că soldurile rămân neschimbate. Demo: `conturi = {1: 20, 2: 50}

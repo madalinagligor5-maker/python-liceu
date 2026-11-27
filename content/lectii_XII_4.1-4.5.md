@@ -39,13 +39,46 @@ afiseaza_entitate(student)
 O entitate = o "tabelă" în SQL; un atribut = o "coloană"; o înregistrare = un "rând".
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Avem o listă de elevi. Verificăm care atribut poate fi cheie: unul a cărui valoare nu se repetă la nicio înregistrare.
+
+**Ideea.** Un atribut e candidat la cheie dacă numărul de valori distincte este egal cu numărul de înregistrări. Folosim o mulțime pentru fiecare atribut.
+
+```python
+elevi = [
+    {'cnp': '501', 'nume': 'Ana', 'clasa': '12A'},
+    {'cnp': '502', 'nume': 'Dan', 'clasa': '12A'},
+    {'cnp': '503', 'nume': 'Ana', 'clasa': '12B'},
+]
+for atribut in elevi[0]:
+    valori = {e[atribut] for e in elevi}
+    print(atribut, 'cheie posibilă' if len(valori) == len(elevi) else 'se repetă')
+```
+Rezultatul:
+```text
+cnp cheie posibilă
+nume se repetă
+clasa se repetă
+```
+
+:::atentie
+## Greșeli frecvente
+- Alegi drept cheie un atribut care se poate repeta (ex. numele): doi elevi cu același nume devin imposibil de deosebit.
+- Pui în aceeași entitate date despre lucruri diferite (ex. datele autorului în fiecare carte). Fiecare entitate descrie un singur tip de obiect.
+- Confunzi entitatea (tipul, ex. `Student`) cu o înregistrare concretă (Ana, 17 ani).
+- Pui într-un atribut o valoare compusă (ex. „Cluj, România”). Un atribut ar trebui să conțină o singură informație.
+:::
+
 ### 🔮 4.1.3 Citește și prezice
 
 ```python
-# Daca Student are atributele (id, nume, varsta)
-# si avem inregistrarea (1, "Ana", 17)
-# Ce valoare are atributul 'nume'?
+student = {"id": 1, "nume": "Ana", "varsta": 17}
+print(student["nume"])
 ```
+
+Ce afișează programul?
+
 
 ### 🤝 4.1.4 Exerciții ghidate
 
@@ -84,6 +117,18 @@ Scrie o listă de dicționare care să reprezinte 3 cărți, fiecare cu cele 4 a
 1. Într-un tabel `Student` fără nicio coloană-cheie, pot exista două rânduri identice (Ana, 17). De ce este asta o problemă reală, nu doar o chestiune de stil?
    a) pentru că bazele de date interzic prin proiectare rândurile identice  b) **pentru că, fără o valoare unică pe rând, nu poți referi/actualiza/șterge o singură entitate fără ambiguitate**  c) pentru că duplicatele ocupă prea mult spațiu de stocare  d) pentru că interogările SQL devin mai lente, dar rezultatul rămâne corect
       > Cheia identifică unic fiecare rând — fără ea, două înregistrări identice (Ana, 17) devin indistinguibile, deci nu ai cum să spui bazei de date „actualizează exact acest rând” sau „șterge exact acest rând” fără riscul de a lovi și duplicatul.
+
+2. Ce corespunde unei entități când o transformăm într-o bază de date relațională?
+   a) Un rând  b) **Un tabel**  c) O valoare
+      > Entitatea devine tabel, atributele devin coloane, iar fiecare înregistrare devine un rând.
+
+3. Care atribut e cel mai potrivit drept cheie pentru entitatea `Elev`?
+   a) Numele  b) Clasa  c) **Un cod unic (CNP sau id)**
+      > Numele și clasa se pot repeta; o cheie trebuie să fie unică pentru fiecare înregistrare.
+
+4. Entitatea `Carte(isbn, titlu, autor, an)` are câte atribute?
+   a) 1  b) 3  c) **4**
+      > Atributele sunt isbn, titlu, autor și an; isbn poate fi folosit și drept cheie.
 
 ---
 
@@ -134,13 +179,47 @@ print("Cursurile studentului 1:", cursuri_ale_studentului(inscrieri, 1))
 Cardinalitatea M:N nu se poate pune direct ca cheie externă într-o singură tabelă — de aia folosim tabela asociativă.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Elevii participă la cercuri (relație M:N), iar legăturile sunt într-o tabelă asociativă. Afișăm, pentru fiecare cerc, elevii înscriși și cercul cel mai căutat.
+
+**Ideea.** Tabela asociativă are câte un rând pentru fiecare pereche (elev, cerc). Grupăm rândurile după cerc ca să vedem relația din partea cealaltă.
+
+```python
+elevi = {1: 'Ana', 2: 'Dan', 3: 'Eva'}
+cercuri = {'R': 'Robotică', 'S': 'Șah'}
+inscrieri = [(1, 'R'), (2, 'R'), (2, 'S'), (3, 'R')]
+pe_cerc = {}
+for elev, cerc in inscrieri:
+    pe_cerc.setdefault(cerc, []).append(elevi[elev])
+for cerc, nume in pe_cerc.items():
+    print(cercuri[cerc], nume)
+print('cel mai căutat:', cercuri[max(pe_cerc, key=lambda c: len(pe_cerc[c]))])
+```
+Rezultatul:
+```text
+Robotică ['Ana', 'Dan', 'Eva']
+Șah ['Dan']
+cel mai căutat: Robotică
+```
+
+:::atentie
+## Greșeli frecvente
+- Pui cheia externă în partea „1” a unei relații 1:N (ex. o listă de cărți în tabela Autor). Cheia externă merge în partea „N” (fiecare carte reține autorul).
+- Modelezi o relație M:N cu o singură cheie externă: un student ar putea fi înscris la un singur curs. Ai nevoie de o tabelă asociativă.
+- Confunzi cardinalitatea cu numărul de înregistrări: 1:N spune câte legături poate avea o înregistrare, nu câte rânduri are tabela.
+- Uiți că o tabelă asociativă poate avea și atribute proprii (ex. nota studentului la acel curs).
+:::
+
 ### 🔮 4.2.3 Citește și prezice
 
 ```python
-# Student-Curs e relatie M:N.
-# Cate tabele rezulta din mapare?
-# (Student, Curs, si ?)
+entitati_relatie_mn = ["Student", "Curs", "Inscriere"]
+print(len(entitati_relatie_mn))
 ```
+
+Ce afișează programul?
+
 
 ### 🤝 4.2.4 Exerciții ghidate
 
@@ -179,6 +258,18 @@ Modelați relația M:N "Studenți — Proiecte" cu o tabelă asociativă.
 1. Vrei să modelezi relația M:N Student–Curs punând o coloană `curs_id` direct în tabela `Student`. De ce eșuează abordarea asta când un student urmează mai multe cursuri?
    a) **pentru că o coloană poate ține o singură valoare pe rând, deci nu poți stoca simultan mai multe `curs_id` pentru același student fără să încalci atomicitatea datelor**  b) pentru că SQL limitează o tabelă la o singură cheie externă  c) pentru că ar trebui adăugat și `student_id` în `Curs`, iar cele două chei externe s-ar contrazice reciproc  d) pentru că interogările ar deveni mai lente, dar structura ar rămâne corectă
       > O coloană dintr-un rând ține o singură valoare (atomicitate), deci `curs_id` din `Student` poate reține un singur curs pe rând; pentru M:N ai nevoie de o tabelă asociativă (`Inscriere`) care poate avea câte un rând separat pentru fiecare pereche student-curs.
+
+2. Relația „o clasă are mulți elevi, un elev e într-o singură clasă” este de tip:
+   a) 1:1  b) **1:N**  c) M:N
+      > O clasă are mai mulți elevi (N), dar fiecare elev aparține unei singure clase (1).
+
+3. În relația 1:N Autor–Carte, unde se pune cheia externă?
+   a) În Autor  b) **În Carte (`autor_id`)**  c) În ambele
+      > Fiecare carte reține un singur autor; dacă am pune cărțile în Autor, o celulă ar trebui să conțină mai multe valori.
+
+4. Câte tabele obții din relația M:N Student–Curs?
+   a) 2  b) **3**  c) 4
+      > Student, Curs și tabela asociativă (de exemplu `Inscriere`), care leagă perechile.
 
 ---
 
@@ -232,13 +323,59 @@ for tabel, coloane in entitati.items():
 La mapare, ordinalitatea contează: pentru 1:N, cheia externă merge în partea "N" (cea cu multe).
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Mapăm la tabele SQL modelul Student – Inscriere – Curs (M:N) și verificăm în SQLite că structura acceptă datele.
+
+**Ideea.** Fiecare entitate devine `CREATE TABLE`, iar relația M:N devine tabela `Inscriere` cu cheie primară compusă din cele două chei externe.
+
+```python
+import sqlite3
+conn = sqlite3.connect(':memory:')
+conn.executescript('''
+CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT NOT NULL);
+CREATE TABLE Curs(cod TEXT PRIMARY KEY, denumire TEXT NOT NULL);
+CREATE TABLE Inscriere(
+    student_id INTEGER REFERENCES Student(id),
+    curs_cod TEXT REFERENCES Curs(cod),
+    PRIMARY KEY (student_id, curs_cod)
+);
+INSERT INTO Student VALUES (1, 'Ana'), (2, 'Dan');
+INSERT INTO Curs VALUES ('BD', 'Baze de date'), ('IA', 'Inteligență artificială');
+INSERT INTO Inscriere VALUES (1, 'BD'), (1, 'IA'), (2, 'BD');
+''')
+print([r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")])
+print(conn.execute('SELECT COUNT(*) FROM Inscriere').fetchone()[0])
+```
+Rezultatul:
+```text
+['Curs', 'Inscriere', 'Student']
+3
+```
+
+:::atentie
+## Greșeli frecvente
+- În relația 1:N pui cheia externă în tabela „1”.
+- Pentru M:N creezi doar două tabele. Ai nevoie de a treia, asociativă, cu două chei externe.
+- Cheia externă are alt tip decât cheia primară la care se referă (ex. TEXT vs INTEGER): legăturile nu se mai potrivesc.
+- Creezi întâi tabela cu cheia externă, apoi tabela la care se referă: în multe SGBD-uri apare eroare. Creează întâi tabela referită.
+:::
+
 ### 🔮 4.3.3 Citește și prezice
 
 ```python
-# Entitatea Student(id, nume) si Curs(cod, denumire)
-# cu relatie 1:N (un curs are multi studenti)
-# In ce tabel se pune cheia externa curs_id?
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE Curs(cod TEXT PRIMARY KEY, denumire TEXT)")
+conn.execute("CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, curs_cod TEXT REFERENCES Curs(cod))")
+
+for tabel in ["Curs", "Student"]:
+    chei_externe = conn.execute(f"PRAGMA foreign_key_list({tabel})").fetchall()
+    print(tabel, len(chei_externe))
 ```
+
+Un curs are mulți studenți (relație 1:N). `PRAGMA foreign_key_list` întoarce cheile externe ale unui tabel. Ce se afișează?
+
 
 ### 🤝 4.3.4 Exerciții ghidate
 
@@ -273,6 +410,18 @@ Scrie `CREATE TABLE` pentru o relație M:N cu tabelă asociativă `Inscriere`.
 1. La maparea unei relații M:N Student–Curs la SQL apare o a treia tabelă (ex. `Inscriere`), pe lângă `Student` și `Curs`. Ce rol joacă exact această tabelă suplimentară?
    a) **ține câte o pereche (`student_id`, `curs_id`) pentru fiecare combinație reală care există, transformând relația M:N în două relații 1:N prin chei externe**  b) stochează o copie completă a datelor din `Student` și `Curs`, pentru viteză  c) înlocuiește tabela `Curs`, care devine redundantă odată creată tabela asociativă  d) există doar din motive de audit/logging și nu are rol structural în relație
       > Tabela asociativă nu duplică date, ci ține câte o pereche (`student_id`, `curs_id`) pentru fiecare combinație reală — practic descompune o singură relație M:N în două relații 1:N (Student→Inscriere și Curs→Inscriere), legate prin chei externe.
+
+2. În ERD, ce formă au de obicei entitățile?
+   a) Romburi  b) **Dreptunghiuri**  c) Cercuri
+      > Dreptunghiurile sunt entitățile, romburile relațiile, iar liniile arată legăturile și cardinalitățile.
+
+3. Ce devine un atribut la maparea în SQL?
+   a) Un tabel  b) **O coloană**  c) O cheie externă, întotdeauna
+      > Fiecare atribut al entității devine o coloană a tabelului ei.
+
+4. Ce cheie primară are, de obicei, o tabelă asociativă?
+   a) Niciuna  b) **Perechea celor două chei externe**  c) Un text liber
+      > Perechea (student_id, curs_cod) e unică: un student nu se înscrie de două ori la același curs.
 
 ---
 
@@ -330,7 +479,7 @@ print(poate_insera_student(1, "BD", studenti_existenti, cursuri_existente))
 
 
 :::atentie
-Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza (sau va șterge în cascadă, dacă e设定 așa). Asta e integritatea referențială.
+Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza (sau va șterge în cascadă, dacă așa a fost definită cheia). Asta e integritatea referențială.
 :::
 
 
@@ -339,22 +488,60 @@ Dacă ștergi un rând referențiat de o cheie externă, baza de date va refuza 
 Cheia primară (PK) apare o singură dată pe rând și nu se repetă niciodată în tabelă — e „identitatea” rândului. Cheia externă (FK) se poate repeta de multe ori (ex. mai mulți studenți au același `curs_id`), pentru că ea exprimă o legătură către altă tabelă, nu o identitate proprie. Dacă o coloană se repetă des în date de test, e semn că e FK, nu PK.
 :::
 
-### 🔮 4.4.3 Citește și prezice
+## Problemă rezolvată pas cu pas
 
-```sql
--- Tabela Student are curs_id REFERENCES Curs(id)
--- Ce se intampla daca incerci sa inserezi un Student
--- cu curs_id=99 dar Curs(id=99) nu exista?
-```
+**Enunț.** Testăm în SQLite trei constrângeri: cheia primară, cheia externă și `CHECK`. Încercăm inserări greșite și afișăm ce le-a respins.
 
+**Ideea.** Fiecare inserare greșită aruncă `sqlite3.IntegrityError`, iar mesajul spune ce constrângere a fost încălcată. Cheile externe se activează cu `PRAGMA foreign_keys = ON`.
 
 ```python
-# Analizează codul și prezice output-ul:
-x = 5
-y = 10
-rezultat = x + y * 2
-print("Rezultat obținut:", rezultat)
+import sqlite3
+conn = sqlite3.connect(':memory:')
+conn.execute('PRAGMA foreign_keys = ON')
+conn.execute('CREATE TABLE Clasa(id INTEGER PRIMARY KEY)')
+conn.execute('CREATE TABLE Elev(id INTEGER PRIMARY KEY, varsta INTEGER CHECK (varsta >= 0), clasa_id INTEGER REFERENCES Clasa(id))')
+conn.execute('INSERT INTO Clasa VALUES (1)')
+conn.execute('INSERT INTO Elev VALUES (1, 17, 1)')
+for rand in [(1, 18, 1), (2, -5, 1), (3, 16, 99)]:
+    try:
+        conn.execute('INSERT INTO Elev VALUES (?, ?, ?)', rand)
+        print(rand, 'acceptat')
+    except sqlite3.IntegrityError as e:
+        print(rand, '->', e)
 ```
+Rezultatul:
+```text
+(1, 18, 1) -> UNIQUE constraint failed: Elev.id
+(2, -5, 1) -> CHECK constraint failed: varsta >= 0
+(3, 16, 99) -> FOREIGN KEY constraint failed
+```
+
+:::atentie
+## Greșeli frecvente
+- Crezi că SQLite verifică automat cheile externe. În SQLite trebuie activate cu `PRAGMA foreign_keys = ON`.
+- Pui `NOT NULL` pe o coloană opțională (ex. al doilea prenume) și nu mai poți insera date reale.
+- Scrii condiția `CHECK` invers (ex. `CHECK (varsta < 0)`) și respingi exact datele corecte.
+- Ștergi un rând referit de alte tabele fără să te gândești la ce se întâmplă cu rândurile care îl referă (`ON DELETE`).
+:::
+
+### 🔮 4.4.3 Citește și prezice
+
+```python
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("PRAGMA foreign_keys = ON")
+conn.execute("CREATE TABLE Curs(id INTEGER PRIMARY KEY)")
+conn.execute("CREATE TABLE Student(id INTEGER PRIMARY KEY, curs_id INTEGER REFERENCES Curs(id))")
+conn.execute("INSERT INTO Curs VALUES (1)")
+
+try:
+    conn.execute("INSERT INTO Student VALUES (1, 99)")
+    print("Inserat")
+except sqlite3.IntegrityError as e:
+    print("Refuzat:", e)
+```
+
+Cursul cu id-ul 99 nu există. Ce se întâmplă la inserarea studentului?
 
 
 ### 🤝 4.4.4 Exerciții ghidate
@@ -395,6 +582,18 @@ Adaugă o constrângere `CHECK` care să nu permită vârsta negativă la `Stude
    a) **este o încălcare a constrângerii FOREIGN KEY — inserarea este refuzată (sau se aplică regula ON DELETE/UPDATE definită), pentru că un FK trebuie să indice mereu spre un rând existent**  b) nu este o problemă — coloanele FK pot conține orice valoare, indiferent dacă există sau nu în tabela referită  c) este permis temporar, atâta timp cât clientul 99 este adăugat până la sfârșitul zilei  d) este o eroare de sintaxă SQL, nu una legată de integritatea datelor
       > O cheie externă trebuie să indice mereu spre un rând existent în tabela referită; `client_id=99` fără un rând `Client(id=99)` încalcă integritatea referențială, iar baza de date refuză inserarea (sau aplică regula ON DELETE/UPDATE stabilită), exact cum arată exemplul cu `poate_insera_student`.
 
+2. Ce garantează cheia primară?
+   a) Că valoarea e pozitivă  b) **Că fiecare rând are o valoare unică și nenulă de identificare**  c) Că tabela e sortată
+      > Cheia primară identifică unic fiecare rând; două rânduri nu pot avea aceeași valoare a cheii.
+
+3. Ce constrângere folosești ca un preț să nu fie negativ?
+   a) `UNIQUE`  b) **`CHECK (pret >= 0)`**  c) `NOT NULL`
+      > `CHECK` verifică o condiție la fiecare inserare sau actualizare.
+
+4. Ce valoare poate apărea de mai multe ori într-o tabelă: cheia primară sau o cheie externă?
+   a) Cheia primară  b) **Cheia externă**  c) Niciuna
+      > Mai mulți elevi pot avea același `clasa_id`; cheia primară în schimb e unică.
+
 ---
 
 
@@ -418,8 +617,8 @@ Ai definit tabele cu chei și constrângeri (4.4). Dar cum aranjăm coloanele ca
 
 **Normalizarea** reduce redundanța și anomalii (la ștergere/actualizare):
 - **FN1**: valorile dintr-o coloană sunt atomice (nu liste în aceeași celulă).
-- **FN2**: e în FN1 și nu are dependențe parțiale (atributele non-cheie depind de *tota* cheia, nu doar o parte).
-- **FN3**: e în FN2 și nu are dependențe transitive (un atribut non-cheie nu depinde de alt atribut non-cheie).
+- **FN2**: e în FN1 și nu are dependențe parțiale (atributele non-cheie depind de *toată* cheia, nu doar o parte).
+- **FN3**: e în FN2 și nu are dependențe tranzitive (un atribut non-cheie nu depinde de alt atribut non-cheie).
 
 Exemplu FN3 încălcat: `Student(id, nume, oras, tara)` — `tara` depinde de `oras`, nu direct de `id`. Se separă în `Oras(id, nume, tara)`.
 
@@ -447,13 +646,54 @@ print("Oras:", tabela_oras)
 Regula practică: fiecare tabelă descrie un singur tip de lucru. Dacă o coloană depinde de altceva decât cheia, mut-o în alt tabel.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Tabela Comenzi repetă numele și orașul clientului la fiecare comandă. Arătăm anomalia de actualizare, apoi normalizăm datele în Client și Comanda.
+
+**Ideea.** Orașul depinde de client, nu de comandă (dependență tranzitivă). Mutăm clientul într-o tabelă separată, iar comenzile păstrează doar `client_id`. Orașul se schimbă astfel într-un singur loc.
+
+```python
+comenzi = [
+    {'id': 1, 'client': 'Ana', 'oras': 'Cluj', 'produs': 'carte'},
+    {'id': 2, 'client': 'Ana', 'oras': 'Cluj', 'produs': 'pix'},
+    {'id': 3, 'client': 'Dan', 'oras': 'Iasi', 'produs': 'caiet'},
+]
+comenzi[0]['oras'] = 'Brasov'   # actualizare făcută doar într-un loc
+print(sorted({c['oras'] for c in comenzi if c['client'] == 'Ana'}))
+
+clienti = {}
+for c in comenzi:
+    clienti.setdefault(c['client'], c['oras'])
+fn3 = [{'id': c['id'], 'client': c['client'], 'produs': c['produs']} for c in comenzi]
+print(clienti)
+print(fn3[1])
+```
+Rezultatul:
+```text
+['Brasov', 'Cluj']
+{'Ana': 'Brasov', 'Dan': 'Iasi'}
+{'id': 2, 'client': 'Ana', 'produs': 'pix'}
+```
+
+:::atentie
+## Greșeli frecvente
+- Crezi că normalizarea înseamnă „cât mai multe tabele”. Separi doar datele care depind de altceva decât cheia.
+- Lași într-o celulă o listă de valori (ex. „mate, info”): tabela nu e nici în FN1.
+- Uiți să păstrezi cheia externă când muți date într-o tabelă nouă: pierzi legătura dintre ele.
+- Confunzi dependența parțială (FN2, apare doar la chei compuse) cu dependența tranzitivă (FN3, prin alt atribut non-cheie).
+:::
+
 ### 🔮 4.5.3 Citește și prezice
 
 ```python
-# Tabela Comanda(id, produs, pret, client, adresa_client)
-# client determina adresa_client (tranzitiv).
-# In ce forma normala e?
+def verifica_fn3(are_dependenta_tranzitiva):
+    return "FN3 incălcat" if are_dependenta_tranzitiva else "FN3 respectat"
+
+print(verifica_fn3(True))
 ```
+
+Ce afișează programul?
+
 
 ### 🤝 4.5.4 Exerciții ghidate
 
@@ -493,6 +733,20 @@ Normalizează la FN3 tabelul `Angajat(id, nume, dept, locatie_dept)`.
 1. Într-un tabel nenormalizat, orașul unui client apare repetat în 5 rânduri diferite (câte unul pentru fiecare comandă a lui). De ce previne normalizarea (separarea într-o tabelă `Client` aparte) anomalia de actualizare din acest exemplu?
    a) **pentru că, odată extrasă informația redundantă într-un singur loc, orașul se modifică o singură dată — nu mai există copii multiple care pot rămâne, din greșeală, neactualizate și inconsistente între ele**  b) pentru că normalizarea șterge automat rândurile vechi la fiecare UPDATE  c) pentru că tabelele normalizate rulează interogările SELECT mai rapid, indiferent de UPDATE  d) pentru că normalizarea previne complet posibilitatea oricărei erori de introducere a datelor (typos)
       > Când orașul e ținut o singură dată, într-o tabelă `Client` separată, iar comenzile doar referă acel rând prin cheie externă, un UPDATE modifică o singură valoare; când orașul era copiat pe fiecare comandă, un UPDATE parțial putea lăsa unele copii vechi, neactualizate, ducând la date inconsistente între ele.
+
+2. Ce cere forma normală 1 (FN1)?
+   a) Să existe o cheie externă  b) **Fiecare celulă să conțină o singură valoare (atomică)**  c) Să nu existe tabele asociative
+      > O celulă cu „0722…, 0733…” încalcă FN1; fiecare telefon trebuie pus pe un rând separat.
+
+3. Ce anomalie apare când aceeași informație e copiată în multe rânduri?
+   a) Mai multă viteză  b) **La actualizare, unele copii pot rămâne vechi**  c) Nicio problemă
+      > Dacă orașul unui client apare în 5 comenzi și îl schimbi doar într-una, datele devin contradictorii.
+
+4. `Angajat(id, nume, dept, locatie_dept)`: ce încalcă?
+   a) FN1  b) **FN3: locatie_dept depinde de dept, nu de id**  c) Nimic
+      > E o dependență tranzitivă id → dept → locatie_dept; se separă tabela `Departament(dept, locatie)`.
+
+---
 
 
 :::verifica-cod

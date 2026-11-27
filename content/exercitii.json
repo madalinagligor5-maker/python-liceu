@@ -3033,11 +3033,12 @@
       "id": "4.1.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Definește în Python (dicționar) entitatea Carte cu atributele isbn, titlu, autor, an.",
-      "expectedOutput": "{'isbn': 'X', 'titlu': 'Y', 'autor': 'Z', 'an': 2000}",
-      "hint": "Gândește-te la entitatea Carte ca la un tabel cu o singură linie: fiecare atribut (isbn, titlu, autor, an) devine o pereche cheie-valoare.",
-      "hint2": "Structura are forma {atribut: valoare, ...} — include toate cele 4 atribute cerute, cu tipuri de date potrivite (șiruri pentru text, număr întreg pentru an).",
-      "extindere": "Adaugă un câmp 'an' și filtrează cărțile publicate după 2010."
+      "enunt": "Definește entitatea Carte ca dicționar cu atributele isbn, titlu, autor, an, apoi afișează cheia (isbn) și titlul.",
+      "expectedOutput": "973-0 Ion",
+      "hint": "Un dicționar are perechi cheie: valoare, separate prin virgulă.",
+      "hint2": "Folosește isbn '973-0' și titlul 'Ion', ca rezultatul să fie cel cerut.",
+      "extindere": "Adaugă un câmp 'an' și filtrează cărțile publicate după 2010.",
+      "template": "carte = {\n    # completează atributele\n}\nprint(carte['isbn'], carte['titlu'])"
     }
   ],
   "4.1.5": [
@@ -3045,10 +3046,11 @@
       "id": "4.1.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie o listă de 3 cărți (dicționare), fiecare cu cele 4 atribute.",
-      "expectedOutput": "3 carti",
-      "hint": "O colecție de entități de același tip se modelează ca o listă ce conține mai multe dicționare similare structural.",
-      "hint2": "Ai nevoie de o listă cu exact 3 elemente, fiecare element fiind un dicționar Carte complet, cu aceleași 4 chei ca la exercițiul anterior."
+      "enunt": "Creează o listă de 3 cărți (dicționare cu isbn, titlu, autor, an) și afișează câte cărți sunt și titlul celei mai noi.",
+      "expectedOutput": "3 Maitreyi",
+      "hint": "Fiecare carte e un dicționar; lista are trei elemente.",
+      "hint2": "Cea mai nouă carte trebuie să fie „Maitreyi”, ca rezultatul să fie cel cerut (de exemplu anul 1933, mai mare decât al celorlalte).",
+      "template": "carti = [\n    # 3 dicționare\n]\nprint(len(carti), max(carti, key=lambda c: c['an'])['titlu'])"
     }
   ],
   "4.2.4": [
@@ -3056,10 +3058,11 @@
       "id": "4.2.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Modelați relația 1:N 'Un autor scrie multe cărți' cu Autor și Carte (cheie externă).",
-      "expectedOutput": "carte_id in Carte",
-      "hint": "Într-o relație 1:N, cheia externă se adaugă întotdeauna pe partea care reprezintă 'multe' — gândește-te care dintre cele două entități este partea N aici.",
-      "hint2": "Autor rămâne independent (id, nume...), iar Carte primește un câmp suplimentar care reține la ce autor aparține, referind cheia primară din Autor."
+      "enunt": "Relația 1:N „un autor scrie multe cărți”: fiecare carte are cheia externă autor_id. Afișează numărul de cărți ale autorului 1.",
+      "expectedOutput": "Rebreanu 2",
+      "hint": "Numără cărțile care au autor_id egal cu 1.",
+      "hint2": "sum(1 for c in carti if c['autor_id'] == 1)",
+      "template": "autori = {1: 'Rebreanu', 2: 'Eminescu'}\ncarti = [{'titlu': 'Ion', 'autor_id': 1}, {'titlu': 'Răscoala', 'autor_id': 1}, {'titlu': 'Luceafărul', 'autor_id': 2}]\nnr = ___\nprint(autori[1], nr)"
     }
   ],
   "4.2.5": [
@@ -3067,10 +3070,11 @@
       "id": "4.2.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Modelați relația M:N Studenți-Proiecte cu tabelă asociativă.",
-      "expectedOutput": "Inscriere(student_id, proiect_id)",
-      "hint": "O relație M:N nu poate fi reprezentată direct printr-o singură cheie externă; e nevoie de o entitate intermediară care leagă cele două părți.",
-      "hint2": "Tabela asociativă conține cel puțin două chei externe, câte una spre fiecare dintre entitățile Student și Proiect, formând împreună o pereche unică pentru fiecare înscriere."
+      "enunt": "Relația M:N Studenți–Proiecte e reținută în tabela asociativă. Afișează lista proiectelor fiecărui student, în ordinea id-urilor.",
+      "expectedOutput": "1 ['P1', 'P2']\n2 ['P2', 'P3']",
+      "hint": "Pentru fiecare pereche adaugă proiectul în lista studentului.",
+      "hint2": "pe_student.setdefault(s, []).append(p)",
+      "template": "participari = [(1, 'P1'), (2, 'P2'), (1, 'P2'), (2, 'P3')]\npe_student = {}\nfor s, p in participari:\n    ___\nfor s in sorted(pe_student):\n    print(s, pe_student[s])"
     }
   ],
   "4.3.4": [
@@ -3078,10 +3082,11 @@
       "id": "4.3.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie CREATE TABLE pentru Student și Curs cu relația 1:N.",
-      "expectedOutput": "curs_id REFERENCES Curs(id)",
-      "hint": "Pentru relația 1:N, tabela Student trebuie să conțină o coloană suplimentară care indică cursul principal, definită ca cheie externă.",
-      "hint2": "Folosește clauza REFERENCES în definiția coloanei din CREATE TABLE Student, legând-o de coloana cheie primară din tabela Curs."
+      "enunt": "Relația 1:N: un curs are mulți studenți. Completează instrucțiunile, rulează-le în SQLite și afișează coloanele tabelei Student.",
+      "expectedOutput": "['id', 'nume', 'curs_cod']",
+      "hint": "Cheia externă din Student se referă la tabela cursurilor.",
+      "hint2": "REFERENCES Curs(cod)",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Curs(cod TEXT PRIMARY KEY, denumire TEXT)')\nconn.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, curs_cod TEXT REFERENCES ___(cod))')\nprint([r[1] for r in conn.execute('PRAGMA table_info(Student)')])"
     }
   ],
   "4.3.5": [
@@ -3089,10 +3094,11 @@
       "id": "4.3.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie CREATE TABLE pentru M:N cu tabelă asociativă Inscriere.",
-      "expectedOutput": "Inscriere(id_student, id_curs)",
-      "hint": "Creează un al treilea tabel dedicat relației, separat de Student și Curs, care nu are sens de sine stătător fără cele două chei externe.",
-      "hint2": "Tabela Inscriere are ca structură minimă cele două coloane cheie externă (spre Student și spre Curs), fiecare definită cu REFERENCES."
+      "enunt": "Creează tabela asociativă Inscriere pentru relația M:N Student–Curs și afișează numărul ei de coloane.",
+      "expectedOutput": "2",
+      "hint": "Tabela asociativă are câte o cheie externă spre fiecare dintre cele două tabele.",
+      "hint2": "student_id INTEGER REFERENCES Student(id), curs_id INTEGER REFERENCES Curs(id), PRIMARY KEY (student_id, curs_id)",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT)')\nconn.execute('CREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT)')\nconn.execute('CREATE TABLE Inscriere(___)')\nprint(len(conn.execute('PRAGMA table_info(Inscriere)').fetchall()))"
     }
   ],
   "4.4.4": [
@@ -3100,10 +3106,11 @@
       "id": "4.4.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "CREATE TABLE Comanda(id, data, client_id REFERENCES Client(id)) cu constrângeri.",
-      "expectedOutput": "client_id REFERENCES Client(id)",
-      "hint": "Constrângerea de integritate referențială se declară cu o clauză specifică pe coloana care leagă Comanda de Client.",
-      "hint2": "În definiția coloanei client_id, adaugă FOREIGN KEY / REFERENCES urmat de numele tabelei părinte și coloana ei cheie primară."
+      "enunt": "Creează Client și Comanda(id, data, client_id REFERENCES Client(id)) cu cheile externe activate. Inserează o comandă validă și una pentru un client inexistent; afișează câte comenzi s-au salvat.",
+      "expectedOutput": "1",
+      "hint": "Cheia externă trebuie să arate spre tabela clienților.",
+      "hint2": "REFERENCES Client(id)",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('PRAGMA foreign_keys = ON')\nconn.execute('CREATE TABLE Client(id INTEGER PRIMARY KEY, nume TEXT)')\nconn.execute('CREATE TABLE Comanda(id INTEGER PRIMARY KEY, data TEXT NOT NULL, client_id INTEGER REFERENCES ___(id))')\nconn.execute(\"INSERT INTO Client VALUES (1, 'Ana')\")\nfor client in [1, 99]:\n    try:\n        conn.execute(\"INSERT INTO Comanda(data, client_id) VALUES ('2026-11-27', ?)\", (client,))\n    except sqlite3.IntegrityError:\n        pass\nprint(conn.execute('SELECT COUNT(*) FROM Comanda').fetchone()[0])"
     }
   ],
   "4.4.5": [
@@ -3111,10 +3118,11 @@
       "id": "4.4.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Adaugă CHECK care nu permite vârsta negativă la Student.",
-      "expectedOutput": "CHECK (varsta >= 0)",
-      "hint": "SQL are o constrângere dedicată validării valorilor unei coloane la nivelul bazei de date, nu doar în cod Python.",
-      "hint2": "Adaugă în definiția coloanei varsta o clauză CHECK urmată de o condiție logică ce exclude valorile negative."
+      "enunt": "Adaugă constrângerea care nu permite vârsta negativă și afișează câte dintre inserările date au reușit.",
+      "expectedOutput": "3",
+      "hint": "Constrângerea verifică o condiție pe coloana varsta.",
+      "hint2": "CHECK (varsta >= 0)",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER ___)')\nok = 0\nfor v in [17, -3, 0, 19]:\n    try:\n        conn.execute('INSERT INTO Student(nume, varsta) VALUES (?, ?)', ('X', v))\n        ok += 1\n    except sqlite3.IntegrityError:\n        pass\nprint(ok)"
     }
   ],
   "4.5.4": [
@@ -3122,10 +3130,11 @@
       "id": "4.5.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Identifică încălcarea FN1 într-un tabel care ține o listă de telefoane într-o celulă.",
-      "expectedOutput": "telefoane intr-o singura celula",
-      "hint": "FN1 impune ca fiecare celulă a unui tabel să conțină o singură valoare atomică, nu o colecție de valori.",
-      "hint2": "Caută coloana care stochează mai multe numere de telefon deodată, separate prin virgulă sau spațiu, în loc de a fi despărțite pe rânduri/tabele separate."
+      "enunt": "Celula `telefoane` conține mai multe numere (încalcă FN1). Despart-o în câte un rând pentru fiecare telefon și afișează rândurile.",
+      "expectedOutput": "1 0722111\n1 0733222\n2 0744333",
+      "hint": "Ce metodă împarte un text după un separator?",
+      "hint2": "split(', ')",
+      "template": "persoane = [{'id': 1, 'telefoane': '0722111, 0733222'}, {'id': 2, 'telefoane': '0744333'}]\nfor p in persoane:\n    for tel in p['telefoane'].___(', '):\n        print(p['id'], tel)"
     }
   ],
   "4.5.5": [
@@ -3133,10 +3142,11 @@
       "id": "4.5.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Normalizează la FN3: Angajat(id, nume, dept, locatie_dept).",
-      "expectedOutput": "Dept(id, nume, locatie)",
-      "hint": "FN3 elimină dependențele tranzitive: dacă locatie_dept depinde de dept, iar dept depinde de id, atunci locatie_dept depinde indirect de id.",
-      "hint2": "Scoate dept și locatie_dept într-un tabel separat Dept, iar în Angajat păstrează doar o cheie externă spre acest nou tabel."
+      "enunt": "Normalizează la FN3 tabela Angajat(id, nume, dept, locatie_dept): afișează tabela Departament (dicționar dept → locație) și angajații fără coloana locatie_dept.",
+      "expectedOutput": "{'IT': 'Cluj', 'HR': 'Iasi'}\n[(1, 'Ana', 'IT'), (2, 'Dan', 'HR'), (3, 'Eva', 'IT')]",
+      "hint": "Departamentul determină locația: construiește perechi dept: locație.",
+      "hint2": "{d: l for _, _, d, l in angajati}",
+      "template": "angajati = [(1, 'Ana', 'IT', 'Cluj'), (2, 'Dan', 'HR', 'Iasi'), (3, 'Eva', 'IT', 'Cluj')]\ndepartament = {___}\nangajat = [(i, n, d) for i, n, d, _ in angajati]\nprint(departament)\nprint(angajat)"
     }
   ],
   "4.6.4": [
@@ -3144,11 +3154,12 @@
       "id": "4.6.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Creează agenda.db cu Persoana(id, nume, telefon) folosind sqlite3.",
-      "expectedOutput": "CREATE TABLE Persoana",
-      "hint": "Ai nevoie de o conexiune la baza de date SQLite și de un obiect cursor prin care rulezi comenzile SQL.",
-      "hint2": "Pașii sunt: deschide/creează conexiunea către fișierul agenda.db, obține un cursor, execută o instrucțiune CREATE TABLE cu cele 3 coloane.",
-      "extindere": "Creează două tabele legate prin cheie externă și fă un JOIN între ele."
+      "enunt": "Deschide conexiunea, creează tabela Persoana(id, nume, telefon), inserează un contact și afișează numărul de rânduri.",
+      "expectedOutput": "1",
+      "hint": "Ce funcție din sqlite3 deschide baza și ce metodă a conexiunii creează cursorul?",
+      "hint2": "sqlite3.connect(...) și conn.cursor()",
+      "extindere": "Creează două tabele legate prin cheie externă și fă un JOIN între ele.",
+      "template": "import sqlite3\nconn = sqlite3.___(':memory:')\ncur = conn.___()\ncur.execute('CREATE TABLE IF NOT EXISTS Persoana(id INTEGER PRIMARY KEY, nume TEXT, telefon TEXT)')\ncur.execute('INSERT INTO Persoana(nume, telefon) VALUES (?, ?)', ('Ana', '0722'))\nconn.commit()\nprint(cur.execute('SELECT COUNT(*) FROM Persoana').fetchone()[0])"
     }
   ],
   "4.6.5": [
@@ -3156,10 +3167,11 @@
       "id": "4.6.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie adauga(conn, nume, telefon) care inserează și face commit.",
-      "expectedOutput": "commit()",
-      "hint": "O funcție care primește conexiunea ca parametru trebuie să obțină propriul cursor pentru a executa comanda de inserare.",
-      "hint2": "În interiorul funcției: execută o comandă INSERT cu valorile primite ca parametri, apoi salvează modificările apelând metoda de confirmare a tranzacției pe conexiune."
+      "enunt": "Scrie `adauga(conn, nume, telefon)` care inserează cu parametri `?` și face commit. Adaugă 3 persoane și afișează-le, ordonate după nume.",
+      "expectedOutput": "[('Eva',), ('Ion',), ('Mara',)]",
+      "hint": "Funcția are două instrucțiuni: un INSERT cu parametri și un commit.",
+      "hint2": "conn.execute('INSERT INTO Persoana VALUES (?, ?)', (nume, telefon)) apoi conn.commit()",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Persoana(nume TEXT, telefon TEXT)')\n\ndef adauga(conn, nume, telefon):\n    ___\n\nfor n, t in [('Mara', '0721'), ('Ion', '0733'), ('Eva', '0744')]:\n    adauga(conn, n, t)\nprint(conn.execute('SELECT nume FROM Persoana ORDER BY nume').fetchall())"
     }
   ],
   "4.7.4": [
@@ -3167,10 +3179,11 @@
       "id": "4.7.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "SELECT numele studenților >18 ani, ordonați alfabetic.",
-      "expectedOutput": "ORDER BY nume",
-      "hint": "Interogarea are nevoie de o clauză de filtrare pentru condiția pe vârstă și de o clauză separată pentru ordonarea rezultatelor.",
-      "hint2": "Structura este SELECT coloana FROM tabel WHERE condiție, urmat de o clauză care sortează alfabetic după numele coloanei."
+      "enunt": "Completează interogarea care afișează numele elevilor de cel puțin 18 ani, ordonați alfabetic.",
+      "expectedOutput": "[('Bogdan',), ('Cris',), ('Emil',), ('Flavia',)]",
+      "hint": "Filtrarea rândurilor se face cu o clauză, iar ordonarea cu alta.",
+      "hint2": "WHERE varsta >= 18 ORDER BY nume",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\ncur.execute('SELECT nume FROM Student ___ varsta >= 18 ORDER ___ nume')\nprint(cur.fetchall())"
     }
   ],
   "4.7.5": [
@@ -3178,10 +3191,11 @@
       "id": "4.7.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Creează tabela, inserează 3 rânduri, afișează ordonate (Python + sqlite3).",
-      "expectedOutput": "3 randuri ordonate",
-      "hint": "După ce execuți un SELECT cu ordonare, rezultatele nu sunt disponibile automat — trebuie extrase explicit din cursor.",
-      "hint2": "Urmează secvența: CREATE TABLE, trei comenzi INSERT (cu commit), apoi un SELECT cu ORDER BY, ale cărui rezultate le aduci printr-o metodă de extragere a tuturor rândurilor."
+      "enunt": "Creează tabela Carte(titlu, an), inserează cele 3 cărți și afișează titlurile ordonate după an.",
+      "expectedOutput": "['Ion', 'Baltagul', 'Maitreyi']",
+      "hint": "Ai nevoie de CREATE TABLE, executemany cu INSERT și un SELECT cu ORDER BY an.",
+      "hint2": "conn.executemany('INSERT INTO Carte VALUES (?, ?)', carti)",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncarti = [('Maitreyi', 1933), ('Ion', 1920), ('Baltagul', 1930)]\n# creează tabela, inserează și afișează\n"
     }
   ],
   "4.8.4": [
@@ -3189,10 +3203,11 @@
       "id": "4.8.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Numără studenții pe fiecare oraș (GROUP BY).",
-      "expectedOutput": "GROUP BY oras",
-      "hint": "Pentru a obține câte un rezultat per grup (oraș), interogarea trebuie să grupeze rândurile înainte de a le număra.",
-      "hint2": "Selectează coloana oras împreună cu o funcție de agregare care numără rândurile, apoi grupează rezultatul după oras."
+      "enunt": "Completează interogarea care numără elevii din fiecare oraș.",
+      "expectedOutput": "[('Arad', 1), ('Cluj', 3), ('Iasi', 2)]",
+      "hint": "O funcție agregată numără rândurile, iar o clauză formează grupurile.",
+      "hint2": "COUNT(*) și GROUP BY",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\ncur.execute('SELECT oras, ___(*) FROM Student ___ BY oras ORDER BY oras')\nprint(cur.fetchall())"
     }
   ],
   "4.8.5": [
@@ -3200,10 +3215,11 @@
       "id": "4.8.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Media vârstei per oraș, doar orașe cu >=2 studenți (HAVING).",
-      "expectedOutput": "HAVING COUNT(*)>=2",
-      "hint": "Filtrarea pe rezultatul unei agregări (nu pe rândurile brute) se face cu o clauză diferită de WHERE.",
-      "hint2": "Grupează după oraș, calculează media vârstei cu o funcție de agregare, apoi restricționează grupurile afișate folosind o clauză care acceptă condiții pe rezultatul agregării."
+      "enunt": "Afișează vârsta medie pe oraș, doar pentru orașele cu cel puțin 2 elevi.",
+      "expectedOutput": "[('Cluj', 18.0), ('Iasi', 18.5)]",
+      "hint": "Condiția e pe numărul de rânduri din fiecare grup.",
+      "hint2": "HAVING COUNT(*) >= 2",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT, varsta INTEGER, oras TEXT)')\ncur.executemany('INSERT INTO Student(nume, varsta, oras) VALUES (?, ?, ?)', [\n    ('Ana', 17, 'Cluj'), ('Bogdan', 19, 'Iasi'), ('Cris', 18, 'Cluj'),\n    ('Dana', 16, 'Arad'), ('Emil', 19, 'Cluj'), ('Flavia', 18, 'Iasi')])\ncur.execute('SELECT oras, AVG(varsta) FROM Student GROUP BY oras ___ COUNT(*) >= 2 ORDER BY oras')\nprint(cur.fetchall())"
     }
   ],
   "4.9.4": [
@@ -3211,10 +3227,11 @@
       "id": "4.9.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "JOIN care afișează numele studenților și denumirea cursurilor.",
-      "expectedOutput": "JOIN Inscriere ON ... JOIN Curs ON ...",
-      "hint": "Studentul și cursul nu sunt legate direct, ci printr-un tabel intermediar — vei avea nevoie de două legături succesive.",
-      "hint2": "Pornește de la Student, leagă-l de tabela de înscrieri prin cheia comună, apoi leagă rezultatul de tabela Curs prin cealaltă cheie, folosind câte o clauză de alăturare pentru fiecare legătură."
+      "enunt": "Completează JOIN-ul care afișează numele elevilor și denumirea cursurilor lor.",
+      "expectedOutput": "[('Ana', 'Python'), ('Ana', 'SQL'), ('Bogdan', 'SQL')]",
+      "hint": "Ce cuvânt cheie leagă două tabele pe o condiție?",
+      "hint2": "JOIN ... ON ...",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\ncur.execute('''\n    SELECT s.nume, c.denumire\n    FROM Student s\n    ___ Inscriere i ON s.id = i.student_id\n    ___ Curs c ON i.curs_id = c.id\n    ORDER BY s.nume, c.denumire\n''')\nprint(cur.fetchall())"
     }
   ],
   "4.9.5": [
@@ -3222,10 +3239,11 @@
       "id": "4.9.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Subinterogare care returnează studenții înscriși la un curs dat.",
-      "expectedOutput": "WHERE id IN (SELECT ...)",
-      "hint": "Poți obține mai întâi mulțimea de id-uri de studenți dintr-o interogare separată, apoi folosi acea mulțime ca filtru pentru interogarea principală.",
-      "hint2": "Structura este SELECT ... FROM Student WHERE id [operator de apartenență] (o interogare internă care selectează id-urile din Inscriere pentru cursul respectiv)."
+      "enunt": "Completează subinterogarea care afișează elevii înscriși la cursul cu id 2.",
+      "expectedOutput": "[('Ana',), ('Bogdan',)]",
+      "hint": "Ce operator verifică dacă o valoare apare într-o listă?",
+      "hint2": "IN",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, nume TEXT);\nCREATE TABLE Curs(id INTEGER PRIMARY KEY, denumire TEXT);\nCREATE TABLE Inscriere(student_id INTEGER, curs_id INTEGER);\nINSERT INTO Student VALUES (1, 'Ana'), (2, 'Bogdan'), (3, 'Cris');\nINSERT INTO Curs VALUES (1, 'Python'), (2, 'SQL'), (3, 'Grafică');\nINSERT INTO Inscriere VALUES (1, 1), (1, 2), (2, 2);\n''')\ncur.execute('SELECT nume FROM Student WHERE id ___ (SELECT student_id FROM Inscriere WHERE curs_id = 2) ORDER BY nume')\nprint(cur.fetchall())"
     }
   ],
   "4.10.4": [
@@ -3233,10 +3251,11 @@
       "id": "4.10.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Inserează 3 studenți apoi actualizează vârsta unuia (Python).",
-      "expectedOutput": "UPDATE ... commit",
-      "hint": "Modificarea unei valori existente într-un tabel se face cu o comandă SQL diferită de cea de inserare, însoțită de o condiție care identifică rândul vizat.",
-      "hint2": "După cele 3 INSERT-uri cu commit, execută o comandă UPDATE pe coloana vârstă, cu o clauză WHERE care selectează exact studentul dorit, apoi confirmă tranzacția."
+      "enunt": "Inserează 3 elevi, actualizează vârsta lui Bogdan la 20 și afișează tabela ordonată după nume.",
+      "expectedOutput": "[('Ana', 17), ('Bogdan', 20), ('Cris', 18)]",
+      "hint": "Ce comandă SQL modifică valori existente?",
+      "hint2": "UPDATE",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(nume TEXT, varsta INTEGER)')\ncur.executemany('INSERT INTO Student VALUES (?, ?)', [('Ana', 17), ('Bogdan', 19), ('Cris', 18)])\ncur.execute('___ Student SET varsta = ? WHERE nume = ?', (20, 'Bogdan'))\nconn.commit()\nprint(cur.execute('SELECT * FROM Student ORDER BY nume').fetchall())"
     }
   ],
   "4.10.5": [
@@ -3244,10 +3263,11 @@
       "id": "4.10.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Șterge rândurile cu vârsta < 16 (execute + commit).",
-      "expectedOutput": "DELETE WHERE varsta<16",
-      "hint": "Eliminarea definitivă de rânduri dintr-un tabel se face cu o comandă SQL dedicată, nu prin filtrare în Python.",
-      "hint2": "Execută o comandă DELETE FROM pe tabelul respectiv, cu o clauză WHERE care selectează rândurile cu vârsta sub pragul cerut, apoi confirmă tranzacția."
+      "enunt": "Șterge înregistrările cu vârsta mai mică de 16 ani și afișează câte rânduri au fost șterse și câte au rămas.",
+      "expectedOutput": "2 2",
+      "hint": "Ai nevoie de DELETE cu o condiție WHERE.",
+      "hint2": "DELETE FROM Student WHERE varsta < 16",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\ncur = conn.cursor()\ncur.execute('CREATE TABLE Student(nume TEXT, varsta INTEGER)')\ncur.executemany('INSERT INTO Student VALUES (?, ?)', [('Ana', 15), ('Bogdan', 19), ('Cris', 14), ('Dan', 16)])\ncur.execute('___')\nsterse = cur.rowcount\nconn.commit()\nprint(sterse, cur.execute('SELECT COUNT(*) FROM Student').fetchone()[0])"
     }
   ],
   "4.11.4": [
@@ -3255,10 +3275,11 @@
       "id": "4.11.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "CREATE TABLE Produs(id,nume,pret) apoi ALTER ADD stoc.",
-      "expectedOutput": "ALTER TABLE Produs ADD COLUMN stoc",
-      "hint": "Modificarea structurii unui tabel deja creat (adăugarea unei coloane noi) se face cu o comandă SQL diferită de CREATE TABLE.",
-      "hint2": "După CREATE TABLE Produs cu cele 3 coloane inițiale, rulează o a doua comandă care alterează tabela existentă, adăugând coloana stoc cu un tip numeric."
+      "enunt": "Creează tabela Produs(id, nume, pret), apoi adaugă coloana stoc și afișează coloanele.",
+      "expectedOutput": "['id', 'nume', 'pret', 'stoc']",
+      "hint": "Ce comandă creează o tabelă și ce cuvânt adaugă o coloană?",
+      "hint2": "CREATE și ADD",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('___ TABLE Produs(id INTEGER PRIMARY KEY, nume TEXT, pret REAL)')\nconn.execute('ALTER TABLE Produs ___ COLUMN stoc INTEGER')\nprint([r[1] for r in conn.execute('PRAGMA table_info(Produs)')])"
     }
   ],
   "4.11.5": [
@@ -3266,10 +3287,11 @@
       "id": "4.11.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Modifică tipul unei coloane sau șterge o coloană.",
-      "expectedOutput": "ALTER/DROP COLUMN",
-      "hint": "SQLite are limitări la modificarea directă a tipului unei coloane; verifică ce operații de alterare sunt permise nativ înainte de a alege abordarea.",
-      "hint2": "Pentru ștergere, folosește comanda de alterare a tabelei cu clauza specifică pentru eliminarea unei coloane; pentru schimbarea tipului, în multe sisteme e nevoie de un tabel nou și migrarea datelor."
+      "enunt": "Șterge coloana email din tabela Elev (`ALTER TABLE ... DROP COLUMN`) și afișează coloanele rămase.",
+      "expectedOutput": "['id', 'nume']",
+      "hint": "Comanda ALTER TABLE poate și elimina o coloană.",
+      "hint2": "DROP COLUMN email",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Elev(id INTEGER PRIMARY KEY, nume TEXT, email TEXT)')\nconn.execute('ALTER TABLE Elev ___')\nprint([r[1] for r in conn.execute('PRAGMA table_info(Elev)')])"
     }
   ],
   "4.12.4": [
@@ -3277,10 +3299,11 @@
       "id": "4.12.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Scrie un transfer bancar cu try/except și commit/rollback.",
-      "expectedOutput": "rollback()",
-      "hint": "Un transfer implică două operații care trebuie să reușească împreună sau să eșueze împreună — dacă a doua eșuează, prima trebuie anulată.",
-      "hint2": "Încadrează cele două UPDATE-uri (scădere dintr-un cont, adăugare în celălalt) într-un bloc try; la succes confirmă tranzacția, iar în blocul except anulează toate modificările făcute până atunci."
+      "enunt": "Completează transferul: dacă un pas eșuează, totul se anulează. Încearcă să transferi 80 de lei din contul 2 (care are 50) și afișează soldurile.",
+      "expectedOutput": "[(100,), (50,)]",
+      "hint": "Dacă ambele pași reușesc, confirmi; dacă nu, anulezi.",
+      "hint2": "conn.commit() în try și conn.rollback() în except",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\ntry:\n    conn.execute('UPDATE Cont SET sold = sold + 80 WHERE id = 1')\n    conn.execute('UPDATE Cont SET sold = sold - 80 WHERE id = 2')\n    conn.___()\nexcept sqlite3.IntegrityError:\n    conn.___()\nprint(conn.execute('SELECT sold FROM Cont ORDER BY id').fetchall())"
     }
   ],
   "4.12.5": [
@@ -3288,10 +3311,11 @@
       "id": "4.12.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "SAVEPOINT înainte de ștergere, apoi ROLLBACK TO SAVEPOINT.",
-      "expectedOutput": "ROLLBACK TO SAVEPOINT",
-      "hint": "Un punct de salvare intermediar permite anularea doar a unei părți dintr-o tranzacție, nu a întregii tranzacții.",
-      "hint2": "Creează un punct de salvare cu nume înainte de comanda DELETE, execută ștergerea, apoi revino la acel punct printr-o comandă de revenire care indică numele punctului de salvare."
+      "enunt": "Creează un SAVEPOINT înainte de ștergere, apoi revino la el cu ROLLBACK TO. Afișează câte conturi există la final.",
+      "expectedOutput": "2",
+      "hint": "Ce comandă marchează un punct la care te poți întoarce?",
+      "hint2": "SAVEPOINT inainte",
+      "template": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE Cont(id INTEGER PRIMARY KEY, sold INTEGER CHECK (sold >= 0))')\nconn.executemany('INSERT INTO Cont VALUES (?, ?)', [(1, 100), (2, 50)])\nconn.commit()\nconn.isolation_level = None\nconn.execute('BEGIN')\nconn.execute('___ inainte')\nconn.execute('DELETE FROM Cont WHERE id = 2')\nconn.execute('ROLLBACK TO inainte')\nconn.execute('COMMIT')\nprint(conn.execute('SELECT COUNT(*) FROM Cont').fetchone()[0])"
     }
   ],
   "4.13.4": [
@@ -3299,10 +3323,11 @@
       "id": "4.13.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Creează dicționar cu 5 exemple supervizate (features + target).",
-      "expectedOutput": "5 exemple",
-      "hint": "Învățarea supervizată are nevoie de perechi date de intrare - etichetă cunoscută; gândește-te cum structurezi fiecare exemplu ca să conțină ambele părți.",
-      "hint2": "Construiește o structură (de exemplu o listă) cu 5 elemente, fiecare element conținând atât valorile caracteristicilor (features), cât și eticheta țintă asociată."
+      "enunt": "Construiește un set de 5 exemple supervizate (dicționare cu 'ore' și ținta 'promovat'), apoi afișează câte exemple sunt și câte au ținta 'Da'.",
+      "expectedOutput": "5 3",
+      "hint": "Fiecare exemplu are o caracteristică și o țintă.",
+      "hint2": "Pune 3 exemple cu 'Da' și 2 cu 'Nu', ca rezultatul să fie cel cerut.",
+      "template": "date = [\n    # 5 dicționare cu 'ore' și 'promovat'\n]\nprint(len(date), sum(1 for d in date if d['promovat'] == 'Da'))"
     }
   ],
   "4.13.5": [
@@ -3310,10 +3335,11 @@
       "id": "4.13.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Separă features de target în tupluri (features, eticheta).",
-      "expectedOutput": "(features, eticheta)",
-      "hint": "Pentru fiecare exemplu, valorile de intrare și eticheta trebuie separate în două componente distincte, dar păstrate împreună într-o structură pereche.",
-      "hint2": "Pentru fiecare exemplu din setul de date, formează un tuplu cu exact două elemente: primul cu valorile caracteristicilor, al doilea cu eticheta corespunzătoare."
+      "enunt": "Transformă fiecare exemplu în perechea (caracteristici, etichetă) și afișează lista perechilor.",
+      "expectedOutput": "[({'x': 1, 'y': 2}, 'A'), ({'x': 5, 'y': 4}, 'B')]",
+      "hint": "Caracteristicile sunt toate cheile, în afară de 'eticheta'.",
+      "hint2": "({k: v for k, v in d.items() if k != 'eticheta'}, d['eticheta'])",
+      "template": "date = [{'x': 1, 'y': 2, 'eticheta': 'A'}, {'x': 5, 'y': 4, 'eticheta': 'B'}]\nperechi = [___ for d in date]\nprint(perechi)"
     }
   ],
   "4.14.4": [
@@ -3321,10 +3347,11 @@
       "id": "4.14.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Înlocuiește valorile lipsă (None) dintr-o listă cu media.",
-      "expectedOutput": "media fara None",
-      "hint": "Media trebuie calculată doar din valorile valide, nu din toată lista — altfel valorile lipsă ar denatura rezultatul.",
-      "hint2": "Parcurge lista, filtrează elementele care nu sunt None pentru a calcula media, apoi parcurge din nou lista înlocuind fiecare None cu acea medie."
+      "enunt": "Înlocuiește valorile lipsă (None) cu media valorilor cunoscute și afișează lista completată.",
+      "expectedOutput": "[8, 9, 8.5, 7, 8.5, 10]",
+      "hint": "Media se calculează doar din valorile cunoscute.",
+      "hint2": "sum(cunoscute) / len(cunoscute), apoi înlocuiești None cu media",
+      "template": "note = [8, 9, None, 7, None, 10]\ncunoscute = [n for n in note if n is not None]\nmedia = sum(___) / len(___)\nnote_complete = [n if n is not None else ___ for n in note]\nprint(note_complete)"
     }
   ],
   "4.14.5": [
@@ -3332,10 +3359,11 @@
       "id": "4.14.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Normalizare min-max pentru o listă de numere.",
-      "expectedOutput": "(x-min)/(max-min)",
-      "hint": "Normalizarea min-max aduce toate valorile într-un interval fix, raportând fiecare valoare la distanța dintre minim și maxim.",
-      "hint2": "Determină mai întâi valoarea minimă și maximă din listă, apoi transformă fiecare element scăzând minimul și împărțind la diferența dintre maxim și minim."
+      "enunt": "Scrie normalizarea min-max pentru lista de vârste și afișează rezultatul.",
+      "expectedOutput": "[0.0, 0.25, 0.5, 1.0]",
+      "hint": "Formula este (valoare - minim) / (maxim - minim).",
+      "hint2": "(v - mn) / (mx - mn)",
+      "template": "varste = [15, 20, 25, 35]\nmn, mx = min(varste), max(varste)\nnorm = [___ for v in varste]\nprint(norm)"
     }
   ],
   "4.15.4": [
@@ -3343,10 +3371,11 @@
       "id": "4.15.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Folosește KMeans pe puncte 2D și afișează labels_.",
-      "expectedOutput": "km.labels_",
-      "hint": "Algoritmul de clustering din scikit-learn se instanțiază cu numărul de clustere dorit, apoi se antrenează direct pe datele de intrare.",
-      "hint2": "Creează un obiect al clasei de clustering specificând numărul de clustere, apelează metoda de antrenare pe matricea de puncte, apoi accesează atributul care conține eticheta de cluster asociată fiecărui punct."
+      "enunt": "Aplică algoritmul K-means (scris de mână, mai jos) pe punctele 2D, cu k = 2, și afișează grupul fiecărui punct.",
+      "expectedOutput": "[0, 0, 1, 1]",
+      "hint": "Centroizii inițiali trebuie să fie două puncte din grupuri diferite.",
+      "hint2": "Folosește ultimul punct, X[3], ca al doilea centroid.",
+      "template": "def dist(a, b):\n    return sum((x - y) ** 2 for x, y in zip(a, b)) ** 0.5\n\ndef kmeans(puncte, centroizi, pasi=10):\n    for _ in range(pasi):\n        grupuri = [[] for _ in centroizi]\n        for p in puncte:\n            k = min(range(len(centroizi)), key=lambda i: dist(p, centroizi[i]))\n            grupuri[k].append(p)\n        centroizi = [[sum(c) / len(g) for c in zip(*g)] if g else centroizi[i] for i, g in enumerate(grupuri)]\n    eticheta = [min(range(len(centroizi)), key=lambda i: dist(p, centroizi[i])) for p in puncte]\n    return eticheta, centroizi\n\nX = [[1, 1], [1, 2], [9, 9], [10, 10]]\netichete, centroizi = kmeans(X, [X[0], X[___]])\nprint(etichete)"
     }
   ],
   "4.15.5": [
@@ -3354,10 +3383,11 @@
       "id": "4.15.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Un pas manual K-means pe 4 puncte cu 2 centroizi.",
-      "expectedOutput": "atribuiri noi",
-      "hint": "Un pas de K-means presupune calcularea distanței de la fiecare punct la fiecare centroid și alegerea celui mai apropiat.",
-      "hint2": "Pentru fiecare din cele 4 puncte, calculează distanța (de exemplu euclidiană) față de cei 2 centroizi și atribuie punctul centroidului cu distanța minimă."
+      "enunt": "Fă manual un pas K-means pe 4 numere cu centroizii 1 și 9: atribuie fiecare punct, apoi calculează noii centroizi. Afișează atribuirile și centroizii noi.",
+      "expectedOutput": "[0, 0, 1, 1] [2.5, 8.5]",
+      "hint": "Noul centroid al grupului k e media punctelor atribuite lui k.",
+      "hint2": "sum(p for p, a in zip(puncte, atribuiri) if a == k) / atribuiri.count(k)",
+      "template": "puncte = [2, 3, 7, 10]\ncentroizi = [1, 9]\natribuiri = [min(range(2), key=lambda i: abs(p - centroizi[i])) for p in puncte]\nnoi = [___ for k in range(2)]\nprint(atribuiri, noi)"
     }
   ],
   "4.16.4": [
@@ -3365,10 +3395,11 @@
       "id": "4.16.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Antrenează regresie liniară pe (1,3),(2,5),(3,7), prezice x=4.",
-      "expectedOutput": "9",
-      "hint": "Modelul de regresie liniară din scikit-learn are nevoie de datele de intrare organizate ca o matrice de eșantioane, nu ca o listă simplă de numere.",
-      "hint2": "Instanțiază modelul de regresie, antrenează-l pe perechile (x, y) date, apoi folosește metoda de predicție pe valoarea x=4 pentru a obține rezultatul."
+      "enunt": "Calculează dreapta de regresie pentru datele (1, 3), (2, 5), (3, 7) cu formulele celor mai mici pătrate și prezice valoarea pentru x = 4.",
+      "expectedOutput": "9.0",
+      "hint": "Dreapta trece prin punctul mediu (x̄, ȳ).",
+      "hint2": "b = my - a * mx",
+      "template": "X = [1, 2, 3]\ny = [3, 5, 7]\nmx, my = sum(X) / 3, sum(y) / 3\na = sum((xi - mx) * (yi - my) for xi, yi in zip(X, y)) / sum((xi - mx) ** 2 for xi in X)\nb = ___\nprint(a * 4 + b)"
     }
   ],
   "4.16.5": [
@@ -3376,10 +3407,11 @@
       "id": "4.16.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Calculează manual panta a pentru 2 puncte și prezice.",
-      "expectedOutput": "panta*a",
-      "hint": "Panta unei drepte care trece prin două puncte se calculează din diferența ordonatelor raportată la diferența abciselor.",
-      "hint2": "Calculează panta a ca diferența y2-y1 împărțită la x2-x1, determină și ordonata la origine b, apoi folosește formula y = a*x + b pentru predicție."
+      "enunt": "Calculează panta dreptei care trece prin (1, 4) și (3, 10), apoi prezice y pentru x = 5.",
+      "expectedOutput": "3.0 16.0",
+      "hint": "Panta e creșterea lui y împărțită la creșterea lui x.",
+      "hint2": "(y2 - y1) / (x2 - x1)",
+      "template": "x1, y1 = 1, 4\nx2, y2 = 3, 10\na = ___\nb = y1 - a * x1\nprint(a, a * 5 + b)"
     }
   ],
   "4.17.4": [
@@ -3387,10 +3419,11 @@
       "id": "4.17.4.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Antrenează KNN pe un set mic și prezice un punct nou.",
-      "expectedOutput": "eticheta prezisa",
-      "hint": "Algoritmul celor mai apropiați vecini clasifică un punct nou în funcție de etichetele majoritare ale celor mai apropiate puncte cunoscute.",
-      "hint2": "Instanțiază clasificatorul KNN cu un număr de vecini, antrenează-l pe datele și etichetele cunoscute, apoi apelează metoda de predicție pe punctul nou."
+      "enunt": "Implementează KNN cu k = 3 și prezice eticheta punctului nou (2, 2).",
+      "expectedOutput": "A",
+      "hint": "Păstrezi primii k vecini după sortare.",
+      "hint2": "[:3]",
+      "template": "X = [[1, 1], [1, 2], [8, 8], [9, 9]]\ny = ['A', 'A', 'B', 'B']\nnou = [2, 2]\nidx = sorted(range(len(X)), key=lambda i: sum((a - b) ** 2 for a, b in zip(X[i], nou)))[:___]\nvoturi = [y[i] for i in idx]\nprint(max(set(voturi), key=voturi.count))"
     }
   ],
   "4.17.5": [
@@ -3398,10 +3431,11 @@
       "id": "4.17.5.ex1",
       "nivel": "de-baza",
       "tip": "cod",
-      "enunt": "Antrenează arbore de decizie și afișează importanța features.",
-      "expectedOutput": "feature_importances_",
-      "hint": "Arborii de decizie oferă, după antrenare, o măsură internă a cât de mult contribuie fiecare caracteristică la deciziile luate.",
-      "hint2": "Instanțiază și antrenează un clasificator de tip arbore de decizie pe date, apoi accesează atributul modelului care conține scorurile de importanță pentru fiecare caracteristică."
+      "enunt": "Un arbore de decizie simplu: pentru fiecare caracteristică, găsește cel mai bun prag (cel care clasifică corect cele mai multe exemple) și afișează caracteristica mai utilă.",
+      "expectedOutput": "venit",
+      "hint": "Compară caracteristicile după numărul de exemple clasificate corect.",
+      "hint2": "key=corecte",
+      "template": "date = [(5000, 20, 'Da'), (7000, 45, 'Da'), (2000, 30, 'Nu'), (2500, 50, 'Nu'), (6000, 25, 'Da'), (1500, 40, 'Nu')]\nnume = ['venit', 'varsta']\n\ndef corecte(col):\n    valori = sorted({d[col] for d in date})\n    return max(sum(('Da' if d[col] > p else 'Nu') == d[2] for d in date) for p in valori)\n\nprint(nume[max(range(2), key=___)])"
     }
   ],
   "4.18.4": [
