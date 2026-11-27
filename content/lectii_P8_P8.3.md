@@ -1,7 +1,7 @@
 # Modulul P8.3 — Listă de culori și for simplu
 
 **Vârsta țintă:** 8 ani | Capitolul: Python pentru copii — 8 ani (clasa a II-a)
-**Clasa:** P8 (Python pentru copii — ages 7-11)
+**Clasa:** P8 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ O listă se scrie folosind paranteze pătrate, iar elementele sunt separate prin
 
 ---
 
-### 💡 P8.3.2 Concept nou si exemplu
+### 💡 P8.3.2 Concept nou și exemplu
 
 Creăm o listă cu **culori = ["rosu", "verde", "albastru"]**. Putem parcurge lista element cu element folosind o buclă **for** sau putem alege o valoare aleatorie folosind **random.choice()**.
 
@@ -32,6 +32,37 @@ Acest cod folosește modulul random pentru a extrage o culoare din lista noastr�
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Pippy are o listă de cumpărături. Adaugă „lapte”, afișează câte lucruri sunt de cumpărat și apoi fiecare lucru pe rândul lui, numerotat.
+
+**Ideea.** `append` pune un element nou la sfârșitul listei. `len` ne spune câte elemente sunt. Cu `for` luăm elementele pe rând, iar un contor ține numărul de ordine.
+
+```python
+cumparaturi = ["pâine", "mere", "ouă"]
+cumparaturi.append("lapte")
+print("De cumpărat:", len(cumparaturi), "lucruri")
+nr = 1
+for lucru in cumparaturi:
+    print(nr, lucru)
+    nr = nr + 1
+```
+Rezultatul:
+```text
+De cumpărat: 4 lucruri
+1 pâine
+2 mere
+3 ouă
+4 lapte
+```
+
+:::atentie
+## Greșeli frecvente
+- Crezi că primul element dintr-o listă e `lista[1]`. Ca la texte, numărăm de la 0.
+- Uiți virgulele dintre elemente: `["rosu" "verde"]` lipește cele două texte într-unul singur.
+- Scrii `lista.append("galben")` și apoi te aștepți la o listă nouă: `append` schimbă chiar lista ta.
+:::
 
 ### 🔮 P8.3.3 Citește și prezice
 
@@ -90,6 +121,18 @@ print(culoare_aleasa)
    a) add()  b) **append()**  c) push()
       > Metoda append() adaugă un element nou chiar la finalul listei, așa cum am adăugat culoarea galben.
 
----
+4. Ce afișează `print(["a", "b", "c"][2])`?
+   a) b  b) **c**  c) Eroare
+      > Pozițiile sunt 0, 1, 2; la poziția 2 e "c".
 
-(by @python-pentru-copii — vârstă țintă: 8 ani)
+5. Câte elemente are lista după `L = [1, 2]` și `L.append(3)`?
+   a) 2  b) **3**  c) 1
+      > `append` adaugă un element la final.
+
+:::verifica-cod
+Adaugă „pisică” în lista de animale și afișează lista întreagă.
+template: animale = ["câine", "pește"]
+animale.___("pisică")
+print(animale)
+output: ['câine', 'pește', 'pisică']
+:::

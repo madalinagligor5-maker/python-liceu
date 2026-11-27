@@ -1,7 +1,7 @@
 # Modulul P11.2 — Proiect final: jocul Bounce!
 
 **Vârsta țintă:** 11 ani | Capitolul: Python pentru copii — 11 ani (clasa a V-a)
-**Clasa:** P11 (Python pentru copii — ages 7-11)
+**Clasa:** P11 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Jocul Bounce! presupune o minge care sare de pe pereți și pe care utilizatorul
 
 ---
 
-### 💡 P11.2.2 Concept nou si exemplu
+### 💡 P11.2.2 Concept nou și exemplu
 
 Folosim biblioteca **tkinter** pentru a crea o fereastră grafică și un obiect de tip **Canvas** pe care putem desena cercuri și dreptunghiuri. Logica mișcării se bazează pe actualizarea coordonatelor X și Y la fiecare cadru.
 
@@ -33,6 +33,36 @@ Acest cod creează spațiul de desenare inițial pentru jocul nostru.
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Simulăm, fără fereastră grafică, o minge care se mișcă pe o linie de la 0 la 10, cu viteza 3, și ricoșează din margini. Afișăm poziția la fiecare dintre cele 8 cadre.
+
+**Ideea.** La fiecare cadru adunăm viteza la poziție. Dacă mingea a trecut de o margine, o readucem pe margine și inversăm semnul vitezei. Exact asta face și jocul cu tkinter, doar că acolo mingea se și desenează.
+
+```python
+x = 0
+viteza = 3
+pozitii = []
+for cadru in range(8):
+    x += viteza
+    if x >= 10:
+        x = 10
+        viteza = -viteza
+    elif x <= 0:
+        x = 0
+        viteza = -viteza
+    pozitii.append(x)
+print(pozitii)
+```
+Rezultatul: `[3, 6, 9, 10, 7, 4, 1, 0]`.
+
+:::atentie
+## Greșeli frecvente
+- Schimbi poziția, dar uiți să verifici marginile: mingea „iese” din fereastră.
+- Inversezi direcția cu `viteza = 0`: mingea se oprește în loc să ricoșeze. Corect: `viteza = -viteza`.
+- Verifici doar marginea din dreapta și uiți de cea din stânga (sau invers).
+:::
 
 ### 🔮 P11.2.3 Citește și prezice
 
@@ -58,7 +88,7 @@ Inversarea direcției (de la pozitiv la negativ și invers) face ca obiectele s�
 
 ### 🤝 P11.2.4 Exerciții ghidate
 
-**Exercițiul 1.** Afișează viteza inițială a mingii pe axa X (3).
+**Exercițiul 1.** Mingea e la x = 100 și are viteza 3. Calculează poziția ei după un cadru.
 
 ---
 
@@ -75,7 +105,7 @@ canvas.___()
 
 ### 🎯 P11.2.5 Exerciții independente
 
-**Exercițiul 1.** Simulează lovirea peretelui stâng: inversează viteza_x.
+**Exercițiul 1.** Mingea lovește peretele din stânga. Completează condiția și inversează viteza ca să ricoșeze.
 
 ---
 
@@ -93,6 +123,20 @@ canvas.___()
    a) Oprim jocul  b) **Inversăm semnul vitezei (ex: viteza = -viteza)**  c) Schimbăm culoarea mingii
       > Când mingea atinge un perete, îi schimbăm doar semnul vitezei (viteza = -viteza), la fel cum s-a întâmplat cu directie_x în exemplul cu atingerea peretelui din dreapta.
 
----
+4. Dacă `viteza_x = 4` și mingea lovește peretele din dreapta, ce viteză primește?
+   a) 0  b) **-4**  c) 4
+      > Semnul se inversează: mingea merge acum spre stânga.
 
-(by @python-pentru-copii — vârstă țintă: 11 ani)
+5. Mingea e la x = 20 și are viteza -5. Unde e după un cadru?
+   a) 25  b) **15**  c) -5
+      > 20 + (-5) = 15: o viteză negativă o duce spre stânga.
+
+:::verifica-cod
+Mingea pornește de la x = 2 cu viteza 5. Mută-o 4 cadre (fără margini) și afișează poziția finală.
+template: x = 2
+viteza = 5
+for cadru in range(4):
+    x = ___
+print(x)
+output: 22
+:::

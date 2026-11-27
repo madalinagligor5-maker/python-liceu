@@ -1,7 +1,7 @@
 # Modulul P8.1 — Input și conversie
 
 **Vârsta țintă:** 8 ani | Capitolul: Python pentru copii — 8 ani (clasa a II-a)
-**Clasa:** P8 (Python pentru copii — ages 7-11)
+**Clasa:** P8 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Am folosit variabile pentru a stoca valori fixe. Acum valoarea va veni direct de
 
 ---
 
-### 💡 P8.1.2 Concept nou si exemplu
+### 💡 P8.1.2 Concept nou și exemplu
 
 Folosim funcția **input()** pentru a pune o întrebare utilizatorului. Deoarece input() primește mereu un text, dacă vrem numere, trebuie să le convertim folosind **int()** sau **float()**.
 
@@ -32,6 +32,31 @@ Funcția int() transformă textul primit în număr pentru a putea face calcule 
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Ana are 8 ani. Programul primește vârsta ca text (așa cum o dă `input()`) și calculează câți ani va avea peste 5 ani și în câți ani va împlini 18.
+
+**Ideea.** Textul "8" nu se poate aduna cu numere. Îl transformăm cu `int()` într-un număr adevărat și abia apoi facem socotelile.
+
+```python
+varsta_text = "8"          # așa ar veni de la input()
+varsta = int(varsta_text)
+print("Peste 5 ani vei avea", varsta + 5, "ani")
+print("Vei împlini 18 ani peste", 18 - varsta, "ani")
+```
+Rezultatul:
+```text
+Peste 5 ani vei avea 13 ani
+Vei împlini 18 ani peste 10 ani
+```
+
+:::atentie
+## Greșeli frecvente
+- Aduni rezultatul lui `input()` fără să-l transformi în număr: "5" + "2" dă "52", nu 7.
+- Încerci `int("3.5")`: pentru numere cu virgulă folosește `float`.
+- Uiți să pui rezultatul lui `int(...)` într-o variabilă: transformarea se pierde.
+:::
 
 ### 🔮 P8.1.3 Citește și prezice
 
@@ -88,6 +113,18 @@ print("Peste 5 ani vei avea:", varsta + 5)
    a) Un număr  b) **Un text (string)**  c) Nimic
       > Chiar dacă tastăm un număr, input() ni-l dă mereu ca text, de aceea avem nevoie de int() sau float() ca să-l transformăm.
 
----
+4. Ce afișează `print("4" + "4")`?
+   a) 8  b) **44**  c) Eroare
+      > Sunt texte, iar `+` le lipește unul de altul.
 
-(by @python-pentru-copii — vârstă țintă: 8 ani)
+5. Ce afișează `print(int("4") + 4)`?
+   a) 44  b) **8**  c) Eroare
+      > `int("4")` e numărul 4, iar 4 + 4 = 8.
+
+:::verifica-cod
+Un joc dă scorul ca text: "35". Transformă-l în număr și afișează scorul după ce mai câștigi 15 puncte.
+template: scor_text = "35"
+scor = ___
+print(scor + 15)
+output: 50
+:::

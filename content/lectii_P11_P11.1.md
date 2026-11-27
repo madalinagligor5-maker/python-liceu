@@ -1,7 +1,7 @@
 # Modulul P11.1 — Clase și obiecte
 
 **Vârsta țintă:** 11 ani | Capitolul: Python pentru copii — 11 ani (clasa a V-a)
-**Clasa:** P11 (Python pentru copii — ages 7-11)
+**Clasa:** P11 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ O clasă este ca o schiță sau o matriță (de exemplu schița unei case), iar 
 
 ---
 
-### 💡 P11.1.2 Concept nou si exemplu
+### 💡 P11.1.2 Concept nou și exemplu
 
 Definim o clasă folosind cuvântul cheie **class**. Metoda specială **__init__** inițializează proprietățile noului obiect. Cuvântul cheie **self** se referă la obiectul curent.
 
@@ -36,6 +36,43 @@ Acest cod creează un obiect de tip Jucarie numit robot, cu proprietățile nume
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Facem o clasă `Animal` pentru un joc: fiecare animal are un nume și un nivel de energie. Metoda `mananca` îi crește energia, iar `descrie` spune cum se simte.
+
+**Ideea.** În `__init__` salvăm datele în obiect cu `self.`. Metodele lucrează cu datele acelui obiect, tot prin `self`. Fiecare obiect își păstrează propriile valori.
+
+```python
+class Animal:
+    def __init__(self, nume):
+        self.nume = nume
+        self.energie = 5
+
+    def mananca(self, cat):
+        self.energie += cat
+
+    def descrie(self):
+        return f"{self.nume} are energia {self.energie}"
+
+pisica = Animal("Tom")
+caine = Animal("Rex")
+pisica.mananca(3)
+print(pisica.descrie())
+print(caine.descrie())
+```
+Rezultatul:
+```text
+Tom are energia 8
+Rex are energia 5
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți `self` ca prim parametru la metode: apare eroare la apel.
+- Scrii `nume = nume` în `__init__` în loc de `self.nume = nume`: valoarea nu se salvează în obiect.
+- Scrii `_init_` cu o singură liniuță: metoda specială are câte două de fiecare parte, `__init__`.
+:::
 
 ### 🔮 P11.1.3 Citește și prezice
 
@@ -98,6 +135,21 @@ print(r.nume)
    a) Tipul clasei  b) **Instanța curentă a obiectului**  c) Un parametru opțional
       > self reprezintă chiar obiectul pe care îl construim în acel moment, de aceea apare ca prim parametru la orice funcție din interiorul clasei.
 
----
+4. Ce reprezintă `self` într-o metodă?
+   a) Clasa  b) **Obiectul cu care lucrăm acum**  c) Prima variabilă din program
+      > Prin `self`, metoda știe ale cui date să le folosească.
 
-(by @python-pentru-copii — vârstă țintă: 11 ani)
+5. Când se execută `__init__`?
+   a) La fiecare `print`  b) **Automat, când creăm un obiect nou**  c) Niciodată
+      > `Animal("Tom")` creează obiectul și apelează imediat `__init__`.
+
+:::verifica-cod
+Completează clasa `Minge` ca să păstreze culoarea în obiect și afișează culoarea mingii create.
+template: class Minge:
+    def __init__(self, culoare):
+        ___ = culoare
+
+m = Minge("roșie")
+print(m.culoare)
+output: roșie
+:::

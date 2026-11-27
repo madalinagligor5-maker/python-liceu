@@ -1,7 +1,7 @@
 # Modulul P9.2 — Variabile și expresii
 
 **Vârsta țintă:** 9 ani | Capitolul: Python pentru copii — 9 ani (clasa a III-a)
-**Clasa:** P9 (Python pentru copii — ages 7-11)
+**Clasa:** P9 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Am folosit `scor = scor + 5`. Python are o modalitate mai scurtă de a scrie ace
 
 ---
 
-### 💡 P9.2.2 Concept nou si exemplu
+### 💡 P9.2.2 Concept nou și exemplu
 
 Operatorul **+=** adaugă o valoare la o variabilă existentă. De asemenea, putem folosi **f-string-uri** (stringuri formatate cu caracterul f la început: **f"Scor: {scor}"**) pentru a insera variabile direct în text.
 
@@ -32,6 +32,34 @@ Acest cod adaugă 5 la scor și folosește f-string-ul pentru a scrie 'Jucătoru
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un joc dă 10 puncte pentru fiecare stea strânsă și scade 3 puncte la fiecare greșeală. Pippy strânge 4 stele și face 2 greșeli. Afișăm scorul după fiecare pas și la final.
+
+**Ideea.** Pornim de la 0 și folosim `+=` și `-=` ca să modificăm scorul. Un f-string pune valoarea scorului direct în mesaj.
+
+```python
+scor = 0
+for stea in range(4):
+    scor += 10
+print(f"După stele: {scor}")
+for greseala in range(2):
+    scor -= 3
+print(f"Scor final: {scor} puncte")
+```
+Rezultatul:
+```text
+După stele: 40
+Scor final: 34 puncte
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți litera `f` în fața ghilimelelor: se afișează chiar `{scor}`, nu valoarea.
+- Scrii `scor =+ 5` în loc de `scor += 5`: `=+ 5` pune scorul la 5.
+- Folosești o variabilă în `+=` înainte să-i dai o valoare de pornire: `NameError`.
+:::
 
 ### 🔮 P9.2.3 Citește și prezice
 
@@ -89,6 +117,18 @@ print(f"Scorul este {___}")
    a) Comentarii  b) **Variabile sau expresii Python**  c) Litere mari
       > Între acolade {} punem o variabilă sau o mică expresie Python, iar rezultatul ei apare direct în text.
 
----
+4. După `x = 7` și `x += 3`, cât e `x`?
+   a) 3  b) **10**  c) 73
+      > `x += 3` înseamnă `x = x + 3`.
 
-(by @python-pentru-copii — vârstă țintă: 9 ani)
+5. Ce afișează `nume = "Ia"` / `print(f"Hei, {nume}!")`?
+   a) Hei, {nume}!  b) **Hei, Ia!**  c) Hei, nume!
+      > f-string-ul înlocuiește `{nume}` cu valoarea variabilei.
+
+:::verifica-cod
+Pippy are 3 vieți și mai câștigă 2. Folosește `+=` și un f-string ca să afișezi „Vieți: 5”.
+template: vieti = 3
+vieti ___ 2
+print(f"Vieți: {vieti}")
+output: Vieți: 5
+:::

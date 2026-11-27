@@ -41,6 +41,37 @@ print("Peste 5 ani vei avea", varsta + 5, "ani")
 Dacă uiți să convertești rezultatul lui `input()` cu `int()` sau `float()`, Python tratează valoarea ca text — iar `+` între două texte le lipește unul de altul, nu le adună. Așa că `"7" + "3"` devine `"73"`, nu `10`. De asta scriem mereu `int(input(...))` când vrem să calculăm cu un număr citit.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un magazin vinde caiete cu 4 lei bucata. Ana cumpără 7 caiete și plătește cu o bancnotă de 50 de lei. Câți lei primește rest?
+
+**Ideea.** Punem fiecare informație într-o variabilă cu nume clar, calculăm întâi costul total, apoi restul. Așa programul se citește ca rezolvarea de pe caiet.
+
+```python
+pret_caiet = 4
+numar_caiete = 7
+bani_dati = 50
+
+cost_total = pret_caiet * numar_caiete
+rest = bani_dati - cost_total
+
+print("Cost total:", cost_total, "lei")
+print("Rest:", rest, "lei")
+```
+Rezultatul:
+```text
+Cost total: 28 lei
+Rest: 22 lei
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți ghilimelele în jurul textului: `print(Salut)` caută o variabilă numită `Salut` și dă `NameError`.
+- Scrii numele variabilei între ghilimele: `print("nume")` afișează cuvântul „nume”, nu valoarea variabilei.
+- Lipești text și număr cu `+`: `"Am " + 13 + " ani"` dă eroare. Folosește virgula în `print` sau `str(13)`.
+- Pui spații sau cratime în numele variabilelor (`nota finala`, `nota-finala`). Folosește `_`: `nota_finala`.
+:::
+
 ### 🔮 VII.1.3 Citește și prezice
 
 Uită-te la codul de mai jos, **fără să-l rulezi**, și scrie pe hârtie ce crezi că se afișează:
@@ -53,7 +84,7 @@ scor = scor + 1
 print(nume, "are scorul", scor)
 ```
 
-Ai scris predicția? Verific-o singur, mental: ce valoare are `scor` chiar înainte de ultima linie? Vei putea rula cod direct în platformă în curând.
+Ai scris predicția? Verific-o singur, mental: ce valoare are `scor` chiar înainte de ultima linie?
 
 ### 🤝 VII.1.4 Exerciții ghidate
 
@@ -90,6 +121,14 @@ print("Elevul", ___, "este în", clasa)  # completează aici
 4. Ce e o variabilă?
    a) Un mesaj de eroare  b) O comandă care oprește programul  c) **Un nume care ține minte o valoare**
       > O variabilă e ca o cutie etichetată: are un nume, și prin atribuire (`=`) punem o valoare în ea, pe care o putem folosi mai departe în program.
+
+5. Ce afișează `print("5 + 2")`?
+   a) 7  b) **5 + 2**  c) Eroare
+      > Tot ce e între ghilimele e text și se afișează exact cum e scris; calculul nu se mai face.
+
+6. După `x = 4` și `x = x + 3`, cât valorează `x`?
+   a) 4  b) **7**  c) 3
+      > Python calculează întâi partea din dreapta (4 + 3 = 7), apoi pune rezultatul în `x`.
 
 :::verifica-cod
 Scrie un mic program care citește numele unui elev de la tastatură și afișează „Bine ai venit, <nume>!”. Demo: se introduce „Ana” -> se afișează „Bine ai venit, Ana!”.
@@ -136,6 +175,35 @@ Condițiile folosesc **operatori relaționali** (`==`, `!=`, `<`, `>`, `<=`, `>=
 :::
 
 Nu uita nici cele două puncte (`:`) după `if`/`elif`/`else`, și indentarea (spațiile de la începutul liniei) — Python „citește” spațiile ca să știe ce cod aparține fiecărei ramuri.
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Un an este bisect dacă se împarte la 4, dar nu la 100, sau dacă se împarte la 400. Verificăm anii 2024, 1900, 2000 și 2023.
+
+**Ideea.** Traducem regula în cuvinte direct în cod: „(divizibil cu 4 și nu cu 100) sau divizibil cu 400”. Parantezele arată ce se verifică împreună.
+
+```python
+for an in [2024, 1900, 2000, 2023]:
+    if (an % 4 == 0 and an % 100 != 0) or an % 400 == 0:
+        print(an, "este bisect")
+    else:
+        print(an, "nu este bisect")
+```
+Rezultatul:
+```text
+2024 este bisect
+1900 nu este bisect
+2000 este bisect
+2023 nu este bisect
+```
+
+:::atentie
+## Greșeli frecvente
+- Scrii `=` în loc de `==` în condiție: `if nota = 10:` e eroare de sintaxă.
+- Uiți `:` la finalul liniei cu `if`, `elif` sau `else`.
+- Nu indentezi la fel liniile din aceeași ramură: Python nu mai știe ce instrucțiuni țin de `if`.
+- Pui condițiile `elif` în ordine greșită: dacă testezi întâi `nota >= 5` și abia apoi `nota >= 9`, ramura „Foarte bine” nu se mai execută niciodată.
+:::
 
 ### 🔮 VII.2.3 Citește și prezice
 
@@ -191,6 +259,14 @@ else:
    a) `or`  b) **`and`**  c) `not`
       > `and` întoarce `Adevărat` doar dacă amândouă condițiile din stânga și din dreapta lui sunt adevărate; `or` e suficient ca una singură să fie adevărată.
 
+5. Pentru `x = 15`, ce afișează: `if x > 10: print("A")` / `elif x > 5: print("B")`?
+   a) A și B  b) **A**  c) B
+      > Prima condiție adevărată câștigă; după ea, ramurile `elif` nu se mai verifică.
+
+6. Ce întoarce `not (3 > 2)`?
+   a) True  b) **False**  c) Eroare
+      > `3 > 2` e `True`, iar `not` îl inversează în `False`.
+
 :::verifica-cod
 Scrie un program care citește vârsta unei persoane și afișează „Minor” dacă are sub 18 ani, altfel „Major”. Demo: vârsta 15 -> „Minor”.
 template: varsta = int(input("Câți ani ai? "))
@@ -244,6 +320,37 @@ for i in range(1, 11):
 Limita de sus dintr-un `range()` nu e inclusă niciodată — `range(1, 10)` generează 1, 2, ..., 9, dar nu și 10. Dacă vrei să incluzi și 10, scrie `range(1, 11)`. E o greșeală frecventă, numită „off-by-one” (greșeală cu o unitate).
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Calculăm suma cifrelor numărului 4827 și câte cifre are.
+
+**Ideea.** Nu știm dinainte câte cifre are numărul, așa că folosim `while`. La fiecare pas: ultima cifră e `n % 10`; o adunăm, apoi o „tăiem” cu `n // 10`. Ne oprim când `n` devine 0.
+
+```python
+n = 4827
+suma = 0
+cifre = 0
+while n > 0:
+    suma += n % 10
+    n = n // 10
+    cifre += 1
+print("Suma cifrelor:", suma)
+print("Număr de cifre:", cifre)
+```
+Rezultatul:
+```text
+Suma cifrelor: 21
+Număr de cifre: 4
+```
+
+:::atentie
+## Greșeli frecvente
+- Folosești `range(1, 10)` când vrei să ajungi la 10: limita de sus nu e inclusă.
+- Într-un `while` uiți să schimbi variabila din condiție și bucla nu se mai oprește.
+- Inițializezi suma în interiorul buclei (`suma = 0` sub `for`): la fiecare pas o readuci la zero.
+- Pui `print` în buclă când vrei doar rezultatul final: ieșirea are câte un rând la fiecare pas.
+:::
+
 ### 🔮 VII.3.3 Citește și prezice
 
 Uită-te la codul de mai jos, **fără să-l rulezi**, și scrie câte linii se afișează:
@@ -290,6 +397,14 @@ for i in range(1, ___):
 4. Poate un `if` să existe în interiorul unei bucle `for`?
    a) Nu, niciodată  b) **Da, structurile se pot combina**  c) Doar în interiorul unui `while`
       > Cele trei structuri fundamentale se pot combina liber — un `if` poate fi în interiorul unui `for`, care la rândul lui poate fi în interiorul unui alt `if`, exact cum cere programa pentru clasa a VII-a.
+
+5. De câte ori se execută corpul buclei `for i in range(2, 8, 2)`?
+   a) 6  b) **3**  c) 4
+      > `range(2, 8, 2)` dă 2, 4, 6: trei valori.
+
+6. Ce afișează `n = 5` / `while n > 0: n -= 2` / `print(n)`?
+   a) 0  b) **-1**  c) 1
+      > n trece prin 5, 3, 1, -1; la -1 condiția devine falsă și se afișează -1.
 
 :::verifica-cod
 Scrie un program care afișează, folosind o buclă `for`, toate numerele pare de la 2 la 10 inclusiv. Demo: se afișează 2, 4, 6, 8, 10, fiecare pe rândul lui.
