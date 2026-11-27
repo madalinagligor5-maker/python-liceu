@@ -58,7 +58,7 @@ export default async function ModulExercitiiPage({
   const exercitii = obtineSetExercitii(modul.cod, modul.titlu);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:max-w-5xl lg:px-8">
       <nav className="text-sm text-muted">
         <Link href="/exercitii" className="hover:text-brand">
           Exerciții

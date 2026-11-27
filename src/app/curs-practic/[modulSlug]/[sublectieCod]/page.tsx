@@ -137,7 +137,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
     // Variantă „teaser", randată server-side — la fel ca la liceu, conținutul
     // plătit nu e citit deloc pe această ramură.
     return (
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:max-w-5xl lg:px-8">
         {breadcrumbJsonLd}
         {breadcrumb}
 
@@ -220,7 +220,7 @@ export default async function SublectieCursPage({ params }: { params: Promise<Pa
   if (!continut) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:max-w-5xl lg:px-8">
       {breadcrumbJsonLd}
       {breadcrumb}
       <MarcheazaPasDeschis cod={sublectieCod} sursa="curs_practic" />
