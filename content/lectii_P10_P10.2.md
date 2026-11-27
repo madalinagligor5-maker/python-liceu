@@ -1,7 +1,7 @@
 # Modulul P10.2 — Bucla while și break/continue
 
 **Vârsta țintă:** 10 ani | Capitolul: Python pentru copii — 10 ani (clasa a IV-a)
-**Clasa:** P10 (Python pentru copii — ages 7-11)
+**Clasa:** P10 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Bucla while continuă să ruleze atâta timp cât o condiție este Adevărată (
 
 ---
 
-### 💡 P10.2.2 Concept nou si exemplu
+### 💡 P10.2.2 Concept nou și exemplu
 
 Putem controla cursul buclelor folosind **break** (oprește imediat bucla) și **continue** (sare peste pasul curent și trece la următorul).
 
@@ -35,6 +35,36 @@ Acest program se va opri când 'numar' devine 3 datorită instrucțiunii break.
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Pippy caută prima cutie care conține o cheie, într-un șir de cutii. Sare peste cutiile goale și se oprește imediat ce găsește cheia.
+
+**Ideea.** Parcurgem cutiile cu `for`. Dacă o cutie e goală, `continue` trece la următoarea. Când găsim cheia, o anunțăm și `break` oprește căutarea; cutiile de după nu mai sunt deschise.
+
+```python
+cutii = ["gol", "minge", "gol", "cheie", "carte"]
+for i, continut in enumerate(cutii, 1):
+    if continut == "gol":
+        continue
+    print("Cutia", i, "are:", continut)
+    if continut == "cheie":
+        print("Am găsit cheia!")
+        break
+```
+Rezultatul:
+```text
+Cutia 2 are: minge
+Cutia 4 are: cheie
+Am găsit cheia!
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți să mărești contorul în `while`: bucla nu se mai oprește.
+- Confunzi `break` (oprește toată bucla) cu `continue` (sare doar peste pasul curent).
+- Pui `continue` înainte de `contor += 1` într-un `while`: contorul nu mai crește și bucla se blochează.
+:::
 
 ### 🔮 P10.2.3 Citește și prezice
 
@@ -95,6 +125,23 @@ ___ numar <= 5:
    a) Folosind print  b) **Modificând condiția în interiorul buclei ca să devină falsă la un moment dat**  c) Închizând editorul
       > Ca bucla while să nu ruleze la nesfârșit, trebuie să modifici în interiorul ei ceva care să facă, la un moment dat, condiția falsă.
 
----
+4. Ce afișează `for i in range(5): if i == 3: break; print(i)` (pe rânduri separate)?
+   a) 0 1 2 3  b) **0 1 2**  c) 3 4
+      > La i = 3, `break` oprește bucla înainte de `print`.
 
-(by @python-pentru-copii — vârstă țintă: 10 ani)
+5. De câte ori se afișează „hei” în `n = 0` / `while n < 3: print("hei"); n += 1`?
+   a) 2  b) **3**  c) La nesfârșit
+      > n ia valorile 0, 1, 2; la 3 condiția e falsă.
+
+:::verifica-cod
+Afișează numerele de la 1 la 6, sărind peste 4, folosind `continue`.
+template: for i in range(1, 7):
+    if i == 4:
+        ___
+    print(i)
+output: 1
+2
+3
+5
+6
+:::

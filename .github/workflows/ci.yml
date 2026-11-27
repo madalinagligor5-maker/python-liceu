@@ -35,6 +35,8 @@ jobs:
           node scripts/audit_explicatii_quiz.mjs
       - name: Verificare Curs practic (rulează exemplele, exercițiile și soluțiile)
         run: python3 scripts/verifica_curs_practic.py
+      - name: Verificare lecții (exemple, verifică-cod, exerciții interactive și practice, cu soluții)
+        run: python3 scripts/verifica_lectii.py
       - name: Build (Vercel / Node)
         run: npm run build
       - name: Build Cloudflare (OpenNext)

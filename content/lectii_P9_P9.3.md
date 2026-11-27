@@ -1,7 +1,7 @@
 # Modulul P9.3 — Funcții simple
 
 **Vârsta țintă:** 9 ani | Capitolul: Python pentru copii — 9 ani (clasa a III-a)
-**Clasa:** P9 (Python pentru copii — ages 7-11)
+**Clasa:** P9 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ O funcție este o cutie cu cod pe care o putem folosi ori de câte ori avem nevo
 
 ---
 
-### 💡 P9.3.2 Concept nou si exemplu
+### 💡 P9.3.2 Concept nou și exemplu
 
 Definim o funcție folosind cuvântul cheie **def**, urmat de numele funcției și paranteze. Putem trimite date în funcție prin parametri și putem primi înapoi un rezultat folosind **return**.
 
@@ -34,6 +34,35 @@ Acest program definește funcția 'dublu' și o apelează, afișând 10 și apoi
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Facem o funcție `perimetru(latura)` pentru un pătrat și o folosim pentru trei pătrate diferite, apoi adunăm rezultatele.
+
+**Ideea.** Scriem calculul o singură dată, în funcție. `return` dă rezultatul înapoi, așa că îl putem afișa sau aduna cu alte rezultate.
+
+```python
+def perimetru(latura):
+    return 4 * latura
+
+print(perimetru(2))
+print(perimetru(5))
+total = perimetru(2) + perimetru(5) + perimetru(10)
+print("Total:", total)
+```
+Rezultatul:
+```text
+8
+20
+Total: 68
+```
+
+:::atentie
+## Greșeli frecvente
+- Definești funcția, dar uiți s-o apelezi: nu se întâmplă nimic.
+- Folosești `print` în funcție în loc de `return` și apoi vrei să faci socoteli cu rezultatul: primești `None`.
+- Uiți parantezele la apel: `print(dublu)` afișează funcția, nu rezultatul. Corect: `print(dublu(5))`.
+:::
 
 ### 🔮 P9.3.3 Citește și prezice
 
@@ -93,6 +122,19 @@ print(triplu(4))
    a) Valori  b) **Parametri**  c) Obiecte
       > Variabilele scrise între paranteze, prin care trimitem date către funcție, se numesc parametri.
 
----
+4. Ce afișează `def f(x): return x + 1` urmat de `print(f(f(1)))`?
+   a) 2  b) **3**  c) 1
+      > f(1) = 2, apoi f(2) = 3.
 
-(by @python-pentru-copii — vârstă țintă: 9 ani)
+5. Ce primești dintr-o funcție care nu are `return`?
+   a) 0  b) **None**  c) Eroare
+      > Fără `return`, funcția întoarce valoarea specială `None`.
+
+:::verifica-cod
+Scrie funcția `jumatate(n)` care întoarce jumătatea lui n (cu `/`) și afișează `jumatate(9)`.
+template: def jumatate(n):
+    return ___
+
+print(jumatate(9))
+output: 4.5
+:::

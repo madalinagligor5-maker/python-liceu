@@ -1,7 +1,7 @@
 # Modulul P10.3 — Funcții mai complexe
 
 **Vârsta țintă:** 10 ani | Capitolul: Python pentru copii — 10 ani (clasa a IV-a)
-**Clasa:** P10 (Python pentru copii — ages 7-11)
+**Clasa:** P10 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Uneori vrem ca o funcție să funcționeze chiar dacă uităm să îi dăm o val
 
 ---
 
-### 💡 P10.3.2 Concept nou si exemplu
+### 💡 P10.3.2 Concept nou și exemplu
 
 Parametrii pot avea valori implicite, de exemplu: **def saluta(nume="Prieten"):**. Dacă apelăm `saluta()`, se va folosi valoarea implicită 'Prieten'.
 
@@ -33,6 +33,34 @@ Prima apelare folosește reducerea implicită 0. A doua folosește reducerea 15 
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Facem o funcție care pregătește o pizza: dimensiunea e obligatorie, iar toppingul implicit e „brânză”. Comandăm trei pizze diferite.
+
+**Ideea.** Parametrul `topping="brânză"` are o valoare de rezervă. Dacă la apel nu spunem toppingul, se folosește brânza; dacă îl spunem, se folosește ce am cerut.
+
+```python
+def pizza(marime, topping="brânză"):
+    return f"Pizza {marime} cu {topping}"
+
+print(pizza("mică"))
+print(pizza("mare", "ciuperci"))
+print(pizza(topping="ananas", marime="medie"))
+```
+Rezultatul:
+```text
+Pizza mică cu brânză
+Pizza mare cu ciuperci
+Pizza medie cu ananas
+```
+
+:::atentie
+## Greșeli frecvente
+- Pui parametrul cu valoare implicită înaintea celui fără: `def f(a=1, b)` dă eroare. Cei cu valoare implicită stau la sfârșit.
+- Folosești în afara funcției o variabilă creată în interiorul ei: e locală și nu există acolo.
+- Crezi că valoarea implicită se folosește mereu. Ea se folosește doar când nu dai acel argument la apel.
+:::
 
 ### 🔮 P10.3.3 Citește și prezice
 
@@ -91,6 +119,19 @@ print(calculeaza_pret(___))   # folosește reducerea implicită
    a) def f(x : 10)  b) **def f(x=10)**  c) def f(x == 10)
       > O valoare implicită se scrie direct în paranteze, cu semnul =, ca în def f(x=10).
 
----
+4. Ce afișează `def f(x, y=10): return x + y` și `print(f(1))`?
+   a) 1  b) **11**  c) Eroare
+      > y nu e dat, deci ia valoarea implicită 10: 1 + 10 = 11.
 
-(by @python-pentru-copii — vârstă țintă: 10 ani)
+5. Și `print(f(1, 2))`?
+   a) 11  b) **3**  c) 12
+      > Acum y primește 2, deci 1 + 2 = 3.
+
+:::verifica-cod
+Scrie `inmultire(a, b=2)` care întoarce a·b. Afișează `inmultire(7)`, adică 7 înmulțit cu valoarea implicită.
+template: def inmultire(a, b=___):
+    return a * b
+
+print(inmultire(7))
+output: 14
+:::

@@ -41,6 +41,38 @@ for _ in range(10):
 La un șir de recurență (ca Fibonacci), primii termeni (`a, b = 0, 1`) nu sunt aleși la întâmplare — sunt chiar definiția șirului. Dacă îi schimbi, obții un alt șir, cu aceeași regulă de calcul dar cu alte valori. Verifică mereu, înainte de a scrie codul, care sunt exact primii termeni ceruți de problemă.
 :::
 
+## Problemă rezolvată pas cu pas
+
+**Enunț.** O progresie aritmetică pornește de la 5 și crește cu 3 la fiecare pas. Afișăm primii 8 termeni și verificăm suma lor cu formula S = n·(a₁ + aₙ) / 2.
+
+**Ideea.** Construim termenii unul câte unul, adunând rația. Suma o calculăm în timp ce generăm, apoi o comparăm cu formula, ca verificare.
+
+```python
+termen = 5
+ratie = 3
+suma = 0
+for i in range(8):
+    print(termen, end=" ")
+    suma += termen
+    ultimul = termen
+    termen += ratie
+print()
+print("Suma:", suma, "| Formula:", 8 * (5 + ultimul) // 2)
+```
+Rezultatul:
+```text
+5 8 11 14 17 20 23 26 
+Suma: 124 | Formula: 124
+```
+
+:::atentie
+## Greșeli frecvente
+- Pornești `range` de la 0 când șirul cere numere de la 1 sau de două cifre (de la 10).
+- La Fibonacci actualizezi `a` și `b` pe rânduri separate (`a = b`, apoi `b = a + b`) și pierzi vechea valoare a lui `a`. Scrie `a, b = b, a + b`.
+- Numeri termenii greșit: afișezi un termen în plus sau în minus. Verifică pe primii 3 termeni, de mână.
+- Confunzi „primii n termeni” cu „termenii mai mici decât n”: primul caz cere `for`, al doilea, de obicei, `while`.
+:::
+
 ### 🔮 VIII.1.3 Citește și prezice
 
 Uită-te la codul de mai jos, **fără să-l rulezi**, și scrie pe hârtie primii 5 termeni pe care crezi că îi afișează:
@@ -88,6 +120,14 @@ for i in range(1, ___):
 4. Care e regula șirului 2, 4, 8, 16, 32, ...?
    a) Se adună 2 la fiecare pas  b) **Fiecare termen e dublul celui anterior**  c) Se scade 2 la fiecare pas
       > Fiecare termen din acest șir se obține înmulțind termenul anterior cu 2 — de la 2 la 4, de la 4 la 8, și tot așa.
+
+5. Care e al 6-lea termen al șirului 1, 1, 2, 3, 5, …?
+   a) 7  b) **8**  c) 6
+      > Fiecare termen e suma celor doi dinainte: 3 + 5 = 8.
+
+6. Ce șir generează `for n in range(3, 20, 4): print(n)`?
+   a) 3, 4, 5, …  b) **3, 7, 11, 15, 19**  c) 4, 8, 12, 16
+      > Pornește de la 3 și adună 4 până depășește limita 20 (exclusă).
 
 :::verifica-cod
 Scrie un program care afișează, folosind o buclă `for`, primele 5 puteri ale lui 2, pornind de la 2^0. Demo: se afișează 1, 2, 4, 8, 16, fiecare pe rândul lui.
@@ -137,6 +177,43 @@ print("Cel mai mare număr este", maxim)
 :::atentie
 ## De ce `maxim` nu pornește de la 0
 Dacă toate numerele citite sunt negative, un `maxim` care pornește de la 0 ar rămâne greșit la 0 — pentru că niciun număr negativ nu trece testul „e mai mare decât 0”. De asta inițializăm `maxim` cu **prima valoare citită** (aici, folosind `None` ca semnal „încă nu am citit nimic”), nu cu 0.
+:::
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Temperaturile unei săptămâni sunt -2, 3, 7, -5, 4, 0, 6. Aflăm temperatura maximă și minimă, ziua (numărul ei) în care a fost cel mai frig și câte zile au avut temperaturi negative.
+
+**Ideea.** Parcurgem o singură dată șirul. Maximul și minimul pornesc de la primul element, nu de la 0. Ținem minte și poziția minimului, iar un contor numără valorile negative.
+
+```python
+temp = [-2, 3, 7, -5, 4, 0, 6]
+maxim = minim = temp[0]
+zi_minim = 1
+negative = 0
+for i in range(len(temp)):
+    t = temp[i]
+    if t > maxim:
+        maxim = t
+    if t < minim:
+        minim = t
+        zi_minim = i + 1
+    if t < 0:
+        negative += 1
+print("Maxim:", maxim, "| Minim:", minim, "în ziua", zi_minim)
+print("Zile cu temperaturi negative:", negative)
+```
+Rezultatul:
+```text
+Maxim: 7 | Minim: -5 în ziua 4
+Zile cu temperaturi negative: 2
+```
+
+:::atentie
+## Greșeli frecvente
+- Pornești `maxim` de la 0: dacă toate valorile sunt negative, rezultatul e greșit.
+- Împarți suma la un număr fix în loc de numărul real de valori (`len(numere)` sau contorul).
+- Calculezi media într-un șir fără elemente: apare împărțire la zero. Verifică întâi că ai cel puțin o valoare.
+- Numeri cu `contor = contor + 1` în afara lui `if`: numeri toate valorile, nu doar pe cele care respectă condiția.
 :::
 
 ### 🔮 VIII.2.3 Citește și prezice
@@ -196,6 +273,14 @@ print("Numere pozitive:", contor)
 4. Ce s-ar întâmpla dacă inițializăm un acumulator pentru **produs** cu 0, în loc de 1?
    a) Nu se schimbă nimic  b) **Rezultatul final ar fi întotdeauna 0**  c) Programul ar da eroare
       > Orice număr înmulțit cu 0 rămâne 0 — dacă produsul pornește de la 0, rezultatul final e mereu 0, indiferent ce valori sunt înmulțite pe parcurs. De aceea produsul se inițializează cu 1, „elementul neutru” pentru înmulțire.
+
+5. Cu ce valoare pornește o variabilă în care calculezi un produs?
+   a) 0  b) **1**  c) None
+      > Dacă ar porni de la 0, orice înmulțire ar da tot 0.
+
+6. Ce valoare are `contor` după ce parcurgi [4, -1, 6, -3] numărând valorile pozitive?
+   a) 4  b) **2**  c) 1
+      > Doar 4 și 6 sunt pozitive.
 
 :::verifica-cod
 Scrie un program care citește 3 numere de la tastatură și afișează suma lor. Demo: se introduc 4, 5, 6 -> se afișează 15.

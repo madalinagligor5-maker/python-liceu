@@ -1,7 +1,7 @@
 # Modulul P7.1 — Ce este Python? Primul meu program
 
 **Vârsta țintă:** 7 ani | Capitolul: Python pentru copii — 7 ani (grădiniță / clasa I)
-**Clasa:** P7 (Python pentru copii — ages 7-11)
+**Clasa:** P7 (Python pentru copii, 7–11 ani)
 
 ---
 
@@ -16,7 +16,7 @@ Dacă vrei ca o jucărie robot să meargă, trebuie să apeși pe un buton. În 
 
 ---
 
-### 💡 P7.1.2 Concept nou si exemplu
+### 💡 P7.1.2 Concept nou și exemplu
 
 Python este un limbaj special prin care vorbim cu calculatorul. Pentru a afișa un text pe ecran, folosim cuvântul magic **print()**.
 
@@ -30,6 +30,31 @@ Această comandă spune calculatorului să afișeze exact ce se află între ghi
 :::
 
 ---
+
+## Problemă rezolvată pas cu pas
+
+**Enunț.** Pippy vrea să se prezinte pe trei rânduri: cum îl cheamă, câți ani are și ce îi place.
+
+**Ideea.** Fiecare `print` scrie un rând. Textul îl punem între ghilimele. Numerele le putem scrie și fără ghilimele, iar Python poate chiar să le adune pentru noi.
+
+```python
+print("Salut, eu sunt Pippy!")
+print("Am", 3 + 4, "ani.")
+print("Îmi place să desenez.")
+```
+Rezultatul:
+```text
+Salut, eu sunt Pippy!
+Am 7 ani.
+Îmi place să desenez.
+```
+
+:::atentie
+## Greșeli frecvente
+- Uiți ghilimelele: `print(Salut)` nu merge. Textul stă mereu între ghilimele: `print("Salut")`.
+- Scrii `Print` cu P mare. Python face diferența între literele mari și mici: se scrie `print`.
+- Uiți una dintre paranteze: fiecare `(` are nevoie de perechea ei `)`.
+:::
 
 ### 🔮 P7.1.3 Citește și prezice
 
@@ -90,6 +115,18 @@ ___(___)
    a) Pentru a fi colorat  b) **Ca să știe calculatorul că este un text**  c) Nu este nevoie de ghilimele
       > Ghilimelele sunt ca niște mânuțe care țin textul strâns, ca să știe calculatorul unde începe și unde se termină cuvântul tău.
 
----
+4. Ce afișează `print(2 + 3)`?
+   a) 2 + 3  b) **5**  c) 23
+      > Fără ghilimele, Python face socoteala: 2 + 3 = 5.
 
-(by @python-pentru-copii — vârstă țintă: 7 ani)
+5. Câte rânduri apar pe ecran dacă scriem `print` de 3 ori?
+   a) 1  b) **3**  c) 6
+      > Fiecare `print` scrie pe un rând nou.
+
+:::verifica-cod
+Ajută-l pe Pippy să scrie pe ecran, pe două rânduri: „Bună dimineața!” și apoi „Hai să ne jucăm!”.
+template: print("Bună dimineața!")
+___
+output: Bună dimineața!
+Hai să ne jucăm!
+:::
